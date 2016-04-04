@@ -10,6 +10,7 @@ author: Riceball LEE
 language: zh-Hans
 timezone:
 rss:
+favicon: /favicon.ico
 
 #hexo-generator-feed
 feed:
@@ -26,13 +27,14 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 #Menu
+# not avaiable here! only on themes/_config.yml
 menu:
   home: /
   archives: /archives
-  #about: /about
   categories: /categories
   tags: /tags
   #commonweal: /404.html
+  #about: /about
 
 # Directory
 source_dir: source
@@ -81,10 +83,10 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
-disqus_shortname: riceballl
-#duoshuo_shortname: riceball
+#disqus_shortname: riceballl
+duoshuo_shortname: riceball
 # 多说热评文章 true 或者 false
-#duoshuo_hotartical: true
+duoshuo_hotartical: true
 baidu_analytics: 83c12d4163f9258ceafd22c997abddc2
 google_analytics: UA-75922641-1
 # JiaThis 分享服务
@@ -107,7 +109,7 @@ social_icons:
 #   MacTalk: http://macshuo.com/
 #   Title: http://example.com/
 #站点建立时间
-#since: 2016
+since: 2016
 
 math:
   engine: 'katex' # 'mathjax' # or 'katex'
