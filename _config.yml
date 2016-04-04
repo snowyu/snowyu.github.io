@@ -23,7 +23,7 @@ feed:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://riceball.me
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 #Menu
@@ -33,7 +33,7 @@ menu:
   archives: /archives
   categories: /categories
   tags: /tags
-  #commonweal: /404.html
+  commonweal: /404.html
   #about: /about
 
 # Directory
@@ -122,6 +122,10 @@ math:
     #js: custom_js_source # not used
     config:
       # KaTeX config
+
+search:
+  path: search.xml
+  field: all # post(default), page
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
