@@ -4,11 +4,13 @@ date: 2011-02-23 04:43:20+00:00
 updated: 2016-04-04 20:54:00
 title: 开源硬件的三个时代
 categories:
-  - Open-source Hardware
+  - Open Source
+  - Hardware
 tags:
   - arduino
   - open source
   - hardware
+  - iot
 ---
 
 **编者按：作为一个介绍优秀开源项目的网站，开源硬件也将是我们重点关注的一块，在未来，我们会把更多优秀的开源硬件项目介绍给大家。在此之前，让我们先预习一下开源硬件的三个时代。：），本文作者：李雪愚，盛大创新院高级架构师。**
