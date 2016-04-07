@@ -11,7 +11,7 @@ language: zh-Hans
 timezone:
 rss:
 favicon: /favicon.ico
-keywords: "Riceball, 李雪愚"
+keywords: "Riceball, 李雪愚, Blog"
 
 #hexo-generator-feed
 feed:
