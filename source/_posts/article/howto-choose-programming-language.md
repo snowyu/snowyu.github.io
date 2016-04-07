@@ -138,15 +138,15 @@ if u r a DBA, and learn sql well. maybe you are interested in the following sth:
 
 你最终想攀登（到达）一个什么样的山峰？
 
-下面是我推荐的学习顺序 `0->1,2,3->4`,其中1，2，3可以并行阅读。
+下面是我推荐的学习顺序 `1->2,3,4,6->5`,其中2，3，4，6应该可以并行阅读。不过5(算法和设计)应该在至少修完2，3后开始阅读。
 
-0. 计算机科学入门: 我以为应该是入门的
-  * [斯坦福大学 计算机科学入门课程](https://www.coursera.org/course/cs101)
-1. 计算机科学及Python编程导论 这个是非常棒的计算机开发入门课程(授课老师Prof. Eric Grimson是MIT的副校长, 此为MIT Online课程)不过是用python语言作为示范讲解的：
-  * 中文介绍：http://mooc.guokr.com/course/244/Introduction-to-Computer-Science-and-Programming-Using-Python/
+1. 计算机科学入门: 我以为应该是入门的
+   * [斯坦福大学 计算机科学入门课程](https://www.coursera.org/course/cs101)
+2. 计算机科学及Python编程导论 这个是非常棒的计算机开发入门课程(授课老师Prof. Eric Grimson是MIT的副校长, 此为MIT Online课程)不过是用python语言作为示范讲解的：
+  * [中文介绍](http://mooc.guokr.com/course/244/Introduction-to-Computer-Science-and-Programming-Using-Python/)
   * 上课地址：[introduction-computer-science](https://www.edx.org/course/introduction-computer-science-mitx-6-00-1x-0#.U_HC-_mSxSU)
-  * 中文字幕(建议和英文字幕对照看，据说翻译有点渣): http://open.163.com/special/opencourse/bianchengdaolun.html
-2. 编程入门
+  * [中文字幕](http://open.163.com/special/opencourse/bianchengdaolun.html)(建议和英文字幕对照看，据说翻译有点渣)
+3. 编程入门
   * java
     * 推荐书籍:
       1. [java编程思想第4版.pdf](http://pan.baidu.com/wap/album/file?uk=1194571246&album_id=2582121585932296218&fsid=3195473174)
@@ -172,9 +172,9 @@ if u r a DBA, and learn sql well. maybe you are interested in the following sth:
     * 《Code Complete[代码大全]》: 一书在手开发无求
       * [Code Complete 代码大全 -- 第2版(中文版).pdf](http://pan.baidu.com/wap/link?uk=3389964651&shareid=514781&third=3)
       * [Code Complete 代码大全 -- 第2版(英文版).pdf](http://pan.baidu.com/wap/link?uk=2801929386&shareid=493255&third=3)
-3. 计算机组成原理(basics of technical computer science,猜的可能是讲这个)
+4. 计算机组成原理(basics of technical computer science,猜的可能是讲这个)
   * 课程:
-    * 计算机组成(北大): http://www.chinesemooc.org/mooc/4392
+    * [计算机组成(北大)](http://www.chinesemooc.org/mooc/4392)
     * [The Hardware/Software Interface 课程](https://www.coursera.org/course/hwswinterface)
       * (对初学者来说有些深，不过课程非常棒): 可能至少要修完Introduction to Java，才能完全看懂
   * 书籍(可能有些深，国内的太渣，据说北大那个课程讲得还行):
@@ -183,7 +183,7 @@ if u r a DBA, and learn sql well. maybe you are interested in the following sth:
       * The Hardware/Software Interface 课程 指定用书
     * [计算机组成与设计：硬件、软件接口（第三版中文）.pdf](http://pan.baidu.com/wap/link?uk=1946220390&shareid=18873311&third=0)
     * [计算机组成与设计：硬件、软件接口（原书第4版）.pdf](http://pan.baidu.com/wap/shareview?&shareid=678623063&uk=1862273438&dir=%2F%E8%AF%BB%E7%A7%80%E8%B5%84%E6%96%99&page=3&num=20&fsid=688886060&third=0)
-4. 算法与设计
+5. 算法与设计
   * 课程:
     * [算法，第一部分(普林斯顿大学)](https://www.coursera.org/course/algs4partI)
     * [算法，第二部分(普林斯顿大学)](https://www.coursera.org/course/algs4partII)
@@ -199,13 +199,13 @@ if u r a DBA, and learn sql well. maybe you are interested in the following sth:
       * [英](http://pan.baidu.com/wap/link?uk=4030029226&shareid=1265604584&third=0)
   * `算法_模式_架构`书籍汇集:
     * [算法 模式 架构](http://pan.baidu.com/share/link?shareid=1210846675&uk=1076602916&third=3&page=1&dir=/Java&#path=%252FJava%252F%25E7%25AE%2597%25E6%25B3%2595_%25E6%25A8%25A1%25E5%25BC%258F_%25E6%259E%25B6%25E6%259E%2584)
-5. 操作系统概念
+6. 操作系统概念
   * Courses:
-   * 操作系统之基础(哈尔滨大学): http://mooc.study.163.com/course/HIT-1000002004#/info
+   * [操作系统之基础(哈尔滨大学)](http://mooc.study.163.com/course/HIT-1000002004#/info)
   * Books:
     * [操作系统概念第七版中文版.pdf](http://pan.baidu.com/wap/link?uk=788966016&shareid=421794&third=0)
     * [操作系统概念 (第9版).zip](http://pan.baidu.com/wap/link?uk=2117599147&shareid=443667&third=6)
-6. 其它
+7. 其它
   * [数据库系统概念 中文](http://pan.baidu.com/share/link?uk=3710133669&shareid=432998199&fid=284720175)
   * [数据库系统概念第六版Database System Concepts.pdf](http://pan.baidu.com/share/link?&shareid=2247901396&uk=1125778630)
   * [具体数学-计算机科学基础.rar](http://pan.baidu.com/wap/shareview?&shareid=2681801025&uk=3778155569&dir=%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80&page=1&num=20&fsid=3497987523&third=0)
