@@ -111,6 +111,16 @@ social_icons:
 #   Title: http://example.com/
 #站点建立时间
 since: 2014
+auto_excerpt:
+  enable: true
+  length: 150
+# Creative Commons 4.0 International License.
+# http://creativecommons.org/
+# Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+creative_commons: by-nc-sa
+# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
+baidu_push: true
+
 
 math:
   engine: 'katex' # 'mathjax' # or 'katex'
@@ -127,6 +137,10 @@ math:
 search:
   path: search.xml
   field: all # post(default), page
+
+
+sitemap:
+    path: sitemap.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
