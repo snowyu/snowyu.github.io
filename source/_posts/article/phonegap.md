@@ -3,15 +3,15 @@ author: riceball
 date: 2011-03-05 08:01:29+00:00
 title: Phonegap：快速开发跨平台HTML5应用的胶水层
 categories:
-- HTML5
+  - HTML5
 tags:
-- HTML5
-- 移动开发
-- phonegap
-- cordova
-- hybrid
-- mobile
-- application
+  - HTML5
+  - 移动开发
+  - phonegap
+  - cordova
+  - hybrid
+  - mobile
+  - application
 ---
 
 在开发移动应用的过程当中，如果你的应用只定位在一种平台上，这可不是一个好主意，但是为许多不同的平台Building应用又是一件非常麻烦和非常不爽的事情，因为你会发现每一种手机平台都有自己的SDK，它们需要使用不同语言来进行开发，你可能不得不需要5、6个代码仓库来管理不同设备上的代码，而且需要不同设备的开发人员来开发维护这些仓库，你还不得不装上各个设备的sdk，设置好路径和各种配置信息，来编译不同设备上的应用包。

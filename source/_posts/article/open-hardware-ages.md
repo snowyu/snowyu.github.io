@@ -7,6 +7,7 @@ categories:
   - Open Source
   - Hardware
 tags:
+  - thinking
   - arduino
   - open source
   - hardware
