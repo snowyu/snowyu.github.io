@@ -106,6 +106,8 @@ category:
 
 * http://processing.org/
 
+简单的介绍：[在这里](../processing-language)
+
 ### SQL/DBA
 
 if u r a DBA, and learn sql well. maybe you are interested in the following sth:
