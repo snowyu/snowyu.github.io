@@ -92,7 +92,11 @@ category:
 
 对于初步掌握html和css的前端人员来说，如果你用过javascript，那么从java或者javascript的某个framework着手自己编程之路可能更容易些；如果你对xml比较熟悉，那么[XQuery](http://blog.csdn.net/gobitan/article/details/1545998)也许也不错，如果你对CSS熟悉并愿意深入，那么从[COMPASS](http://www.cnblogs.com/yizihan/p/4427900.html)/[SASS](http://www.w3cplus.com/sassguide/)开始可能是一条比较有意思的路。
 
-* Javascript 前端 Frameworks，如果想继续深入前端，可以择一入门，如果要精深，那么MVC作为基础知识是必须要掌握的
+关于SASS介绍：[在这里](../sass-lang)。
+
+如果想继续深入前端，可以择一入门，如果要精深，那么MVC作为基础知识是必须要掌握的：
+
+* Javascript 前端 Frameworks
   * "Mootools":http://mootools.net/
   * "ExtJS":http://www.sencha.com/
   * "Dojo":http://dojotoolkit.org/
