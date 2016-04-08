@@ -3,8 +3,8 @@ author: riceball
 date: 2011-03-18 07:37:26+00:00
 title: HTML Web游戏开发之浮光掠影
 categories:
-- Game Development
 - HTML5
+- Game Development
 tags:
 - html5
 - h5
