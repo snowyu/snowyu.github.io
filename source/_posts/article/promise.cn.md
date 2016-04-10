@@ -120,6 +120,8 @@ Array::sum = -> @reduce ((a,b)->a+b), 0
 # 6
 ```
 
+这是顺序执行的coffee-script 核心代码：
+
 ```coffee
 seqAny = (aList, fn)->
   _genReduceFn = (fn)->
