@@ -1,5 +1,5 @@
 ---
-title: 移动互联网思维的探索
+title: 移动互联网（物联网）思维的探索
 date: 2014-05-05 14:05:00
 category :
   - Thinking
@@ -93,6 +93,10 @@ tags : [tao, internet, thinking, explore, p2p, iot]
 
 计划经济 -> 市场经济 -> 计划经济 -> 市场经济
 
+
+# 物联网思维
+
+(To be continued...)
 
 参考:
 
