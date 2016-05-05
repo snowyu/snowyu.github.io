@@ -1,6 +1,7 @@
 ---
 author: riceball
 date: 2016-04-10 12:53:56+08:00
+updated: 2016-05-05 10:40:14+08:00
 title: The Loopback Open API Framework
 category:
   - JavaScript
@@ -189,6 +190,112 @@ var isStatic = false;
 MyModel.disableRemoteMethod('updateAttributes', isStatic);
 ```
 
+#### 定义使用Role
+
+LoopBack 支持静态或动态的角色。静态角色保存在数据库中并映射到用户。作为对比，动态角色并不
+事先和用户绑定，它是在访问时才被确定。
+
+##### Static roles
+
+创建静态 Role 记录:
+
+```coffee
+Role.create name: 'admin', (err, role)->
+  return cb(err) if err
+  # add a user to the role.
+  role.principals.create principalType: RoleMapping.USER, principalId: aUser.id, (err, principal)->
+    cb(err)
+```
+
+但是更普通的用法应该是：
+
+```coffee
+Role.create name: 'project.del', (err, role)->
+  return cb(err) if err
+  # assign admin to the project.del role.
+  role.principals.create principalType: RoleMapping.ROLE, principalId: 'admin', (err, principal)->
+    cb(err)
+```
+
+这样会在权限角色上挂大量的用户自定义角色，太糟糕了，所以只能通过编写动态角色来做。
+
+##### Dynamic roles
+
+大多数时候，静态角色的灵活性并不够，因此 Loopback提供了在运行时刻确定权限的动态角色。
+
+并且 LoopBack 提供下列内置的动态角色：
+
+| Role 对象属性        | 字符串值         | 说明 |
+| Role.OWNER           | $owner           | Owner of the object |
+| Role.AUTHENTICATED   | $authenticated   | authenticated user |
+| Role.UNAUTHENTICATED | $unauthenticated | Unauthenticated user |
+| Role.EVERYONE        | $everyone        | Everyone |
+
+
+如何定义`动态角色`? 只需要在启动(boot)脚本中使用 `Role.registerResolver(name, fnRoleHandler)` 配置自己的
+定制角色处理器即可。该函数有两个参数:
+
+1. 该动态角色的名称
+2. 角色处理器异步函数，确定一个 principal 是否在该动态角色里。该函数传入的参数为 `function(role, context, callback)`
+  * role: 来自的role
+  * content: 当前期望访问的内容principal.
+  * callback: 返回结果回调函数。`function(error, result)`
+    * error: 如果有错误则把error对象传入该参数，否则应该是`null`
+    * result: *(boolean)* ，`true` 表示允许，`false` 表示拒绝。
+
+例如：
+
+```js
+// /server/boot/script.js
+module.exports = function(app) {
+  var Role = app.models.Role;
+  Role.registerResolver('teamMember', function(role, context, cb) {
+    function reject(err) {
+      if(err) {
+        return cb(err);
+      }
+      cb(null, false);
+    }
+    if (context.modelName !== 'project') {
+      // the target model is not project
+      return reject();
+    }
+    var userId = context.accessToken.userId;
+    if (!userId) {
+      return reject(); // do not allow anonymous users
+    }
+    // check if userId is in team table for the given project id
+    context.model.findById(context.modelId, function(err, project) {
+      if(err || !project) {
+        reject(err);
+      }
+      var Team = app.models.Team;
+      Team.count({
+        ownerId: project.ownerId,
+        memberId: userId
+      }, function(err, count) {
+        if (err) {
+          return reject(err);
+        }
+        cb(null, count > 0); // true = is a team member
+      });
+    });
+  });
+};
+```
+
+接下来就可以在model中使用该动态角色`teamMember`:
+
+```js
+// /common/models/model.json
+{
+  "accessType": "READ",
+  "principalType": "ROLE",
+  "principalId": "teamMember",
+  "permission": "ALLOW",
+  "property": "findById"
+}
+```
 
 [loopback]:http://loopback.io
 [strongloop]:https://strongloop.com
