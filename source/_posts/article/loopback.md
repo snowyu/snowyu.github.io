@@ -218,12 +218,34 @@ Let's add some properties now.
 * createdDate (date)
 * updatedDate (date)
 
-注意：Model 有这样一些[定制设置](https://docs.strongloop.com/display/public/LB/Customizing+models):
+注意：
 
-* `plural` - set to a custom string value to use, instead of the default standard plural form.
-* `strict` - set to true to make the model save only instances that have the predefined set of properties.  Any additional properties in a save or update operation are not persisted to the data source.  False by default.
-* `idInjection` - Whether to automatically add an id property to the model.  True by default.
-* `http.path` - customized HTTP path of REST endpoints.
+* 隐藏字段可以用`hidden`参数，将不需要公开的字段名称列在这个数组中。
+* Model 有这样一些[定制设置](https://docs.strongloop.com/display/public/LB/Customizing+models):
+  * `plural` - set to a custom string value to use, instead of the default standard plural form.
+  * `strict` - set to true to make the model save only instances that have the predefined set of properties.  Any additional properties in a save or update operation are not persisted to the data source.  False by default.
+  * `idInjection` - Whether to automatically add an id property to the model.  True by default.
+  * `http.path` - customized HTTP path of REST endpoints.
+  * `indexes` - 可以设置字段的复合索引，不过注意的是采用官方文档进行设置的时候，Mysql的connector会报错，只能这样设置:
+
+    ```js
+    "indexes": {
+      "some_name_age_index": {
+        "columns": "name, age", //不能使用keys，会报告: Key column 'undefined' doesn't exist in table
+        "options": {
+          "unique": true
+        }
+      }
+    ```
+  * 对于字段单个索引，可以直接写在字段中：
+
+    ```js
+      "name": {
+        "type": "string",
+        "index": true,
+        "required": true
+      },
+    ```
 
 接着就该是建立数据库之间的关系(relation), loopback 提供如下的关系:
 
@@ -276,6 +298,8 @@ slc loopback:relation
 ? Enter the property name for the relation: author
 ? Optionally enter a custom foreign key:
 ```
+
+注意：关系对应的方法名称参阅: [Accessing related models](https://docs.strongloop.com/display/public/LB/Accessing+related+models)
 
 Ok, Model 自此建立完毕，建立的文件在项目的`/server/models/`目录或者`/common/models`目录下，
 这个依赖您自己的配置。
@@ -582,6 +606,79 @@ Comment.disableRemoteMethod('deleteById', true);
 ```
 
 
+## Storage component
+
+通过使用[Storage component](https://docs.strongloop.com/display/public/LB/Storage+component)获得支持文件上传下载功能。
+该组件作为一种特殊的Datasource来使用，它支持如下的存储：
+
+* 云存储
+  * Amazon
+  * Rackspace
+  * Openstack
+  * Azure
+* 本地文件存储
+
+存储组件将文件内容组织为容器`containers` 和文件 `files`。一个`container`包含一系列的文件，每一个文件必属于一个容器。
+
+
+* `Container` groups files, similar to a directory or folder. A container defines the namespace for objects and is uniquely identified by its name, typically within a user account.
+  * NOTE: A container cannot have child containers.
+* `File` stores the data, such as a document or image. A file is always in one (and only one) container. Within a container, each file has a unique name. Files in different containers can have the same name.
+
+### 安装
+
+```bash
+$ npm install loopback-component-storage
+```
+
+### Datasource
+
+接着我们需要创建一个新的Datasource：
+
+可以直接在 `/server/datasources.json` 文件中创建：
+
+```json
+"myfile": {
+   "name": "myfile",
+   "connector": "loopback-component-storage",
+   "provider": "amazon",
+   "key": "your amazon key",
+   "keyId": "your amazon key id"
+ }
+ ```
+
+也可以在程序中创建:
+
+`server/server.js`:
+
+```js
+var ds = loopback.createDataSource({
+    connector: require('loopback-component-storage'),
+    provider: 'filesystem',
+    root: path.join(__dirname, 'storage')
+});
+
+var container = ds.createModel('container');
+app.model(container);
+```
+
+然后就可以在API中访问:
+
+| REST URI                       | Description           | Container Model Method |
+| GET /api/containers            | List all containers.  | getContainers(cb)  |
+| GET /api/containers/:container | Get information about specified container. | getContainer(container, cb) |
+| POST /api/containers           | Create a new container.  | createContainer(options, cb) |
+| DELETE /api/containers/:container             | Delete specified container. | destroyContainer(container, cb) |
+| GET /api/containers/:container/files          | List all files within specified container. | getFiles(container, download, cb) |
+| GET /api/containers/:container/files/:file    | Get information for specified file within specified container. | getFile(container, file, cb) |
+| DELETE /api/containers/:container/files/:file | Delete a file within a given container by name. | removeFile(container, file, cb) |
+| POST /api/containers/:container/upload        | Upload one or more files into the specified container. The request body must use multipart/form-data which the file input type for HTML uses. | upload(req, res, cb) |
+| GET /api/containers/:container/download/:file | Download a file within specified container. | download(container, file, res, cb) |
+|   | Get a stream for uploading.   | uploadStream(container, file, options, cb)   |
+|   | Get a stream for downloading. | downloadStream(container, file, options, cb) |
+
+
+
 ## slc loopback:swagger
 
 即由 `loopback:swagger` 可以把 Open API 文档直接导入进 loopback 应用。
@@ -634,6 +731,7 @@ the built-in models attach to the 'db' datasource automatically:
   registry.Application.autoAttach = dataSourceTypes.DB;
 ```
 
+扩展内置Model，除了官方文中提到方法外，还可以在 `/server/boot/`文件中直接对原有Model增加字段。
 
 ### [User](https://apidocs.strongloop.com/loopback/#user)
 
@@ -641,11 +739,91 @@ Default User ACLs.
 
 * DENY EVERYONE *
 * ALLOW EVERYONE create
-* ALLOW OWNER deleteById
 * ALLOW EVERYONE login
 * ALLOW EVERYONE logout
+* ALLOW EVERYONE confirm their identity
+* ALLOW EVERYONE reset their own password
+* ALLOW OWNER deleteById
 * ALLOW OWNER findById
 * ALLOW OWNER updateAttributes
+
+默认字段:
+
+* realm(*string*)
+* username(*string*)
+* password(*string*, required)
+* email(*string*, required)
+* emailVerified(*boolean*)
+* verificationToken(*string*)
+
+#### Register
+
+```bash
+curl -X POST -H "Content-Type:application/json" \
+-d '{"email": "me@domain.com", "password": "secret"}' \
+http://localhost:3000/api/users
+```
+
+自带的注册验证为电子邮件验证，另外如果需要在注册前验证是否用户名或者邮件地址已经被注册，可以使用 `beforeRemote` hook.
+
+启用电子邮件验证(必须先设置[Mail datasource](https://docs.strongloop.com/display/public/LB/Using+built-in+models#Usingbuilt-inmodels-Emailmodel)):
+
+```js
+//server/model-config.json
+"user": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
+}
+```
+
+/common/models/user.js:
+
+```js
+var config = require('../../server/config.json');
+var path = require('path');
+ 
+module.exports = function(user) {
+  //send verification email after registration
+  user.afterRemote('create', function(context, userInstance, next) {
+    console.log('> user.afterRemote triggered');
+ 
+    var options = {
+      type: 'email',
+      to: userInstance.email,
+      from: 'noreply@loopback.com',
+      subject: 'Thanks for registering.',
+      template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+      redirect: '/verified',
+      user: user
+    };
+ 
+    userInstance.verify(options, function(err, response, next) {
+      if (err) return next(err);
+ 
+      console.log('> verification email sent:', response);
+ 
+      context.res.render('response', {
+        title: 'Signed up successfully',
+        content: 'Please check your email and click on the verification link ' +
+            'before logging in.',
+        redirectTo: '/',
+        redirectToLinkText: 'Log in'
+      });
+    });
+  });
+}
+```
+
+模板文件 verify.ejs:
+
+```ejs
+This is the html version of your email.
+<strong><%= text %></strong>
+```
+
 
 ### [ACL(Access Control List)](https://docs.strongloop.com/display/public/LB/Authentication%2C+authorization%2C+and+permissions)
 
@@ -815,6 +993,31 @@ module.exports = function(app) {
   "property": "findById"
 }
 ```
+
+## [终端打印](https://docs.strongloop.com/display/public/LB/Setting+debug+strings)
+
+在开发过程中希望通过终端输出调试信息，则可以根据自己的模块以及组织引入：
+
+```js
+var log = require('debug')('common:autoMigrate');
+
+log("this is a debug info.");
+```
+
+
+使用时候:
+
+```bash
+$ DEBUG=<pattern>[,<pattern>...] node .
+```
+
+支持通配符:
+
+```bash
+$ DEBUG=common:* node .
+```
+
+具体的内置模块调试信息参阅: [Setting debug strings](https://docs.strongloop.com/display/public/LB/Setting+debug+strings)
 
 [loopback]:http://loopback.io
 [strongloop]:https://strongloop.com
