@@ -655,10 +655,10 @@ $ npm install loopback-component-storage
 var ds = loopback.createDataSource({
     connector: require('loopback-component-storage'),
     provider: 'filesystem',
-    root: path.join(__dirname, 'storage')
+    root: path.resolve(__dirname, '../storage')
 });
 
-var container = ds.createModel('container');
+var container = ds.createModel('container', null, base: 'Model');
 app.model(container);
 ```
 
@@ -677,6 +677,15 @@ app.model(container);
 |   | Get a stream for uploading.   | uploadStream(container, file, options, cb)   |
 |   | Get a stream for downloading. | downloadStream(container, file, options, cb) |
 
+
+如果是用本地文件系统，那么每创建一个容器，对应于每创建一个子目录:
+
+```bash
+curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" -d "{
+  \"name\": \"test\"
+}" "http://localhost:3000/api/containers"
+```
+注意当前container只支持1级目录，不支持多级目录。
 
 
 ## slc loopback:swagger
