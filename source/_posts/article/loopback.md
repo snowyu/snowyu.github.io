@@ -665,6 +665,7 @@ app.model(container);
 然后就可以在API中访问:
 
 | REST URI                       | Description           | Container Model Method |
+| -------------                  | -------------         | -------------      |
 | GET /api/containers            | List all containers.  | getContainers(cb)  |
 | GET /api/containers/:container | Get information about specified container. | getContainer(container, cb) |
 | POST /api/containers           | Create a new container.  | createContainer(options, cb) |
@@ -687,6 +688,9 @@ curl -X POST --header "Content-Type: application/json" --header "Accept: applica
 ```
 注意当前container只支持1级目录，不支持多级目录。
 
+
+
+# 深入探索
 
 ## slc loopback:swagger
 
@@ -714,8 +718,6 @@ Models are successfully generated from swagger spec.
 
 slc应该提供一个方便的model以及`remote method`文档描述和生成工具。
 
-
-# 深入探索
 
 ## 内建的 models
 
@@ -931,7 +933,8 @@ Role.create name: 'project.del', (err, role)->
 
 并且 LoopBack 提供下列内置的动态角色：
 
-| Role 对象属性        | 字符串值         | 说明 |
+| Role 对象属性        | 字符串值         | 说明          |
+| -------------        | -------------    | ------------- |
 | Role.OWNER           | $owner           | Owner of the object |
 | Role.AUTHENTICATED   | $authenticated   | authenticated user |
 | Role.UNAUTHENTICATED | $unauthenticated | Unauthenticated user |

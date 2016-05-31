@@ -150,3 +150,15 @@ deploy:
   repo:
     github: git@github.com:snowyu/snowyu.github.io,master
     #gitcafe: <repository url>,[branch]
+
+
+
+# Markdown config
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
