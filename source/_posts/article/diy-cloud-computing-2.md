@@ -203,5 +203,6 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
   + 志强D-1518(4核，6MCache, 2.20Ghz) 35W ￥3720
   + 志强D-1541(8核，6MCache, 2.20Ghz) 45W ￥6880
   * 可惜是基于Broadwell, 还是得等明年(2017年)的Skylake 。
+  * https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver
 * 三星 32G DDR4 2133 RDIMM 服务器内存: ￥1060
 
