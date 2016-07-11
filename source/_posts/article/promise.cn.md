@@ -24,24 +24,21 @@ Promise是简化异步编程的重要概念。这篇文章介绍得不错：[Sim
 * promise只有三种状态，未完成，完成(fulfilled)和失败(rejected)。
 * promise的状态可以由未完成转换成完成，或者未完成转换成失败。
 * promise的状态转换只发生一次
-* promise有一个then方法，
-  * then方法可以接受3个函数作为参数。
-  * 前两个函数对应promise的两种状态fulfilled, rejected的回调函数。
-  * 第三个函数用于处理进度信息。
+* promise有一个then方法: (`promise.then(onFulfilled, onRejected)`)
+  * then方法可以接受2个回调函数作为参数。
+    * 对应promise的两种状态fulfilled, rejected的回调函数。回调函数的传递参数分别是resolve(value),reject(value) 函数。
 
-  ```js
-  .then(function(fulfilled){
-          //当promise状态变成fulfilled时，调用此函数
-      },function(rejected){
-          //当promise状态变成rejected时，调用此函数
-      },function(progress){
-          //当返回进度信息时，调用此函数
-      });
-  ```
+    ```js
+    .then(function(resolve){
+            //当promise状态变成fulfilled时，调用此函数
+        },function(reject){
+            //当promise状态变成rejected时，调用此函数
+        });
+    ```
 
-  ```coffee
-  .then ((fulfilled)->), ((rejected)->), ((progress)->)
-  ```
+    ```coffee
+    .then ((resolve)->), ((reject)->))
+    ```
 
 
 Promise API 标准存在多个提案，目前看来，[Promises/A+][promisesAplus] 已经正在成为事实上的标准。
