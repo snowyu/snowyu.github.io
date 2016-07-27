@@ -583,6 +583,8 @@ Blog.upvote = function(id, cb) {
 };
 ```
 
+注意：如果直接在代码里调用remoteMethod去添加远程方法，那么在Model.definition.settings.methods中不会出现。
+
 另外，通过禁止Model内置的删除方法，还可以禁止任何删除评论,修改 `models/comment.js`:
 
 ```js
