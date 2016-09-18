@@ -1,6 +1,7 @@
 ---
 author: riceball
 date: 2013-07-14 06:05:39+00:00
+updated: 2016-08-01 20:54:00
 title: 用 Javascript 开发桌面应用的框架工具列表
 categories:
   - JavaScript
@@ -24,6 +25,21 @@ tags:
 
 Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在`package.json`中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。
 
+
+下载需要翻墙：
+
+https://www.npmjs.com/package/electron-download
+在环境变量中设置即可 `npm install electron-prebuilt` 。
+
+```ini
+## Electron Mirror of China
+ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/"
+CHROMEDRIVER_CDNURL=http://npm.taobao.org/mirrors/chromedriver
+
+## or for a local mirror
+ELECTRON_MIRROR="https://10.1.2.105/"
+ELECTRON_CUSTOM_DIR="our/internal/filePath"
+```
 
 # [NW.js](http://nwjs.io/) (以前叫 node-webkit)
 
