@@ -1,7 +1,7 @@
 ---
 author: riceball
 date: 2015-05-03 18:30:06+08:00
-updated: 2016-05-03 18:30:06+08:00
+updated: 2016-08-31 06:30:06+08:00
 title: 虚拟现实（VR）体验
 category:
   - Thinking
@@ -45,6 +45,9 @@ HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震�
 首先值得一说的就是{《Hover Junkers》}，这是一款联机多人枪战的游戏，主要是驾驶气垫船分队互相射击。
 也可能是有史以来第一个VR多人竞技射击游戏。直译为：漂浮掠夺客。目前还处于EA(Early Access)状态。
 
+* 好玩性: 高
+* 眩晕度: 轻微
+
 ![](./hover-junkers.jpg)
 
 玩家是在一辆漂浮的战车上游戏,游戏刚开始在休息室选择自己的角色,随后便会加载到战车上,在战车上他们可以随意走动,
@@ -70,8 +73,6 @@ http://www.bilibili.com/video/av3960772/
 ### [《The Lab》][The Lab]
 
 最后想说的是: Valve 的 [《The Lab》][The Lab]。
-
-
 
 
 ### 关键技术
