@@ -15,7 +15,7 @@ tags:
 
 ## Coffee Style Computer Language
 
-I treat the coffee-script as the first coffee style computer language.
+I treat the coffee-script and `Literate CoffeeScript` as the first `coffee style` computer language.
 
 Features:
 
@@ -35,7 +35,7 @@ Pros:
 
 Cons:
 
-* Ambiguity: 和人类句子一样，可能歧义。 The Human statement as possible ambiguity.
+* Ambiguity: The Human statement as possible ambiguity. eg,
 
     I saw a man on a hill with a telescope.
 
@@ -45,8 +45,41 @@ Cons:
     * There’s a man, and he’s on a hill that also has a telescope on it.
     * I’m on a hill, and I saw a man using a telescope.
     * There’s a man on a hill, and I’m sawing him with a telescope.
-* Smart man used only(Not For Stupid man)
+* Smart man used only(the stupid is difficult to use)
   * the man should have a mindset always. So you have got a big trouble if you can not recognize the ambiguity of some statement.
-  * the Smart variable definition should be care too.
+  * the smart variable definition should be care too.
+
 Most languages could be transformed into a similar coffee style.
 
+The previous generation computer language is very mechanical and rigid.
+It's strictly limited, not even missing a semicolon.
+
+
+## Language Reference
+
+### Functions
+
+
+```coffee
+square = (x) -> x * x
+cube   :integer = (x: integer) -> square(x) * x
+fill   :string  = (container: string, liquid: string = "coffee") ->
+  "Filling the #{container} with #{liquid}..."
+```
+
+The return and argument type should be optional for the types could be inferred.
+
+The following is the C language transform:
+
+```c
+int square(int x) {return x*x;}
+int cube(int x)   {return square(x)*x;}
+char* fill(const char* container, const char* liquid) {
+  if (!liquid) liquid = "coffee";
+  const char* fmt = "Filling the %s with %s...";
+  int sz = snprintf(NULL, 0, fmt, container, liquid);
+  char* result = malloc(sz+1);
+  snprintf(result, sz+1, fmt, container, liquid);
+  return result;
+}
+```
