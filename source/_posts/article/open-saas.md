@@ -38,5 +38,14 @@ SaaS的本质是将规模经济应用到软件应用的运营上。故其规模�
 
 愚以上为制约SaaS发展规模的主要原因。
 
+## 开源 SaaS 平台
+
+借助开源 SaaS 平台联盟，借助开源社区的监督和研发，可以做到：
+
+* 无后门
+* 更安全
+* 更大程度限制运营人员
+* 保障用户的知情权，监督权，数据归属权
+* 规模集约化运营
 
 [1]: http://www.rainstor.com/assets/downloads/SaaS_Data_Escrow_International_Report.pdf
