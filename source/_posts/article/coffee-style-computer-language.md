@@ -13,24 +13,27 @@ tags:
   - tech
 ---
 
-## Coffee Style Computer Language
+## Coffee Style Smart Computer Language
 
-I treat the coffee-script and `Literate CoffeeScript` as the first `coffee style` computer language.
+I treat the coffee-script and `Literate CoffeeScript` as the first `coffee style` smart computer language concept.
+This should be the basics of the next generation Smart Computer Language.
 
 Features:
 
-* space indents for block, the curly braces are optional.
-* the brackets are optional for function revocation.
-* the array, object(dict) assignment could be no comma, instead of using the block.
-* the functional expression definition could be '->' or '=>'.
+* Space indents for block, the curly braces are optional.
+* The brackets are optional for function revocation.
+* The array, object(dict) assignment could be no comma, instead of using the block.
+* The functional expression definition could be '->' or '=>'.
 * Smart variable definition
-  * It should be a switch.
+  * It should be a compiler switcher.
   * The first variable assignment will be declared if no the same name variable before.
+* RTL(run-time library) replace-able.
+  * you can write your own `extends`, `for in` etc rtl functions.
 
 Pros:
 
 * More Natural Readable for humans
-* More Smart
+* More humane intelligence
 * Functional
 
 Cons:
@@ -52,7 +55,7 @@ Cons:
 Most languages could be transformed into a similar coffee style.
 
 The previous generation computer language is very mechanical and rigid.
-It's strictly limited, not even missing a semicolon.
+It's strictly limited, even missing a semicolon would raise an error.
 
 
 ## Language Reference
