@@ -51,4 +51,6 @@ SaaS的本质是将规模经济应用到软件应用的运营上。故其规模�
 * 保障用户的知情权，监督权，数据归属权
 * 规模集约化运营
 
+![alliance-platform-rule](./alliance-platform-rule.png)
+
 [1]: http://www.rainstor.com/assets/downloads/SaaS_Data_Escrow_International_Report.pdf
