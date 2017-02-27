@@ -23,7 +23,7 @@ Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩
 不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带
 策略路由，对于域名IP流量精确转发，变得so easy。
 
-这里记录下 Ubuntu 16.10 以上版本的碰到的一些tips。
+这里记录下 Ubuntu 16.10 以上版本的安装tips.
 
 ## Shell
 
@@ -40,7 +40,93 @@ $> echo "export LC_ALL=en_US.UTF-8">> ~/.profile
 然后修改.zshrc文件，添加你自己的pulgins：
 
 ```
-plugins=(git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt ubuntu gradle nvm npm node coffee yarn go golang)
+plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)
+```
+
+## SSD 磁盘
+
+SSD磁盘的挂载和使用需要一些小技巧来延长SSD的使用寿命。
+
+### Trim
+
+SSD 磁盘挂载需要启用trim指令，Liunx的磁盘系统支持两类trim（但注意不是所有的磁盘系统都支持）。
+
+* discard 参数: 持续 trim(删除立刻trim)
+* fstrim: 后台trim(定期cron.weekly中执行一次)
+
+| File system | Continuous TRIM(discard option) | Periodic TRIM(fstrim) |
+| ---------   | ---------                       | ---------             |
+| Ext3        | No                              | ?                     |
+| Ext4        | Yes                             | Yes                   |
+| Btrfs       | Yes                             | Yes                   |
+| JFS         | Yes                             | Yes                   |
+| XFS         | Yes                             | Yes                   |
+| F2FS        | Yes                             | Yes                   |
+| VFAT        | Yes                             | No                    |
+| ntfs-3g     | No                              | Yes                   |
+
+我自己用的是Ext4以及Btrfs(支持ssd参数优化)。另外如果是用笔记本的话，可以适当将写commit的时间延长（秒为单位）。
+添加`noatime`/`relatime`参数(在读取文件的时候禁止/减少写入)以便于提升SSD的读取性能（尽管Linux内核2.6.30以上为默认）。
+
+```bash
+✗ cat /etc/fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+UUID=XXXX-XXX-XXXX-XXX /               ext4    defaults,noatime,discard,commit=300,errors=remount-ro 0       1
+UUID=XXXX-XXX-XXXX-XXX /home           btrfs   defaults,noatime,discard,commit=120,ssd 0       2
+UUID=XXXXXX            /dos            ntfs    defaults,noatime,nls=utf8,uid=1000,gid=1000,commit=120 0       2
+UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,umask=0077      0       1
+UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0
+```
+
+注：
+
+* 查看磁盘分区的UUID,使用`blkid`指令。
+* 启用`dicard`参数可能会牺牲一点ssd写入的速度。
+× `/boot/efi`几乎不会被写，别加discard,否则可能引发故障
+
+启用trim前，请务必检查自己的ssd（尤其是2010年前的）是否支持trim,否则可能会造成数据丢失，使用`lsblk`指令：
+
+```bash
+#> lsblk -D
+NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO
+nvme0n1          512      512B       2T         0
+├─nvme0n1p1        0      512B       2T         0
+├─nvme0n1p2        0      512B       2T         0
+```
+
+如果 `DISC-GRAN` 和 `DISC-MAX` 列的值`非0`就表示支持trim.
+
+### 限制交换分区
+
+Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。
+该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。
+
+查看当前的`swappiness`设置：
+
+```bash
+$> cat /proc/sys/vm/swappiness
+60
+```
+
+然后修改： /etc/sysctl.conf 文件，增加：
+
+```
+# Sharply reduce the inclination to swap
+vm.swappiness=10
+```
+
+### 启用/tmp目录RAM盘
+
+```bash
+sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount
+sudo systemctl enable tmp.mount
+sudo systemctl start tmp.mount
 ```
 
 ## dnsmasq
