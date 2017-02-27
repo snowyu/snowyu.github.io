@@ -8,7 +8,7 @@
 
     <url>
         <loc>http://riceball.me/article/ubuntu-tips/</loc>
-        <lastmod>2017-02-27T22:04:34.920Z</lastmod>
+        <lastmod>2017-02-27T22:19:24.360Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -71,7 +71,7 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/howto-choose-programming-language/</loc>
+        <loc>http://riceball.me/article/idb-1/</loc>
         <lastmod>2017-02-27T06:44:21.474Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -79,7 +79,7 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/idb-1/</loc>
+        <loc>http://riceball.me/article/howto-choose-programming-language/</loc>
         <lastmod>2017-02-27T06:44:21.474Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -135,7 +135,7 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/bitcoin-tech/</loc>
+        <loc>http://riceball.me/article/diy-cloud-computing-1/</loc>
         <lastmod>2017-02-27T06:44:21.466Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -143,7 +143,7 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/diy-cloud-computing-1/</loc>
+        <loc>http://riceball.me/article/bitcoin-tech/</loc>
         <lastmod>2017-02-27T06:44:21.466Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
