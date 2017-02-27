@@ -145,6 +145,7 @@ sitemap:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
+  ignore_hidden: false
   type: git
   #message: [message]
   repo:
