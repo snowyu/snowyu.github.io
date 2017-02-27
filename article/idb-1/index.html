@@ -1,0 +1,944 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="cloud computing,nosql,idb,database,cloud storage,云存储,云计算," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：https://github.com/snowyu/iDB），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大道至简 -- 之iDB NoSQL数据库开发随笔（一）">
+<meta property="og:url" content="http://riceball.me/article/idb-1/index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：https://github.com/snowyu/iDB），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engi">
+<meta property="og:updated_time" content="2017-02-27T06:44:21.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大道至简 -- 之iDB NoSQL数据库开发随笔（一）">
+<meta name="twitter:description" content="iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：https://github.com/snowyu/iDB），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engi">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 大道至简 -- 之iDB NoSQL数据库开发随笔（一） | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75922641-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Riceball LEE</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Go with wind.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                大道至简 -- 之iDB NoSQL数据库开发随笔（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-03-24T13:30:59+08:00" content="2013-03-24">
+              2013-03-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/NoSQL/" itemprop="url" rel="index">
+                    <span itemprop="name">NoSQL</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/NoSQL/iDB/" itemprop="url" rel="index">
+                    <span itemprop="name">iDB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/idb-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/idb-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：<a href="https://github.com/snowyu/iDB" target="_blank" rel="external">https://github.com/snowyu/iDB</a>），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engine)的核心。</p>
+<h3 id="几个概念："><a href="#几个概念：" class="headerlink" title="几个概念："></a>几个概念：</h3><ul>
+<li>面向列：所谓面向列(Column Oriented)是和面向行(Row Oriented)相对而言的，绝大多数的关系型数据库就是面向行存储的，而iDB则是面向列基于Key/Value的存储系统。</li>
+<li>结构化：所谓结构化(Structured)是指值(Value)可以是带结构数据的复杂类型，而层级则是指Key可以有不同的层级关系，基于目录树的形式。</li>
+<li>基于目录：基于目录(Directory-Based)也是相对于基于文件(File-Based)而言，对于传统的数据库系统几乎都是通过创建少量的随机文件，然后把大量的数据存放在里面，而iDB则完全不同，也可以说是恰恰相反，它是创建大量的目录和文件，把数据分散在目录中，你可以认为这是一种创新。</li>
+</ul>
+<h3 id="Background-设计背景"><a href="#Background-设计背景" class="headerlink" title="Background (设计背景)"></a>Background (设计背景)</h3><p>iDB NoSQL数据库引擎的设计初衷是希望能更为合理的设计组织数据库引擎的层次架构，以及看到现代文件系统设计发展的变化有感而发，两者融合就促使我萌发设计iDB的念头。</p>
+<h4 id="KISS-原则"><a href="#KISS-原则" class="headerlink" title="KISS 原则"></a>KISS 原则</h4><p>大家都应该知道KISS(Keep It Simple, Stupid)原则，即保持架构简单而愚蠢的原则，因为简单，所以看上去足够的蠢。而将架构设计得足够的简单是架构师的梦寐以求，大道至简，说着看是容易，实际做起来，其实真难，知易行难是也。<br>我希望iDB的架构设计做到了足够简单以及足够的愚蠢，这也是我从事架构设计中最接近KISS原则的一次架构体验，我很乐于与大家分享我这设计过程的经验和错误。</p>
+<h4 id="文件系统与数据库"><a href="#文件系统与数据库" class="headerlink" title="文件系统与数据库"></a>文件系统与数据库</h4><p>前面我提到现代文件系统的发展和变化，这和NoSQL数据库的设计存在什么样的联系？数据库引擎的设计需要考虑文件系统的特性么？我们可以做一个列表来对比，文件系统和数据库的功能特性：</p>
+<p><strong>从操作对象和操作方式上看</strong></p>
+<ul>
+<li>数据</li>
+<li>文件系统: 文件名/文件内容</li>
+<li>NoSQL : Key/Value</li>
+<li>操作</li>
+<li>文件系统: 读、写、删除、列举、文件</li>
+<li>管理操作: 磁盘系统检查(fsck)，磁盘卷热备</li>
+<li>NoSQL : Get, Set. Delete, List Key</li>
+<li>管理操作: 数据库校验, 数据库热备</li>
+</ul>
+<p><strong>从内部存储结构上看</strong></p>
+<p>内部存储结构上，绝大多数数据库系统都是使用Btree树或者其变体来存储数据(也有用hash表实现的)。而目前越来越多的现代文件系统正在用Btree树或者其变体来存储目录或文件。比如:</p>
+<ul>
+<li>ext3/ext4 使用Htree(Btree的变体)来索引目录，不过这ext3中需要手动启用dir_index功能，ext4默认是启用的。</li>
+<li>btrfs 使用btree,又被称为 “Btree FS”。</li>
+<li>ZFS 使用 Extensible hash table</li>
+<li>Reiser4 使用 Dancing B*-tree</li>
+<li>XFS B+tree</li>
+</ul>
+<p>可以看到在最基本数据存储和访问上，数据库和文件系统有惊人的相似性。为了最大限度的优化数据库的性能，开发者做了许多与文件系统相同的重复工作，磁头位置预估，扇面连续，defragment等等，并针对SSD做优化。但是这些相同的工作文件系统也都在做。</p>
+<h4 id="不要重复发明轮子-DRTW"><a href="#不要重复发明轮子-DRTW" class="headerlink" title="不要重复发明轮子(DRTW)"></a>不要重复发明轮子(DRTW)</h4><p>那么不同的地方在哪里？数据库更复杂，除了基本的存储和访问需求外，它还需要对结构化的数据进行检索和处理。但是因为老的数据库思路是申请一个文件，也即是磁盘空间的一个区域在这上面进行数据存储和访问，这样，文件系统的成果自然无法用上。</p>
+<p>因此，根据懒人法则第一条，能躺绝坐，能坐绝不站。站在巨人的肩膀上，才能看得更远，走得更远。那么怎么样对数据存储才能利用上文件系统的成果呢？</p>
+<p>让我们跳出来文件这个限制框框思考，为啥数据库的数据一定要保存在文件中？为啥不能直接用文件的目录系统直接作为NoSQL数据库的存储呢？当我们跳出这个限制：数据必须保存到文件中。我们就会欣然发现，只要我们正视文件系统的一些限制，其实目录也可以存数据。既然文件系统都已经充分考虑并已经成熟（N多程序在通过不同方式使用着文件系统），为啥要重复发明轮子？作为数据库引擎应该更专注于数据处理才对，而不是数据存储。</p>
+<h3 id="KISS-IT"><a href="#KISS-IT" class="headerlink" title="KISS IT"></a>KISS IT</h3><p>iDB就是这样的一次尝试。它试图充分而彻底的利用文件系统本身来进行数据存储，你甚至可以利用文件系统自己去浏览管理数据，看上去，我所做的一切似乎仅仅只是制定了数据存储的规范和一系列的约定。其中，最重要，最核心的约定是文件系统的目录名称为Key名，该目录下的“.value”文件内容为值的内容，“.type”文件内容为该Key的类型说明。</p>
+<p>听上去够简单吧。也许简单到能让你发笑。</p>
+<p>古语有云:</p>
+<blockquote>
+<p>上士闻道，勤而行之；中士闻道，若存若亡；下士闻道，大笑之。不笑不足以为道。</p>
+</blockquote>
+<p>就这么个简单东东，我从去年7月份开始设计，断断续续直到现在，逐步理清思路，才实施了一个能实用的东西。中间走了些弯路，单是规范修改了好几次。而且这一切仅仅还只是一个开端。如此，是不是够蠢。</p>
+<blockquote>
+<p>Stay simple ,stay foolish…</p>
+</blockquote>
+<p>如上所述就是开发iDB的设计背景，下面从哪里谈起呢?想写的东西太多，就先从iDB规范讲起吧。</p>
+<h3 id="iDB-架构与规范"><a href="#iDB-架构与规范" class="headerlink" title="iDB 架构与规范"></a>iDB 架构与规范</h3><p>草拟规范是架构设计中尤为重要的一环，架构如果没有规范，便如同建筑师没有设计蓝图就开始修建房屋，无论是自顶向下还是自底向上设计，每一步都离不开规范文档。单从数据库系统的设计上来讲，由底向上看，描述数据在文件系统中如何存储数据的存储规范便是整个系统的基石，如果没有它，那么一切都是空谈。</p>
+<p>在我们进行iDB设计的过程中，起初iDB规范只有一个，后来逐渐分为多个，下面让我们从底一步一步向上看:</p>
+<ul>
+<li>iDB存储规范：用于描述数据在文件系统中是如何存储的。它是与文件系统的接口规范</li>
+<li>iDB数据库规范：用于描述iDB数据的类型、索引规范以及其它相关约定<ul>
+<li>iDB Key/Value 数据库规范</li>
+<li>iDB 关系型数据库规范</li>
+</ul>
+</li>
+<li>iDB 存储服务规范：用于描述iDB存储服务的功能规范，分为三层:<ul>
+<li>读写分离的异步通讯IO层</li>
+<li>Memcache 内部缓存层</li>
+<li>实际iDB存储层</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>iDB云数据库服务规范：以下规范实际上与iDB存储无关，只是用于描述一种分布式NoSQL数据库的规范方案，我强称之为iDB云数据库规范。<ul>
+<li>iDB 节点控制器: 控制和监控数据库，作为与各种数据库的中间代理层</li>
+<li>iDB 集群控制器: 管理iDB节点控制器,数据定位</li>
+<li>iDB 云控制器: 是暴露在互联网上顶层组件。为外部世界提供RESTful API以及Web接口</li>
+</ul>
+</li>
+</ul>
+<p>目前只实现iDB存储规范中的内容，文档还很乱，写得比较糟糕，但是具体思路已经敲定了，只剩下文字增订的事情，但是iDB整体规范依然还在草拟中。</p>
+<h4 id="iDB存储规范"><a href="#iDB存储规范" class="headerlink" title="iDB存储规范"></a>iDB存储规范</h4><p>iDB存储规范是iDB最基础的规范约定，描述了iDB基础数据是如何被存储和访问。</p>
+<p>我们大概已经知道了，目录名为Key名，目录名下的”.value”文件内容为键值。我们将”.value”称之为key的一个属性，”.value”是其中最重要的一个属性。一个<br>key(键)可以有多个属性，对于一般使用者来说，是无法直接看见这些属性的，这些属性为iDB规范服务的。</p>
+<p><strong>基础概念</strong></p>
+<p>小结，从以上的描述，我们可以总结出以下的概念</p>
+<ul>
+<li>Key Name: 键名，同于目录名</li>
+<li>Attribute: 键属性, 同于文件名，其文件内容为键属性值。</li>
+<li>.value: 键值属性</li>
+<li>.type: 键值类型属性</li>
+</ul>
+<blockquote>
+<p>注意： 这里约定所有的字符串编码统一为utf-8编码格式。其中包括key name。值内容为纯字符串的形式表示。”redis”类型例外，如果类型为”redis”，则值<br>内容为redisIO的raw格式。</p>
+</blockquote>
+<p>路径为iDB层次性的体现，因此键路径出现了:</p>
+<ul>
+<li>Key Path: 键路径，同于目录路径</li>
+</ul>
+<p>然后就有了子健:</p>
+<ul>
+<li>Subkey: 子健，属于键路径下的某个键，称为该键路径下的子健。</li>
+</ul>
+<p>随着对子健遍历需求的出现，又诞生了对键的分页(分区)的需要。</p>
+<p><strong>分区/分页(Partition Key)</strong></p>
+<p>对iDB数据库根目录下的子健的遍历就是对整个数据库的key的遍历。如果数据库中数据巨大，那么一次遍历传回所有key数据，可能消耗大量的时间和资源，在这种情况下可能需要分页(分区)的形式来组织key列表。</p>
+<p>那么分区(分页)是否是必要的？</p>
+<p>(未完待续)</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cloud-computing/" rel="tag">#cloud computing</a>
+          
+            <a href="/tags/nosql/" rel="tag">#nosql</a>
+          
+            <a href="/tags/idb/" rel="tag">#idb</a>
+          
+            <a href="/tags/database/" rel="tag">#database</a>
+          
+            <a href="/tags/cloud-storage/" rel="tag">#cloud storage</a>
+          
+            <a href="/tags/云存储/" rel="tag">#云存储</a>
+          
+            <a href="/tags/云计算/" rel="tag">#云计算</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/nokia-b-plan/" rel="next" title="Nokia 的B计划 - Nokia 还有未来么？">
+                <i class="fa fa-chevron-left"></i> Nokia 的B计划 - Nokia 还有未来么？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/nobackend/" rel="prev" title="无后端构建的无痛HTML应用开发[2013趋势]">
+                无后端构建的无痛HTML应用开发[2013趋势] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="article/idb-1/"
+           data-title="大道至简 -- 之iDB NoSQL数据库开发随笔（一）" data-url="http://riceball.me/article/idb-1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f"
+               alt="Riceball LEE" />
+          <p class="site-author-name" itemprop="name">Riceball LEE</p>
+          <p class="site-description motion-element" itemprop="description">Go with wind.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snowyu" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念："><span class="nav-number">1.</span> <span class="nav-text">几个概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Background-设计背景"><span class="nav-number">2.</span> <span class="nav-text">Background (设计背景)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#KISS-原则"><span class="nav-number">2.1.</span> <span class="nav-text">KISS 原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统与数据库"><span class="nav-number">2.2.</span> <span class="nav-text">文件系统与数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要重复发明轮子-DRTW"><span class="nav-number">2.3.</span> <span class="nav-text">不要重复发明轮子(DRTW)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KISS-IT"><span class="nav-number">3.</span> <span class="nav-text">KISS IT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iDB-架构与规范"><span class="nav-number">4.</span> <span class="nav-text">iDB 架构与规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iDB存储规范"><span class="nav-number">4.1.</span> <span class="nav-text">iDB存储规范</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"riceball"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,992 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="cloud computing,diy,nas," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。NAS提供给我们的功能有：
+文件共享服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DIY与云计算（二）之 DIY自己的开源NAS">
+<meta property="og:url" content="http://riceball.me/article/diy-cloud-computing-2/index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。NAS提供给我们的功能有：
+文件共享服务">
+<meta property="og:updated_time" content="2017-02-27T06:44:21.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DIY与云计算（二）之 DIY自己的开源NAS">
+<meta name="twitter:description" content="对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。NAS提供给我们的功能有：
+文件共享服务">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> DIY与云计算（二）之 DIY自己的开源NAS | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75922641-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Riceball LEE</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Go with wind.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                DIY与云计算（二）之 DIY自己的开源NAS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-05-01T10:01:27+08:00" content="2012-05-01">
+              2012-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">Thinking</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Thinking/Cloud-Computing/" itemprop="url" rel="index">
+                    <span itemprop="name">Cloud Computing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/diy-cloud-computing-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/diy-cloud-computing-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。<br>NAS提供给我们的功能有：</p>
+<p>文件共享服务：现在很多人家中的电脑都不止一台，这样视频，照片、音乐、文件等数据资源分散在不同的电脑中，要去找出会很麻烦。通过家用NAS，家中的各个成员可以将想分享或共用的照片、音乐、影片或其他文件档案，分门别类地放在同一个网络硬盘中，避免相同的资料在每部电脑里浪费同样的空间。</p>
+<p>数据备份服务：NAS一般都具有多种备份功能，包括本地备份、异地备份和NAS间备份等等。另外NAS还具有一键备份功能，将USB存储设备(如闪盘和外置硬盘)插入NAS上特定USB接口，就能把USB存储设备上的文件备份到NAS中。</p>
+<p>家庭服务中心：通过把打印机与NAS相连，开启NAS网络打印机功能，我们就能在局域网中共同使用这台打印机，通过在NAS上建立Web服务，把照片和录像存放在NAS网络存储器的指定目录中，就能通过浏览器登陆NAS的Web网站进行观看，就像访问网络相册一样。另外在NAS中使用UPnP-AV功能(或称流媒体功能)，在网络中可以被Windows MCE系统、Xbox360和PS3等设备发现，无须额外的操作就能播放存储在NAS中的多媒体文件。同时我们还可以用NAS网络存储器搭建iTunes服务器，让iTunes软件和iPod等设备从NAS上获得音乐和视频。</p>
+<h2 id="DIY-NAS"><a href="#DIY-NAS" class="headerlink" title="DIY NAS"></a>DIY NAS</h2><p>技术要点：</p>
+<ul>
+<li>ITX 主板：节约空间，采用17x17 cm的小主板</li>
+<li>低功耗(&lt;=30W): NAS是要长年开机，为了尽可能的降低成本，节约起见，主板CPU功耗不高于30W</li>
+<li>热插拔(&gt;=4 盘位)：为了便于更换硬盘以及Raid5的要求，盘位要求&gt;=4。</li>
+<li>Sata3接口：保护投资，为以后硬盘升级(SSD)准备</li>
+<li>千兆网卡: 这是必须的，如果想直接在nAS上传输播放高清影片。</li>
+<li>CPU：性能至少要能保证软组Raid</li>
+<li>内存(&gt;=8G)：至少支持8G。</li>
+</ul>
+<p>对于服务器而言如果是1U机箱可以塞4块ITX主板，甚至可以塞到6块ITX主板；如果是塞1块ITX主板，那么可以塞5－6块3.5的硬盘。</p>
+<p>目前4盘位的NAS空机（不含硬盘）价格：</p>
+<ul>
+<li>巴法络/buffalo LS-QVL/E-AP： 1400¥<ul>
+<li>最大容量 8TB, 4xSata2, 2xUsb2, 1.6Ghz Marvell(88F6282A0C160) processor and 512MB of RAM.</li>
+</ul>
+</li>
+<li>群晖synology DS411j: 3000¥<ul>
+<li>最大容量12TB, 4xSata2, 2xUsb2, CPU 1.2G, DDR2 128M RAM</li>
+</ul>
+</li>
+<li>D-Link DNS-343: 2150¥<ul>
+<li>4xSata2, CPU Marvell 88F5281-D0 C500Mhz, 128MB</li>
+</ul>
+</li>
+<li>Century世特力裸族CRIB35NAS: 1980¥<ul>
+<li>最大容量 12TB, unkown</li>
+</ul>
+</li>
+</ul>
+<p>从上述商业NAS系统来看，CPU大都是采用ARM芯片，内存也少得可怜，但是价格不菲。</p>
+<h2 id="我采购的硬件清单："><a href="#我采购的硬件清单：" class="headerlink" title="我采购的硬件清单："></a>我采购的硬件清单：</h2><h3 id="机箱："><a href="#机箱：" class="headerlink" title="机箱："></a>机箱：</h3><ul>
+<li>4盘位热插拔机箱 498¥ 毛重 3.5Kg，1个12cm风扇，只能上半高的卡（可能以后扩硬Raid卡有问题)</li>
+<li>6盘位热插拔机箱 849¥ 毛重 5 kg, 有足够的空间固定硬Raid卡，2个可调速9cm风扇。但是太重。性价比也不高(备选)</li>
+</ul>
+<p>目前正在团购，上述为团购价格，应该在清理存货，机箱的问题：热插拔盒塑料有些薄，没有锁，机箱做工不够精细。</p>
+<h3 id="主板："><a href="#主板：" class="headerlink" title="主板："></a>主板：</h3><p>目前我在淘宝上看到的Intel Atom(D525) Mini-ITX平台(15W)上全部是Sata3支持的很少，混合Sata3和Sata2，太会节约成本了。而且最关键的是最大内存只到4G。可能Intel不希望有人把主板拿去做低功耗的文件服务器吧，故目前几乎不用考虑Intel的东西。</p>
+<p>AMD的E350平台功耗大约在18W-20W，至少支持4个Sata3口，内存最大可以到8G，也有到16G的，两个DDR3 PC内存槽。</p>
+<ul>
+<li>ASROCK/华擎E350M1<ul>
+<li>4Sata3口，</li>
+<li>1eStata3，</li>
+<li>内存DDR3 1066 最大16G,</li>
+<li>1xPCIe2.0x16,</li>
+<li>12xUSB2,</li>
+<li>1PCIEx1GNetwork,</li>
+<li>无USB3</li>
+<li>价格500¥上下</li>
+</ul>
+</li>
+<li>华硕E35M1-I（备选）<ul>
+<li>6个Sata3口，</li>
+<li>内存DDR3 1066 最大8G，</li>
+<li>1个PCIe2.0x16(x4mode),</li>
+<li>12个Usb2，</li>
+<li>无Usb3,</li>
+<li>eSata,</li>
+<li>1PCIEx1GNetwork</li>
+<li>淘宝上暂时买不到,只能买到 E35M1-I/E45M1 Dexlue 版本。</li>
+</ul>
+</li>
+</ul>
+<p>更多的内存还是更多的sata3口，这是个选择问题，而我选择了更多的内存。</p>
+<p>E350的GPU为 ATI HD 6310 隶属于 Radeon™ HD 6300M Series Graphics：</p>
+<ul>
+<li>80 个处理单元</li>
+<li>DX11</li>
+<li>OpenGL 4.1</li>
+<li>OpenCL™ 1.1</li>
+<li>DirectCompute 11</li>
+</ul>
+<h3 id="电源"><a href="#电源" class="headerlink" title="电源"></a>电源</h3><p>采用 DC-ATX 电源：</p>
+<p>计算功率：</p>
+<p>单块硬盘</p>
+<ul>
+<li>开机功率：20w (12V*1.75A=21W)</li>
+<li>稳态功率：10w (5.3W)</li>
+</ul>
+<blockquote>
+<p>西数绿盘 WD20EARX 读/写功耗 5.30瓦; Idle: 3.3W; 速度： 110M/s</p>
+</blockquote>
+<p>估算系统其它功耗：</p>
+<ul>
+<li>APU Idle(TDP) = 9-18W</li>
+<li>A51M(Hudson-M1) Chipsets = 4.7W</li>
+<li>CPU Fan= 5W</li>
+<li>Case Fan=3W</li>
+<li>eSata = 3W</li>
+<li>mouse = 1W</li>
+<li>keyboard =1W</li>
+<li>DDR3 1333 = 1W *2</li>
+</ul>
+<p>按照4块硬盘全部插满的情况下估算：</p>
+<ul>
+<li>开机总功率 ~ 21W*4+33W = 117W</li>
+<li>稳态总功率 ~ 10W*4+29W(全负荷) = 69W</li>
+</ul>
+<p>因此选用输出功率为130W的DC-ATX板:</p>
+<ul>
+<li>输入: 11.7~13.6V</li>
+<li>输出功率：额定130W，峰值150W</li>
+<li>价格：58¥</li>
+</ul>
+<p>电源适配器</p>
+<ul>
+<li>12V 10A电源适配器(65¥): 在开机功率90W，平时功率50W负荷下，但是这个所谓120W的电源工作不了几天就歇菜了，退掉了。</li>
+<li>12V 18A DELL的二手电源适配器(110¥): 目前运行良好，温度也还可以，还没有出问题。</li>
+</ul>
+<p>内存条：</p>
+<ul>
+<li>Kingbox/黑金刚单条8G DDR3 1333 台式机内存(331¥)</li>
+</ul>
+<p>总计花费：</p>
+<ul>
+<li>机箱总价523 ＋ 主板(含APU) 513 ＋ 内存条 331 + DC-ATX 58 ＋ DC适配器 110 ＝ 1535¥</li>
+</ul>
+<p>得到的是一个双核1.6G AMD CPU/GPU， 8G DDR3（可扩展为16G），全 SATA3 带高清播放支持的4盘位NAS机器。</p>
+<p>正在DIY: 图已经丢失</p>
+<p>组装完成，试机：图已经丢失</p>
+<h2 id="软件系统"><a href="#软件系统" class="headerlink" title="软件系统"></a>软件系统</h2><p>如果只把它作为文件存储系统，那么因为ZFS的缘故，IllumOS(开源Solaris) 操作系统无疑是非常合适的，但是以这样的CPU性能来说，只作为文件存储系统，未免太浪费了。Linux社区的BTRFS文件系统进展缓慢（尤其是在软Raid功能上），而ZFS是由Sun开发的新型文件系统, 应用于Solaris上，后来被移植到FreeBSD和NetBSD系统上。</p>
+<p>基于Solaris内核的NAS系统:</p>
+<ul>
+<li>OpenIndiana: <a href="http://openindiana.org/" target="_blank" rel="external">http://openindiana.org/</a></li>
+<li>Nexentastor: 闭源，免费版最大支持16TB.</li>
+</ul>
+<p>Linux Soft Raid:</p>
+<ul>
+<li><a href="https://btrfs.wiki.kernel.org/index.php/Main_Page" target="_blank" rel="external">BTRFS</a></li>
+<li><a href="https://www.openfiler.com/community/openfiler-community" target="_blank" rel="external">OpenFiler</a></li>
+<li><a href="http://zfsonlinux.org" target="_blank" rel="external">Native ZFS on Linux</a></li>
+</ul>
+<p>正巧最近看到国外社区已经有人在Native ZFS on Linux上做了几个月的小白鼠，还算稳定，而更凑巧的是，这家伙也是选的AsRock E350M1主板，So，我最后还是选择了Linux，这样可以1机两用：NAS 和 媒体中心。</p>
+<p>操作系统: 为了能压榨出硬件的最后一点性能，我选用 Linux 的 Gentoo 发行版, Gentoo 可以使得我自己配置调整编译内核。</p>
+<h1 id="更新-2016-06-12"><a href="#更新-2016-06-12" class="headerlink" title="更新(2016-06-12)"></a>更新(2016-06-12)</h1><p>光阴似箭，眨眼4年过去了，Intel 推出了Micro Server——志强D系列, 而 AMD 却依然在原地踏步。<br>4年前，支持ECC RDIMM内存的ITX主板根本找不到，现在超微，AsRock都有了基于志强D系列的ITX MicroServer主板。<br>NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比太低。</p>
+<ul>
+<li>6盘位DIYNAS机箱，可定制LOGO,有防尘网。<ul>
+<li>机箱=499</li>
+<li>机箱+技嘉150W DC电源=768</li>
+<li>机箱+益横的 250W=840</li>
+<li>机箱+全汉电源 270W=880元</li>
+<li>益衡 Enhance ENP 7025B FLEX 250W=245元 淘宝价</li>
+<li>全汉电源 小1U 270W=108元 淘宝价</li>
+<li>需要了解限高问题，内存条，插卡等。</li>
+</ul>
+</li>
+<li>超微X10SDV-4C+-TLN4F（128G ECC RDIMM DDR4 2133, M.2 PCIe3.0x4 2242/2280）<ul>
+<li>志强D-1518(4核，6MCache, 2.20Ghz) 35W ￥3720</li>
+<li>志强D-1541(8核，6MCache, 2.20Ghz) 45W ￥6880</li>
+</ul>
+<ul>
+<li>可惜是基于Broadwell, 还是得等明年(2017年)的Skylake 。</li>
+<li><a href="https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver" target="_blank" rel="external">https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver</a></li>
+</ul>
+</li>
+<li>三星 32G DDR4 2133 RDIMM 服务器内存: ￥1060</li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cloud-computing/" rel="tag">#cloud computing</a>
+          
+            <a href="/tags/diy/" rel="tag">#diy</a>
+          
+            <a href="/tags/nas/" rel="tag">#nas</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/diy-cloud-computing-1/" rel="next" title="DIY 与 云计算（一）">
+                <i class="fa fa-chevron-left"></i> DIY 与 云计算（一）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/diy-cloud-computing-3/" rel="prev" title="DIY与云计算（三）之 云存储与开源 ZFS 文件系统">
+                DIY与云计算（三）之 云存储与开源 ZFS 文件系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="article/diy-cloud-computing-2/"
+           data-title="DIY与云计算（二）之 DIY自己的开源NAS" data-url="http://riceball.me/article/diy-cloud-computing-2/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f"
+               alt="Riceball LEE" />
+          <p class="site-author-name" itemprop="name">Riceball LEE</p>
+          <p class="site-description motion-element" itemprop="description">Go with wind.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snowyu" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DIY-NAS"><span class="nav-number">1.</span> <span class="nav-text">DIY NAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我采购的硬件清单："><span class="nav-number">2.</span> <span class="nav-text">我采购的硬件清单：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机箱："><span class="nav-number">2.1.</span> <span class="nav-text">机箱：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主板："><span class="nav-number">2.2.</span> <span class="nav-text">主板：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电源"><span class="nav-number">2.3.</span> <span class="nav-text">电源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件系统"><span class="nav-number">3.</span> <span class="nav-text">软件系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新-2016-06-12"><span class="nav-number"></span> <span class="nav-text">更新(2016-06-12)</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"riceball"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

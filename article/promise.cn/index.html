@@ -1,0 +1,892 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="programming,asynchronous,promise," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="PromisePromise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises.
+简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。
+
+promise只有三种状态，未完成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异步编程与 Promise">
+<meta property="og:url" content="http://riceball.me/article/promise.cn/index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="PromisePromise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises.
+简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。
+
+promise只有三种状态，未完成">
+<meta property="og:updated_time" content="2016-03-21T20:00:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="异步编程与 Promise">
+<meta name="twitter:description" content="PromisePromise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises.
+简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。
+
+promise只有三种状态，未完成">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 异步编程与 Promise | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75922641-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Riceball LEE</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Go with wind.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                异步编程与 Promise
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-06T08:44:06+08:00" content="2015-12-06">
+              2015-12-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Learning</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Learning/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Learning/Programming/Asynchronous/" itemprop="url" rel="index">
+                    <span itemprop="name">Asynchronous</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/promise.cn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/promise.cn/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="external">Simplifying Async with Promises</a>.</p>
+<p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。<br>因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
+<ul>
+<li>promise只有三种状态，未完成，完成(fulfilled)和失败(rejected)。</li>
+<li>promise的状态可以由未完成转换成完成，或者未完成转换成失败。</li>
+<li>promise的状态转换只发生一次</li>
+<li><p>promise有一个then方法: (<code>promise.then(onFulfilled, onRejected)</code>)</p>
+<ul>
+<li><p>then方法可以接受2个回调函数作为参数。</p>
+<ul>
+<li>对应promise的两种状态fulfilled, rejected的回调函数。回调函数的传递参数分别是resolve(value),reject(value) 函数。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</div><div class="line">        <span class="comment">//当promise状态变成fulfilled时，调用此函数</span></div><div class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">reject</span>)</span>&#123;</div><div class="line">        <span class="comment">//当promise状态变成rejected时，调用此函数</span></div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.<span class="keyword">then</span> (<span class="function"><span class="params">(resolve)</span>-&gt;</span>), <span class="function">(<span class="params">(reject)</span>-&gt;</span>))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>Promise API 标准存在多个提案，目前看来，<a href="https://promisesaplus.com/" target="_blank" rel="external">Promises/A+</a> 已经正在成为事实上的标准。</p>
+<p>Bluebird 号称速度是所有 Promise 库里最快的 <a href="https://promisesaplus.com/" target="_blank" rel="external">Promises/A+</a> 实现，里面做了许多的扩展。 想知道内部实现，可以阅读这个<a href="https://github.com/ysmood/yaku" target="_blank" rel="external">yaku</a>简单的实现（coffee-script)。</p>
+<h3 id="Promise-any-and-Promise-some"><a href="#Promise-any-and-Promise-some" class="headerlink" title="Promise.any and Promise.some"></a>Promise.any and Promise.some</h3><p>并行的 <a href="http://bluebirdjs.com/docs/api/promise.any.html" target="_blank" rel="external">Promise.any</a> 和 <a href="http://bluebirdjs.com/docs/api/promise.some.html" target="_blank" rel="external">Promise.some</a></p>
+<ul>
+<li><code>some</code>是其中一些promise成功返回，可以指定个数。返回结果为一个数组.</li>
+<li><code>any</code> 是任意一个promise成功返回，是some个数固定为1的结果，另外它的返回结果是一个单值，不是数组。</li>
+</ul>
+<p>注意：它们是向<strong>所有</strong>的promises同时发起执行请求(并行)，但是只取最先返回结果的。不是顺序执行，<br>直到得到成功结果的个数，就不继续了。</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Promise = <span class="built_in">require</span> <span class="string">'bluebird'</span></div><div class="line"></div><div class="line">readFile = Promise.promisify (aPath, done) -&gt;</div><div class="line">  <span class="built_in">console</span>.log <span class="string">'readFile'</span>, aPath</div><div class="line">  <span class="keyword">if</span> aPath != <span class="string">'c'</span> <span class="keyword">and</span> aPath != <span class="string">'e'</span>  <span class="keyword">then</span> done(<span class="keyword">new</span> Error(<span class="string">'no such file:'</span>+aPath)) <span class="keyword">else</span> done(<span class="literal">null</span>, aPath+<span class="string">'ok'</span>)</div><div class="line"></div><div class="line">files = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>]</div><div class="line"></div><div class="line">Promise.any files.map (file)-&gt;readFile(file)</div><div class="line">.<span class="keyword">then</span> (content)-&gt; <span class="built_in">console</span>.log <span class="string">'content='</span>,content</div></pre></td></tr></table></figure>
+<p>显示结果如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">read</span>File a</div><div class="line"><span class="built_in">read</span>File b</div><div class="line"><span class="built_in">read</span>File c</div><div class="line"><span class="built_in">read</span>File d</div><div class="line"><span class="built_in">read</span>File e</div><div class="line">content= x ok</div></pre></td></tr></table></figure>
+<p>注：这个 <code>x</code> 表示可能是 ‘c’或者’e’。</p>
+<h3 id="顺序执行的-some-和-any"><a href="#顺序执行的-some-和-any" class="headerlink" title="顺序执行的 some 和 any"></a>顺序执行的 <code>some</code> 和 <code>any</code></h3><p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。<br>那么如何做到顺序执行（sequence）？</p>
+<p>这个时候，可以用<code>reduce</code>(<a href="http://bluebirdjs.com/docs/api/promise.reduce.html" target="_blank" rel="external">promise.reduce</a>)实现：</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Promise.reduce files, <span class="function"><span class="params">(content, file)</span>-&gt;</span></div><div class="line">  content = readFile(file).caught(<span class="function">-&gt;</span>) <span class="keyword">unless</span> content</div><div class="line">  <span class="keyword">return</span> content</div><div class="line">, <span class="literal">null</span></div><div class="line">.<span class="keyword">then</span> (content)-&gt;<span class="built_in">console</span>.log <span class="string">'content='</span>, content</div></pre></td></tr></table></figure>
+<p>显示结果如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">read</span>File a</div><div class="line"><span class="built_in">read</span>File b</div><div class="line"><span class="built_in">read</span>File c</div><div class="line">content= c ok</div></pre></td></tr></table></figure>
+<p>更多的细节参见我写的<a href="https://github.com/snowyu/promise-sequence.js" target="_blank" rel="external">promise-sequence</a>。<br>a simple functional abstraction for sequentially:</p>
+<p>下面这是map-reduce的思路用在数组的所有元素求和上,不过够绕脑袋瓜的：</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Array::sum = -&gt; @reduce ((a,b)-&gt;a+b), 0</div><div class="line">[1,2,3].sum()</div><div class="line"># 6</div></pre></td></tr></table></figure>
+<p>这是顺序执行的coffee-script 核心代码：</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">seqAny = (aList, fn)-&gt;</div><div class="line">  _genReduceFn = (fn)-&gt;</div><div class="line">    (previous, item)-&gt;</div><div class="line">      previous = fn(item).catch(-&gt;) unless previous</div><div class="line">      previous</div><div class="line"></div><div class="line">  Promise.reduce aList, _genReduceFn(fn), null</div><div class="line"></div><div class="line">seqAny(files, readFile).then (result)-&gt;console.log &apos;seqAny=&apos;, result</div><div class="line"></div><div class="line">seqSome = (aList, total, fn)-&gt;</div><div class="line">  _genReduceFn = (fn)-&gt;</div><div class="line">    (previous, item)-&gt;</div><div class="line">      previous = previous.filter Boolean</div><div class="line">      if previous.length &lt; total</div><div class="line">        previous = Promise.all previous.concat [fn(item).catch(-&gt;)]</div><div class="line">      previous</div><div class="line">  Promise.reduce aList, _genReduceFn(fn), []</div><div class="line"></div><div class="line">seqSome(files, 2, readFile).then (result)-&gt;console.log &apos;seqSome=&apos;, result</div><div class="line"></div><div class="line">sequence = (aList, fn)-&gt; # execution all via sequence</div><div class="line">  # Promise.all 将执行所有的Promise,即使其中一个有错误，后面也会接着执行，如果有错误则报错。</div><div class="line">  sequentially = (fn)-&gt;</div><div class="line">    (previous, item)-&gt;</div><div class="line">      Promise.all previous.concat [fn(item)]</div><div class="line"></div><div class="line">  Promise.reduce aList, sequentially(fn), []</div><div class="line"></div><div class="line">sequence files, (i)-&gt;readFile(i).catch(-&gt;)</div><div class="line">.then (result)-&gt;console.log result</div></pre></td></tr></table></figure>
+<p>这是直接构造函数执行链的思路:</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">waterfall</span> = <span class="params">(tasks)</span>-&gt;</span></div><div class="line">  current = Promise.cast()</div><div class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</div><div class="line">    current = current.<span class="keyword">then</span>(task)</div><div class="line">  current</div><div class="line"></div><div class="line">waterfall 返回所有函数的结果作为数组:</div><div class="line"></div><div class="line"><span class="function"><span class="title">waterfall</span> = <span class="params">(tasks)</span>-&gt;</span></div><div class="line">  current = Promise.cast()</div><div class="line">  result = []</div><div class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</div><div class="line">    result.push current = current.<span class="keyword">then</span>(task)</div><div class="line">  Promise.all result</div><div class="line"></div><div class="line">sequence 与waterfall不同之处在于不传递结果到下一个函数:</div><div class="line"></div><div class="line"><span class="function"><span class="title">sequence</span> = <span class="params">(tasks)</span>-&gt;</span></div><div class="line">  current = Promise.cast()</div><div class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</div><div class="line">    current = current.thenReturn().<span class="keyword">then</span>(task)</div><div class="line">  current.thenReturn()</div><div class="line"></div><div class="line">汇集结果到数组。</div><div class="line"><span class="function"></span></div><div class="line"><span class="title">sequence</span> = <span class="params">(tasks)</span>-&gt;</div><div class="line">  current = Promise.cast()</div><div class="line">  result = []</div><div class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</div><div class="line">    result.push current = current.thenReturn().<span class="keyword">then</span>(task)</div><div class="line">  Promise.all result</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/programming/" rel="tag">#programming</a>
+          
+            <a href="/tags/asynchronous/" rel="tag">#asynchronous</a>
+          
+            <a href="/tags/promise/" rel="tag">#promise</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/howto-choose-programming-language/" rel="next" title="如何选择一门语言学习计算机编程">
+                <i class="fa fa-chevron-left"></i> 如何选择一门语言学习计算机编程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/loopback/" rel="prev" title="The Loopback Open API Framework">
+                The Loopback Open API Framework <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="article/promise.cn/"
+           data-title="异步编程与 Promise" data-url="http://riceball.me/article/promise.cn/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f"
+               alt="Riceball LEE" />
+          <p class="site-author-name" itemprop="name">Riceball LEE</p>
+          <p class="site-description motion-element" itemprop="description">Go with wind.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snowyu" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-any-and-Promise-some"><span class="nav-number">1.0.1.</span> <span class="nav-text">Promise.any and Promise.some</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序执行的-some-和-any"><span class="nav-number">1.0.2.</span> <span class="nav-text">顺序执行的 some 和 any</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"riceball"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
