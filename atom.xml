@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://riceball.me/"/>
-  <updated>2017-02-27T13:29:35.850Z</updated>
+  <updated>2017-02-27T13:35:49.136Z</updated>
   <id>http://riceball.me/</id>
   
   <author>
@@ -20,14 +20,14 @@
     <link href="http://riceball.me/article/ubuntu-tips/"/>
     <id>http://riceball.me/article/ubuntu-tips/</id>
     <published>2017-02-26T03:35:00.000Z</published>
-    <updated>2017-02-27T13:29:35.850Z</updated>
+    <updated>2017-02-27T13:35:49.136Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h2><p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>策略路由。</p>
-<h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>我比较习惯 zsh, 下载安装zsh:</p>
+    <content type="html"><![CDATA[<h1 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h1><p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>策略路由，对于域名IP流量精确转发，变得so easy.</p>
+<h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p>我比较习惯 zsh, 下载安装zsh:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$&gt; sudo apt install zsh</div><div class="line">$&gt; sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"source <span class="variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc</div><div class="line">$&gt; chsh /usr/bin/zsh</div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile</div></pre></td></tr></table></figure>
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plugins=(git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt ubuntu gradle nvm npm node coffee yarn go golang)</div></pre></td></tr></table></figure>
-<h3 id="dnsmasq"><a href="#dnsmasq" class="headerlink" title="dnsmasq"></a>dnsmasq</h3><p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）<br>是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
+<h2 id="dnsmasq"><a href="#dnsmasq" class="headerlink" title="dnsmasq"></a>dnsmasq</h2><p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）<br>是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$&gt;cat /etc/resolv.dnsmasq.conf</div><div class="line"><span class="comment"># Google's nameservers, for example</span></div><div class="line">nameserver 8.8.8.8</div><div class="line">nameserver 8.8.4.4</div><div class="line"></div><div class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/resolv.conf</div><div class="line">resolv-file=/etc/resolv.dnsmasq.conf</div><div class="line"></div><div class="line"><span class="comment">#启用 /etc/hosts</span></div><div class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/host.conf</div><div class="line">addn-hosts=/etc/hosts</div><div class="line"></div><div class="line">$&gt;sudo systemctl restart NetworkManager</div></pre></td></tr></table></figure>
 <h2 id="ipset"><a href="#ipset" class="headerlink" title="ipset"></a>ipset</h2><p>ipset 配合 iptables 可实现基于域名的策略路由。</p>
 <p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配<br>性能问题。</p>
@@ -41,7 +41,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; sudo bash gfwlist2dnsmasq.sh <span class="_">-d</span> your-dns-server-ip -p your-dns-server-port <span class="_">-s</span> gfwlist  <span class="_">-f</span> /etc/NetworkManager/dnsmasq.d/gfwlist_ipset.conf</div></pre></td></tr></table></figure>
 <p>然后创建<code>gfwlist</code>ipset规则集:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ipset -N gfwlist <span class="built_in">hash</span>:ip</div></pre></td></tr></table></figure>
-<h4 id="白名单方式"><a href="#白名单方式" class="headerlink" title="白名单方式"></a>白名单方式</h4><p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
+<h3 id="白名单方式"><a href="#白名单方式" class="headerlink" title="白名单方式"></a>白名单方式</h3><p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
 <ul>
 <li>获取国内 IP 列表</li>
 </ul>
@@ -65,7 +65,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Ubuntu-16-10&quot;&gt;&lt;a href=&quot;#Ubuntu-16-10&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 16.10&quot;&gt;&lt;/a&gt;Ubuntu 16.10&lt;/h2&gt;&lt;p&gt;Ubuntu 现在基本可以替代Windows做日常使用的主力
+      &lt;h1 id=&quot;Ubuntu-16-10&quot;&gt;&lt;a href=&quot;#Ubuntu-16-10&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 16.10&quot;&gt;&lt;/a&gt;Ubuntu 16.10&lt;/h1&gt;&lt;p&gt;Ubuntu 现在基本可以替代Windows做日常使用的主力
     
     </summary>
     
