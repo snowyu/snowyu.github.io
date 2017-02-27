@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://riceball.me/"/>
-  <updated>2017-02-27T06:44:21.482Z</updated>
+  <updated>2017-02-27T13:29:35.850Z</updated>
   <id>http://riceball.me/</id>
   
   <author>
@@ -16,42 +16,14 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>逝水流连，随风而去</title>
-    <link href="http://riceball.me/life/index/"/>
-    <id>http://riceball.me/life/index/</id>
-    <published>2017-02-27T06:44:21.482Z</published>
-    <updated>2017-02-27T06:44:21.482Z</updated>
-    
-    <content type="html"><![CDATA[<p>生活，生命，活着的，一切都将随风而去。冬去春来，夏过秋至，金黄的树叶悠悠飘落，一片片，散落，逝水流连，周而复始。<br>生存，成长，老去，逝去。我们追逐的，梦想的，转眼，一切都将成空。在这“<a href="https://zh.wikipedia.org/wiki/易经" target="_blank" rel="external">《易》</a>”的世界里面，永恒不变的唯有<br><code>易</code>。</p>
-<p><strong>我们</strong>都只是那短短的人生过客啊，观察，体验着这人生百态，感悟着不一样的人生，也许。随波逐流的人啊，活着只是活着的人啊，<br>活在别人的目光中的人啊，你们在感悟什么，人，这，一辈子，到底该如何度过。<br>生存的需求，物质的需求，财富的需求，有没有尽头，你在追寻什么？到底追寻的意义是什么，对你？我不知道，<br>对于我而言，<strong>思想</strong> 也许是我能留给你的最宝贵的财富，余者皆浮云矣。人与人最最关键，重要的区别就是<strong>思想</strong>。</p>
-<p>就在这个目录里。当一切随风而去，唯有<strong>思想</strong>留下…</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;生活，生命，活着的，一切都将随风而去。冬去春来，夏过秋至，金黄的树叶悠悠飘落，一片片，散落，逝水流连，周而复始。&lt;br&gt;生存，成长，老去，逝去。我们追逐的，梦想的，转眼，一切都将成空。在这“&lt;a href=&quot;https://zh.wikipedia.org/wiki/易经&quot;
-    
-    </summary>
-    
-      <category term="Life" scheme="http://riceball.me/categories/Life/"/>
-    
-    
-      <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
-    
-      <category term="life" scheme="http://riceball.me/tags/life/"/>
-    
-      <category term="人生感悟" scheme="http://riceball.me/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Ubuntu Tips</title>
     <link href="http://riceball.me/article/ubuntu-tips/"/>
     <id>http://riceball.me/article/ubuntu-tips/</id>
     <published>2017-02-26T03:35:00.000Z</published>
-    <updated>2017-02-27T13:05:47.416Z</updated>
+    <updated>2017-02-27T13:29:35.850Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h2><h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>我比较习惯 zsh, 下载安装zsh:</p>
+    <content type="html"><![CDATA[<h2 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h2><p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>策略路由。</p>
+<h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>我比较习惯 zsh, 下载安装zsh:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$&gt; sudo apt install zsh</div><div class="line">$&gt; sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"source <span class="variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc</div><div class="line">$&gt; chsh /usr/bin/zsh</div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile</div></pre></td></tr></table></figure>
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plugins=(git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt ubuntu gradle nvm npm node coffee yarn go golang)</div></pre></td></tr></table></figure>
@@ -93,7 +65,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Ubuntu-16-10&quot;&gt;&lt;a href=&quot;#Ubuntu-16-10&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 16.10&quot;&gt;&lt;/a&gt;Ubuntu 16.10&lt;/h2&gt;&lt;h3 id=&quot;Shell&quot;&gt;&lt;a href=&quot;#Shell&quot; c
+      &lt;h2 id=&quot;Ubuntu-16-10&quot;&gt;&lt;a href=&quot;#Ubuntu-16-10&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 16.10&quot;&gt;&lt;/a&gt;Ubuntu 16.10&lt;/h2&gt;&lt;p&gt;Ubuntu 现在基本可以替代Windows做日常使用的主力
     
     </summary>
     
@@ -261,6 +233,35 @@
       <category term="language" scheme="http://riceball.me/tags/language/"/>
     
       <category term="tech" scheme="http://riceball.me/tags/tech/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>逝水流连，随风而去</title>
+    <link href="http://riceball.me/life/index/"/>
+    <id>http://riceball.me/life/index/</id>
+    <published>2016-04-19T03:00:00.000Z</published>
+    <updated>2017-02-27T13:23:39.332Z</updated>
+    
+    <content type="html"><![CDATA[<p>生活，生命，活着的，一切都将随风而去。冬去春来，夏过秋至，金黄的树叶悠悠飘落，一片片，散落，逝水流连，周而复始。<br>生存，成长，老去，逝去。我们追逐的，梦想的，转眼，一切都将成空。在这“<a href="https://zh.wikipedia.org/wiki/易经" target="_blank" rel="external">《易》</a>”的世界里面，永恒不变的唯有<br><code>易</code>。</p>
+<p><strong>我们</strong>都只是那短短的人生过客啊，观察，体验着这人生百态，感悟着不一样的人生，也许。随波逐流的人啊，活着只是活着的人啊，<br>活在别人的目光中的人啊，你们在感悟什么，人，这，一辈子，到底该如何度过。<br>生存的需求，物质的需求，财富的需求，有没有尽头，你在追寻什么？到底追寻的意义是什么，对你？我不知道，<br>对于我而言，<strong>思想</strong> 也许是我能留给你的最宝贵的财富，余者皆浮云矣。人与人最最关键，重要的区别就是<strong>思想</strong>。</p>
+<p>就在这个目录里。当一切随风而去，唯有<strong>思想</strong>留下…</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;生活，生命，活着的，一切都将随风而去。冬去春来，夏过秋至，金黄的树叶悠悠飘落，一片片，散落，逝水流连，周而复始。&lt;br&gt;生存，成长，老去，逝去。我们追逐的，梦想的，转眼，一切都将成空。在这“&lt;a href=&quot;https://zh.wikipedia.org/wiki/易经&quot;
+    
+    </summary>
+    
+      <category term="Life" scheme="http://riceball.me/categories/Life/"/>
+    
+    
+      <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
+    
+      <category term="life" scheme="http://riceball.me/tags/life/"/>
+    
+      <category term="人生感悟" scheme="http://riceball.me/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/"/>
     
   </entry>
   
