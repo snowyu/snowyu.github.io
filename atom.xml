@@ -49,7 +49,7 @@
     <link href="http://riceball.me/article/ubuntu-tips/"/>
     <id>http://riceball.me/article/ubuntu-tips/</id>
     <published>2017-02-26T03:35:00.000Z</published>
-    <updated>2017-02-27T12:38:03.289Z</updated>
+    <updated>2017-02-27T13:05:47.416Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h2><h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>我比较习惯 zsh, 下载安装zsh:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$&gt; sudo apt install zsh</div><div class="line">$&gt; sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"source <span class="variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc</div><div class="line">$&gt; chsh /usr/bin/zsh</div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile</div></pre></td></tr></table></figure>
