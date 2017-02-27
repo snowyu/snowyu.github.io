@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://riceball.me/"/>
-  <updated>2017-02-27T13:39:59.932Z</updated>
+  <updated>2017-02-27T20:19:36.183Z</updated>
   <id>http://riceball.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://riceball.me/article/ubuntu-tips/"/>
     <id>http://riceball.me/article/ubuntu-tips/</id>
     <published>2017-02-26T03:35:00.000Z</published>
-    <updated>2017-02-27T13:39:59.932Z</updated>
+    <updated>2017-02-27T20:19:36.183Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h1><p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>策略路由，对于域名IP流量精确转发，变得so easy。</p>
 <p>这里记录下 Ubuntu 16.10 以上版本的碰到的一些tips。</p>
@@ -46,12 +46,12 @@
 <ul>
 <li>获取国内 IP 列表</li>
 </ul>
-<p>接下来我们需要获取中国的 IP 列表。在此之前我们需要创建一个目录来储存需要的脚本和其他文件。<br>建议放在 <code>$HOME</code> 下，或者 /opt 下。这里假设我们创建并切换到了目录 <code>/home/user/chnroute</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl <span class="string">'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest'</span> | grep ipv4 | grep CN | awk -F\| <span class="string">'&#123; printf("%s/%d\n", $4, 32-log($5)/log(2)) &#125;'</span> &gt; chnroute.txt</div></pre></td></tr></table></figure>
+<p>接下来我们需要获取中国的 IP 列表。这里我们放在了 <code>~/chnroute/</code>目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CHNROUTE_DIR=<span class="variable">$HOME</span>/chnroute</div><div class="line">mkdir <span class="variable">$CHNROUTE_DIR</span></div><div class="line">curl <span class="string">'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest'</span> | grep ipv4 | grep CN | awk -F\| <span class="string">'&#123; printf("%s/%d\n", $4, 32-log($5)/log(2)) &#125;'</span> &gt; <span class="variable">$CHNROUTE_DIR</span>/chnroute.txt</div></pre></td></tr></table></figure>
 <p>这是来自 <a href="https://github.com/shadowsocks/ChinaDNS" target="_blank" rel="external">ChinaDNS</a> 的指令。</p>
 <p>创建ipset并导入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="comment"># Setup the ipset</span></div><div class="line">ipset -N chnroute <span class="built_in">hash</span>:net maxelem 65536</div><div class="line"></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> $(cat <span class="string">'$HOME/chnroute/chnroute.txt'</span>); <span class="keyword">do</span></div><div class="line">  ipset add chnroute <span class="variable">$ip</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
-<p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，<br>而中国持有的 IP 数量上还是比较大的，所以如果使用 hash:ip 来导入的话会使内存溢出。</p>
+<p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，<br>而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
 <h2 id="shadowsocks-libev"><a href="#shadowsocks-libev" class="headerlink" title="shadowsocks-libev"></a>shadowsocks-libev</h2><pre><code>apt install shadowsocks-libev
 </code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$&gt; cat /etc/shadowsocks-libev/config.json</div><div class="line">&#123;</div><div class="line">    <span class="string">"server"</span>:<span class="string">"[123.22.33.13]"</span>, <span class="comment"># your shadowsocks server ip</span></div><div class="line">    <span class="string">"server_port"</span>:1293,</div><div class="line">    <span class="string">"local_port"</span>:1080,</div><div class="line">    <span class="string">"password"</span>:<span class="string">"12345"</span>,</div><div class="line">    <span class="string">"timeout"</span>:60,</div><div class="line">    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>启用 shadowsocks-libev.service 之前，需要做些修改，将服务改为透明转发<code>ss-redir</code>：</p>
