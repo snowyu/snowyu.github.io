@@ -145,9 +145,11 @@ sitemap:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  ignore_hidden: false
   type: git
   #message: [message]
+  ignore_hidden:
+    public: false
+  extend_dirs: [scaffolds]
   repo:
     github: git@github.com:snowyu/snowyu.github.io,master
     #gitcafe: <repository url>,[branch]
