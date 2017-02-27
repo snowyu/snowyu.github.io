@@ -7,6 +7,7 @@
       <title><![CDATA[Ubuntu Tips]]></title>
       <url>http://riceball.me/article/ubuntu-tips/</url>
       <content type="html"><![CDATA[<h1 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h1><p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>策略路由，对于域名IP流量精确转发，变得so easy.</p>
+<p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
 <h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p>我比较习惯 zsh, 下载安装zsh:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$&gt; sudo apt install zsh</div><div class="line">$&gt; sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"source <span class="variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc</div><div class="line">$&gt; chsh /usr/bin/zsh</div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile</div></pre></td></tr></table></figure>
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
