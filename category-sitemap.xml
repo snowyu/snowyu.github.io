@@ -98,13 +98,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Architecture/</loc>
-        <lastmod>2017-02-27T06:44:21.474Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://riceball.me/categories/HTML5/</loc>
         <lastmod>2017-02-27T06:44:21.474Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -142,13 +135,6 @@
     <url>
         <loc>http://riceball.me/categories/HTML5/Game-Development/</loc>
         <lastmod>2017-02-27T06:44:21.474Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/Thinking/</loc>
-        <lastmod>2017-02-27T06:44:21.478Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -205,6 +191,27 @@
     <url>
         <loc>http://riceball.me/categories/Linux/Ubuntu/</loc>
         <lastmod>2017-02-27T22:19:24.360Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Thinking/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Thinking/Architecture/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Thinking/Architecture/MQTT/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -555,13 +555,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/tags/network/</loc>
-        <lastmod>2017-02-27T22:19:24.360Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://riceball.me/tags/dnsmasq/</loc>
         <lastmod>2017-02-27T22:19:24.360Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -599,6 +592,41 @@
     <url>
         <loc>http://riceball.me/tags/shadowsocks/</loc>
         <lastmod>2017-02-27T22:19:24.360Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/network/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/mqtt/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/pubsub/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/push/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/message/</loc>
+        <lastmod>2017-03-21T12:53:51.230Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
