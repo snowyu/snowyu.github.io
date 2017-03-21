@@ -40,18 +40,18 @@
 </thead>
 <tbody>
 <tr>
-<td>$queue/</td>
-<td>mosquitto_sub -t ‘$queue/topic’</td>
+<td><code>$queue/</code></td>
+<td><code>mosquitto_sub -t ‘$queue/topic’</code></td>
 </tr>
 <tr>
-<td>$share/<group>/</group></td>
-<td>mosquitto_sub -t ‘$share/group/topic’</td>
+<td><code>$share/&lt;group&gt;/</code></td>
+<td><code>mosquitto_sub -t ‘$share/group/topic’</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="本地订阅-Local-Subscription"><a href="#本地订阅-Local-Subscription" class="headerlink" title="本地订阅(Local Subscription)"></a>本地订阅(Local Subscription)</h4><p>本地订阅也是非标准MQTT约定。</p>
 <p>本地订阅(Local Subscription)只在本节点创建订阅与路由表，不会在集群节点间广播全局路由，非常适合物联网数据采集应用:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mosquitto_sub -t &apos;$local/topic&apos;</div><div class="line">mosquitto_pub -t &apos;topic&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mosquitto_sub -t <span class="string">'$local/topic'</span></div><div class="line">mosquitto_pub -t <span class="string">'topic'</span></div></pre></td></tr></table></figure>
 <p>使用方式: 订阅者在主题(Topic)前增加’$local/’前缀。</p>
 <h3 id="MQTT会话-Clean-Session"><a href="#MQTT会话-Clean-Session" class="headerlink" title="MQTT会话(Clean Session)"></a>MQTT会话(Clean Session)</h3><p>MQTT支持Session(会话)，当MQTT客户端向服务器发起CONNECT请求时，可以通过’Clean Session’标志设置会话。</p>
 <ul>

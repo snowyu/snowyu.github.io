@@ -71,7 +71,7 @@ MQTT 协议简">
 只有自驾了。我选择了MQTT。
 MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。用在手机设备最好不过。
 MQTT 协议简">
-<meta property="og:updated_time" content="2017-03-21T12:53:51.230Z">
+<meta property="og:updated_time" content="2017-03-21T12:59:45.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MQTT 服务 - IoT界的消息订阅发布服务">
 <meta name="twitter:description" content="MQTT 服务 - IoT界的消息订阅发布关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，相当于你帮他们植入了常驻设备的推送后门。
@@ -400,18 +400,18 @@ MQTT 协议简">
 </thead>
 <tbody>
 <tr>
-<td>$queue/</td>
-<td>mosquitto_sub -t ‘$queue/topic’</td>
+<td><code>$queue/</code></td>
+<td><code>mosquitto_sub -t ‘$queue/topic’</code></td>
 </tr>
 <tr>
-<td>$share/<group>/</group></td>
-<td>mosquitto_sub -t ‘$share/group/topic’</td>
+<td><code>$share/&lt;group&gt;/</code></td>
+<td><code>mosquitto_sub -t ‘$share/group/topic’</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="本地订阅-Local-Subscription"><a href="#本地订阅-Local-Subscription" class="headerlink" title="本地订阅(Local Subscription)"></a>本地订阅(Local Subscription)</h4><p>本地订阅也是非标准MQTT约定。</p>
 <p>本地订阅(Local Subscription)只在本节点创建订阅与路由表，不会在集群节点间广播全局路由，非常适合物联网数据采集应用:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mosquitto_sub -t &apos;$local/topic&apos;</div><div class="line">mosquitto_pub -t &apos;topic&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mosquitto_sub -t <span class="string">'$local/topic'</span></div><div class="line">mosquitto_pub -t <span class="string">'topic'</span></div></pre></td></tr></table></figure>
 <p>使用方式: 订阅者在主题(Topic)前增加’$local/’前缀。</p>
 <h3 id="MQTT会话-Clean-Session"><a href="#MQTT会话-Clean-Session" class="headerlink" title="MQTT会话(Clean Session)"></a>MQTT会话(Clean Session)</h3><p>MQTT支持Session(会话)，当MQTT客户端向服务器发起CONNECT请求时，可以通过’Clean Session’标志设置会话。</p>
 <ul>
