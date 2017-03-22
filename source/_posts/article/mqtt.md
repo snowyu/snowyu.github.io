@@ -469,3 +469,4 @@ client.on('connect', function () {
 ```
 
 Demo: https://github.com/mqttjs/MQTT.js/tree/master/examples
+Using mqtt as iOS push mechanism without APNS: https://github.com/Guou/Demo-mqtt-push
