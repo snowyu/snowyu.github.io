@@ -84,10 +84,10 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
-#disqus_shortname: riceballl
-duoshuo_shortname: riceball
+disqus_shortname: riceballl
+#duoshuo_shortname: riceball
 # 多说热评文章 true 或者 false
-duoshuo_hotartical: true
+#duoshuo_hotartical: true
 baidu_analytics: 83c12d4163f9258ceafd22c997abddc2
 google_analytics: UA-75922641-1
 # JiaThis 分享服务
