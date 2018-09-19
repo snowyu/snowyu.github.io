@@ -411,6 +411,9 @@ https://github.com/mqttjs/MQTT.js
 
 ```coffee
 mqtt = require('mqtt')
+# 如果是websocket,对于emqtt必须加 path: '/mqtt'
+# client  = mqtt.connect('ws://127.0.0.1:8083', path: '/mqtt', clientId: 'MQTTCLI1', clean:false,username:'',password:'')
+
 client  = mqtt.connect('mqtt://127.0.0.1', clientId: 'MQTTCLI1', clean:false,username:'',password:'')
 
 client.on 'connect', ->
