@@ -7,7 +7,7 @@ title: Riceball LEE
 subtitle: Go with wind.
 description: Go with wind.
 author: Riceball LEE
-language: zh-Hans
+language: zh-CN
 timezone:
 rss:
 favicon: /favicon.ico
@@ -26,16 +26,6 @@ url: http://riceball.me
 root: /
 permalink: :title/
 permalink_defaults:
-
-#Menu
-# not avaiable here! only on themes/_config.yml
-menu:
-  home: /
-  archives: /archives
-  categories: /categories
-  tags: /tags
-  commonweal: /404.html
-  #about: /about
 
 # Directory
 source_dir: source
@@ -84,60 +74,25 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
-disqus_shortname: riceballl
 #duoshuo_shortname: riceball
 # 多说热评文章 true 或者 false
 #duoshuo_hotartical: true
-baidu_analytics: 83c12d4163f9258ceafd22c997abddc2
-google_analytics: UA-75922641-1
-# JiaThis 分享服务
-jiathis: true
-avatar: https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f
-# Social links
-social:
-  github: https://github.com/snowyu
-social_icons:
-  enable: true
-  # Icon Mappings
-  gitHub: github
-#打赏功能配置示例
-#reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-#wechatpay: /path/to/wechat-reward-image
-#alipay: /path/to/alipay-reward-image
-#友情链接配置示例
-# links_title: Links
-# links:
-#   MacTalk: http://macshuo.com/
-#   Title: http://example.com/
-#站点建立时间
-since: 2014
-auto_excerpt:
-  enable: true
-  length: 150
-# Creative Commons 4.0 International License.
-# http://creativecommons.org/
-# Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-creative_commons: by-nc-sa
-# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: true
 
-
-math:
-  engine: 'katex' # 'mathjax' # or 'katex'
-  mathjax:
-    #src: custom_mathjax_source
-    config:
-      # MathJax config
-  katex:
-    #css: custom_css_source
-    #js: custom_js_source # not used
-    config:
-      # KaTeX config
+# math:
+#   engine: 'katex' # 'mathjax' # or 'katex'
+#   mathjax:
+#     #src: custom_mathjax_source
+#     config:
+#       # MathJax config
+#   katex:
+#     #css: custom_css_source
+#     #js: custom_js_source # not used
+#     config:
+#       # KaTeX config
 
 search:
   path: search.xml
-  field: all # post(default), page
-
+  field: all # post(default), page, all
 
 sitemap:
     path: sitemap.xml
@@ -154,8 +109,6 @@ deploy:
     github: git@github.com:snowyu/snowyu.github.io,master
     #gitcafe: <repository url>,[branch]
 
-
-
 # Markdown config
 marked:
   gfm: true
@@ -165,3 +118,41 @@ marked:
   breaks: true
   smartLists: true
   smartypants: true
+
+# Markdown-it config
+## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    linkify: true
+    typographer: true
+    quotes: '“”‘’'
+  plugins:
+    - markdown-it-abbr
+    - markdown-it-footnote
+    - markdown-it-ins
+    - markdown-it-sub
+    - markdown-it-sup
+  anchors:
+    level: 2
+    collisionSuffix: 'v'
+
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+  exclude_codeblock: false
+  awl: 2
+
+sharejs:
+  enable: true
+  cdn:
+    js: //cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js
+    css: //cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css
+  networks: weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google
+  wechat_qrcode:
+    title: share.title
+    prompt: share.prompt
