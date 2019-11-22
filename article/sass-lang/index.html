@@ -90,7 +90,7 @@
 <meta name="keywords" content="programming,computer language,css,sass,compass,html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 开发利器 ——Sass 相关工具框架介绍">
-<meta property="og:url" content="https://riceball.me/article/sass-lang/index.html">
+<meta property="og:url" content="http://riceball.me/article/sass-lang/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写的sass">
 <meta property="og:locale" content="zh-Hans">
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://riceball.me/article/sass-lang/">
+  <link rel="canonical" href="http://riceball.me/article/sass-lang/">
 
 
 
@@ -307,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/sass-lang/">
+  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/sass-lang/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Riceball LEE">
@@ -435,31 +435,23 @@
 <h2 id="SCSS"><a href="#SCSS" class="headerlink" title="SCSS"></a>SCSS</h2><p>2010年5月份Sass发布了支持CSS3的新语法叫做SCSS（Sassy CSS），它是CSS3的一个超集，也就是说它100%兼容CSS3，每一个有效的CSS3文件也是有效的SCSS文件。不仅如此，它还支持我们能够找到的所有扩展，甚至包括一些非标准语法，例如微软的expression()函数和filter属性。Sass修改后的语法希望能够尽量减少和CSS语法的差异，以吸引更多的用户使用。修改语法的另一个好处是可以使得CSS工具更容易支持Sass。Sass 的旧有语法将会继续存在并且能够为旧版本用户提供良好兼容性。</p>
 <h1 id="SASS的安装和使用"><a href="#SASS的安装和使用" class="headerlink" title="SASS的安装和使用"></a>SASS的安装和使用</h1><h2 id="一、安装："><a href="#一、安装：" class="headerlink" title="一、安装："></a><strong>一、安装：</strong></h2><p>因为sass的工具是基于ruby gems开发的，所以安装 ruby和gem是必须的</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$sudo</span> gem install haml</span><br></pre></td></tr></table></figure>
-
 <p>在命令行使用sass：</p>
 <p>　　$sass input.scss output.css</p>
 <p>直接输出压缩后的css文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$sass</span> input.scss output.css --style compressed</span><br></pre></td></tr></table></figure>
-
 <p>compass是基于sass的样式创作的rails框架工具，它使得你的样式表项目更容易维护. 它内部支持的css框架库是bluepoint和compass，如果在创建项目的时候不指明框架库，则是用Compass库。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$sudo</span> gem install compass</span><br></pre></td></tr></table></figure>
-
 <p>创建css项目：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> <span class="built_in">help</span> create</span><br></pre></td></tr></table></figure>
-
 <h2 id="二、Sass的使用："><a href="#二、Sass的使用：" class="headerlink" title="二、Sass的使用："></a><strong>二、Sass的使用：</strong></h2><p>创新一个新的CSS项目：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> create newProject</span><br></pre></td></tr></table></figure>
-
 <p>如果不喜欢它自动创建的css等目录的名称你也可以在创建的时候自己指定：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> create newProject --using blueprint/project --sass-dir sass --css-dir css --images-dir images --javascripts-dir js --output-style compressed</span><br></pre></td></tr></table></figure>
-
 <p>以上使用blueprint/project CSS框架来创建项目，并设置sass目录为sass，输出css目录为css,图片目录为images，javascript目录为js, 输出的css的方式为压缩.</p>
 <p>为已有项目添加CSS模板框架</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> <span class="built_in">help</span> install</span><br></pre></td></tr></table></figure>
-
 <p>在已有项目中添加一个 blueprint的按钮css框架:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$cd</span> newProject</span><br><span class="line">　　<span class="variable">$compass</span> install blueprint/buttons</span><br></pre></td></tr></table></figure>
-
 <p><strong>本文作者：李雪愚。雪愚是盛大创新院高级架构师，Geeker，热爱开源事业。</strong></p>
 
       

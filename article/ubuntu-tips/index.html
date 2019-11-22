@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="linux,ubuntu,network,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks,">
+  <meta name="keywords" content="network,linux,ubuntu,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks,">
 
 
 
@@ -87,10 +87,10 @@
 
 
 <meta name="description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell我比较习惯 zsh, 下载安装zsh: 12345$&amp;gt; sudo apt install">
-<meta name="keywords" content="linux,ubuntu,network,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks">
+<meta name="keywords" content="network,linux,ubuntu,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu Tips">
-<meta property="og:url" content="https://riceball.me/article/ubuntu-tips/index.html">
+<meta property="og:url" content="http://riceball.me/article/ubuntu-tips/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell我比较习惯 zsh, 下载安装zsh: 12345$&amp;gt; sudo apt install">
 <meta property="og:locale" content="zh-Hans">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://riceball.me/article/ubuntu-tips/">
+  <link rel="canonical" href="http://riceball.me/article/ubuntu-tips/">
 
 
 
@@ -305,7 +305,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/ubuntu-tips/">
+  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/ubuntu-tips/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Riceball LEE">
@@ -424,10 +424,8 @@
 <p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
 <h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p>我比较习惯 zsh, 下载安装zsh:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$&gt; sudo apt install zsh</span><br><span class="line">$&gt; sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br><span class="line">$&gt; <span class="built_in">echo</span> <span class="string">"source <span class="variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$&gt; chsh /usr/bin/zsh</span><br><span class="line">$&gt; <span class="built_in">echo</span> <span class="string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile</span><br></pre></td></tr></table></figure>
-
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)</span><br></pre></td></tr></table></figure>
-
 <h2 id="SSD-磁盘"><a href="#SSD-磁盘" class="headerlink" title="SSD 磁盘"></a>SSD 磁盘</h2><p>SSD磁盘的挂载和使用需要一些小技巧来延长SSD的使用寿命。</p>
 <h3 id="Trim"><a href="#Trim" class="headerlink" title="Trim"></a>Trim</h3><p>SSD 磁盘挂载需要启用trim指令，Liunx的磁盘系统支持两类trim（但注意不是所有的磁盘系统都支持）。</p>
 <ul>
@@ -442,7 +440,8 @@
 <th>Periodic TRIM(fstrim)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Ext3</td>
 <td>No</td>
 <td>?</td>
@@ -482,10 +481,10 @@
 <td>No</td>
 <td>Yes</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>我自己用的是Ext4以及Btrfs(支持ssd参数优化)。另外如果是用笔记本的话，可以适当将写commit的时间延长（秒为单位）。<br>添加<code>noatime</code>/<code>relatime</code>参数(在读取文件的时候禁止/减少写入)以便于提升SSD的读取性能（尽管Linux内核2.6.30以上为默认）。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">✗ cat /etc/fstab</span><br><span class="line"><span class="comment"># /etc/fstab: static file system information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use 'blkid' to print the universally unique identifier for a</span></span><br><span class="line"><span class="comment"># device; this may be used with UUID= as a more robust way to name devices</span></span><br><span class="line"><span class="comment"># that works even if disks are added and removed. See fstab(5).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX /               ext4    defaults,noatime,discard,commit=300,errors=remount-ro 0       1</span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX /home           btrfs   defaults,noatime,discard,commit=120,ssd 0       2</span><br><span class="line">UUID=XXXXXX            /dos            ntfs    defaults,noatime,nls=utf8,uid=1000,gid=1000,commit=120 0       2</span><br><span class="line">UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,<span class="built_in">umask</span>=0077      0       1</span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0</span><br></pre></td></tr></table></figure>
-
 <p>注：</p>
 <ul>
 <li>查看磁盘分区的UUID,使用<code>blkid</code>指令。</li>
@@ -493,20 +492,15 @@
 </ul>
 <p>启用trim前，请务必检查自己的ssd（尤其是2010年前的）是否支持trim,否则可能会造成数据丢失，使用<code>lsblk</code>指令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&gt; lsblk -D</span></span><br><span class="line">NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO</span><br><span class="line">nvme0n1          512      512B       2T         0</span><br><span class="line">├─nvme0n1p1        0      512B       2T         0</span><br><span class="line">├─nvme0n1p2        0      512B       2T         0</span><br></pre></td></tr></table></figure>
-
 <p>如果 <code>DISC-GRAN</code> 和 <code>DISC-MAX</code> 列的值<code>非0</code>就表示支持trim.</p>
 <h3 id="限制交换分区"><a href="#限制交换分区" class="headerlink" title="限制交换分区"></a>限制交换分区</h3><p>Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。<br>该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。</p>
 <p>查看当前的<code>swappiness</code>设置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$&gt; cat /proc/sys/vm/swappiness</span><br><span class="line">60</span><br></pre></td></tr></table></figure>
-
 <p>然后修改： /etc/sysctl.conf 文件，增加：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Sharply reduce the inclination to swap</span><br><span class="line">vm.swappiness=10</span><br></pre></td></tr></table></figure>
-
 <h3 id="启用-tmp目录RAM盘"><a href="#启用-tmp目录RAM盘" class="headerlink" title="启用/tmp目录RAM盘"></a>启用/tmp目录RAM盘</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> tmp.mount</span><br><span class="line">sudo systemctl start tmp.mount</span><br></pre></td></tr></table></figure>
-
 <h2 id="dnsmasq"><a href="#dnsmasq" class="headerlink" title="dnsmasq"></a>dnsmasq</h2><p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）<br>是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$&gt;cat /etc/resolv.dnsmasq.conf</span><br><span class="line"><span class="comment"># Google's nameservers, for example</span></span><br><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 8.8.4.4</span><br><span class="line"></span><br><span class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/resolv.conf</span><br><span class="line">resolv-file=/etc/resolv.dnsmasq.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#启用 /etc/hosts</span></span><br><span class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/host.conf</span><br><span class="line">addn-hosts=/etc/hosts</span><br><span class="line"></span><br><span class="line">$&gt;sudo systemctl restart NetworkManager</span><br></pre></td></tr></table></figure>
-
 <h2 id="ipset"><a href="#ipset" class="headerlink" title="ipset"></a>ipset</h2><p>ipset 配合 iptables 可实现基于域名的策略路由。</p>
 <p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配<br>性能问题。</p>
 <p>当然，首先你要安装: <code>sudo apt install ipset</code></p>
@@ -515,13 +509,10 @@
 <p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases" target="_blank" rel="noopener">gfwlist_ipset.conf</a>文件，<br>放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
 <p>你需要修改文件中的域名服务器地址，最简单的方法是在代理服务器上自建一个域名服务器（用非标准端口）。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器</span></span><br><span class="line"><span class="string">server=/google.com/127.0.0.1#5353</span></span><br><span class="line"><span class="comment">#将解析出来的IP保存到名为gfwlist的ipset表中</span></span><br><span class="line"><span class="string">ipset=/google.com/gfwlist</span></span><br></pre></td></tr></table></figure>
-
 <p>或者，你可以<a href="https://github.com/cokebar/gfwlist2dnsmasq" target="_blank" rel="noopener">下载执行这个脚本</a>自动抓取gfwlist转换为：dnsmasq_gfwlist_ipset.conf</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&gt; sudo bash gfwlist2dnsmasq.sh -d your-dns-server-ip -p your-dns-server-port -s gfwlist  -f /etc/NetworkManager/dnsmasq.d/gfwlist_ipset.conf</span><br></pre></td></tr></table></figure>
-
 <p>然后创建<code>gfwlist</code>ipset规则集:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipset -N gfwlist <span class="built_in">hash</span>:ip</span><br></pre></td></tr></table></figure>
-
 <h3 id="白名单方式"><a href="#白名单方式" class="headerlink" title="白名单方式"></a>白名单方式</h3><p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
 <ul>
 <li>获取国内 IP 列表</li>
@@ -531,21 +522,16 @@
 <p>这是来自 <a href="https://github.com/shadowsocks/ChinaDNS" target="_blank" rel="noopener">ChinaDNS</a> 的指令。</p>
 <p>创建ipset并导入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the ipset</span></span><br><span class="line">ipset -N chnroute <span class="built_in">hash</span>:net maxelem 65536</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> $(cat <span class="string">'$HOME/chnroute/chnroute.txt'</span>); <span class="keyword">do</span></span><br><span class="line">  ipset add chnroute <span class="variable">$ip</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
 <p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，<br>而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
-<h2 id="shadowsocks-libev"><a href="#shadowsocks-libev" class="headerlink" title="shadowsocks-libev"></a>shadowsocks-libev</h2><pre><code>apt install shadowsocks-libev</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$&gt; cat /etc/shadowsocks-libev/config.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"server"</span>:<span class="string">"[123.22.33.13]"</span>, <span class="comment"># your shadowsocks server ip</span></span><br><span class="line">    <span class="string">"server_port"</span>:1293,</span><br><span class="line">    <span class="string">"local_port"</span>:1080,</span><br><span class="line">    <span class="string">"password"</span>:<span class="string">"12345"</span>,</span><br><span class="line">    <span class="string">"timeout"</span>:60,</span><br><span class="line">    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="shadowsocks-libev"><a href="#shadowsocks-libev" class="headerlink" title="shadowsocks-libev"></a>shadowsocks-libev</h2><pre><code>apt install shadowsocks-libev
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$&gt; cat /etc/shadowsocks-libev/config.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"server"</span>:<span class="string">"[123.22.33.13]"</span>, <span class="comment"># your shadowsocks server ip</span></span><br><span class="line">    <span class="string">"server_port"</span>:1293,</span><br><span class="line">    <span class="string">"local_port"</span>:1080,</span><br><span class="line">    <span class="string">"password"</span>:<span class="string">"12345"</span>,</span><br><span class="line">    <span class="string">"timeout"</span>:60,</span><br><span class="line">    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>启用 shadowsocks-libev.service 之前，需要做些修改，将服务改为透明转发<code>ss-redir</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$&gt;cat /lib/systemd/system/shadowsocks-libev.service</span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">EnvironmentFile=/etc/default/shadowsocks-libev</span><br><span class="line">User=root</span><br><span class="line">LimitNOFILE=32768</span><br><span class="line"><span class="comment"># modify ss-server to ss-redir</span></span><br><span class="line">ExecStart=/usr/bin/ss-redir -a <span class="variable">$USER</span> -c <span class="variable">$CONFFILE</span> <span class="variable">$DAEMON_ARGS</span></span><br><span class="line"></span><br><span class="line">$&gt;systemctl <span class="built_in">enable</span> shadowsocks-libev</span><br><span class="line">$&gt;systemctl daemon-reload</span><br><span class="line">$&gt;systemctl start shadowsocks-libev</span><br></pre></td></tr></table></figure>
-
 <h2 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h2><p>下面开始在iptables上做转发：</p>
 <p>首先为shadowsocks创建NAT表:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a nat named SHADOWSOCKS:</span></span><br><span class="line">iptables -t nat -N SHADOWSOCKS</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ignore your shadowsocks server's addresses</span></span><br><span class="line"><span class="comment"># It's very IMPORTANT, just be careful.</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d [your-shadowsocks-server-ip] -j RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略局域网：</span></span><br><span class="line"><span class="comment"># Ignore LANs and any other addresses you'd like to bypass the proxy</span></span><br><span class="line"><span class="comment"># See Wikipedia and RFC5735 for full list of reserved networks.</span></span><br><span class="line"><span class="comment"># See ashi009/bestroutetb for a highly optimized CHN route list.</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 169.254.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 172.16.0.0/12 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN</span><br></pre></td></tr></table></figure>
-
 <h3 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080</span><br><span class="line"><span class="comment"># Apply the rules</span></span><br><span class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</span><br></pre></td></tr></table></figure>
-
 <h3 id="白名单"><a href="#白名单" class="headerlink" title="白名单"></a>白名单</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Allow connection to chinese IPs</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set chnroute dst -j RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment"># Others Redirect to Shadowsocks</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply the rules</span></span><br><span class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</span><br></pre></td></tr></table></figure>
-
 <h3 id="清除iptables规则"><a href="#清除iptables规则" class="headerlink" title="清除iptables规则"></a>清除iptables规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS</span><br><span class="line">iptables -t nat -F SHADOWSOCKS</span><br><span class="line">iptables -t nat -X SHADOWSOCKS</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是黑名单:</span></span><br><span class="line">ipset destroy gfwlist</span><br><span class="line"><span class="comment"># 如果是白名单:</span></span><br><span class="line">ipset destroy chnroute</span><br></pre></td></tr></table></figure>
 
       
@@ -570,11 +556,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/network/" rel="tag"># network</a>
+          
             <a href="/tags/linux/" rel="tag"># linux</a>
           
             <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
-          
-            <a href="/tags/network/" rel="tag"># network</a>
           
             <a href="/tags/dnsmasq/" rel="tag"># dnsmasq</a>
           

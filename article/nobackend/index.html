@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="javascript,Cloud,HTML5,nobackend,NoSQL,云存储,云计算,前端,">
+  <meta name="keywords" content="Cloud,HTML5,javascript,nobackend,NoSQL,云存储,云计算,前端,">
 
 
 
@@ -87,10 +87,10 @@
 
 
 <meta name="description" content="什么是无后端构建开发无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和伸缩性。 这个趋势意味着互联网数据正在由人读(human-readable)时代向机读(compu">
-<meta name="keywords" content="javascript,Cloud,HTML5,nobackend,NoSQL,云存储,云计算,前端">
+<meta name="keywords" content="Cloud,HTML5,javascript,nobackend,NoSQL,云存储,云计算,前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无后端构建的无痛HTML应用开发[2013趋势]">
-<meta property="og:url" content="https://riceball.me/article/nobackend/index.html">
+<meta property="og:url" content="http://riceball.me/article/nobackend/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="什么是无后端构建开发无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和伸缩性。 这个趋势意味着互联网数据正在由人读(human-readable)时代向机读(compu">
 <meta property="og:locale" content="zh-Hans">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://riceball.me/article/nobackend/">
+  <link rel="canonical" href="http://riceball.me/article/nobackend/">
 
 
 
@@ -305,7 +305,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/nobackend/">
+  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/nobackend/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Riceball LEE">
@@ -427,10 +427,8 @@
 <p>让我们具体来看一个例子。</p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>首先，我们从帐号管理开发谈起，在传统开发中，我们需要定义帐号的表结构，进行数据库服务器配置，<br>然后运行数据库服务，创建数据库和数据表，并初始化数据。那么在“无后端构建”的开发中，上述操作包<br>括登录，都没有必要再去做这些繁琐的操作了，你只需要再云服务后台添加一个数据库设置好访问权限，<br>然后在前端应用中，直接引用SDK，写代码即可，剩下的事情则交给云服务去做就好了，梦幻般的代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mydb = <span class="keyword">new</span> iDB(<span class="string">"https://idb.isdk.org/mydb"</span>);</span><br><span class="line"><span class="keyword">var</span> account = myDb.account;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注册一个新用户</span></span><br><span class="line">account.signUp(<span class="string">'mike@example.com'</span>, <span class="string">'secret'</span>, &#123;<span class="attr">name</span>: <span class="string">"Mike John"</span>, <span class="attr">birthday</span>: <span class="string">'1988-01-01'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//登录</span></span><br><span class="line">account.signIn(<span class="string">'mike@example.com'</span>, <span class="string">'secret'</span>);</span><br><span class="line"><span class="comment">//使用第三方登录(Oaccount)</span></span><br><span class="line">account.signIn(using: <span class="string">'google'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变密码</span></span><br><span class="line">account.changePassword(<span class="string">'currentPassword'</span>, <span class="string">'newPassword'</span>);</span><br><span class="line">account.change(<span class="string">'password'</span>, <span class="string">'newPassword'</span>, &#123;<span class="attr">secret</span>: <span class="string">'currentPassword'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变Profile的信息</span></span><br><span class="line">account.change(<span class="string">'nickname'</span>, <span class="string">'newNickname'</span>, &#123;<span class="attr">secret</span>: <span class="string">'currentPassword'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取profile</span></span><br><span class="line">account.get();</span><br><span class="line">account.get(<span class="string">'name'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//彻底销毁自己的帐号</span></span><br><span class="line">account.destroy(&#123;<span class="attr">secret</span>: <span class="string">'currentPassword'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//注销</span></span><br><span class="line">account.signOut();</span><br><span class="line"></span><br><span class="line"><span class="comment">//忘记密码了，发送重置密码链接到指定邮箱</span></span><br><span class="line">account.resetPassword(<span class="string">'mike@example.com'</span>);</span><br></pre></td></tr></table></figure>
-
 <p>数据存储也是类似，事实上account的存储就是来自store。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> store = mydb.store;</span><br><span class="line">store.add(key, value);</span><br><span class="line">store.update(key, value);</span><br><span class="line">store.delete(key);</span><br><span class="line">store.get(key);</span><br><span class="line">store.listAll(key);</span><br><span class="line">store.list(key, subkey_pattern, skipCount, count);</span><br></pre></td></tr></table></figure>
-
 <p>无后端的开发模式，实质是基于云存储之上的云服务模式。因此它不仅仅适用于HTML5应用，<br>其它任何计算机语言都可以用它作为开发模式的。我们通过进一步的抽象后端开发，剥离出<br>了帐号和存储任务，慢慢的还会有消息(通知)，在线支付/交易，评论，聊天等等各种各样的<br>通用的操作(任务)会以更加简易方便的形式被剥离出来。</p>
 <p>提了这么多，那么这到底是梦幻呢，还是现在就能在互联网上可以玩到的技术呢？毋庸置疑，<br>这目前不仅能在互联网上玩到，而且BitTorrent, Codecademy等已经在产品中使用Firebase提供<br>的无后端云存储服务，下面列举一些无后端云存储服务提供者和开源项目。</p>
 <h1 id="无后端云存储服务提供者与开源项目"><a href="#无后端云存储服务提供者与开源项目" class="headerlink" title="无后端云存储服务提供者与开源项目"></a>无后端云存储服务提供者与开源项目</h1><ul>
@@ -473,11 +471,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
             <a href="/tags/Cloud/" rel="tag"># Cloud</a>
           
             <a href="/tags/HTML5/" rel="tag"># HTML5</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
             <a href="/tags/nobackend/" rel="tag"># nobackend</a>
           

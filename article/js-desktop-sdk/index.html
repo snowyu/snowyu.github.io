@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="javascript,HTML5,前端,desktop,framework,sdk,webapp,">
+  <meta name="keywords" content="HTML5,javascript,前端,desktop,framework,sdk,webapp,">
 
 
 
@@ -87,10 +87,10 @@
 
 
 <meta name="description" content="随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。">
-<meta name="keywords" content="javascript,HTML5,前端,desktop,framework,sdk,webapp">
+<meta name="keywords" content="HTML5,javascript,前端,desktop,framework,sdk,webapp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 Javascript 开发桌面应用的框架工具列表">
-<meta property="og:url" content="https://riceball.me/article/js-desktop-sdk/index.html">
+<meta property="og:url" content="http://riceball.me/article/js-desktop-sdk/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。">
 <meta property="og:locale" content="zh-Hans">
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://riceball.me/article/js-desktop-sdk/">
+  <link rel="canonical" href="http://riceball.me/article/js-desktop-sdk/">
 
 
 
@@ -307,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/js-desktop-sdk/">
+  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/js-desktop-sdk/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Riceball LEE">
@@ -436,12 +436,10 @@
       
         <p>随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。</p>
 <a id="more"></a>
-
 <h1 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a></h1><p>Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在<code>package.json</code>中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。</p>
 <p>下载需要翻墙：</p>
 <p><a href="https://www.npmjs.com/package/electron-download" target="_blank" rel="noopener">https://www.npmjs.com/package/electron-download</a><br>在环境变量中设置即可 <code>npm install electron-prebuilt</code> 。</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Electron Mirror of China</span></span><br><span class="line"><span class="attr">ELECTRON_MIRROR</span>=<span class="string">"https://npm.taobao.org/mirrors/electron/"</span></span><br><span class="line"><span class="attr">CHROMEDRIVER_CDNURL</span>=http://npm.taobao.org/mirrors/chromedriver</span><br><span class="line"></span><br><span class="line"><span class="comment">## or for a local mirror</span></span><br><span class="line"><span class="attr">ELECTRON_MIRROR</span>=<span class="string">"https://10.1.2.105/"</span></span><br><span class="line"><span class="attr">ELECTRON_CUSTOM_DIR</span>=<span class="string">"our/internal/filePath"</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="NW-js-以前叫-node-webkit"><a href="#NW-js-以前叫-node-webkit" class="headerlink" title="NW.js (以前叫 node-webkit)"></a><a href="http://nwjs.io/" target="_blank" rel="noopener">NW.js</a> (以前叫 node-webkit)</h1><p>与<a href="http://appjs.org/" target="_blank" rel="noopener">App.js</a>类似，通过将node.js与Chromiuml联合在一起，实现本地桌面应用开发的，是App.js的后起之秀。实现原理是基于Chromium项目的Content Layer构建(Chromium Browser也同样基于Content Layer); 实现上的特点是把Node.js的消息循环(libuv)和Chromium Renderer进程的消息循环合并到一起，因为这样才能从DOM(HTML)中直接调用Node.js提供的函数；把Node.js使用的V8引擎和 Chromium的V8引擎合并，使得Node.js的Javascript和DOM里面的Javascript可以互相访问；另外因为是支持本地应用， 所以安全模型和Web程序有很大不同：node-webkit程序可以做web应用不允许做的很多事情，除了通过node.js访问本地OS以外，还可以进行跨域访问等操作。是英特尔开放源码技术中心（OTC）的软件架构师Rogerwang（王文睿）发起，在公司专职开发node-webkit(幸福啊)。</p>
 <p>本质上它和PhoneGap一样都是属于胶水层，只不过PhoneGap是尽量以遵循W3C最新规范的形式来提供本地访问API，其它的不规范接口以各种插件形式提供；而node-webkit则是通过node.js提供本地访问的接口。与PhoneGap比较而言，如果PhoneGap要为某个平台提供新的本地API接口，必须通过开发插件的形式提供，而且各个平台的插件开发的开发语言都不一样。而node.js有node-gyp(native addon build tool) 工具统一build。而node.js的 <a href="https://npmjs.org/package/node-ffi" target="_blank" rel="noopener">node-ffi</a> 附加插件更使得我们可以直接在js中调用动态链接库的API：</p>
 <pre><code>var ffi = require(&quot;node-ffi&quot;);
@@ -451,17 +449,16 @@ libm.ceil(1.5); // 2
 
 // You can also access just functions in the current process by passing a null
 var current = new ffi.Library(null, { &quot;atoi&quot;: [ &quot;int32&quot;, [ &quot;string&quot; ] ] });
-current.atoi(&quot;1234&quot;); // 1234</code></pre><p>地址： <a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit</a></p>
+current.atoi(&quot;1234&quot;); // 1234
+</code></pre><p>地址： <a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit</a></p>
 <p>如何把你的javascript 应用打包成一个可执行文件，这里已经说得很详细了：<a href="https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps</a></p>
 <h1 id="node-x11"><a href="#node-x11" class="headerlink" title="node-x11"></a>node-x11</h1><p>这个是用纯js实现了X11 Client的核心协议，包括Xrender, Damage, Composite, Big-Requests, Dpms, Screensaver, XFixes, Shape, XTest, XC-Misc, GLX and Apple-WM extensions。用来开发X-Windows GUI程序。基于 <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">node-x11</a> 有人做了进一步的封装：<a href="https://github.com/sidorares/ntk" target="_blank" rel="noopener">ntk(desktop UI toolkit)</a>, 然后做出了一个纯js的 VNC Viewer: <a href="https://github.com/sidorares/node-vnc" target="_blank" rel="noopener">node-vnc</a>.</p>
 <p>Windows用户要先安装  <a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener">XMing</a> or <a href="http://x.cygwin.com/" target="_blank" rel="noopener">Cygwin/X</a>。</p>
 <p>地址： <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">https://github.com/sidorares/node-x11</a></p>
 <p>X11窗口例子：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x11 = <span class="built_in">require</span>(<span class="string">'../../lib'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> PointerMotion = x11.eventMask.PointerMotion;</span><br><span class="line">x11.createClient(<span class="function"><span class="keyword">function</span>(<span class="params">err, display</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> X = display.client;</span><br><span class="line">    <span class="keyword">var</span> root = display.screen[<span class="number">0</span>].root;</span><br><span class="line">    <span class="keyword">var</span> white = display.screen[<span class="number">0</span>].white_pixel;</span><br><span class="line">    <span class="keyword">var</span> black = display.screen[<span class="number">0</span>].black_pixel;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> wid = X.AllocID();</span><br><span class="line">    X.CreateWindow(wid, root, <span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">300</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, &#123; <span class="attr">backgroundPixel</span>: white, <span class="attr">eventMask</span>: PointerMotion &#125;);</span><br><span class="line">    <span class="keyword">var</span> gc = X.AllocID();</span><br><span class="line">    X.CreateGC(gc, wid);</span><br><span class="line">    X.MapWindow(wid);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt><br>ntk 的例子:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ntk = <span class="built_in">require</span>(<span class="string">'../lib'</span>);</span><br><span class="line"></span><br><span class="line">ntk.createClient(main);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">err, app</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> mainwnd = app.createWindow(&#123;<span class="attr">title</span>: <span class="string">"Close me!"</span>&#125;)</span><br><span class="line">   .on(<span class="string">'mouseout'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Out'</span>); &#125;)</span><br><span class="line">   .on(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'In'</span>); &#125;)</span><br><span class="line">   .on(<span class="string">'mousedown'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</span><br><span class="line">       ev.window.unmap();</span><br><span class="line">       setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ev.window.map(); &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">   .map();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h1 id="node-qt"><a href="#node-qt" class="headerlink" title="node-qt"></a>node-qt</h1><p><a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>是基于QT的node.js封装,而<a href="http://github.com/arturadib/node-five" target="_blank" rel="noopener">node-five</a> 则是基于<a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>的封装实现了HTML5 graphics and audio。</p>
 <p>地址：</p>
 <ul>
@@ -470,10 +467,8 @@ current.atoi(&quot;1234&quot;); // 1234</code></pre><p>地址： <a href="https:
 </ul>
 <p>使用 node-qt 的代码写法如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> qt = <span class="built_in">require</span>(<span class="string">'node-qt'</span>),</span><br><span class="line">    app = <span class="keyword">new</span> qt.QApplication,</span><br><span class="line">    <span class="built_in">window</span> = <span class="keyword">new</span> qt.QWidget;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prevent objects from being GC'd</span></span><br><span class="line">global.app = app;</span><br><span class="line">global.window = <span class="built_in">window</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Quirk: the virtual method paintEvent() is mapped into a callback setter</span></span><br><span class="line"><span class="built_in">window</span>.paintEvent(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> qt.QPainter();</span><br><span class="line">  p.begin(<span class="built_in">window</span>);</span><br><span class="line">  p.drawText(<span class="number">20</span>, <span class="number">30</span>, <span class="string">'hello node, hello qt'</span>);</span><br><span class="line">  p.end();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.resize(<span class="number">300</span>, <span class="number">150</span>);</span><br><span class="line"><span class="built_in">window</span>.show();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Join Node's event loop</span></span><br><span class="line">setInterval(app.processEvents, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
 <p>Node-Five的写法：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> five = <span class="built_in">require</span>(<span class="string">'path-to-node-five-dir'</span>),</span><br><span class="line">    <span class="built_in">window</span> = <span class="keyword">new</span> five.Window(<span class="number">300</span>, <span class="number">150</span>),</span><br><span class="line">    canvas = <span class="keyword">new</span> five.Canvas(<span class="built_in">window</span>),</span><br><span class="line">    ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">'black'</span>;</span><br><span class="line">ctx.fillText(<span class="string">'hello node, hello qt'</span>, <span class="number">20</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
-
 <h1 id="wxNode"><a href="#wxNode" class="headerlink" title="wxNode"></a>wxNode</h1><p><a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">wxNode</a>是基于跨平台的<a href="http://www.wxwidgets.org/" target="_blank" rel="noopener">wxWidgets</a>的node.js封装插件包。也就是能让你用wxWidgets GUI组件开发桌面应用。</p>
 <p>地址： <a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">https://github.com/joeferner/wxNode</a></p>
 <p>例子：</p>
@@ -503,8 +498,10 @@ var MyFrame = wx.Frame.extend({
 });
 
 var app = new MyApp();
-app.run();</code></pre><p>运行：</p>
-<pre><code>node examples/helloWorld.js</code></pre><h1 id="TideSDK"><a href="#TideSDK" class="headerlink" title="TideSDK"></a>TideSDK</h1><p>最后提下TideSDK, 就是以前的Titanium Desktop SDK，以web技术(HTML5. CSS3, JS)创建桌面应用的开源框架工具。与前面的框架相比它的特色是：它不仅仅支持用js来开发桌面应用，它还支持用C/C++, Ruby, Python, PHP来开发和写模块。而且这些语言写的模块可以彼此调用。Tide拥有一个用C++写的微内核，该微内核是支持跨平台，跨语言的绑定和调用框架。TideSDK没有加入node.js的支持是为遗憾。</p>
+app.run();
+</code></pre><p>运行：</p>
+<pre><code>node examples/helloWorld.js
+</code></pre><h1 id="TideSDK"><a href="#TideSDK" class="headerlink" title="TideSDK"></a>TideSDK</h1><p>最后提下TideSDK, 就是以前的Titanium Desktop SDK，以web技术(HTML5. CSS3, JS)创建桌面应用的开源框架工具。与前面的框架相比它的特色是：它不仅仅支持用js来开发桌面应用，它还支持用C/C++, Ruby, Python, PHP来开发和写模块。而且这些语言写的模块可以彼此调用。Tide拥有一个用C++写的微内核，该微内核是支持跨平台，跨语言的绑定和调用框架。TideSDK没有加入node.js的支持是为遗憾。</p>
 <p>地址: <a href="http://tidesdk.org/" target="_blank" rel="noopener">http://tidesdk.org/</a></p>
 <h1 id="游戏应用"><a href="#游戏应用" class="headerlink" title="游戏应用"></a>游戏应用</h1><p>对于希望用js来开发游戏和动画交互强的应用，那么可能除了node-qt外，还可以考虑下下面的框架：</p>
 <ul>
@@ -538,9 +535,9 @@ app.run();</code></pre><p>运行：</p>
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
             <a href="/tags/HTML5/" rel="tag"># HTML5</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
             <a href="/tags/前端/" rel="tag"># 前端</a>
           

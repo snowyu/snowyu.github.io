@@ -90,7 +90,7 @@
 <meta name="keywords" content="thinking,programming,language,tech">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coffee Style Computer Language">
-<meta property="og:url" content="https://riceball.me/article/coffee-style-computer-language/index.html">
+<meta property="og:url" content="http://riceball.me/article/coffee-style-computer-language/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Coffee Style Smart Computer LanguageI treat the coffee-script and Literate CoffeeScript as the first coffee style smart computer language concept.This should be the basics of the next generation Smart">
 <meta property="og:locale" content="zh-Hans">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://riceball.me/article/coffee-style-computer-language/">
+  <link rel="canonical" href="http://riceball.me/article/coffee-style-computer-language/">
 
 
 
@@ -305,7 +305,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/coffee-style-computer-language/">
+  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/coffee-style-computer-language/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Riceball LEE">
@@ -458,8 +458,7 @@
 </li>
 </ul>
 </li>
-<li><p>Smart man used only(the stupid is difficult to use)</p>
-<ul>
+<li>Smart man used only(the stupid is difficult to use)<ul>
 <li>the man should have a mindset always. So you have got a big trouble if you can not recognize the ambiguity of some statement.</li>
 <li>the smart variable definition should be care too.</li>
 </ul>
@@ -468,7 +467,6 @@
 <p>Most languages could be transformed into a similar coffee style.</p>
 <p>The previous generation computer language is very mechanical and rigid.<br>It’s strictly limited, even missing a semicolon would raise an error.</p>
 <h2 id="Language-Reference"><a href="#Language-Reference" class="headerlink" title="Language Reference"></a>Language Reference</h2><h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">square</span> = <span class="params">(x)</span> -&gt;</span> x * x</span><br><span class="line">cube   :integer = <span class="function"><span class="params">(x: integer)</span> -&gt;</span> square(x) * x</span><br><span class="line">fill   :string  = <span class="function"><span class="params">(container: string, liquid: string = <span class="string">"coffee"</span>)</span> -&gt;</span></span><br><span class="line">  <span class="string">"Filling the <span class="subst">#&#123;container&#125;</span> with <span class="subst">#&#123;liquid&#125;</span>..."</span></span><br></pre></td></tr></table></figure>
-
 <p>The return and argument type should be optional for the types could be inferred.</p>
 <p>The following is the C language transform:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> x*x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cube</span><span class="params">(<span class="keyword">int</span> x)</span>   </span>&#123;<span class="keyword">return</span> square(x)*x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">fill</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* container, <span class="keyword">const</span> <span class="keyword">char</span>* liquid)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!liquid) liquid = <span class="string">"coffee"</span>;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span>* fmt = <span class="string">"Filling the %s with %s..."</span>;</span><br><span class="line">  <span class="keyword">int</span> sz = <span class="built_in">snprintf</span>(<span class="literal">NULL</span>, <span class="number">0</span>, fmt, container, liquid);</span><br><span class="line">  <span class="keyword">char</span>* result = <span class="built_in">malloc</span>(sz+<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">snprintf</span>(result, sz+<span class="number">1</span>, fmt, container, liquid);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

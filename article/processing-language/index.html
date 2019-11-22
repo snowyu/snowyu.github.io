@@ -90,17 +90,17 @@
 <meta name="keywords" content="programming,computer language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Processing语言——专为开发者中的艺术家而创建">
-<meta property="og:url" content="https://riceball.me/article/processing-language/index.html">
+<meta property="og:url" content="http://riceball.me/article/processing-language/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Processing 语言是专门为开发者中的艺术家而创建的，由MIT Media Lab的两个家伙所开发，一开始，他们的初衷只是想让开发变得有趣一些，正是这样一个单纯的目的，造就了Processing语言的艺术气质，令它成了一些Geek眼中的宝贝。当然，它也并不一定是Geek的专利，因为随着它越来越被广泛传播，现在玩这个被称为电子艺术和可视化设计，许多真正的艺术家也参与到了其中。　　Proce">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://farm4.static.flickr.com/3365/3521509776_e7476b23ab.jpg">
 <meta property="og:image" content="http://dextro.org/hhhh/h001/k364p_col.jpg">
 <meta property="og:image" content="https://processing.org/tutorials/gettingstarted/imgs/Fig_02_01.gif">
-<meta property="og:image" content="https://riceball.me/article/processing-language/effects-firecube.png">
+<meta property="og:image" content="http://riceball.me/article/processing-language/effects-firecube.png">
 <meta property="og:image" content="http://www.showmuch.com/upload_files/auto_save_image/2011/03/041617Je4.gif">
 <meta property="og:image" content="http://www.showmuch.com/upload_files/auto_save_image/2011/03/0416199lF.gif">
-<meta property="og:image" content="https://riceball.me/article/processing-language/ani-valentine-drips.png">
+<meta property="og:image" content="http://riceball.me/article/processing-language/ani-valentine-drips.png">
 <meta property="og:image" content="http://www.jbox2d.org/images/Box2d-screenshot.png">
 <meta property="og:image" content="http://www.mattryall.net/image/comments-vis.png">
 <meta property="og:image" content="http://www.mattryall.net/image/contributors-vis.png">
@@ -137,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="https://riceball.me/article/processing-language/">
+  <link rel="canonical" href="http://riceball.me/article/processing-language/">
 
 
 
@@ -317,7 +317,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/processing-language/">
+  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/processing-language/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Riceball LEE">
@@ -453,19 +453,14 @@
 <p>比如里面的 Effects/FireCube，就用很简单的代码画出一个着火的立方体的动画：<br><a href="https://github.com/processing/processing-android/blob/master/examples/Topics/Effects/FireCube/FireCube.pde" target="_blank" rel="noopener"><img src="./effects-firecube.png" alt="FireCube Example"></a></p>
 <p>Processing 的程序分为两个主体函数：<code>setup</code>,  <code>draw</code>。其中<code>setup</code>是可以省略的。如果不需要动画或交互，那么<code>draw</code>函数也可以省略(在draw函数中的代码会一遍遍的重复执行直到你关闭或者停止)，直接在IDE编辑器中写代码绘制，比如，画一个圆：</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**<span class="built_in">ellipse</span>**(<span class="number">50</span>, <span class="number">50</span>, <span class="number">80</span>, <span class="number">80</span>);</span><br></pre></td></tr></table></figure>
-
 <p>这个函数的意思是在坐标(50,50)的地方，绘制宽度和高度都是80的椭圆。点击<code>运行按钮</code>，就可以看到结果:</p>
 <p><img src="http://www.showmuch.com/upload_files/auto_save_image/2011/03/041617Je4.gif" alt="processing"></p>
 <p><code>size</code>函数用户设定绘制窗口的大小和方式，如果没有指定绘制方式，则默认为JAVA2D的模式，processing支持的方式有：JAVA2D, P2D, P3D, OPENGL以及PDF（如果是PDF方式，后面还需要一个pdf文件名的参数）。</p>
 <p>下面是鼠标移动绘制圆形的交互代码，可以粘贴到编辑器执行看看。</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> **<span class="title">setup</span>**() &#123;</span><br><span class="line">  <span class="built_in">size</span>(<span class="number">480</span>, <span class="number">120</span>); <span class="comment">//设置窗口大小</span></span><br><span class="line">    <span class="built_in">smooth</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> **<span class="title">draw</span>**() &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">mousePressed</span>) &#123;</span><br><span class="line">    <span class="built_in">fill</span>(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">fill</span>(<span class="number">255</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">ellipse</span>(<span class="built_in">mouseX</span>, <span class="built_in">mouseY</span>, <span class="number">80</span>, <span class="number">80</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 <p>停止执行按<img src="http://www.showmuch.com/upload_files/auto_save_image/2011/03/0416199lF.gif" alt="Stop">按钮。</p>
 <p>特别的，使用beginRecord函数你还可以将绘制过程记录到pdf文件，当然首先要引用支持pdf的库：</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> processing.pdf.*;</span><br><span class="line"><span class="built_in">beginRecord</span>(PDF, <span class="string">"line.pdf"</span>);</span><br><span class="line"><span class="built_in">ellipse</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"><span class="built_in">endRecord</span>();</span><br></pre></td></tr></table></figure>
-
-
 <p>Processing 有非常多的库，使得你绘制和交互非常的方便，你可以在这里学学习各种库的使用： <a href="http://www.processing.org/reference/libraries/" target="_blank" rel="noopener">http://www.processing.org/reference/libraries/</a> 下面的动画来自<a href="http://www.looksgood.de/libraries/Ani/" target="_blank" rel="noopener">ani库</a>中的 <code>valentine_drips_player</code>的demo.</p>
 <p><img src="ani-valentine-drips.png" alt="ani demo"></p>
 <p>这些扩展库文件你只需要放到 Processing Sketchbook location 下的libraries下面即可：</p>
