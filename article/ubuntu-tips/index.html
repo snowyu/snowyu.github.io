@@ -5,20 +5,16 @@
   
 
 
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,73 +23,114 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="linux,ubuntu,network,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks," />
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
+  
+  
+  
+  
 
-  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml" />
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="linux,ubuntu,network,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。
-这里记录下 Ubuntu 16.10 以上版本的安装tips.
-Shell我比较习惯 zsh, 下载安装zsh:
-12345$&amp;gt; sudo apt install">
+<meta name="description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell我比较习惯 zsh, 下载安装zsh: 12345$&amp;gt; sudo apt install">
+<meta name="keywords" content="linux,ubuntu,network,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu Tips">
-<meta property="og:url" content="http://riceball.me/article/ubuntu-tips/index.html">
+<meta property="og:url" content="https://riceball.me/article/ubuntu-tips/index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。
-这里记录下 Ubuntu 16.10 以上版本的安装tips.
-Shell我比较习惯 zsh, 下载安装zsh:
-12345$&amp;gt; sudo apt install">
-<meta property="og:updated_time" content="2017-02-27T22:19:24.360Z">
+<meta property="og:description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell我比较习惯 zsh, 下载安装zsh: 12345$&amp;gt; sudo apt install">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-22T06:56:43.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu Tips">
-<meta name="twitter:description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。
-这里记录下 Ubuntu 16.10 以上版本的安装tips.
-Shell我比较习惯 zsh, 下载安装zsh:
-12345$&amp;gt; sudo apt install">
+<meta name="twitter:description" content="Ubuntu 16.10Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell我比较习惯 zsh, 下载安装zsh: 12345$&amp;gt; sudo apt install">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
+
+
+
+  <link rel="canonical" href="https://riceball.me/article/ubuntu-tips/">
+
+
+
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
 
   <title> Ubuntu Tips | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -143,7 +180,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Riceball LEE</span>
       <span class="logo-line-after"><i></i></span>
@@ -170,7 +207,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -180,7 +217,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -190,7 +227,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -200,7 +237,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -210,7 +247,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -220,10 +257,10 @@ Shell我比较习惯 zsh, 下载安装zsh:
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -247,6 +284,8 @@ Shell我比较习惯 zsh, 下载安装zsh:
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -260,13 +299,26 @@ Shell我比较习惯 zsh, 下载安装zsh:
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/ubuntu-tips/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Riceball LEE">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Riceball LEE">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Riceball LEE" src>
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -289,20 +341,30 @@ Shell我比较习惯 zsh, 下载安装zsh:
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-26T11:35:00+08:00" content="2017-02-26">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T11:35:00+08:00">
               2017-02-26
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">
+              2019-11-22
+            </time>
+            
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Linux/" itemprop="url" rel="index">
                     <span itemprop="name">Linux</span>
                   </a>
@@ -314,7 +376,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
                 
 
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Linux/Ubuntu/" itemprop="url" rel="index">
                     <span itemprop="name">Ubuntu</span>
                   </a>
@@ -332,7 +394,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/article/ubuntu-tips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/ubuntu-tips/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/ubuntu-tips/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,6 +402,10 @@ Shell我比较习惯 zsh, 下载安装zsh:
 
           
 
+          
+          
+
+          
           
           
 
@@ -357,9 +423,11 @@ Shell我比较习惯 zsh, 下载安装zsh:
         <h1 id="Ubuntu-16-10"><a href="#Ubuntu-16-10" class="headerlink" title="Ubuntu 16.10"></a>Ubuntu 16.10</h1><p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>策略路由，对于域名IP流量精确转发，变得so easy。</p>
 <p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
 <h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p>我比较习惯 zsh, 下载安装zsh:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$&gt; sudo apt install zsh</div><div class="line">$&gt; sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"source <span class="variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc</div><div class="line">$&gt; chsh /usr/bin/zsh</div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$&gt; sudo apt install zsh</span><br><span class="line">$&gt; sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br><span class="line">$&gt; <span class="built_in">echo</span> <span class="string">"source <span class="variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$&gt; chsh /usr/bin/zsh</span><br><span class="line">$&gt; <span class="built_in">echo</span> <span class="string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile</span><br></pre></td></tr></table></figure>
+
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)</span><br></pre></td></tr></table></figure>
+
 <h2 id="SSD-磁盘"><a href="#SSD-磁盘" class="headerlink" title="SSD 磁盘"></a>SSD 磁盘</h2><p>SSD磁盘的挂载和使用需要一些小技巧来延长SSD的使用寿命。</p>
 <h3 id="Trim"><a href="#Trim" class="headerlink" title="Trim"></a>Trim</h3><p>SSD 磁盘挂载需要启用trim指令，Liunx的磁盘系统支持两类trim（但注意不是所有的磁盘系统都支持）。</p>
 <ul>
@@ -374,8 +442,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
 <th>Periodic TRIM(fstrim)</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Ext3</td>
 <td>No</td>
 <td>?</td>
@@ -415,95 +482,111 @@ Shell我比较习惯 zsh, 下载安装zsh:
 <td>No</td>
 <td>Yes</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>我自己用的是Ext4以及Btrfs(支持ssd参数优化)。另外如果是用笔记本的话，可以适当将写commit的时间延长（秒为单位）。<br>添加<code>noatime</code>/<code>relatime</code>参数(在读取文件的时候禁止/减少写入)以便于提升SSD的读取性能（尽管Linux内核2.6.30以上为默认）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">✗ cat /etc/fstab</div><div class="line"><span class="comment"># /etc/fstab: static file system information.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Use 'blkid' to print the universally unique identifier for a</span></div><div class="line"><span class="comment"># device; this may be used with UUID= as a more robust way to name devices</span></div><div class="line"><span class="comment"># that works even if disks are added and removed. See fstab(5).</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></div><div class="line">UUID=XXXX-XXX-XXXX-XXX /               ext4    defaults,noatime,discard,commit=300,errors=remount-ro 0       1</div><div class="line">UUID=XXXX-XXX-XXXX-XXX /home           btrfs   defaults,noatime,discard,commit=120,ssd 0       2</div><div class="line">UUID=XXXXXX            /dos            ntfs    defaults,noatime,nls=utf8,uid=1000,gid=1000,commit=120 0       2</div><div class="line">UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,<span class="built_in">umask</span>=0077      0       1</div><div class="line">UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">✗ cat /etc/fstab</span><br><span class="line"><span class="comment"># /etc/fstab: static file system information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use 'blkid' to print the universally unique identifier for a</span></span><br><span class="line"><span class="comment"># device; this may be used with UUID= as a more robust way to name devices</span></span><br><span class="line"><span class="comment"># that works even if disks are added and removed. See fstab(5).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX /               ext4    defaults,noatime,discard,commit=300,errors=remount-ro 0       1</span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX /home           btrfs   defaults,noatime,discard,commit=120,ssd 0       2</span><br><span class="line">UUID=XXXXXX            /dos            ntfs    defaults,noatime,nls=utf8,uid=1000,gid=1000,commit=120 0       2</span><br><span class="line">UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,<span class="built_in">umask</span>=0077      0       1</span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0</span><br></pre></td></tr></table></figure>
+
 <p>注：</p>
 <ul>
 <li>查看磁盘分区的UUID,使用<code>blkid</code>指令。</li>
 <li>启用<code>dicard</code>参数可能会牺牲一点ssd写入的速度。<br>× <code>/boot/efi</code>几乎不会被写，别加discard,否则可能引发故障</li>
 </ul>
 <p>启用trim前，请务必检查自己的ssd（尤其是2010年前的）是否支持trim,否则可能会造成数据丢失，使用<code>lsblk</code>指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#&gt; lsblk -D</span></div><div class="line">NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO</div><div class="line">nvme0n1          512      512B       2T         0</div><div class="line">├─nvme0n1p1        0      512B       2T         0</div><div class="line">├─nvme0n1p2        0      512B       2T         0</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&gt; lsblk -D</span></span><br><span class="line">NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO</span><br><span class="line">nvme0n1          512      512B       2T         0</span><br><span class="line">├─nvme0n1p1        0      512B       2T         0</span><br><span class="line">├─nvme0n1p2        0      512B       2T         0</span><br></pre></td></tr></table></figure>
+
 <p>如果 <code>DISC-GRAN</code> 和 <code>DISC-MAX</code> 列的值<code>非0</code>就表示支持trim.</p>
 <h3 id="限制交换分区"><a href="#限制交换分区" class="headerlink" title="限制交换分区"></a>限制交换分区</h3><p>Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。<br>该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。</p>
 <p>查看当前的<code>swappiness</code>设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; cat /proc/sys/vm/swappiness</div><div class="line">60</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$&gt; cat /proc/sys/vm/swappiness</span><br><span class="line">60</span><br></pre></td></tr></table></figure>
+
 <p>然后修改： /etc/sysctl.conf 文件，增加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Sharply reduce the inclination to swap</div><div class="line">vm.swappiness=10</div></pre></td></tr></table></figure>
-<h3 id="启用-tmp目录RAM盘"><a href="#启用-tmp目录RAM盘" class="headerlink" title="启用/tmp目录RAM盘"></a>启用/tmp目录RAM盘</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount</div><div class="line">sudo systemctl <span class="built_in">enable</span> tmp.mount</div><div class="line">sudo systemctl start tmp.mount</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Sharply reduce the inclination to swap</span><br><span class="line">vm.swappiness=10</span><br></pre></td></tr></table></figure>
+
+<h3 id="启用-tmp目录RAM盘"><a href="#启用-tmp目录RAM盘" class="headerlink" title="启用/tmp目录RAM盘"></a>启用/tmp目录RAM盘</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> tmp.mount</span><br><span class="line">sudo systemctl start tmp.mount</span><br></pre></td></tr></table></figure>
+
 <h2 id="dnsmasq"><a href="#dnsmasq" class="headerlink" title="dnsmasq"></a>dnsmasq</h2><p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）<br>是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$&gt;cat /etc/resolv.dnsmasq.conf</div><div class="line"><span class="comment"># Google's nameservers, for example</span></div><div class="line">nameserver 8.8.8.8</div><div class="line">nameserver 8.8.4.4</div><div class="line"></div><div class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/resolv.conf</div><div class="line">resolv-file=/etc/resolv.dnsmasq.conf</div><div class="line"></div><div class="line"><span class="comment">#启用 /etc/hosts</span></div><div class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/host.conf</div><div class="line">addn-hosts=/etc/hosts</div><div class="line"></div><div class="line">$&gt;sudo systemctl restart NetworkManager</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$&gt;cat /etc/resolv.dnsmasq.conf</span><br><span class="line"><span class="comment"># Google's nameservers, for example</span></span><br><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 8.8.4.4</span><br><span class="line"></span><br><span class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/resolv.conf</span><br><span class="line">resolv-file=/etc/resolv.dnsmasq.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#启用 /etc/hosts</span></span><br><span class="line">$&gt;cat /etc/NetworkManager/dnsmasq.d/host.conf</span><br><span class="line">addn-hosts=/etc/hosts</span><br><span class="line"></span><br><span class="line">$&gt;sudo systemctl restart NetworkManager</span><br></pre></td></tr></table></figure>
+
 <h2 id="ipset"><a href="#ipset" class="headerlink" title="ipset"></a>ipset</h2><p>ipset 配合 iptables 可实现基于域名的策略路由。</p>
 <p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配<br>性能问题。</p>
 <p>当然，首先你要安装: <code>sudo apt install ipset</code></p>
 <h3 id="黑名单方式"><a href="#黑名单方式" class="headerlink" title="黑名单方式"></a>黑名单方式</h3><p>Dnsmasq 从 2.66 版本之后就支持将域名的查询结果放进 ipset 中，这样就可以对这些域名对应的 IP<br>使用 iptables 处理。</p>
 <p>只转发名单内的IP, 可以配合gfwlist对指定的域名IP做重定向处理</p>
-<p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases" target="_blank" rel="external">gfwlist_ipset.conf</a>文件，<br>放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
+<p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases" target="_blank" rel="noopener">gfwlist_ipset.conf</a>文件，<br>放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
 <p>你需要修改文件中的域名服务器地址，最简单的方法是在代理服务器上自建一个域名服务器（用非标准端口）。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器</span></div><div class="line">server=/google.com/<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="comment">#5353</span></div><div class="line"><span class="comment">#将解析出来的IP保存到名为gfwlist的ipset表中</span></div><div class="line">ipset=/google.com/gfwlist</div></pre></td></tr></table></figure>
-<p>或者，你可以<a href="https://github.com/cokebar/gfwlist2dnsmasq" target="_blank" rel="external">下载执行这个脚本</a>自动抓取gfwlist转换为：dnsmasq_gfwlist_ipset.conf</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; sudo bash gfwlist2dnsmasq.sh <span class="_">-d</span> your-dns-server-ip -p your-dns-server-port <span class="_">-s</span> gfwlist  <span class="_">-f</span> /etc/NetworkManager/dnsmasq.d/gfwlist_ipset.conf</div></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器</span></span><br><span class="line"><span class="string">server=/google.com/127.0.0.1#5353</span></span><br><span class="line"><span class="comment">#将解析出来的IP保存到名为gfwlist的ipset表中</span></span><br><span class="line"><span class="string">ipset=/google.com/gfwlist</span></span><br></pre></td></tr></table></figure>
+
+<p>或者，你可以<a href="https://github.com/cokebar/gfwlist2dnsmasq" target="_blank" rel="noopener">下载执行这个脚本</a>自动抓取gfwlist转换为：dnsmasq_gfwlist_ipset.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&gt; sudo bash gfwlist2dnsmasq.sh -d your-dns-server-ip -p your-dns-server-port -s gfwlist  -f /etc/NetworkManager/dnsmasq.d/gfwlist_ipset.conf</span><br></pre></td></tr></table></figure>
+
 <p>然后创建<code>gfwlist</code>ipset规则集:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ipset -N gfwlist <span class="built_in">hash</span>:ip</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipset -N gfwlist <span class="built_in">hash</span>:ip</span><br></pre></td></tr></table></figure>
+
 <h3 id="白名单方式"><a href="#白名单方式" class="headerlink" title="白名单方式"></a>白名单方式</h3><p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
 <ul>
 <li>获取国内 IP 列表</li>
 </ul>
 <p>接下来我们需要获取中国的 IP 列表。这里我们放在了 <code>~/chnroute/</code>目录下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CHNROUTE_DIR=<span class="variable">$HOME</span>/chnroute</div><div class="line">mkdir <span class="variable">$CHNROUTE_DIR</span></div><div class="line">curl <span class="string">'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest'</span> | grep ipv4 | grep CN | awk -F\| <span class="string">'&#123; printf("%s/%d\n", $4, 32-log($5)/log(2)) &#125;'</span> &gt; <span class="variable">$CHNROUTE_DIR</span>/chnroute.txt</div></pre></td></tr></table></figure>
-<p>这是来自 <a href="https://github.com/shadowsocks/ChinaDNS" target="_blank" rel="external">ChinaDNS</a> 的指令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CHNROUTE_DIR=<span class="variable">$HOME</span>/chnroute</span><br><span class="line">mkdir <span class="variable">$CHNROUTE_DIR</span></span><br><span class="line">curl <span class="string">'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest'</span> | grep ipv4 | grep CN | awk -F\| <span class="string">'&#123; printf("%s/%d\n", $4, 32-log($5)/log(2)) &#125;'</span> &gt; <span class="variable">$CHNROUTE_DIR</span>/chnroute.txt</span><br></pre></td></tr></table></figure>
+<p>这是来自 <a href="https://github.com/shadowsocks/ChinaDNS" target="_blank" rel="noopener">ChinaDNS</a> 的指令。</p>
 <p>创建ipset并导入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="comment"># Setup the ipset</span></div><div class="line">ipset -N chnroute <span class="built_in">hash</span>:net maxelem 65536</div><div class="line"></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> $(cat <span class="string">'$HOME/chnroute/chnroute.txt'</span>); <span class="keyword">do</span></div><div class="line">  ipset add chnroute <span class="variable">$ip</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the ipset</span></span><br><span class="line">ipset -N chnroute <span class="built_in">hash</span>:net maxelem 65536</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> $(cat <span class="string">'$HOME/chnroute/chnroute.txt'</span>); <span class="keyword">do</span></span><br><span class="line">  ipset add chnroute <span class="variable">$ip</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
 <p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，<br>而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
-<h2 id="shadowsocks-libev"><a href="#shadowsocks-libev" class="headerlink" title="shadowsocks-libev"></a>shadowsocks-libev</h2><pre><code>apt install shadowsocks-libev
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$&gt; cat /etc/shadowsocks-libev/config.json</div><div class="line">&#123;</div><div class="line">    <span class="string">"server"</span>:<span class="string">"[123.22.33.13]"</span>, <span class="comment"># your shadowsocks server ip</span></div><div class="line">    <span class="string">"server_port"</span>:1293,</div><div class="line">    <span class="string">"local_port"</span>:1080,</div><div class="line">    <span class="string">"password"</span>:<span class="string">"12345"</span>,</div><div class="line">    <span class="string">"timeout"</span>:60,</div><div class="line">    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="shadowsocks-libev"><a href="#shadowsocks-libev" class="headerlink" title="shadowsocks-libev"></a>shadowsocks-libev</h2><pre><code>apt install shadowsocks-libev</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$&gt; cat /etc/shadowsocks-libev/config.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"server"</span>:<span class="string">"[123.22.33.13]"</span>, <span class="comment"># your shadowsocks server ip</span></span><br><span class="line">    <span class="string">"server_port"</span>:1293,</span><br><span class="line">    <span class="string">"local_port"</span>:1080,</span><br><span class="line">    <span class="string">"password"</span>:<span class="string">"12345"</span>,</span><br><span class="line">    <span class="string">"timeout"</span>:60,</span><br><span class="line">    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>启用 shadowsocks-libev.service 之前，需要做些修改，将服务改为透明转发<code>ss-redir</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$&gt;cat /lib/systemd/system/shadowsocks-libev.service</div><div class="line">[Service]</div><div class="line">Type=simple</div><div class="line">EnvironmentFile=/etc/default/shadowsocks-libev</div><div class="line">User=root</div><div class="line">LimitNOFILE=32768</div><div class="line"><span class="comment"># modify ss-server to ss-redir</span></div><div class="line">ExecStart=/usr/bin/ss-redir <span class="_">-a</span> <span class="variable">$USER</span> -c <span class="variable">$CONFFILE</span> <span class="variable">$DAEMON_ARGS</span></div><div class="line"></div><div class="line">$&gt;systemctl <span class="built_in">enable</span> shadowsocks-libev</div><div class="line">$&gt;systemctl daemon-reload</div><div class="line">$&gt;systemctl start shadowsocks-libev</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$&gt;cat /lib/systemd/system/shadowsocks-libev.service</span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">EnvironmentFile=/etc/default/shadowsocks-libev</span><br><span class="line">User=root</span><br><span class="line">LimitNOFILE=32768</span><br><span class="line"><span class="comment"># modify ss-server to ss-redir</span></span><br><span class="line">ExecStart=/usr/bin/ss-redir -a <span class="variable">$USER</span> -c <span class="variable">$CONFFILE</span> <span class="variable">$DAEMON_ARGS</span></span><br><span class="line"></span><br><span class="line">$&gt;systemctl <span class="built_in">enable</span> shadowsocks-libev</span><br><span class="line">$&gt;systemctl daemon-reload</span><br><span class="line">$&gt;systemctl start shadowsocks-libev</span><br></pre></td></tr></table></figure>
+
 <h2 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h2><p>下面开始在iptables上做转发：</p>
 <p>首先为shadowsocks创建NAT表:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># create a nat named SHADOWSOCKS:</span></div><div class="line">iptables -t nat -N SHADOWSOCKS</div><div class="line"></div><div class="line"><span class="comment"># Ignore your shadowsocks server's addresses</span></div><div class="line"><span class="comment"># It's very IMPORTANT, just be careful.</span></div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> [your-shadowsocks-server-ip] -j RETURN</div><div class="line"></div><div class="line"><span class="comment"># 忽略局域网：</span></div><div class="line"><span class="comment"># Ignore LANs and any other addresses you'd like to bypass the proxy</span></div><div class="line"><span class="comment"># See Wikipedia and RFC5735 for full list of reserved networks.</span></div><div class="line"><span class="comment"># See ashi009/bestroutetb for a highly optimized CHN route list.</span></div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 0.0.0.0/8 -j RETURN</div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 10.0.0.0/8 -j RETURN</div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 127.0.0.0/8 -j RETURN</div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 169.254.0.0/16 -j RETURN</div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 172.16.0.0/12 -j RETURN</div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 192.168.0.0/16 -j RETURN</div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 224.0.0.0/4 -j RETURN</div><div class="line">iptables -t nat -A SHADOWSOCKS <span class="_">-d</span> 240.0.0.0/4 -j RETURN</div></pre></td></tr></table></figure>
-<h3 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port</span></div><div class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080</div><div class="line"><span class="comment"># Apply the rules</span></div><div class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</div></pre></td></tr></table></figure>
-<h3 id="白名单"><a href="#白名单" class="headerlink" title="白名单"></a>白名单</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Allow connection to chinese IPs</span></div><div class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set chnroute dst -j RETURN</div><div class="line"></div><div class="line"><span class="comment"># Others Redirect to Shadowsocks</span></div><div class="line">iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080</div><div class="line"></div><div class="line"><span class="comment"># Apply the rules</span></div><div class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</div></pre></td></tr></table></figure>
-<h3 id="清除iptables规则"><a href="#清除iptables规则" class="headerlink" title="清除iptables规则"></a>清除iptables规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS</div><div class="line">iptables -t nat -F SHADOWSOCKS</div><div class="line">iptables -t nat -X SHADOWSOCKS</div><div class="line"></div><div class="line"><span class="comment"># 如果是黑名单:</span></div><div class="line">ipset destroy gfwlist</div><div class="line"><span class="comment"># 如果是白名单:</span></div><div class="line">ipset destroy chnroute</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a nat named SHADOWSOCKS:</span></span><br><span class="line">iptables -t nat -N SHADOWSOCKS</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ignore your shadowsocks server's addresses</span></span><br><span class="line"><span class="comment"># It's very IMPORTANT, just be careful.</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d [your-shadowsocks-server-ip] -j RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略局域网：</span></span><br><span class="line"><span class="comment"># Ignore LANs and any other addresses you'd like to bypass the proxy</span></span><br><span class="line"><span class="comment"># See Wikipedia and RFC5735 for full list of reserved networks.</span></span><br><span class="line"><span class="comment"># See ashi009/bestroutetb for a highly optimized CHN route list.</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 169.254.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 172.16.0.0/12 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    
-    <div>
-      
-        
+<h3 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080</span><br><span class="line"><span class="comment"># Apply the rules</span></span><br><span class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</span><br></pre></td></tr></table></figure>
+
+<h3 id="白名单"><a href="#白名单" class="headerlink" title="白名单"></a>白名单</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Allow connection to chinese IPs</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set chnroute dst -j RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment"># Others Redirect to Shadowsocks</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply the rules</span></span><br><span class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</span><br></pre></td></tr></table></figure>
+
+<h3 id="清除iptables规则"><a href="#清除iptables规则" class="headerlink" title="清除iptables规则"></a>清除iptables规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS</span><br><span class="line">iptables -t nat -F SHADOWSOCKS</span><br><span class="line">iptables -t nat -X SHADOWSOCKS</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是黑名单:</span></span><br><span class="line">ipset destroy gfwlist</span><br><span class="line"><span class="comment"># 如果是白名单:</span></span><br><span class="line">ipset destroy chnroute</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/ubuntu/" rel="tag">#ubuntu</a>
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
           
-            <a href="/tags/network/" rel="tag">#network</a>
+            <a href="/tags/network/" rel="tag"># network</a>
           
-            <a href="/tags/dnsmasq/" rel="tag">#dnsmasq</a>
+            <a href="/tags/dnsmasq/" rel="tag"># dnsmasq</a>
           
-            <a href="/tags/iptables/" rel="tag">#iptables</a>
+            <a href="/tags/iptables/" rel="tag"># iptables</a>
           
-            <a href="/tags/iproute2/" rel="tag">#iproute2</a>
+            <a href="/tags/iproute2/" rel="tag"># iproute2</a>
           
-            <a href="/tags/dns/" rel="tag">#dns</a>
+            <a href="/tags/dns/" rel="tag"># dns</a>
           
-            <a href="/tags/ipset/" rel="tag">#ipset</a>
+            <a href="/tags/ipset/" rel="tag"># ipset</a>
           
-            <a href="/tags/shadowsocks/" rel="tag">#shadowsocks</a>
+            <a href="/tags/shadowsocks/" rel="tag"># shadowsocks</a>
           
         </div>
       
@@ -517,6 +600,8 @@ Shell我比较习惯 zsh, 下载安装zsh:
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -551,7 +636,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -567,15 +652,15 @@ Shell我比较习惯 zsh, 下载安装zsh:
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/ubuntu-tips/"
-           data-title="Ubuntu Tips" data-url="http://riceball.me/article/ubuntu-tips/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -600,7 +685,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -609,18 +694,16 @@ Shell我比较习惯 zsh, 下载安装zsh:
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f"
-               alt="Riceball LEE" />
+          <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f" alt="Riceball LEE">
           <p class="site-author-name" itemprop="name">Riceball LEE</p>
           <p class="site-description motion-element" itemprop="description">Go with wind.</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -628,7 +711,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -637,7 +720,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">94</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -658,9 +741,9 @@ Shell我比较习惯 zsh, 下载安装zsh:
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/snowyu" target="_blank">
+                <a href="https://github.com/snowyu" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -672,30 +755,36 @@ Shell我比较习惯 zsh, 下载安装zsh:
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
+
+        
+
 
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu-16-10"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu 16.10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell"><span class="nav-number">1.1.</span> <span class="nav-text">Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD-磁盘"><span class="nav-number">1.2.</span> <span class="nav-text">SSD 磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trim"><span class="nav-number">1.2.1.</span> <span class="nav-text">Trim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制交换分区"><span class="nav-number">1.2.2.</span> <span class="nav-text">限制交换分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用-tmp目录RAM盘"><span class="nav-number">1.2.3.</span> <span class="nav-text">启用/tmp目录RAM盘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dnsmasq"><span class="nav-number">1.3.</span> <span class="nav-text">dnsmasq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ipset"><span class="nav-number">1.4.</span> <span class="nav-text">ipset</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#黑名单方式"><span class="nav-number">1.4.1.</span> <span class="nav-text">黑名单方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白名单方式"><span class="nav-number">1.4.2.</span> <span class="nav-text">白名单方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shadowsocks-libev"><span class="nav-number">1.5.</span> <span class="nav-text">shadowsocks-libev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables"><span class="nav-number">1.6.</span> <span class="nav-text">iptables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#黑名单"><span class="nav-number">1.6.1.</span> <span class="nav-text">黑名单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白名单"><span class="nav-number">1.6.2.</span> <span class="nav-text">白名单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除iptables规则"><span class="nav-number">1.6.3.</span> <span class="nav-text">清除iptables规则</span></a></li></ol></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -708,18 +797,19 @@ Shell我比较习惯 zsh, 下载安装zsh:
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -730,7 +820,9 @@ Shell我比较习惯 zsh, 下载安装zsh:
 </div>
 
 
+        
 
+        
       </div>
     </footer>
 
@@ -741,12 +833,6 @@ Shell我比较习惯 zsh, 下载安装zsh:
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -754,65 +840,94 @@ Shell我比较习惯 zsh, 下载安装zsh:
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"riceball"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
-    
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'riceballl';
+      var disqus_identifier = 'article/ubuntu-tips/';
+
+      var disqus_title = "Ubuntu Tips";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
   
 
 
@@ -827,7 +942,7 @@ Shell我比较习惯 zsh, 下载安装zsh:
     // Search DB path;
     var search_path = "search.xml";
     if (search_path.length == 0) {
-       search_path = "search.xml";
+      search_path = "search.xml";
     }
     var path = "/" + search_path;
     // monitor main search box;
@@ -835,109 +950,104 @@ Shell我比较习惯 zsh, 下载安装zsh:
     function proceedsearch() {
       $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
       $('.popup').toggle();
-
     }
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+      $.ajax({
         url: path,
         dataType: "xml",
         async: true,
         success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
         }
-    });}
+      });}
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
       if (isfetched == false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
     $('.popup-btn-close').click(function(e){
@@ -950,13 +1060,29 @@ Shell我比较习惯 zsh, 下载安装zsh:
     });
   </script>
 
-  
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
 
 
 </body>

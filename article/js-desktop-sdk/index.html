@@ -5,20 +5,16 @@
   
 
 
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,32 +23,63 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="javascript,desktop,framework,sdk,HTML5,webapp,前端," />
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
+  
+  
+  
+  
 
-  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml" />
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="javascript,HTML5,前端,desktop,framework,sdk,webapp,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -60,11 +87,13 @@
 
 
 <meta name="description" content="随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。">
+<meta name="keywords" content="javascript,HTML5,前端,desktop,framework,sdk,webapp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 Javascript 开发桌面应用的框架工具列表">
-<meta property="og:url" content="http://riceball.me/article/js-desktop-sdk/index.html">
+<meta property="og:url" content="https://riceball.me/article/js-desktop-sdk/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c">
 <meta property="og:updated_time" content="2016-08-01T12:54:00.000Z">
 <meta name="twitter:card" content="summary">
@@ -74,19 +103,36 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
+
+
+
+  <link rel="canonical" href="https://riceball.me/article/js-desktop-sdk/">
+
+
+
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
 
   <title> 用 Javascript 开发桌面应用的框架工具列表 | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -136,7 +182,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Riceball LEE</span>
       <span class="logo-line-after"><i></i></span>
@@ -163,7 +209,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -173,7 +219,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -183,7 +229,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -193,7 +239,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -203,7 +249,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -213,10 +259,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -240,6 +286,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -253,13 +301,26 @@
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/js-desktop-sdk/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Riceball LEE">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Riceball LEE">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Riceball LEE" src>
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -282,20 +343,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-14T06:05:39+08:00" content="2013-07-14">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-07-14T06:05:39+08:00">
               2013-07-14
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-08-01T20:54:00+08:00">
+              2016-08-01
+            </time>
+            
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/JavaScript/" itemprop="url" rel="index">
                     <span itemprop="name">JavaScript</span>
                   </a>
@@ -307,7 +378,7 @@
                 
 
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/JavaScript/Framework/" itemprop="url" rel="index">
                     <span itemprop="name">Framework</span>
                   </a>
@@ -319,7 +390,7 @@
                 
 
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/JavaScript/Framework/Desktop/" itemprop="url" rel="index">
                     <span itemprop="name">Desktop</span>
                   </a>
@@ -337,7 +408,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/article/js-desktop-sdk/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/js-desktop-sdk/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/js-desktop-sdk/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -345,6 +416,10 @@
 
           
 
+          
+          
+
+          
           
           
 
@@ -361,12 +436,14 @@
       
         <p>随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。</p>
 <a id="more"></a>
-<h1 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a><a href="http://electron.atom.io/" target="_blank" rel="external">Electron</a></h1><p>Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在<code>package.json</code>中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。</p>
+
+<h1 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a></h1><p>Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在<code>package.json</code>中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。</p>
 <p>下载需要翻墙：</p>
-<p><a href="https://www.npmjs.com/package/electron-download" target="_blank" rel="external">https://www.npmjs.com/package/electron-download</a><br>在环境变量中设置即可 <code>npm install electron-prebuilt</code> 。</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## Electron Mirror of China</span></div><div class="line"><span class="attr">ELECTRON_MIRROR</span>=<span class="string">"https://npm.taobao.org/mirrors/electron/"</span></div><div class="line"><span class="attr">CHROMEDRIVER_CDNURL</span>=http://npm.taobao.org/mirrors/chromedriver</div><div class="line"></div><div class="line"><span class="comment">## or for a local mirror</span></div><div class="line"><span class="attr">ELECTRON_MIRROR</span>=<span class="string">"https://10.1.2.105/"</span></div><div class="line"><span class="attr">ELECTRON_CUSTOM_DIR</span>=<span class="string">"our/internal/filePath"</span></div></pre></td></tr></table></figure>
-<h1 id="NW-js-以前叫-node-webkit"><a href="#NW-js-以前叫-node-webkit" class="headerlink" title="NW.js (以前叫 node-webkit)"></a><a href="http://nwjs.io/" target="_blank" rel="external">NW.js</a> (以前叫 node-webkit)</h1><p>与<a href="http://appjs.org/" target="_blank" rel="external">App.js</a>类似，通过将node.js与Chromiuml联合在一起，实现本地桌面应用开发的，是App.js的后起之秀。实现原理是基于Chromium项目的Content Layer构建(Chromium Browser也同样基于Content Layer); 实现上的特点是把Node.js的消息循环(libuv)和Chromium Renderer进程的消息循环合并到一起，因为这样才能从DOM(HTML)中直接调用Node.js提供的函数；把Node.js使用的V8引擎和 Chromium的V8引擎合并，使得Node.js的Javascript和DOM里面的Javascript可以互相访问；另外因为是支持本地应用， 所以安全模型和Web程序有很大不同：node-webkit程序可以做web应用不允许做的很多事情，除了通过node.js访问本地OS以外，还可以进行跨域访问等操作。是英特尔开放源码技术中心（OTC）的软件架构师Rogerwang（王文睿）发起，在公司专职开发node-webkit(幸福啊)。</p>
-<p>本质上它和PhoneGap一样都是属于胶水层，只不过PhoneGap是尽量以遵循W3C最新规范的形式来提供本地访问API，其它的不规范接口以各种插件形式提供；而node-webkit则是通过node.js提供本地访问的接口。与PhoneGap比较而言，如果PhoneGap要为某个平台提供新的本地API接口，必须通过开发插件的形式提供，而且各个平台的插件开发的开发语言都不一样。而node.js有node-gyp(native addon build tool) 工具统一build。而node.js的 <a href="https://npmjs.org/package/node-ffi" target="_blank" rel="external">node-ffi</a> 附加插件更使得我们可以直接在js中调用动态链接库的API：</p>
+<p><a href="https://www.npmjs.com/package/electron-download" target="_blank" rel="noopener">https://www.npmjs.com/package/electron-download</a><br>在环境变量中设置即可 <code>npm install electron-prebuilt</code> 。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Electron Mirror of China</span></span><br><span class="line"><span class="attr">ELECTRON_MIRROR</span>=<span class="string">"https://npm.taobao.org/mirrors/electron/"</span></span><br><span class="line"><span class="attr">CHROMEDRIVER_CDNURL</span>=http://npm.taobao.org/mirrors/chromedriver</span><br><span class="line"></span><br><span class="line"><span class="comment">## or for a local mirror</span></span><br><span class="line"><span class="attr">ELECTRON_MIRROR</span>=<span class="string">"https://10.1.2.105/"</span></span><br><span class="line"><span class="attr">ELECTRON_CUSTOM_DIR</span>=<span class="string">"our/internal/filePath"</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="NW-js-以前叫-node-webkit"><a href="#NW-js-以前叫-node-webkit" class="headerlink" title="NW.js (以前叫 node-webkit)"></a><a href="http://nwjs.io/" target="_blank" rel="noopener">NW.js</a> (以前叫 node-webkit)</h1><p>与<a href="http://appjs.org/" target="_blank" rel="noopener">App.js</a>类似，通过将node.js与Chromiuml联合在一起，实现本地桌面应用开发的，是App.js的后起之秀。实现原理是基于Chromium项目的Content Layer构建(Chromium Browser也同样基于Content Layer); 实现上的特点是把Node.js的消息循环(libuv)和Chromium Renderer进程的消息循环合并到一起，因为这样才能从DOM(HTML)中直接调用Node.js提供的函数；把Node.js使用的V8引擎和 Chromium的V8引擎合并，使得Node.js的Javascript和DOM里面的Javascript可以互相访问；另外因为是支持本地应用， 所以安全模型和Web程序有很大不同：node-webkit程序可以做web应用不允许做的很多事情，除了通过node.js访问本地OS以外，还可以进行跨域访问等操作。是英特尔开放源码技术中心（OTC）的软件架构师Rogerwang（王文睿）发起，在公司专职开发node-webkit(幸福啊)。</p>
+<p>本质上它和PhoneGap一样都是属于胶水层，只不过PhoneGap是尽量以遵循W3C最新规范的形式来提供本地访问API，其它的不规范接口以各种插件形式提供；而node-webkit则是通过node.js提供本地访问的接口。与PhoneGap比较而言，如果PhoneGap要为某个平台提供新的本地API接口，必须通过开发插件的形式提供，而且各个平台的插件开发的开发语言都不一样。而node.js有node-gyp(native addon build tool) 工具统一build。而node.js的 <a href="https://npmjs.org/package/node-ffi" target="_blank" rel="noopener">node-ffi</a> 附加插件更使得我们可以直接在js中调用动态链接库的API：</p>
 <pre><code>var ffi = require(&quot;node-ffi&quot;);
 
 var libm = new ffi.Library(&quot;libm&quot;, { &quot;ceil&quot;: [ &quot;double&quot;, [ &quot;double&quot; ] ] });
@@ -374,28 +451,31 @@ libm.ceil(1.5); // 2
 
 // You can also access just functions in the current process by passing a null
 var current = new ffi.Library(null, { &quot;atoi&quot;: [ &quot;int32&quot;, [ &quot;string&quot; ] ] });
-current.atoi(&quot;1234&quot;); // 1234
-</code></pre><p>地址： <a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="external">https://github.com/rogerwang/node-webkit</a></p>
-<p>如何把你的javascript 应用打包成一个可执行文件，这里已经说得很详细了：<a href="https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps" target="_blank" rel="external">https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps</a></p>
-<h1 id="node-x11"><a href="#node-x11" class="headerlink" title="node-x11"></a>node-x11</h1><p>这个是用纯js实现了X11 Client的核心协议，包括Xrender, Damage, Composite, Big-Requests, Dpms, Screensaver, XFixes, Shape, XTest, XC-Misc, GLX and Apple-WM extensions。用来开发X-Windows GUI程序。基于 <a href="https://github.com/sidorares/node-x11" target="_blank" rel="external">node-x11</a> 有人做了进一步的封装：<a href="https://github.com/sidorares/ntk" target="_blank" rel="external">ntk(desktop UI toolkit)</a>, 然后做出了一个纯js的 VNC Viewer: <a href="https://github.com/sidorares/node-vnc" target="_blank" rel="external">node-vnc</a>.</p>
-<p>Windows用户要先安装  <a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="external">XMing</a> or <a href="http://x.cygwin.com/" target="_blank" rel="external">Cygwin/X</a>。</p>
-<p>地址： <a href="https://github.com/sidorares/node-x11" target="_blank" rel="external">https://github.com/sidorares/node-x11</a></p>
+current.atoi(&quot;1234&quot;); // 1234</code></pre><p>地址： <a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit</a></p>
+<p>如何把你的javascript 应用打包成一个可执行文件，这里已经说得很详细了：<a href="https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps</a></p>
+<h1 id="node-x11"><a href="#node-x11" class="headerlink" title="node-x11"></a>node-x11</h1><p>这个是用纯js实现了X11 Client的核心协议，包括Xrender, Damage, Composite, Big-Requests, Dpms, Screensaver, XFixes, Shape, XTest, XC-Misc, GLX and Apple-WM extensions。用来开发X-Windows GUI程序。基于 <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">node-x11</a> 有人做了进一步的封装：<a href="https://github.com/sidorares/ntk" target="_blank" rel="noopener">ntk(desktop UI toolkit)</a>, 然后做出了一个纯js的 VNC Viewer: <a href="https://github.com/sidorares/node-vnc" target="_blank" rel="noopener">node-vnc</a>.</p>
+<p>Windows用户要先安装  <a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener">XMing</a> or <a href="http://x.cygwin.com/" target="_blank" rel="noopener">Cygwin/X</a>。</p>
+<p>地址： <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">https://github.com/sidorares/node-x11</a></p>
 <p>X11窗口例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x11 = <span class="built_in">require</span>(<span class="string">'../../lib'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> PointerMotion = x11.eventMask.PointerMotion;</div><div class="line">x11.createClient(<span class="function"><span class="keyword">function</span>(<span class="params">err, display</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> X = display.client;</div><div class="line">    <span class="keyword">var</span> root = display.screen[<span class="number">0</span>].root;</div><div class="line">    <span class="keyword">var</span> white = display.screen[<span class="number">0</span>].white_pixel;</div><div class="line">    <span class="keyword">var</span> black = display.screen[<span class="number">0</span>].black_pixel;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> wid = X.AllocID();</div><div class="line">    X.CreateWindow(wid, root, <span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">300</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, &#123; <span class="attr">backgroundPixel</span>: white, <span class="attr">eventMask</span>: PointerMotion &#125;);</div><div class="line">    <span class="keyword">var</span> gc = X.AllocID();</div><div class="line">    X.CreateGC(gc, wid);</div><div class="line">    X.MapWindow(wid);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt=""><br>ntk 的例子:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ntk = <span class="built_in">require</span>(<span class="string">'../lib'</span>);</div><div class="line"></div><div class="line">ntk.createClient(main);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">err, app</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> mainwnd = app.createWindow(&#123;<span class="attr">title</span>: <span class="string">"Close me!"</span>&#125;)</div><div class="line">   .on(<span class="string">'mouseout'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Out'</span>); &#125;)</div><div class="line">   .on(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'In'</span>); &#125;)</div><div class="line">   .on(<span class="string">'mousedown'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</div><div class="line">       ev.window.unmap();</div><div class="line">       setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ev.window.map(); &#125;, <span class="number">1000</span>);</div><div class="line">    &#125;)</div><div class="line">   .map();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="node-qt"><a href="#node-qt" class="headerlink" title="node-qt"></a>node-qt</h1><p><a href="https://github.com/arturadib/node-qt" target="_blank" rel="external">node-qt</a>是基于QT的node.js封装,而<a href="http://github.com/arturadib/node-five" target="_blank" rel="external">node-five</a> 则是基于<a href="https://github.com/arturadib/node-qt" target="_blank" rel="external">node-qt</a>的封装实现了HTML5 graphics and audio。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x11 = <span class="built_in">require</span>(<span class="string">'../../lib'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> PointerMotion = x11.eventMask.PointerMotion;</span><br><span class="line">x11.createClient(<span class="function"><span class="keyword">function</span>(<span class="params">err, display</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> X = display.client;</span><br><span class="line">    <span class="keyword">var</span> root = display.screen[<span class="number">0</span>].root;</span><br><span class="line">    <span class="keyword">var</span> white = display.screen[<span class="number">0</span>].white_pixel;</span><br><span class="line">    <span class="keyword">var</span> black = display.screen[<span class="number">0</span>].black_pixel;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> wid = X.AllocID();</span><br><span class="line">    X.CreateWindow(wid, root, <span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">300</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, &#123; <span class="attr">backgroundPixel</span>: white, <span class="attr">eventMask</span>: PointerMotion &#125;);</span><br><span class="line">    <span class="keyword">var</span> gc = X.AllocID();</span><br><span class="line">    X.CreateGC(gc, wid);</span><br><span class="line">    X.MapWindow(wid);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt><br>ntk 的例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ntk = <span class="built_in">require</span>(<span class="string">'../lib'</span>);</span><br><span class="line"></span><br><span class="line">ntk.createClient(main);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">err, app</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> mainwnd = app.createWindow(&#123;<span class="attr">title</span>: <span class="string">"Close me!"</span>&#125;)</span><br><span class="line">   .on(<span class="string">'mouseout'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Out'</span>); &#125;)</span><br><span class="line">   .on(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'In'</span>); &#125;)</span><br><span class="line">   .on(<span class="string">'mousedown'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</span><br><span class="line">       ev.window.unmap();</span><br><span class="line">       setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ev.window.map(); &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">   .map();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="node-qt"><a href="#node-qt" class="headerlink" title="node-qt"></a>node-qt</h1><p><a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>是基于QT的node.js封装,而<a href="http://github.com/arturadib/node-five" target="_blank" rel="noopener">node-five</a> 则是基于<a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>的封装实现了HTML5 graphics and audio。</p>
 <p>地址：</p>
 <ul>
-<li><a href="https://github.com/arturadib/node-qt" target="_blank" rel="external">https://github.com/arturadib/node-qt</a></li>
-<li><a href="http://github.com/arturadib/node-five" target="_blank" rel="external">http://github.com/arturadib/node-five</a></li>
+<li><a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">https://github.com/arturadib/node-qt</a></li>
+<li><a href="http://github.com/arturadib/node-five" target="_blank" rel="noopener">http://github.com/arturadib/node-five</a></li>
 </ul>
 <p>使用 node-qt 的代码写法如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> qt = <span class="built_in">require</span>(<span class="string">'node-qt'</span>),</div><div class="line">    app = <span class="keyword">new</span> qt.QApplication,</div><div class="line">    <span class="built_in">window</span> = <span class="keyword">new</span> qt.QWidget;</div><div class="line"></div><div class="line"><span class="comment">// Prevent objects from being GC'd</span></div><div class="line">global.app = app;</div><div class="line">global.window = <span class="built_in">window</span>;</div><div class="line"></div><div class="line"><span class="comment">// Quirk: the virtual method paintEvent() is mapped into a callback setter</span></div><div class="line"><span class="built_in">window</span>.paintEvent(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> qt.QPainter();</div><div class="line">  p.begin(<span class="built_in">window</span>);</div><div class="line">  p.drawText(<span class="number">20</span>, <span class="number">30</span>, <span class="string">'hello node, hello qt'</span>);</div><div class="line">  p.end();</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">window</span>.resize(<span class="number">300</span>, <span class="number">150</span>);</div><div class="line"><span class="built_in">window</span>.show();</div><div class="line"></div><div class="line"><span class="comment">// Join Node's event loop</span></div><div class="line">setInterval(app.processEvents, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> qt = <span class="built_in">require</span>(<span class="string">'node-qt'</span>),</span><br><span class="line">    app = <span class="keyword">new</span> qt.QApplication,</span><br><span class="line">    <span class="built_in">window</span> = <span class="keyword">new</span> qt.QWidget;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prevent objects from being GC'd</span></span><br><span class="line">global.app = app;</span><br><span class="line">global.window = <span class="built_in">window</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Quirk: the virtual method paintEvent() is mapped into a callback setter</span></span><br><span class="line"><span class="built_in">window</span>.paintEvent(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> qt.QPainter();</span><br><span class="line">  p.begin(<span class="built_in">window</span>);</span><br><span class="line">  p.drawText(<span class="number">20</span>, <span class="number">30</span>, <span class="string">'hello node, hello qt'</span>);</span><br><span class="line">  p.end();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.resize(<span class="number">300</span>, <span class="number">150</span>);</span><br><span class="line"><span class="built_in">window</span>.show();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Join Node's event loop</span></span><br><span class="line">setInterval(app.processEvents, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
 <p>Node-Five的写法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> five = <span class="built_in">require</span>(<span class="string">'path-to-node-five-dir'</span>),</div><div class="line">    <span class="built_in">window</span> = <span class="keyword">new</span> five.Window(<span class="number">300</span>, <span class="number">150</span>),</div><div class="line">    canvas = <span class="keyword">new</span> five.Canvas(<span class="built_in">window</span>),</div><div class="line">    ctx = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"></div><div class="line">ctx.fillStyle = <span class="string">'black'</span>;</div><div class="line">ctx.fillText(<span class="string">'hello node, hello qt'</span>, <span class="number">20</span>, <span class="number">20</span>);</div></pre></td></tr></table></figure>
-<h1 id="wxNode"><a href="#wxNode" class="headerlink" title="wxNode"></a>wxNode</h1><p><a href="https://github.com/joeferner/wxNode" target="_blank" rel="external">wxNode</a>是基于跨平台的<a href="http://www.wxwidgets.org/" target="_blank" rel="external">wxWidgets</a>的node.js封装插件包。也就是能让你用wxWidgets GUI组件开发桌面应用。</p>
-<p>地址： <a href="https://github.com/joeferner/wxNode" target="_blank" rel="external">https://github.com/joeferner/wxNode</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> five = <span class="built_in">require</span>(<span class="string">'path-to-node-five-dir'</span>),</span><br><span class="line">    <span class="built_in">window</span> = <span class="keyword">new</span> five.Window(<span class="number">300</span>, <span class="number">150</span>),</span><br><span class="line">    canvas = <span class="keyword">new</span> five.Canvas(<span class="built_in">window</span>),</span><br><span class="line">    ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">'black'</span>;</span><br><span class="line">ctx.fillText(<span class="string">'hello node, hello qt'</span>, <span class="number">20</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="wxNode"><a href="#wxNode" class="headerlink" title="wxNode"></a>wxNode</h1><p><a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">wxNode</a>是基于跨平台的<a href="http://www.wxwidgets.org/" target="_blank" rel="noopener">wxWidgets</a>的node.js封装插件包。也就是能让你用wxWidgets GUI组件开发桌面应用。</p>
+<p>地址： <a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">https://github.com/joeferner/wxNode</a></p>
 <p>例子：</p>
 <pre><code>var wx = require(&quot;wxnode&quot;);
 
@@ -423,53 +503,54 @@ var MyFrame = wx.Frame.extend({
 });
 
 var app = new MyApp();
-app.run();
-</code></pre><p>运行：</p>
-<pre><code>node examples/helloWorld.js
-</code></pre><h1 id="TideSDK"><a href="#TideSDK" class="headerlink" title="TideSDK"></a>TideSDK</h1><p>最后提下TideSDK, 就是以前的Titanium Desktop SDK，以web技术(HTML5. CSS3, JS)创建桌面应用的开源框架工具。与前面的框架相比它的特色是：它不仅仅支持用js来开发桌面应用，它还支持用C/C++, Ruby, Python, PHP来开发和写模块。而且这些语言写的模块可以彼此调用。Tide拥有一个用C++写的微内核，该微内核是支持跨平台，跨语言的绑定和调用框架。TideSDK没有加入node.js的支持是为遗憾。</p>
-<p>地址: <a href="http://tidesdk.org/" target="_blank" rel="external">http://tidesdk.org/</a></p>
+app.run();</code></pre><p>运行：</p>
+<pre><code>node examples/helloWorld.js</code></pre><h1 id="TideSDK"><a href="#TideSDK" class="headerlink" title="TideSDK"></a>TideSDK</h1><p>最后提下TideSDK, 就是以前的Titanium Desktop SDK，以web技术(HTML5. CSS3, JS)创建桌面应用的开源框架工具。与前面的框架相比它的特色是：它不仅仅支持用js来开发桌面应用，它还支持用C/C++, Ruby, Python, PHP来开发和写模块。而且这些语言写的模块可以彼此调用。Tide拥有一个用C++写的微内核，该微内核是支持跨平台，跨语言的绑定和调用框架。TideSDK没有加入node.js的支持是为遗憾。</p>
+<p>地址: <a href="http://tidesdk.org/" target="_blank" rel="noopener">http://tidesdk.org/</a></p>
 <h1 id="游戏应用"><a href="#游戏应用" class="headerlink" title="游戏应用"></a>游戏应用</h1><p>对于希望用js来开发游戏和动画交互强的应用，那么可能除了node-qt外，还可以考虑下下面的框架：</p>
 <ul>
-<li><a href="http://impactjs.com/ejecta" target="_blank" rel="external">Ejecta for iOS</a>: A Fast, Open Source JavaScript, Canvas &amp; Audio Implementation for iOS</li>
-<li><a href="https://github.com/creationix/node-sdl" target="_blank" rel="external">node-sdl</a>: sdl的封装</li>
-<li><a href="https://github.com/phonegap/phonegap-plugin-fast-canvas" target="_blank" rel="external">Fast Canvas</a></li>
-<li><a href="https://github.com/learnboost/node-canvas" target="_blank" rel="external">node-canvas</a>, <a href="https://github.com/Shouqun/node-skia" target="_blank" rel="external">node-skia</a>: 分别是基于<a href="http://cairographics.org/" target="_blank" rel="external">cairo</a> 和 <a href="https://code.google.com/p/skia/" target="_blank" rel="external">skia</a> 的图形库的封装。</li>
-<li><a href="https://github.com/luismreis/node-openvg" target="_blank" rel="external">node-openvg</a>  : 目前似乎只支持Raspbian(RasberryPi).</li>
-<li><a href="https://www.ludei.com/tech/cocoonjs" target="_blank" rel="external">CocoonJS</a>：不错的非开源</li>
+<li><a href="http://impactjs.com/ejecta" target="_blank" rel="noopener">Ejecta for iOS</a>: A Fast, Open Source JavaScript, Canvas &amp; Audio Implementation for iOS</li>
+<li><a href="https://github.com/creationix/node-sdl" target="_blank" rel="noopener">node-sdl</a>: sdl的封装</li>
+<li><a href="https://github.com/phonegap/phonegap-plugin-fast-canvas" target="_blank" rel="noopener">Fast Canvas</a></li>
+<li><a href="https://github.com/learnboost/node-canvas" target="_blank" rel="noopener">node-canvas</a>, <a href="https://github.com/Shouqun/node-skia" target="_blank" rel="noopener">node-skia</a>: 分别是基于<a href="http://cairographics.org/" target="_blank" rel="noopener">cairo</a> 和 <a href="https://code.google.com/p/skia/" target="_blank" rel="noopener">skia</a> 的图形库的封装。</li>
+<li><a href="https://github.com/luismreis/node-openvg" target="_blank" rel="noopener">node-openvg</a>  : 目前似乎只支持Raspbian(RasberryPi).</li>
+<li><a href="https://www.ludei.com/tech/cocoonjs" target="_blank" rel="noopener">CocoonJS</a>：不错的非开源</li>
 </ul>
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
+
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
-            <a href="/tags/desktop/" rel="tag">#desktop</a>
+            <a href="/tags/HTML5/" rel="tag"># HTML5</a>
           
-            <a href="/tags/framework/" rel="tag">#framework</a>
+            <a href="/tags/前端/" rel="tag"># 前端</a>
           
-            <a href="/tags/sdk/" rel="tag">#sdk</a>
+            <a href="/tags/desktop/" rel="tag"># desktop</a>
           
-            <a href="/tags/HTML5/" rel="tag">#HTML5</a>
+            <a href="/tags/framework/" rel="tag"># framework</a>
           
-            <a href="/tags/webapp/" rel="tag">#webapp</a>
+            <a href="/tags/sdk/" rel="tag"># sdk</a>
           
-            <a href="/tags/前端/" rel="tag">#前端</a>
+            <a href="/tags/webapp/" rel="tag"># webapp</a>
           
         </div>
       
@@ -483,6 +564,8 @@ app.run();
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -517,7 +600,7 @@ app.run();
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -533,15 +616,15 @@ app.run();
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/js-desktop-sdk/"
-           data-title="用 Javascript 开发桌面应用的框架工具列表" data-url="http://riceball.me/article/js-desktop-sdk/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -566,7 +649,7 @@ app.run();
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -575,18 +658,16 @@ app.run();
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f"
-               alt="Riceball LEE" />
+          <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f" alt="Riceball LEE">
           <p class="site-author-name" itemprop="name">Riceball LEE</p>
           <p class="site-description motion-element" itemprop="description">Go with wind.</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -594,7 +675,7 @@ app.run();
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -603,7 +684,7 @@ app.run();
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">94</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -624,9 +705,9 @@ app.run();
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/snowyu" target="_blank">
+                <a href="https://github.com/snowyu" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -638,30 +719,36 @@ app.run();
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
+
+        
+
 
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Electron"><span class="nav-number">1.</span> <span class="nav-text">Electron</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NW-js-以前叫-node-webkit"><span class="nav-number">2.</span> <span class="nav-text">NW.js (以前叫 node-webkit)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#node-x11"><span class="nav-number">3.</span> <span class="nav-text">node-x11</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#node-qt"><span class="nav-number">4.</span> <span class="nav-text">node-qt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wxNode"><span class="nav-number">5.</span> <span class="nav-text">wxNode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TideSDK"><span class="nav-number">6.</span> <span class="nav-text">TideSDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏应用"><span class="nav-number">7.</span> <span class="nav-text">游戏应用</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -674,18 +761,19 @@ app.run();
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -696,7 +784,9 @@ app.run();
 </div>
 
 
+        
 
+        
       </div>
     </footer>
 
@@ -707,12 +797,6 @@ app.run();
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -720,65 +804,94 @@ app.run();
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"riceball"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
-    
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'riceballl';
+      var disqus_identifier = 'article/js-desktop-sdk/';
+
+      var disqus_title = "用 Javascript 开发桌面应用的框架工具列表";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
   
 
 
@@ -793,7 +906,7 @@ app.run();
     // Search DB path;
     var search_path = "search.xml";
     if (search_path.length == 0) {
-       search_path = "search.xml";
+      search_path = "search.xml";
     }
     var path = "/" + search_path;
     // monitor main search box;
@@ -801,109 +914,104 @@ app.run();
     function proceedsearch() {
       $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
       $('.popup').toggle();
-
     }
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+      $.ajax({
         url: path,
         dataType: "xml",
         async: true,
         success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
         }
-    });}
+      });}
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
       if (isfetched == false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
     $('.popup-btn-close').click(function(e){
@@ -916,13 +1024,29 @@ app.run();
     });
   </script>
 
-  
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
 
 
 </body>

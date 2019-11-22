@@ -2,22 +2,22 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <sitemap>
-        <loc>http://riceball.me/post-sitemap.xml</loc>
-        <lastmod>2017-03-22T04:49:22.282Z</lastmod>
+        <loc>https://riceball.me/post-sitemap.xml</loc>
+        <lastmod>2019-11-22T06:56:43.545Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://riceball.me/page-sitemap.xml</loc>
-        <lastmod>2017-02-27T06:44:21.482Z</lastmod>
+        <loc>https://riceball.me/page-sitemap.xml</loc>
+        <lastmod>2019-11-22T06:56:43.549Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://riceball.me/category-sitemap.xml</loc>
+        <loc>https://riceball.me/category-sitemap.xml</loc>
         <lastmod>2016-03-21T20:00:14.000Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://riceball.me/tag-sitemap.xml</loc>
+        <loc>https://riceball.me/tag-sitemap.xml</loc>
         <lastmod>2016-03-21T20:00:14.000Z</lastmod>
     </sitemap>
 

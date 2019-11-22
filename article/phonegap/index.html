@@ -5,20 +5,16 @@
   
 
 
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,32 +23,63 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="HTML5,移动开发,phonegap,cordova,hybrid,mobile,application," />
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
+  
+  
+  
+  
 
-  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml" />
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="HTML5,移动开发,phonegap,cordova,hybrid,mobile,application,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -60,15 +87,17 @@
 
 
 <meta name="description" content="在开发移动应用的过程当中，如果你的应用只定位在一种平台上，这可不是一个好主意，但是为许多不同的平台Building应用又是一件非常麻烦和非常不爽的事情，因为你会发现每一种手机平台都有自己的SDK，它们需要使用不同语言来进行开发，你可能不得不需要5、6个代码仓库来管理不同设备上的代码，而且需要不同设备的开发人员来开发维护这些仓库，你还不得不装上各个设备的sdk，设置好路径和各种配置信息，来编译不同设">
+<meta name="keywords" content="HTML5,移动开发,phonegap,cordova,hybrid,mobile,application">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Phonegap：快速开发跨平台HTML5应用的胶水层">
-<meta property="og:url" content="http://riceball.me/article/phonegap/index.html">
+<meta property="og:url" content="https://riceball.me/article/phonegap/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="在开发移动应用的过程当中，如果你的应用只定位在一种平台上，这可不是一个好主意，但是为许多不同的平台Building应用又是一件非常麻烦和非常不爽的事情，因为你会发现每一种手机平台都有自己的SDK，它们需要使用不同语言来进行开发，你可能不得不需要5、6个代码仓库来管理不同设备上的代码，而且需要不同设备的开发人员来开发维护这些仓库，你还不得不装上各个设备的sdk，设置好路径和各种配置信息，来编译不同设">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf/AABEIACAAIAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD/8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH/xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE/9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb/ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA/dz/ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj/V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP//Z">
 <meta property="og:image" content="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhIPDxUTEBIWEBASFBIRFBgVFBMdGRQbHxUcFhgXFxIYJyYeIyUoGhgeHzsgIzMpMTAtFx4xNTwqNScrLCkBCQoKDQsNGQ4OGTUkHiQ1NTU1NDQ1NTU2LjU1NSw1NSw1NDUyNDU1NDY1LjQ1NSw1NDQsNTYpNDQtLDUpLC81LP/AABEIAE8ATwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQMEBQYCB//EADgQAAIBAwIDBQQJAwUAAAAAAAECAwAEEQUhEhMxBiJRYXEyQYGRFEJSobGys+HwJENyFiM0NYL/xAAZAQADAQEBAAAAAAAAAAAAAAAAAgMEAQX/xAAoEQACAgEDAQcFAAAAAAAAAAAAAQIRAxIhMRMEQWFxgbHBFFGRofD/2gAMAwEAAhEDEQA/APcKKKKACiikJoAWq++v+XJCvXmuyH0EbNn5qB8aNX1qK1jLytgdAB7THwUVQ2NyTKLu8PKyClvFuWUHqeEblj5DpU5Tp6VyXx4m1rfHua0UtM2s3GMlSmfc2M/EDp6U9VEQ4CiiigAooooAK5alJqLdanFEQJHVWPRSe83og3PwoOMyul230m/uZrjvG2bgiQ9F6kEDzAB9T5Cu+xEi3LS3Ep4rjjK4P9tMbBR7h1G3XG9XMtjiYXEPtMAsq4xzFzscH6w92eoyPCqnTNEMOpyPDtCUy/hxsc8A/N5ZHjWXQ4td56nVhkhNN1sq9OV6mtWuqhXmpJAvE/FwgEkqjNgDqTwg09Z3iTIHjYOjDKspyDWqjy7H6KKKDoUUUUAIax+v6Nb2jNdBrmOSRwrmFifaO5biDYUfGtTfX8cKF5XWNB1LEAfzyqHJePNC/wBHBRyp5byxkLk9O6cN91NFtOxJU9jNJrNoR/3EnoWhH4pmkTV7EsB9NubgkgYV5yPjyVXanDdaimA+nQTsBjiWSPfzw3zqZpl3qLSDjtILeLPe/wB3vY8RwZ+RrQ0qv5RJXx8Fld3y26BIUaSQgcuNMkt5sx9keLNXPZHR2tLVY3ILlnkfHsgseIqvkOlWk0yxqWchVAySfdjxNdxyBhkbg7j8azXtRat7OxRRRXBgoNFIaAIGr6PDdoEnQSKDxDORg+II3Bqok7Kcof081wgH1RdNgegkDipXbOZksZWRirDgwVJBHfUbEU3DrZighHJmndoY3JRcj2RklycZ8qXraHpfBX6dzgpryIZ0y7H927PpNZ/iUrltMuz1N03+V3Av6aZqZ/rOLkNNwSYjdY5FKjijJ+0M4qdqGupBysgtz2VE4QPfjBPlvTLOubQr7LNOmv5FRD2enLZIiQ/akee4cenMKrn51pLO2MaYLtIdyWcjJPwwB6Daqe97ViIvm3nZIyQziPujB3IJOSKs7DUBOgdAeBgGVtu8P2rnUU3QPDOEdTWxNFFIKWuiBSGlpDQBn+3H/Al/8fqLVOmsuZIbfni0jFrDIXIQlzwDYF9h+xq87TaTJdqsSuEhLZl2PEQOgX3fwVOk0iF1QPEjiMBV4lBwBsMVnlCTna8DdjzY4YlGSvd/BjtBtBcpfxh+bxsArnHf7pKtgbdd/CmuzM7Xk9srbizjYvn7WeFPuwfhW9itETJRQpbGcADOBtnHlXMFlHGSURULHJIAGfUilWBqt/P3Hl23Up7c8eG1P9GIn1trmK4aS6FuEMkSwgJlsDYMzZbJ6bVpOxQ/oIf8T+c1PbSYTJx8pOYfrcC5+dSbeFUXhQBVHQAYA+FPDG1LU2SzdohLH04qt0+77fkdFFAoq5jP/9k=">
 <meta property="og:image" content="https://build.phonegap.com/images/marketing/build-diagram.png">
-<meta property="og:updated_time" content="2017-02-27T06:44:21.474Z">
+<meta property="og:updated_time" content="2019-11-22T06:56:43.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Phonegap：快速开发跨平台HTML5应用的胶水层">
 <meta name="twitter:description" content="在开发移动应用的过程当中，如果你的应用只定位在一种平台上，这可不是一个好主意，但是为许多不同的平台Building应用又是一件非常麻烦和非常不爽的事情，因为你会发现每一种手机平台都有自己的SDK，它们需要使用不同语言来进行开发，你可能不得不需要5、6个代码仓库来管理不同设备上的代码，而且需要不同设备的开发人员来开发维护这些仓库，你还不得不装上各个设备的sdk，设置好路径和各种配置信息，来编译不同设">
@@ -76,19 +105,36 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
+
+
+
+  <link rel="canonical" href="https://riceball.me/article/phonegap/">
+
+
+
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
 
   <title> Phonegap：快速开发跨平台HTML5应用的胶水层 | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -138,7 +184,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Riceball LEE</span>
       <span class="logo-line-after"><i></i></span>
@@ -165,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -175,7 +221,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -185,7 +231,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -195,7 +241,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -205,7 +251,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -215,10 +261,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -242,6 +288,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -255,13 +303,26 @@
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://riceball.me/article/phonegap/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Riceball LEE">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Riceball LEE">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Riceball LEE" src>
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -284,20 +345,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2011-03-05T08:01:29+08:00" content="2011-03-05">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-03-05T08:01:29+08:00">
               2011-03-05
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">
+              2019-11-22
+            </time>
+            
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/HTML5/" itemprop="url" rel="index">
                     <span itemprop="name">HTML5</span>
                   </a>
@@ -315,7 +386,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/article/phonegap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/phonegap/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/phonegap/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -323,6 +394,10 @@
 
           
 
+          
+          
+
+          
           
           
 
@@ -341,23 +416,23 @@
 <ul>
 <li>支持6种移动设备平台：iOS, Android, BlackBerry, WebOS, Symbian WRT, Windows Mobile(内部测试)，以及桌面环境（内部测试）</li>
 <li>HTML5 + CSS3 + JavaScript  利用标准的Web技术开发应用</li>
-<li><a href="https://build.phonegap.com/" target="_blank" rel="external">Phonegap Build</a>: write once, compile on cloud, run anywhere. 提供在线Builder平台：只写一次，云端编译，运行在任何地方</li>
-<li>目前已经有上千基于<a href="http://www.phonegap.com/apps" target="_blank" rel="external">Phonegap的应用</a>在AppStore上</li>
+<li><a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a>: write once, compile on cloud, run anywhere. 提供在线Builder平台：只写一次，云端编译，运行在任何地方</li>
+<li>目前已经有上千基于<a href="http://www.phonegap.com/apps" target="_blank" rel="noopener">Phonegap的应用</a>在AppStore上</li>
 </ul>
-<h2 id="开始玩"><a href="#开始玩" class="headerlink" title="开始玩"></a>开始玩<img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf/AABEIACAAIAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD/8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH/xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE/9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb/ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA/dz/ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj/V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP//Z" alt=""></h2><p>首先自然是需要下载 phonegap： <a href="http://www.phonegap.com/" target="_blank" rel="external">http://www.phonegap.com/</a></p>
+<h2 id="开始玩"><a href="#开始玩" class="headerlink" title="开始玩"></a>开始玩<img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf/AABEIACAAIAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD/8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH/xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE/9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb/ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA/dz/ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj/V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP//Z" alt></h2><p>首先自然是需要下载 phonegap： <a href="http://www.phonegap.com/" target="_blank" rel="noopener">http://www.phonegap.com/</a></p>
 <p>然后你还需要相应设备的SDK</p>
 <h3 id="针对iPhone"><a href="#针对iPhone" class="headerlink" title="针对iPhone:"></a><strong>针对iPhone:</strong></h3><ol>
-<li>从 <a href="http://developer.apple.com/" target="_blank" rel="external">Apple Developer Portal</a> 下载安装 XCode.</li>
+<li>从 <a href="http://developer.apple.com/" target="_blank" rel="noopener">Apple Developer Portal</a> 下载安装 XCode.</li>
 <li>解开下载好的phonegap压缩包，进入iphone目录安装好phonegap</li>
 <li>打开XCode，在文件菜单选择 New Project…. 菜单</li>
 <li>点开“User Templates”栏，选择Phonegap，然后选中右边的“<strong>PhoneGap-based Application</strong>”，点击“Choose…”按钮，命名你的项目，选择项目文件的位置.</li>
 </ol>
 <h3 id="针对Android"><a href="#针对Android" class="headerlink" title="针对Android:"></a><strong>针对Android:</strong></h3><ol>
-<li><img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhIPDxUTEBIWEBASFBIRFBgVFBMdGRQbHxUcFhgXFxIYJyYeIyUoGhgeHzsgIzMpMTAtFx4xNTwqNScrLCkBCQoKDQsNGQ4OGTUkHiQ1NTU1NDQ1NTU2LjU1NSw1NSw1NDUyNDU1NDY1LjQ1NSw1NDQsNTYpNDQtLDUpLC81LP/AABEIAE8ATwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQMEBQYCB//EADgQAAIBAwIDBQQJAwUAAAAAAAECAwAEEQUhEhMxBiJRYXEyQYGRFEJSobGys+HwJENyFiM0NYL/xAAZAQADAQEBAAAAAAAAAAAAAAAAAgMEAQX/xAAoEQACAgEDAQcFAAAAAAAAAAAAAQIRAxIhMRMEQWFxgbHBFFGRofD/2gAMAwEAAhEDEQA/APcKKKKACiikJoAWq++v+XJCvXmuyH0EbNn5qB8aNX1qK1jLytgdAB7THwUVQ2NyTKLu8PKyClvFuWUHqeEblj5DpU5Tp6VyXx4m1rfHua0UtM2s3GMlSmfc2M/EDp6U9VEQ4CiiigAooooAK5alJqLdanFEQJHVWPRSe83og3PwoOMyul230m/uZrjvG2bgiQ9F6kEDzAB9T5Cu+xEi3LS3Ep4rjjK4P9tMbBR7h1G3XG9XMtjiYXEPtMAsq4xzFzscH6w92eoyPCqnTNEMOpyPDtCUy/hxsc8A/N5ZHjWXQ4td56nVhkhNN1sq9OV6mtWuqhXmpJAvE/FwgEkqjNgDqTwg09Z3iTIHjYOjDKspyDWqjy7H6KKKDoUUUUAIax+v6Nb2jNdBrmOSRwrmFifaO5biDYUfGtTfX8cKF5XWNB1LEAfzyqHJePNC/wBHBRyp5byxkLk9O6cN91NFtOxJU9jNJrNoR/3EnoWhH4pmkTV7EsB9NubgkgYV5yPjyVXanDdaimA+nQTsBjiWSPfzw3zqZpl3qLSDjtILeLPe/wB3vY8RwZ+RrQ0qv5RJXx8Fld3y26BIUaSQgcuNMkt5sx9keLNXPZHR2tLVY3ILlnkfHsgseIqvkOlWk0yxqWchVAySfdjxNdxyBhkbg7j8azXtRat7OxRRRXBgoNFIaAIGr6PDdoEnQSKDxDORg+II3Bqok7Kcof081wgH1RdNgegkDipXbOZksZWRirDgwVJBHfUbEU3DrZighHJmndoY3JRcj2RklycZ8qXraHpfBX6dzgpryIZ0y7H927PpNZ/iUrltMuz1N03+V3Av6aZqZ/rOLkNNwSYjdY5FKjijJ+0M4qdqGupBysgtz2VE4QPfjBPlvTLOubQr7LNOmv5FRD2enLZIiQ/akee4cenMKrn51pLO2MaYLtIdyWcjJPwwB6Daqe97ViIvm3nZIyQziPujB3IJOSKs7DUBOgdAeBgGVtu8P2rnUU3QPDOEdTWxNFFIKWuiBSGlpDQBn+3H/Al/8fqLVOmsuZIbfni0jFrDIXIQlzwDYF9h+xq87TaTJdqsSuEhLZl2PEQOgX3fwVOk0iF1QPEjiMBV4lBwBsMVnlCTna8DdjzY4YlGSvd/BjtBtBcpfxh+bxsArnHf7pKtgbdd/CmuzM7Xk9srbizjYvn7WeFPuwfhW9itETJRQpbGcADOBtnHlXMFlHGSURULHJIAGfUilWBqt/P3Hl23Up7c8eG1P9GIn1trmK4aS6FuEMkSwgJlsDYMzZbJ6bVpOxQ/oIf8T+c1PbSYTJx8pOYfrcC5+dSbeFUXhQBVHQAYA+FPDG1LU2SzdohLH04qt0+77fkdFFAoq5jP/9k=" alt="">下载安装 JDK 1.5</li>
-<li>下载安装 <a href="http://developer.android.com/sdk/index.html" target="_blank" rel="external">Android SDK</a></li>
-<li>下载安装 <a href="http://ant.apache.org/ivy/download.cgi" target="_blank" rel="external">Apache ANT</a></li>
+<li><img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhIPDxUTEBIWEBASFBIRFBgVFBMdGRQbHxUcFhgXFxIYJyYeIyUoGhgeHzsgIzMpMTAtFx4xNTwqNScrLCkBCQoKDQsNGQ4OGTUkHiQ1NTU1NDQ1NTU2LjU1NSw1NSw1NDUyNDU1NDY1LjQ1NSw1NDQsNTYpNDQtLDUpLC81LP/AABEIAE8ATwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQMEBQYCB//EADgQAAIBAwIDBQQJAwUAAAAAAAECAwAEEQUhEhMxBiJRYXEyQYGRFEJSobGys+HwJENyFiM0NYL/xAAZAQADAQEBAAAAAAAAAAAAAAAAAgMEAQX/xAAoEQACAgEDAQcFAAAAAAAAAAAAAQIRAxIhMRMEQWFxgbHBFFGRofD/2gAMAwEAAhEDEQA/APcKKKKACiikJoAWq++v+XJCvXmuyH0EbNn5qB8aNX1qK1jLytgdAB7THwUVQ2NyTKLu8PKyClvFuWUHqeEblj5DpU5Tp6VyXx4m1rfHua0UtM2s3GMlSmfc2M/EDp6U9VEQ4CiiigAooooAK5alJqLdanFEQJHVWPRSe83og3PwoOMyul230m/uZrjvG2bgiQ9F6kEDzAB9T5Cu+xEi3LS3Ep4rjjK4P9tMbBR7h1G3XG9XMtjiYXEPtMAsq4xzFzscH6w92eoyPCqnTNEMOpyPDtCUy/hxsc8A/N5ZHjWXQ4td56nVhkhNN1sq9OV6mtWuqhXmpJAvE/FwgEkqjNgDqTwg09Z3iTIHjYOjDKspyDWqjy7H6KKKDoUUUUAIax+v6Nb2jNdBrmOSRwrmFifaO5biDYUfGtTfX8cKF5XWNB1LEAfzyqHJePNC/wBHBRyp5byxkLk9O6cN91NFtOxJU9jNJrNoR/3EnoWhH4pmkTV7EsB9NubgkgYV5yPjyVXanDdaimA+nQTsBjiWSPfzw3zqZpl3qLSDjtILeLPe/wB3vY8RwZ+RrQ0qv5RJXx8Fld3y26BIUaSQgcuNMkt5sx9keLNXPZHR2tLVY3ILlnkfHsgseIqvkOlWk0yxqWchVAySfdjxNdxyBhkbg7j8azXtRat7OxRRRXBgoNFIaAIGr6PDdoEnQSKDxDORg+II3Bqok7Kcof081wgH1RdNgegkDipXbOZksZWRirDgwVJBHfUbEU3DrZighHJmndoY3JRcj2RklycZ8qXraHpfBX6dzgpryIZ0y7H927PpNZ/iUrltMuz1N03+V3Av6aZqZ/rOLkNNwSYjdY5FKjijJ+0M4qdqGupBysgtz2VE4QPfjBPlvTLOubQr7LNOmv5FRD2enLZIiQ/akee4cenMKrn51pLO2MaYLtIdyWcjJPwwB6Daqe97ViIvm3nZIyQziPujB3IJOSKs7DUBOgdAeBgGVtu8P2rnUU3QPDOEdTWxNFFIKWuiBSGlpDQBn+3H/Al/8fqLVOmsuZIbfni0jFrDIXIQlzwDYF9h+xq87TaTJdqsSuEhLZl2PEQOgX3fwVOk0iF1QPEjiMBV4lBwBsMVnlCTna8DdjzY4YlGSvd/BjtBtBcpfxh+bxsArnHf7pKtgbdd/CmuzM7Xk9srbizjYvn7WeFPuwfhW9itETJRQpbGcADOBtnHlXMFlHGSURULHJIAGfUilWBqt/P3Hl23Up7c8eG1P9GIn1trmK4aS6FuEMkSwgJlsDYMzZbJ6bVpOxQ/oIf8T+c1PbSYTJx8pOYfrcC5+dSbeFUXhQBVHQAYA+FPDG1LU2SzdohLH04qt0+77fkdFFAoq5jP/9k=" alt>下载安装 JDK 1.5</li>
+<li>下载安装 <a href="http://developer.android.com/sdk/index.html" target="_blank" rel="noopener">Android SDK</a></li>
+<li>下载安装 <a href="http://ant.apache.org/ivy/download.cgi" target="_blank" rel="noopener">Apache ANT</a></li>
 <li>下载安装 Ruby (命令行方式开发需要)</li>
-<li>解压已经下载好的 PhoneGap, 进入android 目录，my god，最新的0.9.4ZIP包中没有命令行创建项目的方式，好吧，你需要从最新的仓库中把代码取出来： git clone <a href="https://github.com/phonegap/phonegap-android.git" target="_blank" rel="external">https://github.com/phonegap/phonegap-android.git</a></li>
+<li>解压已经下载好的 PhoneGap, 进入android 目录，my god，最新的0.9.4ZIP包中没有命令行创建项目的方式，好吧，你需要从最新的仓库中把代码取出来： git clone <a href="https://github.com/phonegap/phonegap-android.git" target="_blank" rel="noopener">https://github.com/phonegap/phonegap-android.git</a></li>
 <li>命令行方式(Droidgap)脚本的开发者没有修改路径以配合新的0.9.4版本，这是这次在发布中被拿掉的原因吧。需要自己改改，蛮简单的，就不多说。</li>
 <li>将 android下的bin目录 加入你的搜索 path:<br>UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>在windows下将phonegap-android/bin 路径加到Path中就不用多说了。</li>
 <li>ok，在命令行下输入 “droidgap gen demo”,即可创建phonegap支撑的html5应用项目。</li>
@@ -366,43 +441,46 @@
 </ol>
 <h3 id="使用PhoneGap来创建移动App应用："><a href="#使用PhoneGap来创建移动App应用：" class="headerlink" title="使用PhoneGap来创建移动App应用："></a><strong>使用PhoneGap来创建移动App应用：</strong></h3><p>打开项目的www目录（android是在项目的assets/www目录下），编辑index.html，在body中键入</p><h1>hello world</h1>（你也可以加上js和css文件在这个目录下面），保存，然后你就可以首先部署到模拟器上看看。<p></p>
 <p>也许你会说，哈，这不就是网页嘛！是的，这就是网页，不过通过phonegap，这样的网页应用就有能力访问设备的所有功能：文件系统，GPS，相机，重力加速度计，电话簿等，当然不同的设备支持的功能会有所不同（目前phonegap还不能支持完所有的功能，具体看各个设备支持的特性列表）。另外要想呈现和移动应用一样的外观，你还需要选择一种HTML5 Mobile UI Framework库，这样的Framework库已经很多了: Sencha Touch, JQTouch, JMobile, XUI, The-M-Project,Dojo Mobile, dhtmlxTouch, wink, jo, webapp.net…</p>
-<h2 id="Phonegap-Build"><a href="#Phonegap-Build" class="headerlink" title="Phonegap Build"></a><a href="https://build.phonegap.com/" target="_blank" rel="external">Phonegap Build</a></h2><p>除了在本地编译应用之外，您还可以使用Phonegap提供的云端Build工具进行应用编译。那就是：Phonegap Build，通过它，您只需要将用HTML5写好的应用上传到Phonegap的云端服务器，它即可以帮你编译不同平台平的应用。</p>
-<p><img src="https://build.phonegap.com/images/marketing/build-diagram.png" alt=""></p>
-<p><a href="https://build.phonegap.com/" target="_blank" rel="external">Phonegap Build</a> 当前<a href="https://build.phonegap.com/" target="_blank" rel="external">Phonegap Build</a>依然处于beta状态，你需要申请，等到通过方可使用。另外推荐一个Chrome的插件，<a href="http://ripple.tinyhippos.com/" target="_blank" rel="external">Ripple Emulator</a> 可以在Chrome浏览器上测试你的应用，支持phonegap。</p>
+<h2 id="Phonegap-Build"><a href="#Phonegap-Build" class="headerlink" title="Phonegap Build"></a><a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a></h2><p>除了在本地编译应用之外，您还可以使用Phonegap提供的云端Build工具进行应用编译。那就是：Phonegap Build，通过它，您只需要将用HTML5写好的应用上传到Phonegap的云端服务器，它即可以帮你编译不同平台平的应用。</p>
+<p><img src="https://build.phonegap.com/images/marketing/build-diagram.png" alt></p>
+<p><a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a> 当前<a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a>依然处于beta状态，你需要申请，等到通过方可使用。另外推荐一个Chrome的插件，<a href="http://ripple.tinyhippos.com/" target="_blank" rel="noopener">Ripple Emulator</a> 可以在Chrome浏览器上测试你的应用，支持phonegap。</p>
 <p>（文章作者：李雪愚，盛大创新院高级架构师，雪愚对于使用Phonegap有着丰富的经验，曾用Phonegap开发基于Android和iOS的应用。编辑BY：Handaoliang）</p>
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
+
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/HTML5/" rel="tag">#HTML5</a>
+            <a href="/tags/HTML5/" rel="tag"># HTML5</a>
           
-            <a href="/tags/移动开发/" rel="tag">#移动开发</a>
+            <a href="/tags/移动开发/" rel="tag"># 移动开发</a>
           
-            <a href="/tags/phonegap/" rel="tag">#phonegap</a>
+            <a href="/tags/phonegap/" rel="tag"># phonegap</a>
           
-            <a href="/tags/cordova/" rel="tag">#cordova</a>
+            <a href="/tags/cordova/" rel="tag"># cordova</a>
           
-            <a href="/tags/hybrid/" rel="tag">#hybrid</a>
+            <a href="/tags/hybrid/" rel="tag"># hybrid</a>
           
-            <a href="/tags/mobile/" rel="tag">#mobile</a>
+            <a href="/tags/mobile/" rel="tag"># mobile</a>
           
-            <a href="/tags/application/" rel="tag">#application</a>
+            <a href="/tags/application/" rel="tag"># application</a>
           
         </div>
       
@@ -416,6 +494,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -450,7 +530,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -466,15 +546,15 @@
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/phonegap/"
-           data-title="Phonegap：快速开发跨平台HTML5应用的胶水层" data-url="http://riceball.me/article/phonegap/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -499,7 +579,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -508,18 +588,16 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f"
-               alt="Riceball LEE" />
+          <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f" alt="Riceball LEE">
           <p class="site-author-name" itemprop="name">Riceball LEE</p>
           <p class="site-description motion-element" itemprop="description">Go with wind.</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -527,7 +605,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -536,7 +614,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">94</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -557,9 +635,9 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/snowyu" target="_blank">
+                <a href="https://github.com/snowyu" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -571,30 +649,36 @@
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
+
+        
+
 
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始玩"><span class="nav-number">1.</span> <span class="nav-text">开始玩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#针对iPhone"><span class="nav-number">1.1.</span> <span class="nav-text">针对iPhone:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对Android"><span class="nav-number">1.2.</span> <span class="nav-text">针对Android:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用PhoneGap来创建移动App应用："><span class="nav-number">1.3.</span> <span class="nav-text">使用PhoneGap来创建移动App应用：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Phonegap-Build"><span class="nav-number">1.</span> <span class="nav-text">Phonegap Build</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始玩"><span class="nav-number">1.</span> <span class="nav-text">开始玩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#针对iPhone"><span class="nav-number">1.1.</span> <span class="nav-text">针对iPhone:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对Android"><span class="nav-number">1.2.</span> <span class="nav-text">针对Android:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用PhoneGap来创建移动App应用："><span class="nav-number">1.3.</span> <span class="nav-text">使用PhoneGap来创建移动App应用：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Phonegap-Build"><span class="nav-number">1.</span> <span class="nav-text">Phonegap Build</span></a></li></ol></li></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -607,18 +691,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -629,7 +714,9 @@
 </div>
 
 
+        
 
+        
       </div>
     </footer>
 
@@ -640,12 +727,6 @@
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -653,65 +734,94 @@
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"riceball"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
-    
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'riceballl';
+      var disqus_identifier = 'article/phonegap/';
+
+      var disqus_title = "Phonegap：快速开发跨平台HTML5应用的胶水层";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
   
 
 
@@ -726,7 +836,7 @@
     // Search DB path;
     var search_path = "search.xml";
     if (search_path.length == 0) {
-       search_path = "search.xml";
+      search_path = "search.xml";
     }
     var path = "/" + search_path;
     // monitor main search box;
@@ -734,109 +844,104 @@
     function proceedsearch() {
       $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
       $('.popup').toggle();
-
     }
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+      $.ajax({
         url: path,
         dataType: "xml",
         async: true,
         success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
         }
-    });}
+      });}
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
       if (isfetched == false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
     $('.popup-btn-close').click(function(e){
@@ -849,13 +954,29 @@
     });
   </script>
 
-  
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
 
 
 </body>
