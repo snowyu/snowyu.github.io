@@ -139,6 +139,9 @@ markdown:
     level: 2
     collisionSuffix: 'v'
 
+pandoc:
+  mathEngine: katex # By default, mathEngine is mathjax.
+
 symbols_count_time:
   symbols: true
   time: true
