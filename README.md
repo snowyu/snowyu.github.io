@@ -1,3 +1,15 @@
+## hexo-generator-indexed
+
+```yml
+# site _config.yml
+index_generator:
+  per_page: 10
+  order_by: -updated # no useful, it should sort by -(updated||date)
+  pagination_dir: page
+```
+
+now the post meta can use `sticky: true`
+
 ## hexo-next-coauthor
 
 Show author info on article lists and article head.
