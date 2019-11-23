@@ -18,6 +18,8 @@ Show author info on article lists and article head.
 
 ### marked-it
 
+* TODO: ASCIIMath more easy: https://github.com/quertt/markdown-it-asciimath
+
 ```bash
 npm i hexo-renderer-markdown-it
 ```
