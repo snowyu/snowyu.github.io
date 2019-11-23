@@ -254,6 +254,7 @@ post_meta:
     enable: true
     another_day: true
   categories: true
+  updated_diff: true
 
 # Post wordcount display settings
 # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
