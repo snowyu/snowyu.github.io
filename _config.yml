@@ -2,6 +2,9 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
+include:
+  - .nojekyll
+
 # Site
 title: Riceball LEE
 subtitle: Go with wind.
