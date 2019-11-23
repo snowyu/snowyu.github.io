@@ -1,3 +1,12 @@
-<!--iframe scrolling='no' frameborder='0' width='735' height='700' style="display:block;">
-</iframe-->
-<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8"></script>
+<html>
+  <head>
+  <script type="text/javascript">
+    function resizeIframe(aIframe){
+      aIframe.style.height = aIframe.contentWindow.document.body.scrollHeight + 'px';
+    }
+  </script>
+  </head>
+<body>
+  <iframe scrolling='no' frameborder='0' onload="resizeIframe(this)" src='no-layout/helpchild404.html' width="100%" height="800" style='display:block;'></iframe>
+</body>
+</html>
