@@ -3154,8 +3154,7 @@ hello world
   <entry>
     <title></title>
     <url>/404.html</url>
-    <content><![CDATA[<script type="text/javascript" src="https://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="https://riceball.me" homepagename="回到我的主页">
-</script>]]></content>
+    <content><![CDATA[<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8"></script>]]></content>
   </entry>
   <entry>
     <title>categories</title>

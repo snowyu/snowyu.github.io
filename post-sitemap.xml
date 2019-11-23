@@ -40,7 +40,7 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/sass-lang/</loc>
+        <loc>http://riceball.me/article/reactive-doc/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/reactive-doc/</loc>
+        <loc>http://riceball.me/article/sass-lang/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -112,14 +112,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/diy-cloud-computing-2/</loc>
-        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://riceball.me/article/diy-cloud-computing-3/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -128,7 +120,15 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/explore-thinking-of-internet/</loc>
+        <loc>http://riceball.me/article/diy-cloud-computing-2/</loc>
+        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://riceball.me/article/howto-choose-programming-language/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -144,7 +144,7 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/article/howto-choose-programming-language/</loc>
+        <loc>http://riceball.me/article/explore-thinking-of-internet/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
