@@ -57,14 +57,14 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Learning/Programming/</loc>
+        <loc>http://riceball.me/categories/Thinking/Reactive-Document/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive-Document/</loc>
+        <loc>http://riceball.me/categories/Learning/Programming/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -73,6 +73,13 @@
     <url>
         <loc>http://riceball.me/categories/Learning/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/HTML5/</loc>
+        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -100,13 +107,6 @@
 
     <url>
         <loc>http://riceball.me/categories/Thinking/Cloud-Computing/</loc>
-        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/HTML5/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

@@ -987,8 +987,8 @@
       </categories>
       <tags>
         <tag>javascript</tag>
-        <tag>creation</tag>
         <tag>framework</tag>
+        <tag>creation</tag>
         <tag>nodejs</tag>
         <tag>api</tag>
       </tags>
@@ -1324,8 +1324,8 @@
       </categories>
       <tags>
         <tag>programming</tag>
-        <tag>computer language</tag>
         <tag>howto</tag>
+        <tag>computer language</tag>
       </tags>
   </entry>
   <entry>
@@ -1538,8 +1538,8 @@
       <tags>
         <tag>thinking</tag>
         <tag>iot</tag>
-        <tag>internet</tag>
         <tag>tao</tag>
+        <tag>internet</tag>
         <tag>explore</tag>
         <tag>p2p</tag>
       </tags>
@@ -2327,8 +2327,8 @@ app.run();</code></pre>
       </categories>
       <tags>
         <tag>thinking</tag>
-        <tag>sns</tag>
         <tag>internet</tag>
+        <tag>sns</tag>
         <tag>creation</tag>
       </tags>
   </entry>
@@ -3154,7 +3154,19 @@ hello world
   <entry>
     <title></title>
     <url>/404.html</url>
-    <content><![CDATA[<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8"></script>]]></content>
+    <content><![CDATA[<html>
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    function resizeIframe(aIframe){
+      aIframe.style.height = aIframe.contentWindow.document.body.scrollHeight + 'px';
+    }
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><iframe scrolling="no" frameborder="0" onload="resizeIframe(this)" src="no-layout/helpchild404.html" width="100%" height="800" style="display:block;"></iframe><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>]]></content>
   </entry>
   <entry>
     <title>categories</title>
@@ -3165,5 +3177,17 @@ hello world
     <title>tags</title>
     <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/tecent404.html</url>
+    <content><![CDATA[<html>
+<head>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homepageurl="/" homepagename="回到我的主页"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>]]></content>
   </entry>
 </search>
