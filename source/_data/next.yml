@@ -1,3 +1,13 @@
+# Add some descriptions to your co-authors
+coauthors:
+  [riceball]:
+    # It will display nick
+    nick: Riceball LEE
+    # When your co-authors is click, will jump to there
+    link: https://riceball.me
+  # It defines the order of precedence in post meta
+  #post_meta_order: 0
+
 # Console reminder if new version released.
 reminder: true
 
