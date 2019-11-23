@@ -129,34 +129,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/tags/html/</loc>
-        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/compass/</loc>
-        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/sass/</loc>
-        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/css/</loc>
-        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://riceball.me/tags/markdown/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -179,6 +151,34 @@
 
     <url>
         <loc>http://riceball.me/tags/reactive/</loc>
+        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/html/</loc>
+        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/compass/</loc>
+        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/sass/</loc>
+        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/css/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
