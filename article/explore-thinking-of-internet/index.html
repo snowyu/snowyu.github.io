@@ -1,160 +1,96 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="thinking,iot,internet,tao,explore,p2p,">
-
-
-
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
   <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 
+<link rel="stylesheet" href="/css/main.css">
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
-
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
-
-
-
-<meta name="description" content="要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联">
-<meta name="keywords" content="thinking,iot,internet,tao,explore,p2p">
-<meta property="og:type" content="article">
-<meta property="og:title" content="移动互联网（物联网）思维的探索">
-<meta property="og:url" content="http://riceball.me/article/explore-thinking-of-internet/index.html">
-<meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-22T06:56:43.529Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动互联网（物联网）思维的探索">
-<meta name="twitter:description" content="要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
   };
 </script>
 
+  <meta name="description" content="要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联">
+<meta name="keywords" content="thinking,iot,internet,tao,explore,p2p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动互联网（物联网）思维的探索">
+<meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;explore-thinking-of-internet&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-22T06:56:43.529Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://riceball.me/article/explore-thinking-of-internet/">
 
 
-  <link rel="canonical" href="http://riceball.me/article/explore-thinking-of-internet/">
-
-
-
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
-
-  <title> 移动互联网（物联网）思维的探索 | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-75922641-1', 'auto');
-  ga('send', 'pageview');
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
 </script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+  <title>移动互联网（物联网）思维的探索 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
 
 
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -163,286 +99,242 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
+</head>
 
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-  <div class="custom-logo-site-title">
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Riceball LEE</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
   </div>
-  <p class="site-subtitle">Go with wind.</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-        
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
-            
-            公益404
-          </a>
-        </li>
-      
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
 
-  
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 
-
-    </div>
-  
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
 
+</div>
+<div class="search-pop-overlay"></div>
 
-
- </div>
+  </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
+  <div class="posts-expand">
+      
   
   
-  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://riceball.me/article/explore-thinking-of-internet/">
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/explore-thinking-of-internet/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Riceball LEE">
-    <meta itemprop="description" content>
-    <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Riceball LEE">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Riceball LEE" src>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
     </span>
-  </span>
 
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                移动互联网（物联网）思维的探索
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          移动互联网（物联网）思维的探索
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-05-05 14:05:00" itemprop="dateCreated datePublished" datetime="2014-05-05T14:05:00+08:00">2014-05-05</time>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-05-05T14:05:00+08:00">
-              2014-05-05
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">
-              2019-11-22
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-              &nbsp; | &nbsp;
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Thinking/" itemprop="url" rel="index">
                     <span itemprop="name">Thinking</span>
                   </a>
                 </span>
-
-                
-                
-                  ， 
-                
-
-              
+                  ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Thinking/Internet/" itemprop="url" rel="index">
                     <span itemprop="name">Internet</span>
                   </a>
                 </span>
-
-                
-                
-                  ， 
-                
-
-              
+                  ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Thinking/Internet/IOT/" itemprop="url" rel="index">
                     <span itemprop="name">IOT</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/explore-thinking-of-internet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/explore-thinking-of-internet/" itemprop="commentCount"></span>
-                </a>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
               </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
 
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        <p>要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联网(IoT)，也只不过是将一个个的设备作为“网上服务”放到了家庭，使得我们可以在家以外也能控制而已。因此这里说道的移动互联网思维其实主要还是在探索互联网思维。</p>
-<h1 id="互联网的本质"><a href="#互联网的本质" class="headerlink" title="互联网的本质"></a>互联网的本质</h1><p>无论移动互联网还是互联网，我们如果思考下它的本质，想想它的本质是什么？那么不难发现，它的本质无疑是最终用户(Peer)的互联互通。那么互联互通的本质又是什么？<br>而当互联网最终用户膨胀到足够规模的时候，我们发现，它正在改变世界。Why? 它是如何做到的呢？</p>
+        <p>要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联网(IoT)，也只不过是将一个个的设备作为“网上服务”放到了家庭，使得我们可以在家以外也能控制而已。因此这里说道的移动互联网思维其实主要还是在探索互联网思维。</p><a id="more"></a>
+<h1 id="互联网的本质">互联网的本质</h1>
+<p>无论移动互联网还是互联网，我们如果思考下它的本质，想想它的本质是什么？那么不难发现，它的本质无疑是最终用户(Peer)的互联互通。那么互联互通的本质又是什么？ 而当互联网最终用户膨胀到足够规模的时候，我们发现，它正在改变世界。Why? 它是如何做到的呢？</p>
 <p>互联网的本质是对等（互联），因为要对等互联，所以才有了开放和标准。因为完全开放和标准化，才有足够多组织细胞接入，从而形成群体。群体在互联网上产生信息和消费信息，从而导致信息爆炸大数据。</p>
-<h2 id="开放与标准"><a href="#开放与标准" class="headerlink" title="开放与标准"></a>开放与标准</h2><blockquote>
-<p>故事开始于上世纪50年代后期，在冷战高峰期，美国国防部希望建立一个命令和控制网络（Command and Control），即使在遭受核打击的情况下它也能保存下来。在当时，所有的军事通信都要使用公共电话网络，而电话网络被认为非常脆弱，如下图左边的图所示，黑色的点代表电话交换局，每个电话交换局连接了几千部电话，然后，这些交换局有链接到更高层次的交换局，从而形成全国性的层次（hierarchy）结构。整个结构只有少量冗余，但整个系统十分脆弱，一旦关键的交换局被破坏，则整个系统有可能被分成几个孤岛。<br>1960年左右，国防部给了RAND公司（大名鼎鼎的兰德公司）一份合同，希望RAND为自己寻找一个解决方案，Paul Baran负责这个任务，提出了一个高度分布式和容错性的设计方案，如下图右所示。Baran给国防部提供了11份报告来详细阐述他的思想，五角大楼也接受了这种概念，并且请AT&amp;T公司、然后是美国国家电话局来建立一个原型系统。但是这遭到AT&amp;T公司的拒绝。今天的我们很难理解当时AT&amp;T的强大势力，它不只是大公司，还是政府的合作伙伴，统治着美国的通讯业。自1912年电话互联时代开始，AT&amp;T就成为美国电信业的主宰者。AT&amp;T在这场竞争大赛赢得胜利的最有力武器是向竞争者提供的互联的能力，这似乎有些自相矛盾。虽然自觉告诉我们,似乎是互联的失败阻碍了竞争，但是事实上，正是互联的匮乏导致（刺激）了竞争。随着那些独立系统和AT&amp;T互联后，那些独立公司所拥有的独特的优势都消失了，用户不再抛弃AT&amp;T，AT&amp;T垄断的力量得到了进一步加强。</p>
-</blockquote>
-<h2 id="去中心化"><a href="#去中心化" class="headerlink" title="去中心化"></a>去中心化</h2><p>谈去中心化，就要先从中心化谈起了。“中心化”，是和社会性网络中的概念“结构洞”(structural holes)息息相关的，结构洞是“社会网络中的某个或某些个体和有些个体发生直接联系，但与其他个体不发生直接联系，无直接联系或关系间断(disconnection)的现象，从网络整体看好像网络结构中出现了洞穴”。简单地说，当你想要联系到A，但是只能通过B才能联系到，那么你与B之间的链接缺失就可能是一个结构洞，而B作为占据者就产生了竞争优势。你可以简单的认为B就是“中心化”，当然仅仅从关系的缺失角度并不能完全说明结构洞，如果想全面了解，请自行参考社会网络中的相关章节。“结构洞”能够为其占据者获取“信息利益”和“控制利益”提供机会，从而比网络中其他位置上的成员更具有竞争优势。</p>
-<p>而“去中心化”就是要减少“中心化”结构洞带来的竞争优势，减少信息不对称的出现，把“中心化”降权，让信息充分流通，这就是我们在互联网中常说道的对等网路。Ok, 既然人人都是对等的，那么也就意味着是人人都是中心，当然这说的是在理想状态下。现实中，“结构洞”比比皆是，只不过每一次针对“中心化”的降权，都会在互联网引起一场模式的革命，比如:草根媒体, twitter, 众包，众筹。</p>
-<h2 id="众愚成智"><a href="#众愚成智" class="headerlink" title="众愚成智"></a>众愚成智</h2><p>让完全不懂驾驶飞机的人去开飞机，结果会如何，而如果让一群不懂驾驶飞机的人去开同一架飞机，那又会如何？</p>
+<h2 id="开放与标准">开放与标准</h2>
 <blockquote>
-<p>罗伦·卡朋特是一名电脑图形图像专家。1991年他策划了一个由五千人共同参与的“飞行器模拟控制”的游戏屏幕显示飞机的初始场景是在空中，飞行员则是……五千名新手。透过挡风玻璃可以感到飞机正朝着小山之间的山谷降落，而跑道看上去非常小。此时作为乘客，每个人都有权参与表决，但群体的智慧在着陆时似乎成了不利条件。一部分人大喊：“绿！绿！”一会儿，另一部分人大喊：“红色再多一点！”机身左倾错过了跑道，机翼先着陆了。飞行模拟更为复杂，从液压杆到机身反应，从副翼杆到机身转向都设定了一段时间的延迟反馈。这些隐藏的信号干扰了群体的思维。而在飞机即将坠毁的时刻，群体出乎意料的放弃了着陆，拉起机头，他们要重来一次。一段尝试过后飞机旋转了360°，五千名飞行员无声的共识让机身在空中打了个滚，他们安全着陆了。没有人做出某个决定，左转还是右转，甚至转不转都没人决定。但是他们成功了，他们做到了鸟儿做的事：成功的结成了一群。<br>这种结群的行为是自觉的。一只鸟对鸟群是没有全局概念的，对鸟群的飞行姿态和聚合是视而不见的。“群态”正是从这样一群完全罔顾其形状、大小或队列的生物中涌现出来的。</p>
+<p>故事开始于上世纪50年代后期，在冷战高峰期，美国国防部希望建立一个命令和控制网络（Command and Control），即使在遭受核打击的情况下它也能保存下来。在当时，所有的军事通信都要使用公共电话网络，而电话网络被认为非常脆弱，如下图左边的图所示，黑色的点代表电话交换局，每个电话交换局连接了几千部电话，然后，这些交换局有链接到更高层次的交换局，从而形成全国性的层次（hierarchy）结构。整个结构只有少量冗余，但整个系统十分脆弱，一旦关键的交换局被破坏，则整个系统有可能被分成几个孤岛。 1960年左右，国防部给了RAND公司（大名鼎鼎的兰德公司）一份合同，希望RAND为自己寻找一个解决方案，Paul Baran负责这个任务，提出了一个高度分布式和容错性的设计方案，如下图右所示。Baran给国防部提供了11份报告来详细阐述他的思想，五角大楼也接受了这种概念，并且请AT&amp;T公司、然后是美国国家电话局来建立一个原型系统。但是这遭到AT&amp;T公司的拒绝。今天的我们很难理解当时AT&amp;T的强大势力，它不只是大公司，还是政府的合作伙伴，统治着美国的通讯业。自1912年电话互联时代开始，AT&amp;T就成为美国电信业的主宰者。AT&amp;T在这场竞争大赛赢得胜利的最有力武器是向竞争者提供的互联的能力，这似乎有些自相矛盾。虽然自觉告诉我们,似乎是互联的失败阻碍了竞争，但是事实上，正是互联的匮乏导致（刺激）了竞争。随着那些独立系统和AT&amp;T互联后，那些独立公司所拥有的独特的优势都消失了，用户不再抛弃AT&amp;T，AT&amp;T垄断的力量得到了进一步加强。</p>
+</blockquote>
+<h2 id="去中心化">去中心化</h2>
+<p>谈去中心化，就要先从中心化谈起了。“中心化”，是和社会性网络中的概念“结构洞”(structural holes)息息相关的，结构洞是“社会网络中的某个或某些个体和有些个体发生直接联系，但与其他个体不发生直接联系，无直接联系或关系间断(disconnection)的现象，从网络整体看好像网络结构中出现了洞穴”。简单地说，当你想要联系到A，但是只能通过B才能联系到，那么你与B之间的链接缺失就可能是一个结构洞，而B作为占据者就产生了竞争优势。你可以简单的认为B就是“中心化”，当然仅仅从关系的缺失角度并不能完全说明结构洞，如果想全面了解，请自行参考社会网络中的相关章节。“结构洞”能够为其占据者获取“信息利益”和“控制利益”提供机会，从而比网络中其他位置上的成员更具有竞争优势。</p>
+<p>而“去中心化”就是要减少“中心化”结构洞带来的竞争优势，减少信息不对称的出现，把“中心化”降权，让信息充分流通，这就是我们在互联网中常说道的对等网路。Ok, 既然人人都是对等的，那么也就意味着是人人都是中心，当然这说的是在理想状态下。现实中，“结构洞”比比皆是，只不过每一次针对“中心化”的降权，都会在互联网引起一场模式的革命，比如:草根媒体, twitter, 众包，众筹。</p>
+<h2 id="众愚成智">众愚成智</h2>
+<p>让完全不懂驾驶飞机的人去开飞机，结果会如何，而如果让一群不懂驾驶飞机的人去开同一架飞机，那又会如何？</p>
+<blockquote>
+<p>罗伦·卡朋特是一名电脑图形图像专家。1991年他策划了一个由五千人共同参与的“飞行器模拟控制”的游戏屏幕显示飞机的初始场景是在空中，飞行员则是……五千名新手。透过挡风玻璃可以感到飞机正朝着小山之间的山谷降落，而跑道看上去非常小。此时作为乘客，每个人都有权参与表决，但群体的智慧在着陆时似乎成了不利条件。一部分人大喊：“绿！绿！”一会儿，另一部分人大喊：“红色再多一点！”机身左倾错过了跑道，机翼先着陆了。飞行模拟更为复杂，从液压杆到机身反应，从副翼杆到机身转向都设定了一段时间的延迟反馈。这些隐藏的信号干扰了群体的思维。而在飞机即将坠毁的时刻，群体出乎意料的放弃了着陆，拉起机头，他们要重来一次。一段尝试过后飞机旋转了360°，五千名飞行员无声的共识让机身在空中打了个滚，他们安全着陆了。没有人做出某个决定，左转还是右转，甚至转不转都没人决定。但是他们成功了，他们做到了鸟儿做的事：成功的结成了一群。 这种结群的行为是自觉的。一只鸟对鸟群是没有全局概念的，对鸟群的飞行姿态和聚合是视而不见的。“群态”正是从这样一群完全罔顾其形状、大小或队列的生物中涌现出来的。</p>
 </blockquote>
 <blockquote>
 <p>在《蝙蝠侠归来》中有一个场景，一大群黑色大蝙蝠一窝蜂地穿越水淹的隧道涌向纽约市中心。这些蝙蝠是由电脑制作的。动画制作者先制作一只蝙蝠，并赋予它一定的空间以使之能自动地扇动翅膀；然后复制出几十个蝙蝠，直至成群。之后，让每只蝙蝠独自在屏幕上四处飞动，但要遵循算法中植入的几条简单的规则：</p>
@@ -453,10 +345,7 @@
 <li>离队不要太远。</li>
 </ul>
 <p>当这些“算法蝙蝠”在屏幕上运动起来，就如同真的蝙蝠一样成群结队而行。</p>
-<p>一只鸟并不是一只硕大的鸟。科学报道记者詹姆斯•格雷克写道：“单只鸟或一条鱼的运动，无论怎样流畅，都不能带给我们像玉米地上空满天打旋的燕八哥或百万鲰鱼鱼贯而行的密集队列所带来的震撼。……（鸟群疾转逃离掠食者的）高速电影显示出，转向的动作以波状传感的方式，以大约七十分之一秒的速度从一只鸟传到另一只鸟。比单只鸟的反应快得多。”鸟群远非鸟的集合。</p>
-<blockquote>
-<p>群集规律是由克雷格•雷诺兹发现的。他是在图像硬件制造商Symbolics工作的计算科学家。他有一个简单的方程，通过对其中各种作用力的调整——多一点聚力，少一点延迟——雷诺兹能使群体的运动形态像活生生的蝙蝠群、麻雀群或鱼群。甚至在《蝙蝠侠归来》中的行进中的企鹅群也是根据雷诺兹的运算法则聚合的。像蝙蝠一样，先一股脑地复制很多计算机建模的三维企鹅。然后把它们释放到一个朝向特定方向的场景中。当它们行进在积雪的街道上，就轻易地出现了推推搡搡拥挤的样子，不受任何控制。<br>雷诺兹的简单算法所生成的群体是如此真实，以至于当生物学家们回顾了自己所拍摄的高速电影后，他们断定，真实的鸟类和鱼群的群体行必然源自于一套相似的简单规则。群体曾被看作是生命体的决定性象征，某些壮观的队列只有生命体才能实现。如今根据雷诺兹的算法，群体被看作是一种自适应的技巧，适用于任何分布式的活系统，无论是有机的还是人造的。<br>两种极端的途径会创造“更多”。一种途径是按照顺序操作的思路来构建系统，就像工厂的装配流水线一样。这类顺序系统的原理类似于钟表的内部逻辑——通过一系列复杂动作来映衬出时间的流逝。大多数机械系统遵循的都是这种逻辑。<br>还有另外一种极端的路径。我们发现，许多系统都是将并行运作的不见拼接在一起，很像大脑的神经元网络或者蚂蚁群落。这类系统的运作是从一大堆乱糟糟且又彼此关联的事件中产生的。它们不再像钟表那样，由离散的方式驱动并以离散的方式显现，更像是有成千上万个发条在一起驱动一个并行是系统。由于不存在指令链，人一根发条的某个特定动作都会传递到整个系统，而系统的局部表现也更容易被系统的整体表现所掩盖。从群体中涌现出来的不再是一系列起关键作用的个体行为，而是众多的同步动作。这些同步动作所表现出的群体模式要更重要得多。这就是群体的模型。</p>
-</blockquote>
+<p>一只鸟并不是一只硕大的鸟。科学报道记者詹姆斯•格雷克写道：“单只鸟或一条鱼的运动，无论怎样流畅，都不能带给我们像玉米地上空满天打旋的燕八哥或百万鲰鱼鱼贯而行的密集队列所带来的震撼。……（鸟群疾转逃离掠食者的）高速电影显示出，转向的动作以波状传感的方式，以大约七十分之一秒的速度从一只鸟传到另一只鸟。比单只鸟的反应快得多。”鸟群远非鸟的集合。 &gt;群集规律是由克雷格•雷诺兹发现的。他是在图像硬件制造商Symbolics工作的计算科学家。他有一个简单的方程，通过对其中各种作用力的调整——多一点聚力，少一点延迟——雷诺兹能使群体的运动形态像活生生的蝙蝠群、麻雀群或鱼群。甚至在《蝙蝠侠归来》中的行进中的企鹅群也是根据雷诺兹的运算法则聚合的。像蝙蝠一样，先一股脑地复制很多计算机建模的三维企鹅。然后把它们释放到一个朝向特定方向的场景中。当它们行进在积雪的街道上，就轻易地出现了推推搡搡拥挤的样子，不受任何控制。 &gt;雷诺兹的简单算法所生成的群体是如此真实，以至于当生物学家们回顾了自己所拍摄的高速电影后，他们断定，真实的鸟类和鱼群的群体行必然源自于一套相似的简单规则。群体曾被看作是生命体的决定性象征，某些壮观的队列只有生命体才能实现。如今根据雷诺兹的算法，群体被看作是一种自适应的技巧，适用于任何分布式的活系统，无论是有机的还是人造的。 &gt;两种极端的途径会创造“更多”。一种途径是按照顺序操作的思路来构建系统，就像工厂的装配流水线一样。这类顺序系统的原理类似于钟表的内部逻辑——通过一系列复杂动作来映衬出时间的流逝。大多数机械系统遵循的都是这种逻辑。 &gt;还有另外一种极端的路径。我们发现，许多系统都是将并行运作的不见拼接在一起，很像大脑的神经元网络或者蚂蚁群落。这类系统的运作是从一大堆乱糟糟且又彼此关联的事件中产生的。它们不再像钟表那样，由离散的方式驱动并以离散的方式显现，更像是有成千上万个发条在一起驱动一个并行是系统。由于不存在指令链，人一根发条的某个特定动作都会传递到整个系统，而系统的局部表现也更容易被系统的整体表现所掩盖。从群体中涌现出来的不再是一系列起关键作用的个体行为，而是众多的同步动作。这些同步动作所表现出的群体模式要更重要得多。这就是群体的模型。</p>
 <p>群体的优势:</p>
 <ul>
 <li>可适应性</li>
@@ -473,8 +362,10 @@
 </ul>
 <p>在群逻辑的优缺点中进行取舍就如同在生物活系统的成本和受益之间进行抉择一样——假如我们需要这样做的话。但由于我们是伴随着生物系统长大的，而且别无选择，所以我们总是不加考虑地接受它们的成本。</p>
 <p>群突出了真实事物复杂的一面。它们不合常规。群计算的数学延续了达尔文有关动植物经历无规则变异而产生无规律种群的革命性研究。群逻辑试图理解不平衡性，度量不稳定性，测定不可预知性。用詹姆斯•格雷克的话来说，这是一个尝试，以勾画出“无定形的形态学”——即给似乎天生无形的形态造型。科学已经解决了所有的简单任务——都是清晰而简明的信号。现在它所面对的只有噪音，它必须直面生命是杂乱。</p>
-<h2 id="大数据-信息爆炸"><a href="#大数据-信息爆炸" class="headerlink" title="大数据(信息爆炸)"></a>大数据(信息爆炸)</h2><p>每一个用户都可以自由的创建内容，</p>
-<h1 id="互联网思维"><a href="#互联网思维" class="headerlink" title="互联网思维"></a>互联网思维</h1><p>现在我们可以来探索到底什么样的思维才算是互联网思维？让我们再回顾下互联网的本质。</p>
+<h2 id="大数据信息爆炸">大数据(信息爆炸)</h2>
+<p>每一个用户都可以自由的创建内容，</p>
+<h1 id="互联网思维">互联网思维</h1>
+<p>现在我们可以来探索到底什么样的思维才算是互联网思维？让我们再回顾下互联网的本质。</p>
 <p>互联网的本质是对等（互联），因为要对等互联，所以才有了开放和标准。因为完全开放和标准化，才有足够多组织细胞接入，从而形成群体。群体在互联网上产生信息和消费信息，从而导致信息爆炸大数据。随后我们有了眼球经济，主张自我，以个体为中心。</p>
 <p>那么透过互联网的本质来看互联网的思维，在我看来不外就是自由、开放、平等、分享。</p>
 <p>我们可以想象，当信息对等之后，很多利用信息黑洞赚取差价的捎客就消失，当网络打通了地域限制后，新兴的行业搅局者势必打破行业垄断，发明新的玩法，从而使得，原来有利可图的点，变成白纸，免费成为一个在互联网上打击竞争对手的一个重要手段。</p>
@@ -483,7 +374,8 @@
 <p>改变世界 因为互联网</p>
 <p>足够多的人（基数够大），足够多的玩法</p>
 <p>计划经济 -&gt; 市场经济 -&gt; 计划经济 -&gt; 市场经济</p>
-<h1 id="物联网思维"><a href="#物联网思维" class="headerlink" title="物联网思维"></a>物联网思维</h1><p>(To be continued…)</p>
+<h1 id="物联网思维">物联网思维</h1>
+<p>(To be continued...)</p>
 <p>参考:</p>
 <ul>
 <li><a href="http://www.internetsociety.org/zh-hans/互联网/什么是互联网？/互联网历史/互联网简史" target="_blank" rel="noopener">《互联网简史》</a></li>
@@ -492,536 +384,263 @@
 <li>《开源的成功之路》</li>
 </ul>
 
-      
     </div>
 
-    <div>
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
       
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
         
 
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/thinking/" rel="tag"># thinking</a>
-          
-            <a href="/tags/iot/" rel="tag"># iot</a>
-          
-            <a href="/tags/internet/" rel="tag"># internet</a>
-          
-            <a href="/tags/tao/" rel="tag"># tao</a>
-          
-            <a href="/tags/explore/" rel="tag"># explore</a>
-          
-            <a href="/tags/p2p/" rel="tag"># p2p</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/article/js-desktop-sdk/" rel="next" title="用 Javascript 开发桌面应用的框架工具列表">
-                <i class="fa fa-chevron-left"></i> 用 Javascript 开发桌面应用的框架工具列表
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/article/reactive-doc/" rel="prev" title="Reactive Document">
-                Reactive Document <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Riceball LEE
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://riceball.me/article/explore-thinking-of-internet/" title="移动互联网（物联网）思维的探索">http://riceball.me/article/explore-thinking-of-internet/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
-<script type="text/javascript">
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
-      
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/thinking/" rel="tag"># thinking</a>
+              <a href="/tags/iot/" rel="tag"># iot</a>
+              <a href="/tags/internet/" rel="tag"># internet</a>
+              <a href="/tags/tao/" rel="tag"># tao</a>
+              <a href="/tags/explore/" rel="tag"># explore</a>
+              <a href="/tags/p2p/" rel="tag"># p2p</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/js-desktop-sdk/" rel="prev" title="用 Javascript 开发桌面应用的框架工具列表">
+      <i class="fa fa-chevron-left"></i> 用 Javascript 开发桌面应用的框架工具列表
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/reactive-doc/" rel="next" title="Reactive Document">
+      Reactive Document <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
         </div>
-        
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f" alt="Riceball LEE">
-          <p class="site-author-name" itemprop="name">Riceball LEE</p>
-          <p class="site-description motion-element" itemprop="description">Go with wind.</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">26</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">32</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">97</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/snowyu" target="_blank" title="github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
-            </a>
-          </div>
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#互联网的本质"><span class="nav-number">1.</span> <span class="nav-text">互联网的本质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开放与标准"><span class="nav-number">1.1.</span> <span class="nav-text">开放与标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去中心化"><span class="nav-number">1.2.</span> <span class="nav-text">去中心化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#众愚成智"><span class="nav-number">1.3.</span> <span class="nav-text">众愚成智</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据-信息爆炸"><span class="nav-number">1.4.</span> <span class="nav-text">大数据(信息爆炸)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#互联网思维"><span class="nav-number">2.</span> <span class="nav-text">互联网思维</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物联网思维"><span class="nav-number">3.</span> <span class="nav-text">物联网思维</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#互联网的本质"><span class="nav-number">1.</span> <span class="nav-text">互联网的本质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开放与标准"><span class="nav-number">1.1.</span> <span class="nav-text">开放与标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去中心化"><span class="nav-number">1.2.</span> <span class="nav-text">去中心化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#众愚成智"><span class="nav-number">1.3.</span> <span class="nav-text">众愚成智</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据信息爆炸"><span class="nav-number">1.4.</span> <span class="nav-text">大数据(信息爆炸)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#互联网思维"><span class="nav-number">2.</span> <span class="nav-text">互联网思维</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物联网思维"><span class="nav-number">3.</span> <span class="nav-text">物联网思维</span></a></li></ol></div>
+      </div>
       <!--/noindex-->
-      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        
+
+<div class="copyright">
   
-  &copy;  2014 - 
+  &copy; 2014 – 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">156k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:43</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
 
         
+
+
+
+
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 
   
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'riceballl';
-      var disqus_identifier = 'article/explore-thinking-of-internet/';
-
-      var disqus_title = "移动互联网（物联网）思维的探索";
-
-
-      function run_disqus_script(disqus_script) {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-
-      
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-
-    </script>
-  
-
-
-
-
-
-  
-  
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-      search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-      $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
-            return {
-              title: $( "title", this ).text(),
-              content: $("content",this).text(),
-              url: $( "url" , this).text()
-            };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
-                      }
-                    }
-
-                  });
-                }
-                // show search results
-                if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
-                    // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if(start == 0){
-                      end = 50;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
-                  }
-                  str += "</li>";
-                }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
-          proceedsearch();
-        }
-      });}
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
   </script>
 
 
-  
 
-  
 
-  
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
 <script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
+
   
 
+  
+
+  
 
 </body>
 </html>

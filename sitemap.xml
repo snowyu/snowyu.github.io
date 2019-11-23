@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+
     <sitemap>
         <loc>http://riceball.me/post-sitemap.xml</loc>
         <lastmod>2019-11-22T06:56:43.545Z</lastmod>
@@ -13,12 +14,12 @@
 
     <sitemap>
         <loc>http://riceball.me/category-sitemap.xml</loc>
-        <lastmod>2016-03-21T20:00:14.000Z</lastmod>
+        <lastmod>2019-11-22T06:56:43.545Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://riceball.me/tag-sitemap.xml</loc>
-        <lastmod>2016-03-21T20:00:14.000Z</lastmod>
+        <lastmod>2019-11-22T06:56:43.545Z</lastmod>
     </sitemap>
 
 </sitemapindex>

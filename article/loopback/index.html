@@ -1,163 +1,99 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="javascript,creation,framework,nodejs,api,">
-
-
-
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
   <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 
+<link rel="stylesheet" href="/css/main.css">
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
-
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
-
-
-
-<meta name="description" content="Loopback Framework尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。LoopBack 是一个基于Express的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful">
-<meta name="keywords" content="javascript,creation,framework,nodejs,api">
-<meta property="og:type" content="article">
-<meta property="og:title" content="The Loopback Open API Framework">
-<meta property="og:url" content="http://riceball.me/article/loopback/index.html">
-<meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="Loopback Framework尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。LoopBack 是一个基于Express的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://riceball.me/article/loopback/strongloop-arc.png">
-<meta property="og:image" content="http://riceball.me/article/loopback/loopback-explorer.png">
-<meta property="og:updated_time" content="2016-05-04T18:40:14.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Loopback Open API Framework">
-<meta name="twitter:description" content="Loopback Framework尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。LoopBack 是一个基于Express的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful">
-<meta name="twitter:image" content="http://riceball.me/article/loopback/strongloop-arc.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
   };
 </script>
 
+  <meta name="description" content="Loopback Framework尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。 LoopBack 是一个基于Express的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTfu">
+<meta name="keywords" content="javascript,creation,framework,nodejs,api">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Loopback Open API Framework">
+<meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;loopback&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="Loopback Framework尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。 LoopBack 是一个基于Express的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTfu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;loopback&#x2F;strongloop-arc.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;loopback&#x2F;loopback-explorer.png">
+<meta property="og:updated_time" content="2016-05-04T18:40:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;loopback&#x2F;strongloop-arc.png">
+
+<link rel="canonical" href="http://riceball.me/article/loopback/">
 
 
-  <link rel="canonical" href="http://riceball.me/article/loopback/">
-
-
-
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
-
-  <title> The Loopback Open API Framework | Riceball LEE </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-75922641-1', 'auto');
-  ga('send', 'pageview');
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
 </script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+  <title>The Loopback Open API Framework | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
 
 
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -166,278 +102,238 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
+</head>
 
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-  <div class="custom-logo-site-title">
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Riceball LEE</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
   </div>
-  <p class="site-subtitle">Go with wind.</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-        
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
-            
-            公益404
-          </a>
-        </li>
-      
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
 
-  
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 
-
-    </div>
-  
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
 
+</div>
+<div class="search-pop-overlay"></div>
 
-
- </div>
+  </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
+  <div class="posts-expand">
+      
   
   
-  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://riceball.me/article/loopback/">
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://riceball.me/article/loopback/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Riceball LEE">
-    <meta itemprop="description" content>
-    <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Riceball LEE">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Riceball LEE" src>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
     </span>
-  </span>
 
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                The Loopback Open API Framework
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          The Loopback Open API Framework
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-04-10 04:53:56" itemprop="dateCreated datePublished" datetime="2016-04-10T04:53:56+08:00">2016-04-10</time>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-10T04:53:56+08:00">
-              2016-04-10
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-05-05T02:40:14+08:00">
-              2016-05-05
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-              &nbsp; | &nbsp;
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2016-05-05 02:40:14" itemprop="dateModified" datetime="2016-05-05T02:40:14+08:00">2016-05-05</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/JavaScript/" itemprop="url" rel="index">
                     <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
-
-                
-                
-                  ， 
-                
-
-              
+                  ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/JavaScript/Framework/" itemprop="url" rel="index">
                     <span itemprop="name">Framework</span>
                   </a>
                 </span>
-
-                
-                
-                  ， 
-                
-
-              
+                  ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/JavaScript/Framework/API/" itemprop="url" rel="index">
                     <span itemprop="name">API</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/loopback/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/loopback/" itemprop="commentCount"></span>
-                </a>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
               </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>22k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>40 分钟</span>
+            </span>
 
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+        <h1 id="loopback-framework">Loopback Framework</h1><p>尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。 <a href="http://loopback.io" target="_blank" rel="noopener">LoopBack</a> 是一个基于<a href="http://expressjs.com/" target="_blank" rel="noopener">Express</a>的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful API，用nodejs 开发API，提供JS, iOS 和 Android SDKs.</p><a id="more"></a>
 
-      
-        <h1 id="Loopback-Framework"><a href="#Loopback-Framework" class="headerlink" title="Loopback Framework"></a>Loopback Framework</h1><p>尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。<br><a href="http://loopback.io" target="_blank" rel="noopener">LoopBack</a> 是一个基于<a href="http://expressjs.com/" target="_blank" rel="noopener">Express</a>的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful API，用nodejs 开发API，提供JS, iOS 和 Android SDKs.</p>
 <p><a href="https://strongloop.com" target="_blank" rel="noopener">StrongLoop</a>在2015年<a href="https://developer.ibm.com/bluemix/2015/09/10/getting-started-node-js-loopback-framework-ibm-cloudant/" target="_blank" rel="noopener">被IBM收购了</a>.</p>
-<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<h2 id="features">Features</h2>
+<ul>
 <li>快速创建动态 end-to-end REST APIs.</li>
 <li>连接设备/浏览器到数据和服务。</li>
 <li>使用 Android, iOS, and AngularJS SDKs 轻松创建客户端应用.</li>
@@ -446,31 +342,33 @@
 <li>StrongLoop API网关充当API消费者与API提供者之间的中介，进行外部化的安全管理API。</li>
 <li>可以部署运行在内部或者云端</li>
 </ul>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a><a href="https://docs.strongloop.com/display/SL/Installing+StrongLoop" target="_blank" rel="noopener">Install</a></h2><p>安装前提：use the latest LTS (long-term support) release of Node.js(v4.x).</p>
+<h2 id="install"><a href="https://docs.strongloop.com/display/SL/Installing+StrongLoop" target="_blank" rel="noopener">Install</a></h2>
+<p>安装前提：use the latest LTS (long-term support) release of Node.js(v4.x).</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g strongloop</span><br></pre></td></tr></table></figure>
-<h2 id="创建-loopback-应用"><a href="#创建-loopback-应用" class="headerlink" title="创建 loopback 应用"></a>创建 loopback 应用</h2><p>由 loopback <code>slc</code>脚手架工具，我们可以轻松的完成许多工作。包括创建应用，model，relation，acl等等。</p>
+<h2 id="创建-loopback-应用">创建 loopback 应用</h2>
+<p>由 loopback <code>slc</code>脚手架工具，我们可以轻松的完成许多工作。包括创建应用，model，relation，acl等等。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ slc loopback</span><br><span class="line">[?] What&apos;s the name of your application? hello-world</span><br><span class="line">  create hello-world/</span><br><span class="line">  info change the working directory to hello-world</span><br><span class="line">  I&apos;m all done. Running npm install for you to install</span><br><span class="line">  the required dependencies.</span><br><span class="line">$ slc loopback:model</span><br><span class="line">[?] Enter the model name: person</span><br><span class="line">[?] Select the data-source to attach person to: db (memory)</span><br><span class="line">[?] Select model`s base class (PersistedModel)</span><br><span class="line">[?] Expose person via the REST API? Yes</span><br><span class="line">[?] Custom plural form (used to build REST URL): people</span><br><span class="line">[?] Common model or server only? common</span><br><span class="line">Let&apos;s add some person properties now.</span><br></pre></td></tr></table></figure>
 <p>参阅官方的入门指南： <a href="http://loopback.io/getting-started/" target="_blank" rel="noopener">Getting Started</a>.</p>
 <p>在本地运行 <code>StrongLoop Arc</code> IDE：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PORT=4000 HOST=0.0.0.0 slc arc</span><br></pre></td></tr></table></figure>
 <p>在IDE上只需要简单的设置数据源和model，就可以将指定的数据作为Restful API提供出去了。</p>
 <p>注意IDE要求在 Strongloop 上注册方可使用。</p>
-<p><img src="./strongloop-arc.png" alt></p>
+<p><img src="./strongloop-arc.png"></p>
 <p>skip the online login:</p>
 <p><code>%HOME%/AppData/Roaming/npm/node_modules/strongloop/node_modules/strong-arc/clinet/www/scripts/modules/arc-user/arc-user.service.js</code>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">svc.getCurrentUserId = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//return $cookieStore.get('currentUserId');</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当你在IDE上设置添加并暴露出数据 model 后，就可以在IDE上直接运行。<br>你可以在这个地址: <a href="http://localhost:3000/explorer/" target="_blank" rel="noopener">http://localhost:3000/explorer/</a> 上查看产生的API的联机互动文档：</p>
-<p><img src="./loopback-explorer.png" alt></p>
+<p>当你在IDE上设置添加并暴露出数据 model 后，就可以在IDE上直接运行。 你可以在这个地址: http://localhost:3000/explorer/ 上查看产生的API的联机互动文档：</p>
+<p><img src="./loopback-explorer.png"></p>
 <p>另外在IDE上可以直接启动，停止服务。</p>
-<p>事实上，就<a href="https://zh.wikipedia.org/zh/MVC" target="_blank" rel="noopener">MVC模式</a>而言，<code>Loopback</code>的应用<br>一般不用关心<code>Controller</code>，所有的操作（远程方法）都直接在Model上暴露和控制，<br>进一步简化了开发。因为是 API，所以<code>View</code>也不用关心，只需要在配置中定义支持<br>的输出格式(json, xml)。</p>
+<p>事实上，就<a href="https://zh.wikipedia.org/zh/MVC" target="_blank" rel="noopener">MVC模式</a>而言，<code>Loopback</code>的应用 一般不用关心<code>Controller</code>，所有的操作（远程方法）都直接在Model上暴露和控制， 进一步简化了开发。因为是 API，所以<code>View</code>也不用关心，只需要在配置中定义支持 的输出格式(json, xml)。</p>
 <p>Ok, 接下来以开发一个简单的博客API系统为例，进行说明。本例子修改自<a href="https://github.com/topcoderinc/TopBlogger-Loopback" target="_blank" rel="noopener">TopBlogger-Loopback</a>，特此说明。</p>
-<p>首先该博客系统有两个 model: Blog 和 Comment。我们使用loopback内置的用户体系<br>进行登陆认证，当然你可以扩展这个用户体系。这些 Model 的关系如下：</p>
+<p>首先该博客系统有两个 model: Blog 和 Comment。我们使用loopback内置的用户体系 进行登陆认证，当然你可以扩展这个用户体系。这些 Model 的关系如下：</p>
 <ul>
 <li>一篇博文(Blog)属于一个用户(User)</li>
 <li>一篇博文可以有许多评论(Comment)</li>
 <li>一篇评论(Comment)属于一个用户(User)</li>
 </ul>
-<p>就认证授权来说，匿名用户只能看博文或者评论，不能发表。只有登录的用户才可以<br>发表博文或者评论，并且只可以编辑或者删除自己的博文或评论。</p>
+<p>就认证授权来说，匿名用户只能看博文或者评论，不能发表。只有登录的用户才可以 发表博文或者评论，并且只可以编辑或者删除自己的博文或评论。</p>
 <p>首先你要选择一个你希望使用的数据库，loopback支持如下的数据库：</p>
 <ul>
 <li><a href="https://docs.strongloop.com/display/LB/Memory+connector" target="_blank" rel="noopener">Memory connector</a>：内置</li>
@@ -496,14 +394,17 @@
 <p>还有社区维护的Connector,<a href="https://docs.strongloop.com/display/public/LB/Community+connectors" target="_blank" rel="noopener">在这里</a>.</p>
 <p>选择好数据库后，需要安装相应的数据库Connector组件，在项目的根目录下:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install loopback-connector-mysql</span><br></pre></td></tr></table></figure>
-<p>使用<a href="https://docs.strongloop.com/display/LB/Data+source+generator" target="_blank" rel="noopener">data source generator</a>建立<br>新的数据源。</p>
-<h2 id="slc-loopback-datasource"><a href="#slc-loopback-datasource" class="headerlink" title="slc loopback:datasource"></a>slc loopback:datasource</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ slc loopback:datasource</span><br><span class="line">? Enter the data-source name: myBlogger</span><br><span class="line">? Select the connector for mysql: MySQL (supported by StrongLoop)</span><br></pre></td></tr></table></figure>
+<p>使用<a href="https://docs.strongloop.com/display/LB/Data+source+generator" target="_blank" rel="noopener">data source generator</a>建立 新的数据源。</p>
+<h2 id="slc-loopbackdatasource">slc loopback:datasource</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ slc loopback:datasource</span><br><span class="line">? Enter the data-source name: myBlogger</span><br><span class="line">? Select the connector for mysql: MySQL (supported by StrongLoop)</span><br></pre></td></tr></table></figure>
 <p>这会在 <code>server/datasources.json</code>中增加新的数据源，然后打开该文件，修改相关数据库的登录认证信息：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"db"</span>:&#123;</span><br><span class="line">    <span class="attr">"name"</span>:<span class="string">"db"</span>,</span><br><span class="line">    <span class="attr">"connector"</span>:<span class="string">"memory"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"myBlogger"</span>: &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"myBlogger"</span>,</span><br><span class="line">      <span class="attr">"connector"</span>: <span class="string">"mysql"</span>,</span><br><span class="line">      <span class="attr">"host"</span>: <span class="string">"your-mysql-server.foo.com"</span>,</span><br><span class="line">      <span class="attr">"user"</span>: <span class="string">"db-username"</span>,</span><br><span class="line">      <span class="attr">"password"</span>: <span class="string">"db-password"</span>,</span><br><span class="line">      <span class="attr">"database"</span>: <span class="string">"myblogger"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后使用<a href="https://docs.strongloop.com/display/LB/Using+the+model+generator" target="_blank" rel="noopener">model generator</a>协助创建model</p>
-<h2 id="slc-loopback-model"><a href="#slc-loopback-model" class="headerlink" title="slc loopback:model"></a>slc loopback:model</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">slc loopback:model</span><br><span class="line">? Enter the model name: Blog</span><br><span class="line">? Select the data-source to attach Blog to: myBlogger (mysql)</span><br><span class="line">? Select model&apos;s base class: PersistedModel</span><br><span class="line">? Expose myModel via the REST API? Yes</span><br><span class="line">? Custom plural form (used to build REST URL):</span><br><span class="line">Let&apos;s add some properties now.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="slc-loopbackmodel">slc loopback:model</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">slc loopback:model</span><br><span class="line">? Enter the model name: Blog</span><br><span class="line">? Select the data-source to attach Blog to: myBlogger (mysql)</span><br><span class="line">? Select model&apos;s base class: PersistedModel</span><br><span class="line">? Expose myModel via the REST API? Yes</span><br><span class="line">? Custom plural form (used to build REST URL):</span><br><span class="line">Let&apos;s add some properties now.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>接下来提示是创建它的属性。然后用同样的方式创建Comment Model.</p>
-<h3 id="Blog-Model"><a href="#Blog-Model" class="headerlink" title="Blog Model"></a>Blog Model</h3><ul>
+<h3 id="blog-model">Blog Model</h3>
+<ul>
 <li>title (string)</li>
 <li>content (string)</li>
 <li>tags (array of strings)</li>
@@ -517,7 +418,8 @@
 <li>createdDate (date)</li>
 <li>updatedDate (date)</li>
 </ul>
-<h3 id="Comment-Model"><a href="#Comment-Model" class="headerlink" title="Comment Model"></a>Comment Model</h3><ul>
+<h3 id="comment-model">Comment Model</h3>
+<ul>
 <li>content (string)</li>
 <li>numOfLikes (number)</li>
 <li>numOfDislikes (number)</li>
@@ -529,20 +431,17 @@
 <p>注意：</p>
 <ul>
 <li>隐藏字段可以用<code>hidden</code>参数，将不需要公开的字段名称列在这个数组中。</li>
-<li><p>Model 有这样一些<a href="https://docs.strongloop.com/display/public/LB/Customizing+models" target="_blank" rel="noopener">定制设置</a>:</p>
+<li>Model 有这样一些<a href="https://docs.strongloop.com/display/public/LB/Customizing+models" target="_blank" rel="noopener">定制设置</a>:
 <ul>
 <li><code>plural</code> - set to a custom string value to use, instead of the default standard plural form.</li>
-<li><code>strict</code> - set to true to make the model save only instances that have the predefined set of properties.  Any additional properties in a save or update operation are not persisted to the data source.  False by default.</li>
-<li><code>idInjection</code> - Whether to automatically add an id property to the model.  True by default.</li>
+<li><code>strict</code> - set to true to make the model save only instances that have the predefined set of properties. Any additional properties in a save or update operation are not persisted to the data source. False by default.</li>
+<li><code>idInjection</code> - Whether to automatically add an id property to the model. True by default.</li>
 <li><code>http.path</code> - customized HTTP path of REST endpoints.</li>
 <li><p><code>indexes</code> - 可以设置字段的复合索引，不过注意的是采用官方文档进行设置的时候，Mysql的connector会报错，只能这样设置:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"indexes"</span>: &#123;</span><br><span class="line">  <span class="string">"some_name_age_index"</span>: &#123;</span><br><span class="line">    <span class="string">"columns"</span>: <span class="string">"name, age"</span>, <span class="comment">//不能使用keys，会报告: Key column 'undefined' doesn't exist in table</span></span><br><span class="line">    <span class="string">"options"</span>: &#123;</span><br><span class="line">      <span class="string">"unique"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"indexes"</span>: &#123;</span><br><span class="line">  <span class="string">"some_name_age_index"</span>: &#123;</span><br><span class="line">    <span class="string">"columns"</span>: <span class="string">"name, age"</span>, <span class="comment">//不能使用keys，会报告: Key column 'undefined' doesn't exist in table</span></span><br><span class="line">    <span class="string">"options"</span>: &#123;</span><br><span class="line">      <span class="string">"unique"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>对于字段单个索引，可以直接写在字段中：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"name"</span>: &#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">  <span class="string">"index"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"required"</span>: <span class="literal">true</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"name"</span>: &#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">  <span class="string">"index"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"required"</span>: <span class="literal">true</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+</ul></li>
 </ul>
 <p>接着就该是建立数据库之间的关系(relation), loopback 提供如下的关系:</p>
 <ul>
@@ -552,13 +451,14 @@
 <li><a href="https://docs.strongloop.com/display/LB/HasManyThrough+relations" target="_blank" rel="noopener">HasManyThrough relations</a></li>
 <li><a href="https://docs.strongloop.com/display/LB/HasAndBelongsToMany+relations" target="_blank" rel="noopener">HasAndBelongsToMany relations</a></li>
 <li><a href="https://docs.strongloop.com/display/LB/Polymorphic+relations" target="_blank" rel="noopener">Polymorphic relations</a></li>
-<li><a href="https://docs.strongloop.com/display/LB/Embedded+models+and+relations" target="_blank" rel="noopener">Embedded relations</a><ul>
+<li><a href="https://docs.strongloop.com/display/LB/Embedded+models+and+relations" target="_blank" rel="noopener">Embedded relations</a>
+<ul>
 <li>embedsOne and embedsMany</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>我们使用loopback提供的<a href="https://docs.strongloop.com/display/public/LB/Creating+model+relations" target="_blank" rel="noopener">relation generator</a>来建立关系：</p>
-<h2 id="slc-loopback-relation"><a href="#slc-loopback-relation" class="headerlink" title="slc loopback:relation"></a>slc loopback:relation</h2><p>首先注意，关系的名称不能和属性(字段)名一样。</p>
+<h2 id="slc-loopbackrelation">slc loopback:relation</h2>
+<p>首先注意，关系的名称不能和属性(字段)名一样。</p>
 <p>既然是用户写的博客，那么对博客而已，自然是<code>BelongsTo</code>关系:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ slc loopback:relation</span><br><span class="line">? Select the model to create the relationship from: Blog</span><br><span class="line">? Relation type: belongs to</span><br><span class="line">? Choose a model to create a relationship with: User</span><br><span class="line">? Enter the property name for the relation: author</span><br><span class="line">? Optionally enter a custom foreign key:</span><br></pre></td></tr></table></figure>
 <p>还有，博客上应支持不同读者的评论，自然博客上有许多(<code>HasMany</code>)评论：</p>
@@ -566,8 +466,8 @@
 <p>另外，评论本身也有作者的，所以还需要为<code>Comment</code>增加<code>BelongsTo</code>关系：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">slc loopback:relation</span><br><span class="line">? Select the model to create the relationship from: Comment</span><br><span class="line">? Relation type: belongs to</span><br><span class="line">? Choose a model to create a relationship with: User</span><br><span class="line">? Enter the property name for the relation: author</span><br><span class="line">? Optionally enter a custom foreign key:</span><br></pre></td></tr></table></figure>
 <p>注意：关系对应的方法名称参阅: <a href="https://docs.strongloop.com/display/public/LB/Accessing+related+models" target="_blank" rel="noopener">Accessing related models</a></p>
-<p>Ok, Model 自此建立完毕，建立的文件在项目的<code>/server/models/</code>目录或者<code>/common/models</code>目录下，<br>这个依赖您自己的配置。</p>
-<p>那么，对于Scheme化的关系型数据库，如何自动在数据库中建立对应的表和字段呢？<br>很简单，对于如下的数据库，loopback提供了自动迁移（Auto-migrate）机制:</p>
+<p>Ok, Model 自此建立完毕，建立的文件在项目的<code>/server/models/</code>目录或者<code>/common/models</code>目录下， 这个依赖您自己的配置。</p>
+<p>那么，对于Scheme化的关系型数据库，如何自动在数据库中建立对应的表和字段呢？ 很简单，对于如下的数据库，loopback提供了自动迁移（Auto-migrate）机制:</p>
 <ul>
 <li>Oracle</li>
 <li>PostgreSQL</li>
@@ -577,7 +477,7 @@
 </ul>
 <p>注意：</p>
 <ul>
-<li>在mongoDB中的autoMigrate()会建立缺失的索引，但是不会修改它们，如果索引的定义改变了。所以你<br>必须要么在mongoDB Shell中修改，或者删除他们再重建。</li>
+<li>在mongoDB中的autoMigrate()会建立缺失的索引，但是不会修改它们，如果索引的定义改变了。所以你 必须要么在mongoDB Shell中修改，或者删除他们再重建。</li>
 <li><code>autoMigrate</code> 会首先 <code>Drop table</code> ，然后再建表。要保留数据，请用 <code>autoUpdate</code>.</li>
 </ul>
 <p>把脚本作为启动脚本放在项目的<code>/server/boot/</code>目录下(启动顺序按ASCII字母表顺序)：</p>
@@ -588,10 +488,12 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"User"</span>: &#123;</span><br><span class="line">    <span class="string">"dataSource"</span>: <span class="string">"myBlogger"</span>,</span><br><span class="line">    <span class="string">"public"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"AccessToken"</span>: &#123;</span><br><span class="line">    <span class="string">"dataSource"</span>: <span class="string">"myBlogger"</span>,</span><br><span class="line">    <span class="string">"public"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"ACL"</span>: &#123;</span><br><span class="line">    <span class="string">"dataSource"</span>: <span class="string">"myBlogger"</span>,</span><br><span class="line">    <span class="string">"public"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"RoleMapping"</span>: &#123;</span><br><span class="line">    <span class="string">"dataSource"</span>: <span class="string">"myBlogger"</span>,</span><br><span class="line">    <span class="string">"public"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"Role"</span>: &#123;</span><br><span class="line">    <span class="string">"dataSource"</span>: <span class="string">"myBlogger"</span>,</span><br><span class="line">    <span class="string">"public"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对内置Model的扩展方式可以参阅<a href="https://docs.strongloop.com/display/public/LB/Extending+built-in+models" target="_blank" rel="noopener">这里</a>.</p>
 <p>好了，现在，我们需要实现访问控制，loopback框架支持通过ACL(Access Control List)来控制权限。</p>
-<h2 id="slc-loopback-acl"><a href="#slc-loopback-acl" class="headerlink" title="slc loopback:acl"></a>slc loopback:acl</h2><p>权限：</p>
+<h2 id="slc-loopbackacl">slc loopback:acl</h2>
+<p>权限：</p>
 <ul>
 <li>未登录用户只能看博客或者评论</li>
-<li>登录用户可以:<ul>
+<li>登录用户可以:
+<ul>
 <li>创建博文</li>
 <li>编辑自己的博文</li>
 <li>发表自己的博文</li>
@@ -601,8 +503,7 @@
 <li>编辑自己的评论</li>
 <li>喜欢某个评论</li>
 <li>不喜欢某个评论</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>首先，针对博客和评论，我们对任何人禁止掉所有的权限访问。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ slc loopback:acl</span><br><span class="line">? Select the model to apply the ACL entry to: Blog</span><br><span class="line">? Select the ACL scope: All methods and properties</span><br><span class="line">? Select the access type: All (match all types)</span><br><span class="line">? Select the role: All users</span><br><span class="line">? Select the permission to apply: Explicitly deny access</span><br><span class="line"></span><br><span class="line">$ slc loopback:acl</span><br><span class="line">? Select the model to apply the ACL entry to: Comment</span><br><span class="line">? Select the ACL scope: All methods and properties</span><br><span class="line">? Select the access type: All (match all types)</span><br><span class="line">? Select the role: All users</span><br><span class="line">? Select the permission to apply: Explicitly deny access</span><br></pre></td></tr></table></figure>
@@ -629,29 +530,32 @@
 <p>注意：如果直接在代码里调用remoteMethod去添加远程方法，那么在Model.definition.settings.methods中不会出现。</p>
 <p>另外，通过禁止Model内置的删除方法，还可以禁止任何删除评论,修改 <code>models/comment.js</code>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Comment.disableRemoteMethod(<span class="string">'deleteById'</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<p>我们还可以通过修改路由文件 <code>/server/boot/routes.js</code> 来扩展自己的定制路由，比如我们希望能<br>通过这样的路径访问到用户的博文: <code>/:user/:slug</code>：</p>
+<p>我们还可以通过修改路由文件 <code>/server/boot/routes.js</code> 来扩展自己的定制路由，比如我们希望能 通过这样的路径访问到用户的博文: <code>/:user/:slug</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/:user/:slug'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  Blog.findOne(&#123; <span class="attr">where</span>: &#123;<span class="attr">authorId</span>: req.params.user, <span class="attr">slug</span>:req.params.slug&#125;, <span class="attr">include</span>: <span class="string">'comments'</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, record</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) res.send(err);</span><br><span class="line">    <span class="keyword">if</span> (!err &amp;&amp; record) &#123;</span><br><span class="line">      res.send(record);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      res.send(<span class="number">404</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="Storage-component"><a href="#Storage-component" class="headerlink" title="Storage component"></a>Storage component</h2><p>通过使用<a href="https://docs.strongloop.com/display/public/LB/Storage+component" target="_blank" rel="noopener">Storage component</a>获得支持文件上传下载功能。<br>该组件作为一种特殊的Datasource来使用，它支持如下的存储：</p>
+<h2 id="storage-component">Storage component</h2>
+<p>通过使用<a href="https://docs.strongloop.com/display/public/LB/Storage+component" target="_blank" rel="noopener">Storage component</a>获得支持文件上传下载功能。 该组件作为一种特殊的Datasource来使用，它支持如下的存储：</p>
 <ul>
-<li>云存储<ul>
+<li>云存储
+<ul>
 <li>Amazon</li>
 <li>Rackspace</li>
 <li>Openstack</li>
 <li>Azure</li>
-</ul>
-</li>
+</ul></li>
 <li>本地文件存储</li>
 </ul>
 <p>存储组件将文件内容组织为容器<code>containers</code> 和文件 <code>files</code>。一个<code>container</code>包含一系列的文件，每一个文件必属于一个容器。</p>
 <ul>
-<li><code>Container</code> groups files, similar to a directory or folder. A container defines the namespace for objects and is uniquely identified by its name, typically within a user account.<ul>
+<li><code>Container</code> groups files, similar to a directory or folder. A container defines the namespace for objects and is uniquely identified by its name, typically within a user account.
+<ul>
 <li>NOTE: A container cannot have child containers.</li>
-</ul>
-</li>
+</ul></li>
 <li><code>File</code> stores the data, such as a document or image. A file is always in one (and only one) container. Within a container, each file has a unique name. Files in different containers can have the same name.</li>
 </ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install loopback-component-storage</span><br></pre></td></tr></table></figure>
-<h3 id="Datasource"><a href="#Datasource" class="headerlink" title="Datasource"></a>Datasource</h3><p>接着我们需要创建一个新的Datasource：</p>
+<h3 id="安装">安装</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install loopback-component-storage</span><br></pre></td></tr></table></figure>
+<h3 id="datasource">Datasource</h3>
+<p>接着我们需要创建一个新的Datasource：</p>
 <p>可以直接在 <code>/server/datasources.json</code> 文件中创建：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">"myfile": &#123;</span><br><span class="line">   "name": "myfile",</span><br><span class="line">   "connector": "loopback-component-storage",</span><br><span class="line">   "provider": "amazon",</span><br><span class="line">   "key": "your amazon key",</span><br><span class="line">   "keyId": "your amazon key id"</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>也可以在程序中创建:</p>
@@ -659,65 +563,70 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ds = loopback.createDataSource(&#123;</span><br><span class="line">    connector: <span class="built_in">require</span>(<span class="string">'loopback-component-storage'</span>),</span><br><span class="line">    provider: <span class="string">'filesystem'</span>,</span><br><span class="line">    root: path.resolve(__dirname, <span class="string">'../storage'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> container = ds.createModel(<span class="string">'container'</span>, <span class="literal">null</span>, <span class="attr">base</span>: <span class="string">'Model'</span>);</span><br><span class="line">app.model(container);</span><br></pre></td></tr></table></figure>
 <p>然后就可以在API中访问:</p>
 <table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>REST URI</th>
 <th>Description</th>
 <th>Container Model Method</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>GET /api/containers</td>
 <td>List all containers.</td>
 <td>getContainers(cb)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>GET /api/containers/:container</td>
 <td>Get information about specified container.</td>
 <td>getContainer(container, cb)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>POST /api/containers</td>
 <td>Create a new container.</td>
 <td>createContainer(options, cb)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>DELETE /api/containers/:container</td>
 <td>Delete specified container.</td>
 <td>destroyContainer(container, cb)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>GET /api/containers/:container/files</td>
 <td>List all files within specified container.</td>
 <td>getFiles(container, download, cb)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>GET /api/containers/:container/files/:file</td>
 <td>Get information for specified file within specified container.</td>
 <td>getFile(container, file, cb)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>DELETE /api/containers/:container/files/:file</td>
 <td>Delete a file within a given container by name.</td>
 <td>removeFile(container, file, cb)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>POST /api/containers/:container/upload</td>
 <td>Upload one or more files into the specified container. The request body must use multipart/form-data which the file input type for HTML uses.</td>
 <td>upload(req, res, cb)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>GET /api/containers/:container/download/:file</td>
 <td>Download a file within specified container.</td>
 <td>download(container, file, res, cb)</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>Get a stream for uploading.</td>
 <td>uploadStream(container, file, options, cb)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>Get a stream for downloading.</td>
 <td>downloadStream(container, file, options, cb)</td>
@@ -727,14 +636,18 @@
 <p>如果是用本地文件系统，那么每创建一个容器，对应于每创建一个子目录:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST --header <span class="string">"Content-Type: application/json"</span> --header <span class="string">"Accept: application/json"</span> -d <span class="string">"&#123;</span></span><br><span class="line"><span class="string">  \"name\": \"test\"</span></span><br><span class="line"><span class="string">&#125;"</span> <span class="string">"http://localhost:3000/api/containers"</span></span><br></pre></td></tr></table></figure>
 <p>注意当前container只支持1级目录，不支持多级目录。</p>
-<h1 id="深入探索"><a href="#深入探索" class="headerlink" title="深入探索"></a>深入探索</h1><h2 id="slc-loopback-swagger"><a href="#slc-loopback-swagger" class="headerlink" title="slc loopback:swagger"></a>slc loopback:swagger</h2><p>即由 <code>loopback:swagger</code> 可以把 Open API 文档直接导入进 loopback 应用。<br>不过，它会针对API文档的<code>basePath</code>虚拟一个非持久化model: <code>swagger_xxx</code>，在Open API上的接口<br>从这个虚拟model上暴露出来。</p>
+<h1 id="深入探索">深入探索</h1>
+<h2 id="slc-loopbackswagger">slc loopback:swagger</h2>
+<p>即由 <code>loopback:swagger</code> 可以把 Open API 文档直接导入进 loopback 应用。 不过，它会针对API文档的<code>basePath</code>虚拟一个非持久化model: <code>swagger_xxx</code>，在Open API上的接口 从这个虚拟model上暴露出来。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">slc loopback:swagger &lt;your_api_doc_path&gt;</span><br><span class="line">? Enter the swagger spec url or file path: (wiki\user-api.yaml)</span><br><span class="line">? Select models to be generated: (Press &lt;space&gt; to select)</span><br><span class="line">&gt;(*) swagger_users</span><br><span class="line"> ( ) UserModel</span><br><span class="line">Creating model definition for swagger_users...</span><br><span class="line">Creating model definition for UserModel...</span><br><span class="line">Model definition created/updated for swagger_users.</span><br><span class="line">Model definition created/updated for UserModel.</span><br><span class="line">Creating model config for swagger_users...</span><br><span class="line">Creating model config for UserModel...</span><br><span class="line">Model config created for swagger_users.</span><br><span class="line">Model config created for UserModel.</span><br><span class="line">Generating project\server\models\swagger-users.js</span><br><span class="line">Models are successfully generated from swagger spec.</span><br></pre></td></tr></table></figure>
 <p>slc应该提供一个方便的model以及<code>remote method</code>文档描述和生成工具。</p>
-<h2 id="内建的-models"><a href="#内建的-models" class="headerlink" title="内建的 models"></a>内建的 models</h2><p>参阅：<a href="https://github.com/strongloop/loopback/blob/master/lib/builtin-models.js" target="_blank" rel="noopener">这里</a></p>
-<p>the built-in models attach to the ‘db’ datasource automatically:</p>
+<h2 id="内建的-models">内建的 models</h2>
+<p>参阅：<a href="https://github.com/strongloop/loopback/blob/master/lib/builtin-models.js" target="_blank" rel="noopener">这里</a></p>
+<p>the built-in models attach to the 'db' datasource automatically:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dataSourceTypes = &#123;</span><br><span class="line">   DB: <span class="string">'db'</span>,</span><br><span class="line">   MAIL: <span class="string">'mail'</span></span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> registry.Email.autoAttach = dataSourceTypes.MAIL;</span><br><span class="line"> registry.getModel(<span class="string">'PersistedModel'</span>).autoAttach = dataSourceTypes.DB;</span><br><span class="line"> registry.User.autoAttach = dataSourceTypes.DB;</span><br><span class="line"> registry.AccessToken.autoAttach = dataSourceTypes.DB;</span><br><span class="line"> registry.Role.autoAttach = dataSourceTypes.DB;</span><br><span class="line"> registry.RoleMapping.autoAttach = dataSourceTypes.DB;</span><br><span class="line"> registry.ACL.autoAttach = dataSourceTypes.DB;</span><br><span class="line"> registry.Scope.autoAttach = dataSourceTypes.DB;</span><br><span class="line"> registry.Application.autoAttach = dataSourceTypes.DB;</span><br></pre></td></tr></table></figure>
 <p>扩展内置Model，除了官方文中提到方法外，还可以在 <code>/server/boot/</code>文件中直接对原有Model增加字段。</p>
-<h3 id="User"><a href="#User" class="headerlink" title="User"></a><a href="https://apidocs.strongloop.com/loopback/#user" target="_blank" rel="noopener">User</a></h3><p>Default User ACLs.</p>
+<h3 id="user"><a href="https://apidocs.strongloop.com/loopback/#user" target="_blank" rel="noopener">User</a></h3>
+<p>Default User ACLs.</p>
 <ul>
 <li>DENY EVERYONE *</li>
 <li>ALLOW EVERYONE create</li>
@@ -755,7 +668,8 @@
 <li>emailVerified(<em>boolean</em>)</li>
 <li>verificationToken(<em>string</em>)</li>
 </ul>
-<h4 id="Register"><a href="#Register" class="headerlink" title="Register"></a>Register</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -H <span class="string">"Content-Type:application/json"</span> \</span><br><span class="line">-d <span class="string">'&#123;"email": "me@domain.com", "password": "secret"&#125;'</span> \</span><br><span class="line">http://localhost:3000/api/users</span><br></pre></td></tr></table></figure>
+<h4 id="register">Register</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -H <span class="string">"Content-Type:application/json"</span> \</span><br><span class="line">-d <span class="string">'&#123;"email": "me@domain.com", "password": "secret"&#125;'</span> \</span><br><span class="line">http://localhost:3000/api/users</span><br></pre></td></tr></table></figure>
 <p>自带的注册验证为电子邮件验证，另外如果需要在注册前验证是否用户名或者邮件地址已经被注册，可以使用 <code>beforeRemote</code> hook.</p>
 <p>启用电子邮件验证(必须先设置<a href="https://docs.strongloop.com/display/public/LB/Using+built-in+models#Usingbuilt-inmodels-Emailmodel" target="_blank" rel="noopener">Mail datasource</a>):</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server/model-config.json</span></span><br><span class="line"><span class="string">"user"</span>: &#123;</span><br><span class="line">    <span class="string">"dataSource"</span>: <span class="string">"db"</span>,</span><br><span class="line">    <span class="string">"public"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"options"</span>: &#123;</span><br><span class="line">      <span class="string">"emailVerificationRequired"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -763,109 +677,118 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'../../server/config.json'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//send verification email after registration</span></span><br><span class="line">  user.afterRemote(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">context, userInstance, next</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'&gt; user.afterRemote triggered'</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">var</span> options = &#123;</span><br><span class="line">      type: <span class="string">'email'</span>,</span><br><span class="line">      to: userInstance.email,</span><br><span class="line">      <span class="keyword">from</span>: <span class="string">'noreply@loopback.com'</span>,</span><br><span class="line">      subject: <span class="string">'Thanks for registering.'</span>,</span><br><span class="line">      template: path.resolve(__dirname, <span class="string">'../../server/views/verify.ejs'</span>),</span><br><span class="line">      redirect: <span class="string">'/verified'</span>,</span><br><span class="line">      user: user</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    userInstance.verify(options, <span class="function"><span class="keyword">function</span>(<span class="params">err, response, next</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line"> </span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'&gt; verification email sent:'</span>, response);</span><br><span class="line"> </span><br><span class="line">      context.res.render(<span class="string">'response'</span>, &#123;</span><br><span class="line">        title: <span class="string">'Signed up successfully'</span>,</span><br><span class="line">        content: <span class="string">'Please check your email and click on the verification link '</span> +</span><br><span class="line">            <span class="string">'before logging in.'</span>,</span><br><span class="line">        redirectTo: <span class="string">'/'</span>,</span><br><span class="line">        redirectToLinkText: <span class="string">'Log in'</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>模板文件 verify.ejs:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This is the html version of your email.</span><br><span class="line">&lt;strong&gt;&lt;%= text %&gt;&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="ACL-Access-Control-List"><a href="#ACL-Access-Control-List" class="headerlink" title="ACL(Access Control List)"></a><a href="https://docs.strongloop.com/display/public/LB/Authentication%2C+authorization%2C+and+permissions" target="_blank" rel="noopener">ACL(Access Control List)</a></h3><h4 id="访问控制概念"><a href="#访问控制概念" class="headerlink" title="访问控制概念"></a>访问控制概念</h4><ul>
-<li>Principal: An entity that can be identified or authenticated.<ul>
+<h3 id="aclaccess-control-list"><a href="https://docs.strongloop.com/display/public/LB/Authentication%2C+authorization%2C+and+permissions" target="_blank" rel="noopener">ACL(Access Control List)</a></h3>
+<h4 id="访问控制概念">访问控制概念</h4>
+<ul>
+<li>Principal: An entity that can be identified or authenticated.
+<ul>
 <li>Represents identities of a request to protected resources.</li>
-<li>eg:<ul>
+<li>eg:
+<ul>
 <li>A user</li>
 <li>An application</li>
 <li>A role (please note a role is also a principal)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Role: A group of principals with the same permissions.<ul>
-<li>eg:<ul>
-<li>Dynamic role:<ul>
+</ul></li>
+</ul></li>
+<li>Role: A group of principals with the same permissions.
+<ul>
+<li>eg:
+<ul>
+<li>Dynamic role:
+<ul>
 <li>$everyone (for all users)</li>
 <li>$unauthenticated (unauthenticated users)</li>
 <li>$owner (the principal is owner of the model instance)</li>
-</ul>
-</li>
+</ul></li>
 <li>Static role: admin (a defined role for administrators)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>RoleMapping: Assign principals to roles<ul>
+</ul></li>
+</ul></li>
+<li>RoleMapping: Assign principals to roles
+<ul>
 <li>Statically assigns principals to roles.</li>
-<li>eg:<ul>
+<li>eg:
+<ul>
 <li>Assign user with id 1 to role 1</li>
-<li>Assign role ‘admin’ to role 1</li>
+<li>Assign role 'admin' to role 1</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="常规处理步骤"><a href="#常规处理步骤" class="headerlink" title="常规处理步骤"></a>常规处理步骤</h4><ul>
-<li><strong>指定用户角色</strong>.  定义需要的用户角色。例如：匿名用户，认证用户和管理者。</li>
-<li><strong>定义每一个角色或者Model的访问权限D</strong>.  例如：匿名用户只可以读银行列表，但是不允许其它操作.<br>LoopBack 的models 有一套内置的方法，每一个方法被映射为 <code>READ</code> 或者 <code>WRITE</code> 访问权限.  In essence, this step amounts to specifying whether access is allowed for each role and each Model + access type, as illustrated in the example below.</li>
+<h4 id="常规处理步骤">常规处理步骤</h4>
+<ul>
+<li><strong>指定用户角色</strong>. 定义需要的用户角色。例如：匿名用户，认证用户和管理者。</li>
+<li><strong>定义每一个角色或者Model的访问权限D</strong>. 例如：匿名用户只可以读银行列表，但是不允许其它操作. LoopBack 的models 有一套内置的方法，每一个方法被映射为 <code>READ</code> 或者 <code>WRITE</code> 访问权限. In essence, this step amounts to specifying whether access is allowed for each role and each Model + access type, as illustrated in the example below.</li>
 <li><strong>实现认证</strong>: 添加代码区创建(注册)用户，登录用户（获取并使用认证token），并注销用户。</li>
 </ul>
-<h4 id="如何暴露隐藏-models-方法-和-API"><a href="#如何暴露隐藏-models-方法-和-API" class="headerlink" title="如何暴露隐藏 models, 方法 和 API"></a>如何暴露隐藏 models, 方法 和 API</h4><p>通过 REST API 暴露一个 model 非常简单，只需要设置 <code>/server/model-config.json</code> 文件的 <code>public</code> 属性为 <code>true</code> 即可:</p>
+<h4 id="如何暴露隐藏-models-方法-和-api">如何暴露隐藏 models, 方法 和 API</h4>
+<p>通过 REST API 暴露一个 model 非常简单，只需要设置 <code>/server/model-config.json</code> 文件的 <code>public</code> 属性为 <code>true</code> 即可:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"Role": &#123;</span><br><span class="line">  "dataSource": "db",</span><br><span class="line">  "public": false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="隐藏方法和REST-API"><a href="#隐藏方法和REST-API" class="headerlink" title="隐藏方法和REST API"></a>隐藏方法和REST API</h5><p>如果你不想暴露特定的 create, retrieve, update, delete 操作, 那么你可以通过调用Model的 <code>disableRemoteMethod()</code> 方法来实现。<br>在你的model文件(<code>common/models/</code>目录下)中加入以下的代码，隐藏预定义的API方法:</p>
+<h5 id="隐藏方法和rest-api">隐藏方法和REST API</h5>
+<p>如果你不想暴露特定的 create, retrieve, update, delete 操作, 那么你可以通过调用Model的 <code>disableRemoteMethod()</code> 方法来实现。 在你的model文件(<code>common/models/</code>目录下)中加入以下的代码，隐藏预定义的API方法:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isStatic = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//hide the predefined remote methods</span></span><br><span class="line">MyModel.disableRemoteMethod(<span class="string">'deleteById'</span>, isStatic);</span><br></pre></td></tr></table></figure>
 <p>如果你想隐藏的方法是在prototype上的<code>实例方法</code>,那么你需要设置 <code>isStatic</code> 为 <code>false</code>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isStatic = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">//hide the methods on the prototype</span></span><br><span class="line">MyModel.disableRemoteMethod(<span class="string">'updateAttributes'</span>, isStatic);</span><br></pre></td></tr></table></figure>
-<h4 id="定义使用Role"><a href="#定义使用Role" class="headerlink" title="定义使用Role"></a>定义使用Role</h4><p>LoopBack 支持静态或动态的角色。静态角色保存在数据库中并映射到用户。作为对比，动态角色并不<br>事先和用户绑定，它是在访问时才被确定。</p>
-<h5 id="Static-roles"><a href="#Static-roles" class="headerlink" title="Static roles"></a>Static roles</h5><p>创建静态 Role 记录:</p>
+<h4 id="定义使用role">定义使用Role</h4>
+<p>LoopBack 支持静态或动态的角色。静态角色保存在数据库中并映射到用户。作为对比，动态角色并不 事先和用户绑定，它是在访问时才被确定。</p>
+<h5 id="static-roles">Static roles</h5>
+<p>创建静态 Role 记录:</p>
 <figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Role.create name: <span class="string">'admin'</span>, <span class="function"><span class="params">(err, role)</span>-&gt;</span></span><br><span class="line">  <span class="keyword">return</span> cb(err) <span class="keyword">if</span> err</span><br><span class="line">  <span class="comment"># add a user to the role.</span></span><br><span class="line">  role.principals.create principalType: RoleMapping.USER, principalId: aUser.id, <span class="function"><span class="params">(err, principal)</span>-&gt;</span></span><br><span class="line">    cb(err)</span><br></pre></td></tr></table></figure>
 <p>但是更普通的用法应该是：</p>
 <figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Role.create name: <span class="string">'project.del'</span>, <span class="function"><span class="params">(err, role)</span>-&gt;</span></span><br><span class="line">  <span class="keyword">return</span> cb(err) <span class="keyword">if</span> err</span><br><span class="line">  <span class="comment"># assign admin to the project.del role.</span></span><br><span class="line">  role.principals.create principalType: RoleMapping.ROLE, principalId: <span class="string">'admin'</span>, <span class="function"><span class="params">(err, principal)</span>-&gt;</span></span><br><span class="line">    cb(err)</span><br></pre></td></tr></table></figure>
 <p>这样会在权限角色上挂大量的用户自定义角色，太糟糕了，所以只能通过编写动态角色来做。</p>
-<h5 id="Dynamic-roles"><a href="#Dynamic-roles" class="headerlink" title="Dynamic roles"></a>Dynamic roles</h5><p>大多数时候，静态角色的灵活性并不够，因此 Loopback提供了在运行时刻确定权限的动态角色。</p>
+<h5 id="dynamic-roles">Dynamic roles</h5>
+<p>大多数时候，静态角色的灵活性并不够，因此 Loopback提供了在运行时刻确定权限的动态角色。</p>
 <p>并且 LoopBack 提供下列内置的动态角色：</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Role 对象属性</th>
 <th>字符串值</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Role.OWNER</td>
 <td>$owner</td>
 <td>Owner of the object</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Role.AUTHENTICATED</td>
 <td>$authenticated</td>
 <td>authenticated user</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Role.UNAUTHENTICATED</td>
 <td>$unauthenticated</td>
 <td>Unauthenticated user</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Role.EVERYONE</td>
 <td>$everyone</td>
 <td>Everyone</td>
 </tr>
 </tbody>
 </table>
-<p>如何定义<code>动态角色</code>? 只需要在启动(boot)脚本中使用 <code>Role.registerResolver(name, fnRoleHandler)</code> 配置自己的<br>定制角色处理器即可。该函数有两个参数:</p>
-<ol>
+<p>如何定义<code>动态角色</code>? 只需要在启动(boot)脚本中使用 <code>Role.registerResolver(name, fnRoleHandler)</code> 配置自己的 定制角色处理器即可。该函数有两个参数:</p>
+<ol type="1">
 <li>该动态角色的名称</li>
-<li>角色处理器异步函数，确定一个 principal 是否在该动态角色里。该函数传入的参数为 <code>function(role, context, callback)</code><ul>
+<li>角色处理器异步函数，确定一个 principal 是否在该动态角色里。该函数传入的参数为 <code>function(role, context, callback)</code></li>
+</ol>
+<ul>
 <li>role: 来自的role</li>
 <li>content: 当前期望访问的内容principal.</li>
-<li>callback: 返回结果回调函数。<code>function(error, result)</code><ul>
+<li>callback: 返回结果回调函数。<code>function(error, result)</code>
+<ul>
 <li>error: 如果有错误则把error对象传入该参数，否则应该是<code>null</code></li>
 <li>result: <em>(boolean)</em> ，<code>true</code> 表示允许，<code>false</code> 表示拒绝。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ol>
 <p>例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// /server/boot/script.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> Role = app.models.Role;</span><br><span class="line">  Role.registerResolver(<span class="string">'teamMember'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">role, context, cb</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(err) &#123;</span><br><span class="line">        <span class="keyword">return</span> cb(err);</span><br><span class="line">      &#125;</span><br><span class="line">      cb(<span class="literal">null</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (context.modelName !== <span class="string">'project'</span>) &#123;</span><br><span class="line">      <span class="comment">// the target model is not project</span></span><br><span class="line">      <span class="keyword">return</span> reject();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> userId = context.accessToken.userId;</span><br><span class="line">    <span class="keyword">if</span> (!userId) &#123;</span><br><span class="line">      <span class="keyword">return</span> reject(); <span class="comment">// do not allow anonymous users</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// check if userId is in team table for the given project id</span></span><br><span class="line">    context.model.findById(context.modelId, <span class="function"><span class="keyword">function</span>(<span class="params">err, project</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(err || !project) &#123;</span><br><span class="line">        reject(err);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">var</span> Team = app.models.Team;</span><br><span class="line">      Team.count(&#123;</span><br><span class="line">        ownerId: project.ownerId,</span><br><span class="line">        memberId: userId</span><br><span class="line">      &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, count</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="keyword">return</span> reject(err);</span><br><span class="line">        &#125;</span><br><span class="line">        cb(<span class="literal">null</span>, count &gt; <span class="number">0</span>); <span class="comment">// true = is a team member</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>接下来就可以在model中使用该动态角色<code>teamMember</code>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// /common/models/model.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"accessType"</span>: <span class="string">"READ"</span>,</span><br><span class="line">  <span class="string">"principalType"</span>: <span class="string">"ROLE"</span>,</span><br><span class="line">  <span class="string">"principalId"</span>: <span class="string">"teamMember"</span>,</span><br><span class="line">  <span class="string">"permission"</span>: <span class="string">"ALLOW"</span>,</span><br><span class="line">  <span class="string">"property"</span>: <span class="string">"findById"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="终端打印"><a href="#终端打印" class="headerlink" title="终端打印"></a><a href="https://docs.strongloop.com/display/public/LB/Setting+debug+strings" target="_blank" rel="noopener">终端打印</a></h2><p>在开发过程中希望通过终端输出调试信息，则可以根据自己的模块以及组织引入：</p>
+<h2 id="终端打印"><a href="https://docs.strongloop.com/display/public/LB/Setting+debug+strings" target="_blank" rel="noopener">终端打印</a></h2>
+<p>在开发过程中希望通过终端输出调试信息，则可以根据自己的模块以及组织引入：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> log = <span class="built_in">require</span>(<span class="string">'debug'</span>)(<span class="string">'common:autoMigrate'</span>);</span><br><span class="line"></span><br><span class="line">log(<span class="string">"this is a debug info."</span>);</span><br></pre></td></tr></table></figure>
 <p>使用时候:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ DEBUG=&lt;pattern&gt;[,&lt;pattern&gt;...] node .</span><br></pre></td></tr></table></figure>
@@ -873,534 +796,262 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ DEBUG=common:* node .</span><br></pre></td></tr></table></figure>
 <p>具体的内置模块调试信息参阅: <a href="https://docs.strongloop.com/display/public/LB/Setting+debug+strings" target="_blank" rel="noopener">Setting debug strings</a></p>
 
-      
     </div>
 
-    <div>
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
       
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
         
 
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
-            <a href="/tags/creation/" rel="tag"># creation</a>
-          
-            <a href="/tags/framework/" rel="tag"># framework</a>
-          
-            <a href="/tags/nodejs/" rel="tag"># nodejs</a>
-          
-            <a href="/tags/api/" rel="tag"># api</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/article/promise.cn/" rel="next" title="异步编程与 Promise">
-                <i class="fa fa-chevron-left"></i> 异步编程与 Promise
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/life/index/" rel="prev" title="逝水流连，随风而去">
-                逝水流连，随风而去 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://riceball.me/article/loopback/" title="The Loopback Open API Framework">http://riceball.me/article/loopback/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
-<script type="text/javascript">
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
-      
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/creation/" rel="tag"># creation</a>
+              <a href="/tags/framework/" rel="tag"># framework</a>
+              <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+              <a href="/tags/api/" rel="tag"># api</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/promise.cn/" rel="prev" title="异步编程与 Promise">
+      <i class="fa fa-chevron-left"></i> 异步编程与 Promise
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/life/index/" rel="next" title="逝水流连，随风而去">
+      逝水流连，随风而去 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
         </div>
-        
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f" alt="Riceball LEE">
-          <p class="site-author-name" itemprop="name">Riceball LEE</p>
-          <p class="site-description motion-element" itemprop="description">Go with wind.</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">26</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">32</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">97</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/snowyu" target="_blank" title="github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
-            </a>
-          </div>
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Loopback-Framework"><span class="nav-number">1.</span> <span class="nav-text">Loopback Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Features"><span class="nav-number">1.1.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">1.2.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-loopback-应用"><span class="nav-number">1.3.</span> <span class="nav-text">创建 loopback 应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopback-datasource"><span class="nav-number">1.4.</span> <span class="nav-text">slc loopback:datasource</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopback-model"><span class="nav-number">1.5.</span> <span class="nav-text">slc loopback:model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Blog-Model"><span class="nav-number">1.5.1.</span> <span class="nav-text">Blog Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comment-Model"><span class="nav-number">1.5.2.</span> <span class="nav-text">Comment Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopback-relation"><span class="nav-number">1.6.</span> <span class="nav-text">slc loopback:relation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopback-acl"><span class="nav-number">1.7.</span> <span class="nav-text">slc loopback:acl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage-component"><span class="nav-number">1.8.</span> <span class="nav-text">Storage component</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.8.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Datasource"><span class="nav-number">1.8.2.</span> <span class="nav-text">Datasource</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入探索"><span class="nav-number">2.</span> <span class="nav-text">深入探索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopback-swagger"><span class="nav-number">2.1.</span> <span class="nav-text">slc loopback:swagger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内建的-models"><span class="nav-number">2.2.</span> <span class="nav-text">内建的 models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User"><span class="nav-number">2.2.1.</span> <span class="nav-text">User</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Register"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">Register</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ACL-Access-Control-List"><span class="nav-number">2.2.2.</span> <span class="nav-text">ACL(Access Control List)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问控制概念"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">访问控制概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常规处理步骤"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">常规处理步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何暴露隐藏-models-方法-和-API"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">如何暴露隐藏 models, 方法 和 API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏方法和REST-API"><span class="nav-number">2.2.2.3.1.</span> <span class="nav-text">隐藏方法和REST API</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义使用Role"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">定义使用Role</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Static-roles"><span class="nav-number">2.2.2.4.1.</span> <span class="nav-text">Static roles</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dynamic-roles"><span class="nav-number">2.2.2.4.2.</span> <span class="nav-text">Dynamic roles</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#终端打印"><span class="nav-number">2.3.</span> <span class="nav-text">终端打印</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#loopback-framework"><span class="nav-number">1.</span> <span class="nav-text">Loopback Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#features"><span class="nav-number">1.1.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.2.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-loopback-应用"><span class="nav-number">1.3.</span> <span class="nav-text">创建 loopback 应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopbackdatasource"><span class="nav-number">1.4.</span> <span class="nav-text">slc loopback:datasource</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopbackmodel"><span class="nav-number">1.5.</span> <span class="nav-text">slc loopback:model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#blog-model"><span class="nav-number">1.5.1.</span> <span class="nav-text">Blog Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#comment-model"><span class="nav-number">1.5.2.</span> <span class="nav-text">Comment Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopbackrelation"><span class="nav-number">1.6.</span> <span class="nav-text">slc loopback:relation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopbackacl"><span class="nav-number">1.7.</span> <span class="nav-text">slc loopback:acl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#storage-component"><span class="nav-number">1.8.</span> <span class="nav-text">Storage component</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.8.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datasource"><span class="nav-number">1.8.2.</span> <span class="nav-text">Datasource</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入探索"><span class="nav-number">2.</span> <span class="nav-text">深入探索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#slc-loopbackswagger"><span class="nav-number">2.1.</span> <span class="nav-text">slc loopback:swagger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内建的-models"><span class="nav-number">2.2.</span> <span class="nav-text">内建的 models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#user"><span class="nav-number">2.2.1.</span> <span class="nav-text">User</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#register"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">Register</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aclaccess-control-list"><span class="nav-number">2.2.2.</span> <span class="nav-text">ACL(Access Control List)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问控制概念"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">访问控制概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常规处理步骤"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">常规处理步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何暴露隐藏-models-方法-和-api"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">如何暴露隐藏 models, 方法 和 API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏方法和rest-api"><span class="nav-number">2.2.2.3.1.</span> <span class="nav-text">隐藏方法和REST API</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义使用role"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">定义使用Role</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#static-roles"><span class="nav-number">2.2.2.4.1.</span> <span class="nav-text">Static roles</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dynamic-roles"><span class="nav-number">2.2.2.4.2.</span> <span class="nav-text">Dynamic roles</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#终端打印"><span class="nav-number">2.3.</span> <span class="nav-text">终端打印</span></a></li></ol></li></ol></div>
+      </div>
       <!--/noindex-->
-      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        
+
+<div class="copyright">
   
-  &copy;  2014 - 
+  &copy; 2014 – 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">156k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:43</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
 
         
+
+
+
+
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 
   
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'riceballl';
-      var disqus_identifier = 'article/loopback/';
-
-      var disqus_title = "The Loopback Open API Framework";
-
-
-      function run_disqus_script(disqus_script) {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-
-      
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-
-    </script>
-  
-
-
-
-
-
-  
-  
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-      search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-      $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
-            return {
-              title: $( "title", this ).text(),
-              content: $("content",this).text(),
-              url: $( "url" , this).text()
-            };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
-                      }
-                    }
-
-                  });
-                }
-                // show search results
-                if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
-                    // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if(start == 0){
-                      end = 50;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
-                  }
-                  str += "</li>";
-                }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
-          proceedsearch();
-        }
-      });}
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
   </script>
 
 
-  
 
-  
 
-  
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
 <script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
+
   
 
+  
+
+  
 
 </body>
 </html>
