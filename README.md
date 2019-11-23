@@ -1,6 +1,84 @@
-Customized:
+## hexo-next-coauthor
 
- themes/next/layout/_partials/head/custom-head.swig
+Show author info on article lists and article head.
+
+## Math Formulas Render Support
+
+### marked-it
+
+```bash
+npm i hexo-renderer-markdown-it
+```
+
+```yml
+#  _config.yml
+# Markdown-it config
+## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    linkify: true
+    typographer: true
+    quotes: '“”‘’'
+  plugins:
+    - markdown-it-abbr
+    - markdown-it-footnote
+    - markdown-it-ins
+    - markdown-it-sub
+    - markdown-it-sup
+    - '@liradb2000/markdown-it-katex'
+  anchors:
+    level: 2
+    collisionSuffix: 'v'
+```
+
+```yml
+#  source/_data/next.yml
+# Math Formulas Render Support
+math:
+  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
+  katex:
+    enable: true
+    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
+    copy_tex: false
+```
+
+### pandoc
+
+```bash
+sudo apt install pandoc
+npm install hexo-renderer-pandoc
+```
+
+```yml
+pandoc:
+  mathEngine: katex # By default, mathEngine is mathjax.
+```
+
+```yml
+# Math Formulas Render Support
+math:
+  # Default (true) will load mathjax / katex script on demand.
+  # That is it only render those page which has `mathjax: true` in Front-matter.
+  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
+  per_page: true
+
+  # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.
+  mathjax:
+    enable: true
+    # See: https://mhchem.github.io/MathJax-mhchem/
+    mhchem: false
+  katex:
+    enable: false
+```
+
+## Theme-next Customized:
+
+themes/next config: `source/_data/next.yml`:
+
+`source/_data/head.swig`:
 
 ```html
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
