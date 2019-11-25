@@ -74,7 +74,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>DIY 与 云计算（一） | Riceball LEE</title>
   
@@ -328,30 +329,32 @@
 
 <p>真正的云计算服务是离不开DIY的，越有技术能力的公司DIY的程度越深，从硬件到软件无一不是在深度定制，用以压榨出更多硬件性能和节能。下面以Google举例来说。Google 的数据中心一直以来都是戒备森严的禁地，众所周知，Google和Amazon这些大佬总是对数据中心内部运营状态严格保密，因为Google把自己在对数据中心服务器的DIY定制能力视作为公司的核心竞争力之一。事实上google一直对于自己定制数据中心硬件严加保密，直到2009年才对外开了一个窗，向外界展示了它5年前的google定制数据中心的面貌。Google 定制自己的主板、机箱、机柜（集装箱），乃至数据中心，甚至利用地势来节能。</p>
 <p>Google 展示了自己DIY的一种<a href="./google-server.jpg">服务器</a>，使用一个12瓦电池供电，这比数据中心的 UPS 更可靠。Rich Miller 在<a href="http://www.datacenterknowledge.com/archives/2009/04/01/efficient-ups-aids-googles-extreme-pue/" target="_blank" rel="noopener">一篇关于数据中心的博客文章</a>中表示，这个设计让 Google 的 UPS 利用率达到99.9%，而一般数据中心只能达到92%～95%。</p>
-<figure>
-<img src="./google-server-l.jpg" alt="Google DIY Server Image"><figcaption>Google DIY Server Image</figcaption>
-</figure>
+<p><img src="./google-server-l.jpg" alt="Google DIY Server Image"></p>
 <p>在 Google 2009年数据中心节能峰会上，Google 表示他们的能效比（PUE - 数据中心总能耗与IT设备能耗比）已经从2008年第三季度的1.21下降到2008年第四季度的1.16。PUE 为 1 表示数据中心没有能源损耗，而根据2006年的统计，一般公司数据中心的能效比为 2.0 或更高。Google 的 1.16 已经低于美国能源部2011年的1.2 的目标。</p>
 <h2 id="数据中心-diy">数据中心 DIY</h2>
 <p>为啥大家不租用现成的数据中心机房，都要自建？</p>
-<p>目前大多数机房都是固定按月或按年收取费用，费用太高，已经不适应按需提供服务发展。 未来机房如果要发展，必须要能够按功能计费以及按消耗计费。否则这些新建的数据中心 未来可能就会取代现有机房模式。</p>
+<p>目前大多数机房都是固定按月或按年收取费用，费用太高，已经不适应按需提供服务发展。<br>
+未来机房如果要发展，必须要能够按功能计费以及按消耗计费。否则这些新建的数据中心<br>
+未来可能就会取代现有机房模式。</p>
 <p>机房功能：</p>
 <ul>
 <li>空调</li>
 <li>UPS</li>
 <li>交流电源</li>
 <li>直流电源</li>
-<li>...</li>
+<li>…</li>
 </ul>
 <p>计费功能:</p>
 <ul>
 <li>消耗电量计费</li>
 <li>设备损耗计费</li>
-<li>...</li>
+<li>…</li>
 </ul>
 <p>模组化数据中心是目前数据中心的一个普遍趋势。</p>
-<p>下图是Amazon DIY的Perdix数据中心模块： <img src="./amazon-perdix.jpg" alt="Amazon DIY Perdix Image"></p>
-<p>这是微软的ITPAC数据中心模组： <img src="./ms-diy-itpac.jpg" alt="MS DIY ITPAC Image"></p>
+<p>下图是Amazon DIY的Perdix数据中心模块：<br>
+<img src="./amazon-perdix.jpg" alt="Amazon DIY Perdix Image"></p>
+<p>这是微软的ITPAC数据中心模组：<br>
+<img src="./ms-diy-itpac.jpg" alt="MS DIY ITPAC Image"></p>
 <h2 id="开源云计算数据中心">开源云计算数据中心</h2>
 <p>与严格保密的Google不同，Facebook不仅全新设计的服务器和数据中心，并且将其设计方案开源，这简直是对Google莫大的蔑视。在Google，每一个Google员工都需要签署一份保密协议，而这在Facebook根本不需要。这也使得微软也公布了都柏林数据中心的部分细节。不过，据Google前员工透露，Google的数据中心因为持续仅10年不断创新改进而十分强大。但开放的Facebook却获得了更多拥护者，包括英特尔、Dell、华硕、Rackspace都加入了Open Compute Project中。</p>
 <p>去年4月，Facebook发布Open Compute Project，对其服务器以及数据中心的架构进行了开源，意在加速数据中心和服务器创新。Facebook此次不仅公开了技术文档，甚至连服务器和数据中心的CAD图纸设计也完全公开。也有人说Facebook此举是在讽刺Google，后者的数据中心和服务器领域技术公认非常领先，但一直视为独门绝技，密不示人。</p>
@@ -380,10 +383,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -479,20 +482,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -539,12 +542,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -621,7 +624,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>

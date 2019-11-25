@@ -70,7 +70,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>无后端构建的无痛HTML应用开发[2013趋势] | Riceball LEE</title>
   
@@ -320,31 +321,79 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="什么是无后端构建开发">什么是无后端构建开发</h1><p>无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储， 它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放 在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和 伸缩性。</p><a id="more"></a>
+        <h1>什么是无后端构建开发</h1><p>无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，<br>
+它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放<br>
+在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和<br>
+伸缩性。</p><a id="more"></a>
 
 <p>这个趋势意味着互联网数据正在由人读(human-readable)时代向机读(computer-readable)过渡。虽然语义网的w3c已经提出好久(1999)，相关标准(RDF/OWL/RIF)也是许久前就制定了，但是在互联网上的实际应用中，总是雷声大，雨点小，普及率最高的RSS和FOAF(Friend Of A Friend)也只是这小众。这归结于丑陋的XML格式，虽说是机读，但是实际上描述定义这些机读格式的也是人啊，如果格式的可读性差，操作复杂，那么自然愿意使用的开发者就少。</p>
 <p>而API则不然，这是程序开发中与外部系统交流理所当然的接口，是每个开发者都在用的，一看就懂的。当然API也有好坏之分，编写制定好的API接口比开发应用更难。这需要你具备更强的架构设计能力，从具体中提炼出通用的操作能力，以及要求可读性更强的命名能力。</p>
 <p>自从互联网上分布式 Restful 体系架构提出后，web上的 OpenAPI 也在日益增多，但是大部分OpenAPI还是在各行其是。认证这块，虽然有统一的标准OAuth, 但是对普通开发者来说，还需要去了解OAuth的内部原理，使用上还是难用，而且各个站点对OAuth的具体实现上，又略有差异，这更增加开发者的负担。所以目前出现具体针对各大站点的OAuth认证的二次封装的开发库，降低普通开发者的使用难度。现在这些基础通用操作再次被“无后端”构建模式统一封装和组织，使得普通开发者更加容易的使用。再次降低了开发者的门槛，开发者可以完全不管后端的架构设计和组织了。那么遵循这样的普及，互联网上会有越来越多的各式各样的云服务API平台，未来的互联网架构也将从独立的web站点，变成了彼此分享协作的WebApp。</p>
 <p>让我们具体来看一个例子。</p>
 <h2 id="例子">例子</h2>
-<p>首先，我们从帐号管理开发谈起，在传统开发中，我们需要定义帐号的表结构，进行数据库服务器配置， 然后运行数据库服务，创建数据库和数据表，并初始化数据。那么在“无后端构建”的开发中，上述操作包 括登录，都没有必要再去做这些繁琐的操作了，你只需要再云服务后台添加一个数据库设置好访问权限， 然后在前端应用中，直接引用SDK，写代码即可，剩下的事情则交给云服务去做就好了，梦幻般的代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mydb = <span class="keyword">new</span> iDB(<span class="string">"https://idb.isdk.org/mydb"</span>);</span><br><span class="line"><span class="keyword">var</span> account = myDb.account;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注册一个新用户</span></span><br><span class="line">account.signUp(<span class="string">'mike@example.com'</span>, <span class="string">'secret'</span>, &#123;<span class="attr">name</span>: <span class="string">"Mike John"</span>, <span class="attr">birthday</span>: <span class="string">'1988-01-01'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//登录</span></span><br><span class="line">account.signIn(<span class="string">'mike@example.com'</span>, <span class="string">'secret'</span>);</span><br><span class="line"><span class="comment">//使用第三方登录(Oaccount)</span></span><br><span class="line">account.signIn(using: <span class="string">'google'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变密码</span></span><br><span class="line">account.changePassword(<span class="string">'currentPassword'</span>, <span class="string">'newPassword'</span>);</span><br><span class="line">account.change(<span class="string">'password'</span>, <span class="string">'newPassword'</span>, &#123;<span class="attr">secret</span>: <span class="string">'currentPassword'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变Profile的信息</span></span><br><span class="line">account.change(<span class="string">'nickname'</span>, <span class="string">'newNickname'</span>, &#123;<span class="attr">secret</span>: <span class="string">'currentPassword'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取profile</span></span><br><span class="line">account.get();</span><br><span class="line">account.get(<span class="string">'name'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//彻底销毁自己的帐号</span></span><br><span class="line">account.destroy(&#123;<span class="attr">secret</span>: <span class="string">'currentPassword'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//注销</span></span><br><span class="line">account.signOut();</span><br><span class="line"></span><br><span class="line"><span class="comment">//忘记密码了，发送重置密码链接到指定邮箱</span></span><br><span class="line">account.resetPassword(<span class="string">'mike@example.com'</span>);</span><br></pre></td></tr></table></figure>
+<p>首先，我们从帐号管理开发谈起，在传统开发中，我们需要定义帐号的表结构，进行数据库服务器配置，<br>
+然后运行数据库服务，创建数据库和数据表，并初始化数据。那么在“无后端构建”的开发中，上述操作包<br>
+括登录，都没有必要再去做这些繁琐的操作了，你只需要再云服务后台添加一个数据库设置好访问权限，<br>
+然后在前端应用中，直接引用SDK，写代码即可，剩下的事情则交给云服务去做就好了，梦幻般的代码如下：</p>
+<pre><code class="js">var mydb = new iDB(&quot;https://idb.isdk.org/mydb&quot;);
+var account = myDb.account;
+
+//注册一个新用户
+account.signUp('mike@example.com', 'secret', {name: &quot;Mike John&quot;, birthday: '1988-01-01'});
+
+//登录
+account.signIn('mike@example.com', 'secret');
+//使用第三方登录(Oaccount)
+account.signIn(using: 'google');
+
+//改变密码
+account.changePassword('currentPassword', 'newPassword');
+account.change('password', 'newPassword', {secret: 'currentPassword'});
+
+//改变Profile的信息
+account.change('nickname', 'newNickname', {secret: 'currentPassword'});
+
+//获取profile
+account.get();
+account.get('name');
+
+//彻底销毁自己的帐号
+account.destroy({secret: 'currentPassword'});
+
+//注销
+account.signOut();
+
+//忘记密码了，发送重置密码链接到指定邮箱
+account.resetPassword('mike@example.com');
+</code></pre>
 <p>数据存储也是类似，事实上account的存储就是来自store。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> store = mydb.store;</span><br><span class="line">store.add(key, value);</span><br><span class="line">store.update(key, value);</span><br><span class="line">store.delete(key);</span><br><span class="line">store.get(key);</span><br><span class="line">store.listAll(key);</span><br><span class="line">store.list(key, subkey_pattern, skipCount, count);</span><br></pre></td></tr></table></figure>
-<p>无后端的开发模式，实质是基于云存储之上的云服务模式。因此它不仅仅适用于HTML5应用， 其它任何计算机语言都可以用它作为开发模式的。我们通过进一步的抽象后端开发，剥离出 了帐号和存储任务，慢慢的还会有消息(通知)，在线支付/交易，评论，聊天等等各种各样的 通用的操作(任务)会以更加简易方便的形式被剥离出来。</p>
-<p>提了这么多，那么这到底是梦幻呢，还是现在就能在互联网上可以玩到的技术呢？毋庸置疑， 这目前不仅能在互联网上玩到，而且BitTorrent, Codecademy等已经在产品中使用Firebase提供 的无后端云存储服务，下面列举一些无后端云存储服务提供者和开源项目。</p>
-<h1 id="无后端云存储服务提供者与开源项目">无后端云存储服务提供者与开源项目</h1>
+<pre><code class="js">var store = mydb.store;
+store.add(key, value);
+store.update(key, value);
+store.delete(key);
+store.get(key);
+store.listAll(key);
+store.list(key, subkey_pattern, skipCount, count);
+</code></pre>
+<p>无后端的开发模式，实质是基于云存储之上的云服务模式。因此它不仅仅适用于HTML5应用，<br>
+其它任何计算机语言都可以用它作为开发模式的。我们通过进一步的抽象后端开发，剥离出<br>
+了帐号和存储任务，慢慢的还会有消息(通知)，在线支付/交易，评论，聊天等等各种各样的<br>
+通用的操作(任务)会以更加简易方便的形式被剥离出来。</p>
+<p>提了这么多，那么这到底是梦幻呢，还是现在就能在互联网上可以玩到的技术呢？毋庸置疑，<br>
+这目前不仅能在互联网上玩到，而且BitTorrent, Codecademy等已经在产品中使用Firebase提供<br>
+的无后端云存储服务，下面列举一些无后端云存储服务提供者和开源项目。</p>
+<h1>无后端云存储服务提供者与开源项目</h1>
 <ul>
-<li> [<a href="http://sockethub.org/" target="_blank" rel="noopener">Sockethub</a>]开源，数据后端为Redis, 将消息抽象出来的形成API，与应用交换.</li>
-<li> [<a href="http://hood.ie/" target="_blank" rel="noopener">Hoodie</a>] 开源，数据后端用CouchDB, API与设想的很接近。</li>
-<li> [<a href="http://remotestorage.io/" target="_blank" rel="noopener">remoteStorage</a>] 开源</li>
-<li> [<a href="https://www.firebase.com/" target="_blank" rel="noopener">Firebase</a>]      已经商业化</li>
+<li>[<a href="http://sockethub.org/" target="_blank" rel="noopener">Sockethub</a>]开源，数据后端为Redis, 将消息抽象出来的形成API，与应用交换.</li>
+<li>[<a href="http://hood.ie/" target="_blank" rel="noopener">Hoodie</a>] 开源，数据后端用CouchDB, API与设想的很接近。</li>
+<li>[<a href="http://remotestorage.io/" target="_blank" rel="noopener">remoteStorage</a>] 开源</li>
+<li>[<a href="https://www.firebase.com/" target="_blank" rel="noopener">Firebase</a>]      已经商业化</li>
 <li>[<a href="http://singly.com/" target="_blank" rel="noopener">Singly</a>] 目前专注于针对认证、社交圈、文件分享集成以及API使用分析。</li>
 <li>[<a href="http://deployd.com/" target="_blank" rel="noopener">deployd</a>] 开源，数据后端用MongoDB, API 难用</li>
-<li> [<a href="https://parse.com/" target="_blank" rel="noopener">Parse</a>] 商业化</li>
-<li> [<a href="http://www.kinvey.com/" target="_blank" rel="noopener">Kinvey</a>]</li>
+<li>[<a href="https://parse.com/" target="_blank" rel="noopener">Parse</a>] 商业化</li>
+<li>[<a href="http://www.kinvey.com/" target="_blank" rel="noopener">Kinvey</a>]</li>
 </ul>
-<h1 id="问题">问题</h1>
+<h1>问题</h1>
 <p>优势我们大家都看到了，无论从开发的角度来说，还是说从数据复用的角度来说，这样的模式都堪称完美。当然目前从开发的角度来说还是没有完全做到前端无痛开发来着，这主要集中在权限配置上比较复杂。</p>
 <p>那么这样的“无后端”构架的模式到底还有什么样的弊端？下面分别从用户和运营方的角度来看看，他们的顾虑会是什么？</p>
 <h2 id="用户的顾虑">用户的顾虑</h2>
@@ -366,10 +415,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -455,7 +504,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是无后端构建开发"><span class="nav-number">1.</span> <span class="nav-text">什么是无后端构建开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无后端云存储服务提供者与开源项目"><span class="nav-number">2.</span> <span class="nav-text">无后端云存储服务提供者与开源项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户的顾虑"><span class="nav-number">3.1.</span> <span class="nav-text">用户的顾虑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运营方的顾虑"><span class="nav-number">3.2.</span> <span class="nav-text">运营方的顾虑</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">什么是无后端构建开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">无后端云存储服务提供者与开源项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户的顾虑"><span class="nav-number">3.1.</span> <span class="nav-text">用户的顾虑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运营方的顾虑"><span class="nav-number">3.2.</span> <span class="nav-text">运营方的顾虑</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -471,20 +520,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -531,12 +580,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -613,7 +662,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>

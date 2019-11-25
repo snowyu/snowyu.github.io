@@ -70,7 +70,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>异步编程与 Promise | Riceball LEE</title>
   
@@ -307,7 +308,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.3k</span>
+              <span>3.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -326,7 +327,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="promise">Promise</h1><p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p><p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。 因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p><a id="more"></a>
+        <h1>Promise</h1><p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p><p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。<br>
+因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p><a id="more"></a>
 
 
 <ul>
@@ -335,40 +337,146 @@
 <li>promise的状态转换只发生一次</li>
 <li>promise有一个then方法: (<code>promise.then(onFulfilled, onRejected)</code>)
 <ul>
-<li>then方法可以接受2个回调函数作为参数。
+<li>
+<p>then方法可以接受2个回调函数作为参数。</p>
 <ul>
 <li>对应promise的两种状态fulfilled, rejected的回调函数。回调函数的传递参数分别是resolve(value),reject(value) 函数。</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//当promise状态变成fulfilled时，调用此函数</span></span><br><span class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">reject</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//当promise状态变成rejected时，调用此函数</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.<span class="keyword">then</span> (<span class="function"><span class="params">(resolve)</span>-&gt;</span>), <span class="function">(<span class="params">(reject)</span>-&gt;</span>))</span><br></pre></td></tr></table></figure></li>
-</ul></li>
+<pre><code class="js">.then(function(resolve){
+        //当promise状态变成fulfilled时，调用此函数
+    },function(reject){
+        //当promise状态变成rejected时，调用此函数
+    });
+</code></pre>
+<pre><code class="coffee">.then ((resolve)-&gt;), ((reject)-&gt;))
+</code></pre>
+</li>
+</ul>
+</li>
 </ul>
 <p>Promise API 标准存在多个提案，目前看来，<a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+</a> 已经正在成为事实上的标准。</p>
 <p>Bluebird 号称速度是所有 Promise 库里最快的 <a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+</a> 实现，里面做了许多的扩展。 想知道内部实现，可以阅读这个<a href="https://github.com/ysmood/yaku" target="_blank" rel="noopener">yaku</a>简单的实现（coffee-script)。</p>
-<h3 id="promise.any-and-promise.some">Promise.any and Promise.some</h3>
+<h3 id="promise-any-and-promise-some">Promise.any and Promise.some</h3>
 <p>并行的 <a href="http://bluebirdjs.com/docs/api/promise.any.html" target="_blank" rel="noopener">Promise.any</a> 和 <a href="http://bluebirdjs.com/docs/api/promise.some.html" target="_blank" rel="noopener">Promise.some</a></p>
 <ul>
 <li><code>some</code>是其中一些promise成功返回，可以指定个数。返回结果为一个数组.</li>
 <li><code>any</code> 是任意一个promise成功返回，是some个数固定为1的结果，另外它的返回结果是一个单值，不是数组。</li>
 </ul>
-<p>注意：它们是向<strong>所有</strong>的promises同时发起执行请求(并行)，但是只取最先返回结果的。不是顺序执行， 直到得到成功结果的个数，就不继续了。</p>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Promise = <span class="built_in">require</span> <span class="string">'bluebird'</span></span><br><span class="line"></span><br><span class="line">readFile = Promise.promisify (aPath, done) -&gt;</span><br><span class="line">  <span class="built_in">console</span>.log <span class="string">'readFile'</span>, aPath</span><br><span class="line">  <span class="keyword">if</span> aPath != <span class="string">'c'</span> <span class="keyword">and</span> aPath != <span class="string">'e'</span>  <span class="keyword">then</span> done(<span class="keyword">new</span> Error(<span class="string">'no such file:'</span>+aPath)) <span class="keyword">else</span> done(<span class="literal">null</span>, aPath+<span class="string">'ok'</span>)</span><br><span class="line"></span><br><span class="line">files = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>]</span><br><span class="line"></span><br><span class="line">Promise.any files.map (file)-&gt;readFile(file)</span><br><span class="line">.<span class="keyword">then</span> (content)-&gt; <span class="built_in">console</span>.log <span class="string">'content='</span>,content</span><br></pre></td></tr></table></figure>
+<p>注意：它们是向<strong>所有</strong>的promises同时发起执行请求(并行)，但是只取最先返回结果的。不是顺序执行，<br>
+直到得到成功结果的个数，就不继续了。</p>
+<pre><code class="coffee">Promise = require 'bluebird'
+
+readFile = Promise.promisify (aPath, done) -&gt;
+  console.log 'readFile', aPath
+  if aPath != 'c' and aPath != 'e'  then done(new Error('no such file:'+aPath)) else done(null, aPath+'ok')
+
+files = ['a', 'b', 'c', 'd', 'e']
+
+Promise.any files.map (file)-&gt;readFile(file)
+.then (content)-&gt; console.log 'content=',content
+
+</code></pre>
 <p>显示结果如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">readFile a</span><br><span class="line">readFile b</span><br><span class="line">readFile c</span><br><span class="line">readFile d</span><br><span class="line">readFile e</span><br><span class="line">content= x ok</span><br></pre></td></tr></table></figure>
-<p>注：这个 <code>x</code> 表示可能是 'c'或者'e'。</p>
+<pre><code class="bash">readFile a
+readFile b
+readFile c
+readFile d
+readFile e
+content= x ok
+</code></pre>
+<p>注：这个 <code>x</code> 表示可能是 ‘c’或者’e’。</p>
 <h3 id="顺序执行的-some-和-any">顺序执行的 <code>some</code> 和 <code>any</code></h3>
-<p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。 那么如何做到顺序执行（sequence）？</p>
+<p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。<br>
+那么如何做到顺序执行（sequence）？</p>
 <p>这个时候，可以用<code>reduce</code>(<a href="http://bluebirdjs.com/docs/api/promise.reduce.html" target="_blank" rel="noopener">promise.reduce</a>)实现：</p>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Promise.reduce files, <span class="function"><span class="params">(content, file)</span>-&gt;</span></span><br><span class="line">  content = readFile(file).caught(<span class="function">-&gt;</span>) <span class="keyword">unless</span> content</span><br><span class="line">  <span class="keyword">return</span> content</span><br><span class="line">, <span class="literal">null</span></span><br><span class="line">.<span class="keyword">then</span> (content)-&gt;<span class="built_in">console</span>.log <span class="string">'content='</span>, content</span><br></pre></td></tr></table></figure>
+<pre><code class="coffee">Promise.reduce files, (content, file)-&gt;
+  content = readFile(file).caught(-&gt;) unless content
+  return content
+, null
+.then (content)-&gt;console.log 'content=', content
+</code></pre>
 <p>显示结果如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">readFile a</span><br><span class="line">readFile b</span><br><span class="line">readFile c</span><br><span class="line">content= c ok</span><br></pre></td></tr></table></figure>
-<p>更多的细节参见我写的<a href="https://github.com/snowyu/promise-sequence.js" target="_blank" rel="noopener">promise-sequence</a>。 a simple functional abstraction for sequentially:</p>
+<pre><code class="bash">readFile a
+readFile b
+readFile c
+content= c ok
+</code></pre>
+<p>更多的细节参见我写的<a href="https://github.com/snowyu/promise-sequence.js" target="_blank" rel="noopener">promise-sequence</a>。<br>
+a simple functional abstraction for sequentially:</p>
 <p>下面这是map-reduce的思路用在数组的所有元素求和上,不过够绕脑袋瓜的：</p>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Array::sum = <span class="function">-&gt;</span> @reduce (<span class="function"><span class="params">(a,b)</span>-&gt;</span>a+b), <span class="number">0</span></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].sum()</span><br><span class="line"><span class="comment"># 6</span></span><br></pre></td></tr></table></figure>
+<pre><code class="coffee">Array::sum = -&gt; @reduce ((a,b)-&gt;a+b), 0
+[1,2,3].sum()
+# 6
+</code></pre>
 <p>这是顺序执行的coffee-script 核心代码：</p>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">seqAny</span> = <span class="params">(aList, fn)</span>-&gt;</span></span><br><span class="line"><span class="function">  <span class="title">_genReduceFn</span> = <span class="params">(fn)</span>-&gt;</span></span><br><span class="line">    (previous, item)-&gt;</span><br><span class="line">      previous = fn(item).<span class="keyword">catch</span>(<span class="function">-&gt;</span>) <span class="keyword">unless</span> previous</span><br><span class="line">      previous</span><br><span class="line"></span><br><span class="line">  Promise.reduce aList, _genReduceFn(fn), <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">seqAny(files, readFile).<span class="keyword">then</span> (result)-&gt;<span class="built_in">console</span>.log <span class="string">'seqAny='</span>, result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">seqSome</span> = <span class="params">(aList, total, fn)</span>-&gt;</span></span><br><span class="line"><span class="function">  <span class="title">_genReduceFn</span> = <span class="params">(fn)</span>-&gt;</span></span><br><span class="line">    (previous, item)-&gt;</span><br><span class="line">      previous = previous.filter Boolean</span><br><span class="line">      <span class="keyword">if</span> previous.length &lt; total</span><br><span class="line">        previous = Promise.all previous.concat [fn(item).<span class="keyword">catch</span>(<span class="function">-&gt;</span>)]</span><br><span class="line">      previous</span><br><span class="line">  Promise.reduce aList, _genReduceFn(fn), []</span><br><span class="line"></span><br><span class="line">seqSome(files, <span class="number">2</span>, readFile).<span class="keyword">then</span> (result)-&gt;<span class="built_in">console</span>.log <span class="string">'seqSome='</span>, result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sequence</span> = <span class="params">(aList, fn)</span>-&gt;</span> <span class="comment"># execution all via sequence</span></span><br><span class="line">  <span class="comment"># Promise.all 将执行所有的Promise,即使其中一个有错误，后面也会接着执行，如果有错误则报错。</span></span><br><span class="line"><span class="function">  <span class="title">sequentially</span> = <span class="params">(fn)</span>-&gt;</span></span><br><span class="line">    (previous, item)-&gt;</span><br><span class="line">      Promise.all previous.concat [fn(item)]</span><br><span class="line"></span><br><span class="line">  Promise.reduce aList, sequentially(fn), []</span><br><span class="line"></span><br><span class="line">sequence files, <span class="function"><span class="params">(i)</span>-&gt;</span>readFile(i).<span class="keyword">catch</span>(<span class="function">-&gt;</span>)</span><br><span class="line">.<span class="keyword">then</span> (result)-&gt;<span class="built_in">console</span>.log result</span><br></pre></td></tr></table></figure>
+<pre><code class="coffee">seqAny = (aList, fn)-&gt;
+  _genReduceFn = (fn)-&gt;
+    (previous, item)-&gt;
+      previous = fn(item).catch(-&gt;) unless previous
+      previous
+
+  Promise.reduce aList, _genReduceFn(fn), null
+
+seqAny(files, readFile).then (result)-&gt;console.log 'seqAny=', result
+
+seqSome = (aList, total, fn)-&gt;
+  _genReduceFn = (fn)-&gt;
+    (previous, item)-&gt;
+      previous = previous.filter Boolean
+      if previous.length &lt; total
+        previous = Promise.all previous.concat [fn(item).catch(-&gt;)]
+      previous
+  Promise.reduce aList, _genReduceFn(fn), []
+
+seqSome(files, 2, readFile).then (result)-&gt;console.log 'seqSome=', result
+
+sequence = (aList, fn)-&gt; # execution all via sequence
+  # Promise.all 将执行所有的Promise,即使其中一个有错误，后面也会接着执行，如果有错误则报错。
+  sequentially = (fn)-&gt;
+    (previous, item)-&gt;
+      Promise.all previous.concat [fn(item)]
+
+  Promise.reduce aList, sequentially(fn), []
+
+sequence files, (i)-&gt;readFile(i).catch(-&gt;)
+.then (result)-&gt;console.log result
+
+</code></pre>
 <p>这是直接构造函数执行链的思路:</p>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">waterfall</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = Promise.cast()</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    current = current.<span class="keyword">then</span>(task)</span><br><span class="line">  current</span><br><span class="line"></span><br><span class="line">waterfall 返回所有函数的结果作为数组:</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">waterfall</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = Promise.cast()</span><br><span class="line">  result = []</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    result.push current = current.<span class="keyword">then</span>(task)</span><br><span class="line">  Promise.all result</span><br><span class="line"></span><br><span class="line">sequence 与waterfall不同之处在于不传递结果到下一个函数:</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sequence</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = Promise.cast()</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    current = current.thenReturn().<span class="keyword">then</span>(task)</span><br><span class="line">  current.thenReturn()</span><br><span class="line"></span><br><span class="line">汇集结果到数组。</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sequence</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = Promise.cast()</span><br><span class="line">  result = []</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    result.push current = current.thenReturn().<span class="keyword">then</span>(task)</span><br><span class="line">  Promise.all result</span><br></pre></td></tr></table></figure>
+<pre><code class="coffee">waterfall = (tasks)-&gt;
+  current = Promise.cast()
+  for task in tasks
+    current = current.then(task)
+  current
+
+waterfall 返回所有函数的结果作为数组:
+
+waterfall = (tasks)-&gt;
+  current = Promise.cast()
+  result = []
+  for task in tasks
+    result.push current = current.then(task)
+  Promise.all result
+
+sequence 与waterfall不同之处在于不传递结果到下一个函数:
+
+sequence = (tasks)-&gt;
+  current = Promise.cast()
+  for task in tasks
+    current = current.thenReturn().then(task)
+  current.thenReturn()
+
+汇集结果到数组。
+
+sequence = (tasks)-&gt;
+  current = Promise.cast()
+  result = []
+  for task in tasks
+    result.push current = current.thenReturn().then(task)
+  Promise.all result
+
+
+</code></pre>
 
     </div>
 
@@ -381,10 +489,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -465,7 +573,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promise.any-and-promise.some"><span class="nav-number">1.0.1.</span> <span class="nav-text">Promise.any and Promise.some</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序执行的-some-和-any"><span class="nav-number">1.0.2.</span> <span class="nav-text">顺序执行的 some 和 any</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promise-any-and-promise-some"><span class="nav-number">1.0.1.</span> <span class="nav-text">Promise.any and Promise.some</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序执行的-some-和-any"><span class="nav-number">1.0.2.</span> <span class="nav-text">顺序执行的 some 和 any</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -481,20 +589,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -541,12 +649,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -623,7 +731,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>

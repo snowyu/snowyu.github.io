@@ -46,13 +46,13 @@
   };
 </script>
 
-  <meta name="description" content="下面是Reactive Document的示範。创建图形对象raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。矩形(Rect)参数：[x轴坐标:10]{rx:10..}，[y轴坐标:18]{ry:10..}，[宽度:100]{rw:1">
+  <meta name="description" content="下面是Reactive Document的示範。创建图形对象raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。矩形(Rect)参数：x轴坐标:10，y轴坐标:18，宽度:100，高度:50">
 <meta name="keywords" content="javascript,reactive,document,raphael,markdown">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reactive Document">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;reactive-doc&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="下面是Reactive Document的示範。创建图形对象raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。矩形(Rect)参数：[x轴坐标:10]{rx:10..}，[y轴坐标:18]{ry:10..}，[宽度:100]{rw:1">
+<meta property="og:description" content="下面是Reactive Document的示範。创建图形对象raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。矩形(Rect)参数：x轴坐标:10，y轴坐标:18，宽度:100，高度:50">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-22T06:56:43.537Z">
 <meta name="twitter:card" content="summary">
@@ -70,7 +70,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>Reactive Document | Riceball LEE</title>
   
@@ -295,7 +296,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -314,56 +315,115 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>下面是Reactive Document的示範。</p><h1 id="创建图形对象">创建图形对象</h1><p>raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。</p><h2 id="矩形rect">矩形(Rect)</h2><p>参数：[x轴坐标:10]{rx:10..}，[y轴坐标:18]{ry:10..}，[宽度:100]{rw:1..}，[高度:50]{rh:1..}</p><a id="more"></a>
+        <p>下面是Reactive Document的示範。</p><h1>创建图形对象</h1><p>raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。<br>
+raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。</p><h2 id="矩形-rect">矩形(Rect)</h2><p>参数：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p><a id="more"></a>
 
 
 
 
 <p>下面演示在提供好的画布上用上述参数绘制一个矩形，点击下面的播放按钮进行演示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 演示绘制矩形的过程</span><br><span class="line">paper = @canvas</span><br><span class="line">[|]</span><br><span class="line">~~~</span><br><span class="line">tooltip: 设置画布大小为200X100 ::: 初始化工作</span><br><span class="line">type: paper.setSize(200,100)\n</span><br><span class="line">tooltip: 清空画布</span><br><span class="line">type: paper.clear()\n</span><br><span class="line">tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量</span><br><span class="line">type: @rx ||=10\n</span><br><span class="line">type: @ry ||=18\n</span><br><span class="line">type: @rw ||=100\n</span><br><span class="line">type: @rh ||=50\n</span><br><span class="line">tooltip: 开始绘制矩形 ::: 绘制矩形</span><br><span class="line">type: rect = paper.rect(@rx, @ry, @rw, @rh)\n</span><br><span class="line">tooltip: 为矩形填充红色</span><br><span class="line">type: rect.attr(&apos;fill&apos;, &apos;red&apos;)</span><br><span class="line">moveTo: 8:13</span><br><span class="line">tooltip: 现在你可以自己试一试了</span><br></pre></td></tr></table></figure>
+<pre><code class="canvas"># 演示绘制矩形的过程
+paper = @canvas
+[|]
+~~~
+tooltip: 设置画布大小为200X100 ::: 初始化工作
+type: paper.setSize(200,100)\n
+tooltip: 清空画布
+type: paper.clear()\n
+tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量
+type: @rx ||=10\n
+type: @ry ||=18\n
+type: @rw ||=100\n
+type: @rh ||=50\n
+tooltip: 开始绘制矩形 ::: 绘制矩形
+type: rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: 为矩形填充红色
+type: rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: 现在你可以自己试一试了
+</code></pre>
 <p>看完演示，你可以这上面的代码中自己动手试一试了,比如: 圆，椭圆, 文字，图片等等。</p>
 <ul>
 <li>circle(x, y, r)</li>
 <li>ellipse(x, y, xr, yr)</li>
 <li>image(src, x, y, width, height)</li>
-<li>text(50, 50, "Hi world")</li>
+<li>text(50, 50, “Hi world\n你好世界”)</li>
 </ul>
 <p>所有这些绘制后都会返回一个图形对象，你可以对它进行各种操作，比如show/hide,改变属性attr。</p>
-<h2 id="path路径">Path(路径)</h2>
+<h2 id="path-路径">Path(路径)</h2>
 <p>更复杂的对象也可以通过path来实现描述。路径是矢量绘图里最强大的工具，同时也比较复杂。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">paper = @canvas</span><br><span class="line">paper.setSize(200,100)</span><br><span class="line">paper.clear()</span><br><span class="line">paper.path(&apos;M100,0 L200,100 L10,100 Z&apos;).attr(&#123;&apos;fill&apos;: &apos;blue&apos;, &apos;stroke&apos;: &apos;black&apos;&#125;)</span><br></pre></td></tr></table></figure>
-<p>路径的参数是一组字符串，由“命令字母+坐标数字”的组合构成。数字表示坐标点，字母负责表示如何连接这些坐标点。 比如x的示例中，M表示起点，L表示直线连接，所以上述的path的信息可以这样解读：</p>
+<pre><code class="canvas">paper = @canvas
+paper.setSize(200,100)
+paper.clear()
+paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'})
+</code></pre>
+<p>路径的参数是一组字符串，由“命令字母+坐标数字”的组合构成。数字表示坐标点，字母负责表示如何连接这些坐标点。<br>
+比如x的示例中，M表示起点，L表示直线连接，所以上述的path的信息可以这样解读：</p>
 <ul>
-<li>M100,0 -&gt; 以（100，0）坐标点为起点</li>
-<li>L200,100 -&gt; 从（100，0）向（200，100）画一条直线</li>
-<li>L10,100 -&gt; 从（200，100）向（10，100）画一条直线</li>
-<li>Z -&gt; 闭合路径,将路径的开始和结束点用直线连接</li>
+<li>M100,0      -&gt;    以（100，0）坐标点为起点</li>
+<li>L200,100    -&gt;    从（100，0）向（200，100）画一条直线</li>
+<li>L10,100     -&gt;    从（200，100）向（10，100）画一条直线</li>
+<li>Z           -&gt;    闭合路径,将路径的开始和结束点用直线连接</li>
 </ul>
 <p>在path中，一共有10个命令可以使用，下面5个命令是基础，比较简单。</p>
 <ul>
-<li>M: moveTo(x,y) 移动到 x,y 坐标</li>
-<li>Z:closepath() 闭合路径, 将路径的开始和结束点用直线连接</li>
-<li>L:lineTo(x,y) 直线 当前节点到指定(x,y)节点，直线连接</li>
-<li>H: Horz(x) 水平直线 保持当前点的y坐标不变，x轴移动到x，形成水平线</li>
-<li>V: Vert(y) 垂直直线 保持当前点的x坐标不变，y轴移动到y，形成垂直线</li>
+<li>M: moveTo(x,y)   移动到 x,y 坐标</li>
+<li>Z:closepath()    闭合路径, 将路径的开始和结束点用直线连接</li>
+<li>L:lineTo(x,y)    直线    当前节点到指定(x,y)节点，直线连接</li>
+<li>H: Horz(x)       水平直线 保持当前点的y坐标不变，x轴移动到x，形成水平线</li>
+<li>V: Vert(y)       垂直直线 保持当前点的x坐标不变，y轴移动到y，形成垂直线</li>
 </ul>
 <h2 id="动画">动画</h2>
-<p>在raphael中绘制的每一个元素都可以轻易的制作动画，只要我们设定它的起始和结束属性即可。 假如我们对前面的矩形进行动画，设定它的结束属性为：</p>
+<p>在raphael中绘制的每一个元素都可以轻易的制作动画，只要我们设定它的起始和结束属性即可。<br>
+假如我们对前面的矩形进行动画，设定它的结束属性为：</p>
 <ul>
-<li>[x轴坐标:100]{rex:0..}，[y轴坐标:40]{rey:0..}</li>
-<li>[宽度:100]{rew:1..}，[高度:100]{reh:1..}</li>
+<li><span class="AMElement" data-embed="false" data-config="rex:0..">x轴坐标:100</span>，<span class="AMElement" data-embed="false" data-config="rey:0..">y轴坐标:40</span></li>
+<li><span class="AMElement" data-embed="false" data-config="rew:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="reh:1..">高度:100</span></li>
 <li>填充颜色为黄色</li>
 <li>旋转120度</li>
 <li>透明度设为 0.3</li>
 </ul>
 <p>然后设定当对矩形点击的时候开始动画。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">paper = @canvas</span><br><span class="line">paper.setSize(300,160)</span><br><span class="line">paper.clear()</span><br><span class="line">@rx ||=0</span><br><span class="line">@ry ||=0</span><br><span class="line">@rw ||=100</span><br><span class="line">@rh ||=50</span><br><span class="line"># 获取结束时候的矩形参数</span><br><span class="line">@rex ||=100</span><br><span class="line">@rey ||=40</span><br><span class="line">@rew ||=100</span><br><span class="line">@reh ||=100</span><br><span class="line"></span><br><span class="line">rect = paper.rect(@rx, @ry, @rw, @rh).attr(&#123;&apos;fill&apos;: &apos;red&apos;, &apos;opacity&apos;: 1&#125;)</span><br><span class="line"></span><br><span class="line">elAttrs = []</span><br><span class="line">elAttrs.push(_.clone(rect.attr()))</span><br><span class="line"></span><br><span class="line">elAttrs.push(</span><br><span class="line">    &#123;</span><br><span class="line">      x: @rex, y: @rey, transform: &quot;r120&quot;</span><br><span class="line">      width: @rew, height: @reh</span><br><span class="line">      fill: &apos;yellow&apos;</span><br><span class="line">      opacity: .3</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">reverse = 0</span><br><span class="line">rect.mousedown(  () -&gt;</span><br><span class="line">    rect.stop().animate(elAttrs[+(reverse = !reverse)], 1000)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<pre><code class="canvas">paper = @canvas
+paper.setSize(300,160)
+paper.clear()
+@rx ||=0
+@ry ||=0
+@rw ||=100
+@rh ||=50
+# 获取结束时候的矩形参数
+@rex ||=100
+@rey ||=40
+@rew ||=100
+@reh ||=100
+
+rect = paper.rect(@rx, @ry, @rw, @rh).attr({'fill': 'red', 'opacity': 1})
+
+elAttrs = []
+elAttrs.push(_.clone(rect.attr()))
+
+elAttrs.push(
+    {
+      x: @rex, y: @rey, transform: &quot;r120&quot;
+      width: @rew, height: @reh
+      fill: 'yellow'
+      opacity: .3
+    }
+)
+
+reverse = 0
+rect.mousedown(  () -&gt;
+    rect.stop().animate(elAttrs[+(reverse = !reverse)], 1000)
+)
+
+</code></pre>
 <p>现在你可以在矩形上点击看看动画效果。</p>
-<h1 id="绘制余弦曲线图">绘制余弦曲线图</h1>
+<h1>绘制余弦曲线图</h1>
 <pre><code>@p = (x) =&gt;
-    return Math.cos(x + @offset)</code></pre>
-<p>[Offset: 1.00]{offset: -pi..pi by 0.0625pi}</p>
-<p>[cos(x)]{line=p: 0..2pi by 0.001, width=300, height=200}</p>
+    return Math.cos(x + @offset)
+</code></pre>
+<p><span class="AMElement" data-embed="false" data-config="offset: -pi..pi by 0.0625pi">Offset: 1.00</span></p>
+<p><span class="AMElement" data-embed="true" data-config="line=p: 0..2pi by 0.001, width=300, height=200">cos(x)</span></p>
 
     </div>
 
@@ -376,10 +436,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -462,7 +522,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建图形对象"><span class="nav-number">1.</span> <span class="nav-text">创建图形对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩形rect"><span class="nav-number">1.1.</span> <span class="nav-text">矩形(Rect)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path路径"><span class="nav-number">1.2.</span> <span class="nav-text">Path(路径)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">1.3.</span> <span class="nav-text">动画</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制余弦曲线图"><span class="nav-number">2.</span> <span class="nav-text">绘制余弦曲线图</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">创建图形对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩形-rect"><span class="nav-number">1.1.</span> <span class="nav-text">矩形(Rect)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path-路径"><span class="nav-number">1.2.</span> <span class="nav-text">Path(路径)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">1.3.</span> <span class="nav-text">动画</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">绘制余弦曲线图</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -478,20 +538,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -538,12 +598,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -620,7 +680,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>

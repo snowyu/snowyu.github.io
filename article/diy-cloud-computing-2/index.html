@@ -70,7 +70,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>DIY与云计算（二）之 DIY自己的开源NAS | Riceball LEE</title>
   
@@ -320,7 +321,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。 NAS提供给我们的功能有：</p><a id="more"></a>
+        <p>对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。<br>
+NAS提供给我们的功能有：</p><a id="more"></a>
 <p>文件共享服务：现在很多人家中的电脑都不止一台，这样视频，照片、音乐、文件等数据资源分散在不同的电脑中，要去找出会很麻烦。通过家用NAS，家中的各个成员可以将想分享或共用的照片、音乐、影片或其他文件档案，分门别类地放在同一个网络硬盘中，避免相同的资料在每部电脑里浪费同样的空间。</p>
 <p>数据备份服务：NAS一般都具有多种备份功能，包括本地备份、异地备份和NAS间备份等等。另外NAS还具有一键备份功能，将USB存储设备(如闪盘和外置硬盘)插入NAS上特定USB接口，就能把USB存储设备上的文件备份到NAS中。</p>
 <p>家庭服务中心：通过把打印机与NAS相连，开启NAS网络打印机功能，我们就能在局域网中共同使用这台打印机，通过在NAS上建立Web服务，把照片和录像存放在NAS网络存储器的指定目录中，就能通过浏览器登陆NAS的Web网站进行观看，就像访问网络相册一样。另外在NAS中使用UPnP-AV功能(或称流媒体功能)，在网络中可以被Windows MCE系统、Xbox360和PS3等设备发现，无须额外的操作就能播放存储在NAS中的多媒体文件。同时我们还可以用NAS网络存储器搭建iTunes服务器，让iTunes软件和iPod等设备从NAS上获得音乐和视频。</p>
@@ -341,29 +343,33 @@
 <li>巴法络/buffalo LS-QVL/E-AP： 1400¥
 <ul>
 <li>最大容量 8TB, 4xSata2, 2xUsb2, 1.6Ghz Marvell(88F6282A0C160) processor and 512MB of RAM.</li>
-</ul></li>
+</ul>
+</li>
 <li>群晖synology DS411j: 3000¥
 <ul>
 <li>最大容量12TB, 4xSata2, 2xUsb2, CPU 1.2G, DDR2 128M RAM</li>
-</ul></li>
+</ul>
+</li>
 <li>D-Link DNS-343: 2150¥
 <ul>
 <li>4xSata2, CPU Marvell 88F5281-D0 C500Mhz, 128MB</li>
-</ul></li>
+</ul>
+</li>
 <li>Century世特力裸族CRIB35NAS: 1980¥
 <ul>
 <li>最大容量 12TB, unkown</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>从上述商业NAS系统来看，CPU大都是采用ARM芯片，内存也少得可怜，但是价格不菲。</p>
-<h2 id="我采购的硬件清单">我采购的硬件清单：</h2>
-<h3 id="机箱">机箱：</h3>
+<h2 id="我采购的硬件清单：">我采购的硬件清单：</h2>
+<h3 id="机箱：">机箱：</h3>
 <ul>
 <li>4盘位热插拔机箱 498¥ 毛重 3.5Kg，1个12cm风扇，只能上半高的卡（可能以后扩硬Raid卡有问题)</li>
 <li>6盘位热插拔机箱 849¥ 毛重 5 kg, 有足够的空间固定硬Raid卡，2个可调速9cm风扇。但是太重。性价比也不高(备选)</li>
 </ul>
 <p>目前正在团购，上述为团购价格，应该在清理存货，机箱的问题：热插拔盒塑料有些薄，没有锁，机箱做工不够精细。</p>
-<h3 id="主板">主板：</h3>
+<h3 id="主板：">主板：</h3>
 <p>目前我在淘宝上看到的Intel Atom(D525) Mini-ITX平台(15W)上全部是Sata3支持的很少，混合Sata3和Sata2，太会节约成本了。而且最关键的是最大内存只到4G。可能Intel不希望有人把主板拿去做低功耗的文件服务器吧，故目前几乎不用考虑Intel的东西。</p>
 <p>AMD的E350平台功耗大约在18W-20W，至少支持4个Sata3口，内存最大可以到8G，也有到16G的，两个DDR3 PC内存槽。</p>
 <ul>
@@ -377,7 +383,8 @@
 <li>1PCIEx1GNetwork,</li>
 <li>无USB3</li>
 <li>价格500¥上下</li>
-</ul></li>
+</ul>
+</li>
 <li>华硕E35M1-I（备选）
 <ul>
 <li>6个Sata3口，</li>
@@ -388,7 +395,8 @@
 <li>eSata,</li>
 <li>1PCIEx1GNetwork</li>
 <li>淘宝上暂时买不到,只能买到 E35M1-I/E45M1 Dexlue 版本。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>更多的内存还是更多的sata3口，这是个选择问题，而我选择了更多的内存。</p>
 <p>E350的GPU为 ATI HD 6310 隶属于 Radeon™ HD 6300M Series Graphics：</p>
@@ -463,8 +471,10 @@
 </ul>
 <p>正巧最近看到国外社区已经有人在Native ZFS on Linux上做了几个月的小白鼠，还算稳定，而更凑巧的是，这家伙也是选的AsRock E350M1主板，So，我最后还是选择了Linux，这样可以1机两用：NAS 和 媒体中心。</p>
 <p>操作系统: 为了能压榨出硬件的最后一点性能，我选用 Linux 的 Gentoo 发行版, Gentoo 可以使得我自己配置调整编译内核。</p>
-<h1 id="更新2016-06-12">更新(2016-06-12)</h1>
-<p>光阴似箭，眨眼4年过去了，Intel 推出了Micro Server——志强D系列, 而 AMD 却依然在原地踏步。 4年前，支持ECC RDIMM内存的ITX主板根本找不到，现在超微，AsRock都有了基于志强D系列的ITX MicroServer主板。 NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比太低。</p>
+<h1>更新(2016-06-12)</h1>
+<p>光阴似箭，眨眼4年过去了，Intel 推出了Micro Server——志强D系列, 而 AMD 却依然在原地踏步。<br>
+4年前，支持ECC RDIMM内存的ITX主板根本找不到，现在超微，AsRock都有了基于志强D系列的ITX MicroServer主板。<br>
+NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比太低。</p>
 <ul>
 <li>6盘位DIYNAS机箱，可定制LOGO,有防尘网。
 <ul>
@@ -475,14 +485,18 @@
 <li>益衡 Enhance ENP 7025B FLEX 250W=245元 淘宝价</li>
 <li>全汉电源 小1U 270W=108元 淘宝价</li>
 <li>需要了解限高问题，内存条，插卡等。</li>
-</ul></li>
-<li>超微X10SDV-4C+-TLN4F（128G ECC RDIMM DDR4 2133, M.2 PCIe3.0x4 2242/2280）
+</ul>
+</li>
+<li>超微X10SDV-4C±TLN4F（128G ECC RDIMM DDR4 2133, M.2 PCIe3.0x4 2242/2280）
 <ul>
 <li>志强D-1518(4核，6MCache, 2.20Ghz) 35W ￥3720</li>
 <li>志强D-1541(8核，6MCache, 2.20Ghz) 45W ￥6880</li>
+</ul>
+<ul>
 <li>可惜是基于Broadwell, 还是得等明年(2017年)的Skylake 。</li>
-<li>https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver</li>
-</ul></li>
+<li><a href="https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver" target="_blank" rel="noopener">https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver</a></li>
+</ul>
+</li>
 <li>三星 32G DDR4 2133 RDIMM 服务器内存: ￥1060</li>
 </ul>
 
@@ -497,10 +511,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -581,7 +595,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#diy-nas"><span class="nav-number">1.</span> <span class="nav-text">DIY NAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我采购的硬件清单"><span class="nav-number">2.</span> <span class="nav-text">我采购的硬件清单：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机箱"><span class="nav-number">2.1.</span> <span class="nav-text">机箱：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主板"><span class="nav-number">2.2.</span> <span class="nav-text">主板：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电源"><span class="nav-number">2.3.</span> <span class="nav-text">电源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件系统"><span class="nav-number">3.</span> <span class="nav-text">软件系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新2016-06-12"><span class="nav-number"></span> <span class="nav-text">更新(2016-06-12)</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#diy-nas"><span class="nav-number">1.</span> <span class="nav-text">DIY NAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我采购的硬件清单："><span class="nav-number">2.</span> <span class="nav-text">我采购的硬件清单：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机箱："><span class="nav-number">2.1.</span> <span class="nav-text">机箱：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主板："><span class="nav-number">2.2.</span> <span class="nav-text">主板：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电源"><span class="nav-number">2.3.</span> <span class="nav-text">电源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件系统"><span class="nav-number">3.</span> <span class="nav-text">软件系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">更新(2016-06-12)</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -597,20 +611,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -657,12 +671,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -739,7 +753,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>

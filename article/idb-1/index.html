@@ -70,7 +70,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>大道至简 -- 之iDB NoSQL数据库开发随笔（一） | Riceball LEE</title>
   
@@ -307,7 +308,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
+              <span>3.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -327,7 +328,7 @@
 
       
         <p>iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：<a href="https://github.com/snowyu/iDB" target="_blank" rel="noopener">https://github.com/snowyu/iDB</a>），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engine)的核心。</p><a id="more"></a>
-<h3 id="几个概念">几个概念：</h3>
+<h3 id="几个概念：">几个概念：</h3>
 <ul>
 <li>面向列：所谓面向列(Column Oriented)是和面向行(Row Oriented)相对而言的，绝大多数的关系型数据库就是面向行存储的，而iDB则是面向列基于Key/Value的存储系统。</li>
 <li>结构化：所谓结构化(Structured)是指值(Value)可以是带结构数据的复杂类型，而层级则是指Key可以有不同的层级关系，基于目录树的形式。</li>
@@ -336,7 +337,8 @@
 <h3 id="background-设计背景">Background (设计背景)</h3>
 <p>iDB NoSQL数据库引擎的设计初衷是希望能更为合理的设计组织数据库引擎的层次架构，以及看到现代文件系统设计发展的变化有感而发，两者融合就促使我萌发设计iDB的念头。</p>
 <h4 id="kiss-原则">KISS 原则</h4>
-<p>大家都应该知道KISS(Keep It Simple, Stupid)原则，即保持架构简单而愚蠢的原则，因为简单，所以看上去足够的蠢。而将架构设计得足够的简单是架构师的梦寐以求，大道至简，说着看是容易，实际做起来，其实真难，知易行难是也。 我希望iDB的架构设计做到了足够简单以及足够的愚蠢，这也是我从事架构设计中最接近KISS原则的一次架构体验，我很乐于与大家分享我这设计过程的经验和错误。</p>
+<p>大家都应该知道KISS(Keep It Simple, Stupid)原则，即保持架构简单而愚蠢的原则，因为简单，所以看上去足够的蠢。而将架构设计得足够的简单是架构师的梦寐以求，大道至简，说着看是容易，实际做起来，其实真难，知易行难是也。<br>
+我希望iDB的架构设计做到了足够简单以及足够的愚蠢，这也是我从事架构设计中最接近KISS原则的一次架构体验，我很乐于与大家分享我这设计过程的经验和错误。</p>
 <h4 id="文件系统与数据库">文件系统与数据库</h4>
 <p>前面我提到现代文件系统的发展和变化，这和NoSQL数据库的设计存在什么样的联系？数据库引擎的设计需要考虑文件系统的特性么？我们可以做一个列表来对比，文件系统和数据库的功能特性：</p>
 <p><strong>从操作对象和操作方式上看</strong></p>
@@ -354,13 +356,13 @@
 <p>内部存储结构上，绝大多数数据库系统都是使用Btree树或者其变体来存储数据(也有用hash表实现的)。而目前越来越多的现代文件系统正在用Btree树或者其变体来存储目录或文件。比如:</p>
 <ul>
 <li>ext3/ext4 使用Htree(Btree的变体)来索引目录，不过这ext3中需要手动启用dir_index功能，ext4默认是启用的。</li>
-<li>btrfs 使用btree,又被称为 "Btree FS"。</li>
+<li>btrfs 使用btree,又被称为 “Btree FS”。</li>
 <li>ZFS 使用 Extensible hash table</li>
 <li>Reiser4 使用 Dancing B*-tree</li>
 <li>XFS B+tree</li>
 </ul>
 <p>可以看到在最基本数据存储和访问上，数据库和文件系统有惊人的相似性。为了最大限度的优化数据库的性能，开发者做了许多与文件系统相同的重复工作，磁头位置预估，扇面连续，defragment等等，并针对SSD做优化。但是这些相同的工作文件系统也都在做。</p>
-<h4 id="不要重复发明轮子drtw">不要重复发明轮子(DRTW)</h4>
+<h4 id="不要重复发明轮子-drtw">不要重复发明轮子(DRTW)</h4>
 <p>那么不同的地方在哪里？数据库更复杂，除了基本的存储和访问需求外，它还需要对结构化的数据进行检索和处理。但是因为老的数据库思路是申请一个文件，也即是磁盘空间的一个区域在这上面进行数据存储和访问，这样，文件系统的成果自然无法用上。</p>
 <p>因此，根据懒人法则第一条，能躺绝坐，能坐绝不站。站在巨人的肩膀上，才能看得更远，走得更远。那么怎么样对数据存储才能利用上文件系统的成果呢？</p>
 <p>让我们跳出来文件这个限制框框思考，为啥数据库的数据一定要保存在文件中？为啥不能直接用文件的目录系统直接作为NoSQL数据库的存储呢？当我们跳出这个限制：数据必须保存到文件中。我们就会欣然发现，只要我们正视文件系统的一些限制，其实目录也可以存数据。既然文件系统都已经充分考虑并已经成熟（N多程序在通过不同方式使用着文件系统），为啥要重复发明轮子？作为数据库引擎应该更专注于数据处理才对，而不是数据存储。</p>
@@ -373,7 +375,7 @@
 </blockquote>
 <p>就这么个简单东东，我从去年7月份开始设计，断断续续直到现在，逐步理清思路，才实施了一个能实用的东西。中间走了些弯路，单是规范修改了好几次。而且这一切仅仅还只是一个开端。如此，是不是够蠢。</p>
 <blockquote>
-<p>Stay simple ,stay foolish...</p>
+<p>Stay simple ,stay foolish…</p>
 </blockquote>
 <p>如上所述就是开发iDB的设计背景，下面从哪里谈起呢?想写的东西太多，就先从iDB规范讲起吧。</p>
 <h3 id="idb-架构与规范">iDB 架构与规范</h3>
@@ -385,24 +387,30 @@
 <ul>
 <li>iDB Key/Value 数据库规范</li>
 <li>iDB 关系型数据库规范</li>
-</ul></li>
+</ul>
+</li>
 <li>iDB 存储服务规范：用于描述iDB存储服务的功能规范，分为三层:
 <ul>
 <li>读写分离的异步通讯IO层</li>
 <li>Memcache 内部缓存层</li>
 <li>实际iDB存储层</li>
-</ul></li>
+</ul>
+</li>
+</ul>
+<ul>
 <li>iDB云数据库服务规范：以下规范实际上与iDB存储无关，只是用于描述一种分布式NoSQL数据库的规范方案，我强称之为iDB云数据库规范。
 <ul>
 <li>iDB 节点控制器: 控制和监控数据库，作为与各种数据库的中间代理层</li>
 <li>iDB 集群控制器: 管理iDB节点控制器,数据定位</li>
 <li>iDB 云控制器: 是暴露在互联网上顶层组件。为外部世界提供RESTful API以及Web接口</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>目前只实现iDB存储规范中的内容，文档还很乱，写得比较糟糕，但是具体思路已经敲定了，只剩下文字增订的事情，但是iDB整体规范依然还在草拟中。</p>
 <h4 id="idb存储规范">iDB存储规范</h4>
 <p>iDB存储规范是iDB最基础的规范约定，描述了iDB基础数据是如何被存储和访问。</p>
-<p>我们大概已经知道了，目录名为Key名，目录名下的".value"文件内容为键值。我们将".value"称之为key的一个属性，".value"是其中最重要的一个属性。一个 key(键)可以有多个属性，对于一般使用者来说，是无法直接看见这些属性的，这些属性为iDB规范服务的。</p>
+<p>我们大概已经知道了，目录名为Key名，目录名下的&quot;.value&quot;文件内容为键值。我们将&quot;.value&quot;称之为key的一个属性，&quot;.value&quot;是其中最重要的一个属性。一个<br>
+key(键)可以有多个属性，对于一般使用者来说，是无法直接看见这些属性的，这些属性为iDB规范服务的。</p>
 <p><strong>基础概念</strong></p>
 <p>小结，从以上的描述，我们可以总结出以下的概念</p>
 <ul>
@@ -412,7 +420,8 @@
 <li>.type: 键值类型属性</li>
 </ul>
 <blockquote>
-<p>注意： 这里约定所有的字符串编码统一为utf-8编码格式。其中包括key name。值内容为纯字符串的形式表示。"redis"类型例外，如果类型为"redis"，则值 内容为redisIO的raw格式。</p>
+<p>注意： 这里约定所有的字符串编码统一为utf-8编码格式。其中包括key name。值内容为纯字符串的形式表示。“redis&quot;类型例外，如果类型为&quot;redis”，则值<br>
+内容为redisIO的raw格式。</p>
 </blockquote>
 <p>路径为iDB层次性的体现，因此键路径出现了:</p>
 <ul>
@@ -439,10 +448,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -527,7 +536,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-设计背景"><span class="nav-number">2.</span> <span class="nav-text">Background (设计背景)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kiss-原则"><span class="nav-number">2.1.</span> <span class="nav-text">KISS 原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统与数据库"><span class="nav-number">2.2.</span> <span class="nav-text">文件系统与数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要重复发明轮子drtw"><span class="nav-number">2.3.</span> <span class="nav-text">不要重复发明轮子(DRTW)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kiss-it"><span class="nav-number">3.</span> <span class="nav-text">KISS IT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#idb-架构与规范"><span class="nav-number">4.</span> <span class="nav-text">iDB 架构与规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#idb存储规范"><span class="nav-number">4.1.</span> <span class="nav-text">iDB存储规范</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念："><span class="nav-number">1.</span> <span class="nav-text">几个概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-设计背景"><span class="nav-number">2.</span> <span class="nav-text">Background (设计背景)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kiss-原则"><span class="nav-number">2.1.</span> <span class="nav-text">KISS 原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统与数据库"><span class="nav-number">2.2.</span> <span class="nav-text">文件系统与数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要重复发明轮子-drtw"><span class="nav-number">2.3.</span> <span class="nav-text">不要重复发明轮子(DRTW)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kiss-it"><span class="nav-number">3.</span> <span class="nav-text">KISS IT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#idb-架构与规范"><span class="nav-number">4.</span> <span class="nav-text">iDB 架构与规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#idb存储规范"><span class="nav-number">4.1.</span> <span class="nav-text">iDB存储规范</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -543,20 +552,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -603,12 +612,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -685,7 +694,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>

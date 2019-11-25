@@ -70,7 +70,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>Coffee Style Computer Language | Riceball LEE</title>
   
@@ -320,23 +321,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="coffee-style-smart-computer-language">Coffee Style Smart Computer Language</h2><p>I treat the coffee-script and <code>Literate CoffeeScript</code> as the first <code>coffee style</code> smart computer language concept. This should be the basics of the next generation Smart Computer Language.</p><a id="more"></a>
+        <h2 id="coffee-style-smart-computer-language">Coffee Style Smart Computer Language</h2><p>I treat the coffee-script and <code>Literate CoffeeScript</code> as the first <code>coffee style</code> smart computer language concept.<br>
+This should be the basics of the next generation Smart Computer Language.</p><a id="more"></a>
 
 <p>Features:</p>
 <ul>
 <li>Space indents for block, the curly braces are optional.</li>
 <li>The brackets are optional for function revocation.</li>
 <li>The array, object(dict) assignment could be no comma, instead of using the block.</li>
-<li>The functional expression definition could be '-&gt;' or '=&gt;'.</li>
+<li>The functional expression definition could be ‘-&gt;’ or ‘=&gt;’.</li>
 <li>Smart variable definition
 <ul>
 <li>It should be a compiler switcher.</li>
 <li>The first variable assignment will be declared if no the same name variable before.</li>
-</ul></li>
+</ul>
+</li>
 <li>RTL(run-time library) replace-able.
 <ul>
 <li>you can write your own <code>extends</code>, <code>for in</code> etc rtl functions.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>Pros:</p>
 <ul>
@@ -346,7 +350,8 @@
 </ul>
 <p>Cons:</p>
 <ul>
-<li><p>Ambiguity: The Human statement as possible ambiguity. eg,</p>
+<li>
+<p>Ambiguity: The Human statement as possible ambiguity. eg,</p>
 <p>I saw a man on a hill with a telescope.</p>
 <ul>
 <li>It seems like a simple statement, until you begin to unpack the many alternate meanings:
@@ -356,22 +361,41 @@
 <li>There’s a man, and he’s on a hill that also has a telescope on it.</li>
 <li>I’m on a hill, and I saw a man using a telescope.</li>
 <li>There’s a man on a hill, and I’m sawing him with a telescope.</li>
-</ul></li>
-</ul></li>
-<li>Smart man used only(the stupid is difficult to use)
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Smart man used only(the stupid is difficult to use)</p>
 <ul>
 <li>the man should have a mindset always. So you have got a big trouble if you can not recognize the ambiguity of some statement.</li>
 <li>the smart variable definition should be care too.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>Most languages could be transformed into a similar coffee style.</p>
-<p>The previous generation computer language is very mechanical and rigid. It's strictly limited, even missing a semicolon would raise an error.</p>
+<p>The previous generation computer language is very mechanical and rigid.<br>
+It’s strictly limited, even missing a semicolon would raise an error.</p>
 <h2 id="language-reference">Language Reference</h2>
 <h3 id="functions">Functions</h3>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">square</span> = <span class="params">(x)</span> -&gt;</span> x * x</span><br><span class="line">cube   :integer = <span class="function"><span class="params">(x: integer)</span> -&gt;</span> square(x) * x</span><br><span class="line">fill   :string  = <span class="function"><span class="params">(container: string, liquid: string = <span class="string">"coffee"</span>)</span> -&gt;</span></span><br><span class="line">  <span class="string">"Filling the <span class="subst">#&#123;container&#125;</span> with <span class="subst">#&#123;liquid&#125;</span>..."</span></span><br></pre></td></tr></table></figure>
+<pre><code class="coffee">square = (x) -&gt; x * x
+cube   :integer = (x: integer) -&gt; square(x) * x
+fill   :string  = (container: string, liquid: string = &quot;coffee&quot;) -&gt;
+  &quot;Filling the #{container} with #{liquid}...&quot;
+</code></pre>
 <p>The return and argument type should be optional for the types could be inferred.</p>
 <p>The following is the C language transform:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> x*x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cube</span><span class="params">(<span class="keyword">int</span> x)</span>   </span>&#123;<span class="keyword">return</span> square(x)*x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">fill</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* container, <span class="keyword">const</span> <span class="keyword">char</span>* liquid)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!liquid) liquid = <span class="string">"coffee"</span>;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span>* fmt = <span class="string">"Filling the %s with %s..."</span>;</span><br><span class="line">  <span class="keyword">int</span> sz = <span class="built_in">snprintf</span>(<span class="literal">NULL</span>, <span class="number">0</span>, fmt, container, liquid);</span><br><span class="line">  <span class="keyword">char</span>* result = <span class="built_in">malloc</span>(sz+<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">snprintf</span>(result, sz+<span class="number">1</span>, fmt, container, liquid);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="c">int square(int x) {return x*x;}
+int cube(int x)   {return square(x)*x;}
+char* fill(const char* container, const char* liquid) {
+  if (!liquid) liquid = &quot;coffee&quot;;
+  const char* fmt = &quot;Filling the %s with %s...&quot;;
+  int sz = snprintf(NULL, 0, fmt, container, liquid);
+  char* result = malloc(sz+1);
+  snprintf(result, sz+1, fmt, container, liquid);
+  return result;
+}
+</code></pre>
 
     </div>
 
@@ -384,10 +408,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -485,20 +509,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -545,12 +569,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -627,7 +651,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>

@@ -4,22 +4,22 @@
 
     <sitemap>
         <loc>http://riceball.me/post-sitemap.xml</loc>
-        <lastmod>2019-11-22T06:56:43.545Z</lastmod>
+        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://riceball.me/page-sitemap.xml</loc>
-        <lastmod>2019-11-23T12:18:37.017Z</lastmod>
+        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://riceball.me/category-sitemap.xml</loc>
-        <lastmod>2019-11-22T06:56:43.545Z</lastmod>
+        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://riceball.me/tag-sitemap.xml</loc>
-        <lastmod>2019-11-22T06:56:43.545Z</lastmod>
+        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
     </sitemap>
 
 </sitemapindex>

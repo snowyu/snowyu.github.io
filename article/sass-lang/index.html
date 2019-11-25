@@ -46,13 +46,13 @@
   };
 </script>
 
-  <meta name="description" content="sass 在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写">
+  <meta name="description" content="在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写的sass语">
 <meta name="keywords" content="programming,computer language,css,sass,compass,html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 开发利器 ——Sass 相关工具框架介绍">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;sass-lang&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="sass 在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写">
+<meta property="og:description" content="在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写的sass语">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;sass-lang.com&#x2F;assets&#x2F;img&#x2F;logos&#x2F;logo-b6e1ef6e.svg">
 <meta property="og:updated_time" content="2019-11-22T06:56:43.537Z">
@@ -72,7 +72,8 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
   <title>CSS 开发利器 ——Sass 相关工具框架介绍 | Riceball LEE</title>
   
@@ -322,43 +323,52 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure>
-<img src="http://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg" alt="sass"><figcaption>sass</figcaption>
-</figure><p>在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写的sass语言最终转换为CSS代码。Sass提供了基于Ruby语言开发的工具能够很容易的将sass代码转换为CSS代码.</p><a id="more"></a>
+        <p><img src="http://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg" alt="sass"></p><p>在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写的sass语言最终转换为CSS代码。Sass提供了基于Ruby语言开发的工具能够很容易的将sass代码转换为CSS代码.</p><a id="more"></a>
 
-<h1 id="它的语法特性">它的语法特性</h1>
-<ol type="1">
-<li>变量: Sass中以”<span class="math inline">”号打头的</span>name 都是变量。我们可以给变量赋值，然后在文件中使用它们。</li>
-<li>继承: 　A. 继承其它选择器的属性：.error {border: 1px}; .badError {<span class="citation" data-cites="extend">@extend</span> .error}; 　B. 在选择器中属性插入”&amp;”它就会继承父选择器：a: {color:black; &amp;:hover {color:blue}}</li>
+<h1>它的语法特性</h1>
+<ol>
+<li>变量: Sass中以”$”号打头的$name 都是变量。我们可以给变量赋值，然后在文件中使用它们。</li>
+<li>继承:<br>
+　A. 继承其它选择器的属性：.error {border: 1px}; .badError {@extend .error};<br>
+　B. 在选择器中属性插入”&amp;”它就会继承父选择器：a: {color:black; &amp;:hover {color:blue}}</li>
 <li>内嵌 ：这个功能将另外一个急需的特性加入CSS：将选择器嵌入到其他等级，而不是不得不取消在一些高级选择器定义中嵌套。Sass翻译器将这个简洁的特性扩展到了CSS。</li>
 <li>混合类型 ：允许开发者抽象出性质的共同点，然后命名并且加入到选择器中。熟悉Ruby混合类型的开发者会了解混合类型在CSS中的应用。Sass也允许将混合类型作为参数，使得混合类型的应用更加灵活。</li>
-<li>操作 ：Sass支持简单的算术操作，例如+-×/，以及函数。将这个特性和变量结合起来，会使得CSS变得更加灵活。工具需要保证操作的单位（px, pt）正确性（例如字体大小等, width: 1in + 8pt，将某颜色亮度增加10%: lighten(yellow, 10%)）。</li>
+<li>操作 ：Sass支持简单的算术操作，例如±×/，以及函数。将这个特性和变量结合起来，会使得CSS变得更加灵活。工具需要保证操作的单位（px, pt）正确性（例如字体大小等, width: 1in + 8pt，将某颜色亮度增加10%: lighten(yellow, 10%)）。</li>
 </ol>
 <p>Sass语言支持的函数列表在这里：<a href="http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html" target="_blank" rel="noopener">http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html</a></p>
 <h2 id="scss">SCSS</h2>
 <p>2010年5月份Sass发布了支持CSS3的新语法叫做SCSS（Sassy CSS），它是CSS3的一个超集，也就是说它100%兼容CSS3，每一个有效的CSS3文件也是有效的SCSS文件。不仅如此，它还支持我们能够找到的所有扩展，甚至包括一些非标准语法，例如微软的expression()函数和filter属性。Sass修改后的语法希望能够尽量减少和CSS语法的差异，以吸引更多的用户使用。修改语法的另一个好处是可以使得CSS工具更容易支持Sass。Sass 的旧有语法将会继续存在并且能够为旧版本用户提供良好兼容性。</p>
-<h1 id="sass的安装和使用">SASS的安装和使用</h1>
-<h2 id="一安装"><strong>一、安装：</strong></h2>
+<h1>SASS的安装和使用</h1>
+<h2 id="一-安装："><strong>一、安装：</strong></h2>
 <p>因为sass的工具是基于ruby gems开发的，所以安装 ruby和gem是必须的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$sudo</span> gem install haml</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">　　$sudo gem install haml
+</code></pre>
 <p>在命令行使用sass：</p>
-<p>　　$sass input.scss output.css</p>
+<p>$sass input.scss output.css</p>
 <p>直接输出压缩后的css文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$sass</span> input.scss output.css --style compressed</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">　　$sass input.scss output.css --style compressed
+</code></pre>
 <p>compass是基于sass的样式创作的rails框架工具，它使得你的样式表项目更容易维护. 它内部支持的css框架库是bluepoint和compass，如果在创建项目的时候不指明框架库，则是用Compass库。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$sudo</span> gem install compass</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">　　$sudo gem install compass
+</code></pre>
 <p>创建css项目：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> <span class="built_in">help</span> create</span><br></pre></td></tr></table></figure>
-<h2 id="二sass的使用"><strong>二、Sass的使用：</strong></h2>
+<pre><code class="bash">　　$compass help create
+</code></pre>
+<h2 id="二-sass的使用："><strong>二、Sass的使用：</strong></h2>
 <p>创新一个新的CSS项目：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> create newProject</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">　　$compass create newProject
+</code></pre>
 <p>如果不喜欢它自动创建的css等目录的名称你也可以在创建的时候自己指定：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> create newProject --using blueprint/project --sass-dir sass --css-dir css --images-dir images --javascripts-dir js --output-style compressed</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">　　$compass create newProject --using blueprint/project --sass-dir sass --css-dir css --images-dir images --javascripts-dir js --output-style compressed
+</code></pre>
 <p>以上使用blueprint/project CSS框架来创建项目，并设置sass目录为sass，输出css目录为css,图片目录为images，javascript目录为js, 输出的css的方式为压缩.</p>
 <p>为已有项目添加CSS模板框架</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$compass</span> <span class="built_in">help</span> install</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">　　$compass help install
+</code></pre>
 <p>在已有项目中添加一个 blueprint的按钮css框架:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="variable">$cd</span> newProject</span><br><span class="line">　　<span class="variable">$compass</span> install blueprint/buttons</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">　　$cd newProject
+　　$compass install blueprint/buttons
+</code></pre>
 <p><strong>本文作者：李雪愚。雪愚是盛大创新院高级架构师，Geeker，热爱开源事业。</strong></p>
 
     </div>
@@ -372,10 +382,10 @@
         data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
       
-        data-wechat-qrcode-title="share.title"
+        data-wechat-qrcode-title="微信"
       
       
-        data-wechat-qrcode-helper="share.prompt"
+        data-wechat-qrcode-helper="分享到微信"
       
     >
     </div>
@@ -456,7 +466,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#它的语法特性"><span class="nav-number">1.</span> <span class="nav-text">它的语法特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scss"><span class="nav-number">1.1.</span> <span class="nav-text">SCSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sass的安装和使用"><span class="nav-number">2.</span> <span class="nav-text">SASS的安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一安装"><span class="nav-number">2.1.</span> <span class="nav-text">一、安装：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二sass的使用"><span class="nav-number">2.2.</span> <span class="nav-text">二、Sass的使用：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">它的语法特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scss"><span class="nav-number">1.1.</span> <span class="nav-text">SCSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">SASS的安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-安装："><span class="nav-number">2.1.</span> <span class="nav-text">一、安装：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-sass的使用："><span class="nav-number">2.2.</span> <span class="nav-text">二、Sass的使用：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -472,20 +482,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -532,12 +542,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">181k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:29</span>
 </div>
 
         
@@ -614,7 +624,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-  
 
 </body>
 </html>
