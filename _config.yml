@@ -38,7 +38,9 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: no-layout/**
+skip_render:
+  - no-layout/**
+  - assets/**
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -51,7 +53,7 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -126,6 +128,7 @@ marked:
 ## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
 markdown:
   render:
+    langPrefix: ''
     html: true
     xhtmlOut: false
     breaks: true
@@ -133,11 +136,13 @@ markdown:
     typographer: true
     quotes: '“”‘’'
   plugins:
+    - markdown-it-interactive
     - markdown-it-abbr
     - markdown-it-footnote
     - markdown-it-ins
     - markdown-it-sub
     - markdown-it-sup
+    - markdown-it-math
   anchors:
     level: 2
     collisionSuffix: 'v'

@@ -121,7 +121,7 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argparse@^1.0.7:
+argparse@^1.0.7, argparse@~1.0.3:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
@@ -152,6 +152,13 @@ asap@^2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
+
+ascii2mathml@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.npm.taobao.org/ascii2mathml/download/ascii2mathml-0.6.2.tgz#e9d85058d3c06655a6100c0f0291a90dca7fcaa1"
+  integrity sha1-6dhQWNPAZlWmEAwPApGpDcp/yqE=
+  dependencies:
+    minimist "^1.2.0"
 
 assign-symbols@^1.0.0:
   version "1.0.0"
@@ -1251,7 +1258,7 @@ hexo-log@^1.0.0:
 
 "hexo-next-coauthor@github:snowyu/hexo-next-coauthor":
   version "0.0.2"
-  resolved "https://codeload.github.com/snowyu/hexo-next-coauthor/tar.gz/d3caa605987f0dd9154a98a4cb7c1ea29cb4cebb"
+  resolved "https://codeload.github.com/snowyu/hexo-next-coauthor/tar.gz/f64bb59894194d7f3e52bdf82b2437d53431e61e"
   dependencies:
     js-yaml "^3.13.1"
 
@@ -1273,10 +1280,19 @@ hexo-renderer-ejs@^1.0.0:
   dependencies:
     ejs "^2.6.1"
 
-hexo-renderer-pandoc@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npm.taobao.org/hexo-renderer-pandoc/download/hexo-renderer-pandoc-0.3.0.tgz#c8f4006cfdb9f9999eeeb0302e5275fb2f0bf02d"
-  integrity sha1-yPQAbP25+Zme7rAwLlJ1+y8L8C0=
+hexo-renderer-markdown-it@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.npm.taobao.org/hexo-renderer-markdown-it/download/hexo-renderer-markdown-it-3.4.1.tgz#d409a44c9b2c1b331ed2e6f374901f985ce7231c"
+  integrity sha1-1AmkTJssGzMe0ubzdJAfmFznIxw=
+  dependencies:
+    lodash.assign "^3.2.0"
+    markdown-it "^5.0.1"
+    markdown-it-abbr "^1.0.0"
+    markdown-it-footnote "^2.0.0"
+    markdown-it-ins "^2.0.0"
+    markdown-it-sub "^1.0.0"
+    markdown-it-sup "^1.0.0"
+    sluggo "^0.2.0"
 
 hexo-renderer-stylus@^1.1.0:
   version "1.1.0"
@@ -1659,6 +1675,59 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+linkify-it@~1.2.0:
+  version "1.2.4"
+  resolved "https://registry.npm.taobao.org/linkify-it/download/linkify-it-1.2.4.tgz#0773526c317c8fd13bd534ee1d180ff88abf881a"
+  integrity sha1-B3NSbDF8j9E71TTuHRgP+Iq/iBo=
+  dependencies:
+    uc.micro "^1.0.1"
+
+lodash._baseassign@^3.0.0:
+  version "3.2.0"
+  resolved "https://registry.npm.taobao.org/lodash._baseassign/download/lodash._baseassign-3.2.0.tgz#8c38a099500f215ad09e59f1722fd0c52bfe0a4e"
+  integrity sha1-jDigmVAPIVrQnlnxci/QxSv+Ck4=
+  dependencies:
+    lodash._basecopy "^3.0.0"
+    lodash.keys "^3.0.0"
+
+lodash._basecopy@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz#8da0e6a876cf344c0ad8a54882111dd3c5c7ca36"
+  integrity sha1-jaDmqHbPNEwK2KVIghEd08XHyjY=
+
+lodash._bindcallback@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/lodash._bindcallback/download/lodash._bindcallback-3.0.1.tgz#e531c27644cf8b57a99e17ed95b35c748789392e"
+  integrity sha1-5THCdkTPi1epnhftlbNcdIeJOS4=
+
+lodash._createassigner@^3.0.0:
+  version "3.1.1"
+  resolved "https://registry.npm.taobao.org/lodash._createassigner/download/lodash._createassigner-3.1.1.tgz#838a5bae2fdaca63ac22dee8e19fa4e6d6970b11"
+  integrity sha1-g4pbri/aymOsIt7o4Z+k5taXCxE=
+  dependencies:
+    lodash._bindcallback "^3.0.0"
+    lodash._isiterateecall "^3.0.0"
+    lodash.restparam "^3.0.0"
+
+lodash._getnative@^3.0.0:
+  version "3.9.1"
+  resolved "https://registry.npm.taobao.org/lodash._getnative/download/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
+  integrity sha1-VwvH3t5G1hzc3mh9ZdPuy6o6r/U=
+
+lodash._isiterateecall@^3.0.0:
+  version "3.0.9"
+  resolved "https://registry.npm.taobao.org/lodash._isiterateecall/download/lodash._isiterateecall-3.0.9.tgz#5203ad7ba425fae842460e696db9cf3e6aac057c"
+  integrity sha1-UgOte6Ql+uhCRg5pbbnPPmqsBXw=
+
+lodash.assign@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.npm.taobao.org/lodash.assign/download/lodash.assign-3.2.0.tgz#3ce9f0234b4b2223e296b8fa0ac1fee8ebca64fa"
+  integrity sha1-POnwI0tLIiPilrj6CsH+6OvKZPo=
+  dependencies:
+    lodash._baseassign "^3.0.0"
+    lodash._createassigner "^3.0.0"
+    lodash.keys "^3.0.0"
+
 lodash.assignin@^4.0.9:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assignin/-/lodash.assignin-4.2.0.tgz#ba8df5fb841eb0a3e8044232b0e263a8dc6a28a2"
@@ -1689,6 +1758,25 @@ lodash.foreach@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
   integrity sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=
 
+lodash.isarguments@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.npm.taobao.org/lodash.isarguments/download/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
+  integrity sha1-L1c9hcaiQon/AGY7SRwdM4/zRYo=
+
+lodash.isarray@^3.0.0:
+  version "3.0.4"
+  resolved "https://registry.npm.taobao.org/lodash.isarray/download/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
+  integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
+
+lodash.keys@^3.0.0:
+  version "3.1.2"
+  resolved "https://registry.npm.taobao.org/lodash.keys/download/lodash.keys-3.1.2.tgz#4dbc0472b156be50a0b286855d1bd0b0c656098a"
+  integrity sha1-TbwEcrFWvlCgsoaFXRvQsMZWCYo=
+  dependencies:
+    lodash._getnative "^3.0.0"
+    lodash.isarguments "^3.0.0"
+    lodash.isarray "^3.0.0"
+
 lodash.map@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
@@ -1713,6 +1801,11 @@ lodash.reject@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.reject/-/lodash.reject-4.6.0.tgz#80d6492dc1470864bbf583533b651f42a9f52415"
   integrity sha1-gNZJLcFHCGS79YNTO2UfQqn1JBU=
+
+lodash.restparam@^3.0.0:
+  version "3.6.1"
+  resolved "https://registry.npm.taobao.org/lodash.restparam/download/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
+  integrity sha1-k2pOMJ7zMKdkXtQUWYbIWuWyCAU=
 
 lodash.some@^4.4.0:
   version "4.6.0"
@@ -1758,12 +1851,73 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+markdown-it-abbr@^1.0.0, markdown-it-abbr@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/markdown-it-abbr/download/markdown-it-abbr-1.0.4.tgz#d66b5364521cbb3dd8aa59dadfba2fb6865c8fd8"
+  integrity sha1-1mtTZFIcuz3Yqlna37ovtoZcj9g=
+
+markdown-it-footnote@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-footnote/download/markdown-it-footnote-2.0.0.tgz#14e9c4f68ff12cf354fa365ae378276e8104ca94"
+  integrity sha1-FOnE9o/xLPNU+jZa43gnboEEypQ=
+
+markdown-it-footnote@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npm.taobao.org/markdown-it-footnote/download/markdown-it-footnote-3.0.2.tgz#1575ee7a093648d4e096aa33386b058d92ac8bc1"
+  integrity sha1-FXXuegk2SNTglqozOGsFjZKsi8E=
+
+markdown-it-ins@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-ins/download/markdown-it-ins-2.0.0.tgz#a5aa6a30f1e2f71e9497567cfdff40f1fde67483"
+  integrity sha1-papqMPHi9x6Ul1Z8/f9A8f3mdIM=
+
+markdown-it-ins@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-ins/download/markdown-it-ins-3.0.0.tgz#b1b56824c78dc66e52b0fc97531b317cd78d79d2"
+  integrity sha1-sbVoJMeNxm5SsPyXUxsxfNeNedI=
+
+"markdown-it-interactive@file:packages/markdown-it-interactive":
+  version "0.1.0"
+
+markdown-it-math@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npm.taobao.org/markdown-it-math/download/markdown-it-math-4.1.1.tgz#a63fac36d9ffe4362749749d966a84852f2ca137"
+  integrity sha1-pj+sNtn/5DYnSXSdlmqEhS8soTc=
+  optionalDependencies:
+    ascii2mathml "^0.6.2"
+
+markdown-it-sub@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-sub/download/markdown-it-sub-1.0.0.tgz#375fd6026eae7ddcb012497f6411195ea1e3afe8"
+  integrity sha1-N1/WAm6ufdywEkl/ZBEZXqHjr+g=
+
+markdown-it-sup@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-sup/download/markdown-it-sup-1.0.0.tgz#cb9c9ff91a5255ac08f3fd3d63286e15df0a1fc3"
+  integrity sha1-y5yf+RpSVawI8/09YyhuFd8KH8M=
+
+markdown-it@^5.0.1:
+  version "5.1.0"
+  resolved "https://registry.npm.taobao.org/markdown-it/download/markdown-it-5.1.0.tgz#25286b8465bac496f3f1b77eed544643e9bd718d"
+  integrity sha1-JShrhGW6xJbz8bd+7VRGQ+m9cY0=
+  dependencies:
+    argparse "~1.0.3"
+    entities "~1.1.1"
+    linkify-it "~1.2.0"
+    mdurl "~1.0.1"
+    uc.micro "^1.0.0"
+
 markdown@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/markdown/-/markdown-0.5.0.tgz#28205b565a8ae7592de207463d6637dc182722b2"
   integrity sha1-KCBbVlqK51kt4gdGPWY33BgnIrI=
   dependencies:
     nopt "~2.1.1"
+
+mdurl@~1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/mdurl/download/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
+  integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
 
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
@@ -2441,6 +2595,11 @@ signal-exit@^3.0.0:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
+sluggo@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/sluggo/download/sluggo-0.2.0.tgz#5d0bcb28d70c8c1eee773feec626d15189689cbf"
+  integrity sha1-XQvLKNcMjB7udz/uxibRUYlonL8=
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -2742,6 +2901,11 @@ toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+
+uc.micro@^1.0.0, uc.micro@^1.0.1:
+  version "1.0.6"
+  resolved "https://registry.npm.taobao.org/uc.micro/download/uc.micro-1.0.6.tgz#9c411a802a409a91fc6cf74081baba34b24499ac"
+  integrity sha1-nEEagCpAmpH8bPdAgbq6NLJEmaw=
 
 uglify-js@2.6.0:
   version "2.6.0"

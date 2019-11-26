@@ -1,3 +1,9 @@
+## Interactive Markdown Supports
+
+required:
+
+* markdown-it
+
 ## hexo-generator-indexed
 
 ```yml
@@ -16,12 +22,13 @@ Show author info on article lists and article head.
 
 ## Math Formulas Render Support
 
-### marked-it
+### marked-it(default)
 
 * TODO: ASCIIMath more easy: https://github.com/quertt/markdown-it-asciimath
 
 ```bash
 npm i hexo-renderer-markdown-it
+npm i markdown-it-abbr markdown-it-footnote markdown-it-ins markdown-it-sub markdown-it-sup markdown-it-math
 ```
 
 ```yml
@@ -42,7 +49,7 @@ markdown:
     - markdown-it-ins
     - markdown-it-sub
     - markdown-it-sup
-    - '@liradb2000/markdown-it-katex'
+    - markdown-it-math
   anchors:
     level: 2
     collisionSuffix: 'v'
@@ -54,12 +61,29 @@ markdown:
 math:
   # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
   katex:
-    enable: true
+    enable: false # 已经不需要打开任何配置，除非你用katex渲染，需要打开这个，会自动引入katex的css
     # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
     copy_tex: false
 ```
 
+如果浏览器不支持MathML，Chrome需要挂这个脚本:
+`<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>`
+
+
+markdown语法如下
+
+```
+Pythagoran theorem is $$a^2 + b^2 = c^2$$.
+
+Bayes theorem:
+
+$$$
+P(A | B) = (P(B | A)P(A)) / P(B)
+$$$
+```
 ### pandoc
+
+More easy
 
 ```bash
 sudo apt install pandoc
