@@ -78773,7 +78773,7 @@ Browser-specific functionality.
  */
 
 (function() {
-  var ActiveCanvas, ActiveCodeBlock, ActiveMarkdown, ChartElement, Controls, DragManager, Executor, RangeElement, StringElement, SwitchElement, _, _s, heading_counts, rawCode;
+  var ActiveCanvas, ActiveCodeBlock, ActiveMarkdown, ChartElement, Controls, DragManager, Executor, RangeElement, StringElement, SwitchElement, _, _s, getLangName, heading_counts, rawCode;
 
   _ = require('underscore');
 
@@ -78803,6 +78803,18 @@ Browser-specific functionality.
 
   window.drag_manager = new DragManager();
 
+  getLangName = function(str) {
+    var result;
+    if (str) {
+      try {
+        result = str.split('-');
+        result = result[result.length - 1];
+        str = result;
+      } catch (error) {}
+    }
+    return str;
+  };
+
   ActiveMarkdown.makeActive = function(options) {
     var $controlBar, controls;
     ActiveMarkdown.options = options;
@@ -78818,7 +78830,7 @@ Browser-specific functionality.
       var $code, $el, $new_el, codeClass, source;
       $el = $(el);
       $code = $el.find('code');
-      codeClass = $code.attr('class');
+      codeClass = getLangName($code.attr('class'));
       switch (codeClass) {
         case "canvas":
           source = $code.text();
@@ -78829,13 +78841,15 @@ Browser-specific functionality.
             source: source
           }));
         default:
-          source = $code.text();
-          $new_el = $('<div>');
-          $el.replaceWith($new_el);
-          return executor.addCodeBlock(new ActiveCodeBlock({
-            el: $new_el,
-            source: source
-          }));
+          if (!codeClass || codeClass === 'playable') {
+            source = $code.text();
+            $new_el = $('<div>');
+            $el.replaceWith($new_el);
+            return executor.addCodeBlock(new ActiveCodeBlock({
+              el: $new_el,
+              source: source
+            }));
+          }
       }
     });
     return $('.AMElement').each(function(i, el) {
@@ -79075,7 +79089,7 @@ Browser-specific functionality.
 
     ChartElement.is_embed = true;
 
-    ChartElement.config_pattern = /^([line|scatter|bar]+)=([\w\d]+):\s([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)([\.]{2,3})([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)(\sby\s(?:[+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*))*(?:\s*,\s*width=(\d+))?(?:\s*,\s*height=(\d+))?$/;
+    ChartElement.config_pattern = /^([line|scatter|bar]+)=([^:=-\s]+)\s*:\s+([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)([\.]{2,3})([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)(\sby\s(?:[+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*))*(?:\s*,\s*width=(\d+))?(?:\s*,\s*height=(\d+))?$/;
 
     ChartElement.prototype.initialize = function(parsed_config) {
       var ref1, throttled_render, x_label, y_label;
@@ -79627,7 +79641,7 @@ Browser-specific functionality.
 
     RangeElement._name = 'RangeElement';
 
-    RangeElement.config_pattern = /^([\w\d]+):\s*([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)([\.]{2,3})([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)(\sby\s(?:[+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*))*$/;
+    RangeElement.config_pattern = /^([^:=-]+)\s*:\s*([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)([\.]{2,3})([+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*)(\sby\s(?:[+|-]?(?:[\d]*[\.]?[\d]+)?[102EGILONQPSRT_egilonqpsrt]*))*$/;
 
     RangeElement.prototype.initialize = function(parsed_config) {
       parsed_config.value = this._parseTextContent(parsed_config);
@@ -79890,7 +79904,7 @@ Browser-specific functionality.
 
     SwitchElement._name = 'SwitchElement';
 
-    SwitchElement.config_pattern = /^([\w\d]+):\s([\w]+)\sor\s([\w]+)$/;
+    SwitchElement.config_pattern = /^([^:=-\s]+)\s*:\s*([\S]+)\s+(?:or|或者?)\s+([\S]+)$/;
 
     SwitchElement.prototype.initialize = function(parsed_config) {
       parsed_config.value = this._parseTextContent(parsed_config);

@@ -8,6 +8,62 @@
     </url>
 
     <url>
+        <loc>http://riceball.me/categories/Library/Graphic/</loc>
+        <lastmod>2019-11-26T05:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Library/</loc>
+        <lastmod>2019-11-26T05:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/JavaScript/Framework/App/</loc>
+        <lastmod>2019-11-25T21:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/JavaScript/Framework/</loc>
+        <lastmod>2019-11-25T21:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/JavaScript/</loc>
+        <lastmod>2019-11-25T21:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Database/NoSQL/CouchDB/</loc>
+        <lastmod>2019-11-25T19:30:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Database/NoSQL/</loc>
+        <lastmod>2019-11-25T19:30:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Database/</loc>
+        <lastmod>2019-11-25T19:30:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://riceball.me/categories/Thinking/Reactive/Document/Markdown/</loc>
         <lastmod>2019-11-23T14:22:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -85,13 +141,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive-Document/</loc>
-        <lastmod>2019-11-22T06:56:43.537Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://riceball.me/categories/Learning/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -162,20 +211,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Database/NoSQL/</loc>
-        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/Database/</loc>
-        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://riceball.me/categories/Thinking/Internet/IOT/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -198,20 +233,6 @@
 
     <url>
         <loc>http://riceball.me/categories/JavaScript/Framework/Desktop/</loc>
-        <lastmod>2016-08-01T12:54:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/JavaScript/Framework/</loc>
-        <lastmod>2016-08-01T12:54:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/JavaScript/</loc>
         <lastmod>2016-08-01T12:54:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
