@@ -1,17 +1,19 @@
 ---
-title: Reactive Document
-date: 2014-05-05 15:53:00
+title: Raphael 矢量图形和动画javascript库
+date: 2019-11-22 15:53:00
+updated: 2019-11-26 13:00:00
 draft: true
 categories:
-  - Thinking
-  - Reactive Document
-tags : [reactive, document, raphael, javascript, markdown]
+  - Library
+  - Graphic
+tags : [graphic, animation, vector, raphael, javascript, tut]
+reactive: true
 ---
-下面是Reactive Document的示範。
+
+raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。
 
 # 创建图形对象
 
-raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。
 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。
 
 ## 矩形(Rect)
@@ -24,25 +26,26 @@ raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面�
 ```canvas
 # 演示绘制矩形的过程
 paper = @canvas
-[|]
+
+|
 ~~~
 tooltip: 设置画布大小为200X100 ::: 初始化工作
-type: paper.setSize(200,100)\n
+type:paper.setSize(200,100)\n
 tooltip: 清空画布
-type: paper.clear()\n
+type:paper.clear()\n
 tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量
-type: @rx ||=10\n
-type: @ry ||=18\n
-type: @rw ||=100\n
-type: @rh ||=50\n
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
 tooltip: 开始绘制矩形 ::: 绘制矩形
-type: rect = paper.rect(@rx, @ry, @rw, @rh)\n
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
 tooltip: 为矩形填充红色
-type: rect.attr('fill', 'red')
+type:rect.attr('fill', 'red')
 moveTo: 8:13
 tooltip: 现在你可以自己试一试了
 ```
-
+--------
 看完演示，你可以这上面的代码中自己动手试一试了,比如: 圆，椭圆, 文字，图片等等。
 
 * circle(x, y, r)
@@ -131,12 +134,3 @@ rect.mousedown(  () ->
 
 现在你可以在矩形上点击看看动画效果。
 
-
-# 绘制余弦曲线图
-
-    @p = (x) =>
-        return Math.cos(x + @offset)
-
-[Offset: 1.00]{offset: -pi..pi by 0.0625pi}
-
-![cos(x)]{line=p: 0..2pi by 0.001, width=300, height=200}
