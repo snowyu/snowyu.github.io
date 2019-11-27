@@ -20,9 +20,7 @@ GnuPG软件（简称GPG） -- OpenPGP
 
 ## OpenPGP
 
-Zimmerman(最早的PGP开发人员)于1997年向IETF（互联网工程任务组）提交了[开源PGP（OpenPGP）标准提案](https://tools.ietf.org/html/rfc4880)。
-
-如今，OpenPGP是PGP的标准，是供公众使用的开源代码，并且该术语可用于描述支持OpenPGP系统的任何程序。
+Zimmerman(最早的PGP开发人员)于1997年向IETF（互联网工程任务组）提交了[开源PGP（OpenPGP）标准提案](https://tools.ietf.org/html/rfc4880)。如今，OpenPGP成为了PGP的标准规范，是供公众使用的开源代码，并且该术语可用于描述支持OpenPGP系统的任何程序。
 
 ## GPG (GNU Privacy Guard)
 
@@ -30,7 +28,7 @@ GnuPGP由Werner Koch开发的开源加密工具软件，并于1999年发布，�
 
 ## Keys
 
-在公开密钥算法中，一个Key(密钥)包括两个部分：公钥和私钥。
+在公开密钥算法中，一个Key(密钥)包括两个部分：公钥和私钥。公钥类似于印鉴，而私钥类似于印章。
 
 ## [Subkeys](https://wiki.debian.org/Subkeys)
 
@@ -51,7 +49,7 @@ OpenPGP subkeys 用于不同的设想：
 
 * 可以保持主键始终处于离线安全状态，您的主键不需要存放在线上(online)，可以只存放在本地的安全设备上。一旦有子键泄露，可以立刻使用主键轻松的吊销该子键，而没有撤销主键的麻烦（需要再次分享新的键,获取新的签名...）。Being able to store the primary key offline or a more secure device. If a machine with a subkey is harmed, you can easily revoke the subkey without all the hassles of revoking your primary key (sharing a new key, getting new signatures, ...).
 * 可以在不同的机器上使用不同的子键。例如在构建服务器上使用单独的子键。记住，吊销单独的子键非常容易。Having different subkeys on different machines, for example a signing subkey on a build server. Again, revoking single keys is easy.
-* 使用一个很长的密钥作为主键，使用短而快速的子键，可以每天一换。Using a larger primary key for long lifetime, and shorter, but faster subkeys for day-to-day usage.
+* 使用较大尺寸的密钥作为主键长时间使用，而使用短而快速的子键，可以每天一换。Using a larger primary key for long lifetime, and shorter, but faster subkeys for day-to-day usage.
 * 某些算法不能同时支持加密和签名，例如: DSA 主密钥只能签名，因此它需要另一个密钥来加密，通常DSA与ElGamal算法成对使用。Some algorithms do not support both encrypting and signing. For example, a DSA primary key requires another key for encryption, typically paired with ElGamal.
 
 ### Binding Signatures
