@@ -4,7 +4,7 @@
 
     <sitemap>
         <loc>http://riceball.me/post-sitemap.xml</loc>
-        <lastmod>2019-11-26T05:00:00.000Z</lastmod>
+        <lastmod>2019-11-26T17:27:00.000Z</lastmod>
     </sitemap>
 
     <sitemap>
@@ -14,12 +14,12 @@
 
     <sitemap>
         <loc>http://riceball.me/category-sitemap.xml</loc>
-        <lastmod>2019-11-26T05:00:00.000Z</lastmod>
+        <lastmod>2019-11-26T17:27:00.000Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://riceball.me/tag-sitemap.xml</loc>
-        <lastmod>2019-11-26T05:00:00.000Z</lastmod>
+        <lastmod>2019-11-26T17:27:00.000Z</lastmod>
     </sitemap>
 
 </sitemapindex>
