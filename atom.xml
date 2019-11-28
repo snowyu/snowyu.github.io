@@ -301,11 +301,11 @@
     
       <category term="cloud computing" scheme="http://riceball.me/tags/cloud-computing/"/>
     
-      <category term="open source" scheme="http://riceball.me/tags/open-source/"/>
-    
       <category term="saas" scheme="http://riceball.me/tags/saas/"/>
     
       <category term="software as a service" scheme="http://riceball.me/tags/software-as-a-service/"/>
+    
+      <category term="open source" scheme="http://riceball.me/tags/open-source/"/>
     
   </entry>
   
@@ -335,9 +335,9 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     
       <category term="programming" scheme="http://riceball.me/tags/programming/"/>
     
-      <category term="tech" scheme="http://riceball.me/tags/tech/"/>
-    
       <category term="language" scheme="http://riceball.me/tags/language/"/>
+    
+      <category term="tech" scheme="http://riceball.me/tags/tech/"/>
     
   </entry>
   
@@ -502,11 +502,11 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     
       <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
     
+      <category term="tech" scheme="http://riceball.me/tags/tech/"/>
+    
       <category term="vr" scheme="http://riceball.me/tags/vr/"/>
     
       <category term="virtual reality" scheme="http://riceball.me/tags/virtual-reality/"/>
-    
-      <category term="tech" scheme="http://riceball.me/tags/tech/"/>
     
   </entry>
   

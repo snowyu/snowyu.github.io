@@ -2864,9 +2864,9 @@ ipset destroy chnroute
       </categories>
       <tags>
         <tag>cloud computing</tag>
-        <tag>open source</tag>
         <tag>saas</tag>
         <tag>software as a service</tag>
+        <tag>open source</tag>
       </tags>
   </entry>
   <entry>
@@ -2955,8 +2955,8 @@ fill   :string  = <span class="hljs-function"><span class="hljs-params">(contain
       <tags>
         <tag>thinking</tag>
         <tag>programming</tag>
-        <tag>tech</tag>
         <tag>language</tag>
+        <tag>tech</tag>
       </tags>
   </entry>
   <entry>
@@ -4485,9 +4485,9 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
       </categories>
       <tags>
         <tag>thinking</tag>
+        <tag>tech</tag>
         <tag>vr</tag>
         <tag>virtual reality</tag>
-        <tag>tech</tag>
       </tags>
   </entry>
   <entry>
@@ -7994,8 +7994,8 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
       </categories>
       <tags>
         <tag>thinking</tag>
-        <tag>arduino</tag>
         <tag>open source</tag>
+        <tag>arduino</tag>
         <tag>hardware</tag>
         <tag>iot</tag>
       </tags>
@@ -8283,8 +8283,31 @@ The first guess is often [2753]{first_guess}…
 <blockquote>
 <p>I am thinking about whether to use the new <code>[]{}</code> to express interactive elements, or to expand on <code>[]()</code>. From the development point of view, it is simpler to use<code>[]{}</code>, so I chose it.</p>
 </blockquote>
-<h3 id="the-second-complex-example">The Second Complex Example</h3>
-<p><a href="/article/raphael-tut/">Raphael 矢量图形和动画javascript库</a></p>
+<h3 id="a-more-complex-example">A More Complex Example</h3>
+<p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
+<p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>
+<pre><code class="canvas"># demo how to draw a rect.
+paper = @canvas
+
+|
+~~~
+tooltip: set the canvas size:200X100 ::: Init
+type:paper.setSize(200,100)\n
+tooltip: clear canvas
+type:paper.clear()\n
+tooltip: init x/y coor, width/height parameters coming from document
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: drawing rect nowing ::: Draw rect
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: fill red for the rect
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: you can try it by youself now
+</code></pre>
+<hr>
 ]]></content>
   </entry>
 </search>

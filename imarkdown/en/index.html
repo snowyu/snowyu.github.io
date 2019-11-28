@@ -347,8 +347,31 @@ The first guess is often [2753]{first_guess}…
 <blockquote>
 <p>I am thinking about whether to use the new <code>[]{}</code> to express interactive elements, or to expand on <code>[]()</code>. From the development point of view, it is simpler to use<code>[]{}</code>, so I chose it.</p>
 </blockquote>
-<h3 id="the-second-complex-example">The Second Complex Example</h3>
-<p><a href="/article/raphael-tut/">Raphael 矢量图形和动画javascript库</a></p>
+<h3 id="a-more-complex-example">A More Complex Example</h3>
+<p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
+<p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>
+<pre><code class="canvas"># demo how to draw a rect.
+paper = @canvas
+
+|
+~~~
+tooltip: set the canvas size:200X100 ::: Init
+type:paper.setSize(200,100)\n
+tooltip: clear canvas
+type:paper.clear()\n
+tooltip: init x/y coor, width/height parameters coming from document
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: drawing rect nowing ::: Draw rect
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: fill red for the rect
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: you can try it by youself now
+</code></pre>
+<hr>
 
       </div>
       
@@ -395,7 +418,7 @@ The first guess is often [2753]{first_guess}…
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#interactive-markdown"><span class="nav-number">1.</span> <span class="nav-text">Interactive Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-second-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">The Second Complex Example</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#interactive-markdown"><span class="nav-number">1.</span> <span class="nav-text">Interactive Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">A More Complex Example</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -542,7 +565,7 @@ The first guess is often [2753]{first_guess}…
 
 
 <script src='/assets/js/imarkdown-0.4.0.js'></script><script>
-window.iMarkdown.makeActive({"collapsed_code":true,"debug":false,"filename":"Interactive Markdown.md"});</script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown.md"});</script>
 
 <script>
 if (document.querySelectorAll('pre code.mermaid').length) {
