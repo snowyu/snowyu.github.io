@@ -48,6 +48,7 @@ function interactive(state, silent) {
 };
 
 module.exports = function(md) {
+  console.log('iiiiiiiiiiiiiiiiiiii')
   return md.inline.ruler.after('emphasis', 'interactive', interactive);
 };
 

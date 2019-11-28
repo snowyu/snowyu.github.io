@@ -1368,7 +1368,7 @@ hexo@^4.0.0:
     titlecase "^1.1.2"
     warehouse "^3.0.1"
 
-highlight.js@^9.13.1:
+highlight.js@^9.13.1, highlight.js@^9.16.2:
   version "9.16.2"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.16.2.tgz#68368d039ffe1c6211bcc07e483daf95de3e403e"
   integrity sha512-feMUrVLZvjy0oC7FVJQcSQRqbBq9kwqnYE4+Kj9ZjbHh3g+BisiPgF49NyQbVLNdrL/qqZr3Ca9yOKwgn2i/tw==
@@ -1865,6 +1865,9 @@ markdown-it-footnote@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npm.taobao.org/markdown-it-footnote/download/markdown-it-footnote-3.0.2.tgz#1575ee7a093648d4e096aa33386b058d92ac8bc1"
   integrity sha1-FXXuegk2SNTglqozOGsFjZKsi8E=
+
+"markdown-it-highlightjs@file:packages/markdown-it-highlightjs":
+  version "3.0.0"
 
 markdown-it-ins@^2.0.0:
   version "2.0.0"
