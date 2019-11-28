@@ -70,8 +70,10 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>categories | Riceball LEE
   </title>
@@ -455,14 +457,35 @@ if (document.querySelectorAll('pre.mermaid').length) {
     });
   }, window.mermaid);
 }
+</script>
+
+
+
+  
+
+  
+
+
+<script>
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+if (document.querySelectorAll('pre code').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  }, window.hljs);
+}
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-  
-
 
 </body>
 </html>

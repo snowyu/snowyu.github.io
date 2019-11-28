@@ -78833,6 +78833,7 @@ Browser-specific functionality.
       codeClass = getLangName($code.attr('class'));
       switch (codeClass) {
         case "canvas":
+        case "canvas/playable":
           source = $code.text();
           $new_el = $('<div>');
           $el.replaceWith($new_el);
@@ -78841,7 +78842,7 @@ Browser-specific functionality.
             source: source
           }));
         default:
-          if (!codeClass || codeClass === 'playable') {
+          if (!codeClass || codeClass.indexOf('/playable') >= 0) {
             source = $code.text();
             $new_el = $('<div>');
             $el.replaceWith($new_el);

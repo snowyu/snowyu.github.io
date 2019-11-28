@@ -46,17 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="Go with wind.">
-<meta name="keywords" content="Riceball, 李雪愚, Blog">
+  <meta name="description" content="Interactive MarkdownInteractive Markdown is a tool for making reactive documents — in the vein of Tangle — using a plain text markdown source, with a special notation for adding interactive controls a">
+<meta name="keywords" content="interactive,reactive,document,raphael,javascript,markdown">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Riceball LEE">
-<meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;categories&#x2F;Thinking&#x2F;Reactive-Document&#x2F;index.html">
+<meta property="og:title" content="Interactive Markdown">
+<meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;en&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="Go with wind.">
+<meta property="og:description" content="Interactive MarkdownInteractive Markdown is a tool for making reactive documents — in the vein of Tangle — using a plain text markdown source, with a special notation for adding interactive controls a">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-23T14:22:00.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://riceball.me/categories/Thinking/Reactive-Document/">
+<link rel="canonical" href="http://riceball.me/imarkdown/en/">
 
 
 <script id="page-configurations">
@@ -65,14 +66,18 @@
     sidebar: "",
     isHome: false,
     isPost: false,
-    isPage: false,
+    isPage: true,
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
-  <title>分类: Reactive Document | Riceball LEE</title>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel='stylesheet' href='/assets/css/imarkdown-0.4.0-min.css'>
+
+  <title>Interactive Markdown | Riceball LEE
+  </title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
     <script>
@@ -229,54 +234,139 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+  
+  
 
           <div class="content">
             
 
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">Interactive Markdown
+</h2>
+
+<div class="post-meta">
   
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Reactive Document
-          <small>分类</small>
-        </h2>
-      </div>
+  <ul class="breadcrumb">
+          
+            <li><a href="/imarkdown/">IMARKDOWN</a></li>
+          <li>EN</li>
+        
+  </ul>
+
+</div>
+
+</header>
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2014</h2>
-    </div>
+      
+      
+      <div class="post-body">
+          <h2 id="interactive-markdown"><a href="http://riceball.me/imarkdown">Interactive Markdown</a></h2><p><a href="http://riceball.me/imarkdown">Interactive Markdown</a> is a tool for making reactive documents — in the vein of <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p><a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>An Example Interactive document looks like this:</p>
+<h3 id="st-ives-example">St.Ives Example</h3>
+<p>An old riddle.</p>
+<blockquote>
+<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
+I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
+Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
+Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
+Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
+Kits, cats, sacks, wives<br>
+How many were going to St Ives?</p>
+</blockquote>
+<pre><code>total_sacks = @wives * @sacks
+total_cats  = total_sacks * @cats
+total_kits  = total_cats * @kits
+man         = 1
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2014-05-05T15:53:00+08:00"
-              content="2014-05-05">
-          05-05
-        </time>
+if @travelers
+    narrator = 2
+    @verb = 'were'
+else
+    narrator = 1
+    @verb = 'was'
+</code></pre>
+<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
+<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
+</code></pre>
+<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
+<pre><code>@answer = narrator
+</code></pre>
+<hr>
+<p>The sample raw Interactive Markdown file is:</p>
+<pre><code class="md">An old riddle.
+
+&gt; As [I]{travelers: we or I} [was]{verb} going to *St Ives*
+&gt; I met a man with [7 wives]{wives: 1..10}
+&gt; Every wife had [7 sacks]{sacks: 1..10}
+&gt; Every sack had [7 cats]{cats: 1..10}
+&gt; Every cat had [7 kits]{kits: 1..10}
+&gt; Kits, cats, sacks, wives
+&gt; How many were going to St Ives?
+
+    total_sacks = @wives * @sacks
+    total_cats  = total_sacks * @cats
+    total_kits  = total_cats * @kits
+    man         = 1
+
+    if @travelers
+        narrator = 2
+        @verb = 'were'
+    else
+        narrator = 1
+        @verb = 'was'
+
+The first guess is often [2753]{first_guess}…
+
+    @first_guess = man + @wives + total_cats + total_kits + narrator
+
+…but the correct answer is **[1]{answer}**.
+
+    @answer = narrator
+</code></pre>
+<ul>
+<li><code>[I]{travelers: We or I}</code> is a toggle switch between <code>We</code> or <code>I</code>
+<ul>
+<li><code>travelers</code> is a variable name, It can be referenced <code>@travelers</code> in the code block.</li>
+<li>the first value is <code>true</code>, the second is <code>false</code>.</li>
+</ul>
+</li>
+<li><code>[7]{wives: 1..10}</code> is a slider from <code>1</code> to <code>10</code>, defaults to <code>7</code>
+<ul>
+<li><code>wives</code> is a variable name, It can be referenced <code>@wives</code> in the code block.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>I am thinking about whether to use the new <code>[]{}</code> to express interactive elements, or to expand on <code>[]()</code>. From the development point of view, it is simpler to use<code>[]{}</code>, so I chose it.</p>
+</blockquote>
+<h3 id="the-second-complex-example">The Second Complex Example</h3>
+<p><a href="/article/raphael-tut/">Raphael 矢量图形和动画javascript库</a></p>
+
       </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/article/reactive-doc/" itemprop="url">
-            <span itemprop="name">Reactive Document</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
+      
+      
+      
     </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/imarkdown/">IMARKDOWN</a></li>
+          <li>EN</li>
+        
+  </ul>
+
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -305,6 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#interactive-markdown"><span class="nav-number">1.</span> <span class="nav-text">Interactive Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-second-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">The Second Complex Example</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -320,20 +411,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">94</span>
+        <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -380,12 +471,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">181k</span>
+    <span title="站点总字数">237k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:29</span>
+    <span title="站点阅读时长">7:12</span>
 </div>
 
         
@@ -454,14 +545,38 @@ if (document.querySelectorAll('pre.mermaid').length) {
     });
   }, window.mermaid);
 }
+</script>
+
+
+
+  
+
+  
+
+
+<script src='/assets/js/imarkdown-0.4.0.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":true,"debug":false,"filename":"Interactive Markdown.md"});</script>
+
+<script>
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+if (document.querySelectorAll('pre code').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  }, window.hljs);
+}
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-  
-
 
 </body>
 </html>

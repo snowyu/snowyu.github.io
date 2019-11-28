@@ -8200,4 +8200,91 @@ else
     <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
+  <entry>
+    <title>Interactive Markdown</title>
+    <url>/imarkdown/en/index.html</url>
+    <content><![CDATA[<h2 id="interactive-markdown"><a href="http://riceball.me/imarkdown">Interactive Markdown</a></h2><p><a href="http://riceball.me/imarkdown">Interactive Markdown</a> is a tool for making reactive documents — in the vein of <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p><a id="more"></a>
+
+<p>An Example Interactive document looks like this:</p>
+<h3 id="st-ives-example">St.Ives Example</h3>
+<p>An old riddle.</p>
+<blockquote>
+<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
+I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
+Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
+Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
+Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
+Kits, cats, sacks, wives<br>
+How many were going to St Ives?</p>
+</blockquote>
+<pre><code>total_sacks = @wives * @sacks
+total_cats  = total_sacks * @cats
+total_kits  = total_cats * @kits
+man         = 1
+
+if @travelers
+    narrator = 2
+    @verb = 'were'
+else
+    narrator = 1
+    @verb = 'was'
+</code></pre>
+<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
+<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
+</code></pre>
+<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
+<pre><code>@answer = narrator
+</code></pre>
+<hr>
+<p>The sample raw Interactive Markdown file is:</p>
+<pre><code class="md">An old riddle.
+
+&gt; As [I]{travelers: we or I} [was]{verb} going to *St Ives*
+&gt; I met a man with [7 wives]{wives: 1..10}
+&gt; Every wife had [7 sacks]{sacks: 1..10}
+&gt; Every sack had [7 cats]{cats: 1..10}
+&gt; Every cat had [7 kits]{kits: 1..10}
+&gt; Kits, cats, sacks, wives
+&gt; How many were going to St Ives?
+
+    total_sacks = @wives * @sacks
+    total_cats  = total_sacks * @cats
+    total_kits  = total_cats * @kits
+    man         = 1
+
+    if @travelers
+        narrator = 2
+        @verb = 'were'
+    else
+        narrator = 1
+        @verb = 'was'
+
+The first guess is often [2753]{first_guess}…
+
+    @first_guess = man + @wives + total_cats + total_kits + narrator
+
+…but the correct answer is **[1]{answer}**.
+
+    @answer = narrator
+</code></pre>
+<ul>
+<li><code>[I]{travelers: We or I}</code> is a toggle switch between <code>We</code> or <code>I</code>
+<ul>
+<li><code>travelers</code> is a variable name, It can be referenced <code>@travelers</code> in the code block.</li>
+<li>the first value is <code>true</code>, the second is <code>false</code>.</li>
+</ul>
+</li>
+<li><code>[7]{wives: 1..10}</code> is a slider from <code>1</code> to <code>10</code>, defaults to <code>7</code>
+<ul>
+<li><code>wives</code> is a variable name, It can be referenced <code>@wives</code> in the code block.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>I am thinking about whether to use the new <code>[]{}</code> to express interactive elements, or to expand on <code>[]()</code>. From the development point of view, it is simpler to use<code>[]{}</code>, so I chose it.</p>
+</blockquote>
+<h3 id="the-second-complex-example">The Second Complex Example</h3>
+<p><a href="/article/raphael-tut/">Raphael 矢量图形和动画javascript库</a></p>
+]]></content>
+  </entry>
 </search>
