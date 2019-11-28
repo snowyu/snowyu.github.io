@@ -310,14 +310,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>28k</span>
+              <span>26k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>50 分钟</span>
+              <span>48 分钟</span>
             </span>
 
         </div>
@@ -336,13 +336,13 @@
     build-essential pkg-config erlang erlang-reltool \
     libicu-dev libcurl4-openssl-dev
 sudo apt-get install devscripts libnspr4-dev pkg-kde-tools
-git clone https://github.com/apache/couchdb
-git clone https://github.com/apache/couchdb-pkg
-cd couchdb-pkg
-make couch-js-debs PLATFORM=bionic # howto use it? still cannot find jsapi.h
+git <span class="hljs-built_in">clone</span> https://github.com/apache/couchdb
+git <span class="hljs-built_in">clone</span> https://github.com/apache/couchdb-pkg
+<span class="hljs-built_in">cd</span> couchdb-pkg
+make couch-js-debs PLATFORM=bionic <span class="hljs-comment"># howto use it? still cannot find jsapi.h</span>
 sudo dpkg -i js/couch-libmozjs185-*.deb
 
-# build dpkg needed:
+<span class="hljs-comment"># build dpkg needed:</span>
 sudo apt install dh-exec dh-systemd nodejs python-sphinx
 
 make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
@@ -371,10 +371,10 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 <p>在MongoDB中称 <code>database</code> 为 <code>Collection</code>。 一个<code>K/V键值对</code>在<code>CouchDB</code>称为 <code>Document</code>.</p>
 <p>可以查询、创建和删除数据库，数据库的名称只能是小写字母、数字以及特殊字符_$()±/。</p>
 <ul>
-<li><code>GET /_all_dbs</code>: 查询 CouchDB 中所有的数据库名称。该请求返回的是一个 JSON 数组<pre><code class="js">[&quot;_global_changes&quot;,&quot;_replicator&quot;,&quot;_users&quot;]
+<li><code>GET /_all_dbs</code>: 查询 CouchDB 中所有的数据库名称。该请求返回的是一个 JSON 数组<pre><code class="js">[<span class="hljs-string">"_global_changes"</span>,<span class="hljs-string">"_replicator"</span>,<span class="hljs-string">"_users"</span>]
 </code></pre>
 </li>
-<li><code>GET /[database-name]</code>: 查询名为databasename的数据库的具体信息.<pre><code class="js">{&quot;db_name&quot;:&quot;_users&quot;,&quot;update_seq&quot;:&quot;1-g1AAAA&quot;,&quot;sizes&quot;:{&quot;file&quot;:38054,&quot;external&quot;:5024,&quot;active&quot;:2197},&quot;purge_seq&quot;:0,&quot;other&quot;:{&quot;data_size&quot;:5024},&quot;doc_del_count&quot;:0,&quot;doc_count&quot;:1,&quot;disk_size&quot;:38054,&quot;disk_format_version&quot;:6,&quot;data_size&quot;:2197,&quot;compact_running&quot;:false,&quot;instance_start_time&quot;:&quot;0&quot;}
+<li><code>GET /[database-name]</code>: 查询名为databasename的数据库的具体信息.<pre><code class="js">{<span class="hljs-string">"db_name"</span>:<span class="hljs-string">"_users"</span>,<span class="hljs-string">"update_seq"</span>:<span class="hljs-string">"1-g1AAAA"</span>,<span class="hljs-string">"sizes"</span>:{<span class="hljs-string">"file"</span>:<span class="hljs-number">38054</span>,<span class="hljs-string">"external"</span>:<span class="hljs-number">5024</span>,<span class="hljs-string">"active"</span>:<span class="hljs-number">2197</span>},<span class="hljs-string">"purge_seq"</span>:<span class="hljs-number">0</span>,<span class="hljs-string">"other"</span>:{<span class="hljs-string">"data_size"</span>:<span class="hljs-number">5024</span>},<span class="hljs-string">"doc_del_count"</span>:<span class="hljs-number">0</span>,<span class="hljs-string">"doc_count"</span>:<span class="hljs-number">1</span>,<span class="hljs-string">"disk_size"</span>:<span class="hljs-number">38054</span>,<span class="hljs-string">"disk_format_version"</span>:<span class="hljs-number">6</span>,<span class="hljs-string">"data_size"</span>:<span class="hljs-number">2197</span>,<span class="hljs-string">"compact_running"</span>:<span class="hljs-literal">false</span>,<span class="hljs-string">"instance_start_time"</span>:<span class="hljs-string">"0"</span>}
 </code></pre>
 </li>
 <li><code>PUT /[database-name]</code>: 创建名为databasename的数据库。如果数据库创建成功的话，返回 HTTP 状态代码 201 ；如果已有一个同名数据库的话，返回 HTTP 状态代码 412 。</li>
@@ -417,34 +417,34 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 <li><code>DELETE /[databasename]/[doc_id]?rev=[rev_id]</code> 删除数据库databasename中 ID 为doc_id，并且修订版本号为rev_id的文档。</li>
 </ul>
 <p>用文档来描述关系：</p>
-<pre><code class="js">// 用内嵌文档 ID 描述多对多关系
+<pre><code class="js"><span class="hljs-comment">// 用内嵌文档 ID 描述多对多关系</span>
  {
-  &quot;_id&quot; : &quot;user1&quot;,
-  &quot;username&quot; : &quot;Alex&quot;,
-  &quot;email&quot; : &quot;alexcheng1982@gmail.com&quot;,
-  &quot;roles&quot;:[&quot;db_admin&quot;,&quot;backup_admin&quot;]
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"user1"</span>,
+  <span class="hljs-string">"username"</span> : <span class="hljs-string">"Alex"</span>,
+  <span class="hljs-string">"email"</span> : <span class="hljs-string">"alexcheng1982@gmail.com"</span>,
+  <span class="hljs-string">"roles"</span>:[<span class="hljs-string">"db_admin"</span>,<span class="hljs-string">"backup_admin"</span>]
  }
  {
-  &quot;_id&quot; : &quot;db_admin&quot;,
-  &quot;name&quot; : &quot; 数据库管理员 &quot;,
-  &quot;priority&quot; : 2
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"db_admin"</span>,
+  <span class="hljs-string">"name"</span> : <span class="hljs-string">" 数据库管理员 "</span>,
+  <span class="hljs-string">"priority"</span> : <span class="hljs-number">2</span>
  }
 
- // 用关联文档描述多对多关系
+ <span class="hljs-comment">// 用关联文档描述多对多关系</span>
  {
-  &quot;_id&quot; : &quot;user1&quot;,
-  &quot;username&quot; : &quot;Alex&quot;,
-  &quot;email&quot; : &quot;alexcheng1982@gmail.com&quot;
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"user1"</span>,
+  <span class="hljs-string">"username"</span> : <span class="hljs-string">"Alex"</span>,
+  <span class="hljs-string">"email"</span> : <span class="hljs-string">"alexcheng1982@gmail.com"</span>
  }
  {
-  &quot;_id&quot; : &quot;db_admin&quot;,
-  &quot;name&quot; : &quot; 数据库管理员 &quot;,
-  &quot;priority&quot; : 2
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"db_admin"</span>,
+  <span class="hljs-string">"name"</span> : <span class="hljs-string">" 数据库管理员 "</span>,
+  <span class="hljs-string">"priority"</span> : <span class="hljs-number">2</span>
  }
  {
-  &quot;_id&quot; : &quot;user_role_001&quot;,
-  &quot;user_id&quot; : &quot;user1&quot;,
-  &quot;role_id&quot; : &quot;db_admin&quot;
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"user_role_001"</span>,
+  <span class="hljs-string">"user_id"</span> : <span class="hljs-string">"user1"</span>,
+  <span class="hljs-string">"role_id"</span> : <span class="hljs-string">"db_admin"</span>
  }
 </code></pre>
 <h4 id="文档查询">文档查询</h4>
@@ -456,8 +456,8 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 <li><a href="http://docs.couchdb.org/en/2.0.0/api/database/find.html" target="_blank" rel="noopener">POST /[db]/_find</a>: 可以</li>
 </ul>
 <pre><code class="js">{
-  &quot;selector&quot;: {
-    &quot;_id&quot;: {&quot;$gt&quot;: &quot;产品\u0000&quot;, &quot;$lt&quot;: &quot;产品/\uffff&quot;}
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"_id"</span>: {<span class="hljs-string">"$gt"</span>: <span class="hljs-string">"产品\u0000"</span>, <span class="hljs-string">"$lt"</span>: <span class="hljs-string">"产品/\uffff"</span>}
   }
 }
 </code></pre>
@@ -465,14 +465,14 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 这里被称为<code>Mango queries</code>, 从CouchDB@2.1.1开始支持<code>partial indexes</code>查询以及分页。</p>
 <p>数组的Mango查询类型：</p>
 <pre><code class="js">{
-  &quot;selector&quot;: {
-    &quot;tags&quot;: {$elemMatch: {$eq: 'apple'}}
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"tags"</span>: {<span class="hljs-attr">$elemMatch</span>: {<span class="hljs-attr">$eq</span>: <span class="hljs-string">'apple'</span>}}
   }
 }
-//等价于
+<span class="hljs-comment">//等价于</span>
 {
-  &quot;selector&quot;: {
-    &quot;tags&quot;: {$in: ['apple']}
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"tags"</span>: {<span class="hljs-attr">$in</span>: [<span class="hljs-string">'apple'</span>]}
   }
 }
 </code></pre>
@@ -484,60 +484,60 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 <a href="https://github.com/grueni/oi-userland/tree/couchdb-dreyfus" target="_blank" rel="noopener">https://github.com/grueni/oi-userland/tree/couchdb-dreyfus</a><br>
 <a href="https://github.com/neutrinity/ntr-couch-docker" target="_blank" rel="noopener">https://github.com/neutrinity/ntr-couch-docker</a></p>
 <pre><code class="js">{
-&quot;Teams&quot;: [
+<span class="hljs-string">"Teams"</span>: [
   {
-   &quot;id&quot;: &quot;79d25d41d991890350af672e0b76faed&quot;,
-   &quot;name&quot;: &quot;First Team&quot;,
-   &quot;level&quot;: &quot;123&quot;
+   <span class="hljs-string">"id"</span>: <span class="hljs-string">"79d25d41d991890350af672e0b76faed"</span>,
+   <span class="hljs-string">"name"</span>: <span class="hljs-string">"First Team"</span>,
+   <span class="hljs-string">"level"</span>: <span class="hljs-string">"123"</span>
   },
   {
-   &quot;id&quot;: &quot;e500c1bf691b9cfc99f05634da80b6d1&quot;,
-   &quot;name&quot;: &quot;Second Team Name&quot;,
-   &quot;level&quot;: &quot;&quot;
+   <span class="hljs-string">"id"</span>: <span class="hljs-string">"e500c1bf691b9cfc99f05634da80b6d1"</span>,
+   <span class="hljs-string">"name"</span>: <span class="hljs-string">"Second Team Name"</span>,
+   <span class="hljs-string">"level"</span>: <span class="hljs-string">""</span>
   },
   {
-   &quot;id&quot;: &quot;4645e8a4958421f7d843d9b34c4cd9fe&quot;,
-   &quot;name&quot;: &quot;Third Team Name&quot;,
-   &quot;level&quot;: &quot;123&quot;
+   <span class="hljs-string">"id"</span>: <span class="hljs-string">"4645e8a4958421f7d843d9b34c4cd9fe"</span>,
+   <span class="hljs-string">"name"</span>: <span class="hljs-string">"Third Team Name"</span>,
+   <span class="hljs-string">"level"</span>: <span class="hljs-string">"123"</span>
   }
  ],
- &quot;LastTeam&quot;: &quot;79d25d41d991890350af672e0b76faed&quot;
+ <span class="hljs-string">"LastTeam"</span>: <span class="hljs-string">"79d25d41d991890350af672e0b76faed"</span>
 }
 
-//index:
+<span class="hljs-comment">//index:</span>
 {
-  &quot;index&quot;: {
-    &quot;fields&quot;: [
-      {&quot;name&quot;: &quot;Teams.[].id&quot;, &quot;type&quot;: &quot;string&quot;}
+  <span class="hljs-string">"index"</span>: {
+    <span class="hljs-string">"fields"</span>: [
+      {<span class="hljs-string">"name"</span>: <span class="hljs-string">"Teams.[].id"</span>, <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>}
     ]
   },
-  &quot;type&quot;: &quot;text&quot;
+  <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>
 }
 
-//query:
+<span class="hljs-comment">//query:</span>
 {
-  &quot;selector&quot;: {
-    &quot;Teams&quot;: {&quot;$elemMatch&quot;: {&quot;id&quot;: &quot;79d25d41d991890350af672e0b76faed&quot;}}
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"Teams"</span>: {<span class="hljs-string">"$elemMatch"</span>: {<span class="hljs-string">"id"</span>: <span class="hljs-string">"79d25d41d991890350af672e0b76faed"</span>}}
   },
-  &quot;fields&quot;: [
-    &quot;_id&quot;,
-    &quot;FirstName&quot;,
-    &quot;LastName&quot;
+  <span class="hljs-string">"fields"</span>: [
+    <span class="hljs-string">"_id"</span>,
+    <span class="hljs-string">"FirstName"</span>,
+    <span class="hljs-string">"LastName"</span>
   ]
 }
 </code></pre>
 <p>对数组的查询可以，但是目前没有索引支持！！<br>
 Currently couchdb find does not support indexing array members (<a href="https://issues.apache.org/jira/browse/COUCHDB-2867" target="_blank" rel="noopener">https://issues.apache.org/jira/browse/COUCHDB-2867</a>). Pouchdb is matching Couchdb’s implementation here.</p>
 <p>用Map/Reduce查询数组：</p>
-<pre><code class="js">//创建Map/Reduce索引
-var designDoc = {
-  _id: '_design/_index',
-  views: {
-    'by_tags': {
-      map: function(doc) {
-        if (Array.isArray(doc.tags)) {
-          doc.tags.forEach(tag=&gt;emit(tag));
-        } else if (doc.tags) {
+<pre><code class="js"><span class="hljs-comment">//创建Map/Reduce索引</span>
+<span class="hljs-keyword">var</span> designDoc = {
+  <span class="hljs-attr">_id</span>: <span class="hljs-string">'_design/_index'</span>,
+  <span class="hljs-attr">views</span>: {
+    <span class="hljs-string">'by_tags'</span>: {
+      <span class="hljs-attr">map</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(doc.tags)) {
+          doc.tags.forEach(<span class="hljs-function"><span class="hljs-params">tag</span>=&gt;</span>emit(tag));
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (doc.tags) {
           emit(doc.tags)
         }
       }.toString()
@@ -545,11 +545,11 @@ var designDoc = {
   }
 };
 
-pouch.put(designDoc).then(r=&gt;console.log(r)).catch(e=&gt;console.log(e))
+pouch.put(designDoc).then(<span class="hljs-function"><span class="hljs-params">r</span>=&gt;</span><span class="hljs-built_in">console</span>.log(r)).catch(<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span><span class="hljs-built_in">console</span>.log(e))
 
-//查询参数：详见后述「视图(View)的查询参数」
-//keys 参数: 只获取在数组中的key名称。
-pouch.query(viewName, {keys:['apple'], inclusive_end: false});
+<span class="hljs-comment">//查询参数：详见后述「视图(View)的查询参数」</span>
+<span class="hljs-comment">//keys 参数: 只获取在数组中的key名称。</span>
+pouch.query(viewName, {<span class="hljs-attr">keys</span>:[<span class="hljs-string">'apple'</span>], <span class="hljs-attr">inclusive_end</span>: <span class="hljs-literal">false</span>});
 
 </code></pre>
 <p>避免使用数组:</p>
@@ -559,10 +559,10 @@ type: tag
 </code></pre>
 <p>至于limit的配置只能通过<a href="http://docs.couchdb.org/en/master/config/couchdb.html" target="_blank" rel="noopener">max_document_size</a>.<br>
 或者 <a href="http://docs.couchdb.org/en/master/config/http.html" target="_blank" rel="noopener">max_http_request_size</a></p>
-<pre><code class="ini">[couchdb]
-max_document_size = 4294967296 ; 4 GB
-[httpd]
-max_http_request_size = 4294967296 ; 4 GB
+<pre><code class="ini"><span class="hljs-section">[couchdb]</span>
+<span class="hljs-attr">max_document_size</span> = <span class="hljs-number">4294967296</span> <span class="hljs-comment">; 4 GB</span>
+<span class="hljs-section">[httpd]</span>
+<span class="hljs-attr">max_http_request_size</span> = <span class="hljs-number">4294967296</span> <span class="hljs-comment">; 4 GB</span>
 </code></pre>
 <p>不过有人在改： <a href="https://github.com/apache/couchdb-couch-mrview/pull/56/files" target="_blank" rel="noopener">https://github.com/apache/couchdb-couch-mrview/pull/56/files</a><br>
 <a href="https://jira.hyperledger.org/browse/FAB-2809" target="_blank" rel="noopener">https://jira.hyperledger.org/browse/FAB-2809</a></p>
@@ -667,8 +667,8 @@ Host: localhost:5984
 <li>Maximum period in milliseconds to wait for a change before the response is sent, even if there are no results. Only applicable for longpoll or continuous feeds. Note that 60000 is also the default maximum timeout to prevent undetected dead connections.</li>
 </ol>
 <p>You can change the default maximum timeout in your ini-configuration:</p>
-<pre><code class="ini">[httpd]
-changes_timeout=#millisecs
+<pre><code class="ini"><span class="hljs-section">[httpd]</span>
+<span class="hljs-attr">changes_timeout</span>=<span class="hljs-comment">#millisecs</span>
 </code></pre>
 <ol start="7">
 <li>Reference to a filter function from a design document that will filter whole stream emitting only filtered events. See the section in the book for more information.</li>
@@ -689,25 +689,25 @@ changes_timeout=#millisecs
 </code></pre>
 <h5 id="eventsource">eventsource</h5>
 <p>The eventsource feed provides push notifications that can be consumed in the form of DOM events in the browser. Refer to the <a href="http://www.w3.org/TR/eventsource/" target="_blank" rel="noopener">W3C eventsource specification</a> for further details. CouchDB honors the Last-Event-ID header, and if it’s present it will take precedence over the since query parameter.</p>
-<pre><code class="js">// define the event handling function
-if (window.EventSource) {
+<pre><code class="js"><span class="hljs-comment">// define the event handling function</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.EventSource) {
 
-  var source = new EventSource(&quot;/somedatabase/_changes?feed=eventsource&quot;);
-  source.onerror = function(e) {
-    alert('EventSource failed.');
+  <span class="hljs-keyword">var</span> source = <span class="hljs-keyword">new</span> EventSource(<span class="hljs-string">"/somedatabase/_changes?feed=eventsource"</span>);
+  source.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    alert(<span class="hljs-string">'EventSource failed.'</span>);
   };
 
-  var results = [];
-  var sourceListener = function(e) {
-    var data = JSON.parse(e.data);
+  <span class="hljs-keyword">var</span> results = [];
+  <span class="hljs-keyword">var</span> sourceListener = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-keyword">var</span> data = <span class="hljs-built_in">JSON</span>.parse(e.data);
     results.push(data);
   };
 
-  // start listening for events
-  source.addEventListener('message', sourceListener, false);
+  <span class="hljs-comment">// start listening for events</span>
+  source.addEventListener(<span class="hljs-string">'message'</span>, sourceListener, <span class="hljs-literal">false</span>);
 
-  // stop listening for events
-  source.removeEventListener('message', sourceListener, false);
+  <span class="hljs-comment">// stop listening for events</span>
+  source.removeEventListener(<span class="hljs-string">'message'</span>, sourceListener, <span class="hljs-literal">false</span>);
 
 }
 </code></pre>
@@ -722,12 +722,12 @@ if (window.EventSource) {
 <p>CouchDB 中有两种视图：永久视图和临时视图。永久视图保存在设计文档的views字段中。临时视图是通过发送 POST 请求到 <code>/[databasename]/_temp_view</code> 来执行的。临时视图只在开发测试中使用，因为它是即时生成的，性能比较差；永久视图的运行结果可以被 CouchDB 缓存，因此一般用在生产环境中。</p>
 <p>视图的运行由专门的视图服务器来完成。 CouchDB 中默认的视图定义语言是 JavaScript 。 CouchDB 中的视图运行使用的是 MapReduce 编程模型。每个视图的定义中至少需要提供 Map 方法，Reduce 方法是可选的。</p>
 <p>Map 方法的参数只有一个，就是当前的文档对象。 Map 方法的实现需要根据文档对象的内容，确定是否要输出结果。如果需要输出的话，可以通过<code>emit</code>来完成。<code>emit</code>方法有两个参数，分别是key和value，分别表示输出结果的键和值。使用什么样的键和值应该根据视图的实际需要来确定。当希望对文档的某个字段进行排序和过滤操作的时候，应该把该字段作为键（key）或是键的一部分；value的值可以提供给 Reduce 方法使用，也可能会出现在最终的结果中。可以作为键的不仅是简单数据类型，也可以是任意的 JSON 对象。比如<code>emit([doc.title, doc.price], doc)</code>中，使用数组作为键。</p>
-<pre><code class="js">//map
-function(doc) {
-  //checks whether our document has a date and a title attribute
-  if(doc.date &amp;&amp; doc.title) {
-      //The most important feature of a view result is that it is sorted by key.
-      //emit key, value
+<pre><code class="js"><span class="hljs-comment">//map</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+  <span class="hljs-comment">//checks whether our document has a date and a title attribute</span>
+  <span class="hljs-keyword">if</span>(doc.date &amp;&amp; doc.title) {
+      <span class="hljs-comment">//The most important feature of a view result is that it is sorted by key.</span>
+      <span class="hljs-comment">//emit key, value</span>
       emit(doc.date, doc.title);
   }
 }
@@ -737,17 +737,17 @@ function(doc) {
 <li>传入的参数<code>rereduce</code>的值为false：这表明 Reduce 方法的输入是 Map 方法输出的中间结果。参数key的值是一个数组，对应于中间结果中的每条记录。该数组的每个元素都是一个包含两个元素的数组，第一个元素是在 Map 方法中通过emit输出的键（key），第二个元素是记录所在的文档 ID 。参数values的值是一个数组，对应于 Map 方法中通过emit输出的值（value）。</li>
 <li>传入的参数rereduce的值为true：这表明 Reduce 方法的输入是上次 Reduce 方法的输出。参数key的值为null。参数values的值是一个数组，对应于上次 Reduce 方法的输出结果。</li>
 </ul>
-<pre><code class="js">function(keys, values, rereduce) {
-    return sum(values);
+<pre><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">keys, values, rereduce</span>) </span>{
+    <span class="hljs-keyword">return</span> sum(values);
 }
 </code></pre>
 <pre><code class="js">{
-  &quot;_id&quot;: &quot;_design/foo&quot;,
-  &quot;views&quot;: {
-    &quot;bar&quot;: {
-      &quot;map&quot;: &quot;function (doc) { emit(doc.author, 1); }&quot;,
-      &quot;reduce&quot;: &quot;_sum&quot; //use the buildin reduce func to speedup.
-      //&quot;reduce&quot;: &quot;function (keys, values, rereduce) { return sum(values); }&quot;
+  <span class="hljs-string">"_id"</span>: <span class="hljs-string">"_design/foo"</span>,
+  <span class="hljs-string">"views"</span>: {
+    <span class="hljs-string">"bar"</span>: {
+      <span class="hljs-string">"map"</span>: <span class="hljs-string">"function (doc) { emit(doc.author, 1); }"</span>,
+      <span class="hljs-string">"reduce"</span>: <span class="hljs-string">"_sum"</span> <span class="hljs-comment">//use the buildin reduce func to speedup.</span>
+      <span class="hljs-comment">//"reduce": "function (keys, values, rereduce) { return sum(values); }"</span>
     }
   }
 }
@@ -788,13 +788,13 @@ function(doc) {
 <p>CouchDB 中也可以保存二进制文件。这些文件是以文档的附件形式存储的。 CouchDB 支持两种形式的附件：一种是内嵌型的，附件是以 base64 编码的格式作为文档的一个字段保存；另一种是独立型，附件是独立于文档保存和管理的。附件的存在使得可以在 CouchDB 中保存 Web 应用中的 HTML、CSS 和 JavaScript 文件。每个附件都包含名称、MIME 类型和数据等三项内容。</p>
 <p>在请求文档的时候，内嵌型附件的实际数据默认是不包含的，包含的只是附件的元数据:</p>
 <pre><code class="js">{
-   &quot;_id&quot;: &quot;testdoc&quot;,
-   &quot;_rev&quot;: &quot;3-1364618102&quot;,
-   &quot;_attachments&quot;: {
-       &quot;Screenshot.png&quot;: {
-           &quot;stub&quot;: true,
-           &quot;content_type&quot;: &quot;image/png&quot;,
-           &quot;length&quot;: 164279
+   <span class="hljs-string">"_id"</span>: <span class="hljs-string">"testdoc"</span>,
+   <span class="hljs-string">"_rev"</span>: <span class="hljs-string">"3-1364618102"</span>,
+   <span class="hljs-string">"_attachments"</span>: {
+       <span class="hljs-string">"Screenshot.png"</span>: {
+           <span class="hljs-string">"stub"</span>: <span class="hljs-literal">true</span>,
+           <span class="hljs-string">"content_type"</span>: <span class="hljs-string">"image/png"</span>,
+           <span class="hljs-string">"length"</span>: <span class="hljs-number">164279</span>
        }
    }
  }
@@ -841,148 +841,148 @@ function(doc) {
 </ul>
 <p>这个例子是 <code>_users</code> 数据库的，用来在注册/编辑/删除系统用户时候对数据进行验证。</p>
 <pre><code class="js">{
-  &quot;_id&quot;: &quot;_design/_auth&quot;,
-  &quot;_rev&quot;: &quot;1-c79bc00c889ce9b912fbde8a3f52de37&quot;,
-  &quot;language&quot;: &quot;javascript&quot;,
-  &quot;validate_doc_update&quot;: &quot;function(newDoc, oldDoc, userCtx, secObj){...see below...}&quot;
+  <span class="hljs-string">"_id"</span>: <span class="hljs-string">"_design/_auth"</span>,
+  <span class="hljs-string">"_rev"</span>: <span class="hljs-string">"1-c79bc00c889ce9b912fbde8a3f52de37"</span>,
+  <span class="hljs-string">"language"</span>: <span class="hljs-string">"javascript"</span>,
+  <span class="hljs-string">"validate_doc_update"</span>: <span class="hljs-string">"function(newDoc, oldDoc, userCtx, secObj){...see below...}"</span>
 }
 </code></pre>
-<pre><code class="js">//validate_doc_update
-function(newDoc, oldDoc, userCtx, secObj) {
-    if (newDoc._deleted === true) {
-        // allow deletes by admins and matching users
-        // without checking the other fields
-        if ((userCtx.roles.indexOf('_admin') !== -1) ||
+<pre><code class="js"><span class="hljs-comment">//validate_doc_update</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">newDoc, oldDoc, userCtx, secObj</span>) </span>{
+    <span class="hljs-keyword">if</span> (newDoc._deleted === <span class="hljs-literal">true</span>) {
+        <span class="hljs-comment">// allow deletes by admins and matching users</span>
+        <span class="hljs-comment">// without checking the other fields</span>
+        <span class="hljs-keyword">if</span> ((userCtx.roles.indexOf(<span class="hljs-string">'_admin'</span>) !== <span class="hljs-number">-1</span>) ||
             (userCtx.name == oldDoc.name)) {
-            return;
-        } else {
-            throw({forbidden: 'Only admins may delete other user docs.'});
+            <span class="hljs-keyword">return</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only admins may delete other user docs.'</span>});
         }
     }
 
-    if (newDoc.type !== 'user') {
-        throw({forbidden : 'doc.type must be user'});
-    } // we only allow user docs for now
+    <span class="hljs-keyword">if</span> (newDoc.type !== <span class="hljs-string">'user'</span>) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span> : <span class="hljs-string">'doc.type must be user'</span>});
+    } <span class="hljs-comment">// we only allow user docs for now</span>
 
-    if (!newDoc.name) {
-        throw({forbidden: 'doc.name is required'});
+    <span class="hljs-keyword">if</span> (!newDoc.name) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.name is required'</span>});
     }
 
-    if (!newDoc.roles) {
-        throw({forbidden: 'doc.roles must exist'});
+    <span class="hljs-keyword">if</span> (!newDoc.roles) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.roles must exist'</span>});
     }
 
-    if (!isArray(newDoc.roles)) {
-        throw({forbidden: 'doc.roles must be an array'});
+    <span class="hljs-keyword">if</span> (!isArray(newDoc.roles)) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.roles must be an array'</span>});
     }
 
-    for (var idx = 0; idx &lt; newDoc.roles.length; idx++) {
-        if (typeof newDoc.roles[idx] !== 'string') {
-            throw({forbidden: 'doc.roles can only contain strings'});
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; newDoc.roles.length; idx++) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> newDoc.roles[idx] !== <span class="hljs-string">'string'</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.roles can only contain strings'</span>});
         }
     }
 
-    if (newDoc._id !== ('org.couchdb.user:' + newDoc.name)) {
-        throw({
-            forbidden: 'Doc ID must be of the form org.couchdb.user:name'
+    <span class="hljs-keyword">if</span> (newDoc._id !== (<span class="hljs-string">'org.couchdb.user:'</span> + newDoc.name)) {
+        <span class="hljs-keyword">throw</span>({
+            <span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Doc ID must be of the form org.couchdb.user:name'</span>
         });
     }
 
-    if (oldDoc) { // validate all updates
-        if (oldDoc.name !== newDoc.name) {
-            throw({forbidden: 'Usernames can not be changed.'});
+    <span class="hljs-keyword">if</span> (oldDoc) { <span class="hljs-comment">// validate all updates</span>
+        <span class="hljs-keyword">if</span> (oldDoc.name !== newDoc.name) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Usernames can not be changed.'</span>});
         }
     }
 
-    if (newDoc.password_sha &amp;&amp; !newDoc.salt) {
-        throw({
-            forbidden: 'Users with password_sha must have a salt.' +
-                'See /_utils/script/couch.js for example code.'
+    <span class="hljs-keyword">if</span> (newDoc.password_sha &amp;&amp; !newDoc.salt) {
+        <span class="hljs-keyword">throw</span>({
+            <span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Users with password_sha must have a salt.'</span> +
+                <span class="hljs-string">'See /_utils/script/couch.js for example code.'</span>
         });
     }
 
-    if (newDoc.password_scheme === &quot;pbkdf2&quot;) {
-        if (typeof(newDoc.iterations) !== &quot;number&quot;) {
-            throw({forbidden: &quot;iterations must be a number.&quot;});
+    <span class="hljs-keyword">if</span> (newDoc.password_scheme === <span class="hljs-string">"pbkdf2"</span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(newDoc.iterations) !== <span class="hljs-string">"number"</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">"iterations must be a number."</span>});
         }
-        if (typeof(newDoc.derived_key) !== &quot;string&quot;) {
-            throw({forbidden: &quot;derived_key must be a string.&quot;});
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(newDoc.derived_key) !== <span class="hljs-string">"string"</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">"derived_key must be a string."</span>});
         }
     }
 
-    var is_server_or_database_admin = function(userCtx, secObj) {
-        // see if the user is a server admin
-        if(userCtx.roles.indexOf('_admin') !== -1) {
-            return true; // a server admin
+    <span class="hljs-keyword">var</span> is_server_or_database_admin = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">userCtx, secObj</span>) </span>{
+        <span class="hljs-comment">// see if the user is a server admin</span>
+        <span class="hljs-keyword">if</span>(userCtx.roles.indexOf(<span class="hljs-string">'_admin'</span>) !== <span class="hljs-number">-1</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// a server admin</span>
         }
 
-        // see if the user a database admin specified by name
-        if(secObj &amp;&amp; secObj.admins &amp;&amp; secObj.admins.names) {
-            if(secObj.admins.names.indexOf(userCtx.name) !== -1) {
-                return true; // database admin
+        <span class="hljs-comment">// see if the user a database admin specified by name</span>
+        <span class="hljs-keyword">if</span>(secObj &amp;&amp; secObj.admins &amp;&amp; secObj.admins.names) {
+            <span class="hljs-keyword">if</span>(secObj.admins.names.indexOf(userCtx.name) !== <span class="hljs-number">-1</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// database admin</span>
             }
         }
 
-        // see if the user a database admin specified by role
-        if(secObj &amp;&amp; secObj.admins &amp;&amp; secObj.admins.roles) {
-            var db_roles = secObj.admins.roles;
-            for(var idx = 0; idx &lt; userCtx.roles.length; idx++) {
-                var user_role = userCtx.roles[idx];
-                if(db_roles.indexOf(user_role) !== -1) {
-                    return true; // role matches!
+        <span class="hljs-comment">// see if the user a database admin specified by role</span>
+        <span class="hljs-keyword">if</span>(secObj &amp;&amp; secObj.admins &amp;&amp; secObj.admins.roles) {
+            <span class="hljs-keyword">var</span> db_roles = secObj.admins.roles;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; userCtx.roles.length; idx++) {
+                <span class="hljs-keyword">var</span> user_role = userCtx.roles[idx];
+                <span class="hljs-keyword">if</span>(db_roles.indexOf(user_role) !== <span class="hljs-number">-1</span>) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// role matches!</span>
                 }
             }
         }
 
-        return false; // default to no admin
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// default to no admin</span>
     }
 
-    if (!is_server_or_database_admin(userCtx, secObj)) {
-        if (oldDoc) { // validate non-admin updates
-            if (userCtx.name !== newDoc.name) {
-                throw({
-                    forbidden: 'You may only update your own user document.'
+    <span class="hljs-keyword">if</span> (!is_server_or_database_admin(userCtx, secObj)) {
+        <span class="hljs-keyword">if</span> (oldDoc) { <span class="hljs-comment">// validate non-admin updates</span>
+            <span class="hljs-keyword">if</span> (userCtx.name !== newDoc.name) {
+                <span class="hljs-keyword">throw</span>({
+                    <span class="hljs-attr">forbidden</span>: <span class="hljs-string">'You may only update your own user document.'</span>
                 });
             }
-            // validate role updates
-            var oldRoles = (oldDoc.roles || []).sort();
-            var newRoles = newDoc.roles.sort();
+            <span class="hljs-comment">// validate role updates</span>
+            <span class="hljs-keyword">var</span> oldRoles = (oldDoc.roles || []).sort();
+            <span class="hljs-keyword">var</span> newRoles = newDoc.roles.sort();
 
-            if (oldRoles.length !== newRoles.length) {
-                throw({forbidden: 'Only _admin may edit roles'});
+            <span class="hljs-keyword">if</span> (oldRoles.length !== newRoles.length) {
+                <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only _admin may edit roles'</span>});
             }
 
-            for (var i = 0; i &lt; oldRoles.length; i++) {
-                if (oldRoles[i] !== newRoles[i]) {
-                    throw({forbidden: 'Only _admin may edit roles'});
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; oldRoles.length; i++) {
+                <span class="hljs-keyword">if</span> (oldRoles[i] !== newRoles[i]) {
+                    <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only _admin may edit roles'</span>});
                 }
             }
-        } else if (newDoc.roles.length &gt; 0) {
-            throw({forbidden: 'Only _admin may set roles'});
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (newDoc.roles.length &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only _admin may set roles'</span>});
         }
     }
 
-    // no system roles in users db
-    for (var i = 0; i &lt; newDoc.roles.length; i++) {
-        if (newDoc.roles[i][0] === '_') {
-            throw({
-                forbidden:
-                'No system roles (starting with underscore) in users db.'
+    <span class="hljs-comment">// no system roles in users db</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; newDoc.roles.length; i++) {
+        <span class="hljs-keyword">if</span> (newDoc.roles[i][<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
+            <span class="hljs-keyword">throw</span>({
+                <span class="hljs-attr">forbidden</span>:
+                <span class="hljs-string">'No system roles (starting with underscore) in users db.'</span>
             });
         }
     }
 
-    // no system names as names
-    if (newDoc.name[0] === '_') {
-        throw({forbidden: 'Username may not start with underscore.'});
+    <span class="hljs-comment">// no system names as names</span>
+    <span class="hljs-keyword">if</span> (newDoc.name[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Username may not start with underscore.'</span>});
     }
 
-    var badUserNameChars = [':'];
+    <span class="hljs-keyword">var</span> badUserNameChars = [<span class="hljs-string">':'</span>];
 
-    for (var i = 0; i &lt; badUserNameChars.length; i++) {
-        if (newDoc.name.indexOf(badUserNameChars[i]) &gt;= 0) {
-            throw({forbidden: 'Character `' + badUserNameChars[i] +
-                    '` is not allowed in usernames.'});
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; badUserNameChars.length; i++) {
+        <span class="hljs-keyword">if</span> (newDoc.name.indexOf(badUserNameChars[i]) &gt;= <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Character `'</span> + badUserNameChars[i] +
+                    <span class="hljs-string">'` is not allowed in usernames.'</span>});
         }
     }
 }
@@ -1002,19 +1002,19 @@ function(newDoc, oldDoc, userCtx, secObj) {
 <h3 id="couchapp-v2">Couchapp</h3>
 <pre><code class="bash">python2.7&gt; pip install --user couchapp
 couchapp init myapp
-cd myapp
+<span class="hljs-built_in">cd</span> myapp
 </code></pre>
 <h4 id="change-your-app-id">Change your App ID</h4>
 <p>open the <code>_id</code> file: change your app name.</p>
 <h4 id="set-config">set config</h4>
 <p><code>.couchapprc</code>:</p>
 <pre><code class="js">{
-  &quot;env&quot; : {
-    &quot;default&quot; : {
-      &quot;db&quot; : &quot;http://admin:secret@localhost:5984/test&quot;
+  <span class="hljs-string">"env"</span> : {
+    <span class="hljs-string">"default"</span> : {
+      <span class="hljs-string">"db"</span> : <span class="hljs-string">"http://admin:secret@localhost:5984/test"</span>
     },
-    &quot;prod&quot; : {
-      &quot;db&quot; : &quot;http://admin:password@myhost.com/mydb&quot;
+    <span class="hljs-string">"prod"</span> : {
+      <span class="hljs-string">"db"</span> : <span class="hljs-string">"http://admin:password@myhost.com/mydb"</span>
     }
   }
 }
@@ -1023,16 +1023,16 @@ cd myapp
 couchapp push prod</p>
 <h4 id="add-some-web-pages">Add Some Web Pages</h4>
 <p>Now we are going to add a index page for our CouchApp. So we can place the index.html under _attachments. CouchDB can directly serve our attachments as static files.</p>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;title&gt;CouchApp&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Hello CouchApp!&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<pre><code class="html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CouchApp<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello CouchApp!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <h4 id="push-your-couchapp">Push your CouchApp</h4>
 <p>Now that we have created our basic application, it’s time to push it to our CouchDB server. Our CouchDB server is at the url <a href="http://127.0.0.1:5984" target="_blank" rel="noopener">http://127.0.0.1:5984</a> and we want to push our app in the database testdb:</p>
@@ -1054,23 +1054,23 @@ Record all relationships between documents as a new document (a link).
 </code></pre>
 <p>It seems that all these principles are in contradiction with couchdb’s philosophy. But bare with me.</p>
 <p>With this principles, for example, tagging a person becomes three documents:</p>
-<pre><code class="js">{ _id: '10', type: 'person', 'name': 'John Doe' }
-{ _id: '20', type: 'tag', 'name': 'Important' }
-{ _id: '30', type: 'link', from: 10, to: 20, name: 'tag' }
+<pre><code class="js">{ <span class="hljs-attr">_id</span>: <span class="hljs-string">'10'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'person'</span>, <span class="hljs-string">'name'</span>: <span class="hljs-string">'John Doe'</span> }
+{ <span class="hljs-attr">_id</span>: <span class="hljs-string">'20'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'tag'</span>, <span class="hljs-string">'name'</span>: <span class="hljs-string">'Important'</span> }
+{ <span class="hljs-attr">_id</span>: <span class="hljs-string">'30'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'link'</span>, <span class="hljs-attr">from</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">to</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'tag'</span> }
 </code></pre>
 <p>I have also created the following views in a _design document called links:</p>
 <pre><code class="js">{
-  outgoing: {
-    map: function(doc) {
-      if (doc.type == 'link') {
-        emit([doc.from, doc.name], {_id: doc.to});
+  <span class="hljs-attr">outgoing</span>: {
+    <span class="hljs-attr">map</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+      <span class="hljs-keyword">if</span> (doc.type == <span class="hljs-string">'link'</span>) {
+        emit([doc.from, doc.name], {<span class="hljs-attr">_id</span>: doc.to});
       }
     }
   },
-  incoming: {
-    map: function(doc) {
-      if (doc.type == 'link') {
-        emit([doc.to, doc.name], { _id: doc.from });
+  <span class="hljs-attr">incoming</span>: {
+    <span class="hljs-attr">map</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+      <span class="hljs-keyword">if</span> (doc.type == <span class="hljs-string">'link'</span>) {
+        emit([doc.to, doc.name], { <span class="hljs-attr">_id</span>: doc.from });
       }
     }
   }
@@ -1121,34 +1121,34 @@ CouchDB在单机时候就要预先订好shard数量。</p>
 </ul>
 </li>
 </ul>
-<pre><code class="js">var PouchDB = require('pouchdb');
-var pouch = new PouchDB('testdb_changes');
-var remotePouch = new PouchDB('http://localhost:5984/testdb_changes');
-var Promise = require('bluebird');
+<pre><code class="js"><span class="hljs-keyword">var</span> PouchDB = <span class="hljs-built_in">require</span>(<span class="hljs-string">'pouchdb'</span>);
+<span class="hljs-keyword">var</span> pouch = <span class="hljs-keyword">new</span> PouchDB(<span class="hljs-string">'testdb_changes'</span>);
+<span class="hljs-keyword">var</span> remotePouch = <span class="hljs-keyword">new</span> PouchDB(<span class="hljs-string">'http://localhost:5984/testdb_changes'</span>);
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Promise</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bluebird'</span>);
 
-pouch.bulkDocs([{_id: '1'}, {_id: '2'}]).then(function () {
+pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'1'</span>}, {<span class="hljs-attr">_id</span>: <span class="hljs-string">'2'</span>}]).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
 
-  return new Promise(function (resolve, reject) {
-    pouch.replicate.to(remotePouch).on('complete', function (changes) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>{
+    pouch.replicate.to(remotePouch).on(<span class="hljs-string">'complete'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">changes</span>) </span>{
       resolve(changes);
-    }).on('error', reject);
+    }).on(<span class="hljs-string">'error'</span>, reject);
   });
-}).then(function (change) {
-  var lastSeq = change.last_seq;
-  console.log(&quot;lastSeq is: &quot; + lastSeq);
-  return pouch.put({_id: '3'}).then(function () {
-    return pouch.changes({since: lastSeq});
-  }).then(function (changes) {
-    console.log('local changes are: ' + JSON.stringify(changes));
-    return remotePouch.allDocs();
-  }).then(function (res) {
-    console.log('remote pouch contains: ' + JSON.stringify(res));
-    return pouch.allDocs();
-  }).then(function (res) {
-    console.log('local pouch contains: ' + JSON.stringify(res));
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">change</span>) </span>{
+  <span class="hljs-keyword">var</span> lastSeq = change.last_seq;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"lastSeq is: "</span> + lastSeq);
+  <span class="hljs-keyword">return</span> pouch.put({<span class="hljs-attr">_id</span>: <span class="hljs-string">'3'</span>}).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> pouch.changes({<span class="hljs-attr">since</span>: lastSeq});
+  }).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">changes</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'local changes are: '</span> + <span class="hljs-built_in">JSON</span>.stringify(changes));
+    <span class="hljs-keyword">return</span> remotePouch.allDocs();
+  }).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'remote pouch contains: '</span> + <span class="hljs-built_in">JSON</span>.stringify(res));
+    <span class="hljs-keyword">return</span> pouch.allDocs();
+  }).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'local pouch contains: '</span> + <span class="hljs-built_in">JSON</span>.stringify(res));
   });
-}).catch(function (err) {
-  console.log(err);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(err);
 });
 </code></pre>
 <ul>
@@ -1158,31 +1158,31 @@ pouch.bulkDocs([{_id: '1'}, {_id: '2'}]).then(function () {
 </ul>
 </li>
 </ul>
-<pre><code class="js">var pendingMax = 0;
-var batch_size = 1000;    // must match your replication options
+<pre><code class="js"><span class="hljs-keyword">var</span> pendingMax = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> batch_size = <span class="hljs-number">1000</span>;    <span class="hljs-comment">// must match your replication options</span>
 
-function getProgress(pending) {
-  var progress;
-  pendingMax = pendingMax &lt; pending ? pending + batch_size : pendingMax;  // first time capture
-  //pendingMax = pendingMax &lt; pending ? pending : pendingMax;  // wouldn't use batch size in the calculation
-  if (pendingMax &gt; 0) {
-    progress = 1 - pending/pendingMax;
-    if (pending === 0) {
-      pendingMax = 0;    // reset for live/next replication
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProgress</span>(<span class="hljs-params">pending</span>) </span>{
+  <span class="hljs-keyword">var</span> progress;
+  pendingMax = pendingMax &lt; pending ? pending + batch_size : pendingMax;  <span class="hljs-comment">// first time capture</span>
+  <span class="hljs-comment">//pendingMax = pendingMax &lt; pending ? pending : pendingMax;  // wouldn't use batch size in the calculation</span>
+  <span class="hljs-keyword">if</span> (pendingMax &gt; <span class="hljs-number">0</span>) {
+    progress = <span class="hljs-number">1</span> - pending/pendingMax;
+    <span class="hljs-keyword">if</span> (pending === <span class="hljs-number">0</span>) {
+      pendingMax = <span class="hljs-number">0</span>;    <span class="hljs-comment">// reset for live/next replication</span>
     }
-  } else {
-    progress = 1;  // 100%
+  } <span class="hljs-keyword">else</span> {
+    progress = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 100%</span>
   }
-  return progress;
+  <span class="hljs-keyword">return</span> progress;
 }
 
-var replication = db.replicate.from(remote, {
-  live: true,
-  retry: true,
-  batches_limit: 10,
-  batch_size: 1000      // must match above batch_size
-}).on('change', function (info) {
-  console.log('Replication Progress', getProgress(info.pending));
+<span class="hljs-keyword">var</span> replication = db.replicate.from(remote, {
+  <span class="hljs-attr">live</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">retry</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">batches_limit</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">batch_size</span>: <span class="hljs-number">1000</span>      <span class="hljs-comment">// must match above batch_size</span>
+}).on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">info</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Replication Progress'</span>, getProgress(info.pending));
 })
 </code></pre>
 <h3 id="rxdb">RxDB</h3>
@@ -1198,14 +1198,14 @@ var replication = db.replicate.from(remote, {
 <a href="https://mathiasbynens.be/notes/javascript-identifiers" target="_blank" rel="noopener">https://mathiasbynens.be/notes/javascript-identifiers</a><br>
 <a href="https://mathiasbynens.be/notes/javascript-identifiers-es6" target="_blank" rel="noopener">https://mathiasbynens.be/notes/javascript-identifiers-es6</a><br>
 <a href="https://stackoverflow.com/questions/1661197/what-characters-are-valid-for-javascript-variable-names" target="_blank" rel="noopener">https://stackoverflow.com/questions/1661197/what-characters-are-valid-for-javascript-variable-names</a></p>
-<pre><code class="js">//plugins/schema-check.js
-export function checkFieldNameRegex(fieldName) {
-    if (fieldName == '') return;
+<pre><code class="js"><span class="hljs-comment">//plugins/schema-check.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkFieldNameRegex</span>(<span class="hljs-params">fieldName</span>) </span>{
+    <span class="hljs-keyword">if</span> (fieldName == <span class="hljs-string">''</span>) <span class="hljs-keyword">return</span>;
 
-    if (['properties', 'language'].includes(fieldName))
-        throw new Error(`fieldname is not allowed: ${fieldName}`);
+    <span class="hljs-keyword">if</span> ([<span class="hljs-string">'properties'</span>, <span class="hljs-string">'language'</span>].includes(fieldName))
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`fieldname is not allowed: <span class="hljs-subst">${fieldName}</span>`</span>);
 
-/* //comments for support unicode:
+<span class="hljs-comment">/* //comments for support unicode:
     const regexStr = '^[a-zA-Z][[a-zA-Z0-9_]*]?[a-zA-Z0-9]$';
     const regex = new RegExp(regexStr);
     if (!fieldName.match(regex)) {
@@ -1216,7 +1216,7 @@ export function checkFieldNameRegex(fieldName) {
             }
         );
     }
-*/
+*/</span>
 };
 </code></pre>
 <p>目前PouchDB有个问题没有解决，直接会导致本地数据库越来越大，同时也难以LRU。<br>
@@ -1393,12 +1393,12 @@ export function checkFieldNameRegex(fieldName) {
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -1475,13 +1475,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

@@ -304,7 +304,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.1k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -337,39 +337,39 @@
 然后运行数据库服务，创建数据库和数据表，并初始化数据。那么在“无后端构建”的开发中，上述操作包<br>
 括登录，都没有必要再去做这些繁琐的操作了，你只需要再云服务后台添加一个数据库设置好访问权限，<br>
 然后在前端应用中，直接引用SDK，写代码即可，剩下的事情则交给云服务去做就好了，梦幻般的代码如下：</p>
-<pre><code class="js">var mydb = new iDB(&quot;https://idb.isdk.org/mydb&quot;);
-var account = myDb.account;
+<pre><code class="js"><span class="hljs-keyword">var</span> mydb = <span class="hljs-keyword">new</span> iDB(<span class="hljs-string">"https://idb.isdk.org/mydb"</span>);
+<span class="hljs-keyword">var</span> account = myDb.account;
 
-//注册一个新用户
-account.signUp('mike@example.com', 'secret', {name: &quot;Mike John&quot;, birthday: '1988-01-01'});
+<span class="hljs-comment">//注册一个新用户</span>
+account.signUp(<span class="hljs-string">'mike@example.com'</span>, <span class="hljs-string">'secret'</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">"Mike John"</span>, <span class="hljs-attr">birthday</span>: <span class="hljs-string">'1988-01-01'</span>});
 
-//登录
-account.signIn('mike@example.com', 'secret');
-//使用第三方登录(Oaccount)
-account.signIn(using: 'google');
+<span class="hljs-comment">//登录</span>
+account.signIn(<span class="hljs-string">'mike@example.com'</span>, <span class="hljs-string">'secret'</span>);
+<span class="hljs-comment">//使用第三方登录(Oaccount)</span>
+account.signIn(using: <span class="hljs-string">'google'</span>);
 
-//改变密码
-account.changePassword('currentPassword', 'newPassword');
-account.change('password', 'newPassword', {secret: 'currentPassword'});
+<span class="hljs-comment">//改变密码</span>
+account.changePassword(<span class="hljs-string">'currentPassword'</span>, <span class="hljs-string">'newPassword'</span>);
+account.change(<span class="hljs-string">'password'</span>, <span class="hljs-string">'newPassword'</span>, {<span class="hljs-attr">secret</span>: <span class="hljs-string">'currentPassword'</span>});
 
-//改变Profile的信息
-account.change('nickname', 'newNickname', {secret: 'currentPassword'});
+<span class="hljs-comment">//改变Profile的信息</span>
+account.change(<span class="hljs-string">'nickname'</span>, <span class="hljs-string">'newNickname'</span>, {<span class="hljs-attr">secret</span>: <span class="hljs-string">'currentPassword'</span>});
 
-//获取profile
+<span class="hljs-comment">//获取profile</span>
 account.get();
-account.get('name');
+account.get(<span class="hljs-string">'name'</span>);
 
-//彻底销毁自己的帐号
-account.destroy({secret: 'currentPassword'});
+<span class="hljs-comment">//彻底销毁自己的帐号</span>
+account.destroy({<span class="hljs-attr">secret</span>: <span class="hljs-string">'currentPassword'</span>});
 
-//注销
+<span class="hljs-comment">//注销</span>
 account.signOut();
 
-//忘记密码了，发送重置密码链接到指定邮箱
-account.resetPassword('mike@example.com');
+<span class="hljs-comment">//忘记密码了，发送重置密码链接到指定邮箱</span>
+account.resetPassword(<span class="hljs-string">'mike@example.com'</span>);
 </code></pre>
 <p>数据存储也是类似，事实上account的存储就是来自store。</p>
-<pre><code class="js">var store = mydb.store;
+<pre><code class="js"><span class="hljs-keyword">var</span> store = mydb.store;
 store.add(key, value);
 store.update(key, value);
 store.delete(key);
@@ -582,12 +582,12 @@ store.list(key, subkey_pattern, skipCount, count);
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -664,13 +664,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

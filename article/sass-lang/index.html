@@ -343,33 +343,33 @@
 <h1>SASS的安装和使用</h1>
 <h2 id="一-安装："><strong>一、安装：</strong></h2>
 <p>因为sass的工具是基于ruby gems开发的，所以安装 ruby和gem是必须的</p>
-<pre><code class="bash">　　$sudo gem install haml
+<pre><code class="bash">　　<span class="hljs-variable">$sudo</span> gem install haml
 </code></pre>
 <p>在命令行使用sass：</p>
 <p>$sass input.scss output.css</p>
 <p>直接输出压缩后的css文件：</p>
-<pre><code class="bash">　　$sass input.scss output.css --style compressed
+<pre><code class="bash">　　<span class="hljs-variable">$sass</span> input.scss output.css --style compressed
 </code></pre>
 <p>compass是基于sass的样式创作的rails框架工具，它使得你的样式表项目更容易维护. 它内部支持的css框架库是bluepoint和compass，如果在创建项目的时候不指明框架库，则是用Compass库。</p>
-<pre><code class="bash">　　$sudo gem install compass
+<pre><code class="bash">　　<span class="hljs-variable">$sudo</span> gem install compass
 </code></pre>
 <p>创建css项目：</p>
-<pre><code class="bash">　　$compass help create
+<pre><code class="bash">　　<span class="hljs-variable">$compass</span> <span class="hljs-built_in">help</span> create
 </code></pre>
 <h2 id="二-sass的使用："><strong>二、Sass的使用：</strong></h2>
 <p>创新一个新的CSS项目：</p>
-<pre><code class="bash">　　$compass create newProject
+<pre><code class="bash">　　<span class="hljs-variable">$compass</span> create newProject
 </code></pre>
 <p>如果不喜欢它自动创建的css等目录的名称你也可以在创建的时候自己指定：</p>
-<pre><code class="bash">　　$compass create newProject --using blueprint/project --sass-dir sass --css-dir css --images-dir images --javascripts-dir js --output-style compressed
+<pre><code class="bash">　　<span class="hljs-variable">$compass</span> create newProject --using blueprint/project --sass-dir sass --css-dir css --images-dir images --javascripts-dir js --output-style compressed
 </code></pre>
 <p>以上使用blueprint/project CSS框架来创建项目，并设置sass目录为sass，输出css目录为css,图片目录为images，javascript目录为js, 输出的css的方式为压缩.</p>
 <p>为已有项目添加CSS模板框架</p>
-<pre><code class="bash">　　$compass help install
+<pre><code class="bash">　　<span class="hljs-variable">$compass</span> <span class="hljs-built_in">help</span> install
 </code></pre>
 <p>在已有项目中添加一个 blueprint的按钮css框架:</p>
-<pre><code class="bash">　　$cd newProject
-　　$compass install blueprint/buttons
+<pre><code class="bash">　　<span class="hljs-variable">$cd</span> newProject
+　　<span class="hljs-variable">$compass</span> install blueprint/buttons
 </code></pre>
 <p><strong>本文作者：李雪愚。雪愚是盛大创新院高级架构师，Geeker，热爱开源事业。</strong></p>
 
@@ -544,12 +544,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -626,13 +626,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

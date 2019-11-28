@@ -362,32 +362,32 @@
 <p>比如里面的 Effects/FireCube，就用很简单的代码画出一个着火的立方体的动画：<br>
 <a href="https://github.com/processing/processing-android/blob/master/examples/Topics/Effects/FireCube/FireCube.pde" target="_blank" rel="noopener"><img src="./effects-firecube.png" alt="FireCube Example"></a></p>
 <p>Processing 的程序分为两个主体函数：<code>setup</code>,  <code>draw</code>。其中<code>setup</code>是可以省略的。如果不需要动画或交互，那么<code>draw</code>函数也可以省略(在draw函数中的代码会一遍遍的重复执行直到你关闭或者停止)，直接在IDE编辑器中写代码绘制，比如，画一个圆：</p>
-<pre><code class="processing">**ellipse**(50, 50, 80, 80);
+<pre><code class="processing">**<span class="hljs-built_in">ellipse</span>**(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
 </code></pre>
 <p>这个函数的意思是在坐标(50,50)的地方，绘制宽度和高度都是80的椭圆。点击<code>运行按钮</code>，就可以看到结果:</p>
 <p><img src="http://www.showmuch.com/upload_files/auto_save_image/2011/03/041617Je4.gif" alt="processing"></p>
 <p><code>size</code>函数用户设定绘制窗口的大小和方式，如果没有指定绘制方式，则默认为JAVA2D的模式，processing支持的方式有：JAVA2D, P2D, P3D, OPENGL以及PDF（如果是PDF方式，后面还需要一个pdf文件名的参数）。</p>
 <p>下面是鼠标移动绘制圆形的交互代码，可以粘贴到编辑器执行看看。</p>
-<pre><code class="processing">void **setup**() {
-  size(480, 120); //设置窗口大小
-    smooth();
+<pre><code class="processing"><span class="hljs-keyword">void</span> **<span class="hljs-title">setup</span>**() {
+  <span class="hljs-built_in">size</span>(<span class="hljs-number">480</span>, <span class="hljs-number">120</span>); <span class="hljs-comment">//设置窗口大小</span>
+    <span class="hljs-built_in">smooth</span>();
 }
 
-void **draw**() {
-  if (mousePressed) {
-    fill(0);
-  } else {
-    fill(255);
+<span class="hljs-keyword">void</span> **<span class="hljs-title">draw</span>**() {
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">mousePressed</span>) {
+    <span class="hljs-built_in">fill</span>(<span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">fill</span>(<span class="hljs-number">255</span>);
   }
-  ellipse(mouseX, mouseY, 80, 80);
+  <span class="hljs-built_in">ellipse</span>(<span class="hljs-built_in">mouseX</span>, <span class="hljs-built_in">mouseY</span>, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
 }
 </code></pre>
 <p>停止执行按<img src="http://www.showmuch.com/upload_files/auto_save_image/2011/03/0416199lF.gif" alt="Stop">按钮。</p>
 <p>特别的，使用beginRecord函数你还可以将绘制过程记录到pdf文件，当然首先要引用支持pdf的库：</p>
-<pre><code class="processing">import processing.pdf.*;
-beginRecord(PDF, &quot;line.pdf&quot;);
-ellipse(200, 200, 50, 50);
-endRecord();
+<pre><code class="processing"><span class="hljs-keyword">import</span> processing.pdf.*;
+<span class="hljs-built_in">beginRecord</span>(PDF, <span class="hljs-string">"line.pdf"</span>);
+<span class="hljs-built_in">ellipse</span>(<span class="hljs-number">200</span>, <span class="hljs-number">200</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>);
+<span class="hljs-built_in">endRecord</span>();
 </code></pre>
 <p>Processing 有非常多的库，使得你绘制和交互非常的方便，你可以在这里学学习各种库的使用： <a href="http://www.processing.org/reference/libraries/" target="_blank" rel="noopener">http://www.processing.org/reference/libraries/</a> 下面的动画来自<a href="http://www.looksgood.de/libraries/Ani/" target="_blank" rel="noopener">ani库</a>中的 <code>valentine_drips_player</code>的demo.</p>
 <p><img src="ani-valentine-drips.png" alt="ani demo"></p>
@@ -581,12 +581,12 @@ endRecord();
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -663,13 +663,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

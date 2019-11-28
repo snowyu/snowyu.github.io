@@ -304,7 +304,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.1k</span>
+              <span>6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -331,10 +331,10 @@
 
 <p>我比较习惯 zsh, 下载安装zsh:</p>
 <pre><code class="bash">$&gt; sudo apt install zsh
-$&gt; sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
-$&gt; echo &quot;source $HOME/.profile&quot; &gt;&gt; ~/.zshrc
+$&gt; sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
+$&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"source <span class="hljs-variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc
 $&gt; chsh /usr/bin/zsh
-$&gt; echo &quot;export LC_ALL=en_US.UTF-8&quot;&gt;&gt; ~/.profile
+$&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile
 </code></pre>
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
 <pre><code>plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)
@@ -401,17 +401,17 @@ $&gt; echo &quot;export LC_ALL=en_US.UTF-8&quot;&gt;&gt; ~/.profile
 <p>我自己用的是Ext4以及Btrfs(支持ssd参数优化)。另外如果是用笔记本的话，可以适当将写commit的时间延长（秒为单位）。<br>
 添加<code>noatime</code>/<code>relatime</code>参数(在读取文件的时候禁止/减少写入)以便于提升SSD的读取性能（尽管Linux内核2.6.30以上为默认）。</p>
 <pre><code class="bash">✗ cat /etc/fstab
-# /etc/fstab: static file system information.
-#
-# Use 'blkid' to print the universally unique identifier for a
-# device; this may be used with UUID= as a more robust way to name devices
-# that works even if disks are added and removed. See fstab(5).
-#
-# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;
+<span class="hljs-comment"># /etc/fstab: static file system information.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Use 'blkid' to print the universally unique identifier for a</span>
+<span class="hljs-comment"># device; this may be used with UUID= as a more robust way to name devices</span>
+<span class="hljs-comment"># that works even if disks are added and removed. See fstab(5).</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span>
 UUID=XXXX-XXX-XXXX-XXX /               ext4    defaults,noatime,discard,commit=300,errors=remount-ro 0       1
 UUID=XXXX-XXX-XXXX-XXX /home           btrfs   defaults,noatime,discard,commit=120,ssd 0       2
 UUID=XXXXXX            /dos            ntfs    defaults,noatime,nls=utf8,uid=1000,gid=1000,commit=120 0       2
-UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,umask=0077      0       1
+UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,<span class="hljs-built_in">umask</span>=0077      0       1
 UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0
 </code></pre>
 <p>注：</p>
@@ -421,7 +421,7 @@ UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0
 × <code>/boot/efi</code>几乎不会被写，别加discard,否则可能引发故障</li>
 </ul>
 <p>启用trim前，请务必检查自己的ssd（尤其是2010年前的）是否支持trim,否则可能会造成数据丢失，使用<code>lsblk</code>指令：</p>
-<pre><code class="bash">#&gt; lsblk -D
+<pre><code class="bash"><span class="hljs-comment">#&gt; lsblk -D</span>
 NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO
 nvme0n1          512      512B       2T         0
 ├─nvme0n1p1        0      512B       2T         0
@@ -441,7 +441,7 @@ vm.swappiness=10
 </code></pre>
 <h3 id="启用-tmp目录ram盘">启用/tmp目录RAM盘</h3>
 <pre><code class="bash">sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount
-sudo systemctl enable tmp.mount
+sudo systemctl <span class="hljs-built_in">enable</span> tmp.mount
 sudo systemctl start tmp.mount
 </code></pre>
 <h2 id="dnsmasq">dnsmasq</h2>
@@ -449,14 +449,14 @@ sudo systemctl start tmp.mount
 是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>
 需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
 <pre><code class="bash">$&gt;cat /etc/resolv.dnsmasq.conf
-# Google's nameservers, for example
+<span class="hljs-comment"># Google's nameservers, for example</span>
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 
 $&gt;cat /etc/NetworkManager/dnsmasq.d/resolv.conf
 resolv-file=/etc/resolv.dnsmasq.conf
 
-#启用 /etc/hosts
+<span class="hljs-comment">#启用 /etc/hosts</span>
 $&gt;cat /etc/NetworkManager/dnsmasq.d/host.conf
 addn-hosts=/etc/hosts
 
@@ -474,16 +474,16 @@ $&gt;sudo systemctl restart NetworkManager
 <p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases" target="_blank" rel="noopener">gfwlist_ipset.conf</a>文件，<br>
 放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
 <p>你需要修改文件中的域名服务器地址，最简单的方法是在代理服务器上自建一个域名服务器（用非标准端口）。</p>
-<pre><code class="yaml">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器
-server=/google.com/127.0.0.1#5353
-#将解析出来的IP保存到名为gfwlist的ipset表中
-ipset=/google.com/gfwlist
+<pre><code class="yaml"><span class="hljs-comment">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器</span>
+<span class="hljs-string">server=/google.com/127.0.0.1#5353</span>
+<span class="hljs-comment">#将解析出来的IP保存到名为gfwlist的ipset表中</span>
+<span class="hljs-string">ipset=/google.com/gfwlist</span>
 </code></pre>
 <p>或者，你可以<a href="https://github.com/cokebar/gfwlist2dnsmasq" target="_blank" rel="noopener">下载执行这个脚本</a>自动抓取gfwlist转换为：dnsmasq_gfwlist_ipset.conf</p>
 <pre><code class="bash">$&gt; sudo bash gfwlist2dnsmasq.sh -d your-dns-server-ip -p your-dns-server-port -s gfwlist  -f /etc/NetworkManager/dnsmasq.d/gfwlist_ipset.conf
 </code></pre>
 <p>然后创建<code>gfwlist</code>ipset规则集:</p>
-<pre><code class="bash">ipset -N gfwlist hash:ip
+<pre><code class="bash">ipset -N gfwlist <span class="hljs-built_in">hash</span>:ip
 </code></pre>
 <h3 id="白名单方式">白名单方式</h3>
 <p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
@@ -491,20 +491,20 @@ ipset=/google.com/gfwlist
 <li>获取国内 IP 列表</li>
 </ul>
 <p>接下来我们需要获取中国的 IP 列表。这里我们放在了 <code>~/chnroute/</code>目录下：</p>
-<pre><code class="bash">CHNROUTE_DIR=$HOME/chnroute
-mkdir $CHNROUTE_DIR
-curl 'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | grep ipv4 | grep CN | awk -F\| '{ printf(&quot;%s/%d\n&quot;, $4, 32-log($5)/log(2)) }' &gt; $CHNROUTE_DIR/chnroute.txt
+<pre><code class="bash">CHNROUTE_DIR=<span class="hljs-variable">$HOME</span>/chnroute
+mkdir <span class="hljs-variable">$CHNROUTE_DIR</span>
+curl <span class="hljs-string">'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest'</span> | grep ipv4 | grep CN | awk -F\| <span class="hljs-string">'{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }'</span> &gt; <span class="hljs-variable">$CHNROUTE_DIR</span>/chnroute.txt
 </code></pre>
 <p>这是来自 <a href="https://github.com/shadowsocks/ChinaDNS" target="_blank" rel="noopener">ChinaDNS</a> 的指令。</p>
 <p>创建ipset并导入：</p>
-<pre><code class="bash">#!/bin/bash
+<pre><code class="bash"><span class="hljs-meta">#!/bin/bash
+</span>
+<span class="hljs-comment"># Setup the ipset</span>
+ipset -N chnroute <span class="hljs-built_in">hash</span>:net maxelem 65536
 
-# Setup the ipset
-ipset -N chnroute hash:net maxelem 65536
-
-for ip in $(cat '$HOME/chnroute/chnroute.txt'); do
-  ipset add chnroute $ip
-done
+<span class="hljs-keyword">for</span> ip <span class="hljs-keyword">in</span> $(cat <span class="hljs-string">'$HOME/chnroute/chnroute.txt'</span>); <span class="hljs-keyword">do</span>
+  ipset add chnroute <span class="hljs-variable">$ip</span>
+<span class="hljs-keyword">done</span>
 </code></pre>
 <p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，<br>
 而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
@@ -513,12 +513,12 @@ done
 </code></pre>
 <pre><code class="bash">$&gt; cat /etc/shadowsocks-libev/config.json
 {
-    &quot;server&quot;:&quot;[123.22.33.13]&quot;, # your shadowsocks server ip
-    &quot;server_port&quot;:1293,
-    &quot;local_port&quot;:1080,
-    &quot;password&quot;:&quot;12345&quot;,
-    &quot;timeout&quot;:60,
-    &quot;method&quot;:&quot;aes-256-cfb&quot;
+    <span class="hljs-string">"server"</span>:<span class="hljs-string">"[123.22.33.13]"</span>, <span class="hljs-comment"># your shadowsocks server ip</span>
+    <span class="hljs-string">"server_port"</span>:1293,
+    <span class="hljs-string">"local_port"</span>:1080,
+    <span class="hljs-string">"password"</span>:<span class="hljs-string">"12345"</span>,
+    <span class="hljs-string">"timeout"</span>:60,
+    <span class="hljs-string">"method"</span>:<span class="hljs-string">"aes-256-cfb"</span>
 }
 </code></pre>
 <p>启用 shadowsocks-libev.service 之前，需要做些修改，将服务改为透明转发<code>ss-redir</code>：</p>
@@ -528,27 +528,27 @@ Type=simple
 EnvironmentFile=/etc/default/shadowsocks-libev
 User=root
 LimitNOFILE=32768
-# modify ss-server to ss-redir
-ExecStart=/usr/bin/ss-redir -a $USER -c $CONFFILE $DAEMON_ARGS
+<span class="hljs-comment"># modify ss-server to ss-redir</span>
+ExecStart=/usr/bin/ss-redir -a <span class="hljs-variable">$USER</span> -c <span class="hljs-variable">$CONFFILE</span> <span class="hljs-variable">$DAEMON_ARGS</span>
 
-$&gt;systemctl enable shadowsocks-libev
+$&gt;systemctl <span class="hljs-built_in">enable</span> shadowsocks-libev
 $&gt;systemctl daemon-reload
 $&gt;systemctl start shadowsocks-libev
 </code></pre>
 <h2 id="iptables">iptables</h2>
 <p>下面开始在iptables上做转发：</p>
 <p>首先为shadowsocks创建NAT表:</p>
-<pre><code class="bash"># create a nat named SHADOWSOCKS:
+<pre><code class="bash"><span class="hljs-comment"># create a nat named SHADOWSOCKS:</span>
 iptables -t nat -N SHADOWSOCKS
 
-# Ignore your shadowsocks server's addresses
-# It's very IMPORTANT, just be careful.
+<span class="hljs-comment"># Ignore your shadowsocks server's addresses</span>
+<span class="hljs-comment"># It's very IMPORTANT, just be careful.</span>
 iptables -t nat -A SHADOWSOCKS -d [your-shadowsocks-server-ip] -j RETURN
 
-# 忽略局域网：
-# Ignore LANs and any other addresses you'd like to bypass the proxy
-# See Wikipedia and RFC5735 for full list of reserved networks.
-# See ashi009/bestroutetb for a highly optimized CHN route list.
+<span class="hljs-comment"># 忽略局域网：</span>
+<span class="hljs-comment"># Ignore LANs and any other addresses you'd like to bypass the proxy</span>
+<span class="hljs-comment"># See Wikipedia and RFC5735 for full list of reserved networks.</span>
+<span class="hljs-comment"># See ashi009/bestroutetb for a highly optimized CHN route list.</span>
 iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN
 iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN
 iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN
@@ -559,31 +559,31 @@ iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN
 iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN
 </code></pre>
 <h3 id="黑名单">黑名单</h3>
-<pre><code class="bash"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port
-iptables -t nat -A SHADOWSOCKS -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-ports 1080
-# Apply the rules
+<pre><code class="bash"><span class="hljs-comment"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port</span>
+iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080
+<span class="hljs-comment"># Apply the rules</span>
 iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
 </code></pre>
 <h3 id="白名单">白名单</h3>
-<pre><code class="bash"># Allow connection to chinese IPs
-iptables -t nat -A SHADOWSOCKS -p tcp -m set --match-set chnroute dst -j RETURN
+<pre><code class="bash"><span class="hljs-comment"># Allow connection to chinese IPs</span>
+iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set chnroute dst -j RETURN
 
-# Others Redirect to Shadowsocks
+<span class="hljs-comment"># Others Redirect to Shadowsocks</span>
 iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080
 
-# Apply the rules
+<span class="hljs-comment"># Apply the rules</span>
 iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
 </code></pre>
 <h3 id="清除iptables规则">清除iptables规则</h3>
-<pre><code class="bash">#!/bin/bash
-
+<pre><code class="bash"><span class="hljs-meta">#!/bin/bash
+</span>
 iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS
 iptables -t nat -F SHADOWSOCKS
 iptables -t nat -X SHADOWSOCKS
 
-# 如果是黑名单:
+<span class="hljs-comment"># 如果是黑名单:</span>
 ipset destroy gfwlist
-# 如果是白名单:
+<span class="hljs-comment"># 如果是白名单:</span>
 ipset destroy chnroute
 </code></pre>
 
@@ -764,12 +764,12 @@ ipset destroy chnroute
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -846,13 +846,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

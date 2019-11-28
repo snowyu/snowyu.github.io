@@ -290,31 +290,31 @@ else
 </code></pre>
 <hr>
 <p>上面的这个互动例子的Markdown代码如下：</p>
-<pre><code class="md">&gt; [我]{travelers: 我们 or 我} 要去 *圣伊芙*
-&gt; 我碰到一个有 [7 个老婆]{wives: 1..10}  的男人
-&gt; 每个老婆有 [7 个口袋]{sacks: 1..10}
-&gt; 每个口袋有 [7 只🐈️猫咪]{cats: 1..10}
-&gt; 每只🐈️猫有 [7 套🛠️工具]{kits: 1..10}
-&gt; 🛠️工具, 🐈️猫咪, 口袋, 老婆
-&gt; 问：有多少要去*圣伊芙*？
+<pre><code class="md"><span class="hljs-quote">&gt; [我]{travelers: 我们 or 我} 要去 *圣伊芙*</span>
+<span class="hljs-quote">&gt; 我碰到一个有 [7 个老婆]{wives: 1..10}  的男人</span>
+<span class="hljs-quote">&gt; 每个老婆有 [7 个口袋]{sacks: 1..10}</span>
+<span class="hljs-quote">&gt; 每个口袋有 [7 只🐈️猫咪]{cats: 1..10}</span>
+<span class="hljs-quote">&gt; 每只🐈️猫有 [7 套🛠️工具]{kits: 1..10}</span>
+<span class="hljs-quote">&gt; 🛠️工具, 🐈️猫咪, 口袋, 老婆</span>
+<span class="hljs-quote">&gt; 问：有多少要去*圣伊芙*？</span>
 
-    total_sacks = @wives * @sacks
-    total_cats  = total_sacks * @cats
-    total_kits  = total_cats * @kits
-    man         = 1
+<span class="hljs-code">    total_sacks = @wives * @sacks</span>
+<span class="hljs-code">    total_cats  = total_sacks * @cats</span>
+<span class="hljs-code">    total_kits  = total_cats * @kits</span>
+<span class="hljs-code">    man         = 1</span>
 
-    if @travelers
-        narrator = 2
-    else
-        narrator = 1
+<span class="hljs-code">    if @travelers</span>
+<span class="hljs-code">        narrator = 2</span>
+<span class="hljs-code">    else</span>
+<span class="hljs-code">        narrator = 1</span>
 
 这常常会首先猜测是 [2753]{first_guess}…
 
-    @first_guess = man + @wives + total_cats + total_kits + narrator
+<span class="hljs-code">    @first_guess = man + @wives + total_cats + total_kits + narrator</span>
 
-…但实际正确答案是 **[1]{answer}**
+…但实际正确答案是 <span class="hljs-strong">**[1]{answer}**</span>
 
-    @answer = narrator
+<span class="hljs-code">    @answer = narrator</span>
 </code></pre>
 <ul>
 <li><code>[我]{travelers: 我们 or 我}</code> 是一个设置指定变量真假值的单选组件，
@@ -447,12 +447,12 @@ else
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -532,13 +532,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

@@ -313,14 +313,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>22k</span>
+              <span>21k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>39 分钟</span>
+              <span>38 分钟</span>
             </span>
 
         </div>
@@ -376,9 +376,9 @@ Let's add some person properties now.
 <p><img src="./strongloop-arc.png" alt></p>
 <p>skip the online login:</p>
 <p><code>%HOME%/AppData/Roaming/npm/node_modules/strongloop/node_modules/strong-arc/clinet/www/scripts/modules/arc-user/arc-user.service.js</code>:</p>
-<pre><code class="js">    svc.getCurrentUserId = function () {
-      //return $cookieStore.get('currentUserId');
-      return 12;
+<pre><code class="js">    svc.getCurrentUserId = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-comment">//return $cookieStore.get('currentUserId');</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-number">12</span>;
     };
 </code></pre>
 <p>当你在IDE上设置添加并暴露出数据 model 后，就可以在IDE上直接运行。<br>
@@ -434,17 +434,17 @@ Let's add some person properties now.
 </code></pre>
 <p>这会在 <code>server/datasources.json</code>中增加新的数据源，然后打开该文件，修改相关数据库的登录认证信息：</p>
 <pre><code class="json">{
-  &quot;db&quot;:{
-    &quot;name&quot;:&quot;db&quot;,
-    &quot;connector&quot;:&quot;memory&quot;
+  <span class="hljs-attr">"db"</span>:{
+    <span class="hljs-attr">"name"</span>:<span class="hljs-string">"db"</span>,
+    <span class="hljs-attr">"connector"</span>:<span class="hljs-string">"memory"</span>
   },
-  &quot;myBlogger&quot;: {
-      &quot;name&quot;: &quot;myBlogger&quot;,
-      &quot;connector&quot;: &quot;mysql&quot;,
-      &quot;host&quot;: &quot;your-mysql-server.foo.com&quot;,
-      &quot;user&quot;: &quot;db-username&quot;,
-      &quot;password&quot;: &quot;db-password&quot;,
-      &quot;database&quot;: &quot;myblogger&quot;
+  <span class="hljs-attr">"myBlogger"</span>: {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"myBlogger"</span>,
+      <span class="hljs-attr">"connector"</span>: <span class="hljs-string">"mysql"</span>,
+      <span class="hljs-attr">"host"</span>: <span class="hljs-string">"your-mysql-server.foo.com"</span>,
+      <span class="hljs-attr">"user"</span>: <span class="hljs-string">"db-username"</span>,
+      <span class="hljs-attr">"password"</span>: <span class="hljs-string">"db-password"</span>,
+      <span class="hljs-attr">"database"</span>: <span class="hljs-string">"myblogger"</span>
   }
 }
 </code></pre>
@@ -504,21 +504,21 @@ Let's add some properties now.
 </li>
 <li>
 <p><code>indexes</code> - 可以设置字段的复合索引，不过注意的是采用官方文档进行设置的时候，Mysql的connector会报错，只能这样设置:</p>
-<pre><code class="js">&quot;indexes&quot;: {
-  &quot;some_name_age_index&quot;: {
-    &quot;columns&quot;: &quot;name, age&quot;, //不能使用keys，会报告: Key column 'undefined' doesn't exist in table
-    &quot;options&quot;: {
-      &quot;unique&quot;: true
+<pre><code class="js"><span class="hljs-string">"indexes"</span>: {
+  <span class="hljs-string">"some_name_age_index"</span>: {
+    <span class="hljs-string">"columns"</span>: <span class="hljs-string">"name, age"</span>, <span class="hljs-comment">//不能使用keys，会报告: Key column 'undefined' doesn't exist in table</span>
+    <span class="hljs-string">"options"</span>: {
+      <span class="hljs-string">"unique"</span>: <span class="hljs-literal">true</span>
     }
   }
 </code></pre>
 </li>
 <li>
 <p>对于字段单个索引，可以直接写在字段中：</p>
-<pre><code class="js">  &quot;name&quot;: {
-    &quot;type&quot;: &quot;string&quot;,
-    &quot;index&quot;: true,
-    &quot;required&quot;: true
+<pre><code class="js">  <span class="hljs-string">"name"</span>: {
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-string">"index"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>
   },
 </code></pre>
 </li>
@@ -587,54 +587,54 @@ Let's add some properties now.
 </ul>
 <p>把脚本作为启动脚本放在项目的<code>/server/boot/</code>目录下(启动顺序按ASCII字母表顺序)：</p>
 <p><code>/server/boot/auto-migrate.js</code>:</p>
-<pre><code class="js">module.exports = function(app) {
-  var log = require('debug')('boot:autoMigrate');
-  var path = require('path');
-  var models = require(path.resolve(__dirname, '../model-config.json'));
-  var datasources = require(path.resolve(__dirname, '../datasources.json'));
+<pre><code class="js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">app</span>) </span>{
+  <span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>(<span class="hljs-string">'debug'</span>)(<span class="hljs-string">'boot:autoMigrate'</span>);
+  <span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+  <span class="hljs-keyword">var</span> models = <span class="hljs-built_in">require</span>(path.resolve(__dirname, <span class="hljs-string">'../model-config.json'</span>));
+  <span class="hljs-keyword">var</span> datasources = <span class="hljs-built_in">require</span>(path.resolve(__dirname, <span class="hljs-string">'../datasources.json'</span>));
 
-  function migrateAll(aMethod){
-    Object.keys(models).forEach(function(model) {
-      if (typeof models[model].dataSource !== 'undefined') {
-        if (typeof datasources[models[model].dataSource] !== 'undefined') {
-          app.dataSources[models[model].dataSource][aMethod](model, function (err) {
-              if (err) throw err;
-              log('Model ' + model + ' '+ aMethod + 'd');
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">migrateAll</span>(<span class="hljs-params">aMethod</span>)</span>{
+    <span class="hljs-built_in">Object</span>.keys(models).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> models[model].dataSource !== <span class="hljs-string">'undefined'</span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> datasources[models[model].dataSource] !== <span class="hljs-string">'undefined'</span>) {
+          app.dataSources[models[model].dataSource][aMethod](model, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+              <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">throw</span> err;
+              log(<span class="hljs-string">'Model '</span> + model + <span class="hljs-string">' '</span>+ aMethod + <span class="hljs-string">'d'</span>);
           });
         }
       }
     });
   }
-  if (process.env.NODE_ENV !== 'production') {
-    migrateAll('automigrate');
+  <span class="hljs-keyword">if</span> (process.env.NODE_ENV !== <span class="hljs-string">'production'</span>) {
+    migrateAll(<span class="hljs-string">'automigrate'</span>);
   }
-  else {
-    migrateAll('autoupdate');
+  <span class="hljs-keyword">else</span> {
+    migrateAll(<span class="hljs-string">'autoupdate'</span>);
   }
 };
 </code></pre>
 <p>对了，内置的 Model(User, AccessToken, ACL, RoleMapping, Role) 也应该存到数据库中:</p>
 <p><code>server/model-config.json</code>:</p>
 <pre><code class="js">{
-  &quot;User&quot;: {
-    &quot;dataSource&quot;: &quot;myBlogger&quot;,
-    &quot;public&quot;: true
+  <span class="hljs-string">"User"</span>: {
+    <span class="hljs-string">"dataSource"</span>: <span class="hljs-string">"myBlogger"</span>,
+    <span class="hljs-string">"public"</span>: <span class="hljs-literal">true</span>
   },
-  &quot;AccessToken&quot;: {
-    &quot;dataSource&quot;: &quot;myBlogger&quot;,
-    &quot;public&quot;: false
+  <span class="hljs-string">"AccessToken"</span>: {
+    <span class="hljs-string">"dataSource"</span>: <span class="hljs-string">"myBlogger"</span>,
+    <span class="hljs-string">"public"</span>: <span class="hljs-literal">false</span>
   },
-  &quot;ACL&quot;: {
-    &quot;dataSource&quot;: &quot;myBlogger&quot;,
-    &quot;public&quot;: false
+  <span class="hljs-string">"ACL"</span>: {
+    <span class="hljs-string">"dataSource"</span>: <span class="hljs-string">"myBlogger"</span>,
+    <span class="hljs-string">"public"</span>: <span class="hljs-literal">false</span>
   },
-  &quot;RoleMapping&quot;: {
-    &quot;dataSource&quot;: &quot;myBlogger&quot;,
-    &quot;public&quot;: false
+  <span class="hljs-string">"RoleMapping"</span>: {
+    <span class="hljs-string">"dataSource"</span>: <span class="hljs-string">"myBlogger"</span>,
+    <span class="hljs-string">"public"</span>: <span class="hljs-literal">false</span>
   },
-  &quot;Role&quot;: {
-    &quot;dataSource&quot;: &quot;myBlogger&quot;,
-    &quot;public&quot;: false
+  <span class="hljs-string">"Role"</span>: {
+    <span class="hljs-string">"dataSource"</span>: <span class="hljs-string">"myBlogger"</span>,
+    <span class="hljs-string">"public"</span>: <span class="hljs-literal">false</span>
   }
 }
 </code></pre>
@@ -747,83 +747,83 @@ $ slc loopback:acl
 <li>不喜欢(评论)：<code>/comments/:id/dislike</code></li>
 </ul>
 <p>打开您<code>models</code>文件夹下的<code>blog.js</code>文件:</p>
-<pre><code class="js">// Register a 'publish' remote method: /blogs/:id/publish
+<pre><code class="js"><span class="hljs-comment">// Register a 'publish' remote method: /blogs/:id/publish</span>
 Blog.remoteMethod(
-  'publish',
+  <span class="hljs-string">'publish'</span>,
   {
-    http: {path: '/:id/publish', verb: 'put'},
-    accepts: {arg: 'id', type: 'string', required: true, http: { source: 'path' }},
-    returns: {root: true, type: 'object'},
-    description: 'Marks a blog as published.'
+    <span class="hljs-attr">http</span>: {<span class="hljs-attr">path</span>: <span class="hljs-string">'/:id/publish'</span>, <span class="hljs-attr">verb</span>: <span class="hljs-string">'put'</span>},
+    <span class="hljs-attr">accepts</span>: {<span class="hljs-attr">arg</span>: <span class="hljs-string">'id'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'string'</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">http</span>: { <span class="hljs-attr">source</span>: <span class="hljs-string">'path'</span> }},
+    <span class="hljs-attr">returns</span>: {<span class="hljs-attr">root</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'object'</span>},
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'Marks a blog as published.'</span>
   }
 );
 
-// the actual function called by the route to do the work
-Blog.publish = function(id, cb) {
-  Blog.findById(id, function(err, record){
-    record.updateAttributes({isPublished: true, publishedDate: new Date()}, function(err, instance) {
-      if (err) cb(err);
-      if (!err) cb(null, instance);
+<span class="hljs-comment">// the actual function called by the route to do the work</span>
+Blog.publish = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id, cb</span>) </span>{
+  Blog.findById(id, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, record</span>)</span>{
+    record.updateAttributes({<span class="hljs-attr">isPublished</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">publishedDate</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, instance</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) cb(err);
+      <span class="hljs-keyword">if</span> (!err) cb(<span class="hljs-literal">null</span>, instance);
     })
   })
 };
 
 Blog.remoteMethod(
-  'upvote',
+  <span class="hljs-string">'upvote'</span>,
   {
-    http: {path: '/:id/upvote', verb: 'post'},
-    accepts: {arg: 'id', type: 'string', required: true, http: { source: 'path' }},
-    returns: {root: true, type: 'object'},
-    description: 'Marks a blog as upvoted.'
+    <span class="hljs-attr">http</span>: {<span class="hljs-attr">path</span>: <span class="hljs-string">'/:id/upvote'</span>, <span class="hljs-attr">verb</span>: <span class="hljs-string">'post'</span>},
+    <span class="hljs-attr">accepts</span>: {<span class="hljs-attr">arg</span>: <span class="hljs-string">'id'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'string'</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">http</span>: { <span class="hljs-attr">source</span>: <span class="hljs-string">'path'</span> }},
+    <span class="hljs-attr">returns</span>: {<span class="hljs-attr">root</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'object'</span>},
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'Marks a blog as upvoted.'</span>
   }
 );
 
-// Remote hook called before running function
-Blog.beforeRemote('upvote', function(ctx, user, next) {
-  Blog.findById(ctx.req.params.id, function(err, record){
-    // do not let the user upvote their own record
-    if (record.authorId === ctx.req.accessToken.userId) {
-      var err = new Error(&quot;User cannot upvote their own blog post.&quot;);
-      err.status = 403;
+<span class="hljs-comment">// Remote hook called before running function</span>
+Blog.beforeRemote(<span class="hljs-string">'upvote'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ctx, user, next</span>) </span>{
+  Blog.findById(ctx.req.params.id, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, record</span>)</span>{
+    <span class="hljs-comment">// do not let the user upvote their own record</span>
+    <span class="hljs-keyword">if</span> (record.authorId === ctx.req.accessToken.userId) {
+      <span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"User cannot upvote their own blog post."</span>);
+      err.status = <span class="hljs-number">403</span>;
       next(err);
-    // do no let the user upvote a comment more than once
-    } else if (record.upvotes.indexOf(ctx.req.accessToken.userId) != -1) {
-      var err = new Error(&quot;User has already upvoted the blog.&quot;);
-      err.status = 403;
+    <span class="hljs-comment">// do no let the user upvote a comment more than once</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (record.upvotes.indexOf(ctx.req.accessToken.userId) != <span class="hljs-number">-1</span>) {
+      <span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"User has already upvoted the blog."</span>);
+      err.status = <span class="hljs-number">403</span>;
       next(err);
-    } else {
+    } <span class="hljs-keyword">else</span> {
       next();
     }
   })
 });
 
-// the actual function called by the route to do the work
-Blog.upvote = function(id, cb) {
-  // get the current context
-  var ctx = loopback.getCurrentContext();
-  Blog.findById(id, function(err, record){
-    // get the calling user who 'upvoted' it from the context
+<span class="hljs-comment">// the actual function called by the route to do the work</span>
+Blog.upvote = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id, cb</span>) </span>{
+  <span class="hljs-comment">// get the current context</span>
+  <span class="hljs-keyword">var</span> ctx = loopback.getCurrentContext();
+  Blog.findById(id, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, record</span>)</span>{
+    <span class="hljs-comment">// get the calling user who 'upvoted' it from the context</span>
     record.upvotes.push(ctx.active.accessToken.userId);
-    record.updateAttributes({numOfUpVotes: record.upvotes.length, upvotes: record.upvotes}, function(err, instance) {
-      if (err) cb(err);
-      if (!err) cb(null, instance);
+    record.updateAttributes({<span class="hljs-attr">numOfUpVotes</span>: record.upvotes.length, <span class="hljs-attr">upvotes</span>: record.upvotes}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, instance</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) cb(err);
+      <span class="hljs-keyword">if</span> (!err) cb(<span class="hljs-literal">null</span>, instance);
     })
   })
 };
 </code></pre>
 <p>注意：如果直接在代码里调用remoteMethod去添加远程方法，那么在Model.definition.settings.methods中不会出现。</p>
 <p>另外，通过禁止Model内置的删除方法，还可以禁止任何删除评论,修改 <code>models/comment.js</code>:</p>
-<pre><code class="js">Comment.disableRemoteMethod('deleteById', true);
+<pre><code class="js">Comment.disableRemoteMethod(<span class="hljs-string">'deleteById'</span>, <span class="hljs-literal">true</span>);
 </code></pre>
 <p>我们还可以通过修改路由文件 <code>/server/boot/routes.js</code> 来扩展自己的定制路由，比如我们希望能<br>
 通过这样的路径访问到用户的博文: <code>/:user/:slug</code>：</p>
-<pre><code class="js">  app.get('/:user/:slug', function(req, res) {
-    Blog.findOne({ where: {authorId: req.params.user, slug:req.params.slug}, include: 'comments'}, function(err, record){
-      if (err) res.send(err);
-      if (!err &amp;&amp; record) {
+<pre><code class="js">  app.get(<span class="hljs-string">'/:user/:slug'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    Blog.findOne({ <span class="hljs-attr">where</span>: {<span class="hljs-attr">authorId</span>: req.params.user, <span class="hljs-attr">slug</span>:req.params.slug}, <span class="hljs-attr">include</span>: <span class="hljs-string">'comments'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, record</span>)</span>{
+      <span class="hljs-keyword">if</span> (err) res.send(err);
+      <span class="hljs-keyword">if</span> (!err &amp;&amp; record) {
         res.send(record);
-      } else {
-        res.send(404);
+      } <span class="hljs-keyword">else</span> {
+        res.send(<span class="hljs-number">404</span>);
       }
     });
   });
@@ -857,23 +857,23 @@ Blog.upvote = function(id, cb) {
 <h3 id="datasource">Datasource</h3>
 <p>接着我们需要创建一个新的Datasource：</p>
 <p>可以直接在 <code>/server/datasources.json</code> 文件中创建：</p>
-<pre><code class="json">&quot;myfile&quot;: {
-   &quot;name&quot;: &quot;myfile&quot;,
-   &quot;connector&quot;: &quot;loopback-component-storage&quot;,
-   &quot;provider&quot;: &quot;amazon&quot;,
-   &quot;key&quot;: &quot;your amazon key&quot;,
-   &quot;keyId&quot;: &quot;your amazon key id&quot;
+<pre><code class="json">"myfile": {
+   "name": "myfile",
+   "connector": "loopback-component-storage",
+   "provider": "amazon",
+   "key": "your amazon key",
+   "keyId": "your amazon key id"
  }
 </code></pre>
 <p>也可以在程序中创建:</p>
 <p><code>server/server.js</code>:</p>
-<pre><code class="js">var ds = loopback.createDataSource({
-    connector: require('loopback-component-storage'),
-    provider: 'filesystem',
-    root: path.resolve(__dirname, '../storage')
+<pre><code class="js"><span class="hljs-keyword">var</span> ds = loopback.createDataSource({
+    <span class="hljs-attr">connector</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">'loopback-component-storage'</span>),
+    <span class="hljs-attr">provider</span>: <span class="hljs-string">'filesystem'</span>,
+    <span class="hljs-attr">root</span>: path.resolve(__dirname, <span class="hljs-string">'../storage'</span>)
 });
 
-var container = ds.createModel('container', null, base: 'Model');
+<span class="hljs-keyword">var</span> container = ds.createModel(<span class="hljs-string">'container'</span>, <span class="hljs-literal">null</span>, <span class="hljs-attr">base</span>: <span class="hljs-string">'Model'</span>);
 app.model(container);
 </code></pre>
 <p>然后就可以在API中访问:</p>
@@ -944,9 +944,9 @@ app.model(container);
 </tbody>
 </table>
 <p>如果是用本地文件系统，那么每创建一个容器，对应于每创建一个子目录:</p>
-<pre><code class="bash">curl -X POST --header &quot;Content-Type: application/json&quot; --header &quot;Accept: application/json&quot; -d &quot;{
-  \&quot;name\&quot;: \&quot;test\&quot;
-}&quot; &quot;http://localhost:3000/api/containers&quot;
+<pre><code class="bash">curl -X POST --header <span class="hljs-string">"Content-Type: application/json"</span> --header <span class="hljs-string">"Accept: application/json"</span> -d <span class="hljs-string">"{
+  \"name\": \"test\"
+}"</span> <span class="hljs-string">"http://localhost:3000/api/containers"</span>
 </code></pre>
 <p>注意当前container只支持1级目录，不支持多级目录。</p>
 <h1>深入探索</h1>
@@ -974,13 +974,13 @@ Models are successfully generated from swagger spec.
 <h2 id="内建的-models">内建的 models</h2>
 <p>参阅：<a href="https://github.com/strongloop/loopback/blob/master/lib/builtin-models.js" target="_blank" rel="noopener">这里</a></p>
 <p>the built-in models attach to the ‘db’ datasource automatically:</p>
-<pre><code class="js"> var dataSourceTypes = {
-    DB: 'db',
-    MAIL: 'mail'
+<pre><code class="js"> <span class="hljs-keyword">var</span> dataSourceTypes = {
+    <span class="hljs-attr">DB</span>: <span class="hljs-string">'db'</span>,
+    <span class="hljs-attr">MAIL</span>: <span class="hljs-string">'mail'</span>
   };
 
   registry.Email.autoAttach = dataSourceTypes.MAIL;
-  registry.getModel('PersistedModel').autoAttach = dataSourceTypes.DB;
+  registry.getModel(<span class="hljs-string">'PersistedModel'</span>).autoAttach = dataSourceTypes.DB;
   registry.User.autoAttach = dataSourceTypes.DB;
   registry.AccessToken.autoAttach = dataSourceTypes.DB;
   registry.Role.autoAttach = dataSourceTypes.DB;
@@ -1013,51 +1013,51 @@ Models are successfully generated from swagger spec.
 <li>verificationToken(<em>string</em>)</li>
 </ul>
 <h4 id="register">Register</h4>
-<pre><code class="bash">curl -X POST -H &quot;Content-Type:application/json&quot; \
--d '{&quot;email&quot;: &quot;me@domain.com&quot;, &quot;password&quot;: &quot;secret&quot;}' \
+<pre><code class="bash">curl -X POST -H <span class="hljs-string">"Content-Type:application/json"</span> \
+-d <span class="hljs-string">'{"email": "me@domain.com", "password": "secret"}'</span> \
 http://localhost:3000/api/users
 </code></pre>
 <p>自带的注册验证为电子邮件验证，另外如果需要在注册前验证是否用户名或者邮件地址已经被注册，可以使用 <code>beforeRemote</code> hook.</p>
 <p>启用电子邮件验证(必须先设置<a href="https://docs.strongloop.com/display/public/LB/Using+built-in+models#Usingbuilt-inmodels-Emailmodel" target="_blank" rel="noopener">Mail datasource</a>):</p>
-<pre><code class="js">//server/model-config.json
-&quot;user&quot;: {
-    &quot;dataSource&quot;: &quot;db&quot;,
-    &quot;public&quot;: true,
-    &quot;options&quot;: {
-      &quot;emailVerificationRequired&quot;: true
+<pre><code class="js"><span class="hljs-comment">//server/model-config.json</span>
+<span class="hljs-string">"user"</span>: {
+    <span class="hljs-string">"dataSource"</span>: <span class="hljs-string">"db"</span>,
+    <span class="hljs-string">"public"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"options"</span>: {
+      <span class="hljs-string">"emailVerificationRequired"</span>: <span class="hljs-literal">true</span>
     }
 }
 </code></pre>
 <p>/common/models/user.js:</p>
-<pre><code class="js">var config = require('../../server/config.json');
-var path = require('path');
+<pre><code class="js"><span class="hljs-keyword">var</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../server/config.json'</span>);
+<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
  
-module.exports = function(user) {
-  //send verification email after registration
-  user.afterRemote('create', function(context, userInstance, next) {
-    console.log('&gt; user.afterRemote triggered');
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user</span>) </span>{
+  <span class="hljs-comment">//send verification email after registration</span>
+  user.afterRemote(<span class="hljs-string">'create'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context, userInstance, next</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'&gt; user.afterRemote triggered'</span>);
  
-    var options = {
-      type: 'email',
-      to: userInstance.email,
-      from: 'noreply@loopback.com',
-      subject: 'Thanks for registering.',
-      template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-      redirect: '/verified',
-      user: user
+    <span class="hljs-keyword">var</span> options = {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'email'</span>,
+      <span class="hljs-attr">to</span>: userInstance.email,
+      <span class="hljs-attr">from</span>: <span class="hljs-string">'noreply@loopback.com'</span>,
+      <span class="hljs-attr">subject</span>: <span class="hljs-string">'Thanks for registering.'</span>,
+      <span class="hljs-attr">template</span>: path.resolve(__dirname, <span class="hljs-string">'../../server/views/verify.ejs'</span>),
+      <span class="hljs-attr">redirect</span>: <span class="hljs-string">'/verified'</span>,
+      <span class="hljs-attr">user</span>: user
     };
  
-    userInstance.verify(options, function(err, response, next) {
-      if (err) return next(err);
+    userInstance.verify(options, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, response, next</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> next(err);
  
-      console.log('&gt; verification email sent:', response);
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'&gt; verification email sent:'</span>, response);
  
-      context.res.render('response', {
-        title: 'Signed up successfully',
-        content: 'Please check your email and click on the verification link ' +
-            'before logging in.',
-        redirectTo: '/',
-        redirectToLinkText: 'Log in'
+      context.res.render(<span class="hljs-string">'response'</span>, {
+        <span class="hljs-attr">title</span>: <span class="hljs-string">'Signed up successfully'</span>,
+        <span class="hljs-attr">content</span>: <span class="hljs-string">'Please check your email and click on the verification link '</span> +
+            <span class="hljs-string">'before logging in.'</span>,
+        <span class="hljs-attr">redirectTo</span>: <span class="hljs-string">'/'</span>,
+        <span class="hljs-attr">redirectToLinkText</span>: <span class="hljs-string">'Log in'</span>
       });
     });
   });
@@ -1119,39 +1119,39 @@ LoopBack 的models 有一套内置的方法，每一个方法被映射为 <code>
 </ul>
 <h4 id="如何暴露隐藏-models-方法-和-api">如何暴露隐藏 models, 方法 和 API</h4>
 <p>通过 REST API 暴露一个 model 非常简单，只需要设置 <code>/server/model-config.json</code> 文件的 <code>public</code> 属性为 <code>true</code> 即可:</p>
-<pre><code class="json">  &quot;Role&quot;: {
-    &quot;dataSource&quot;: &quot;db&quot;,
-    &quot;public&quot;: false
+<pre><code class="json">  "Role": {
+    "dataSource": "db",
+    "public": false
   }
 </code></pre>
 <h5 id="隐藏方法和rest-api">隐藏方法和REST API</h5>
 <p>如果你不想暴露特定的 create, retrieve, update, delete 操作, 那么你可以通过调用Model的 <code>disableRemoteMethod()</code> 方法来实现。<br>
 在你的model文件(<code>common/models/</code>目录下)中加入以下的代码，隐藏预定义的API方法:</p>
-<pre><code class="js">var isStatic = true;
-//hide the predefined remote methods
-MyModel.disableRemoteMethod('deleteById', isStatic);
+<pre><code class="js"><span class="hljs-keyword">var</span> isStatic = <span class="hljs-literal">true</span>;
+<span class="hljs-comment">//hide the predefined remote methods</span>
+MyModel.disableRemoteMethod(<span class="hljs-string">'deleteById'</span>, isStatic);
 </code></pre>
 <p>如果你想隐藏的方法是在prototype上的<code>实例方法</code>,那么你需要设置 <code>isStatic</code> 为 <code>false</code>:</p>
-<pre><code class="js">var isStatic = false;
-//hide the methods on the prototype
-MyModel.disableRemoteMethod('updateAttributes', isStatic);
+<pre><code class="js"><span class="hljs-keyword">var</span> isStatic = <span class="hljs-literal">false</span>;
+<span class="hljs-comment">//hide the methods on the prototype</span>
+MyModel.disableRemoteMethod(<span class="hljs-string">'updateAttributes'</span>, isStatic);
 </code></pre>
 <h4 id="定义使用role">定义使用Role</h4>
 <p>LoopBack 支持静态或动态的角色。静态角色保存在数据库中并映射到用户。作为对比，动态角色并不<br>
 事先和用户绑定，它是在访问时才被确定。</p>
 <h5 id="static-roles">Static roles</h5>
 <p>创建静态 Role 记录:</p>
-<pre><code class="coffee">Role.create name: 'admin', (err, role)-&gt;
-  return cb(err) if err
-  # add a user to the role.
-  role.principals.create principalType: RoleMapping.USER, principalId: aUser.id, (err, principal)-&gt;
+<pre><code class="coffee">Role.create name: <span class="hljs-string">'admin'</span>, <span class="hljs-function"><span class="hljs-params">(err, role)</span>-&gt;</span>
+  <span class="hljs-keyword">return</span> cb(err) <span class="hljs-keyword">if</span> err
+  <span class="hljs-comment"># add a user to the role.</span>
+  role.principals.create principalType: RoleMapping.USER, principalId: aUser.id, <span class="hljs-function"><span class="hljs-params">(err, principal)</span>-&gt;</span>
     cb(err)
 </code></pre>
 <p>但是更普通的用法应该是：</p>
-<pre><code class="coffee">Role.create name: 'project.del', (err, role)-&gt;
-  return cb(err) if err
-  # assign admin to the project.del role.
-  role.principals.create principalType: RoleMapping.ROLE, principalId: 'admin', (err, principal)-&gt;
+<pre><code class="coffee">Role.create name: <span class="hljs-string">'project.del'</span>, <span class="hljs-function"><span class="hljs-params">(err, role)</span>-&gt;</span>
+  <span class="hljs-keyword">return</span> cb(err) <span class="hljs-keyword">if</span> err
+  <span class="hljs-comment"># assign admin to the project.del role.</span>
+  role.principals.create principalType: RoleMapping.ROLE, principalId: <span class="hljs-string">'admin'</span>, <span class="hljs-function"><span class="hljs-params">(err, principal)</span>-&gt;</span>
     cb(err)
 </code></pre>
 <p>这样会在权限角色上挂大量的用户自定义角色，太糟糕了，所以只能通过编写动态角色来做。</p>
@@ -1206,58 +1206,58 @@ MyModel.disableRemoteMethod('updateAttributes', isStatic);
 </li>
 </ul>
 <p>例如：</p>
-<pre><code class="js">// /server/boot/script.js
-module.exports = function(app) {
-  var Role = app.models.Role;
-  Role.registerResolver('teamMember', function(role, context, cb) {
-    function reject(err) {
-      if(err) {
-        return cb(err);
+<pre><code class="js"><span class="hljs-comment">// /server/boot/script.js</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">app</span>) </span>{
+  <span class="hljs-keyword">var</span> Role = app.models.Role;
+  Role.registerResolver(<span class="hljs-string">'teamMember'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">role, context, cb</span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reject</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-keyword">if</span>(err) {
+        <span class="hljs-keyword">return</span> cb(err);
       }
-      cb(null, false);
+      cb(<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>);
     }
-    if (context.modelName !== 'project') {
-      // the target model is not project
-      return reject();
+    <span class="hljs-keyword">if</span> (context.modelName !== <span class="hljs-string">'project'</span>) {
+      <span class="hljs-comment">// the target model is not project</span>
+      <span class="hljs-keyword">return</span> reject();
     }
-    var userId = context.accessToken.userId;
-    if (!userId) {
-      return reject(); // do not allow anonymous users
+    <span class="hljs-keyword">var</span> userId = context.accessToken.userId;
+    <span class="hljs-keyword">if</span> (!userId) {
+      <span class="hljs-keyword">return</span> reject(); <span class="hljs-comment">// do not allow anonymous users</span>
     }
-    // check if userId is in team table for the given project id
-    context.model.findById(context.modelId, function(err, project) {
-      if(err || !project) {
+    <span class="hljs-comment">// check if userId is in team table for the given project id</span>
+    context.model.findById(context.modelId, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, project</span>) </span>{
+      <span class="hljs-keyword">if</span>(err || !project) {
         reject(err);
       }
-      var Team = app.models.Team;
+      <span class="hljs-keyword">var</span> Team = app.models.Team;
       Team.count({
-        ownerId: project.ownerId,
-        memberId: userId
-      }, function(err, count) {
-        if (err) {
-          return reject(err);
+        <span class="hljs-attr">ownerId</span>: project.ownerId,
+        <span class="hljs-attr">memberId</span>: userId
+      }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, count</span>) </span>{
+        <span class="hljs-keyword">if</span> (err) {
+          <span class="hljs-keyword">return</span> reject(err);
         }
-        cb(null, count &gt; 0); // true = is a team member
+        cb(<span class="hljs-literal">null</span>, count &gt; <span class="hljs-number">0</span>); <span class="hljs-comment">// true = is a team member</span>
       });
     });
   });
 };
 </code></pre>
 <p>接下来就可以在model中使用该动态角色<code>teamMember</code>:</p>
-<pre><code class="js">// /common/models/model.json
+<pre><code class="js"><span class="hljs-comment">// /common/models/model.json</span>
 {
-  &quot;accessType&quot;: &quot;READ&quot;,
-  &quot;principalType&quot;: &quot;ROLE&quot;,
-  &quot;principalId&quot;: &quot;teamMember&quot;,
-  &quot;permission&quot;: &quot;ALLOW&quot;,
-  &quot;property&quot;: &quot;findById&quot;
+  <span class="hljs-string">"accessType"</span>: <span class="hljs-string">"READ"</span>,
+  <span class="hljs-string">"principalType"</span>: <span class="hljs-string">"ROLE"</span>,
+  <span class="hljs-string">"principalId"</span>: <span class="hljs-string">"teamMember"</span>,
+  <span class="hljs-string">"permission"</span>: <span class="hljs-string">"ALLOW"</span>,
+  <span class="hljs-string">"property"</span>: <span class="hljs-string">"findById"</span>
 }
 </code></pre>
 <h2 id="终端打印"><a href="https://docs.strongloop.com/display/public/LB/Setting+debug+strings" target="_blank" rel="noopener">终端打印</a></h2>
 <p>在开发过程中希望通过终端输出调试信息，则可以根据自己的模块以及组织引入：</p>
-<pre><code class="js">var log = require('debug')('common:autoMigrate');
+<pre><code class="js"><span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>(<span class="hljs-string">'debug'</span>)(<span class="hljs-string">'common:autoMigrate'</span>);
 
-log(&quot;this is a debug info.&quot;);
+log(<span class="hljs-string">"this is a debug info."</span>);
 </code></pre>
 <p>使用时候:</p>
 <pre><code class="bash">$ DEBUG=&lt;pattern&gt;[,&lt;pattern&gt;...] node .
@@ -1440,12 +1440,12 @@ log(&quot;this is a debug info.&quot;);
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -1522,13 +1522,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

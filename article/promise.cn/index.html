@@ -344,13 +344,13 @@
 <ul>
 <li>对应promise的两种状态fulfilled, rejected的回调函数。回调函数的传递参数分别是resolve(value),reject(value) 函数。</li>
 </ul>
-<pre><code class="js">.then(function(resolve){
-        //当promise状态变成fulfilled时，调用此函数
-    },function(reject){
-        //当promise状态变成rejected时，调用此函数
+<pre><code class="js">.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>)</span>{
+        <span class="hljs-comment">//当promise状态变成fulfilled时，调用此函数</span>
+    },<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reject</span>)</span>{
+        <span class="hljs-comment">//当promise状态变成rejected时，调用此函数</span>
     });
 </code></pre>
-<pre><code class="coffee">.then ((resolve)-&gt;), ((reject)-&gt;))
+<pre><code class="coffee">.<span class="hljs-keyword">then</span> (<span class="hljs-function"><span class="hljs-params">(resolve)</span>-&gt;</span>), <span class="hljs-function">(<span class="hljs-params">(reject)</span>-&gt;</span>))
 </code></pre>
 </li>
 </ul>
@@ -366,16 +366,16 @@
 </ul>
 <p>注意：它们是向<strong>所有</strong>的promises同时发起执行请求(并行)，但是只取最先返回结果的。不是顺序执行，<br>
 直到得到成功结果的个数，就不继续了。</p>
-<pre><code class="coffee">Promise = require 'bluebird'
+<pre><code class="coffee">Promise = <span class="hljs-built_in">require</span> <span class="hljs-string">'bluebird'</span>
 
 readFile = Promise.promisify (aPath, done) -&gt;
-  console.log 'readFile', aPath
-  if aPath != 'c' and aPath != 'e'  then done(new Error('no such file:'+aPath)) else done(null, aPath+'ok')
+  <span class="hljs-built_in">console</span>.log <span class="hljs-string">'readFile'</span>, aPath
+  <span class="hljs-keyword">if</span> aPath != <span class="hljs-string">'c'</span> <span class="hljs-keyword">and</span> aPath != <span class="hljs-string">'e'</span>  <span class="hljs-keyword">then</span> done(<span class="hljs-keyword">new</span> Error(<span class="hljs-string">'no such file:'</span>+aPath)) <span class="hljs-keyword">else</span> done(<span class="hljs-literal">null</span>, aPath+<span class="hljs-string">'ok'</span>)
 
-files = ['a', 'b', 'c', 'd', 'e']
+files = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>]
 
 Promise.any files.map (file)-&gt;readFile(file)
-.then (content)-&gt; console.log 'content=',content
+.<span class="hljs-keyword">then</span> (content)-&gt; <span class="hljs-built_in">console</span>.log <span class="hljs-string">'content='</span>,content
 
 </code></pre>
 <p>显示结果如下:</p>
@@ -391,11 +391,11 @@ content= x ok
 <p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。<br>
 那么如何做到顺序执行（sequence）？</p>
 <p>这个时候，可以用<code>reduce</code>(<a href="http://bluebirdjs.com/docs/api/promise.reduce.html" target="_blank" rel="noopener">promise.reduce</a>)实现：</p>
-<pre><code class="coffee">Promise.reduce files, (content, file)-&gt;
-  content = readFile(file).caught(-&gt;) unless content
-  return content
-, null
-.then (content)-&gt;console.log 'content=', content
+<pre><code class="coffee">Promise.reduce files, <span class="hljs-function"><span class="hljs-params">(content, file)</span>-&gt;</span>
+  content = readFile(file).caught(<span class="hljs-function">-&gt;</span>) <span class="hljs-keyword">unless</span> content
+  <span class="hljs-keyword">return</span> content
+, <span class="hljs-literal">null</span>
+.<span class="hljs-keyword">then</span> (content)-&gt;<span class="hljs-built_in">console</span>.log <span class="hljs-string">'content='</span>, content
 </code></pre>
 <p>显示结果如下:</p>
 <pre><code class="bash">readFile a
@@ -406,75 +406,75 @@ content= c ok
 <p>更多的细节参见我写的<a href="https://github.com/snowyu/promise-sequence.js" target="_blank" rel="noopener">promise-sequence</a>。<br>
 a simple functional abstraction for sequentially:</p>
 <p>下面这是map-reduce的思路用在数组的所有元素求和上,不过够绕脑袋瓜的：</p>
-<pre><code class="coffee">Array::sum = -&gt; @reduce ((a,b)-&gt;a+b), 0
-[1,2,3].sum()
-# 6
+<pre><code class="coffee">Array::sum = <span class="hljs-function">-&gt;</span> @reduce (<span class="hljs-function"><span class="hljs-params">(a,b)</span>-&gt;</span>a+b), <span class="hljs-number">0</span>
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].sum()
+<span class="hljs-comment"># 6</span>
 </code></pre>
 <p>这是顺序执行的coffee-script 核心代码：</p>
-<pre><code class="coffee">seqAny = (aList, fn)-&gt;
-  _genReduceFn = (fn)-&gt;
+<pre><code class="coffee"><span class="hljs-function"><span class="hljs-title">seqAny</span> = <span class="hljs-params">(aList, fn)</span>-&gt;</span>
+<span class="hljs-function">  <span class="hljs-title">_genReduceFn</span> = <span class="hljs-params">(fn)</span>-&gt;</span>
     (previous, item)-&gt;
-      previous = fn(item).catch(-&gt;) unless previous
+      previous = fn(item).<span class="hljs-keyword">catch</span>(<span class="hljs-function">-&gt;</span>) <span class="hljs-keyword">unless</span> previous
       previous
 
-  Promise.reduce aList, _genReduceFn(fn), null
+  Promise.reduce aList, _genReduceFn(fn), <span class="hljs-literal">null</span>
 
-seqAny(files, readFile).then (result)-&gt;console.log 'seqAny=', result
-
-seqSome = (aList, total, fn)-&gt;
-  _genReduceFn = (fn)-&gt;
+seqAny(files, readFile).<span class="hljs-keyword">then</span> (result)-&gt;<span class="hljs-built_in">console</span>.log <span class="hljs-string">'seqAny='</span>, result
+<span class="hljs-function">
+<span class="hljs-title">seqSome</span> = <span class="hljs-params">(aList, total, fn)</span>-&gt;</span>
+<span class="hljs-function">  <span class="hljs-title">_genReduceFn</span> = <span class="hljs-params">(fn)</span>-&gt;</span>
     (previous, item)-&gt;
       previous = previous.filter Boolean
-      if previous.length &lt; total
-        previous = Promise.all previous.concat [fn(item).catch(-&gt;)]
+      <span class="hljs-keyword">if</span> previous.length &lt; total
+        previous = Promise.all previous.concat [fn(item).<span class="hljs-keyword">catch</span>(<span class="hljs-function">-&gt;</span>)]
       previous
   Promise.reduce aList, _genReduceFn(fn), []
 
-seqSome(files, 2, readFile).then (result)-&gt;console.log 'seqSome=', result
-
-sequence = (aList, fn)-&gt; # execution all via sequence
-  # Promise.all 将执行所有的Promise,即使其中一个有错误，后面也会接着执行，如果有错误则报错。
-  sequentially = (fn)-&gt;
+seqSome(files, <span class="hljs-number">2</span>, readFile).<span class="hljs-keyword">then</span> (result)-&gt;<span class="hljs-built_in">console</span>.log <span class="hljs-string">'seqSome='</span>, result
+<span class="hljs-function">
+<span class="hljs-title">sequence</span> = <span class="hljs-params">(aList, fn)</span>-&gt;</span> <span class="hljs-comment"># execution all via sequence</span>
+  <span class="hljs-comment"># Promise.all 将执行所有的Promise,即使其中一个有错误，后面也会接着执行，如果有错误则报错。</span>
+<span class="hljs-function">  <span class="hljs-title">sequentially</span> = <span class="hljs-params">(fn)</span>-&gt;</span>
     (previous, item)-&gt;
       Promise.all previous.concat [fn(item)]
 
   Promise.reduce aList, sequentially(fn), []
 
-sequence files, (i)-&gt;readFile(i).catch(-&gt;)
-.then (result)-&gt;console.log result
+sequence files, <span class="hljs-function"><span class="hljs-params">(i)</span>-&gt;</span>readFile(i).<span class="hljs-keyword">catch</span>(<span class="hljs-function">-&gt;</span>)
+.<span class="hljs-keyword">then</span> (result)-&gt;<span class="hljs-built_in">console</span>.log result
 
 </code></pre>
 <p>这是直接构造函数执行链的思路:</p>
-<pre><code class="coffee">waterfall = (tasks)-&gt;
+<pre><code class="coffee"><span class="hljs-function"><span class="hljs-title">waterfall</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
   current = Promise.cast()
-  for task in tasks
-    current = current.then(task)
+  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
+    current = current.<span class="hljs-keyword">then</span>(task)
   current
 
 waterfall 返回所有函数的结果作为数组:
 
-waterfall = (tasks)-&gt;
+<span class="hljs-function"><span class="hljs-title">waterfall</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
   current = Promise.cast()
   result = []
-  for task in tasks
-    result.push current = current.then(task)
+  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
+    result.push current = current.<span class="hljs-keyword">then</span>(task)
   Promise.all result
 
 sequence 与waterfall不同之处在于不传递结果到下一个函数:
 
-sequence = (tasks)-&gt;
+<span class="hljs-function"><span class="hljs-title">sequence</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
   current = Promise.cast()
-  for task in tasks
-    current = current.thenReturn().then(task)
+  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
+    current = current.thenReturn().<span class="hljs-keyword">then</span>(task)
   current.thenReturn()
 
 汇集结果到数组。
-
-sequence = (tasks)-&gt;
+<span class="hljs-function">
+<span class="hljs-title">sequence</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
   current = Promise.cast()
   result = []
-  for task in tasks
-    result.push current = current.thenReturn().then(task)
+  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
+    result.push current = current.thenReturn().<span class="hljs-keyword">then</span>(task)
   Promise.all result
 
 
@@ -651,12 +651,12 @@ sequence = (tasks)-&gt;
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -733,13 +733,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

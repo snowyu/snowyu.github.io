@@ -370,9 +370,9 @@
 <li>when you revoke or generate a revocation certificate for the complete key.</li>
 </ul>
 <p>看 openpgpjs 的代码，好像可以独立使用subkey,但是必须存在 master key的公钥。</p>
-<pre><code class="bash">gpg --help
+<pre><code class="bash">gpg --<span class="hljs-built_in">help</span>
 gpg --gen-key
-gpg --expert --gen-key # 可以打开ECC等其它加密算法的支持, or --full-gen-key
+gpg --expert --gen-key <span class="hljs-comment"># 可以打开ECC等其它加密算法的支持, or --full-gen-key</span>
 
 　　gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
 　　This is free software: you are free to change and redistribute it.
@@ -384,7 +384,7 @@ gpg --expert --gen-key # 可以打开ECC等其它加密算法的支持, or --ful
 　　　(4) RSA (仅用于签名)
 　　您的选择？
 
-# 生成一张&quot;撤销证书&quot;，以备以后密钥作废时，可以请求外部的公钥服务器撤销你的公钥。
+<span class="hljs-comment"># 生成一张"撤销证书"，以备以后密钥作废时，可以请求外部的公钥服务器撤销你的公钥。</span>
 gpg --gen-revoke [用户ID]
 
 gpg --list-keys --list-options show-keyring
@@ -403,35 +403,35 @@ pub   rsa4096 2017-04-17 [SC]
 uid           [ultimate] Riceball LEE &lt;snowyu.lee@gmail.com&gt;
 sub   rsa4096 2017-04-17 [E]
 
-# 输出密钥,armor参数可以将其转换为ASCII码显示。
-gpg --armor --output public-key.txt --export [用户ID]
-gpg --armor --output private-key.txt --export-secret-keys
-# 上传公钥 公钥服务器是网络上专门储存用户公钥的服务器
+<span class="hljs-comment"># 输出密钥,armor参数可以将其转换为ASCII码显示。</span>
+gpg --armor --output public-key.txt --<span class="hljs-built_in">export</span> [用户ID]
+gpg --armor --output private-key.txt --<span class="hljs-built_in">export</span>-secret-keys
+<span class="hljs-comment"># 上传公钥 公钥服务器是网络上专门储存用户公钥的服务器</span>
 gpg --send-keys [用户ID]
 
-# 除了生成自己的密钥，还需要将他人的公钥或者你的其他密钥输入系统。这时可以使用import参数。
+<span class="hljs-comment"># 除了生成自己的密钥，还需要将他人的公钥或者你的其他密钥输入系统。这时可以使用import参数。</span>
 gpg --import [密钥文件]
 
-# 为了获得他人的公钥，可以让对方直接发给你，或者到公钥服务器上寻找。
+<span class="hljs-comment"># 为了获得他人的公钥，可以让对方直接发给你，或者到公钥服务器上寻找。</span>
 gpg --search-keys [用户ID]
 
-# encrypt参数用于加密。
+<span class="hljs-comment"># encrypt参数用于加密。</span>
 gpg --recipient [用户ID] --output demo.en.txt --encrypt demo.txt
 
-# 解密 GPG允许省略decrypt参数。
+<span class="hljs-comment"># 解密 GPG允许省略decrypt参数。</span>
 gpg --decrypt demo.en.txt --output demo.de.txt
 
-# 对文件签名 当前目录下生成demo.txt.gpg文件 -a 将为ascii armored 输出 demo.txt.asc
-# -o demo.txt.sig 自定义输出文件名
+<span class="hljs-comment"># 对文件签名 当前目录下生成demo.txt.gpg文件 -a 将为ascii armored 输出 demo.txt.asc</span>
+<span class="hljs-comment"># -o demo.txt.sig 自定义输出文件名</span>
 gpg --detach-sig demo.txt
-# 生成ASCII码的签名文件
+<span class="hljs-comment"># 生成ASCII码的签名文件</span>
 gpg --clearsign demo.txt
 
-#  验证签名
+<span class="hljs-comment">#  验证签名</span>
 gpg --verify demo.txt.asc demo.txt
 
 
-# 增加 subkey 启用 ECC 支持
+<span class="hljs-comment"># 增加 subkey 启用 ECC 支持</span>
 
 gpg --expert --edit-key YOURMASTERKEYID
 gpg&gt; addkey
@@ -440,14 +440,14 @@ gpg&gt; addkey
     (4) RSA (sign only)
     (5) Elgamal (encrypt only)
     (6) RSA (encrypt only)
-    (7) DSA (set your own capabilities)
-    (8) RSA (set your own capabilities)
+    (7) DSA (<span class="hljs-built_in">set</span> your own capabilities)
+    (8) RSA (<span class="hljs-built_in">set</span> your own capabilities)
     (10) ECC (sign only)
-    (11) ECC (set your own capabilities)
+    (11) ECC (<span class="hljs-built_in">set</span> your own capabilities)
     (12) ECC (encrypt only)
     (13) Existing key
   Your selection? 10
-  Please select which elliptic curve you want:
+  Please select <span class="hljs-built_in">which</span> elliptic curve you want:
     (1) Curve 25519
     (3) NIST P-256
     (4) NIST P-384
@@ -463,49 +463,49 @@ gpg&gt; save
 <p>应用签名等需要。</p>
 <p><code>openpgp2ssh</code> 测试成功，其余失败,搞定。</p>
 <pre><code class="bash">sudo apt install monkeysphere
-# 弄之前先解密需要导出的密钥
-# 10F15E84852CB868 是subkey的id,可以用 gpg --list-keys 看到
-gpg --export-secret-subkeys youmasterid@gmail.com | openpgp2ssh 10F15E84852CB868 &gt; id_rsa
-openssl rsa -in id_rsa -outform pem &gt; key.pem
-# 将子密钥转为 pkcs8 格式。
-openssl pkcs8 -topk8 -outform DER -in key.pem -inform PEM -out key.pk8 -nocrypt
-# 产生请求签名的证书文件,发给签名方签名形成签名证书。
+<span class="hljs-comment"># 弄之前先解密需要导出的密钥</span>
+<span class="hljs-comment"># 10F15E84852CB868 是subkey的id,可以用 gpg --list-keys 看到</span>
+gpg --<span class="hljs-built_in">export</span>-secret-subkeys youmasterid@gmail.com | openpgp2ssh 10F15E84852CB868 &gt; id_rsa
+openssl rsa -<span class="hljs-keyword">in</span> id_rsa -outform pem &gt; key.pem
+<span class="hljs-comment"># 将子密钥转为 pkcs8 格式。</span>
+openssl pkcs8 -topk8 -outform DER -<span class="hljs-keyword">in</span> key.pem -inform PEM -out key.pk8 -nocrypt
+<span class="hljs-comment"># 产生请求签名的证书文件,发给签名方签名形成签名证书。</span>
 openssl req -new -key key.pem -out request.pem
-# 签名方进行签名，产生签名证书。
-# 这样一来变成了自签名的，而不是主钥签名的。如果要主钥签名，首先得导出主钥。
-openssl x509 -req -days 9999 -in request.pem -signkey key.pem -out certificate.pem
-# 使用 Android 提供的 SignApk.jar 进行 apk签名
+<span class="hljs-comment"># 签名方进行签名，产生签名证书。</span>
+<span class="hljs-comment"># 这样一来变成了自签名的，而不是主钥签名的。如果要主钥签名，首先得导出主钥。</span>
+openssl x509 -req -days 9999 -<span class="hljs-keyword">in</span> request.pem -signkey key.pem -out certificate.pem
+<span class="hljs-comment"># 使用 Android 提供的 SignApk.jar 进行 apk签名</span>
 java -jar SignApk.jar certificate.pem key.pk8 Application.apk Application_signed.apk
-# 可以用这个脚本转到keytool去用java的 jarsigner, -p keystore-password
-keytool-importkeypair -k ~/.android/debug.keystore -p android -pk8 key.pk8 -cert certificate.pem -alias platform
-# 使用 java自带的签名工具进行签名
+<span class="hljs-comment"># 可以用这个脚本转到keytool去用java的 jarsigner, -p keystore-password</span>
+keytool-importkeypair -k ~/.android/debug.keystore -p android -pk8 key.pk8 -cert certificate.pem -<span class="hljs-built_in">alias</span> platform
+<span class="hljs-comment"># 使用 java自带的签名工具进行签名</span>
 jarsigner -verbose -keystore ~/.android/debug.keystore Application_unsign.apk platform
 </code></pre>
 <p><a href="https://github.com/getfatday/keytool-importkeypair" target="_blank" rel="noopener">https://github.com/getfatday/keytool-importkeypair</a></p>
-<pre><code class="bash"># keytool-importkeypair
-# 将pkcs8 转回 pem 格式
-openssl pkcs8 -inform DER -nocrypt -in &quot;${pk8}&quot; -out &quot;${key}&quot;
-# 将密钥绑定签名证书，使用 keystore的密码加密
-openssl pkcs12 -export -in &quot;${cert}&quot; -inkey &quot;${key}&quot; -out &quot;${p12}&quot; -password pass:&quot;${passphrase}&quot; -name &quot;${alias}&quot;
-# 导入keystore
-keytool -importkeystore -deststorepass &quot;${passphrase}&quot; -destkeystore &quot;${keystore}&quot; -srckeystore &quot;${p12}&quot; -srcstoretype PKCS12 -srcstorepass &quot;${passphrase}&quot;
+<pre><code class="bash"><span class="hljs-comment"># keytool-importkeypair</span>
+<span class="hljs-comment"># 将pkcs8 转回 pem 格式</span>
+openssl pkcs8 -inform DER -nocrypt -<span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${pk8}</span>"</span> -out <span class="hljs-string">"<span class="hljs-variable">${key}</span>"</span>
+<span class="hljs-comment"># 将密钥绑定签名证书，使用 keystore的密码加密</span>
+openssl pkcs12 -<span class="hljs-built_in">export</span> -<span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${cert}</span>"</span> -inkey <span class="hljs-string">"<span class="hljs-variable">${key}</span>"</span> -out <span class="hljs-string">"<span class="hljs-variable">${p12}</span>"</span> -password pass:<span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span> -name <span class="hljs-string">"<span class="hljs-variable">${alias}</span>"</span>
+<span class="hljs-comment"># 导入keystore</span>
+keytool -importkeystore -deststorepass <span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span> -destkeystore <span class="hljs-string">"<span class="hljs-variable">${keystore}</span>"</span> -srckeystore <span class="hljs-string">"<span class="hljs-variable">${p12}</span>"</span> -srcstoretype PKCS12 -srcstorepass <span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span>
 </code></pre>
 <hr>
 <p>以下为测试失败的一些方法：</p>
 <p>It’s separate key storage: <code>gpg</code> has <code>~/.gnupg/pubring.gpg</code>, <code>gpgsm</code> has <code>~/.gnupg/pubring.kbx</code><br>
 So keys added with gpgsm aren’t usable with gpg; gpg doesn’t read ~/.gnupg/pubring.kbx.</p>
-<pre><code class="bash">gpg -o secret-key.p12 --export [key id] --export-format pkcs12 --cert
+<pre><code class="bash">gpg -o secret-key.p12 --<span class="hljs-built_in">export</span> [key id] --<span class="hljs-built_in">export</span>-format pkcs12 --cert
 </code></pre>
 <p><code>pkcs12</code> Only binary blocks are output; the default file extension is .p12; a signed key must be paired; and input must match exactly one key. In this case, --cert is required.</p>
 <p><code>--cert</code> This option is the X.509 issuer long name or the 32-bit or 64-bit key ID, if the signing key is available.</p>
 <p>And there is an option concerning the charset of the exported key, which often is a problem with (especially older) windows programs:</p>
 <p><code>--p12-charset</code> name gpgsm uses the UTF-8 encoding when encoding passphrases for PKCS#12 files. This option may be used to force the passphrase to be encoded in the specified encoding name. This is useful if the application used to import the key uses a different encoding and thus will not be able to import a file generated by gpgsm. Commonly used values for name are Latin1 and CP850. Note that gpgsm itself automagically imports any file with a passphrase encoded to the most commonly used encodings.</p>
 <p>It contains keys and certificates. Then you can split them with openSSL and transform it in .pem at the same time</p>
-<pre><code class="bash">openssl pkcs12 -in secret-key.p12 -out gpg-certs.pem -clcerts -nokeys -passin 'pass:P@s5w0rD'
-openssl pkcs12 -in secret-key.p12 -out gpg-key.pem -nocerts -nodes
+<pre><code class="bash">openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -out gpg-certs.pem -clcerts -nokeys -passin <span class="hljs-string">'pass:P@s5w0rD'</span>
+openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -out gpg-key.pem -nocerts -nodes
 
-openssl pkcs12 -in secret-key.p12 -nocerts -out gpg-key.pem
-openssl pkcs12 -in secret-key.p12 -nokeys -out gpg-certs.pem
+openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -nocerts -out gpg-key.pem
+openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -nokeys -out gpg-certs.pem
 </code></pre>
 <p>还发现一个工具可以： openpgp2ssh <a href="http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html" target="_blank" rel="noopener">http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html</a></p>
 <p>但是只支持rsa以及没有密码的key.</p>
@@ -535,7 +535,7 @@ MIIEowIBAAKCAQEA0s2wNIWuUzuBYU9U0cK/mGa4LMtsWTEZEFTQhHj2eg4ZHmdt[...]
 <p>最后创建a PKCS#12 container:</p>
 <p>openssl pkcs12 -export -in email@address.pem -out email@address.pem.p12</p>
 <p><a href="http://wiki.cacert.org/ConvertingPgpKeyToCertificate" target="_blank" rel="noopener">Creating a new X.509 certificate from your PGP key pair</a></p>
-<pre><code class="bash"># 失败，没有 p12-export参数了！！！
+<pre><code class="bash"><span class="hljs-comment"># 失败，没有 p12-export参数了！！！</span>
 /usr/lib/gnupg/gpg-protect-tool --p12-export -P &lt;passphrase&gt; ~/.gnupg/private-keys-v1.d/[keygrip] &gt;foo.p12
 </code></pre>
 <p><code>[keygrip]</code> is the hash of the key.  you can find it by:</p>
@@ -807,12 +807,12 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -889,13 +889,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

@@ -308,14 +308,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>31k</span>
+              <span>28k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>55 分钟</span>
+              <span>51 分钟</span>
             </span>
 
         </div>
@@ -350,16 +350,16 @@
  b6a9c8c230722b7c748331a8b450f05566dc7d0f (ripemd-160)
 </code></pre>
 <p>Addresses: Bitcoin Address是ECDSA公钥(public key)的散列，计算方法如下：</p>
-<pre><code class="python">if 正式网络
-  Version=0x00
-else if 测试网络
-  Version=0x6F
+<pre><code class="python"><span class="hljs-keyword">if</span> 正式网络
+  Version=<span class="hljs-number">0x00</span>
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> 测试网络
+  Version=<span class="hljs-number">0x6F</span>
 end
-key_hash=Version+RIPEMD-160(SHA-256(public_key))
-Checksum = SHA-256(SHA-256(Key hash))[0..3]  #取两次散列值后的前4位
+key_hash=Version+RIPEMD<span class="hljs-number">-160</span>(SHA<span class="hljs-number">-256</span>(public_key))
+Checksum = SHA<span class="hljs-number">-256</span>(SHA<span class="hljs-number">-256</span>(Key hash))[<span class="hljs-number">0.</span><span class="hljs-number">.3</span>]  <span class="hljs-comment">#取两次散列值后的前4位</span>
 Bitcoin_Address = Base58Encode(Key_hash+Checksum)
-#Base58编码做了特殊处理，与通用的base58有一些区别：转换的时候
-#前面的0被作为单个0保留。
+<span class="hljs-comment">#Base58编码做了特殊处理，与通用的base58有一些区别：转换的时候</span>
+<span class="hljs-comment">#前面的0被作为单个0保留。</span>
 </code></pre>
 <p><img src="bitcoin-dc-validate.png" alt></p>
 <p>Bitcoin 电子货币系统的核心功能是面对面（点对点）支付，就像真实货币一样，无需中间人，<br>
@@ -418,67 +418,67 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 <li>我有10个BTC，是以前的两次交易获得的，我要送给朋友A，10个BTC，这时候，有两个in，一个out。</li>
 <li>我有10个BTC，是以前的两次交易获得的，其中一次获得了6个BTC，另一次获得了4个BTC，我要送给我的朋友7个BTC，这时候，有两个in，两个out。</li>
 </ul>
-<pre><code class="c++">// An input of a transaction.  It contains the location of the previous
-// transaction's output that it claims and a signature that matches the
-// output's public key.
-//
-class CTxIn
-{
-public:
+<pre><code class="c++"><span class="hljs-comment">// An input of a transaction.  It contains the location of the previous</span>
+<span class="hljs-comment">// transaction's output that it claims and a signature that matches the</span>
+<span class="hljs-comment">// output's public key.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CTxIn</span>
+{</span>
+<span class="hljs-keyword">public</span>:
     COutPoint prevout;
     CScript scriptSig;
-    unsigned int nSequence;
-    //....
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nSequence;
+    <span class="hljs-comment">//....</span>
 }
 
-//
-// An output of a transaction.  It contains the public key that the next input
-// must be able to sign with to claim it.
-//
-class CTxOut
-{
-public:
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// An output of a transaction.  It contains the public key that the next input</span>
+<span class="hljs-comment">// must be able to sign with to claim it.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CTxOut</span>
+{</span>
+<span class="hljs-keyword">public</span>:
     int64 nValue;
     CScript scriptPubKey;
-    //....
+    <span class="hljs-comment">//....</span>
 }
 
-//
-// The basic transaction that is broadcasted on the network and contained in
-// blocks.  A transaction can contain multiple inputs and outputs.
-//
-class CTransaction
-{
-public:
-    int nVersion;
-    std::vector&lt;CTxIn&gt; vin;
-    std::vector&lt;CTxOut&gt; vout;
-    unsigned int nLockTime;
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// The basic transaction that is broadcasted on the network and contained in</span>
+<span class="hljs-comment">// blocks.  A transaction can contain multiple inputs and outputs.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CTransaction</span>
+{</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> nVersion;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;CTxIn&gt; vin;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;CTxOut&gt; vout;
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nLockTime;
 
-    //....
+    <span class="hljs-comment">//....</span>
 </code></pre>
 <p>每一笔交易单验证追查到最后，第一笔总是“挖矿”所得，这被称为coinbase。<br>
 如果是第一次“挖矿”所得，电子货币的内容用JSON格式表示如下：</p>
 <pre><code class="json">{
-  &quot;hash&quot;:&quot;b3141455cb397e42665b90b3726c4770fd36101715618718111403bc780ceaa2&quot;,
-  &quot;ver&quot;:1,
-  &quot;vin_sz&quot;:1,
-  &quot;vout_sz&quot;:1,
-  &quot;lock_time&quot;:0,
-  &quot;size&quot;:135,
-  &quot;in&quot;:[
+  <span class="hljs-attr">"hash"</span>:<span class="hljs-string">"b3141455cb397e42665b90b3726c4770fd36101715618718111403bc780ceaa2"</span>,
+  <span class="hljs-attr">"ver"</span>:<span class="hljs-number">1</span>,
+  <span class="hljs-attr">"vin_sz"</span>:<span class="hljs-number">1</span>,
+  <span class="hljs-attr">"vout_sz"</span>:<span class="hljs-number">1</span>,
+  <span class="hljs-attr">"lock_time"</span>:<span class="hljs-number">0</span>,
+  <span class="hljs-attr">"size"</span>:<span class="hljs-number">135</span>,
+  <span class="hljs-attr">"in"</span>:[
     {
-      &quot;prev_out&quot;:{
-        &quot;hash&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000&quot;,
-        &quot;n&quot;:4294967295
+      <span class="hljs-attr">"prev_out"</span>:{
+        <span class="hljs-attr">"hash"</span>:<span class="hljs-string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,
+        <span class="hljs-attr">"n"</span>:<span class="hljs-number">4294967295</span>
       },
-      &quot;coinbase&quot;:&quot;042194261a02f200&quot;
+      <span class="hljs-attr">"coinbase"</span>:<span class="hljs-string">"042194261a02f200"</span>
     }
   ],
-  &quot;out&quot;:[
+  <span class="hljs-attr">"out"</span>:[
     {
-      &quot;value&quot;:&quot;50.01000000&quot;,
-      &quot;scriptPubKey&quot;:&quot;0452d1a02ffeacfc0c78fcf2ceeaf04d5416c15af1c65da13d9cdaa56844c825c1aa2f540e9439bf38a43419002d8441eea627cb56d6ed51e7848da5c3f6eee6ec OP_CHECKSIG&quot;
+      <span class="hljs-attr">"value"</span>:<span class="hljs-string">"50.01000000"</span>,
+      <span class="hljs-attr">"scriptPubKey"</span>:<span class="hljs-string">"0452d1a02ffeacfc0c78fcf2ceeaf04d5416c15af1c65da13d9cdaa56844c825c1aa2f540e9439bf38a43419002d8441eea627cb56d6ed51e7848da5c3f6eee6ec OP_CHECKSIG"</span>
     }
   ]
 }
@@ -500,12 +500,12 @@ public:
 <p>Bitcoin的脚本系统的所有的操作指令（单词）见后面的附录，不是所有的操作指令都能被执行支持，因为安全上的考虑有的操作指令被禁止掉了，比如大多数的字符串操作和乘除运算。</p>
 <p>在FORTH系统中一般会定义该系统是8位FORTH, 16位FORTH还是32/64位FORTH，这和数据栈的值长有关。在Bitcoin中的脚本系统使用的堆栈是用（<code>vector&lt;vector&lt;unsigned char&gt; &gt;</code>）来模拟的，它在数据栈的每一项都是以字符串的形式存放，它的数值是统一用CBigNum来运算的（读到这里应该明白为啥bitcoin会限制乘除运算了），每一次从数据栈中压入(<code>CBigNum.getvch()</code>)或者取出数值(<code>CastToBigNum(stacktop[-1])</code>)都要进行一次转换。看着这样的实现，让我有点发怵，本能的不喜欢，怎么能把高效的FORTH搞成这个样子。Bitcoin的脚本系统与FORTH一样，有两个堆栈，一个数据栈，在Bitcoin中被称为main stack,一个返回栈，在Bitcoin中被称为alt stack（事实上在Bitcoin中将alt stack作为数据栈的中转而还没有作为FORTH意义上的返回栈）. Bitcoin的脚本系统没有实现单词定义，流程跳转，循环控制（FOR, WHILE），对IF的实现非常丑陋。事实上我对Bitcoin的脚本实现不是十分认可，堆栈采用变长的数据值，直接将big number 作为opcode，导致每一次opcode执行开销无法控制，由于没有完整实现FORTH的控制指令，导致用trick的方式来实现IF指令，在bitcoin中也因此无法定义新的WORD。总之我很不喜欢bitcoin的这个脚本引擎实现(参见script.cpp)。</p>
 <p>下一篇将接着介绍下和交易验证相关的几个操作符：<code>OP_DUP, OP_HASH160, OP_EQUALVERIFY , OP_CHECKSIG</code> 的功能，现在有点倦了。</p>
-<pre><code class="c">enum opcodetype
+<pre><code class="c"><span class="hljs-keyword">enum</span> opcodetype
 {
-    // push value
-    OP_0=0,
+    <span class="hljs-comment">// push value</span>
+    OP_0=<span class="hljs-number">0</span>,
     OP_FALSE=OP_0,
-    OP_PUSHDATA1=76,
+    OP_PUSHDATA1=<span class="hljs-number">76</span>,
     OP_PUSHDATA2,
     OP_PUSHDATA4,
     OP_1NEGATE,
@@ -528,7 +528,7 @@ public:
     OP_15,
     OP_16,
 
-    // control
+    <span class="hljs-comment">// control</span>
     OP_NOP,
     OP_VER,
     OP_IF,
@@ -540,7 +540,7 @@ public:
     OP_VERIFY,
     OP_RETURN,
 
-    // stack ops
+    <span class="hljs-comment">// stack ops</span>
     OP_TOALTSTACK,
     OP_FROMALTSTACK,
     OP_2DROP,
@@ -561,14 +561,14 @@ public:
     OP_SWAP,
     OP_TUCK,
 
-    // splice ops
+    <span class="hljs-comment">// splice ops</span>
     OP_CAT,
     OP_SUBSTR,
     OP_LEFT,
     OP_RIGHT,
     OP_SIZE,
 
-    // bit logic
+    <span class="hljs-comment">// bit logic</span>
     OP_INVERT,
     OP_AND,
     OP_OR,
@@ -578,7 +578,7 @@ public:
     OP_RESERVED1,
     OP_RESERVED2,
 
-    // numeric
+    <span class="hljs-comment">// numeric</span>
     OP_1ADD,
     OP_1SUB,
     OP_2MUL,
@@ -610,7 +610,7 @@ public:
 
     OP_WITHIN,
 
-    // crypto
+    <span class="hljs-comment">// crypto</span>
     OP_RIPEMD160,
     OP_SHA1,
     OP_SHA256,
@@ -622,7 +622,7 @@ public:
     OP_CHECKMULTISIG,
     OP_CHECKMULTISIGVERIFY,
 
-    // expansion
+    <span class="hljs-comment">// expansion</span>
     OP_NOP1,
     OP_NOP2,
     OP_NOP3,
@@ -634,11 +634,11 @@ public:
     OP_NOP9,
     OP_NOP10,
 
-    // template matching params
-    OP_PUBKEYHASH = 0xfd,
-    OP_PUBKEY = 0xfe,
+    <span class="hljs-comment">// template matching params</span>
+    OP_PUBKEYHASH = <span class="hljs-number">0xfd</span>,
+    OP_PUBKEY = <span class="hljs-number">0xfe</span>,
 
-    OP_INVALIDOPCODE = 0xff
+    OP_INVALIDOPCODE = <span class="hljs-number">0xff</span>
 };
 </code></pre>
 <h2 id="附录bitcoin脚本系统单词列表">附录Bitcoin脚本系统单词列表</h2>
@@ -771,30 +771,30 @@ public:
 <p>以最常见的接收地址交易转账为例描述交易验证的过程（SendMoneyToBitcoinAddress）</p>
 <p>首先示例交易如下：</p>
 <pre><code class="json">{
-  &quot;hash&quot;:&quot;23c9e8a3140938a65c73fa0712b1d8614c8eeef486a4ab14107fcce54fbf768c&quot;,
-  &quot;ver&quot;:1,
-  &quot;vin_sz&quot;:1,
-  &quot;vout_sz&quot;:2,
-  &quot;lock_time&quot;:0,
-  &quot;size&quot;:258,
-  &quot;in&quot;:[
+  "hash":"23c9e8a3140938a65c73fa0712b1d8614c8eeef486a4ab14107fcce54fbf768c",
+  "ver":1,
+  "vin_sz":1,
+  "vout_sz":2,
+  "lock_time":0,
+  "size":258,
+  "in":[
     {
-      &quot;prev_out&quot;:{
-        &quot;hash&quot;:&quot;0740c9ecdef03e46e4c0f74833db5af3cb24c7d48810ef73411662252046f9c6&quot;,
-        &quot;n&quot;:0
+      "prev_out":{
+        "hash":"0740c9ecdef03e46e4c0f74833db5af3cb24c7d48810ef73411662252046f9c6",
+        "n":0
       },
-      &quot;scriptSig&quot;:&quot;304502204028931b310bfec094bbd04275f69beba6bf5f44ab3dbbec9564c34ef9bc1ddc022100d37c214e978808099fc96006b41244d31b203eb4b1c69be9d57b0e2f843ad93501
-      0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6864d9e9c18c9c16e5887c3f03be519fd42cae52f6d1a05d10a2fa7c783b19e9b74be07d6&quot;
+      "scriptSig":"304502204028931b310bfec094bbd04275f69beba6bf5f44ab3dbbec9564c34ef9bc1ddc022100d37c214e978808099fc96006b41244d31b203eb4b1c69be9d57b0e2f843ad93501
+      0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6864d9e9c18c9c16e5887c3f03be519fd42cae52f6d1a05d10a2fa7c783b19e9b74be07d6"
     }
   ],
-  &quot;out&quot;:[
+  "out":[
     {
-      &quot;value&quot;:&quot;12.99000000&quot;,
-      &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 ef055cb1e8e192cbd8b6a89ccf1eb73552d9764b OP_EQUALVERIFY OP_CHECKSIG&quot;
+      "value":"12.99000000",
+      "scriptPubKey":"OP_DUP OP_HASH160 ef055cb1e8e192cbd8b6a89ccf1eb73552d9764b OP_EQUALVERIFY OP_CHECKSIG"
     },
     {
-      &quot;value&quot;:&quot;17.00000000&quot;,
-      &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 923f3cdf648c1755455a17097d22f0be6add7c7c OP_EQUALVERIFY OP_CHECKSIG&quot;
+      "value":"17.00000000",
+      "scriptPubKey":"OP_DUP OP_HASH160 923f3cdf648c1755455a17097d22f0be6add7c7c OP_EQUALVERIFY OP_CHECKSIG"
     }
   ]
 }
@@ -823,68 +823,68 @@ PubKey:0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6
 <li><code>OP_CHECKSIG</code>: 校验收入来源的In的签名是否有效，根据pubKey去校验签名<sig>，签名的内容为交易单的Ins, Outs和脚本(从最近一次的 <code>OP_CODESEPARATOR</code> 到脚本结束的位置)的散列。 PubKey.Verify(SignatureHash(scriptCode, nIn, Outs), Sig)</sig></li>
 </ul>
 <p><img src="./bitcoin-pubkey-sig.png" alt></p>
-<pre><code class="c">//nIn 当前的交易单的in的索引号
-//scriptCode: 保存的当前执行的代码从OP_CODESEPARATOR（如果没有就从脚本开始） 到脚本结束。
-uint256 SignatureHash(CScript scriptCode, const CTransaction&amp; txTo, unsigned int nIn, int nHashType)
-{
-    if (nIn &gt;= txTo.vin.size())
+<pre><code class="c"><span class="hljs-comment">//nIn 当前的交易单的in的索引号</span>
+<span class="hljs-comment">//scriptCode: 保存的当前执行的代码从OP_CODESEPARATOR（如果没有就从脚本开始） 到脚本结束。</span>
+<span class="hljs-function">uint256 <span class="hljs-title">SignatureHash</span><span class="hljs-params">(CScript scriptCode, <span class="hljs-keyword">const</span> CTransaction&amp; txTo, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nIn, <span class="hljs-keyword">int</span> nHashType)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (nIn &gt;= txTo.vin.<span class="hljs-built_in">size</span>())
     {
-        printf(&quot;ERROR: SignatureHash() : nIn=%d out of range\n&quot;, nIn);
-        return 1;
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ERROR: SignatureHash() : nIn=%d out of range\n"</span>, nIn);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     }
-    CTransaction txTmp(txTo);
+    <span class="hljs-function">CTransaction <span class="hljs-title">txTmp</span><span class="hljs-params">(txTo)</span></span>;
 
-    // In case concatenating two scripts ends up with two codeseparators,
-    // or an extra one at the end, this prevents all those possible incompatibilities.
+    <span class="hljs-comment">// In case concatenating two scripts ends up with two codeseparators,</span>
+    <span class="hljs-comment">// or an extra one at the end, this prevents all those possible incompatibilities.</span>
     scriptCode.FindAndDelete(CScript(OP_CODESEPARATOR));
 
-    // Blank out other inputs' signatures
-    for (int i = 0; i &lt; txTmp.vin.size(); i++)
+    <span class="hljs-comment">// Blank out other inputs' signatures</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; txTmp.vin.<span class="hljs-built_in">size</span>(); i++)
         txTmp.vin[i].scriptSig = CScript();
     txTmp.vin[nIn].scriptSig = scriptCode;
 
-    // Blank out some of the outputs
-    if ((nHashType &amp; 0x1f) == SIGHASH_NONE)
+    <span class="hljs-comment">// Blank out some of the outputs</span>
+    <span class="hljs-keyword">if</span> ((nHashType &amp; <span class="hljs-number">0x1f</span>) == SIGHASH_NONE)
     {
-        // Wildcard payee
-        txTmp.vout.clear();
+        <span class="hljs-comment">// Wildcard payee</span>
+        txTmp.vout.<span class="hljs-built_in">clear</span>();
 
-        // Let the others update at will
-        for (int i = 0; i &lt; txTmp.vin.size(); i++)
-            if (i != nIn)
-                txTmp.vin[i].nSequence = 0;
+        <span class="hljs-comment">// Let the others update at will</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; txTmp.vin.<span class="hljs-built_in">size</span>(); i++)
+            <span class="hljs-keyword">if</span> (i != nIn)
+                txTmp.vin[i].nSequence = <span class="hljs-number">0</span>;
     }
-    else if ((nHashType &amp; 0x1f) == SIGHASH_SINGLE)
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((nHashType &amp; <span class="hljs-number">0x1f</span>) == SIGHASH_SINGLE)
     {
-        // Only lockin the txout payee at same index as txin
-        unsigned int nOut = nIn;
-        if (nOut &gt;= txTmp.vout.size())
+        <span class="hljs-comment">// Only lockin the txout payee at same index as txin</span>
+        <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nOut = nIn;
+        <span class="hljs-keyword">if</span> (nOut &gt;= txTmp.vout.<span class="hljs-built_in">size</span>())
         {
-            printf(&quot;ERROR: SignatureHash() : nOut=%d out of range\n&quot;, nOut);
-            return 1;
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ERROR: SignatureHash() : nOut=%d out of range\n"</span>, nOut);
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
         }
-        txTmp.vout.resize(nOut+1);
-        for (int i = 0; i &lt; nOut; i++)
+        txTmp.vout.resize(nOut+<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nOut; i++)
             txTmp.vout[i].SetNull();
 
-        // Let the others update at will
-        for (int i = 0; i &lt; txTmp.vin.size(); i++)
-            if (i != nIn)
-                txTmp.vin[i].nSequence = 0;
+        <span class="hljs-comment">// Let the others update at will</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; txTmp.vin.<span class="hljs-built_in">size</span>(); i++)
+            <span class="hljs-keyword">if</span> (i != nIn)
+                txTmp.vin[i].nSequence = <span class="hljs-number">0</span>;
     }
 
-    // Blank out other inputs completely, not recommended for open transactions
-    if (nHashType &amp; SIGHASH_ANYONECANPAY)
+    <span class="hljs-comment">// Blank out other inputs completely, not recommended for open transactions</span>
+    <span class="hljs-keyword">if</span> (nHashType &amp; SIGHASH_ANYONECANPAY)
     {
-        txTmp.vin[0] = txTmp.vin[nIn];
-        txTmp.vin.resize(1);
+        txTmp.vin[<span class="hljs-number">0</span>] = txTmp.vin[nIn];
+        txTmp.vin.resize(<span class="hljs-number">1</span>);
     }
 
-    // Serialize and hash
-    CDataStream ss(SER_GETHASH);
-    ss.reserve(10000);
+    <span class="hljs-comment">// Serialize and hash</span>
+    <span class="hljs-function">CDataStream <span class="hljs-title">ss</span><span class="hljs-params">(SER_GETHASH)</span></span>;
+    ss.reserve(<span class="hljs-number">10000</span>);
     ss &lt;&lt; txTmp &lt;&lt; nHashType;
-    return Hash(ss.begin(), ss.end());
+    <span class="hljs-keyword">return</span> Hash(ss.<span class="hljs-built_in">begin</span>(), ss.<span class="hljs-built_in">end</span>());
 }
 </code></pre>
 <h1>挖矿与块（Blocks）</h1>
@@ -914,10 +914,10 @@ uint256 SignatureHash(CScript scriptCode, const CTransaction&amp; txTo, unsigned
 <h3 id="计算目标-target-和困难度-difficulty">计算目标(Target)和困难度(Difficulty)</h3>
 <h4 id="计算目标-target">计算目标（Target）</h4>
 <p>计算目标（Target）是一个256位的数值，块的散列值ID必须小于或等于该目标数值，放可被接受。块头中的BITS是一个用紧凑的4字节格式表示的目标（Target）数值，它表示一个256位的当前目标数值，方式如下：</p>
-<pre><code class="java">//假设BITS为：
-BITS = 0x1B0406CC;
-//那么target的数值则是：
-Target = 0x0406CC * 2^(8*(0x1B-3))= 0x00000000000406CC000000000000000000000000000000000000000000000000;
+<pre><code class="java"><span class="hljs-comment">//假设BITS为：</span>
+BITS = <span class="hljs-number">0x1B0406CC</span>;
+<span class="hljs-comment">//那么target的数值则是：</span>
+Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2</span>^(<span class="hljs-number">8</span>*(<span class="hljs-number">0x1B</span>-<span class="hljs-number">3</span>))= <span class="hljs-number">0x00000000000406CC000000000000000000000000000000000000000000000000</span>;
 </code></pre>
 <h4 id="当前网络的目标值为：current-target">当前网络的目标值为：<a href="http://blockexplorer.com/q/hextarget" target="_blank" rel="noopener">Current target</a>。</h4>
 <h4 id="困难度-difficulty">困难度(Difficulty)</h4>
@@ -936,222 +936,222 @@ Target = 0x0406CC * 2^(8*(0x1B-3))= 0x00000000000406CC00000000000000000000000000
 <p>一个具体的块的示例：</p>
 <pre><code class="json">{
    //hash: 自身ID的sha256散列值
-  &quot;hash&quot;:&quot;0000000000001470ed62a9d73c1c74a4b3754e18db0abb057be5ad5ffed659bb&quot;,
-  &quot;ver&quot;:1,
-  &quot;prev_block&quot;:&quot;000000000000158a4051185f339d59227b776ac6bfe6120fa18293b5c08644a8&quot;,
-  &quot;mrkl_root&quot;:&quot;c5341062635c427b79a730dca8d4a5eb6a482fa21f82cc37c84ae01ea5945fc3&quot;,
-  &quot;time&quot;:1307565484,
-  &quot;bits&quot;:438145839,
-  &quot;nonce&quot;:2323396371,
+  "hash":"0000000000001470ed62a9d73c1c74a4b3754e18db0abb057be5ad5ffed659bb",
+  "ver":1,
+  "prev_block":"000000000000158a4051185f339d59227b776ac6bfe6120fa18293b5c08644a8",
+  "mrkl_root":"c5341062635c427b79a730dca8d4a5eb6a482fa21f82cc37c84ae01ea5945fc3",
+  "time":1307565484,
+  "bits":438145839,
+  "nonce":2323396371,
   //交易单数量
-  &quot;n_tx&quot;:6,
-  &quot;size&quot;:2193,
-  &quot;tx&quot;:[
+  "n_tx":6,
+  "size":2193,
+  "tx":[
     {
-      &quot;hash&quot;:&quot;67dbdbc6c4a49bc3364d34aebe76b6f470ced66eb731f9d099d0da6c58e466cf&quot;,
-      &quot;ver&quot;:1,
-      &quot;vin_sz&quot;:1,
-      &quot;vout_sz&quot;:1,
-      &quot;lock_time&quot;:0,
-      &quot;size&quot;:135,
-      &quot;in&quot;:[
+      "hash":"67dbdbc6c4a49bc3364d34aebe76b6f470ced66eb731f9d099d0da6c58e466cf",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":1,
+      "lock_time":0,
+      "size":135,
+      "in":[
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;0000000000000000000000000000000000000000000000000000000000000000&quot;,
-            &quot;n&quot;:4294967295
+          "prev_out":{
+            "hash":"0000000000000000000000000000000000000000000000000000000000000000",
+            "n":4294967295
           },
-          &quot;coinbase&quot;:&quot;042f931d1a022301&quot;
+          "coinbase":"042f931d1a022301"
         }
       ],
-      &quot;out&quot;:[
+      "out":[
         {
-          &quot;value&quot;:&quot;50.04000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;049db428c19890bb7706bebdcf69a93c192daef8a73eb7035e2600468b4e1f83d4c2134640f6c619e5521c2050ebc9be9e9c502fdab655a570236418e5c2e95137 OP_CHECKSIG&quot;
+          "value":"50.04000000",
+          "scriptPubKey":"049db428c19890bb7706bebdcf69a93c192daef8a73eb7035e2600468b4e1f83d4c2134640f6c619e5521c2050ebc9be9e9c502fdab655a570236418e5c2e95137 OP_CHECKSIG"
         }
       ]
     },
     {
-      &quot;hash&quot;:&quot;c96eb8f874d105e24121cdc5918440c85af27b797013679796fcc26e40938ad2&quot;,
-      &quot;ver&quot;:1,
-      &quot;vin_sz&quot;:1,
-      &quot;vout_sz&quot;:2,
-      &quot;lock_time&quot;:0,
-      &quot;size&quot;:258,
-      &quot;in&quot;:[
+      "hash":"c96eb8f874d105e24121cdc5918440c85af27b797013679796fcc26e40938ad2",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":258,
+      "in":[
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;c8caedb7edb2665b8543916a1e6b1dee2bf1733f75b4604c423db08efa570d65&quot;,
-            &quot;n&quot;:0
+          "prev_out":{
+            "hash":"c8caedb7edb2665b8543916a1e6b1dee2bf1733f75b4604c423db08efa570d65",
+            "n":0
           },
-          &quot;scriptSig&quot;:&quot;3045022100b47c10ebd2413c575510563363fe9cad7f0fdcbefca9dd219bd345bcfeff98a1022049d7037c0be3493650cb2a410a655394678e75a28b8f4cd587644813ccee383801
-          041f5853d9d43b81af0999a4add012e6580db5edc7dabf99bc2aff1a01b1296e7004b73b10a9e2d3ebe0d7377c545aacc56e24aff1c9b130e0721332315e414f72&quot;
+          "scriptSig":"3045022100b47c10ebd2413c575510563363fe9cad7f0fdcbefca9dd219bd345bcfeff98a1022049d7037c0be3493650cb2a410a655394678e75a28b8f4cd587644813ccee383801
+          041f5853d9d43b81af0999a4add012e6580db5edc7dabf99bc2aff1a01b1296e7004b73b10a9e2d3ebe0d7377c545aacc56e24aff1c9b130e0721332315e414f72"
         }
       ],
-      &quot;out&quot;:[
+      "out":[
         {
-          &quot;value&quot;:&quot;3.98000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 22718315d786b8f64510be88ad590760de676a59 OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"3.98000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 22718315d786b8f64510be88ad590760de676a59 OP_EQUALVERIFY OP_CHECKSIG"
         },
         {
-          &quot;value&quot;:&quot;0.01000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 d52804c9bc12e7a7186e53b41784dcd2afed9a92 OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"0.01000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 d52804c9bc12e7a7186e53b41784dcd2afed9a92 OP_EQUALVERIFY OP_CHECKSIG"
         }
       ]
     },
     {
-      &quot;hash&quot;:&quot;cd74421dd3d32346bdbef02cde4bc0ed19b5cc15621f761b465a869b2f51287c&quot;,
-      &quot;ver&quot;:1,
-      &quot;vin_sz&quot;:2,
-      &quot;vout_sz&quot;:2,
-      &quot;lock_time&quot;:0,
-      &quot;size&quot;:437,
-      &quot;in&quot;:[
+      "hash":"cd74421dd3d32346bdbef02cde4bc0ed19b5cc15621f761b465a869b2f51287c",
+      "ver":1,
+      "vin_sz":2,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":437,
+      "in":[
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;e38b71a89071be2820ce95841da03ba8bac77d536d9ac5fe5347136e9bbca104&quot;,
-            &quot;n&quot;:1
+          "prev_out":{
+            "hash":"e38b71a89071be2820ce95841da03ba8bac77d536d9ac5fe5347136e9bbca104",
+            "n":1
           },
-          &quot;scriptSig&quot;:&quot;3045022100ed5c3626adf84a6d364d7b58fb182ee3bd35758a883ebe2e642e83f4103e91cd022063f61a1d89c1a30f713c2ca277c08c1c4ceb585babef82301f738fdc2312329d01
-          047b4277bb4c23988986c44552156130d4155a1020ec411ca4a07904191d9054de705ec2b79a46155a0d59e8a39b5d450ac73d485b082789b6dad55d5e2230f597&quot;
+          "scriptSig":"3045022100ed5c3626adf84a6d364d7b58fb182ee3bd35758a883ebe2e642e83f4103e91cd022063f61a1d89c1a30f713c2ca277c08c1c4ceb585babef82301f738fdc2312329d01
+          047b4277bb4c23988986c44552156130d4155a1020ec411ca4a07904191d9054de705ec2b79a46155a0d59e8a39b5d450ac73d485b082789b6dad55d5e2230f597"
         },
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;a6fc46a5a4a6b202c644cc4854feb2d8cf7befcf695ad810346c8dfb4cc18138&quot;,
-            &quot;n&quot;:1
+          "prev_out":{
+            "hash":"a6fc46a5a4a6b202c644cc4854feb2d8cf7befcf695ad810346c8dfb4cc18138",
+            "n":1
           },
-          &quot;scriptSig&quot;:&quot;304402207de219304bfca0e2d93524a2547767ce5044501bb0d9107e04d35cf3d644136d02201244a1ce47c2f3aab6c205e75e433371efb01dad5073d316bf68488ea1ad064301
-          04d74d74c0f2bd415a94090c83bbe10b4949c7ee8f3bb957352d02fb50f3e1ddc5ab79a28b1228eaf2986339a3735e32869019d4894f34a46645288a68900ef6a5&quot;
+          "scriptSig":"304402207de219304bfca0e2d93524a2547767ce5044501bb0d9107e04d35cf3d644136d02201244a1ce47c2f3aab6c205e75e433371efb01dad5073d316bf68488ea1ad064301
+          04d74d74c0f2bd415a94090c83bbe10b4949c7ee8f3bb957352d02fb50f3e1ddc5ab79a28b1228eaf2986339a3735e32869019d4894f34a46645288a68900ef6a5"
         }
       ],
-      &quot;out&quot;:[
+      "out":[
         {
-          &quot;value&quot;:&quot;0.01000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 e95281e139fc37bb2aabd84028835c6513a6ac99 OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"0.01000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 e95281e139fc37bb2aabd84028835c6513a6ac99 OP_EQUALVERIFY OP_CHECKSIG"
         },
         {
-          &quot;value&quot;:&quot;2.01000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 234c6c8644008de240d90753904789868100786c OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"2.01000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 234c6c8644008de240d90753904789868100786c OP_EQUALVERIFY OP_CHECKSIG"
         }
       ]
     },
     {
-      &quot;hash&quot;:&quot;9d4f130995dbc1ddc5346c109992c0779aa44122195eff51dc00109afc5cad7d&quot;,
-      &quot;ver&quot;:1,
-      &quot;vin_sz&quot;:1,
-      &quot;vout_sz&quot;:2,
-      &quot;lock_time&quot;:0,
-      &quot;size&quot;:258,
-      &quot;in&quot;:[
+      "hash":"9d4f130995dbc1ddc5346c109992c0779aa44122195eff51dc00109afc5cad7d",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":258,
+      "in":[
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;d84cd74d4b470f96379fa9737c43be544e4e57f33e83fc8bf26f232ec5ea97b5&quot;,
-            &quot;n&quot;:0
+          "prev_out":{
+            "hash":"d84cd74d4b470f96379fa9737c43be544e4e57f33e83fc8bf26f232ec5ea97b5",
+            "n":0
           },
-          &quot;scriptSig&quot;:&quot;3045022100d8f3bbb19b4d2593649b4f6ac0074a772ff78fce1fb60e7957c7d99d2627931802205ad4774f58af0b52e37f87592bea7bae84c883c9230e722962f2e52e7eb061e201
-          04732060c3f57ccc0703e05f86f442e45617b446ebca7e9f6c96ca1ec754b9d8a9f2bd727a15c7821cbca0498c2b7f60081873a450f29c5937e9593407166dc71b&quot;
+          "scriptSig":"3045022100d8f3bbb19b4d2593649b4f6ac0074a772ff78fce1fb60e7957c7d99d2627931802205ad4774f58af0b52e37f87592bea7bae84c883c9230e722962f2e52e7eb061e201
+          04732060c3f57ccc0703e05f86f442e45617b446ebca7e9f6c96ca1ec754b9d8a9f2bd727a15c7821cbca0498c2b7f60081873a450f29c5937e9593407166dc71b"
         }
       ],
-      &quot;out&quot;:[
+      "out":[
         {
-          &quot;value&quot;:&quot;30.26538895&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 7fa1d78819360231c6bc1b23ff644e9124da075f OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"30.26538895",
+          "scriptPubKey":"OP_DUP OP_HASH160 7fa1d78819360231c6bc1b23ff644e9124da075f OP_EQUALVERIFY OP_CHECKSIG"
         },
         {
-          &quot;value&quot;:&quot;4.76000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 847f4729a1464d7a2103796cca32022fe0481d58 OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"4.76000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 847f4729a1464d7a2103796cca32022fe0481d58 OP_EQUALVERIFY OP_CHECKSIG"
         }
       ]
     },
     {
-      &quot;hash&quot;:&quot;68050dc3810310e1e5e9eb3464b1581a353de523a6f26d8b978370bd63880eb7&quot;,
-      &quot;ver&quot;:1,
-      &quot;vin_sz&quot;:4,
-      &quot;vout_sz&quot;:1,
-      &quot;lock_time&quot;:0,
-      &quot;size&quot;:766,
-      &quot;in&quot;:[
+      "hash":"68050dc3810310e1e5e9eb3464b1581a353de523a6f26d8b978370bd63880eb7",
+      "ver":1,
+      "vin_sz":4,
+      "vout_sz":1,
+      "lock_time":0,
+      "size":766,
+      "in":[
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;07a39559553efb329af1538e0fc8a037f20048a83b2278a5041975054e425c3e&quot;,
-            &quot;n&quot;:17
+          "prev_out":{
+            "hash":"07a39559553efb329af1538e0fc8a037f20048a83b2278a5041975054e425c3e",
+            "n":17
           },
-          &quot;scriptSig&quot;:&quot;3046022100c3ce1ee6c222d74ff9c97d5729e5c6702c3cabdb61ea0fb3ae8632eae36f03fb0221009cea5a9f94fe14e4673fd87f75750e1d151f6e846c371d8e4af72b5d213bb5c001
-          04ee9e80055248ed804ca6724b2d784c91eec04abdc4ec00b14dc01e56c90513a85453026acf90f1cb1bdd3e3ca07035be40d0b3e3ac6076b5b12bd3234ac8c20b&quot;
+          "scriptSig":"3046022100c3ce1ee6c222d74ff9c97d5729e5c6702c3cabdb61ea0fb3ae8632eae36f03fb0221009cea5a9f94fe14e4673fd87f75750e1d151f6e846c371d8e4af72b5d213bb5c001
+          04ee9e80055248ed804ca6724b2d784c91eec04abdc4ec00b14dc01e56c90513a85453026acf90f1cb1bdd3e3ca07035be40d0b3e3ac6076b5b12bd3234ac8c20b"
         },
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;07f95bfdd09e98bf7ce0543e8fdd82f9e8532449ab7167f69aa3d1f030399b96&quot;,
-            &quot;n&quot;:0
+          "prev_out":{
+            "hash":"07f95bfdd09e98bf7ce0543e8fdd82f9e8532449ab7167f69aa3d1f030399b96",
+            "n":0
           },
-          &quot;scriptSig&quot;:&quot;3044022011f922460d01986255a6f5e5ce88586bb3a9a32edc836e420d2347dae9df12e1022018d9d4e48dea2b821e01d3253dfaa03af801d01e79ab4eb3ef48f22f84f196aa01
-          04398f321ea6140c6ad51fea724f7c13e1df6c43afb8e4f6f9ab2385b6e18d8eae52516a0b3487512a3dbeb36109d3fcb6391fbc156518c96f57467f97dc55d0a3&quot;
+          "scriptSig":"3044022011f922460d01986255a6f5e5ce88586bb3a9a32edc836e420d2347dae9df12e1022018d9d4e48dea2b821e01d3253dfaa03af801d01e79ab4eb3ef48f22f84f196aa01
+          04398f321ea6140c6ad51fea724f7c13e1df6c43afb8e4f6f9ab2385b6e18d8eae52516a0b3487512a3dbeb36109d3fcb6391fbc156518c96f57467f97dc55d0a3"
         },
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;6c93900990b712fbf2a386ba53bc3aad8f5bcdda73b855a24628d7eae80cf3f9&quot;,
-            &quot;n&quot;:0
+          "prev_out":{
+            "hash":"6c93900990b712fbf2a386ba53bc3aad8f5bcdda73b855a24628d7eae80cf3f9",
+            "n":0
           },
-          &quot;scriptSig&quot;:&quot;3046022100b688feeb1012f913b6366b5b9bd5313238d00b61b48a0e3956c33d1dffc9a1f2022100ed159808e8a732e646ba5af7ed5a0d896c7db0a10757aeccc9c58a67ec42ec7501
-          047e79adbe50ae668041d2b08702c12de83fdaecb866b261755cbba27fe344c6fc67f3fc2593edc0bb053b0fde62c4d42d152b6525c10bde365d80a8d2d8d77a85&quot;
+          "scriptSig":"3046022100b688feeb1012f913b6366b5b9bd5313238d00b61b48a0e3956c33d1dffc9a1f2022100ed159808e8a732e646ba5af7ed5a0d896c7db0a10757aeccc9c58a67ec42ec7501
+          047e79adbe50ae668041d2b08702c12de83fdaecb866b261755cbba27fe344c6fc67f3fc2593edc0bb053b0fde62c4d42d152b6525c10bde365d80a8d2d8d77a85"
         },
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;ed416acb1373bcce28ec63e6e600e0da7f8892b557591bc0386210c56e8c034f&quot;,
-            &quot;n&quot;:1
+          "prev_out":{
+            "hash":"ed416acb1373bcce28ec63e6e600e0da7f8892b557591bc0386210c56e8c034f",
+            "n":1
           },
-          &quot;scriptSig&quot;:&quot;3046022100c1ffdf383d108a9b1e8e33ed3ef8bd6b368b1ed0584ac187eb0897c90422fc5b022100f7bfb8f0b17c3b121943622a4d04a8a818391c68028b6a63d9cd2536d9f3714501
-          04ee9e80055248ed804ca6724b2d784c91eec04abdc4ec00b14dc01e56c90513a85453026acf90f1cb1bdd3e3ca07035be40d0b3e3ac6076b5b12bd3234ac8c20b&quot;
+          "scriptSig":"3046022100c1ffdf383d108a9b1e8e33ed3ef8bd6b368b1ed0584ac187eb0897c90422fc5b022100f7bfb8f0b17c3b121943622a4d04a8a818391c68028b6a63d9cd2536d9f3714501
+          04ee9e80055248ed804ca6724b2d784c91eec04abdc4ec00b14dc01e56c90513a85453026acf90f1cb1bdd3e3ca07035be40d0b3e3ac6076b5b12bd3234ac8c20b"
         }
       ],
-      &quot;out&quot;:[
+      "out":[
         {
-          &quot;value&quot;:&quot;1.69000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 71b9ea593ba56d1159493cb2b37a03f368fb6c40 OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"1.69000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 71b9ea593ba56d1159493cb2b37a03f368fb6c40 OP_EQUALVERIFY OP_CHECKSIG"
         }
       ]
     },
     {
-      &quot;hash&quot;:&quot;4e6e47f0fa7a559219be309db20c5c17296956304cf47dc8c52910c24b505a92&quot;,
-      &quot;ver&quot;:1,
-      &quot;vin_sz&quot;:1,
-      &quot;vout_sz&quot;:2,
-      &quot;lock_time&quot;:0,
-      &quot;size&quot;:258,
-      &quot;in&quot;:[
+      "hash":"4e6e47f0fa7a559219be309db20c5c17296956304cf47dc8c52910c24b505a92",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":258,
+      "in":[
         {
-          &quot;prev_out&quot;:{
-            &quot;hash&quot;:&quot;897f67e6ec0b5a64b511c2052d05f0e2437811260041bb0915f2c40879025215&quot;,
-            &quot;n&quot;:1
+          "prev_out":{
+            "hash":"897f67e6ec0b5a64b511c2052d05f0e2437811260041bb0915f2c40879025215",
+            "n":1
           },
-          &quot;scriptSig&quot;:&quot;304502200dbe53f77f947b12dfabb737e0862c1f2d37515f6293b06c08710ccdb69419d6022100b379ab597d8d17034f1654f20e68c72930050342884743869b6421ee7eaad83801
-          04bdd996cd29ca3d34604306de8983d1fadf978ae43c12c1e832ce803ae57241cd7762a40dc1e5f6176ca3b0caac622c82e271b59c66fb1f8fa8225930a8807edf&quot;
+          "scriptSig":"304502200dbe53f77f947b12dfabb737e0862c1f2d37515f6293b06c08710ccdb69419d6022100b379ab597d8d17034f1654f20e68c72930050342884743869b6421ee7eaad83801
+          04bdd996cd29ca3d34604306de8983d1fadf978ae43c12c1e832ce803ae57241cd7762a40dc1e5f6176ca3b0caac622c82e271b59c66fb1f8fa8225930a8807edf"
         }
       ],
-      &quot;out&quot;:[
+      "out":[
         {
-          &quot;value&quot;:&quot;0.04000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 50e44bb02555c7084e08cda95eb43a9c621fa0ac OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"0.04000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 50e44bb02555c7084e08cda95eb43a9c621fa0ac OP_EQUALVERIFY OP_CHECKSIG"
         },
         {
-          &quot;value&quot;:&quot;0.03000000&quot;,
-          &quot;scriptPubKey&quot;:&quot;OP_DUP OP_HASH160 ecd8f97222481950eed4f98db82455635ccb86b4 OP_EQUALVERIFY OP_CHECKSIG&quot;
+          "value":"0.03000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 ecd8f97222481950eed4f98db82455635ccb86b4 OP_EQUALVERIFY OP_CHECKSIG"
         }
       ]
     }
   ],
-  &quot;mrkl_tree&quot;:[
-    &quot;67dbdbc6c4a49bc3364d34aebe76b6f470ced66eb731f9d099d0da6c58e466cf&quot;,
-    &quot;c96eb8f874d105e24121cdc5918440c85af27b797013679796fcc26e40938ad2&quot;,
-    &quot;cd74421dd3d32346bdbef02cde4bc0ed19b5cc15621f761b465a869b2f51287c&quot;,
-    &quot;9d4f130995dbc1ddc5346c109992c0779aa44122195eff51dc00109afc5cad7d&quot;,
-    &quot;68050dc3810310e1e5e9eb3464b1581a353de523a6f26d8b978370bd63880eb7&quot;,
-    &quot;4e6e47f0fa7a559219be309db20c5c17296956304cf47dc8c52910c24b505a92&quot;,
-    &quot;f4462bd30c529d154dc1b35d8f68961441e09ffaceaa25da17eb1814101f8ad5&quot;,
-    &quot;1961263895b63d4760f81eda7ae94848eb68e2170b79a224ba704a3c21fd6feb&quot;,
-    &quot;0427a2dbd54fa6ec034d704336fa255f6c139e6d7b9bf803714cfbc9dcc61b85&quot;,
-    &quot;42441420d09c91336e69bae9f7eb39b1c6d90562028de3094bea5f675a25a082&quot;,
-    &quot;4af79ccb4bf857df3e75a50106b15ef35aa73a209efa5089f2f2193ff70ab93d&quot;,
-    &quot;c5341062635c427b79a730dca8d4a5eb6a482fa21f82cc37c84ae01ea5945fc3&quot;
+  "mrkl_tree":[
+    "67dbdbc6c4a49bc3364d34aebe76b6f470ced66eb731f9d099d0da6c58e466cf",
+    "c96eb8f874d105e24121cdc5918440c85af27b797013679796fcc26e40938ad2",
+    "cd74421dd3d32346bdbef02cde4bc0ed19b5cc15621f761b465a869b2f51287c",
+    "9d4f130995dbc1ddc5346c109992c0779aa44122195eff51dc00109afc5cad7d",
+    "68050dc3810310e1e5e9eb3464b1581a353de523a6f26d8b978370bd63880eb7",
+    "4e6e47f0fa7a559219be309db20c5c17296956304cf47dc8c52910c24b505a92",
+    "f4462bd30c529d154dc1b35d8f68961441e09ffaceaa25da17eb1814101f8ad5",
+    "1961263895b63d4760f81eda7ae94848eb68e2170b79a224ba704a3c21fd6feb",
+    "0427a2dbd54fa6ec034d704336fa255f6c139e6d7b9bf803714cfbc9dcc61b85",
+    "42441420d09c91336e69bae9f7eb39b1c6d90562028de3094bea5f675a25a082",
+    "4af79ccb4bf857df3e75a50106b15ef35aa73a209efa5089f2f2193ff70ab93d",
+    "c5341062635c427b79a730dca8d4a5eb6a482fa21f82cc37c84ae01ea5945fc3"
   ]
 }
 </code></pre>
@@ -1406,12 +1406,12 @@ Target = 0x0406CC * 2^(8*(0x1B-3))= 0x00000000000406CC00000000000000000000000000
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -1488,13 +1488,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

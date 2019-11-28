@@ -47,7 +47,7 @@
 </script>
 
   <meta name="description" content="Coffee Style Smart Computer LanguageI treat the coffee-script and Literate CoffeeScript as the first coffee style smart computer language concept. This should be the basics of the next generation Smar">
-<meta name="keywords" content="thinking,programming,language,tech">
+<meta name="keywords" content="thinking,programming,tech,language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coffee Style Computer Language">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;coffee-style-computer-language&#x2F;index.html">
@@ -304,7 +304,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -380,22 +380,22 @@ This should be the basics of the next generation Smart Computer Language.</p><a 
 It’s strictly limited, even missing a semicolon would raise an error.</p>
 <h2 id="language-reference">Language Reference</h2>
 <h3 id="functions">Functions</h3>
-<pre><code class="coffee">square = (x) -&gt; x * x
-cube   :integer = (x: integer) -&gt; square(x) * x
-fill   :string  = (container: string, liquid: string = &quot;coffee&quot;) -&gt;
-  &quot;Filling the #{container} with #{liquid}...&quot;
+<pre><code class="coffee"><span class="hljs-function"><span class="hljs-title">square</span> = <span class="hljs-params">(x)</span> -&gt;</span> x * x
+cube   :integer = <span class="hljs-function"><span class="hljs-params">(x: integer)</span> -&gt;</span> square(x) * x
+fill   :string  = <span class="hljs-function"><span class="hljs-params">(container: string, liquid: string = <span class="hljs-string">"coffee"</span>)</span> -&gt;</span>
+  <span class="hljs-string">"Filling the <span class="hljs-subst">#{container}</span> with <span class="hljs-subst">#{liquid}</span>..."</span>
 </code></pre>
 <p>The return and argument type should be optional for the types could be inferred.</p>
 <p>The following is the C language transform:</p>
-<pre><code class="c">int square(int x) {return x*x;}
-int cube(int x)   {return square(x)*x;}
-char* fill(const char* container, const char* liquid) {
-  if (!liquid) liquid = &quot;coffee&quot;;
-  const char* fmt = &quot;Filling the %s with %s...&quot;;
-  int sz = snprintf(NULL, 0, fmt, container, liquid);
-  char* result = malloc(sz+1);
-  snprintf(result, sz+1, fmt, container, liquid);
-  return result;
+<pre><code class="c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<span class="hljs-keyword">return</span> x*x;}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cube</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span>   </span>{<span class="hljs-keyword">return</span> square(x)*x;}
+<span class="hljs-function"><span class="hljs-keyword">char</span>* <span class="hljs-title">fill</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* container, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* liquid)</span> </span>{
+  <span class="hljs-keyword">if</span> (!liquid) liquid = <span class="hljs-string">"coffee"</span>;
+  <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* fmt = <span class="hljs-string">"Filling the %s with %s..."</span>;
+  <span class="hljs-keyword">int</span> sz = <span class="hljs-built_in">snprintf</span>(<span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, fmt, container, liquid);
+  <span class="hljs-keyword">char</span>* result = <span class="hljs-built_in">malloc</span>(sz+<span class="hljs-number">1</span>);
+  <span class="hljs-built_in">snprintf</span>(result, sz+<span class="hljs-number">1</span>, fmt, container, liquid);
+  <span class="hljs-keyword">return</span> result;
 }
 </code></pre>
 
@@ -441,8 +441,8 @@ char* fill(const char* container, const char* liquid) {
           <div class="post-tags">
               <a href="/tags/thinking/" rel="tag"># thinking</a>
               <a href="/tags/programming/" rel="tag"># programming</a>
-              <a href="/tags/language/" rel="tag"># language</a>
               <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/language/" rel="tag"># language</a>
           </div>
 
         
@@ -571,12 +571,12 @@ char* fill(const char* container, const char* liquid) {
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -653,13 +653,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

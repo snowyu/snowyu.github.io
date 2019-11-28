@@ -338,13 +338,13 @@
 <p>下载需要翻墙：</p>
 <p><a href="https://www.npmjs.com/package/electron-download" target="_blank" rel="noopener">https://www.npmjs.com/package/electron-download</a><br>
 在环境变量中设置即可 <code>npm install electron-prebuilt</code> 。</p>
-<pre><code class="ini">## Electron Mirror of China
-ELECTRON_MIRROR=&quot;https://npm.taobao.org/mirrors/electron/&quot;
-CHROMEDRIVER_CDNURL=http://npm.taobao.org/mirrors/chromedriver
+<pre><code class="ini"><span class="hljs-comment">## Electron Mirror of China</span>
+<span class="hljs-attr">ELECTRON_MIRROR</span>=<span class="hljs-string">"https://npm.taobao.org/mirrors/electron/"</span>
+<span class="hljs-attr">CHROMEDRIVER_CDNURL</span>=http://npm.taobao.org/mirrors/chromedriver
 
-## or for a local mirror
-ELECTRON_MIRROR=&quot;https://10.1.2.105/&quot;
-ELECTRON_CUSTOM_DIR=&quot;our/internal/filePath&quot;
+<span class="hljs-comment">## or for a local mirror</span>
+<span class="hljs-attr">ELECTRON_MIRROR</span>=<span class="hljs-string">"https://10.1.2.105/"</span>
+<span class="hljs-attr">ELECTRON_CUSTOM_DIR</span>=<span class="hljs-string">"our/internal/filePath"</span>
 </code></pre>
 <h1><a href="http://nwjs.io/" target="_blank" rel="noopener">NW.js</a> (以前叫 node-webkit)</h1>
 <p>与<a href="http://appjs.org/" target="_blank" rel="noopener">App.js</a>类似，通过将node.js与Chromiuml联合在一起，实现本地桌面应用开发的，是App.js的后起之秀。实现原理是基于Chromium项目的Content Layer构建(Chromium Browser也同样基于Content Layer); 实现上的特点是把Node.js的消息循环(libuv)和Chromium Renderer进程的消息循环合并到一起，因为这样才能从DOM(HTML)中直接调用Node.js提供的函数；把Node.js使用的V8引擎和 Chromium的V8引擎合并，使得Node.js的Javascript和DOM里面的Javascript可以互相访问；另外因为是支持本地应用， 所以安全模型和Web程序有很大不同：node-webkit程序可以做web应用不允许做的很多事情，除了通过node.js访问本地OS以外，还可以进行跨域访问等操作。是英特尔开放源码技术中心（OTC）的软件架构师Rogerwang（王文睿）发起，在公司专职开发node-webkit(幸福啊)。</p>
@@ -365,35 +365,35 @@ current.atoi(&quot;1234&quot;); // 1234
 <p>Windows用户要先安装  <a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener">XMing</a> or <a href="http://x.cygwin.com/" target="_blank" rel="noopener">Cygwin/X</a>。</p>
 <p>地址： <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">https://github.com/sidorares/node-x11</a></p>
 <p>X11窗口例子：</p>
-<pre><code class="js">    var x11 = require('../../lib');
+<pre><code class="js">    <span class="hljs-keyword">var</span> x11 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../lib'</span>);
 
-    var PointerMotion = x11.eventMask.PointerMotion;
-    x11.createClient(function(err, display) {
-        var X = display.client;
-        var root = display.screen[0].root;
-        var white = display.screen[0].white_pixel;
-        var black = display.screen[0].black_pixel;
+    <span class="hljs-keyword">var</span> PointerMotion = x11.eventMask.PointerMotion;
+    x11.createClient(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, display</span>) </span>{
+        <span class="hljs-keyword">var</span> X = display.client;
+        <span class="hljs-keyword">var</span> root = display.screen[<span class="hljs-number">0</span>].root;
+        <span class="hljs-keyword">var</span> white = display.screen[<span class="hljs-number">0</span>].white_pixel;
+        <span class="hljs-keyword">var</span> black = display.screen[<span class="hljs-number">0</span>].black_pixel;
 
-        var wid = X.AllocID();
-        X.CreateWindow(wid, root, 0, 0, 400, 300, 0, 0, 0, 0, { backgroundPixel: white, eventMask: PointerMotion });
-        var gc = X.AllocID();
+        <span class="hljs-keyword">var</span> wid = X.AllocID();
+        X.CreateWindow(wid, root, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">400</span>, <span class="hljs-number">300</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, { <span class="hljs-attr">backgroundPixel</span>: white, <span class="hljs-attr">eventMask</span>: PointerMotion });
+        <span class="hljs-keyword">var</span> gc = X.AllocID();
         X.CreateGC(gc, wid);
         X.MapWindow(wid);
     });
 </code></pre>
 <p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt=""><br>
 ntk 的例子:</p>
-<pre><code class="js">    var ntk = require('../lib');
+<pre><code class="js">    <span class="hljs-keyword">var</span> ntk = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib'</span>);
 
     ntk.createClient(main);
 
-    function main(err, app) {
-      var mainwnd = app.createWindow({title: &quot;Close me!&quot;})
-       .on('mouseout', function(ev) { console.log('Out'); })
-       .on('mouseover', function(ev) { console.log('In'); })
-       .on('mousedown', function(ev) {
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params">err, app</span>) </span>{
+      <span class="hljs-keyword">var</span> mainwnd = app.createWindow({<span class="hljs-attr">title</span>: <span class="hljs-string">"Close me!"</span>})
+       .on(<span class="hljs-string">'mouseout'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Out'</span>); })
+       .on(<span class="hljs-string">'mouseover'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'In'</span>); })
+       .on(<span class="hljs-string">'mousedown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{
            ev.window.unmap();
-           setTimeout(function() { ev.window.map(); }, 1000);
+           setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ ev.window.map(); }, <span class="hljs-number">1000</span>);
         })
        .map();
     }
@@ -406,36 +406,36 @@ ntk 的例子:</p>
 <li><a href="http://github.com/arturadib/node-five" target="_blank" rel="noopener">http://github.com/arturadib/node-five</a></li>
 </ul>
 <p>使用 node-qt 的代码写法如下：</p>
-<pre><code class="js">    var qt = require('node-qt'),
-        app = new qt.QApplication,
-        window = new qt.QWidget;
+<pre><code class="js">    <span class="hljs-keyword">var</span> qt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-qt'</span>),
+        app = <span class="hljs-keyword">new</span> qt.QApplication,
+        <span class="hljs-built_in">window</span> = <span class="hljs-keyword">new</span> qt.QWidget;
 
-    // Prevent objects from being GC'd
+    <span class="hljs-comment">// Prevent objects from being GC'd</span>
     global.app = app;
-    global.window = window;
+    global.window = <span class="hljs-built_in">window</span>;
 
-    // Quirk: the virtual method paintEvent() is mapped into a callback setter
-    window.paintEvent(function() {
-      var p = new qt.QPainter();
-      p.begin(window);
-      p.drawText(20, 30, 'hello node, hello qt');
+    <span class="hljs-comment">// Quirk: the virtual method paintEvent() is mapped into a callback setter</span>
+    <span class="hljs-built_in">window</span>.paintEvent(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> qt.QPainter();
+      p.begin(<span class="hljs-built_in">window</span>);
+      p.drawText(<span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-string">'hello node, hello qt'</span>);
       p.end();
     });
 
-    window.resize(300, 150);
-    window.show();
+    <span class="hljs-built_in">window</span>.resize(<span class="hljs-number">300</span>, <span class="hljs-number">150</span>);
+    <span class="hljs-built_in">window</span>.show();
 
-    // Join Node's event loop
-    setInterval(app.processEvents, 0);
+    <span class="hljs-comment">// Join Node's event loop</span>
+    setInterval(app.processEvents, <span class="hljs-number">0</span>);
 </code></pre>
 <p>Node-Five的写法：</p>
-<pre><code class="js">    var five = require('path-to-node-five-dir'),
-        window = new five.Window(300, 150),
-        canvas = new five.Canvas(window),
-        ctx = canvas.getContext('2d');
+<pre><code class="js">    <span class="hljs-keyword">var</span> five = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path-to-node-five-dir'</span>),
+        <span class="hljs-built_in">window</span> = <span class="hljs-keyword">new</span> five.Window(<span class="hljs-number">300</span>, <span class="hljs-number">150</span>),
+        canvas = <span class="hljs-keyword">new</span> five.Canvas(<span class="hljs-built_in">window</span>),
+        ctx = canvas.getContext(<span class="hljs-string">'2d'</span>);
 
-    ctx.fillStyle = 'black';
-    ctx.fillText('hello node, hello qt', 20, 20);
+    ctx.fillStyle = <span class="hljs-string">'black'</span>;
+    ctx.fillText(<span class="hljs-string">'hello node, hello qt'</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>);
 </code></pre>
 <h1>wxNode</h1>
 <p><a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">wxNode</a>是基于跨平台的<a href="http://www.wxwidgets.org/" target="_blank" rel="noopener">wxWidgets</a>的node.js封装插件包。也就是能让你用wxWidgets GUI组件开发桌面应用。</p>
@@ -661,12 +661,12 @@ app.run();
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -743,13 +743,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

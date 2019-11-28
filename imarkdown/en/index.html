@@ -303,33 +303,33 @@ else
 <p>The sample raw Interactive Markdown file is:</p>
 <pre><code class="md">An old riddle.
 
-&gt; As [I]{travelers: we or I} [was]{verb} going to *St Ives*
-&gt; I met a man with [7 wives]{wives: 1..10}
-&gt; Every wife had [7 sacks]{sacks: 1..10}
-&gt; Every sack had [7 cats]{cats: 1..10}
-&gt; Every cat had [7 kits]{kits: 1..10}
-&gt; Kits, cats, sacks, wives
-&gt; How many were going to St Ives?
+<span class="hljs-quote">&gt; As [I]{travelers: we or I} [was]{verb} going to *St Ives*</span>
+<span class="hljs-quote">&gt; I met a man with [7 wives]{wives: 1..10}</span>
+<span class="hljs-quote">&gt; Every wife had [7 sacks]{sacks: 1..10}</span>
+<span class="hljs-quote">&gt; Every sack had [7 cats]{cats: 1..10}</span>
+<span class="hljs-quote">&gt; Every cat had [7 kits]{kits: 1..10}</span>
+<span class="hljs-quote">&gt; Kits, cats, sacks, wives</span>
+<span class="hljs-quote">&gt; How many were going to St Ives?</span>
 
-    total_sacks = @wives * @sacks
-    total_cats  = total_sacks * @cats
-    total_kits  = total_cats * @kits
-    man         = 1
+<span class="hljs-code">    total_sacks = @wives * @sacks</span>
+<span class="hljs-code">    total_cats  = total_sacks * @cats</span>
+<span class="hljs-code">    total_kits  = total_cats * @kits</span>
+<span class="hljs-code">    man         = 1</span>
 
-    if @travelers
-        narrator = 2
-        @verb = 'were'
-    else
-        narrator = 1
-        @verb = 'was'
+<span class="hljs-code">    if @travelers</span>
+<span class="hljs-code">        narrator = 2</span>
+<span class="hljs-code">        @verb = 'were'</span>
+<span class="hljs-code">    else</span>
+<span class="hljs-code">        narrator = 1</span>
+<span class="hljs-code">        @verb = 'was'</span>
 
 The first guess is often [2753]{first_guess}…
 
-    @first_guess = man + @wives + total_cats + total_kits + narrator
+<span class="hljs-code">    @first_guess = man + @wives + total_cats + total_kits + narrator</span>
 
-…but the correct answer is **[1]{answer}**.
+…but the correct answer is <span class="hljs-strong">**[1]{answer}**</span>.
 
-    @answer = narrator
+<span class="hljs-code">    @answer = narrator</span>
 </code></pre>
 <ul>
 <li><code>[I]{travelers: We or I}</code> is a toggle switch between <code>We</code> or <code>I</code>
@@ -471,12 +471,12 @@ The first guess is often [2753]{first_guess}…
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -556,13 +556,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

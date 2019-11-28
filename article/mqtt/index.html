@@ -310,14 +310,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
+              <span>9.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>18 分钟</span>
+              <span>17 分钟</span>
             </span>
 
         </div>
@@ -403,8 +403,8 @@ Publisher--Msg1,Msg2,Msg3--&gt;|  EMQ  | --Msg2--&gt; Subscriber2
 <h4 id="本地订阅-local-subscription">本地订阅(Local Subscription)</h4>
 <p>本地订阅也是非标准MQTT约定。</p>
 <p>本地订阅(Local Subscription)只在本节点创建订阅与路由表，不会在集群节点间广播全局路由，非常适合物联网数据采集应用:</p>
-<pre><code class="bash">mosquitto_sub -t '$local/topic'
-mosquitto_pub -t 'topic'
+<pre><code class="bash">mosquitto_sub -t <span class="hljs-string">'$local/topic'</span>
+mosquitto_pub -t <span class="hljs-string">'topic'</span>
 </code></pre>
 <p>使用方式: 订阅者在主题(Topic)前增加’$local/’前缀。</p>
 <h3 id="mqtt会话-clean-session">MQTT会话(Clean Session)</h3>
@@ -453,169 +453,169 @@ EMQ 2.0消息服务器默认占用的TCP端口包括:</p>
 <h4 id="install">Install</h4>
 <pre><code class="java">repositories {
     maven {
-        url &quot;https://repo.eclipse.org/content/repositories/paho-releases/&quot;
+        url <span class="hljs-string">"https://repo.eclipse.org/content/repositories/paho-releases/"</span>
     }
 }
 
 
 dependencies {
-    compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
-    compile 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    compile <span class="hljs-string">'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'</span>
+    compile <span class="hljs-string">'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'</span>
 }
 </code></pre>
 <p>The Paho Android Service needs the following permissions to work:</p>
-<pre><code class="xml">&lt;uses-permission android:name=&quot;android.permission.WAKE_LOCK&quot; /&gt;
-&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
-&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
-&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+<pre><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.WAKE_LOCK"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.INTERNET"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span>
 </code></pre>
 <h4 id="usage">Usage</h4>
-<pre><code class="java">Log.i(LOGTAG, &quot;MQTT Start&quot;);
+<pre><code class="java">Log.i(LOGTAG, <span class="hljs-string">"MQTT Start"</span>);
 
-//如果是走 &quot;ssl://192.168.0.13:8883&quot;
-final MqttAndroidClient mqttAndroidClient = new MqttAndroidClient(
-  getApplicationContext(), &quot;tcp://192.168.0.13:1883&quot;, clientId);
+<span class="hljs-comment">//如果是走 "ssl://192.168.0.13:8883"</span>
+<span class="hljs-keyword">final</span> MqttAndroidClient mqttAndroidClient = <span class="hljs-keyword">new</span> MqttAndroidClient(
+  getApplicationContext(), <span class="hljs-string">"tcp://192.168.0.13:1883"</span>, clientId);
 
 
-//设置回调，在这里接收订阅的消息
-mqttAndroidClient.setCallback(new MqttCallbackExtended() {
-  @Override
-  public void connectComplete(boolean reconnect, String serverURI) {
+<span class="hljs-comment">//设置回调，在这里接收订阅的消息</span>
+mqttAndroidClient.setCallback(<span class="hljs-keyword">new</span> MqttCallbackExtended() {
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectComplete</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> reconnect, String serverURI)</span> </span>{
 
-      if (reconnect) {
-          Log.i(LOGTAG, &quot;Reconnected to : &quot; + serverURI);
-          // if Clean Session is true, we need to re-subscribe
-          // subscribe('SampleTopic');
-      } else {
-          Log.i(LOGTAG, &quot;Connected to: &quot; + serverURI);
+      <span class="hljs-keyword">if</span> (reconnect) {
+          Log.i(LOGTAG, <span class="hljs-string">"Reconnected to : "</span> + serverURI);
+          <span class="hljs-comment">// if Clean Session is true, we need to re-subscribe</span>
+          <span class="hljs-comment">// subscribe('SampleTopic');</span>
+      } <span class="hljs-keyword">else</span> {
+          Log.i(LOGTAG, <span class="hljs-string">"Connected to: "</span> + serverURI);
       }
   }
 
-  @Override
-  public void connectionLost(Throwable cause) {
-      Log.i(LOGTAG, &quot;The Connection was lost.&quot;);
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectionLost</span><span class="hljs-params">(Throwable cause)</span> </span>{
+      Log.i(LOGTAG, <span class="hljs-string">"The Connection was lost."</span>);
   }
 
-  @Override
-  public void messageArrived(String topic, MqttMessage message) throws Exception {
-      Log.i(LOGTAG, &quot;Incoming message: &quot; + new String(message.getPayload()));
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">messageArrived</span><span class="hljs-params">(String topic, MqttMessage message)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+      Log.i(LOGTAG, <span class="hljs-string">"Incoming message: "</span> + <span class="hljs-keyword">new</span> String(message.getPayload()));
   }
 
-  @Override
-  public void deliveryComplete(IMqttDeliveryToken token) {
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deliveryComplete</span><span class="hljs-params">(IMqttDeliveryToken token)</span> </span>{
   }
 });
 
-MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
-mqttConnectOptions.setAutomaticReconnect(true);
-mqttConnectOptions.setCleanSession(false);
-mqttConnectOptions.setUserName(&quot;USERNAME&quot;);
-mqttConnectOptions.setPassword(&quot;PASSWORD&quot;.toCharArray());
-try {
-  //第二个参数是可选的object,可以传递给回调函数
-  client.connect(mqttConnectOptions, null, new IMqttActionListener() {
-    @Override
-    public void onSuccess(IMqttToken mqttToken) {
-      Log.i(LOGTAG, &quot;Client connected&quot;);
-      Log.i(LOGTAG, &quot;Topics=&quot;+mqttToken.getTopics());
-      subscribe('sampleTopic');
+MqttConnectOptions mqttConnectOptions = <span class="hljs-keyword">new</span> MqttConnectOptions();
+mqttConnectOptions.setAutomaticReconnect(<span class="hljs-keyword">true</span>);
+mqttConnectOptions.setCleanSession(<span class="hljs-keyword">false</span>);
+mqttConnectOptions.setUserName(<span class="hljs-string">"USERNAME"</span>);
+mqttConnectOptions.setPassword(<span class="hljs-string">"PASSWORD"</span>.toCharArray());
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-comment">//第二个参数是可选的object,可以传递给回调函数</span>
+  client.connect(mqttConnectOptions, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken mqttToken)</span> </span>{
+      Log.i(LOGTAG, <span class="hljs-string">"Client connected"</span>);
+      Log.i(LOGTAG, <span class="hljs-string">"Topics="</span>+mqttToken.getTopics());
+      subscribe(<span class="hljs-string">'sampleTopic'</span>);
     }
 
-    @Override
-    public void onFailure(IMqttToken arg0, Throwable arg1) {
-      // TODO Auto-generated method stub
-      Log.i(LOGTAG, &quot;Client connection failed: &quot;+arg1.getMessage());
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken arg0, Throwable arg1)</span> </span>{
+      <span class="hljs-comment">// TODO Auto-generated method stub</span>
+      Log.i(LOGTAG, <span class="hljs-string">"Client connection failed: "</span>+arg1.getMessage());
     }
   });
 }
 
-public void subscribe(String topic){
-  try {
-    mqttAndroidClient.subscribe(topic, 0, null, new IMqttActionListener() {
-      @Override
-      public void onSuccess(IMqttToken asyncActionToken) {
-          Log.i(LOGTAG, &quot;Subscribed!&quot;);
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subscribe</span><span class="hljs-params">(String topic)</span></span>{
+  <span class="hljs-keyword">try</span> {
+    mqttAndroidClient.subscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"Subscribed!"</span>);
       }
 
-      @Override
-      public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-          Log.i(LOGTAG, &quot;Failed to subscribe&quot;);
-      }
-    });
-
-    // THIS DOES NOT WORK!
-    mqttAndroidClient.subscribe(topic, 0, new IMqttMessageListener() {
-      @Override
-      public void messageArrived(String topic, MqttMessage message) throws Exception {
-          // message Arrived!
-          System.out.println(&quot;InMessage: &quot; + topic + &quot; : &quot; + new String(message.getPayload()));
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken, Throwable exception)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"Failed to subscribe"</span>);
       }
     });
 
-  } catch (MqttException ex){
-    System.err.println(&quot;Exception whilst subscribing&quot;);
+    <span class="hljs-comment">// THIS DOES NOT WORK!</span>
+    mqttAndroidClient.subscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span> IMqttMessageListener() {
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">messageArrived</span><span class="hljs-params">(String topic, MqttMessage message)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+          <span class="hljs-comment">// message Arrived!</span>
+          System.out.println(<span class="hljs-string">"InMessage: "</span> + topic + <span class="hljs-string">" : "</span> + <span class="hljs-keyword">new</span> String(message.getPayload()));
+      }
+    });
+
+  } <span class="hljs-keyword">catch</span> (MqttException ex){
+    System.err.println(<span class="hljs-string">"Exception whilst subscribing"</span>);
     ex.printStackTrace();
   }
 }
 
-public void unsubscribe(String topic){
-  try {
-    mqttAndroidClient.unsubscribe(topic, 0, null, new IMqttActionListener() {
-      @Override
-      public void onSuccess(IMqttToken asyncActionToken) {
-          Log.i(LOGTAG, &quot;unsubscribed!&quot;);
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unsubscribe</span><span class="hljs-params">(String topic)</span></span>{
+  <span class="hljs-keyword">try</span> {
+    mqttAndroidClient.unsubscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"unsubscribed!"</span>);
       }
 
-      @Override
-      public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-          Log.i(LOGTAG, &quot;Failed to unsubscribed&quot;);
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken, Throwable exception)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"Failed to unsubscribed"</span>);
       }
     });
 
-  } catch (MqttException ex){
-    System.err.println(&quot;Exception whilst subscribing&quot;);
+  } <span class="hljs-keyword">catch</span> (MqttException ex){
+    System.err.println(<span class="hljs-string">"Exception whilst subscribing"</span>);
     ex.printStackTrace();
   }
 }
 
-public void publishMessage(String topic, String msg){
-  try {
-    MqttMessage message = new MqttMessage();
-    message.setQos(0);
-    message.setRetained(false);
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">publishMessage</span><span class="hljs-params">(String topic, String msg)</span></span>{
+  <span class="hljs-keyword">try</span> {
+    MqttMessage message = <span class="hljs-keyword">new</span> MqttMessage();
+    message.setQos(<span class="hljs-number">0</span>);
+    message.setRetained(<span class="hljs-keyword">false</span>);
     message.setPayload(msg.getBytes());
     mqttAndroidClient.publish(topic, message);
-    Log.i(LOGTAG, &quot;Message Published&quot;);
-    if(!mqttAndroidClient.isConnected()){
-      Log.i(LOGTAG, mqttAndroidClient.getBufferedMessageCount() + &quot; messages in buffer.&quot;);
+    Log.i(LOGTAG, <span class="hljs-string">"Message Published"</span>);
+    <span class="hljs-keyword">if</span>(!mqttAndroidClient.isConnected()){
+      Log.i(LOGTAG, mqttAndroidClient.getBufferedMessageCount() + <span class="hljs-string">" messages in buffer."</span>);
     }
-  } catch (MqttPersistenceException e) {
-    // TODO Auto-generated catch block
+  } <span class="hljs-keyword">catch</span> (MqttPersistenceException e) {
+    <span class="hljs-comment">// TODO Auto-generated catch block</span>
     e.printStackTrace();
 
-  } catch (MqttException e) {
-    // TODO Auto-generated catch block
-    System.err.println(&quot;Error Publishing: &quot; + e.getMessage());
+  } <span class="hljs-keyword">catch</span> (MqttException e) {
+    <span class="hljs-comment">// TODO Auto-generated catch block</span>
+    System.err.println(<span class="hljs-string">"Error Publishing: "</span> + e.getMessage());
     e.printStackTrace();
   }
 }
 
-public void disconnect(){
-  try {
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">disconnect</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">try</span> {
       IMqttToken disconToken = client.disconnect();
-      disconToken.setActionCallback(new IMqttActionListener() {
-          @Override
-          public void onSuccess(IMqttToken asyncActionToken) {
-              // we are now successfully disconnected
+      disconToken.setActionCallback(<span class="hljs-keyword">new</span> IMqttActionListener() {
+          <span class="hljs-meta">@Override</span>
+          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
+              <span class="hljs-comment">// we are now successfully disconnected</span>
           }
 
-          @Override
-          public void onFailure(IMqttToken asyncActionToken,
-                                Throwable exception) {
-              // something went wrong, but probably we are disconnected anyway
+          <span class="hljs-meta">@Override</span>
+          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken,
+                                Throwable exception)</span> </span>{
+              <span class="hljs-comment">// something went wrong, but probably we are disconnected anyway</span>
           }
       });
-  } catch (MqttException e) {
+  } <span class="hljs-keyword">catch</span> (MqttException e) {
       e.printStackTrace();
   }
 }
@@ -627,41 +627,41 @@ public void disconnect(){
 </ul>
 <h4 id="ios">IOS</h4>
 <p><a href="https://github.com/ckrey/MQTT-Client-Framework" target="_blank" rel="noopener">MQTT Client Framework</a></p>
-<pre><code class="objc">#import &quot;MQTTClient.h&quot;
+<pre><code class="objc"><span class="hljs-meta">#import <span class="hljs-meta-string">"MQTTClient.h"</span></span>
 
 MQTTSession *session = [[MQTTSession alloc] init];
 
-//specifies the protocol to be used.
-//The value of the Protocol Level field for the version 3.1.1 of the protocol is 4.
-//The value for the version 3.1 is 3.
-session.protocolLevel = 4;
-session.clientId = @&quot;clientId&quot;;
-session.cleanSessionFlag = NO;
-session.userName = @&quot;myname&quot;;
-session.password = @&quot;secret&quot;;
+<span class="hljs-comment">//specifies the protocol to be used.</span>
+<span class="hljs-comment">//The value of the Protocol Level field for the version 3.1.1 of the protocol is 4.</span>
+<span class="hljs-comment">//The value for the version 3.1 is 3.</span>
+session.protocolLevel = <span class="hljs-number">4</span>;
+session.clientId = <span class="hljs-string">@"clientId"</span>;
+session.cleanSessionFlag = <span class="hljs-literal">NO</span>;
+session.userName = <span class="hljs-string">@"myname"</span>;
+session.password = <span class="hljs-string">@"secret"</span>;
 
-[session connectToHost:@&quot;192.168.0.1&quot; port:1883 usingSSL:NO];
+[session connectToHost:<span class="hljs-string">@"192.168.0.1"</span> port:<span class="hljs-number">1883</span> usingSSL:<span class="hljs-literal">NO</span>];
 </code></pre>
 <p>启用SSL use a custom security</p>
-<pre><code class="objc">NSString* certificate = [[NSBundle bundleForClass:[MQTTSession class]] pathForResource:@&quot;certificate&quot; ofType:@&quot;cer&quot;];
+<pre><code class="objc">NSString* certificate = [[NSBundle bundleForClass:[MQTTSession class]] pathForResource:@"certificate" ofType:@"cer"];
 session.securityPolicy = [MQTTSSLSecurityPolicy policyWithPinningMode:MQTTSSLPinningModeCertificate];
 session.securityPolicy.pinnedCertificates = @[ [NSData dataWithContentsOfFile:certificate] ];
 session.securityPolicy.allowInvalidCertificates = YES;
-[session connectToHost:@&quot;192.168.0.1&quot; port:8883 usingSSL:YES];
+[session connectToHost:@"192.168.0.1" port:8883 usingSSL:YES];
 
 //Use  client certificates:
-NSString *path = [[NSBundle bundleForClass:[MQTTClientTests class]] pathForResource:parameters[@„client&quot;] ofType:@&quot;p12&quot;];
+NSString *path = [[NSBundle bundleForClass:[MQTTClientTests class]] pathForResource:parameters[@„client"] ofType:@"p12"];
 
 session.certificates = [MQTTSession clientCertsFromP12:path passphrase:@„secret“];
 
-[session connectToHost:@&quot;192.168.0.1&quot; port:8883 usingSSL:YES];
+[session connectToHost:@"192.168.0.1" port:8883 usingSSL:YES];
 </code></pre>
-<pre><code class="objc">[session publishData:[@&quot;Sample Data&quot; dataUsingEncoding:NSUTF8StringEncoding]
-    topic:@&quot;example/data&quot;
-    retain:NO
-    qos:0];
-[session subscribeToTopic:@&quot;example/#&quot; atLevel:2]; //atLevel is QoS level
-[session unsubscribeTopic:@&quot;example/#&quot;];
+<pre><code class="objc">[session publishData:[<span class="hljs-string">@"Sample Data"</span> dataUsingEncoding:<span class="hljs-built_in">NSUTF8StringEncoding</span>]
+    topic:<span class="hljs-string">@"example/data"</span>
+    <span class="hljs-keyword">retain</span>:<span class="hljs-literal">NO</span>
+    qos:<span class="hljs-number">0</span>];
+[session subscribeToTopic:<span class="hljs-string">@"example/#"</span> atLevel:<span class="hljs-number">2</span>]; <span class="hljs-comment">//atLevel is QoS level</span>
+[session unsubscribeTopic:<span class="hljs-string">@"example/#"</span>];
 [session close];
 </code></pre>
 <p>Demo: <a href="https://github.com/ckrey/MQTTChat" target="_blank" rel="noopener">https://github.com/ckrey/MQTTChat</a></p>
@@ -669,61 +669,61 @@ session.certificates = [MQTTSession clientCertsFromP12:path passphrase:@„secre
 <pre><code>npm install mqtt
 </code></pre>
 <p><a href="https://github.com/mqttjs/MQTT.js" target="_blank" rel="noopener">https://github.com/mqttjs/MQTT.js</a></p>
-<pre><code class="coffee">mqtt = require('mqtt')
-# 如果是websocket,对于emqtt必须加 path: '/mqtt'
-# client  = mqtt.connect('ws://127.0.0.1:8083', path: '/mqtt', clientId: 'MQTTCLI1', clean:false,username:'',password:'')
+<pre><code class="coffee">mqtt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mqtt'</span>)
+<span class="hljs-comment"># 如果是websocket,对于emqtt必须加 path: '/mqtt'</span>
+<span class="hljs-comment"># client  = mqtt.connect('ws://127.0.0.1:8083', path: '/mqtt', clientId: 'MQTTCLI1', clean:false,username:'',password:'')</span>
 
-client  = mqtt.connect('mqtt://127.0.0.1', clientId: 'MQTTCLI1', clean:false,username:'',password:'')
+client  = mqtt.connect(<span class="hljs-string">'mqtt://127.0.0.1'</span>, clientId: <span class="hljs-string">'MQTTCLI1'</span>, clean:<span class="hljs-literal">false</span>,username:<span class="hljs-string">''</span>,password:<span class="hljs-string">''</span>)
 
-client.on 'connect', -&gt;
-  console.log('connect')
-  client.subscribe 'presence', (err, granted)-&gt;
-    return client.end() if err
-    console.log 'subscribe ok', granted
-    # client.publish 'presence', 'Hello mqtt', (err)-&gt;
-    #   console.log 'publish'
-    #   console.log 'pub', err if err
+client.<span class="hljs-literal">on</span> <span class="hljs-string">'connect'</span>, <span class="hljs-function">-&gt;</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connect'</span>)
+  client.subscribe <span class="hljs-string">'presence'</span>, <span class="hljs-function"><span class="hljs-params">(err, granted)</span>-&gt;</span>
+    <span class="hljs-keyword">return</span> client.end() <span class="hljs-keyword">if</span> err
+    <span class="hljs-built_in">console</span>.log <span class="hljs-string">'subscribe ok'</span>, granted
+    <span class="hljs-comment"># client.publish 'presence', 'Hello mqtt', (err)-&gt;</span>
+    <span class="hljs-comment">#   console.log 'publish'</span>
+    <span class="hljs-comment">#   console.log 'pub', err if err</span>
 
-client.on 'error', (error)-&gt;
-  console.log error
+client.<span class="hljs-literal">on</span> <span class="hljs-string">'error'</span>, <span class="hljs-function"><span class="hljs-params">(error)</span>-&gt;</span>
+  <span class="hljs-built_in">console</span>.log error
 
-# received messages:
-client.on 'message', (topic, message)-&gt;
-  # message is Buffer
-  console.log(topic, message.toString())
-  # client.end()
+<span class="hljs-comment"># received messages:</span>
+client.<span class="hljs-literal">on</span> <span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-params">(topic, message)</span>-&gt;</span>
+  <span class="hljs-comment"># message is Buffer</span>
+  <span class="hljs-built_in">console</span>.log(topic, message.toString())
+  <span class="hljs-comment"># client.end()</span>
 </code></pre>
 <p>SSL:</p>
-<pre><code class="js">var mqtt = require('mqtt')
-var fs = require('fs')
-var path = require('path')
-var KEY = fs.readFileSync(path.join(__dirname, '/tls-key.pem'))
-var CERT = fs.readFileSync(path.join(__dirname, '/tls-cert.pem'))
-var TRUSTED_CA_LIST = fs.readFileSync(path.join(__dirname, '/crt.ca.cg.pem'))
+<pre><code class="js"><span class="hljs-keyword">var</span> mqtt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mqtt'</span>)
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">var</span> KEY = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/tls-key.pem'</span>))
+<span class="hljs-keyword">var</span> CERT = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/tls-cert.pem'</span>))
+<span class="hljs-keyword">var</span> TRUSTED_CA_LIST = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/crt.ca.cg.pem'</span>))
 
-var PORT = 8443
-var HOST = 'stark'
+<span class="hljs-keyword">var</span> PORT = <span class="hljs-number">8443</span>
+<span class="hljs-keyword">var</span> HOST = <span class="hljs-string">'stark'</span>
 
-var options = {
-  port: PORT,
-  host: HOST,
-  key: KEY,
-  cert: CERT,
-  rejectUnauthorized: true,
-  // The CA list will be used to determine if server is authorized
-  ca: TRUSTED_CA_LIST
+<span class="hljs-keyword">var</span> options = {
+  <span class="hljs-attr">port</span>: PORT,
+  <span class="hljs-attr">host</span>: HOST,
+  <span class="hljs-attr">key</span>: KEY,
+  <span class="hljs-attr">cert</span>: CERT,
+  <span class="hljs-attr">rejectUnauthorized</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-comment">// The CA list will be used to determine if server is authorized</span>
+  <span class="hljs-attr">ca</span>: TRUSTED_CA_LIST
 }
 
-var client = mqtt.connect(options)
+<span class="hljs-keyword">var</span> client = mqtt.connect(options)
 
-client.subscribe('messages')
-client.publish('messages', 'Current time is: ' + new Date())
-client.on('message', function (topic, message) {
-  console.log(message)
+client.subscribe(<span class="hljs-string">'messages'</span>)
+client.publish(<span class="hljs-string">'messages'</span>, <span class="hljs-string">'Current time is: '</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>())
+client.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">topic, message</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(message)
 })
 
-client.on('connect', function () {
-  console.log('Connected')
+client.on(<span class="hljs-string">'connect'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Connected'</span>)
 })
 </code></pre>
 <p>Demo: <a href="https://github.com/mqttjs/MQTT.js/tree/master/examples" target="_blank" rel="noopener">https://github.com/mqttjs/MQTT.js/tree/master/examples</a><br>
@@ -902,12 +902,12 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">231k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:12</span>
+    <span title="站点阅读时长">7:01</span>
 </div>
 
         
@@ -984,13 +984,15 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
+/*
 if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/highlight.js@9/lib/index.min.js', () => {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   }, window.hljs);
 }
+*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
