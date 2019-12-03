@@ -9,7 +9,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
   <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -20,11 +19,12 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    hostname: new URL('http://riceball.me').hostname,
     root: '/',
     scheme: 'Mist',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
@@ -41,18 +41,17 @@
     },
     localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震撼，尽管目前好的内容还不是很多。真的世界变了， 不提游戏，很多经验的教学，难以实作的实验，在沉浸式虚拟现实中都将被改写，人类获取另类的知识体系将变容易。 体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。">
+  <meta name="description" content="HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震撼，尽管目前好的内容还不是很多。真的世界变了， 不提游戏，很多经验的教学，难以实作的实验，在沉浸式虚拟现实中都将被改写，人类获取另类的知识体系将变容易。 体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。 虚拟现实 虚拟现实（Virtual Reality），又称虚拟实境，简">
 <meta name="keywords" content="thinking,tech,vr,virtual reality">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟现实（VR）体验">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;vr&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震撼，尽管目前好的内容还不是很多。真的世界变了， 不提游戏，很多经验的教学，难以实作的实验，在沉浸式虚拟现实中都将被改写，人类获取另类的知识体系将变容易。 体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。">
+<meta property="og:description" content="HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震撼，尽管目前好的内容还不是很多。真的世界变了， 不提游戏，很多经验的教学，难以实作的实验，在沉浸式虚拟现实中都将被改写，人类获取另类的知识体系将变容易。 体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。 虚拟现实 虚拟现实（Virtual Reality），又称虚拟实境，简">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;vr&#x2F;hover-junkers.jpg">
 <meta property="og:updated_time" content="2016-08-30T14:30:06.000Z">
@@ -81,8 +80,7 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
     <script>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -125,8 +123,9 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -327,7 +326,7 @@
       
         <p>HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震撼，尽管目前好的内容还不是很多。真的世界变了，<br>
 不提游戏，很多经验的教学，难以实作的实验，在沉浸式虚拟现实中都将被改写，人类获取另类的知识体系将变容易。<br>
-体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。</p><a id="more"></a>
+体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。</p>
 <h2 id="虚拟现实">虚拟现实</h2>
 <p>虚拟现实（Virtual Reality），又称虚拟实境，简单来说就是用电脑模拟一个虚拟世界，让人感觉自己完全置身于这个虚拟的<br>
 世界当中，从而忘掉自己所处的真实世界。目前主要是通过对人的眼睛和耳朵的欺骗，以及附加在头盔上的传感器来实现VR。</p>
@@ -358,7 +357,7 @@
 <li>好玩性: 高</li>
 <li>眩晕度: 轻微</li>
 </ul>
-<p><img src="./hover-junkers.jpg" alt></p>
+<p><img src="./hover-junkers.jpg" alt=""></p>
 <p>玩家是在一辆漂浮的战车上游戏,游戏刚开始在休息室选择自己的角色,随后便会加载到战车上,在战车上他们可以随意走动,<br>
 也可以用手拿起左轮手枪、猎枪或其他枪支瞄准射击。玩家也可以驾驶他们的战车驰骋在大战场上,也可以捡起地上的木板、<br>
 铁块碎屑装备在战车边上的凹槽位。游戏的中心环绕在掠夺四周的货物，这些货物可以拿来创造自己船上的掩蔽物，也可以<br>
@@ -530,11 +529,6 @@
       </div>
   </nav>
 </div>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
@@ -589,11 +583,6 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
@@ -636,7 +625,6 @@
 
 
 
-
   
 
   
@@ -654,15 +642,6 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-/*
-if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-  }, window.hljs);
-}
-*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>

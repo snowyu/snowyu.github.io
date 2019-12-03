@@ -9,7 +9,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
   <link rel="mask-icon" href="/favicon.ico" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -20,11 +19,12 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    hostname: new URL('http://riceball.me').hostname,
     root: '/',
     scheme: 'Mist',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
@@ -41,18 +41,17 @@
     },
     localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="Coffee Style Smart Computer LanguageI treat the coffee-script and Literate CoffeeScript as the first coffee style smart computer language concept. This should be the basics of the next generation Smar">
+  <meta name="description" content="Coffee Style Smart Computer Language I treat the coffee-script and Literate CoffeeScript as the first coffee style smart computer language concept. This should be the basics of the next generation Sma">
 <meta name="keywords" content="thinking,programming,language,tech">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coffee Style Computer Language">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;coffee-style-computer-language&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="Coffee Style Smart Computer LanguageI treat the coffee-script and Literate CoffeeScript as the first coffee style smart computer language concept. This should be the basics of the next generation Smar">
+<meta property="og:description" content="Coffee Style Smart Computer Language I treat the coffee-script and Literate CoffeeScript as the first coffee style smart computer language concept. This should be the basics of the next generation Sma">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-09-03T19:30:06.000Z">
 <meta name="twitter:card" content="summary">
@@ -79,8 +78,7 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
     <script>
-      var host = window.location.hostname;
-      if (host !== "localhost" || !true) {
+      if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -123,8 +121,9 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -323,9 +322,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="coffee-style-smart-computer-language">Coffee Style Smart Computer Language</h2><p>I treat the coffee-script and <code>Literate CoffeeScript</code> as the first <code>coffee style</code> smart computer language concept.<br>
-This should be the basics of the next generation Smart Computer Language.</p><a id="more"></a>
-
+        <h2 id="coffee-style-smart-computer-language">Coffee Style Smart Computer Language</h2>
+<p>I treat the coffee-script and <code>Literate CoffeeScript</code> as the first <code>coffee style</code> smart computer language concept.<br>
+This should be the basics of the next generation Smart Computer Language.</p>
 <p>Features:</p>
 <ul>
 <li>Space indents for block, the curly braces are optional.</li>
@@ -529,11 +528,6 @@ fill   :string  = <span class="hljs-function"><span class="hljs-params">(contain
       </div>
   </nav>
 </div>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
@@ -588,11 +582,6 @@ fill   :string  = <span class="hljs-function"><span class="hljs-params">(contain
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
@@ -635,7 +624,6 @@ fill   :string  = <span class="hljs-function"><span class="hljs-params">(contain
 
 
 
-
   
 
   
@@ -653,15 +641,6 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-/*
-if (document.querySelectorAll('pre code').length) {
-  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js', () => {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-  }, window.hljs);
-}
-*/
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
