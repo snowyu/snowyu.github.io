@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -219,6 +219,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -428,11 +432,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Loopback Framework</h1>
+          <h1 class="heading-control">Loopback Framework<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。<br>
 <a href="http://loopback.io" target="_blank" rel="noopener">LoopBack</a> 是一个基于<a href="http://expressjs.com/" target="_blank" rel="noopener">Express</a>的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful API，用nodejs 开发API，提供JS, iOS 和 Android SDKs.</p>
 <p><a href="https://strongloop.com" target="_blank" rel="noopener">StrongLoop</a>在2015年<a href="https://developer.ibm.com/bluemix/2015/09/10/getting-started-node-js-loopback-framework-ibm-cloudant/" target="_blank" rel="noopener">被IBM收购了</a>.</p>
-<h2 id="features">Features</h2>
+<h2 id="features" class="heading-control">Features<a class="heading-anchor" href="#features" aria-hidden="true"></a></h2>
 <ul>
 <li>快速创建动态 end-to-end REST APIs.</li>
 <li>连接设备/浏览器到数据和服务。</li>
@@ -557,7 +561,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Promise</h1>
+          <h1 class="heading-control">Promise<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p>
 <p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。<br>
 因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
@@ -688,7 +692,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>如何选择一门语言学习计算机编程</h1>
+          <h1 class="heading-control">如何选择一门语言学习计算机编程<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>实用派的想法：</p>
 <p>哪一门或一些语言适合你？取决于你想干什么？</p>
 <ul>
@@ -812,7 +816,7 @@
           <p>HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震撼，尽管目前好的内容还不是很多。真的世界变了，<br>
 不提游戏，很多经验的教学，难以实作的实验，在沉浸式虚拟现实中都将被改写，人类获取另类的知识体系将变容易。<br>
 体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。</p>
-<h2 id="虚拟现实">虚拟现实</h2>
+<h2 id="虚拟现实" class="heading-control">虚拟现实<a class="heading-anchor" href="#虚拟现实" aria-hidden="true"></a></h2>
 <p>虚拟现实（Virtual Reality），又称虚拟实境，简单来说就是用电脑模拟一个虚拟世界，让人感觉自己完全置身于这个虚拟的<br>
 世界当中，从而忘掉自己所处的真实世界。目前主要是通过对人的眼睛和耳朵的欺骗，以及附加在头盔上的传感器来实现VR。</p>
 <p>尽管离《黑客帝国》描述的场景距离还相当长远，但至少目前已经可以让人产生身在虚拟世界的幻觉了。尽管依然存在这样那样<br>
@@ -943,11 +947,11 @@
 
       
           <p>要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联网(IoT)，也只不过是将一个个的设备作为“网上服务”放到了家庭，使得我们可以在家以外也能控制而已。因此这里说道的移动互联网思维其实主要还是在探索互联网思维。</p>
-<h1>互联网的本质</h1>
+<h1 class="heading-control">互联网的本质<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>无论移动互联网还是互联网，我们如果思考下它的本质，想想它的本质是什么？那么不难发现，它的本质无疑是最终用户(Peer)的互联互通。那么互联互通的本质又是什么？<br>
 而当互联网最终用户膨胀到足够规模的时候，我们发现，它正在改变世界。Why? 它是如何做到的呢？</p>
 <p>互联网的本质是对等（互联），因为要对等互联，所以才有了开放和标准。因为完全开放和标准化，才有足够多组织细胞接入，从而形成群体。群体在互联网上产生信息和消费信息，从而导致信息爆炸大数据。</p>
-<h2 id="开放与标准">开放与标准</h2>
+<h2 id="开放与标准" class="heading-control">开放与标准<a class="heading-anchor" href="#开放与标准" aria-hidden="true"></a></h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/article/explore-thinking-of-internet/#more" rel="contents">
@@ -1065,7 +1069,7 @@
       
           <p>随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。</p>
 <a id="more"></a>
-<h1><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a></h1>
+<h1 class="heading-control"><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a><a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在<code>package.json</code>中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。</p>
 <p>下载需要翻墙：</p>
           <!--noindex-->
@@ -1177,7 +1181,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>什么是无后端构建开发</h1>
+          <h1 class="heading-control">什么是无后端构建开发<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，<br>
 它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放<br>
 在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和<br>
@@ -1301,13 +1305,13 @@
 
       
           <p>iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：<a href="https://github.com/snowyu/iDB" target="_blank" rel="noopener">https://github.com/snowyu/iDB</a>），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engine)的核心。</p>
-<h3 id="几个概念：">几个概念：</h3>
+<h3 id="几个概念：" class="heading-control">几个概念：<a class="heading-anchor" href="#几个概念：" aria-hidden="true"></a></h3>
 <ul>
 <li>面向列：所谓面向列(Column Oriented)是和面向行(Row Oriented)相对而言的，绝大多数的关系型数据库就是面向行存储的，而iDB则是面向列基于Key/Value的存储系统。</li>
 <li>结构化：所谓结构化(Structured)是指值(Value)可以是带结构数据的复杂类型，而层级则是指Key可以有不同的层级关系，基于目录树的形式。</li>
 <li>基于目录：基于目录(Directory-Based)也是相对于基于文件(File-Based)而言，对于传统的数据库系统几乎都是通过创建少量的随机文件，然后把大量的数据存放在里面，而iDB则完全不同，也可以说是恰恰相反，它是创建大量的目录和文件，把数据分散在目录中，你可以认为这是一种创新。</li>
 </ul>
-<h3 id="background-设计背景">Background (设计背景)</h3>
+<h3 id="background-设计背景" class="heading-control">Background (设计背景)<a class="heading-anchor" href="#background-设计背景" aria-hidden="true"></a></h3>
 <p>iDB NoSQL数据库引擎的设计初衷是希望能更为合理的设计组织数据库引擎的层次架构，以及看到现代文件系统设计发展的变化有感而发，两者融合就促使我萌发设计iDB的念头。</p>
           <!--noindex-->
             <div class="post-button">
@@ -1412,8 +1416,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Nokia 还有未来么？</h1>
-<h2 id="现状">现状</h2>
+          <h1 class="heading-control">Nokia 还有未来么？<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h2 id="现状" class="heading-control">现状<a class="heading-anchor" href="#现状" aria-hidden="true"></a></h2>
 <p>2012年6月30日，作为最新裁员计划的一部分，诺基亚的三位高管黯然离职。7月1日调整后的新管理层开始生效，诺基亚的管理结构将更加简化。在接下来的一年多时间里，还会有1万名员工跟这三位高管一样，不得不离开诺基亚，以达到在2013年底之前节省30亿欧元开支的目标。</p>
 <p>这家昔日硬件巨头股价下滑60%，手机销量骤降，现金储备急剧减少，而且失去了手机霸主位置。</p>
 <p>现今，诺基亚孤注一掷正全身心投入WP智能机的研发中，期望这一平台能帮助该公司摆脱颓势。但是今年一季度，Windows Phone仅占智能机出货量的2.2%。即使今秋推出的WP 8系统能够大获成功，也不能保证诺基亚能够收复失地。而HTC和三星这两家Android硬件巨头，也正在计划推出WP设备。更糟糕的是，微软今秋推出的WP 8系统让诺基亚有苦难言。为了将桌面操作系统的优势沿用到移动操作系统上，WP8采用了与Windows 8相同的内核。这样一来，微软上一代移动操作系统WP7.5因为与WP8内核不同，无法升级到WP8。诺基亚寄予厚望刚上市的高端智能手机Lumia900无疑成了最大牺牲品。</p>
@@ -1571,7 +1575,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -1606,106 +1610,6 @@
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script>

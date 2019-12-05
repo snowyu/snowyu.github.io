@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -46,7 +46,7 @@
 </script>
 
   <meta name="description" content="编者按：作为一个介绍优秀开源项目的网站，开源硬件也将是我们重点关注的一块，在未来，我们会把更多优秀的开源硬件项目介绍给大家。在此之前，让我们先预习一下开源硬件的三个时代。：），本文作者：李雪愚，盛大创新院高级架构师。 对于开源硬件来说，我们根据其技术特点，大概将其分为三个时代，即：焊接时代（过去）、插接时代（现在Arduino），无线时代（未来） 一、焊接时代 硬件开放初期本为DIY硬件，那个时候">
-<meta name="keywords" content="thinking,arduino,open source,hardware,iot">
+<meta name="keywords" content="thinking,open source,arduino,hardware,iot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开源硬件的三个时代">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;open-hardware-ages&#x2F;index.html">
@@ -222,6 +222,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -322,9 +326,9 @@
       
         <p><strong>编者按：作为一个介绍优秀开源项目的网站，开源硬件也将是我们重点关注的一块，在未来，我们会把更多优秀的开源硬件项目介绍给大家。在此之前，让我们先预习一下开源硬件的三个时代。：），本文作者：李雪愚，盛大创新院高级架构师。</strong></p>
 <p>对于开源硬件来说，我们根据其技术特点，大概将其分为三个时代，即：焊接时代（过去）、插接时代（现在Arduino），无线时代（未来）</p>
-<h2 id="一-焊接时代">一、焊接时代</h2>
+<h2 id="一-焊接时代" class="heading-control">一、焊接时代<a class="heading-anchor" href="#一-焊接时代" aria-hidden="true"></a></h2>
 <p>硬件开放初期本为DIY硬件，那个时候电路图，PCB图纸开放的也不少，但是由于还是只能是搞电子技术的小圈子才能玩转的。</p>
-<img src="/article/open-hardware-ages/han-jie.jpg" class="">
+<img src="/article/open-hardware-ages/han-jie.jpg" class>
 <p>主要面向的人群：</p>
 <ul>
 <li>电子技术爱好者以及相关人群</li>
@@ -336,9 +340,9 @@
 <li><a href="http://www.ecbbs.com/" target="_blank" rel="noopener">http://www.ecbbs.com</a></li>
 </ul>
 <p>主要芯片提供商有：Geekers</p>
-<h2 id="二-插接时代">二、插接时代</h2>
+<h2 id="二-插接时代" class="heading-control">二、插接时代<a class="heading-anchor" href="#二-插接时代" aria-hidden="true"></a></h2>
 <p>开源硬件的插接时代又要分成两个阶段，我们称之为插接时代I代和插接时代II代：</p>
-<h3 id="1-插接时代i代：">1、插接时代I代：</h3>
+<h3 id="1-插接时代i代：" class="heading-control">1、插接时代I代：<a class="heading-anchor" href="#1-插接时代i代：" aria-hidden="true"></a></h3>
 <p>Arduino的出现则打破了这一局面，依托于微控制器为核心，标准化的MCU主板为基础，简易的软件开发，组建出各种各样的智能电子积木，它的影响力的体现在：</p>
 <ul>
 <li>不限制商业的开源形式，使得小厂家也能轻松的低成本的生产（无研发费用）</li>
@@ -363,7 +367,7 @@
 <p>生态环境：</p>
 <p>MCU 芯片提供商→MCU主板生产商（个人或小公司）→Geekers<br>
 　　附属的芯片提供商→各种模块积木的生产商（个人或小公司）→Geekers</p>
-<h3 id="2-插接时代ii代-可以预见的未来-：">2、插接时代II代（可以预见的未来）：</h3>
+<h3 id="2-插接时代ii代-可以预见的未来-：" class="heading-control">2、插接时代II代（可以预见的未来）：<a class="heading-anchor" href="#2-插接时代ii代-可以预见的未来-：" aria-hidden="true"></a></h3>
 <p>作为马上到来的一个阶段，这是一个尚未被开拓的时代，纯净的蓝海，可以认为是产品2.0的时代（相对于Web2.0）。</p>
 <p>插接时代II代的主要特征有：</p>
 <ul>
@@ -378,7 +382,7 @@
 　　附属的芯片提供商→各种模块积木的生产商（个人或小公司）→Geekers→最终用户<br>
 　　模具 模具生产商（个人或小公司）→Geekers</p>
 <p>最终用户：初期为大部分是喜欢个性化产品的用户,最终希望能产生出无印良品</p>
-<h2 id="三-无线时代-未来">三、无线时代（未来）</h2>
+<h2 id="三-无线时代-未来" class="heading-control">三、无线时代（未来）<a class="heading-anchor" href="#三-无线时代-未来" aria-hidden="true"></a></h2>
 <p>随着技术的不断发展和不断成熟，接下来开源硬件即将进入的，将是一个全新的时期，即无线时代。在这个时期，所有的组件均可以通过无线通讯进行沟通协作。显然，这是一个非常值得期待的未来。</p>
 <p>正在步入現實，以ESP8266芯片爲代表。</p>
 
@@ -423,8 +427,8 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/thinking/" rel="tag"># thinking</a>
-              <a href="/tags/arduino/" rel="tag"># arduino</a>
               <a href="/tags/open-source/" rel="tag"># open source</a>
+              <a href="/tags/arduino/" rel="tag"># arduino</a>
               <a href="/tags/hardware/" rel="tag"># hardware</a>
               <a href="/tags/iot/" rel="tag"># iot</a>
           </div>
@@ -577,7 +581,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -612,106 +616,6 @@
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script>

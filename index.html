@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -219,6 +219,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -312,11 +316,11 @@
 
       
           <p>GnuPG软件（简称GPG） – OpenPGP</p>
-<h1>历史介绍 History</h1>
-<h2 id="pgp-pretty-good-privacy">PGP (Pretty Good Privacy)</h2>
+<h1 class="heading-control">历史介绍 History<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h2 id="pgp-pretty-good-privacy" class="heading-control">PGP (Pretty Good Privacy)<a class="heading-anchor" href="#pgp-pretty-good-privacy" aria-hidden="true"></a></h2>
 <p>最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。<br>
 后续由赛门铁克公司继续开发维护PGP品牌。</p>
-<h2 id="openpgp">OpenPGP</h2>
+<h2 id="openpgp" class="heading-control">OpenPGP<a class="heading-anchor" href="#openpgp" aria-hidden="true"></a></h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/article/gpg/#more" rel="contents">
@@ -431,11 +435,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="什么是响应-交互-式文档">什么是响应(交互)式文档</h2>
+          <h2 id="什么是响应-交互-式文档" class="heading-control">什么是响应(交互)式文档<a class="heading-anchor" href="#什么是响应-交互-式文档" aria-hidden="true"></a></h2>
 <p>什么是响应(交互)式文档，简单的说就是文档内容能够实时响应读者的交互，根据交互实时变化的文档。在技术，教育领域中，为了将知识表述更清楚，常常需要✍文档能“动”起来，最极端的例子应该是🎮️“游戏”。虽然目前还不能让🎮️游戏文档直接“动”起来。不过未来就不一定了。</p>
 <p>我们接下来通过一个简单的响应(交互)式文档例子，来直观感受一下，请看下面。</p>
 <a id="more"></a>
-<h3 id="绘制矩形-rect-例子">绘制矩形(Rect)例子</h3>
+<h3 id="绘制矩形-rect-例子" class="heading-control">绘制矩形(Rect)例子<a class="heading-anchor" href="#绘制矩形-rect-例子" aria-hidden="true"></a></h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/article/interative-markdown/#more" rel="contents">
@@ -540,9 +544,9 @@
 
       
           <p>raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。</p>
-<h1>创建图形对象</h1>
+<h1 class="heading-control">创建图形对象<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。</p>
-<h2 id="矩形-rect">矩形(Rect)</h2>
+<h2 id="矩形-rect" class="heading-control">矩形(Rect)<a class="heading-anchor" href="#矩形-rect" aria-hidden="true"></a></h2>
 <p>参数：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p>
           <!--noindex-->
             <div class="post-button">
@@ -661,7 +665,7 @@
       
           <p>CouchDB 是一个面向文档的<code>NoSQL</code>数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为<code>CouchApp</code>，详见后述。</p>
 <a id="more"></a>
-<h2 id="source-build">Source Build</h2>
+<h2 id="source-build" class="heading-control">Source Build<a class="heading-anchor" href="#source-build" aria-hidden="true"></a></h2>
 <pre><code class="bash">sudo apt-get --no-install-recommends -y install \
     build-essential pkg-config erlang erlang-reltool \
     libicu-dev libcurl4-openssl-dev
@@ -677,7 +681,7 @@ sudo apt install dh-exec dh-systemd nodejs python-sphinx
 
 make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 </code></pre>
-<h2 id="概念">概念</h2>
+<h2 id="概念" class="heading-control">概念<a class="heading-anchor" href="#概念" aria-hidden="true"></a></h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/article/couchdb/#more" rel="contents">
@@ -793,7 +797,7 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Ionic Framework</h1>
+          <h1 class="heading-control">Ionic Framework<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>Ionic 4 已经彻底解耦用户界面和框架,你可以在<code>angular</code>和<code>react</code>(甚至<code>vue</code>)之间选择.</p>
 <pre><code>npm i -g ionic
 </code></pre>
@@ -914,7 +918,7 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>分享经济的前世今生</h1>
+          <h1 class="heading-control">分享经济的前世今生<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>“分享”这一概念是很容易理解的，因为我们打小从幼儿园的时候，就被教育说要主动分享，乐于助人。 “分享”这更是慈善事业中的主旋律。 用一言而概之，就是将自己的(既有资源)，与他人分享。</p>
 <p>“分享经济”这一概念则是最近几年才明确地提出来的。 然而往往却和&quot;公司租赁&quot;混在一块，在我看来，这错得离谱，他们有着本质的不同。 而目前“租赁经济”只不过是披着互联网皮的传统公司租赁模式。</p>
 <p>那么“租赁经济”和“分享经济”最本质的不同之处在哪里？</p>
@@ -1034,14 +1038,14 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>MQTT 服务 - IoT界的消息订阅发布</h1>
+          <h1 class="heading-control">MQTT 服务 - IoT界的消息订阅发布<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用<br>
 户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，<br>
 相当于你帮他们植入了常驻设备的推送后门。</p>
 <p>只有自驾了。我选择了MQTT。</p>
 <p>MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。<br>
 用在手机设备最好不过。</p>
-<h2 id="mqtt-协议简单介绍">MQTT 协议简单介绍</h2>
+<h2 id="mqtt-协议简单介绍" class="heading-control">MQTT 协议简单介绍<a class="heading-anchor" href="#mqtt-协议简单介绍" aria-hidden="true"></a></h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/article/mqtt/#more" rel="contents">
@@ -1151,12 +1155,12 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Ubuntu 16.10</h1>
+          <h1 class="heading-control">Ubuntu 16.10<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>
 不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>
 策略路由，对于域名IP流量精确转发，变得so easy。</p>
 <p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
-<h2 id="shell">Shell</h2>
+<h2 id="shell" class="heading-control">Shell<a class="heading-anchor" href="#shell" aria-hidden="true"></a></h2>
 <p>我比较习惯 zsh, 下载安装zsh:</p>
           <!--noindex-->
             <div class="post-button">
@@ -1273,8 +1277,8 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>SaaS平台之殇</h1>
-<h2 id="背景">背景</h2>
+          <h1 class="heading-control">SaaS平台之殇<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h2 id="背景" class="heading-control">背景<a class="heading-anchor" href="#背景" aria-hidden="true"></a></h2>
 <p>商业应用的集中式托管可以追溯到20世纪60年代的时分系统中。SaaS通常使用多租架构为多个商业组织和用户提供服务。</p>
 <p>在多租环境中的相对低廉的用户服务开通（创建新客户），使得一些软件即服务供应商可以用免费模式来提供应用。在这种模式下，基本功能免费，增强功能或更大的范围则是要收费的。当然，也有完全对用户完全免费的SaaS，而他们的收入则产生于其它相关来源例如：广告。</p>
 <p>SaaS的本质是将规模经济应用到软件应用的运营上。故其规模决定了其发展。而影响企业用户决定是否采用SaaS的一个最关键因素就是<code>数据</code>。</p>
@@ -1387,7 +1391,7 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="coffee-style-smart-computer-language">Coffee Style Smart Computer Language</h2>
+          <h2 id="coffee-style-smart-computer-language" class="heading-control">Coffee Style Smart Computer Language<a class="heading-anchor" href="#coffee-style-smart-computer-language" aria-hidden="true"></a></h2>
 <p>I treat the coffee-script and <code>Literate CoffeeScript</code> as the first <code>coffee style</code> smart computer language concept.<br>
 This should be the basics of the next generation Smart Computer Language.</p>
 <p>Features:</p>
@@ -1563,7 +1567,7 @@ This should be the basics of the next generation Smart Computer Language.</p>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -1598,106 +1602,6 @@ This should be the basics of the next generation Smart Computer Language.</p>
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script>

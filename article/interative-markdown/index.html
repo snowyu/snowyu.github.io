@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -221,6 +221,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -324,14 +328,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="什么是响应-交互-式文档">什么是响应(交互)式文档</h2>
+        <h2 id="什么是响应-交互-式文档" class="heading-control">什么是响应(交互)式文档<a class="heading-anchor" href="#什么是响应-交互-式文档" aria-hidden="true"></a></h2>
 <p>什么是响应(交互)式文档，简单的说就是文档内容能够实时响应读者的交互，根据交互实时变化的文档。在技术，教育领域中，为了将知识表述更清楚，常常需要✍文档能“动”起来，最极端的例子应该是🎮️“游戏”。虽然目前还不能让🎮️游戏文档直接“动”起来。不过未来就不一定了。</p>
 <p>我们接下来通过一个简单的响应(交互)式文档例子，来直观感受一下，请看下面。</p>
 <a id="more"></a>
-<h3 id="绘制矩形-rect-例子">绘制矩形(Rect)例子</h3>
+<h3 id="绘制矩形-rect-例子" class="heading-control">绘制矩形(Rect)例子<a class="heading-anchor" href="#绘制矩形-rect-例子" aria-hidden="true"></a></h3>
 <p><strong>参数</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p>
 <p>下面演示在提供好的画布上用上述参数绘制一个矩形，点击下方的播放按钮进行演示：</p>
-<pre><code class="canvas"># 演示绘制矩形的过程
+<pre><code class="output"># 演示绘制矩形的过程
 paper = @canvas
 
 |
@@ -362,7 +366,7 @@ tooltip: 现在你可以自己试一试了
 <li><code>text(50, 50, &quot;Hi world\n你好世界&quot;)</code></li>
 </ul>
 <p>响应(交互)式文档能够更加直观的看到结果的变化，使得知识更容易理解。</p>
-<h2 id="为什么响应-交互-式文档要基于markdown格式？">为什么响应(交互)式文档要基于Markdown格式？</h2>
+<h2 id="为什么响应-交互-式文档要基于markdown格式？" class="heading-control">为什么响应(交互)式文档要基于Markdown格式？<a class="heading-anchor" href="#为什么响应-交互-式文档要基于markdown格式？" aria-hidden="true"></a></h2>
 <p>Markdown 是一种纯文本格式的轻量级标记语言，强调可读性高于一切。</p>
 <ul>
 <li>纯文本，所以兼容性极强，速度快，易保存，数据不易丢失，可以用所有文本编辑器编辑。</li>
@@ -400,7 +404,7 @@ tooltip: 现在你可以自己试一试了
 <p><span class="AMElement" data-embed="true" data-config="line=func: 0..2pi by 0.001, width=600, height=300">Chart</span></p>
 <p>读者就可以将鼠标移到上方Offset参数上进行拖动来改变参数值从而改变函数图像，也可以直接将函数<code>cos</code>改为<code>sin</code>看看。</p>
 <p><a href="/imarkdown">Interactive Markdown</a> 尚存在许多问题，目前还在内部测试中，语义规范尚未固定。</p>
-<h2 id="未来">未来</h2>
+<h2 id="未来" class="heading-control">未来<a class="heading-anchor" href="#未来" aria-hidden="true"></a></h2>
 <p>我希望在不久的将来使用 markdown 来编写绘本故事书，<a href="https://medium.com/ai-club-iiitb/text-to-image-synthesis-62eb44e65cd0" target="_blank" rel="noopener">根据文字自动产生图画</a>故事。</p>
 <p>在更远的未来甚至可以开发游戏。</p>
 
@@ -600,7 +604,7 @@ tooltip: 现在你可以自己试一试了
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -635,106 +639,6 @@ tooltip: 现在你可以自己试一试了
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script src='/assets/js/imarkdown-0.4.0-min.js'></script><script>

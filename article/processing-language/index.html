@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -232,6 +232,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -336,7 +340,7 @@
 <p>还有下面这个：</p>
 <p><img src="http://dextro.org/hhhh/h001/k364p_col.jpg" alt="processing"></p>
 <p>看到这里，您是不是有马上一试的冲动呢？那么，下面，跟我来一起开玩吧。</p>
-<h1><strong>一、安装Processing开发环境</strong></h1>
+<h1 class="heading-control"><strong>一、安装Processing开发环境</strong><a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>Processing的开发包可以从下面这个地址下载： <a href="http://www.processing.org/download/" target="_blank" rel="noopener">http://www.processing.org/download/</a>，在这个页面上有各个平台（Mac, Windows, Linux）的版本下载。解压后，双击里面的Processing执行文件，即可开玩，</p>
 <ul>
 <li>Windows版本的需要执行，展开的文件夹中的processing.exe文件</li>
@@ -349,7 +353,7 @@
 </ul>
 </li>
 </ul>
-<h1><strong>二、开始进行Processing编程之旅</strong></h1>
+<h1 class="heading-control"><strong>二、开始进行Processing编程之旅</strong><a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>运行processing后，可以看到它的IDE窗口环境：<br>
 ﻿<br>
 <img src="https://processing.org/tutorials/gettingstarted/imgs/Fig_02_01.gif" alt="Processing IDE"></p>
@@ -393,13 +397,13 @@
 <p>还有更好玩的，如果你是超级懒人，觉得下载这么大一个东东（最新测试版要100多M）实在是太烦了，OK，那就玩javascript好了，最近processing的姊妹站点 <a href="http://processingjs.org/" target="_blank" rel="noopener">processingjs.org</a> 刚发布了processing.js v1.1.0，这个站点的目标是用javascript来玩processing。嗯，无需要java，无需要一大堆的文件，只要一个processing的javascript库，然后就可以玩。</p>
 <p>下面是用prcessing.js做的可视化互动数据图:</p>
 <ul>
-<li><a href="http://www.mattryall.net/image/comments-vis.png" target="_blank" rel="noopener"><img src="http://www.mattryall.net/image/comments-vis.png" alt=""></a>Comments visualisation</li>
-<li><a href="http://www.mattryall.net/image/contributors-vis.png" target="_blank" rel="noopener"><img src="http://www.mattryall.net/image/contributors-vis.png" alt=""></a>Contributors visualisation</li>
-<li><a href="http://www.mattryall.net/image/activity-vis.png" target="_blank" rel="noopener"><img src="http://www.mattryall.net/image/activity-vis.png" alt=""></a>Activity visualisation</li>
+<li><a href="http://www.mattryall.net/image/comments-vis.png" target="_blank" rel="noopener"><img src="http://www.mattryall.net/image/comments-vis.png" alt></a>Comments visualisation</li>
+<li><a href="http://www.mattryall.net/image/contributors-vis.png" target="_blank" rel="noopener"><img src="http://www.mattryall.net/image/contributors-vis.png" alt></a>Contributors visualisation</li>
+<li><a href="http://www.mattryall.net/image/activity-vis.png" target="_blank" rel="noopener"><img src="http://www.mattryall.net/image/activity-vis.png" alt></a>Activity visualisation</li>
 </ul>
 <p>值得一提的是，除了在本地玩之外，Processing也提供了一个WebIDE：<a href="http://processingjs.org/learning/ide" target="_blank" rel="noopener">processingjs</a>，通过这个在线的IDE，您只需要往页面的TextArea编写程序，即可运行一个在线的实例，相当方便快捷。</p>
 <p></p>
-<h3 id="更多演示在这里-你需要支持html5的浏览器：">更多演示在这里，你需要支持html5的浏览器：</h3>
+<h3 id="更多演示在这里-你需要支持html5的浏览器：" class="heading-control">更多演示在这里，你需要支持html5的浏览器：<a class="heading-anchor" href="#更多演示在这里-你需要支持html5的浏览器：" aria-hidden="true"></a></h3>
 <ul>
 <li><a href="http://www.mattryall.net/demo/atlassian-vis/contributors/" target="_blank" rel="noopener"><strong>Contributors</strong></a> — a tree graph visualisation linking commenters and blog post authors.</li>
 <li><a href="http://www.mattryall.net/demo/atlassian-vis/activity/" target="_blank" rel="noopener"><strong>Activity</strong></a> — a rippling visualisation of comment activity on the wiki. Based loosely on the Apple Arabesque screensaver.</li>
@@ -598,7 +602,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -633,106 +637,6 @@
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script>

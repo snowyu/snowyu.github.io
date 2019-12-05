@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -221,6 +221,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -314,12 +318,12 @@
 
       
         <p>raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。</p>
-<h1>创建图形对象</h1>
+<h1 class="heading-control">创建图形对象<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。</p>
-<h2 id="矩形-rect">矩形(Rect)</h2>
+<h2 id="矩形-rect" class="heading-control">矩形(Rect)<a class="heading-anchor" href="#矩形-rect" aria-hidden="true"></a></h2>
 <p>参数：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p>
 <p>下面演示在提供好的画布上用上述参数绘制一个矩形，点击下面的播放按钮进行演示：</p>
-<pre><code class="canvas"># 演示绘制矩形的过程
+<pre><code class="output"># 演示绘制矩形的过程
 paper = @canvas
 
 |
@@ -349,9 +353,9 @@ tooltip: 现在你可以自己试一试了
 <li>text(50, 50, “Hi world\n你好世界”)</li>
 </ul>
 <p>所有这些绘制后都会返回一个图形对象，你可以对它进行各种操作，比如show/hide,改变属性attr。</p>
-<h2 id="path-路径">Path(路径)</h2>
+<h2 id="path-路径" class="heading-control">Path(路径)<a class="heading-anchor" href="#path-路径" aria-hidden="true"></a></h2>
 <p>更复杂的对象也可以通过path来实现描述。路径是矢量绘图里最强大的工具，同时也比较复杂。</p>
-<pre><code class="canvas">paper = @canvas
+<pre><code class="output">paper = @canvas
 paper.setSize(200,100)
 paper.clear()
 paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'})
@@ -372,7 +376,7 @@ paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'}
 <li>H: Horz(x)       水平直线 保持当前点的y坐标不变，x轴移动到x，形成水平线</li>
 <li>V: Vert(y)       垂直直线 保持当前点的x坐标不变，y轴移动到y，形成垂直线</li>
 </ul>
-<h2 id="动画">动画</h2>
+<h2 id="动画" class="heading-control">动画<a class="heading-anchor" href="#动画" aria-hidden="true"></a></h2>
 <p>在raphael中绘制的每一个元素都可以轻易的制作动画，只要我们设定它的起始和结束属性即可。<br>
 假如我们对前面的矩形进行动画，设定它的结束属性为：</p>
 <ul>
@@ -383,7 +387,7 @@ paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'}
 <li>透明度设为 0.3</li>
 </ul>
 <p>然后设定当对矩形点击的时候开始动画。</p>
-<pre><code class="canvas">paper = @canvas
+<pre><code class="output">paper = @canvas
 paper.setSize(300,160)
 paper.clear()
 @rx ||=0
@@ -614,7 +618,7 @@ rect.mousedown(  () -&gt;
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -649,106 +653,6 @@ rect.mousedown(  () -&gt;
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script src='/assets/js/imarkdown-0.4.0-min.js'></script><script>

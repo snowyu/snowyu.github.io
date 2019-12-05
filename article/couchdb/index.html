@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -220,6 +220,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -326,7 +330,7 @@
       
         <p>CouchDB 是一个面向文档的<code>NoSQL</code>数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为<code>CouchApp</code>，详见后述。</p>
 <a id="more"></a>
-<h2 id="source-build">Source Build</h2>
+<h2 id="source-build" class="heading-control">Source Build<a class="heading-anchor" href="#source-build" aria-hidden="true"></a></h2>
 <pre><code class="bash">sudo apt-get --no-install-recommends -y install \
     build-essential pkg-config erlang erlang-reltool \
     libicu-dev libcurl4-openssl-dev
@@ -342,8 +346,8 @@ sudo apt install dh-exec dh-systemd nodejs python-sphinx
 
 make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 </code></pre>
-<h2 id="概念">概念</h2>
-<h3 id="数据库-database">数据库(database)</h3>
+<h2 id="概念" class="heading-control">概念<a class="heading-anchor" href="#概念" aria-hidden="true"></a></h2>
+<h3 id="数据库-database" class="heading-control">数据库(database)<a class="heading-anchor" href="#数据库-database" aria-hidden="true"></a></h3>
 <p>概念比较:</p>
 <table>
 <thead>
@@ -375,14 +379,14 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 <li><code>PUT /[database-name]</code>: 创建名为databasename的数据库。如果数据库创建成功的话，返回 HTTP 状态代码 201 ；如果已有一个同名数据库的话，返回 HTTP 状态代码 412 。</li>
 <li><code>DELETE /[database-name]</code>: 删除名为databasename的数据库。如果数据库删除成功的话，返回 HTTP 状态代码 200 ；如果数据库不存在，返回 HTTP 状态代码 404 。</li>
 </ul>
-<h4 id="内部数据库">内部数据库</h4>
+<h4 id="内部数据库" class="heading-control">内部数据库<a class="heading-anchor" href="#内部数据库" aria-hidden="true"></a></h4>
 <p>内部数据库以&quot;_&quot;打头。</p>
 <ul>
 <li><code>_users</code> 为用户数据库(authentication)，默认匿名用户可以创建用户。可以在<code>_design/_auth</code>中添加限制，参考后面的代码样例。</li>
 <li><code>_session</code>: 服务器端的用户会话管理。</li>
 <li><code>_config</code> 为系统配置数据库，管理员配置也在其中。</li>
 </ul>
-<h5 id="安全与认证-users">安全与认证(_users)</h5>
+<h5 id="安全与认证-users" class="heading-control">安全与认证(_users)<a class="heading-anchor" href="#安全与认证-users" aria-hidden="true"></a></h5>
 <p><a href="http://docs.couchdb.org/en/2.1.1/intro/security.html" target="_blank" rel="noopener">http://docs.couchdb.org/en/2.1.1/intro/security.html</a></p>
 <ul>
 <li><code>_id</code> (string): Document ID. Contains user’s login with special prefix Why the <code>org.couchdb.user</code>: prefix?</li>
@@ -397,7 +401,7 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
 <p>Why the <code>org.couchdb.user</code>: prefix?</p>
 <p>The reason there is a special prefix before a user’s login name is to have namespaces that users belong to. This prefix is designed to prevent replication conflicts when you try merging two or more <code>_user</code> databases.</p>
 <p>For current CouchDB releases, all users belong to the same <code>org.couchdb.user</code> namespace and this cannot be changed. This may be changed in future releases.</p>
-<h3 id="文档-document">文档（document）</h3>
+<h3 id="文档-document" class="heading-control">文档（document）<a class="heading-anchor" href="#文档-document" aria-hidden="true"></a></h3>
 <p>文档是 CouchDB 中的核心概念。一个 CouchDB 数据库实际上是一系列文档的集合。每个文档是一系列数据项的集合。每个数据项都有一个名称与对应的值，值既可以是简单的数据类型，如字符串、数字和日期等；也可以是复杂的类型，如数组和对象。每个文档都有一个全局惟一的标识符（ID）以及一个修订版本号（revision number）。 ID 用来惟一标识一个文档（相当于Key），而修订版本号则用来实现多版本并发控制（Multiversion concurrency control，MVVC）。在 CouchDB 中，文档是以 JSON 对象的形式保存的。文档中至少要包含<code>_id</code>和<code>_rev</code>字段，其中以“_”作为前缀的顶层字段是由 CouchDB 保留使用的。</p>
 <ul>
 <li><code>_id</code> : 全局惟一的标识符，用来惟一标识一个文档；</li>
@@ -442,7 +446,7 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
   <span class="hljs-string">"role_id"</span> : <span class="hljs-string">"db_admin"</span>
  }
 </code></pre>
-<h4 id="文档查询">文档查询</h4>
+<h4 id="文档查询" class="heading-control">文档查询<a class="heading-anchor" href="#文档查询" aria-hidden="true"></a></h4>
 <p><a href="https://pouchdb.com/2014/04/14/pagination-strategies-with-pouchdb.html" target="_blank" rel="noopener">https://pouchdb.com/2014/04/14/pagination-strategies-with-pouchdb.html</a><br>
 <a href="https://pouchdb.com/guides/queries.html#pouchdb-find" target="_blank" rel="noopener">https://pouchdb.com/guides/queries.html#pouchdb-find</a></p>
 <p>Pouchdb这里推荐是all_docs</p>
@@ -561,7 +565,7 @@ type: tag
 </code></pre>
 <p>不过有人在改： <a href="https://github.com/apache/couchdb-couch-mrview/pull/56/files" target="_blank" rel="noopener">https://github.com/apache/couchdb-couch-mrview/pull/56/files</a><br>
 <a href="https://jira.hyperledger.org/browse/FAB-2809" target="_blank" rel="noopener">https://jira.hyperledger.org/browse/FAB-2809</a></p>
-<h3 id="文档变更通知">文档变更通知</h3>
+<h3 id="文档变更通知" class="heading-control">文档变更通知<a class="heading-anchor" href="#文档变更通知" aria-hidden="true"></a></h3>
 <p><code>GET /[db]/_changes</code><br>
 <code>POST /[db]/_changes?filter=_doc_ids</code> 如果有大量的<code>doc_ids</code>，那么就只能用POST.</p>
 <pre><code>POST /recipes/_changes?filter=_doc_ids HTTP/1.1
@@ -576,9 +580,9 @@ Host: localhost:5984
     ]
 }
 </code></pre>
-<h4 id="changes-feed">Changes Feed</h4>
+<h4 id="changes-feed" class="heading-control">Changes Feed<a class="heading-anchor" href="#changes-feed" aria-hidden="true"></a></h4>
 <p>文档变更通知的三种方式</p>
-<h5 id="polling">Polling</h5>
+<h5 id="polling" class="heading-control">Polling<a class="heading-anchor" href="#polling" aria-hidden="true"></a></h5>
 <p>A list of changes made to documents in the database, in the order they were made, can be obtained from the database’s _changes resource. You can query the _changes resource by issuing a GET request with the following (optional) parameters:</p>
 <table>
 <thead>
@@ -671,9 +675,9 @@ Host: localhost:5984
 <li>Specifies how many revisions are returned in the changes array. The default, main_only, will only return the current “winning” revision; all_docs will return all leaf revisions (including conflicts and deleted former conflicts.)</li>
 <li>Allows to use view functions as filters. It requires to set filter special value _view to enable this feature. Documents counted as “passed” for view filter in case if map function emits at least one record for them.</li>
 </ol>
-<h5 id="longpoll">longpoll</h5>
+<h5 id="longpoll" class="heading-control">longpoll<a class="heading-anchor" href="#longpoll" aria-hidden="true"></a></h5>
 <p>打开连接，等待直到有改变发生后，就立刻连接关闭。适合于低频率的更新。</p>
-<h5 id="continuous">continuous</h5>
+<h5 id="continuous" class="heading-control">continuous<a class="heading-anchor" href="#continuous" aria-hidden="true"></a></h5>
 <p>一直打开连接,永不disconnect.</p>
 <p><code>GET /somedatabase/_changes?feed=continuous HTTP/1.1</code></p>
 <pre><code>{&quot;seq&quot;:1,&quot;id&quot;:&quot;fresh&quot;,&quot;changes&quot;:[{&quot;rev&quot;:&quot;1-967a00dff5e02add41819138abb3284d&quot;}]}
@@ -682,7 +686,7 @@ Host: localhost:5984
 ... tum tee tum ...
 {&quot;seq&quot;:6,&quot;id&quot;:&quot;updated&quot;,&quot;changes&quot;:[{&quot;rev&quot;:&quot;3-825cb35de44c433bfb2df415563a19de&quot;}]}
 </code></pre>
-<h5 id="eventsource">eventsource</h5>
+<h5 id="eventsource" class="heading-control">eventsource<a class="heading-anchor" href="#eventsource" aria-hidden="true"></a></h5>
 <p>The eventsource feed provides push notifications that can be consumed in the form of DOM events in the browser. Refer to the <a href="http://www.w3.org/TR/eventsource/" target="_blank" rel="noopener">W3C eventsource specification</a> for further details. CouchDB honors the Last-Event-ID header, and if it’s present it will take precedence over the since query parameter.</p>
 <pre><code class="js"><span class="hljs-comment">// define the event handling function</span>
 <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.EventSource) {
@@ -712,7 +716,7 @@ Host: localhost:5984
 <li><a href="http://docs.couchdb.org/en/1.4.0/changes.html" target="_blank" rel="noopener">http://docs.couchdb.org/en/1.4.0/changes.html</a> 这个写得简单清晰点。</li>
 <li><a href="https://www.npmjs.com/package/couch-streams" target="_blank" rel="noopener">https://www.npmjs.com/package/couch-streams</a></li>
 </ul>
-<h3 id="视图-view-与-map-reduce-查询">视图（view） 与 Map/Reduce 查询</h3>
+<h3 id="视图-view-与-map-reduce-查询" class="heading-control">视图（view） 与 Map/Reduce 查询<a class="heading-anchor" href="#视图-view-与-map-reduce-查询" aria-hidden="true"></a></h3>
 <p>视图是 CouchDB 中文档的呈现方式。在很多情况下，应用都需要对文档进行一定的处理，包括过滤、组织、聚合和生成报表等。在关系数据库中，这通常是通过 SQL 语句来完成的。 CouchDB 中的视图声明了如何从文档中提取数据，以及如何对提取出来的数据进行处理。</p>
 <p>CouchDB 中有两种视图：永久视图和临时视图。永久视图保存在设计文档的views字段中。临时视图是通过发送 POST 请求到 <code>/[databasename]/_temp_view</code> 来执行的。临时视图只在开发测试中使用，因为它是即时生成的，性能比较差；永久视图的运行结果可以被 CouchDB 缓存，因此一般用在生产环境中。</p>
 <p>视图的运行由专门的视图服务器来完成。 CouchDB 中默认的视图定义语言是 JavaScript 。 CouchDB 中的视图运行使用的是 MapReduce 编程模型。每个视图的定义中至少需要提供 Map 方法，Reduce 方法是可选的。</p>
@@ -748,7 +752,7 @@ Host: localhost:5984
 }
 </code></pre>
 <p><a href="http://docs.couchdb.org/en/2.1.0/ddocs/ddocs.html#reducefun-builtin" target="_blank" rel="noopener">http://docs.couchdb.org/en/2.1.0/ddocs/ddocs.html#reducefun-builtin</a></p>
-<h4 id="视图-view-的查询参数">视图(View)的查询参数</h4>
+<h4 id="视图-view-的查询参数" class="heading-control">视图(View)的查询参数<a class="heading-anchor" href="#视图-view-的查询参数" aria-hidden="true"></a></h4>
 <p>在查询视图的时候，支持以下的参数查询：</p>
 <ul>
 <li>conflicts (boolean) – Includes conflicts information in response. Ignored if include_docs isn’t true. Default is false</li>
@@ -778,8 +782,8 @@ Host: localhost:5984
 <li>update (string) – Whether or not the view in question should be updated prior to responding to the user. Supported values: true, false, lazy. Default is true. Optional</li>
 <li>update_seq (boolean) – Response includes an update_seq value indicating which sequence id of the database the view reflects. Default is false.</li>
 </ul>
-<h3 id="扩展概念">扩展概念</h3>
-<h4 id="附件-attatchment">附件(attatchment)</h4>
+<h3 id="扩展概念" class="heading-control">扩展概念<a class="heading-anchor" href="#扩展概念" aria-hidden="true"></a></h3>
+<h4 id="附件-attatchment" class="heading-control">附件(attatchment)<a class="heading-anchor" href="#附件-attatchment" aria-hidden="true"></a></h4>
 <p>CouchDB 中也可以保存二进制文件。这些文件是以文档的附件形式存储的。 CouchDB 支持两种形式的附件：一种是内嵌型的，附件是以 base64 编码的格式作为文档的一个字段保存；另一种是独立型，附件是独立于文档保存和管理的。附件的存在使得可以在 CouchDB 中保存 Web 应用中的 HTML、CSS 和 JavaScript 文件。每个附件都包含名称、MIME 类型和数据等三项内容。</p>
 <p>在请求文档的时候，内嵌型附件的实际数据默认是不包含的，包含的只是附件的元数据:</p>
 <pre><code class="js">{
@@ -795,7 +799,7 @@ Host: localhost:5984
  }
 </code></pre>
 <p>独立型附件可以在不改变文档的情况下，对附件进行操作。另外，不需要对附件进行 base64 编码。要创建独立型附件，只需要发送 PUT 请求到<code>databasename/doc_id/attachment?rev=rev_id</code>就可以创建或更新一个名为attachment的附件。 PUT 请求的内容类型（Content-Type）和内容指明了附件的类型和数据。</p>
-<h4 id="设计文档-design-document">设计文档(design document)</h4>
+<h4 id="设计文档-design-document" class="heading-control">设计文档(design document)<a class="heading-anchor" href="#设计文档-design-document" aria-hidden="true"></a></h4>
 <p>设计文档是一类特殊的文档，其 ID 必须以<code>_design/</code>开头。设计文档的存在是使用 CouchDB 开发 Web 应用的基础。在 CouchDB 中，一个 Web 应用是与一个设计文档相对应的。在设计文档中可以包含一些特殊的字段，其中包括：</p>
 <ul>
 <li><code>views</code>: 包含永久的视图定义；</li>
@@ -804,7 +808,7 @@ Host: localhost:5984
 <li><code>validate_doc_update</code>: 包含验证文档更新是否有效的方法。</li>
 <li><code>updatefun(doc, req)</code>: 服务器端进行<a href="http://docs.couchdb.org/en/2.1.1/ddocs/ddocs.html#update-functions" target="_blank" rel="noopener">更新文档处理器</a>，在这里可以修改文档的值。</li>
 </ul>
-<h5 id="validate-doc-update"><code>validate_doc_update</code></h5>
+<h5 id="validate-doc-update" class="heading-control"><code>validate_doc_update</code><a class="heading-anchor" href="#validate-doc-update" aria-hidden="true"></a></h5>
 <p><code>function(newDoc, oldDoc, userCtx, secObj)</code></p>
 <p>回调函数参数说明:</p>
 <ul>
@@ -983,7 +987,7 @@ Host: localhost:5984
 }
 
 </code></pre>
-<h2 id="couchapp">CouchApp</h2>
+<h2 id="couchapp" class="heading-control">CouchApp<a class="heading-anchor" href="#couchapp" aria-hidden="true"></a></h2>
 <p>由于 CouchDB 的 REST API 使用 JSON 作为展现形式，因此使用 CouchDB 的 Web 应用只需要编写浏览器端的代码就可以使用 JavaScript 与 CouchDB 进行交互；而 CouchDB 所支持的附件功能，又使得浏览器端的 HTML、JavaScript 和 CSS 代码可以直接存放在 CouchDB 中。这样 CouchDB 中不但保存了 Web 应用的数据，也保存了 Web 应用的逻辑。也就是说，只需要 CouchDB 就可以构建一个完整的 Web 应用运行环境。</p>
 <ul>
 <li><a href="https://github.com/couchapp/couchapp" target="_blank" rel="noopener">https://github.com/couchapp/couchapp</a></li>
@@ -994,14 +998,14 @@ Host: localhost:5984
 <li><a href="http://docs.couchdb.org/en/1.3.0/pretty_urls.html" target="_blank" rel="noopener">http://docs.couchdb.org/en/1.3.0/pretty_urls.html</a></li>
 <li><a href="https://stackoverflow.com/questions/35643281/rewrite-urls-in-couchdb-pouchdb-server" target="_blank" rel="noopener">https://stackoverflow.com/questions/35643281/rewrite-urls-in-couchdb-pouchdb-server</a></li>
 </ul>
-<h3 id="couchapp-v2">Couchapp</h3>
+<h3 id="couchapp-v2" class="heading-control">Couchapp<a class="heading-anchor" href="#couchapp-v2" aria-hidden="true"></a></h3>
 <pre><code class="bash">python2.7&gt; pip install --user couchapp
 couchapp init myapp
 <span class="hljs-built_in">cd</span> myapp
 </code></pre>
-<h4 id="change-your-app-id">Change your App ID</h4>
+<h4 id="change-your-app-id" class="heading-control">Change your App ID<a class="heading-anchor" href="#change-your-app-id" aria-hidden="true"></a></h4>
 <p>open the <code>_id</code> file: change your app name.</p>
-<h4 id="set-config">set config</h4>
+<h4 id="set-config" class="heading-control">set config<a class="heading-anchor" href="#set-config" aria-hidden="true"></a></h4>
 <p><code>.couchapprc</code>:</p>
 <pre><code class="js">{
   <span class="hljs-string">"env"</span> : {
@@ -1016,7 +1020,7 @@ couchapp init myapp
 </code></pre>
 <p>couchapp push<br>
 couchapp push prod</p>
-<h4 id="add-some-web-pages">Add Some Web Pages</h4>
+<h4 id="add-some-web-pages" class="heading-control">Add Some Web Pages<a class="heading-anchor" href="#add-some-web-pages" aria-hidden="true"></a></h4>
 <p>Now we are going to add a index page for our CouchApp. So we can place the index.html under _attachments. CouchDB can directly serve our attachments as static files.</p>
 <pre><code class="html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
@@ -1029,17 +1033,17 @@ couchapp push prod</p>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<h4 id="push-your-couchapp">Push your CouchApp</h4>
+<h4 id="push-your-couchapp" class="heading-control">Push your CouchApp<a class="heading-anchor" href="#push-your-couchapp" aria-hidden="true"></a></h4>
 <p>Now that we have created our basic application, it’s time to push it to our CouchDB server. Our CouchDB server is at the url <a href="http://127.0.0.1:5984" target="_blank" rel="noopener">http://127.0.0.1:5984</a> and we want to push our app in the database testdb:</p>
 <pre><code class="bash">$ couchapp push testdb
 </code></pre>
 <p>Go on <a href="http://127.0.0.1:5984/testdb/_design/myapp/index.html" target="_blank" rel="noopener">http://127.0.0.1:5984/testdb/_design/myapp/index.html</a>, you will see.</p>
-<h2 id="fauxton"><a href="https://github.com/apache/couchdb-fauxton/" target="_blank" rel="noopener">Fauxton</a></h2>
+<h2 id="fauxton" class="heading-control"><a href="https://github.com/apache/couchdb-fauxton/" target="_blank" rel="noopener">Fauxton</a><a class="heading-anchor" href="#fauxton" aria-hidden="true"></a></h2>
 <p>是Couchdb自带的WebUI: <a href="http://127.0.0.1:5984/_utils/index.html" target="_blank" rel="noopener">http://127.0.0.1:5984/_utils/index.html</a></p>
 <p>似乎还没有启用，所以暂时没有语法高亮，但：<br>
 app/addons/components/components/codeeditor.js</p>
 <p><a href="https://github.com/apache/couchdb-nano" target="_blank" rel="noopener">CouchDB Nano Client NodeJS</a></p>
-<h2 id="couchdb-as-graph">CouchDB As Graph</h2>
+<h2 id="couchdb-as-graph" class="heading-control">CouchDB As Graph<a class="heading-anchor" href="#couchdb-as-graph" aria-hidden="true"></a></h2>
 <p><a href="https://stackoverflow.com/questions/25949524/implications-of-modeling-a-graph-in-couchdb" target="_blank" rel="noopener">https://stackoverflow.com/questions/25949524/implications-of-modeling-a-graph-in-couchdb</a></p>
 <p>I’ve been toying with modeling a graph structure (property graph with named relationships) in couchdb and would like to know what are the potential bottlenecks in performance that I will find.</p>
 <p>I’m using the following principles:</p>
@@ -1108,7 +1112,7 @@ How to do traversing of this structure efficiently without having to do many ser
 <p>CouchBase已经fork了很远以前，查询语言也不一样。</p>
 <p>CouchDB的手机端用PouchDB. CouchBase也有CouchBaseLite（可以同步到CouchDB）.<br>
 CouchDB在单机时候就要预先订好shard数量。</p>
-<h2 id="couchdb-client">CouchDB Client</h2>
+<h2 id="couchdb-client" class="heading-control">CouchDB Client<a class="heading-anchor" href="#couchdb-client" aria-hidden="true"></a></h2>
 <ul>
 <li>PouchDB
 <ul>
@@ -1180,7 +1184,7 @@ pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Replication Progress'</span>, getProgress(info.pending));
 })
 </code></pre>
-<h3 id="rxdb">RxDB</h3>
+<h3 id="rxdb" class="heading-control">RxDB<a class="heading-anchor" href="#rxdb" aria-hidden="true"></a></h3>
 <ul>
 <li>RxDB: 内部使用PouchDB，
 <ul>
@@ -1410,7 +1414,7 @@ pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -1445,106 +1449,6 @@ pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script>

@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -46,7 +46,7 @@
 </script>
 
   <meta name="description" content="SaaS平台之殇 背景 商业应用的集中式托管可以追溯到20世纪60年代的时分系统中。SaaS通常使用多租架构为多个商业组织和用户提供服务。 在多租环境中的相对低廉的用户服务开通（创建新客户），使得一些软件即服务供应商可以用免费模式来提供应用。在这种模式下，基本功能免费，增强功能或更大的范围则是要收费的。当然，也有完全对用户完全免费的SaaS，而他们的收入则产生于其它相关来源例如：广告。 SaaS的">
-<meta name="keywords" content="cloud computing,open source,saas,software as a service">
+<meta name="keywords" content="cloud computing,saas,software as a service,open source">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SaaS平台之殇">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;open-saas&#x2F;index.html">
@@ -222,6 +222,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -326,12 +330,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1>SaaS平台之殇</h1>
-<h2 id="背景">背景</h2>
+        <h1 class="heading-control">SaaS平台之殇<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h2 id="背景" class="heading-control">背景<a class="heading-anchor" href="#背景" aria-hidden="true"></a></h2>
 <p>商业应用的集中式托管可以追溯到20世纪60年代的时分系统中。SaaS通常使用多租架构为多个商业组织和用户提供服务。</p>
 <p>在多租环境中的相对低廉的用户服务开通（创建新客户），使得一些软件即服务供应商可以用免费模式来提供应用。在这种模式下，基本功能免费，增强功能或更大的范围则是要收费的。当然，也有完全对用户完全免费的SaaS，而他们的收入则产生于其它相关来源例如：广告。</p>
 <p>SaaS的本质是将规模经济应用到软件应用的运营上。故其规模决定了其发展。而影响企业用户决定是否采用SaaS的一个最关键因素就是<code>数据</code>。</p>
-<h2 id="殇-问题">殇 - 问题</h2>
+<h2 id="殇-问题" class="heading-control">殇 - 问题<a class="heading-anchor" href="#殇-问题" aria-hidden="true"></a></h2>
 <p>数据的安全，以及数据的归属（政策法规上的搜索/占有保障法律并不保护服务存储的数据）。最终导致结果是，对数据的访问，以及进一步的对该数据的不当使用，仅仅由假定是诚信的第三方或他们自己的承诺书来限制（你没法知道他们到底是否违背了他们的承诺）。</p>
 <ul>
 <li>数据安全</li>
@@ -353,7 +357,7 @@
 <li>用户无知情权，监督权，数据归属权</li>
 </ul>
 <p>愚以上为制约SaaS发展规模的主要原因。</p>
-<h2 id="开源-saas-平台">开源 SaaS 平台</h2>
+<h2 id="开源-saas-平台" class="heading-control">开源 SaaS 平台<a class="heading-anchor" href="#开源-saas-平台" aria-hidden="true"></a></h2>
 <p>借助开源 SaaS 平台联盟，借助最新的技术手段，借助开源社区的监督和研发，可以做到：</p>
 <ul>
 <li>无后门</li>
@@ -405,9 +409,9 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/cloud-computing/" rel="tag"># cloud computing</a>
-              <a href="/tags/open-source/" rel="tag"># open source</a>
               <a href="/tags/saas/" rel="tag"># saas</a>
               <a href="/tags/software-as-a-service/" rel="tag"># software as a service</a>
+              <a href="/tags/open-source/" rel="tag"># open source</a>
           </div>
 
         
@@ -558,7 +562,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -593,106 +597,6 @@
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script>

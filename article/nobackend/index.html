@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -220,6 +220,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -318,7 +322,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1>什么是无后端构建开发</h1>
+        <h1 class="heading-control">什么是无后端构建开发<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，<br>
 它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放<br>
 在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和<br>
@@ -327,7 +331,7 @@
 <p>而API则不然，这是程序开发中与外部系统交流理所当然的接口，是每个开发者都在用的，一看就懂的。当然API也有好坏之分，编写制定好的API接口比开发应用更难。这需要你具备更强的架构设计能力，从具体中提炼出通用的操作能力，以及要求可读性更强的命名能力。</p>
 <p>自从互联网上分布式 Restful 体系架构提出后，web上的 OpenAPI 也在日益增多，但是大部分OpenAPI还是在各行其是。认证这块，虽然有统一的标准OAuth, 但是对普通开发者来说，还需要去了解OAuth的内部原理，使用上还是难用，而且各个站点对OAuth的具体实现上，又略有差异，这更增加开发者的负担。所以目前出现具体针对各大站点的OAuth认证的二次封装的开发库，降低普通开发者的使用难度。现在这些基础通用操作再次被“无后端”构建模式统一封装和组织，使得普通开发者更加容易的使用。再次降低了开发者的门槛，开发者可以完全不管后端的架构设计和组织了。那么遵循这样的普及，互联网上会有越来越多的各式各样的云服务API平台，未来的互联网架构也将从独立的web站点，变成了彼此分享协作的WebApp。</p>
 <p>让我们具体来看一个例子。</p>
-<h2 id="例子">例子</h2>
+<h2 id="例子" class="heading-control">例子<a class="heading-anchor" href="#例子" aria-hidden="true"></a></h2>
 <p>首先，我们从帐号管理开发谈起，在传统开发中，我们需要定义帐号的表结构，进行数据库服务器配置，<br>
 然后运行数据库服务，创建数据库和数据表，并初始化数据。那么在“无后端构建”的开发中，上述操作包<br>
 括登录，都没有必要再去做这些繁琐的操作了，你只需要再云服务后台添加一个数据库设置好访问权限，<br>
@@ -379,7 +383,7 @@ store.list(key, subkey_pattern, skipCount, count);
 <p>提了这么多，那么这到底是梦幻呢，还是现在就能在互联网上可以玩到的技术呢？毋庸置疑，<br>
 这目前不仅能在互联网上玩到，而且BitTorrent, Codecademy等已经在产品中使用Firebase提供<br>
 的无后端云存储服务，下面列举一些无后端云存储服务提供者和开源项目。</p>
-<h1>无后端云存储服务提供者与开源项目</h1>
+<h1 class="heading-control">无后端云存储服务提供者与开源项目<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <ul>
 <li>[<a href="http://sockethub.org/" target="_blank" rel="noopener">Sockethub</a>]开源，数据后端为Redis, 将消息抽象出来的形成API，与应用交换.</li>
 <li>[<a href="http://hood.ie/" target="_blank" rel="noopener">Hoodie</a>] 开源，数据后端用CouchDB, API与设想的很接近。</li>
@@ -390,14 +394,14 @@ store.list(key, subkey_pattern, skipCount, count);
 <li>[<a href="https://parse.com/" target="_blank" rel="noopener">Parse</a>] 商业化</li>
 <li>[<a href="http://www.kinvey.com/" target="_blank" rel="noopener">Kinvey</a>]</li>
 </ul>
-<h1>问题</h1>
+<h1 class="heading-control">问题<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
 <p>优势我们大家都看到了，无论从开发的角度来说，还是说从数据复用的角度来说，这样的模式都堪称完美。当然目前从开发的角度来说还是没有完全做到前端无痛开发来着，这主要集中在权限配置上比较复杂。</p>
 <p>那么这样的“无后端”构架的模式到底还有什么样的弊端？下面分别从用户和运营方的角度来看看，他们的顾虑会是什么？</p>
-<h2 id="用户的顾虑">用户的顾虑</h2>
+<h2 id="用户的顾虑" class="heading-control">用户的顾虑<a class="heading-anchor" href="#用户的顾虑" aria-hidden="true"></a></h2>
 <p>用户的顾虑不仅仅是从“无后端”构架才开始，当用户的数据被放在网上，用户的担忧就开始，用户的隐私是否会被泄漏，用户的数据是否被滥用？而随着美国施洛登暴露的隐私门，更引发了全球对自己在网上的数据的担忧。那么“无后端”构架应该怎么来避免用户的顾虑呢？</p>
 <p>首先，用户隐私数据必须加密，而加密的密钥只有用户自己才有，平台和应用开发者都没有。</p>
 <p>其次，以前数据库在应用开发者手中，存储方法的代码也在应用开发者手中，你根本不可能知道数据是不是真的加密存放的。现在数据库在第三方平台上，那么这使得通过第三方平台直接去查看数据，或者委托他人验证，成了可能。如此一来软件再也无法对此作出虚假承诺欺骗用户。</p>
-<h2 id="运营方的顾虑">运营方的顾虑</h2>
+<h2 id="运营方的顾虑" class="heading-control">运营方的顾虑<a class="heading-anchor" href="#运营方的顾虑" aria-hidden="true"></a></h2>
 <p>运营方可能顾虑的是我的账户数据，业务数据全在平台上了，那么这用户到底算是谁的？还有业务数据的安全怎么办？还有，如何能保证平台不利用我的业务数据？</p>
 <p>我的回答是，不要在意用户到底算谁的，要在意的是如何为用户服好务，保证用户数据的安全，只有能满足用户的需求，让用户满意，才能留住用户，否则一切都是浮云。因此，作为运营方应该考虑的是，如果云存储服务挂掉，怎么办？</p>
 
@@ -599,7 +603,7 @@ store.list(key, subkey_pattern, skipCount, count);
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -634,106 +638,6 @@ store.list(key, subkey_pattern, skipCount, count);
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script>

@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -222,6 +222,10 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -262,10 +266,10 @@
       
       
       <div class="post-body">
-          <h2 id="introduction">Introduction</h2>
+          <h2 id="introduction" class="heading-control">Introduction<a class="heading-anchor" href="#introduction" aria-hidden="true"></a></h2>
 <p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
 <p>An Example Interactive document looks like this:</p>
-<h3 id="st-ives-example">St.Ives Example</h3>
+<h3 id="st-ives-example" class="heading-control">St.Ives Example<a class="heading-anchor" href="#st-ives-example" aria-hidden="true"></a></h3>
 <p>An old riddle.</p>
 <blockquote>
 <p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
@@ -342,10 +346,10 @@ The first guess is often [2753]{first_guess}…
 <blockquote>
 <p>I am thinking about whether to use the new <code>[]{}</code> to express interactive elements, or to expand on <code>[]()</code>. From the development point of view, it is simpler to use<code>[]{}</code>, so I chose it.</p>
 </blockquote>
-<h3 id="a-more-complex-example">A More Complex Example</h3>
+<h3 id="a-more-complex-example" class="heading-control">A More Complex Example<a class="heading-anchor" href="#a-more-complex-example" aria-hidden="true"></a></h3>
 <p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
 <p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>
-<pre><code class="canvas"># demo how to draw a rect.
+<pre><code class="output"># demo how to draw a rect.
 paper = @canvas
 
 |
@@ -367,13 +371,13 @@ moveTo: 8:13
 tooltip: you can try it by youself now
 </code></pre>
 <hr>
-<h2 id="notation">Notation</h2>
+<h2 id="notation" class="heading-control">Notation<a class="heading-anchor" href="#notation" aria-hidden="true"></a></h2>
 <p>The notation for specifying elements is similar to the regular Markdown syntax<br>
 for links and images, generally following this format:</p>
 <p><code>[text content]{variable_name: configuration}</code></p>
 <p>See <a href="http://riceball.me/imarkdown/en/reference.html">reference.html</a> for a<br>
 complete reference of the elements and their configuration.</p>
-<h2 id="authors">Authors</h2>
+<h2 id="authors" class="heading-control">Authors<a class="heading-anchor" href="#authors" aria-hidden="true"></a></h2>
 <ul>
 <li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
 <li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu" target="_blank" rel="noopener">https://github.com/snowyu</a></li>
@@ -384,7 +388,7 @@ Cabrera</a>, <a href="http://johndebs.com/" target="_blank" rel="noopener">John 
 <p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret<br>
 Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a><br>
 library for creating reactive documents.</p>
-<h2 id="license">License</h2>
+<h2 id="license" class="heading-control">License<a class="heading-anchor" href="#license" aria-hidden="true"></a></h2>
 <p>MIT</p>
 
       </div>
@@ -530,7 +534,7 @@ library for creating reactive documents.</p>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -565,106 +569,6 @@ library for creating reactive documents.</p>
   
 
   
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-      <div class="moon-menu-item" onclick="back2bottom()">
-        <i class="fa fa-chevron-down"></i>
-      </div>
-    
-      <div class="moon-menu-item" onclick="back2top()">
-        <i class="fa fa-chevron-up"></i>
-      </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-<script>
-
-const moonMenuListener = function () {
-
-  //Get scroll percent
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
-  if (percent > 100) percent = 100;
-  
-  let menuText = document.querySelector('.moon-menu-text');
-  let menuPoints = document.querySelector('.moon-menu-points');
-  if (!percent){
-    percent = 0;
-    menuText.style.display = 'none';
-    menuPoints.style.display = 'block';
-  } else {
-    menuText.style.display = 'block';
-    menuPoints.style.display = 'none';
-    menuText.innerHTML = percent + '%';
-  }
-  
-  //Update strokeDasharray
-  let length = 196;
-  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
-
-}
-
-window.addEventListener('load' , () => {
-  moonMenuListener();
-});
-window.addEventListener('scroll' , moonMenuListener);
-
-const moonMenuClick = function () {
-  let items = document.querySelector('.moon-menu-items')
-  items.classList.toggle('active');
-  let points = document.querySelectorAll('.moon-menu-point');
-  let childItems = document.querySelectorAll('.moon-menu-item');
-  if (items.classList.contains('active')) {
-    points[0].setAttribute("cx","-.8rem");
-    points[0].setAttribute("cy","0");
-    points[2].setAttribute("cx",".8rem");
-    points[2].setAttribute("cy","0");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = -3 - 3*i + 'rem';
-      childItems[i].style.opacity = .9;
-    }
-  } else {
-    points[0].setAttribute("cx","0");
-    points[0].setAttribute("cy","-.8rem");
-    points[2].setAttribute("cx","0");
-    points[2].setAttribute("cy",".8rem");
-    for (let i=0; i<childItems.length; i++) {
-      childItems[i].style.top = '1rem';
-      childItems[i].style.opacity = 0;
-    }
-  }
-};
-
-const back2top = () => {
-  window.scroll({top: 0, behavior: 'smooth'});
-}
-
-const back2bottom = () => {
-  let offsetHeight =document.documentElement.offsetHeight;
-  let scrollHeight =document.documentElement.scrollHeight;
-  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
-}
-
-</script>
 
 
 <script src='/assets/js/imarkdown-0.4.0-min.js'></script><script>
