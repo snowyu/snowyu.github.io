@@ -2864,9 +2864,9 @@ ipset destroy chnroute
       </categories>
       <tags>
         <tag>cloud computing</tag>
+        <tag>open source</tag>
         <tag>saas</tag>
         <tag>software as a service</tag>
-        <tag>open source</tag>
       </tags>
   </entry>
   <entry>
@@ -7994,8 +7994,8 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
       </categories>
       <tags>
         <tag>thinking</tag>
-        <tag>open source</tag>
         <tag>arduino</tag>
+        <tag>open source</tag>
         <tag>hardware</tag>
         <tag>iot</tag>
       </tags>
@@ -8086,39 +8086,6 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
     <title>categories</title>
     <url>/categories/index.html</url>
     <content><![CDATA[<p>Collect all categories here.</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Going to St.ives</title>
-    <url>/imarkdown/stives.html</url>
-    <content><![CDATA[<p>An old riddle.</p>
-<blockquote>
-<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
-I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
-Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
-Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
-Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
-Kits, cats, sacks, wives<br>
-How many were going to St Ives?</p>
-</blockquote>
-<pre><code>total_sacks = @wives * @sacks
-total_cats  = total_sacks * @cats
-total_kits  = total_cats * @kits
-man         = 1
-
-if @travelers
-    narrator = 2
-    @verb = 'were'
-else
-    narrator = 1
-    @verb = 'was'
-</code></pre>
-<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
-<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
-</code></pre>
-<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
-<pre><code>@answer = narrator
-</code></pre>
 ]]></content>
   </entry>
   <entry>
@@ -8236,6 +8203,39 @@ Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noope
 library for creating reactive documents.</p>
 <h2 id="license" class="heading-control">License<a class="heading-anchor" href="#license" aria-hidden="true"></a></h2>
 <p>MIT</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Going to St.ives</title>
+    <url>/imarkdown/stives.html</url>
+    <content><![CDATA[<p>An old riddle.</p>
+<blockquote>
+<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
+I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
+Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
+Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
+Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
+Kits, cats, sacks, wives<br>
+How many were going to St Ives?</p>
+</blockquote>
+<pre><code>total_sacks = @wives * @sacks
+total_cats  = total_sacks * @cats
+total_kits  = total_cats * @kits
+man         = 1
+
+if @travelers
+    narrator = 2
+    @verb = 'were'
+else
+    narrator = 1
+    @verb = 'was'
+</code></pre>
+<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
+<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
+</code></pre>
+<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
+<pre><code>@answer = narrator
+</code></pre>
 ]]></content>
   </entry>
   <entry>

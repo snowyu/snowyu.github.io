@@ -655,8 +655,11 @@ rect.mousedown(  () -&gt;
   
 
 
-<script src='/assets/js/imarkdown-0.4.0-min.js'></script><script>
-window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Raphael 矢量图形和动画javascript库.md"});</script>
+<script>
+NexT.utils.getScript('/assets/js/imarkdown-0.4.0-min.js', () => {
+  window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Raphael 矢量图形和动画javascript库.md"});
+}, window.iMarkdown);
+</script>
 
 <script>
 if (document.querySelectorAll('pre code.mermaid').length) {

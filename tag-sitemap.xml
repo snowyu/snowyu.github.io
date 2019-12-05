@@ -381,6 +381,27 @@
     </url>
 
     <url>
+        <loc>http://riceball.me/tags/software-as-a-service/</loc>
+        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/saas/</loc>
+        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/open-source/</loc>
+        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://riceball.me/tags/Pure-View/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -396,27 +417,6 @@
 
     <url>
         <loc>http://riceball.me/tags/Camera/</loc>
-        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/open-source/</loc>
-        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/software-as-a-service/</loc>
-        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/saas/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -577,13 +577,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/tags/howto/</loc>
-        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://riceball.me/tags/cloud-storage/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -592,6 +585,13 @@
 
     <url>
         <loc>http://riceball.me/tags/idb/</loc>
+        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/howto/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
