@@ -14,6 +14,7 @@
   "dependencies": {
     "hexo": "^4.0.0",
     "hexo-deployer-git": "^2.1.0",
+    "hexo-excerpt": "^1.1.4",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-cname": "^0.3.0",
@@ -33,9 +34,9 @@
     "highlight.js": "^9.16.2",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-footnote": "^3.0.2",
-    "markdown-it-highlightjs": "file:packages/markdown-it-highlightjs",
+    "markdown-it-highlight-i": "^0.1.0",
     "markdown-it-ins": "^3.0.0",
-    "markdown-it-interactive": "file:packages/markdown-it-interactive",
+    "markdown-it-interactive": "^0.1.0",
     "markdown-it-math": "^4.1.1",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0"

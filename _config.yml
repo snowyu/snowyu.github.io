@@ -137,7 +137,7 @@ markdown:
     quotes: '“”‘’'
   plugins:
     - markdown-it-interactive
-    - markdown-it-highlightjs
+    - markdown-it-highlight-i
     - markdown-it-abbr
     - markdown-it-footnote
     - markdown-it-ins
@@ -173,3 +173,9 @@ index_generator:
   per_page: 10
   order_by: -date
   pagination_dir: page
+
+excerpt:
+  depth: 5
+  excerpt_excludes: []
+  more_excludes: []
+  hideWholePostExcerpts: true
