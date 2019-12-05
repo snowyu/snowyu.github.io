@@ -8091,8 +8091,10 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
   <entry>
     <title>Interactive Markdown</title>
     <url>/imarkdown/index.html</url>
-    <content><![CDATA[<p><a href="http://riceball.me/imarkdown">Interactive Markdown</a>是使用纯文本的Markdown格式来制作响应式交互文档的工具。响应式Markdown增加了特有的交互组件和变量的标记符号。</p>
-<p>例如: 一首童谣</p>
+    <content><![CDATA[<h2 id="介绍">介绍</h2>
+<p><a href="http://riceball.me/imarkdown">Interactive Markdown</a>是使用纯文本的Markdown格式来制作响应式交互文档的工具。响应式Markdown增加了特有的交互组件和变量的标记符号。</p>
+<h3 id="一个简单交互文档例子">一个简单交互文档例子</h3>
+<p>一首童谣</p>
 <blockquote>
 <p><span class="AMElement" data-embed="false" data-config="travelers: 我们 或 我">我</span> 要去 <em>圣伊芙</em><br>
 我碰到一个有 <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 个老婆</span>  的男人<br>
@@ -8159,9 +8161,48 @@ else
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>我并有想好是使用新的<code>[]{}</code>表达互动元素，还是在<code>[]()</code>上扩展，从开发上看采用<code>[]{}</code>更简单，因此选用的它。</p>
-</blockquote>
+<h3 id="一个更复杂的交互文档例子">一个更复杂的交互文档例子</h3>
+<p><strong>参数</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X 坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y 坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高:50</span></p>
+<p>接下来的例子演示如何使用Raphael动画库绘制一个方形，点击下方的<code>play</code>按钮开始</p>
+<pre><code class="canvas"># demo how to draw a rect.
+paper = @canvas
+
+|
+~~~
+tooltip: set the canvas size:200X100 ::: Init
+type:paper.setSize(200,100)\n
+tooltip: clear canvas
+type:paper.clear()\n
+tooltip: init x/y coor, width/height parameters coming from document
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: drawing rect nowing ::: Draw rect
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: fill red for the rect
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: you can try it by youself now
+</code></pre>
+<hr>
+<h2 id="标记">标记</h2>
+<p>交互元素的标记符号和<code>markdown</code>的链接和图像标记符号类似:</p>
+<p><code>[text content]{variable_name: configuration}</code></p>
+<p>具体请💁🏻‍♂️参阅 <a href="http://riceball.me/imarkdown/reference.html">reference.html</a> .</p>
+<h2 id="作者">作者</h2>
+<ul>
+<li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
+<li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu" target="_blank" rel="noopener">https://github.com/snowyu</a></li>
+</ul>
+<p>Thanks to <a href="https://github.com/joyrexus" target="_blank" rel="noopener">J Voight</a>, <a href="http://alexcabrera.me/" target="_blank" rel="noopener">Alex<br>
+Cabrera</a>, <a href="http://johndebs.com/" target="_blank" rel="noopener">John Debs</a>, and<br>
+<a href="http://supriyosinha.com" target="_blank" rel="noopener">Supriyo Sinha</a> for help with the notation.</p>
+<p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret<br>
+Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a><br>
+library for creating reactive documents.</p>
+<h2 id="license">License</h2>
+<p>MIT</p>
 ]]></content>
   </entry>
   <entry>
@@ -8205,8 +8246,8 @@ else
   <entry>
     <title>Interactive Markdown</title>
     <url>/imarkdown/en/index.html</url>
-    <content><![CDATA[<h2 id="interactive-markdown"><a href="http://riceball.me/imarkdown">Interactive Markdown</a></h2>
-<p><a href="http://riceball.me/imarkdown">Interactive Markdown</a> is a tool for making reactive documents — in the vein of <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
+    <content><![CDATA[<h2 id="introduction">Introduction</h2>
+<p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
 <p>An Example Interactive document looks like this:</p>
 <h3 id="st-ives-example">St.Ives Example</h3>
 <p>An old riddle.</p>
@@ -8310,6 +8351,25 @@ moveTo: 8:13
 tooltip: you can try it by youself now
 </code></pre>
 <hr>
+<h2 id="notation">Notation</h2>
+<p>The notation for specifying elements is similar to the regular Markdown syntax<br>
+for links and images, generally following this format:</p>
+<p><code>[text content]{variable_name: configuration}</code></p>
+<p>See <a href="http://riceball.me/imarkdown/en/reference.html">reference.html</a> for a<br>
+complete reference of the elements and their configuration.</p>
+<h2 id="authors">Authors</h2>
+<ul>
+<li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
+<li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu" target="_blank" rel="noopener">https://github.com/snowyu</a></li>
+</ul>
+<p>Thanks to <a href="https://github.com/joyrexus" target="_blank" rel="noopener">J Voight</a>, <a href="http://alexcabrera.me/" target="_blank" rel="noopener">Alex<br>
+Cabrera</a>, <a href="http://johndebs.com/" target="_blank" rel="noopener">John Debs</a>, and<br>
+<a href="http://supriyosinha.com" target="_blank" rel="noopener">Supriyo Sinha</a> for help with the notation.</p>
+<p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret<br>
+Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a><br>
+library for creating reactive documents.</p>
+<h2 id="license">License</h2>
+<p>MIT</p>
 ]]></content>
   </entry>
 </search>

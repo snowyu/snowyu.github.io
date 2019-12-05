@@ -21,12 +21,12 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":false,"sidebar":false,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: true,
@@ -45,13 +45,13 @@
   };
 </script>
 
-  <meta name="description" content="Interactive Markdown Interactive Markdown is a tool for making reactive documents — in the vein of Tangle — using a plain text markdown source, with a special notation for adding interactive controls">
+  <meta name="description" content="Introduction Interactive Markdown is a tool for making reactive&#x2F;interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The l">
 <meta name="keywords" content="interactive,reactive,document,raphael,javascript,markdown">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Interactive Markdown">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;en&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="Interactive Markdown Interactive Markdown is a tool for making reactive documents — in the vein of Tangle — using a plain text markdown source, with a special notation for adding interactive controls">
+<meta property="og:description" content="Introduction Interactive Markdown is a tool for making reactive&#x2F;interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The l">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-23T14:22:00.000Z">
 <meta name="twitter:card" content="summary">
@@ -222,10 +222,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -266,8 +262,8 @@
       
       
       <div class="post-body">
-          <h2 id="interactive-markdown"><a href="http://riceball.me/imarkdown">Interactive Markdown</a></h2>
-<p><a href="http://riceball.me/imarkdown">Interactive Markdown</a> is a tool for making reactive documents — in the vein of <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
+          <h2 id="introduction">Introduction</h2>
+<p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
 <p>An Example Interactive document looks like this:</p>
 <h3 id="st-ives-example">St.Ives Example</h3>
 <p>An old riddle.</p>
@@ -371,6 +367,25 @@ moveTo: 8:13
 tooltip: you can try it by youself now
 </code></pre>
 <hr>
+<h2 id="notation">Notation</h2>
+<p>The notation for specifying elements is similar to the regular Markdown syntax<br>
+for links and images, generally following this format:</p>
+<p><code>[text content]{variable_name: configuration}</code></p>
+<p>See <a href="http://riceball.me/imarkdown/en/reference.html">reference.html</a> for a<br>
+complete reference of the elements and their configuration.</p>
+<h2 id="authors">Authors</h2>
+<ul>
+<li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
+<li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu" target="_blank" rel="noopener">https://github.com/snowyu</a></li>
+</ul>
+<p>Thanks to <a href="https://github.com/joyrexus" target="_blank" rel="noopener">J Voight</a>, <a href="http://alexcabrera.me/" target="_blank" rel="noopener">Alex<br>
+Cabrera</a>, <a href="http://johndebs.com/" target="_blank" rel="noopener">John Debs</a>, and<br>
+<a href="http://supriyosinha.com" target="_blank" rel="noopener">Supriyo Sinha</a> for help with the notation.</p>
+<p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret<br>
+Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a><br>
+library for creating reactive documents.</p>
+<h2 id="license">License</h2>
+<p>MIT</p>
 
       </div>
       
@@ -417,7 +432,7 @@ tooltip: you can try it by youself now
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#interactive-markdown"><span class="nav-number">1.</span> <span class="nav-text">Interactive Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">A More Complex Example</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">A More Complex Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#notation"><span class="nav-number">2.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#authors"><span class="nav-number">3.</span> <span class="nav-text">Authors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#license"><span class="nav-number">4.</span> <span class="nav-text">License</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -515,7 +530,7 @@ tooltip: you can try it by youself now
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
@@ -550,6 +565,106 @@ tooltip: you can try it by youself now
   
 
   
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+      <div class="moon-menu-item" onclick="back2bottom()">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+    
+      <div class="moon-menu-item" onclick="back2top()">
+        <i class="fa fa-chevron-up"></i>
+      </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+const moonMenuListener = function () {
+
+  //Get scroll percent
+  let offsetHeight =document.documentElement.offsetHeight;
+  let scrollHeight =document.documentElement.scrollHeight;
+  var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+  let percent = Math.round(scrollTop/(scrollHeight - offsetHeight)*100);
+  if (percent > 100) percent = 100;
+  
+  let menuText = document.querySelector('.moon-menu-text');
+  let menuPoints = document.querySelector('.moon-menu-points');
+  if (!percent){
+    percent = 0;
+    menuText.style.display = 'none';
+    menuPoints.style.display = 'block';
+  } else {
+    menuText.style.display = 'block';
+    menuPoints.style.display = 'none';
+    menuText.innerHTML = percent + '%';
+  }
+  
+  //Update strokeDasharray
+  let length = 196;
+  document.querySelector('.moon-menu-border').style.strokeDasharray = percent*length/100 + ' ' + length;
+
+}
+
+window.addEventListener('load' , () => {
+  moonMenuListener();
+});
+window.addEventListener('scroll' , moonMenuListener);
+
+const moonMenuClick = function () {
+  let items = document.querySelector('.moon-menu-items')
+  items.classList.toggle('active');
+  let points = document.querySelectorAll('.moon-menu-point');
+  let childItems = document.querySelectorAll('.moon-menu-item');
+  if (items.classList.contains('active')) {
+    points[0].setAttribute("cx","-.8rem");
+    points[0].setAttribute("cy","0");
+    points[2].setAttribute("cx",".8rem");
+    points[2].setAttribute("cy","0");
+    for (let i=0; i<childItems.length; i++) {
+      childItems[i].style.top = -3 - 3*i + 'rem';
+      childItems[i].style.opacity = .9;
+    }
+  } else {
+    points[0].setAttribute("cx","0");
+    points[0].setAttribute("cy","-.8rem");
+    points[2].setAttribute("cx","0");
+    points[2].setAttribute("cy",".8rem");
+    for (let i=0; i<childItems.length; i++) {
+      childItems[i].style.top = '1rem';
+      childItems[i].style.opacity = 0;
+    }
+  }
+};
+
+const back2top = () => {
+  window.scroll({top: 0, behavior: 'smooth'});
+}
+
+const back2bottom = () => {
+  let offsetHeight =document.documentElement.offsetHeight;
+  let scrollHeight =document.documentElement.scrollHeight;
+  window.scroll({top: (scrollHeight - offsetHeight), behavior: 'smooth'});
+}
+
+</script>
 
 
 <script src='/assets/js/imarkdown-0.4.0-min.js'></script><script>
