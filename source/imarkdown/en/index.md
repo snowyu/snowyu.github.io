@@ -10,12 +10,12 @@ categories:
   - Markdown
 tags : [interactive, reactive, document, raphael, javascript, markdown]
 reactive:
-  collapsed: false
+  editable: true
 ---
 
-## [Interactive Markdown](http://riceball.me/imarkdown)
+## Introduction
 
-[Interactive Markdown](http://riceball.me/imarkdown) is a tool for making reactive documents — in the vein of [Tangle](http://worrydream.com/Tangle) — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.
+[Interactive Markdown](http://riceball.me/imarkdown/en) is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.
 
 An Example Interactive document looks like this:
 
@@ -102,7 +102,7 @@ The first guess is often [2753]{first_guess}…
 
 Following will show howto draw a rect with Raphael animation library, Click the `play` button to begin:
 
-```canvas
+```output
 # demo how to draw a rect.
 paper = @canvas
 
@@ -126,3 +126,27 @@ tooltip: you can try it by youself now
 ```
 ----
 
+## Notation
+
+The notation for specifying elements is similar to the regular Markdown syntax
+for links and images, generally following this format:
+
+`[text content]{variable_name: configuration}`
+
+More detail see 💁🏻‍♂️ [reference.html](http://riceball.me/imarkdown/en/reference.html) for a
+complete reference of the elements and their configuration.
+
+## Authors
+
+* [Alec Perkins](http://alecperkins.net)
+* [Riceball LEE](https://riceball.me) https://github.com/snowyu
+
+## Credits
+
+Thanks to [J Voight](https://github.com/joyrexus), [Alex Cabrera](http://alexcabrera.me/), [John Debs](http://johndebs.com/), and [Supriyo Sinha](http://supriyosinha.com) for help with the notation.
+
+The concept and controls are heavily influenced by [Bret Victor’s](http://worrydream.com) [Tangle](http://worrydream.com/Tangle) library for creating reactive documents.
+
+## License
+
+MIT

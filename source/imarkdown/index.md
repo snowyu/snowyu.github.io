@@ -10,12 +10,16 @@ categories:
   - Markdown
 tags : [interactive, reactive, document, raphael, javascript, markdown]
 reactive:
-  collapsed: true
+  editable: true
 ---
+
+# 介绍
 
 [Interactive Markdown](http://riceball.me/imarkdown)是使用纯文本的Markdown格式来制作响应式交互文档的工具。响应式Markdown增加了特有的交互组件和变量的标记符号。
 
-例如: 一首童谣
+## 一个简单交互文档例子
+
+一首童谣
 
 > [我]{travelers: 我们 或 我} 要去 *圣伊芙*
 > 我碰到一个有 [7 个老婆]{wives: 1..10}  的男人
@@ -81,5 +85,55 @@ reactive:
 * `[7 个老婆]{wives: 1..10}` 是一个滑块组件，值可以在指定范围内变化，这里是1-10之间，
   * `wives`是变量名称，可以在代码块中用 `@wives` 来使用该变量。
 
-> 我并有想好是使用新的`[]{}`表达互动元素，还是在`[]()`上扩展，从开发上看采用`[]{}`更简单，因此选用的它。
+### 一个更复杂的交互文档例子
 
+**参数**：[X 坐标:10]{rx:10..}，[Y 坐标:18]{ry:10..}，[宽:100]{rw:1..}，[高:50]{rh:1..}
+
+接下来的例子演示如何使用Raphael动画库绘制一个方形，点击下方的`play`按钮开始
+
+```output
+# demo how to draw a rect.
+paper = @canvas
+
+|
+~~~
+tooltip: set the canvas size:200X100 ::: Init
+type:paper.setSize(200,100)\n
+tooltip: clear canvas
+type:paper.clear()\n
+tooltip: init x/y coor, width/height parameters coming from document
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: drawing rect nowing ::: Draw rect
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: fill red for the rect
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: you can try it by youself now
+```
+----
+
+## 标记
+
+交互元素的标记符号和`markdown`的链接和图像标记符号类似:
+
+`[text content]{variable_name: configuration}`
+
+具体请参阅💁🏻‍♂️ [reference.html](http://riceball.me/imarkdown/reference.html) .
+
+## 作者
+
+* [Alec Perkins](http://alecperkins.net)
+* [Riceball LEE](https://riceball.me) https://github.com/snowyu
+
+## Credits
+
+Thanks to [J Voight](https://github.com/joyrexus), [Alex Cabrera](http://alexcabrera.me/), [John Debs](http://johndebs.com/), and [Supriyo Sinha](http://supriyosinha.com) for help with the notation.
+
+The concept and controls are heavily influenced by [Bret Victor’s](http://worrydream.com) [Tangle](http://worrydream.com/Tangle) library for creating reactive documents.
+
+## License
+
+MIT
