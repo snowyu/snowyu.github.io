@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -68,33 +68,14 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -140,8 +121,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -167,54 +147,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -223,7 +158,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -242,7 +176,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/life/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -251,10 +185,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/life/index/" class="post-title-link" itemprop="url">逝水流连，随风而去</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -289,7 +223,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -346,7 +280,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/loopback/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -355,10 +289,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/loopback/" class="post-title-link" itemprop="url">The Loopback Open API Framework</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -405,7 +339,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -420,7 +354,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>38 分钟</span>
+              <span>19 分钟</span>
             </span>
 
         </div>
@@ -432,11 +366,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 class="heading-control">Loopback Framework<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+          <h1 id="loopback-framework">Loopback Framework</h1>
 <p>尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。<br>
 <a href="http://loopback.io" target="_blank" rel="noopener">LoopBack</a> 是一个基于<a href="http://expressjs.com/" target="_blank" rel="noopener">Express</a>的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful API，用nodejs 开发API，提供JS, iOS 和 Android SDKs.</p>
 <p><a href="https://strongloop.com" target="_blank" rel="noopener">StrongLoop</a>在2015年<a href="https://developer.ibm.com/bluemix/2015/09/10/getting-started-node-js-loopback-framework-ibm-cloudant/" target="_blank" rel="noopener">被IBM收购了</a>.</p>
-<h2 id="features" class="heading-control">Features<a class="heading-anchor" href="#features" aria-hidden="true"></a></h2>
+<h2 id="features">Features</h2>
 <ul>
 <li>快速创建动态 end-to-end REST APIs.</li>
 <li>连接设备/浏览器到数据和服务。</li>
@@ -475,7 +409,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/promise.cn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -484,10 +418,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/promise.cn/" class="post-title-link" itemprop="url">异步编程与 Promise</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -534,7 +468,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -549,7 +483,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -561,7 +495,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 class="heading-control">Promise<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+          <h1 id="promise">Promise</h1>
 <p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p>
 <p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。<br>
 因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
@@ -618,7 +552,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/howto-choose-programming-language/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -627,10 +561,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/howto-choose-programming-language/" class="post-title-link" itemprop="url">如何选择一门语言学习计算机编程</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -680,7 +614,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -692,7 +626,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 class="heading-control">如何选择一门语言学习计算机编程<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+          <h1 id="ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng">如何选择一门语言学习计算机编程</h1>
 <p>实用派的想法：</p>
 <p>哪一门或一些语言适合你？取决于你想干什么？</p>
 <ul>
@@ -733,7 +667,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/vr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -742,10 +676,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/vr/" class="post-title-link" itemprop="url">虚拟现实（VR）体验</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -786,7 +720,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -801,7 +735,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -816,7 +750,7 @@
           <p>HTC Vive 到手，我也好好体验了一把沉浸式虚拟现实，的确震撼，尽管目前好的内容还不是很多。真的世界变了，<br>
 不提游戏，很多经验的教学，难以实作的实验，在沉浸式虚拟现实中都将被改写，人类获取另类的知识体系将变容易。<br>
 体验，免除危险的体验模式，从未来迎面而来。我还是先讲述自己的个人体验感受，最后再说下虚拟现实以及相关技术分析。</p>
-<h2 id="虚拟现实" class="heading-control">虚拟现实<a class="heading-anchor" href="#虚拟现实" aria-hidden="true"></a></h2>
+<h2 id="xu-ni-xian-shi">虚拟现实</h2>
 <p>虚拟现实（Virtual Reality），又称虚拟实境，简单来说就是用电脑模拟一个虚拟世界，让人感觉自己完全置身于这个虚拟的<br>
 世界当中，从而忘掉自己所处的真实世界。目前主要是通过对人的眼睛和耳朵的欺骗，以及附加在头盔上的传感器来实现VR。</p>
 <p>尽管离《黑客帝国》描述的场景距离还相当长远，但至少目前已经可以让人产生身在虚拟世界的幻觉了。尽管依然存在这样那样<br>
@@ -866,7 +800,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/explore-thinking-of-internet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -875,10 +809,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/explore-thinking-of-internet/" class="post-title-link" itemprop="url">移动互联网（物联网）思维的探索</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -934,7 +868,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -947,11 +881,11 @@
 
       
           <p>要理解移动互联网首先要理解互联网，要搞清楚互联网思维是啥，首先也要理解互联网的本质，而要理解互联网的本质则首先要从互联谈起，何谓互联，互，彼此也；联，沟通也。互联网就是搭建的P2P的彼此沟通的网络。那么何谓移动，移动我的理解是设备，尤其是随身设备的上网能力。那么移动互联网和互联网有什么不同之处么？我觉得没有根本的不同，唯一不同的是时间和地点，从间断固定到随时随地。对于家居设备的上网，目前炒作的物联网(IoT)，也只不过是将一个个的设备作为“网上服务”放到了家庭，使得我们可以在家以外也能控制而已。因此这里说道的移动互联网思维其实主要还是在探索互联网思维。</p>
-<h1 class="heading-control">互联网的本质<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="hu-lian-wang-de-ben-zhi">互联网的本质</h1>
 <p>无论移动互联网还是互联网，我们如果思考下它的本质，想想它的本质是什么？那么不难发现，它的本质无疑是最终用户(Peer)的互联互通。那么互联互通的本质又是什么？<br>
 而当互联网最终用户膨胀到足够规模的时候，我们发现，它正在改变世界。Why? 它是如何做到的呢？</p>
 <p>互联网的本质是对等（互联），因为要对等互联，所以才有了开放和标准。因为完全开放和标准化，才有足够多组织细胞接入，从而形成群体。群体在互联网上产生信息和消费信息，从而导致信息爆炸大数据。</p>
-<h2 id="开放与标准" class="heading-control">开放与标准<a class="heading-anchor" href="#开放与标准" aria-hidden="true"></a></h2>
+<h2 id="kai-fang-yu-biao-zhun">开放与标准</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/article/explore-thinking-of-internet/#more" rel="contents">
@@ -981,7 +915,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/js-desktop-sdk/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -990,10 +924,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/js-desktop-sdk/" class="post-title-link" itemprop="url">用 Javascript 开发桌面应用的框架工具列表</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -1040,7 +974,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -1055,7 +989,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -1069,7 +1003,7 @@
       
           <p>随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。</p>
 <a id="more"></a>
-<h1 class="heading-control"><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a><a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="electron"><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a></h1>
 <p>Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在<code>package.json</code>中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。</p>
 <p>下载需要翻墙：</p>
           <!--noindex-->
@@ -1101,7 +1035,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/nobackend/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -1110,10 +1044,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/nobackend/" class="post-title-link" itemprop="url">无后端构建的无痛HTML应用开发[2013趋势]</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -1154,7 +1088,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -1169,7 +1103,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -1181,7 +1115,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 class="heading-control">什么是无后端构建开发<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+          <h1 id="shi-mo-shi-wu-hou-duan-gou-jian-kai-fa">什么是无后端构建开发</h1>
 <p>无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，<br>
 它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放<br>
 在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和<br>
@@ -1218,7 +1152,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/idb-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -1227,10 +1161,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/idb-1/" class="post-title-link" itemprop="url">大道至简 -- 之iDB NoSQL数据库开发随笔（一）</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -1277,7 +1211,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -1292,7 +1226,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -1305,13 +1239,13 @@
 
       
           <p>iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：<a href="https://github.com/snowyu/iDB" target="_blank" rel="noopener">https://github.com/snowyu/iDB</a>），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engine)的核心。</p>
-<h3 id="几个概念：" class="heading-control">几个概念：<a class="heading-anchor" href="#几个概念：" aria-hidden="true"></a></h3>
+<h3 id="ji-ge-gai-nian">几个概念：</h3>
 <ul>
 <li>面向列：所谓面向列(Column Oriented)是和面向行(Row Oriented)相对而言的，绝大多数的关系型数据库就是面向行存储的，而iDB则是面向列基于Key/Value的存储系统。</li>
 <li>结构化：所谓结构化(Structured)是指值(Value)可以是带结构数据的复杂类型，而层级则是指Key可以有不同的层级关系，基于目录树的形式。</li>
 <li>基于目录：基于目录(Directory-Based)也是相对于基于文件(File-Based)而言，对于传统的数据库系统几乎都是通过创建少量的随机文件，然后把大量的数据存放在里面，而iDB则完全不同，也可以说是恰恰相反，它是创建大量的目录和文件，把数据分散在目录中，你可以认为这是一种创新。</li>
 </ul>
-<h3 id="background-设计背景" class="heading-control">Background (设计背景)<a class="heading-anchor" href="#background-设计背景" aria-hidden="true"></a></h3>
+<h3 id="background-she-ji-bei-jing">Background (设计背景)</h3>
 <p>iDB NoSQL数据库引擎的设计初衷是希望能更为合理的设计组织数据库引擎的层次架构，以及看到现代文件系统设计发展的变化有感而发，两者融合就促使我萌发设计iDB的念头。</p>
           <!--noindex-->
             <div class="post-button">
@@ -1342,7 +1276,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/nokia-b-plan/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -1351,10 +1285,10 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
             <a href="/article/nokia-b-plan/" class="post-title-link" itemprop="url">Nokia 的B计划 - Nokia 还有未来么？</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -1389,7 +1323,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -1404,7 +1338,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -1416,8 +1350,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 class="heading-control">Nokia 还有未来么？<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
-<h2 id="现状" class="heading-control">现状<a class="heading-anchor" href="#现状" aria-hidden="true"></a></h2>
+          <h1 id="nokia-huan-you-wei-lai-mo">Nokia 还有未来么？</h1>
+<h2 id="xian-zhuang">现状</h2>
 <p>2012年6月30日，作为最新裁员计划的一部分，诺基亚的三位高管黯然离职。7月1日调整后的新管理层开始生效，诺基亚的管理结构将更加简化。在接下来的一年多时间里，还会有1万名员工跟这三位高管一样，不得不离开诺基亚，以达到在2013年底之前节省30亿欧元开支的目标。</p>
 <p>这家昔日硬件巨头股价下滑60%，手机销量骤降，现金储备急剧减少，而且失去了手机霸主位置。</p>
 <p>现今，诺基亚孤注一掷正全身心投入WP智能机的研发中，期望这一平台能帮助该公司摆脱颓势。但是今年一季度，Windows Phone仅占智能机出货量的2.2%。即使今秋推出的WP 8系统能够大获成功，也不能保证诺基亚能够收复失地。而HTC和三星这两家Android硬件巨头，也正在计划推出WP设备。更糟糕的是，微软今秋推出的WP 8系统让诺基亚有苦难言。为了将桌面操作系统的优势沿用到移动操作系统上，WP8采用了与Windows 8相同的内核。这样一来，微软上一代移动操作系统WP7.5因为与WP8内核不同，无法升级到WP8。诺基亚寄予厚望刚上市的高端智能手机Lumia900无疑成了最大牺牲品。</p>
@@ -1483,8 +1417,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -1499,26 +1431,16 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -1538,12 +1460,12 @@
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -1553,8 +1475,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -1571,30 +1498,18 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -1612,19 +1527,6 @@
   
 
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

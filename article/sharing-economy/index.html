@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -71,33 +71,14 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>从分享经济到共享经济系列(一)——分享经济的前世今生 | Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -143,8 +124,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -170,54 +150,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -226,7 +161,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -245,7 +179,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/sharing-economy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -254,9 +188,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           从分享经济到共享经济系列(一)——分享经济的前世今生
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -303,7 +237,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -318,7 +252,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -330,7 +264,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 class="heading-control">分享经济的前世今生<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+        <h1 id="fen-xiang-jing-ji-de-qian-shi-jin-sheng">分享经济的前世今生</h1>
 <p>“分享”这一概念是很容易理解的，因为我们打小从幼儿园的时候，就被教育说要主动分享，乐于助人。 “分享”这更是慈善事业中的主旋律。 用一言而概之，就是将自己的(既有资源)，与他人分享。</p>
 <p>“分享经济”这一概念则是最近几年才明确地提出来的。 然而往往却和&quot;公司租赁&quot;混在一块，在我看来，这错得离谱，他们有着本质的不同。 而目前“租赁经济”只不过是披着互联网皮的传统公司租赁模式。</p>
 <p>那么“租赁经济”和“分享经济”最本质的不同之处在哪里？</p>
@@ -342,9 +276,9 @@
 <li>Share/Exchage: 共享或交换</li>
 <li>Resource(资源): 这里的资源是泛指，包括电子信息和实际资源（产品，时间，技能，金钱等等)</li>
 </ul>
-<h1 class="heading-control">现阶段的分享经济<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="xian-jie-duan-de-fen-xiang-jing-ji">现阶段的分享经济</h1>
 <p>现阶段的<strong>一代分享经济</strong>，是以互联网为信息平台，在各个垂直领域中使得人人能对自己的<strong>信息</strong>和<strong>资源</strong>进行分享。</p>
-<h2 id="信息分享" class="heading-control">信息分享<a class="heading-anchor" href="#信息分享" aria-hidden="true"></a></h2>
+<h2 id="xin-xi-fen-xiang">信息分享</h2>
 <p>首当其冲的是信息分享，随着社交网络服务(SNS)的出现，将个人的兴趣、经历、成果或心情分享出去，会让自己得到满足感。 很多人在做或做完某件事以后，往往想要分享给家人和朋友，亦或是陌生人，如果这些人对自己的分享是认可的、开心的或互动的，那么分享者自身也会很开心，这就是分享的动力。</p>
 <ul>
 <li>分享自己知识经验整理成文的这是<strong>博客</strong>。</li>
@@ -352,15 +286,15 @@
 <li>通过兴趣、休闲，炫耀，把私密和心情进行身边生活圈子分享，成就了<strong>微信(Facebook)</strong></li>
 <li>把生活经(履)历，心得向特定群体进行分享，成就了<strong>Pinterest</strong></li>
 </ul>
-<h2 id="资源分享" class="heading-control">资源分享<a class="heading-anchor" href="#资源分享" aria-hidden="true"></a></h2>
+<h2 id="zi-yuan-fen-xiang">资源分享</h2>
 <p>接着下来的是资源的分享和交换。</p>
-<p><img src="./share1.png" alt></p>
+<p><img src="./share1.png" alt=""></p>
 <p>“资源&quot;分享的一个典型案例是&quot;AirBnB”，故事是这样开始的，07年在旧金山的两个刚毕业的美国小伙儿为自己的房租发愁，而当时城里正好在举办一个设计展，周边的旅馆都被订满了。 两位年轻人突发奇想，搞来了三张充气床垫放在客厅，建了一个简陋的网站发布信息：宣布任何参会者只要支付每晚80美元的费用，就可以享受到气垫床加早餐（AirBed &amp; Breakfast）的服务，和传统的借宿相比，通过 AirBnB，不再局限于熟人圈子，参与“分享”者的数量大大增加，借宿发生的地理空间也得到极大地拓展，同时借宿过程变得更加便捷，借宿体验变得更加有趣。  AirBnB 也因此成为“分享经济”的典范。</p>
 <p>这实质是<strong>基于P2P租赁的“产品”服务</strong>。  我们要喝牛奶，但不必家家户户都养奶牛，这是显而易见的。 可是只要我们在家里环顾一下，便不难发现我们可没少干“养奶牛”的事。 举个极端的例子，美国有一半的家庭都拥有电钻，而平均每个家庭使用电钻的时间只有6 -13分钟！ 显然， 人们忘记了自己要的是打一个“洞”，而不是拥有一个电钻。 既然某些东西利用率如此之低，那么与其买一个闲在家里，不如临到用时才去借一个。 这种“<strong>使用而非占有</strong>”的观念如今已被越来越多的人接受。 它挑战了传统的建立在“私有独享”基础上的经济模式。</p>
 <p>在家里，不仅有电钻这类使用频率很低的东西，其实还有很多东西人们压根就用不著。 对于这类物品，过去要么只能扔掉，要么当废品廉价卖掉，如果舍不得的话，那就只能堆在家里给自己添堵。 而现在拜互联网所赐出现的许多创新的平台，可以帮助人们更加有效地处理这些二手物品。 比如<strong>基于二手转让或交换的市场再流通</strong>的 Swapub 平台。</p>
 <p><strong>基于&quot;服务技能&quot;的分享协同生活</strong>,可以说是新时代下的&quot;我为人人，人人为我&quot;,早在上世纪80年代，就有人倡议社区居民相互提供服务，每个人的服务时间都记录在一个“时间账户”中，将来需要别人来为自己提供服务的时候，就可以从这个账户中“提取”时间。 如今这一模式已经在社区志愿服务、社区养老等领域广泛开展，在中国的一些城市里也已经出现了一些尝试。</p>
 <p><strong>基于集体智慧的众创众筹</strong>，对于酷爱DIY的创意者，通过众筹平台，把自己的创意变成现实的产品越来越普遍了。 互联网的到来，使得渺小个体也能发出自己的声音，也能被众感知和放大，这也是众智时代的到来。 从国外的kickstarter,india…,到国内的京东众筹，淘宝众筹…无一不在体现着这一趋势。 当然国内，我更多的看到是公司行为，把自己新发布的产品放在众筹上作为一种市场预售罢了。</p>
-<h1 class="heading-control">分享经济的社会意义<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="fen-xiang-jing-ji-de-she-hui-yi-yi">分享经济的社会意义</h1>
 <p>“<a href="http://www.yic.cas.cn/kpzx/kpzl/201609/t20160922_4667205.html" target="_blank" rel="noopener">泛太平洋垃圾带</a>”自1997年被发现后，如今它的面积已经达到350万平方公里，相当于法国面积的7倍,而这堆塑料垃圾的面积每年会增加8万平方公里。由此说明，现代社会物质其实已经足够多了，已经达到泛滥的程度，但是过度的消费和不合理的分配导致物资无法惠及每一个人。</p>
 <ul>
 <li>人们不停追逐更新、更好、更便捷的产品所有权，而旧的产品成为垃圾</li>
@@ -377,7 +311,7 @@
 <p>在传统商业模式的逻辑中，每个人都是社会经济体系中固定的一环，彼此的角色是对立的，要么是消费者，要么是生产者；这些角色之间的权力关系往往是不平等的，中间商可以压榨剥削小农，生产商可以欺瞒诱导顾客；这些角色彼此之间的关系是竞争的，我的获益多了，你的利益就会少了。 而在共享经济中，人们满足需求的方式可以是赠送、可以是交换、可以循环利用，可以临时借用，可以共同创造，可以共同使用，彼此的关系是利益共享的，我的获益多了，你的获益也不会减少。</p>
 <p>越来越多的人将从雇佣就业走向创业式就业，从公司管理走向平台化的协同，从全职工作走向兼职工作，从机械的流水线作业走向自由灵活的“云上”作业，从办公室与工厂走向更个性化的居家与旅途。 与此同时，分享经济将重塑社会组织，“公司+员工”将在越来越多的领域被“平台+个人”所替代。 分享经济的发展让参与者比较自由地进入或退出社会生产过程，减轻了个人对组织的依赖程度，个人的创新创业潜力将从办公室、流水线的束缚中释放出来。 越来越多的个人将不再依附于某个特定的企业或机构，分享经济平台将成为灵活就业、个人创业、社会交往的空间。 个性化服务与生产自然也不再话下。</p>
 <p>而这一切需要某种能让参与各方都能得到信任平台，这个平台也只有是各方共建的平台才能办到。</p>
-<h1 class="heading-control">现阶段分享经济平台的问题<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="xian-jie-duan-fen-xiang-jing-ji-ping-tai-de-wen-ti">现阶段分享经济平台的问题</h1>
 <p>现阶段的<strong>一代分享经济</strong>平台，只是传统商业模式下的各个垂直领域封闭的个体经济平台，各自跑马圈地。 谋求各自利益最大化而封闭，自然就谈不上“分享“和”共赢“。</p>
 <p>以微信为例，如果你想在微信上看到淘宝链接的信息，那是很麻烦的一件事情，你点连接，看不到任何内容，即使你用浏览器打开，也看不到，你必须手工选择复制粘贴淘宝链接地址到浏览器，所以出现了所谓的“淘口令”，当然淘宝也没少干封杀微信的傻事，不过没人在乎。</p>
 <p>而再以淘宝来说，T宝最开始是提供开放的API接口的，但是自从15年开始，API不再开放了,大部分转为开始收费，哪怕是页面公开的产品信息，如果通过API调用获取也要收费，所以大家开始页面爬虫抓取。 14年的时候比价网比比皆是，到如今所剩无几。 一边说让天下没有难做的生意，一边却想方设法阻碍信息的分享和流通。</p>
@@ -391,9 +325,9 @@
 <p>再说说信任，当前，几乎所有提供分享经济服务的平台在应对信任问题时，都采取了“<code>评分</code>”机制。 租借双方都必须填写详细的个人数据，在分享活动结束后，可以给对方评分。 但是这样的“评分”仅限于平台内部，当然，这个“评分”也不会有任何的分享，或者保证不被串改，删除。 你只能信任平台，信任平台的员工。</p>
 <p>那么到底下一代分享经济（共享经济）如何实现，什么样的平台才能完全避免上述问题？</p>
 <p>欲知后事如何，且听下回分解。待后续(TO BE CONTIUNED)…</p>
-<h1 class="heading-control">鸣谢<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="ming-xie">鸣谢</h1>
 <p>感谢朋友们提供的宝贵意见，特别感谢同事周悦的一幅图及钓鱼的例子（略有改动），尤其是<a href="http://www.zhuangbiaowei.com" target="_blank" rel="noopener">庄表伟</a>，在对本文的提纲上给于我很多宝贵意见。谢谢朋友们。还有朋友提到文章篇幅过长，这也是个问题，所以我决定分成系列篇，本文以及接下来的部分还要作大量的修改，<a href="http://www.zhuangbiaowei.com" target="_blank" rel="noopener">表伟</a>已经承诺一起来写，欢迎之至，因此这所有的一切都还不是最终定稿，后面还更精彩。</p>
-<h1 class="heading-control">参考<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="can-kao">参考</h1>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Sharing_economy" target="_blank" rel="noopener">Sharing_economy</a></li>
 <li><a href="https://book.douban.com/subject/25986746/" target="_blank" rel="noopener">零边际成本社会</a></li>
@@ -424,23 +358,6 @@
     </div>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>riceball
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="/http:/riceball.me/article/sharing-economy/" title="从分享经济到共享经济系列(一)——分享经济的前世今生">http://riceball.me/article/sharing-economy/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -502,14 +419,12 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">分享经济的前世今生</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">现阶段的分享经济</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息分享"><span class="nav-number">2.1.</span> <span class="nav-text">信息分享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源分享"><span class="nav-number">2.2.</span> <span class="nav-text">资源分享</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">分享经济的社会意义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">现阶段分享经济平台的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">鸣谢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fen-xiang-jing-ji-de-qian-shi-jin-sheng"><span class="nav-number">1.</span> <span class="nav-text">分享经济的前世今生</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xian-jie-duan-de-fen-xiang-jing-ji"><span class="nav-number">2.</span> <span class="nav-text">现阶段的分享经济</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xin-xi-fen-xiang"><span class="nav-number">2.1.</span> <span class="nav-text">信息分享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zi-yuan-fen-xiang"><span class="nav-number">2.2.</span> <span class="nav-text">资源分享</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fen-xiang-jing-ji-de-she-hui-yi-yi"><span class="nav-number">3.</span> <span class="nav-text">分享经济的社会意义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xian-jie-duan-fen-xiang-jing-ji-ping-tai-de-wen-ti"><span class="nav-number">4.</span> <span class="nav-text">现阶段分享经济平台的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ming-xie"><span class="nav-number">5.</span> <span class="nav-text">鸣谢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#can-kao"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -524,26 +439,16 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -563,12 +468,12 @@
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -578,8 +483,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -596,30 +506,18 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -637,19 +535,6 @@
   
 
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

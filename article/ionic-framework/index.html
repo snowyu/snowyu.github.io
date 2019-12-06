@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -69,33 +69,14 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>Ionic Framework | Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -141,8 +122,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -168,54 +148,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -224,7 +159,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -243,7 +177,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/ionic-framework/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -252,9 +186,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Ionic Framework
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -301,7 +235,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -316,7 +250,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>31 分钟</span>
+              <span>15 分钟</span>
             </span>
 
         </div>
@@ -328,7 +262,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 class="heading-control">Ionic Framework<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+        <h1 id="ionic-framework">Ionic Framework</h1>
 <p>Ionic 4 已经彻底解耦用户界面和框架,你可以在<code>angular</code>和<code>react</code>(甚至<code>vue</code>)之间选择.</p>
 <pre><code>npm i -g ionic
 </code></pre>
@@ -347,7 +281,7 @@
 <p>首先安装</p>
 <pre><code>npm install -g ionic cordova
 </code></pre>
-<h2 id="创建应用" class="heading-control">创建应用<a class="heading-anchor" href="#创建应用" aria-hidden="true"></a></h2>
+<h2 id="chuang-jian-ying-yong">创建应用</h2>
 <p><strong>注意：如果是windows下，请勿在cygwin或msys2终端下运行 <code>ionic</code> 命令行工具。</strong></p>
 <p>通过脚手架工具<code>ionic</code>创建您的H5应用。</p>
 <pre><code>ionic start --type=angular MyApp conference
@@ -364,7 +298,7 @@ MyApp 可以替换成你的应用程序名称。<br>
 npm install
 </code></pre>
 <p>你的项目代码在src目录下。</p>
-<h2 id="在浏览器运行" class="heading-control">在浏览器运行<a class="heading-anchor" href="#在浏览器运行" aria-hidden="true"></a></h2>
+<h2 id="zai-liu-lan-qi-yun-hang">在浏览器运行</h2>
 <pre><code class="bash"><span class="hljs-built_in">cd</span> MyApp
 ionic serve -l
 </code></pre>
@@ -372,14 +306,14 @@ ionic serve -l
 <p><code>-l</code>(–lab) 参数将在浏览器中模拟多个手机设备。</p>
 </blockquote>
 <p>接下来 CLI 会编译项目，接着浏览器会打开一个地址为 <a href="http://localhost:8100" target="_blank" rel="noopener">http://localhost:8100</a> 的窗口，端口号根据当前PC的实际情况可能会有变化，如果8100被占用了会使用8101等。</p>
-<h2 id="代码结构" class="heading-control">代码结构<a class="heading-anchor" href="#代码结构" aria-hidden="true"></a></h2>
+<h2 id="dai-ma-jie-gou">代码结构</h2>
 <ul>
 <li>./src/ 当我们运行<code>ionic serve</code>命令的时候，在<code>src/</code>目录下的typescript文件会被译成JavaScript</li>
 <li>./src/index.html 是h5的主入口文件，设置脚本和CSS，运行整个App。</li>
 <li>./src/app/app.module.ts 是angular2 应用的入口。</li>
 <li>./src/app/app.html 是应用的模板文件</li>
 </ul>
-<h2 id="添加页面" class="heading-control">添加页面<a class="heading-anchor" href="#添加页面" aria-hidden="true"></a></h2>
+<h2 id="tian-jia-ye-mian">添加页面</h2>
 <pre><code>ionic g page login
 </code></pre>
 <p>Note: 懒加载的Page为独立的Module。<br>
@@ -433,7 +367,7 @@ Ionic的懒加载Page很愚蠢，是编译时刻由ionic的app-scripts处理的(
 </ul>
 <p>ionic 4将使用Web Component(通过stencil编译)的方式，来改变目前绑定在Angular框架的局面，<br>
 这样ionic的组件就和框架无关了，你可以用在任何框架上面使用， vue, react 都不是问题.</p>
-<h2 id="announcing-pwa-support-in-ionic2" class="heading-control"><a href="http://blog.ionic.io/announcing-pwa-support-in-ionic-2/" target="_blank" rel="noopener">Announcing PWA support in Ionic2</a><a class="heading-anchor" href="#announcing-pwa-support-in-ionic2" aria-hidden="true"></a></h2>
+<h2 id="announcing-pwa-support-in-ionic2"><a href="http://blog.ionic.io/announcing-pwa-support-in-ionic-2/" target="_blank" rel="noopener">Announcing PWA support in Ionic2</a></h2>
 <p>We also provide the service worker registration code in your index.html file.</p>
 <pre><code class="js"><span class="hljs-keyword">if</span> (<span class="hljs-string">'serviceWorker'</span> <span class="hljs-keyword">in</span> navigator) {
       navigator.serviceWorker.register(<span class="hljs-string">'service-worker.js'</span>)
@@ -444,15 +378,15 @@ Ionic的懒加载Page很愚蠢，是编译时刻由ionic的app-scripts处理的(
 <p>To enable the service worker, you can simply uncomment that registration code, and you’ll be ready to go! You’ll find the service-worker.js file in the www folder of your Ionic project.</p>
 <p>For examples of service workers, check out the <a href="https://serviceworke.rs/" target="_blank" rel="noopener">ServiceWorker Cookbook</a> by Mozilla and the Google Chrome team’s <a href="https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker" target="_blank" rel="noopener">repo of example service workers</a>.</p>
 <p>We’re very excited to start supporting PWA’s out of the box with Ionic and plan on steadily improving this support in the future. We are currently considering support for server-side rendering to get a blazing-fast first render and convenient hosting with the Ionic Cloud. Our service worker support will also be evolving in the near future to allow for automatic configuration of service workers. This will give your PWA offline support right out of the box, without you having to write any code. We cannot wait to see the awesome PWAs that you build! Stay tuned to our blog and our docs for updates!</p>
-<h2 id="best-practise" class="heading-control">Best Practise<a class="heading-anchor" href="#best-practise" aria-hidden="true"></a></h2>
+<h2 id="best-practise">Best Practise</h2>
 <p>src/app 存放本应用下的公用部分，以及app模块本身。</p>
-<h3 id="main-app-module" class="heading-control">Main App Module<a class="heading-anchor" href="#main-app-module" aria-hidden="true"></a></h3>
+<h3 id="main-app-module">Main App Module</h3>
 <p>该模块为主页面的入口</p>
 <p>src/app/app.module.ts<br>
 src/app/app.comonent.ts<br>
 src/app/app.scss<br>
 src/app/app.html</p>
-<h3 id="shared-module" class="heading-control">Shared Module<a class="heading-anchor" href="#shared-module" aria-hidden="true"></a></h3>
+<h3 id="shared-module">Shared Module</h3>
 <p>在本应用的其它Module中需要用到的模块统一放在此处。</p>
 <p>src/shared/app.imports.ts   本应用内所有要导入的组件，指令，模块，pipe</p>
 <pre><code class="ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> MODULES = [
@@ -509,8 +443,8 @@ src/app/app.html</p>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SharedModule { }
 </code></pre>
 <p>shared/ 这是第三方的库</p>
-<h3 id="microapp" class="heading-control">MicroApp<a class="heading-anchor" href="#microapp" aria-hidden="true"></a></h3>
-<h2 id="capacitor" class="heading-control">Capacitor<a class="heading-anchor" href="#capacitor" aria-hidden="true"></a></h2>
+<h3 id="microapp">MicroApp</h3>
+<h2 id="capacitor">Capacitor</h2>
 <p>如果想试用 <code>capacitor</code> 代替 Cordavo：</p>
 <pre><code>npm install --save @capacitor/core @capacitor/cli
 </code></pre>
@@ -529,7 +463,7 @@ src/app/app.html</p>
 <p>Now you need to generate the www folder with the Ionic app built files by running the build command:</p>
 <pre><code>npm run build
 </code></pre>
-<h3 id="adding-the-android-platform" class="heading-control">Adding the Android Platform<a class="heading-anchor" href="#adding-the-android-platform" aria-hidden="true"></a></h3>
+<h3 id="adding-the-android-platform">Adding the Android Platform</h3>
 <p>before you can run your app you need to add a platform either android, ios or web so let’s add the Android platform</p>
 <pre><code class="bash">npx <span class="hljs-built_in">cap</span> add android
 npx <span class="hljs-built_in">cap</span> sync
@@ -545,10 +479,10 @@ npx <span class="hljs-built_in">cap</span> sync
 <p>If that doesn’t open Android Studio you can simply open Android Studio manually and then File-&gt;Open… command then navigate to your project and open the android folder.</p>
 <p>You can now use Android Studio to launch your app using an emulator or a real device.</p>
 <p>Next we’ll see how to use Capacitor plugins to access native device features such as the Camera and Geolocation.</p>
-<h2 id="问题" class="heading-control">问题<a class="heading-anchor" href="#问题" aria-hidden="true"></a></h2>
+<h2 id="wen-ti">问题</h2>
 <p><a href="https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/" target="_blank" rel="noopener">https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/</a><br>
 <a href="https://robferguson.org/blog/2017/11/28/testing-your-ionic-3-app/" target="_blank" rel="noopener">https://robferguson.org/blog/2017/11/28/testing-your-ionic-3-app/</a></p>
-<h3 id="asserts-html-index-html-连接不成功-can-not-unsuccessful-connect-webview" class="heading-control">/asserts/html/index.html 连接不成功(can not unsuccessful connect)，(webview)<a class="heading-anchor" href="#asserts-html-index-html-连接不成功-can-not-unsuccessful-connect-webview" aria-hidden="true"></a></h3>
+<h3 id="assertshtmlindexhtml-lian-jie-bu-cheng-gong-can-not-unsuccessful-connectwebview">/asserts/html/index.html 连接不成功(can not unsuccessful connect)，(webview)</h3>
 <p>里面的脚本太多加载超时导致。<br>
 在java中加入:</p>
 <pre><code class="java"><span class="hljs-keyword">super</span>.setIntegerProperty(<span class="hljs-string">"loadUrlTimeoutValue"</span>, <span class="hljs-number">700000</span>);
@@ -556,7 +490,7 @@ npx <span class="hljs-built_in">cap</span> sync
 <p>或者在项目根目录 <code>config.xml</code>的 <code>andorid platform</code> 中加入:</p>
 <pre><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">preference</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"loadUrlTimeoutValue"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"700000"</span> /&gt;</span>
 </code></pre>
-<h3 id="ionic-angular-的每一个版本总是和对应的angular版本绑定的" class="heading-control">ionic-angular 的每一个版本总是和对应的angular版本绑定的<a class="heading-anchor" href="#ionic-angular-的每一个版本总是和对应的angular版本绑定的" aria-hidden="true"></a></h3>
+<h3 id="ionicangular-de-mei-yi-ge-ban-ben-zong-shi-he-dui-ying-de-angular-ban-ben-bang-ding-de">ionic-angular 的每一个版本总是和对应的angular版本绑定的</h3>
 <p>不要轻易变动，除非你知道对应的angular版本。</p>
 <pre><code>&quot;ionic-angular&quot;: &quot;^2.0.0-rc.3-201612080433&quot;,
 &quot;@angular/core&quot;: &quot;2.2.1&quot;,
@@ -564,7 +498,7 @@ npx <span class="hljs-built_in">cap</span> sync
 <p>否则报错：</p>
 <pre><code>__WEBPACK_IMPORTED_MODULE_0__angular_core__.Version is not a constructor
 </code></pre>
-<h3 id="can-not-import-constants" class="heading-control">Can not import constants!<a class="heading-anchor" href="#can-not-import-constants" aria-hidden="true"></a></h3>
+<h3 id="can-not-import-constants">Can not import constants!</h3>
 <p><a href="https://github.com/driftyco/ionic-app-scripts/issues/439" target="_blank" rel="noopener">https://github.com/driftyco/ionic-app-scripts/issues/439</a></p>
 <p>Ask:<br>
 In my case i’ve got a regular ionic projekt.<br>
@@ -579,11 +513,11 @@ Transpile the Typescript to Javascript<br>
 Use NPM (or NPM link) to get your library in node_modules<br>
 Code as normal</p>
 <p>We can’t support Typescript from a third party library at this time. It’s gotta be converted to Javascript because that is how libraries are distributed 99% of the time.</p>
-<h3 id="click-delays-点击延迟问题" class="heading-control">Click Delays 点击延迟问题<a class="heading-anchor" href="#click-delays-点击延迟问题" aria-hidden="true"></a></h3>
+<h3 id="click-delays-dian-ji-yan-chi-wen-ti">Click Delays 点击延迟问题</h3>
 <p>熟悉前端的应该都知道，某些元素在click事件会有300ms的延迟，<br>
 在ionic里也是只有button和a可以立即响应的。如果要给其他的<br>
 元素比如div增加click事件，给该元素加上<code>tappable</code>属性即可解决。</p>
-<h3 id="http请求跨域问题" class="heading-control">http请求跨域问题<a class="heading-anchor" href="#http请求跨域问题" aria-hidden="true"></a></h3>
+<h3 id="http-qing-qiu-kua-yu-wen-ti">http请求跨域问题</h3>
 <p>在ionic2里使用angular2的HTTP请求api时，如果在浏览器里运行，经常会遇到跨域问题，比如：</p>
 <pre><code>XMLHttpRequest cannot load http://www.xxx.com/clt/jsp/v3/channelContList.jsp?n=25950&amp;WD-UUID=864819028898243&amp;pageidx=1. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8101' is therefore not allowed access.
 </code></pre>
@@ -596,7 +530,7 @@ Code as normal</p>
 <p>解决方法也很简单，ripple设置右上角有一个Cross Domain Proxy，有三个选择，Disabled、Local和Remote，<br>
 通过字面意思就可以看出来分别对应禁用、本地和远程访问，如果是访问本机的api的话，一般设置为Disabled就可以了。<br>
 如果访问远程主机的api，一般要设置为Remote或Disabled。</p>
-<h3 id="引用第三方js库的问题" class="heading-control">引用第三方js库的问题<a class="heading-anchor" href="#引用第三方js库的问题" aria-hidden="true"></a></h3>
+<h3 id="yin-yong-di-san-fang-js-ku-de-wen-ti">引用第三方js库的问题</h3>
 <p>开发过程中不可避免的要用到第三方js库，如果直接在TypeScript里写的话，编译器是认不出来的，<br>
 会报错，编译也通不过。外部的类必须要import进来才可以用。TypeScript需要一个声明文件 d.ts<br>
 来知道第三方库的接口。可参考 <a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/Writing%20Definition%20Files.html" target="_blank" rel="noopener">https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/Writing Definition Files.html</a></p>
@@ -610,7 +544,7 @@ Cordova的一些函数，编译的话tsc找不到，解决办法是复制一份j
 <pre><code>/// &lt;reference path=&quot;../sdk.d.ts&quot;/&gt;
 </code></pre>
 <p>这样的方式引用。注意一定要写在文件第一行。</p>
-<h3 id="开发模式选择" class="heading-control">开发模式选择<a class="heading-anchor" href="#开发模式选择" aria-hidden="true"></a></h3>
+<h3 id="kai-fa-mo-shi-xuan-ze">开发模式选择</h3>
 <p>这个问题只是我做的项目的特殊情况，可能大部分人遇不到。我们的平台封装了Cordova的http请求，调用api必须用指定的<br>
 方法才可以。但在chrome里调试的时候是加载不到Cordova的，于是我想了一个办法，增加一个全局的isDebug变量，封装一<br>
 个全局的http方法，在debug模式时调用angular2的HTTP来请求，正式运行时才用Cordova的。其他的service都要调用这个方<br>
@@ -665,7 +599,7 @@ Cordova的一些函数，编译的话tsc找不到，解决办法是复制一份j
 <p><a href="https://basarat.gitbooks.io/typescript/content/docs/promise.html" target="_blank" rel="noopener">https://basarat.gitbooks.io/typescript/content/docs/promise.html</a></p>
 <p>在angular2的官方文档中，是推荐用Observable模式的，但我还没有搞明白怎么将callback转为Observable，目前也没有时间<br>
 仔细研究这块，所以还是继续用Promise好了。</p>
-<h3 id="单例模式" class="heading-control">单例模式<a class="heading-anchor" href="#单例模式" aria-hidden="true"></a></h3>
+<h3 id="dan-li-mo-shi">单例模式</h3>
 <p>单例是经常用到的，我参考一个老外的代码用了一个单例，用来保存一些全局变量：</p>
 <pre><code class="js"><span class="hljs-keyword">import</span> {UserInfo} <span class="hljs-keyword">from</span> <span class="hljs-string">'./model/user'</span>;
 
@@ -694,11 +628,11 @@ Cordova的一些函数，编译的话tsc找不到，解决办法是复制一份j
   public <span class="hljs-keyword">static</span> getInstance(): AppGlobal { <span class="hljs-keyword">return</span> AppGlobal.instance; }
 }
 </code></pre>
-<h3 id="lazy-loading" class="heading-control">Lazy loading<a class="heading-anchor" href="#lazy-loading" aria-hidden="true"></a></h3>
+<h3 id="lazy-loading">Lazy loading</h3>
 <p><a href="https://github.com/didinj/ionic3-angular4-sample-app" target="_blank" rel="noopener">https://github.com/didinj/ionic3-angular4-sample-app</a></p>
 <p>每一个页面都是一个 Module，通过pageModule来实现懒加载。<br>
 Angluar4本身的router loadChildren也是这样做的。</p>
-<h3 id="程序的自动更新" class="heading-control">程序的自动更新<a class="heading-anchor" href="#程序的自动更新" aria-hidden="true"></a></h3>
+<h3 id="cheng-xu-de-zi-dong-geng-xin">程序的自动更新</h3>
 <p>既然是html自然可以自动更新</p>
 <p>支持Android和iOS:</p>
 <ul>
@@ -840,7 +774,7 @@ updateCallback(error, data) {
  }
 }
 </code></pre>
-<h4 id="build-and-run-in-the-android-emulator" class="heading-control">Build and Run in the Android Emulator<a class="heading-anchor" href="#build-and-run-in-the-android-emulator" aria-hidden="true"></a></h4>
+<h4 id="build-and-run-in-the-android-emulator">Build and Run in the Android Emulator</h4>
 <p>From Android Studio, click the Tools menu, point to Android, click Android Virtual Device (AVD) Manager, and then start your virtual device. Open another command line and build the application, run the Hot Code Plugin build, and then run the application in the Android emulator:</p>
 <pre><code class="bash">npm run build --prod
 cordova-hcp build
@@ -859,7 +793,7 @@ cp -r www ../code-server/updates
 <span class="hljs-built_in">cd</span> ../code-server
 http-server
 </code></pre>
-<h3 id="problems" class="heading-control">Problems<a class="heading-anchor" href="#problems" aria-hidden="true"></a></h3>
+<h3 id="problems">Problems</h3>
 <ul>
 <li><a href="https://forum.ionicframework.com/t/about-to-give-up-with-ionic-3-simple-native-like-chat-page-not-possible/87548/29" target="_blank" rel="noopener">https://forum.ionicframework.com/t/about-to-give-up-with-ionic-3-simple-native-like-chat-page-not-possible/87548/29</a>
 <ul>
@@ -895,23 +829,6 @@ http-server
     </div>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>riceball
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="/http:/riceball.me/article/ionic-framework/" title="Ionic Framework">http://riceball.me/article/ionic-framework/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -973,14 +890,12 @@ http-server
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Ionic Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建应用"><span class="nav-number">1.1.</span> <span class="nav-text">创建应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在浏览器运行"><span class="nav-number">1.2.</span> <span class="nav-text">在浏览器运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码结构"><span class="nav-number">1.3.</span> <span class="nav-text">代码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加页面"><span class="nav-number">1.4.</span> <span class="nav-text">添加页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#announcing-pwa-support-in-ionic2"><span class="nav-number">1.5.</span> <span class="nav-text">Announcing PWA support in Ionic2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#best-practise"><span class="nav-number">1.6.</span> <span class="nav-text">Best Practise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main-app-module"><span class="nav-number">1.6.1.</span> <span class="nav-text">Main App Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-module"><span class="nav-number">1.6.2.</span> <span class="nav-text">Shared Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#microapp"><span class="nav-number">1.6.3.</span> <span class="nav-text">MicroApp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#capacitor"><span class="nav-number">1.7.</span> <span class="nav-text">Capacitor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#adding-the-android-platform"><span class="nav-number">1.7.1.</span> <span class="nav-text">Adding the Android Platform</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.8.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#asserts-html-index-html-连接不成功-can-not-unsuccessful-connect-webview"><span class="nav-number">1.8.1.</span> <span class="nav-text">/asserts/html/index.html 连接不成功(can not unsuccessful connect)，(webview)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ionic-angular-的每一个版本总是和对应的angular版本绑定的"><span class="nav-number">1.8.2.</span> <span class="nav-text">ionic-angular 的每一个版本总是和对应的angular版本绑定的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#can-not-import-constants"><span class="nav-number">1.8.3.</span> <span class="nav-text">Can not import constants!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#click-delays-点击延迟问题"><span class="nav-number">1.8.4.</span> <span class="nav-text">Click Delays 点击延迟问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http请求跨域问题"><span class="nav-number">1.8.5.</span> <span class="nav-text">http请求跨域问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用第三方js库的问题"><span class="nav-number">1.8.6.</span> <span class="nav-text">引用第三方js库的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发模式选择"><span class="nav-number">1.8.7.</span> <span class="nav-text">开发模式选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">1.8.8.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lazy-loading"><span class="nav-number">1.8.9.</span> <span class="nav-text">Lazy loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序的自动更新"><span class="nav-number">1.8.10.</span> <span class="nav-text">程序的自动更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#build-and-run-in-the-android-emulator"><span class="nav-number">1.8.10.1.</span> <span class="nav-text">Build and Run in the Android Emulator</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#problems"><span class="nav-number">1.8.11.</span> <span class="nav-text">Problems</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ionic-framework"><span class="nav-number">1.</span> <span class="nav-text">Ionic Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chuang-jian-ying-yong"><span class="nav-number">1.1.</span> <span class="nav-text">创建应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zai-liu-lan-qi-yun-hang"><span class="nav-number">1.2.</span> <span class="nav-text">在浏览器运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dai-ma-jie-gou"><span class="nav-number">1.3.</span> <span class="nav-text">代码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tian-jia-ye-mian"><span class="nav-number">1.4.</span> <span class="nav-text">添加页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#announcing-pwa-support-in-ionic2"><span class="nav-number">1.5.</span> <span class="nav-text">Announcing PWA support in Ionic2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#best-practise"><span class="nav-number">1.6.</span> <span class="nav-text">Best Practise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main-app-module"><span class="nav-number">1.6.1.</span> <span class="nav-text">Main App Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-module"><span class="nav-number">1.6.2.</span> <span class="nav-text">Shared Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#microapp"><span class="nav-number">1.6.3.</span> <span class="nav-text">MicroApp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#capacitor"><span class="nav-number">1.7.</span> <span class="nav-text">Capacitor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#adding-the-android-platform"><span class="nav-number">1.7.1.</span> <span class="nav-text">Adding the Android Platform</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wen-ti"><span class="nav-number">1.8.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#assertshtmlindexhtml-lian-jie-bu-cheng-gong-can-not-unsuccessful-connectwebview"><span class="nav-number">1.8.1.</span> <span class="nav-text">/asserts/html/index.html 连接不成功(can not unsuccessful connect)，(webview)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ionicangular-de-mei-yi-ge-ban-ben-zong-shi-he-dui-ying-de-angular-ban-ben-bang-ding-de"><span class="nav-number">1.8.2.</span> <span class="nav-text">ionic-angular 的每一个版本总是和对应的angular版本绑定的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#can-not-import-constants"><span class="nav-number">1.8.3.</span> <span class="nav-text">Can not import constants!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#click-delays-dian-ji-yan-chi-wen-ti"><span class="nav-number">1.8.4.</span> <span class="nav-text">Click Delays 点击延迟问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-qing-qiu-kua-yu-wen-ti"><span class="nav-number">1.8.5.</span> <span class="nav-text">http请求跨域问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yin-yong-di-san-fang-js-ku-de-wen-ti"><span class="nav-number">1.8.6.</span> <span class="nav-text">引用第三方js库的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kai-fa-mo-shi-xuan-ze"><span class="nav-number">1.8.7.</span> <span class="nav-text">开发模式选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dan-li-mo-shi"><span class="nav-number">1.8.8.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lazy-loading"><span class="nav-number">1.8.9.</span> <span class="nav-text">Lazy loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cheng-xu-de-zi-dong-geng-xin"><span class="nav-number">1.8.10.</span> <span class="nav-text">程序的自动更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#build-and-run-in-the-android-emulator"><span class="nav-number">1.8.10.1.</span> <span class="nav-text">Build and Run in the Android Emulator</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#problems"><span class="nav-number">1.8.11.</span> <span class="nav-text">Problems</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -995,26 +910,16 @@ http-server
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -1034,12 +939,12 @@ http-server
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -1049,8 +954,13 @@ http-server
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -1067,30 +977,18 @@ http-server
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -1108,19 +1006,6 @@ http-server
   
 
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

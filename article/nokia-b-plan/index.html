@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -71,33 +71,14 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>Nokia 的B计划 - Nokia 还有未来么？ | Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -143,8 +124,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -170,54 +150,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -226,7 +161,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -245,7 +179,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/nokia-b-plan/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -254,9 +188,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Nokia 的B计划 - Nokia 还有未来么？
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -291,7 +225,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -306,7 +240,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -318,18 +252,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 class="heading-control">Nokia 还有未来么？<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
-<h2 id="现状" class="heading-control">现状<a class="heading-anchor" href="#现状" aria-hidden="true"></a></h2>
+        <h1 id="nokia-huan-you-wei-lai-mo">Nokia 还有未来么？</h1>
+<h2 id="xian-zhuang">现状</h2>
 <p>2012年6月30日，作为最新裁员计划的一部分，诺基亚的三位高管黯然离职。7月1日调整后的新管理层开始生效，诺基亚的管理结构将更加简化。在接下来的一年多时间里，还会有1万名员工跟这三位高管一样，不得不离开诺基亚，以达到在2013年底之前节省30亿欧元开支的目标。</p>
 <p>这家昔日硬件巨头股价下滑60%，手机销量骤降，现金储备急剧减少，而且失去了手机霸主位置。</p>
 <p>现今，诺基亚孤注一掷正全身心投入WP智能机的研发中，期望这一平台能帮助该公司摆脱颓势。但是今年一季度，Windows Phone仅占智能机出货量的2.2%。即使今秋推出的WP 8系统能够大获成功，也不能保证诺基亚能够收复失地。而HTC和三星这两家Android硬件巨头，也正在计划推出WP设备。更糟糕的是，微软今秋推出的WP 8系统让诺基亚有苦难言。为了将桌面操作系统的优势沿用到移动操作系统上，WP8采用了与Windows 8相同的内核。这样一来，微软上一代移动操作系统WP7.5因为与WP8内核不同，无法升级到WP8。诺基亚寄予厚望刚上市的高端智能手机Lumia900无疑成了最大牺牲品。</p>
-<h2 id="nokia的未来之路与b计划" class="heading-control">Nokia的未来之路与B计划<a class="heading-anchor" href="#nokia的未来之路与b计划" aria-hidden="true"></a></h2>
+<h2 id="nokia-de-wei-lai-zhi-lu-yubji-hua">Nokia的未来之路与B计划</h2>
 <p>OK，那么 Nokia的未来之路在何方？埃洛普一直在说B计划，但是却没有透露只字半语B计划的内容，B计划到底会是什么？如果埃洛普是微软的托，那么未来Nokia沦为微软的代工厂就是板上钉钉的事情了，Nokia再无未来。</p>
 <p>否则，以我愚见，Nokia 的未来一定不是在手机上。君请看诺基亚手机的照相功能从800万像素到1200万像素，再到如今的4000万像素，在CMOS的配置上已经完全超越了如今的卡片机，超越太多了。只就CMOS而言4100万的像素也是目前所有135单反数码相机不能达到的高度，也超过了大量非高端120中画幅单反数码相机。而且<a href="http://conversations.nokia.com/2012/03/05/nokia-808-pureview-carl-zeiss-science-of-making-the-perfect-lens/" target="_blank" rel="noopener">Nokia</a><a href="http://conversations.nokia.com/2012/03/05/nokia-808-pureview-carl-zeiss-science-of-making-the-perfect-lens/" target="_blank" rel="noopener">808的镜头是诺基亚与卡尔蔡司合作研发</a>,如此mini的镜头是由五片非球面镜片组成，并含有一片超低色散镜片。</p>
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/f/fa/PureView_Pro_Sensor.png" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/PureView_Pro_Sensor.png/300px-PureView_Pro_Sensor.png" alt></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/f/fa/PureView_Pro_Sensor.png" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/PureView_Pro_Sensor.png/300px-PureView_Pro_Sensor.png" alt=""></a></p>
 <p>作为手机来说，808的其他功能并不强，屏幕分辨率也不高，只有640x360而已，CPU来说也只是单核的1.3GARM11处理器。但是这块超大尺寸的CMOS(1/1.2英寸，远大于绝大多数高端卡片机上的CMOS，仅小于尼康的J1)能带来高端DC和单反单电之间画质，因此如果把808作为便携的单反备机，很多摄友就不用再花三四千去买一个理光GDR或富士X10做备机了，那808又变得很具有性价比。808的缺憾就是在它的镜头和作为照相机的功能不够完备。而如今便携卡片机目前正面临着严峻的考验。</p>
 <p>曾几何时，无论在人头攒动的广场，还是在空旷静谧的绿野，随处可见人们手里拿着或胸前挂着轻巧的便携式卡片数码相机。便携卡片机目前正面临着严峻的考验，如今主流智能手机大都配备了500万像素以上的摄像头，800万也越来越常见，卡片机尚能抗衡的就只剩下较大的CMOS尺寸、光学变焦的镜头、更高范围的ISO以及快门速度上，但是Nokia808的出现把卡片机从像素到CMOS尺寸上看都远远抛在后面。NokiaPureView808就只差一个光学变焦的镜头了。因此，我个人看法，Nokia的B计划是Nokia与卡尔蔡司合作开发新款轻薄型卡片机。</p>
-<h3 id="nokia-新款轻薄型卡片机-pure-view-系列" class="heading-control">Nokia 新款轻薄型卡片机 Pure View 系列<a class="heading-anchor" href="#nokia-新款轻薄型卡片机-pure-view-系列" aria-hidden="true"></a></h3>
+<h3 id="nokia-xin-kuan-qing-bao-xing-ka-pian-ji-pure-view-xi-lie">Nokia 新款轻薄型卡片机 Pure View 系列</h3>
 <p>它的特征如下：</p>
 <ul>
 <li>完整4000万像素支持，不象808因为镜头和体积原因实际有效像素只有3839万</li>
@@ -380,23 +314,6 @@
     </div>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>riceball
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="/http:/riceball.me/article/nokia-b-plan/" title="Nokia 的B计划 - Nokia 还有未来么？">http://riceball.me/article/nokia-b-plan/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -455,14 +372,12 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Nokia 还有未来么？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现状"><span class="nav-number">1.1.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nokia的未来之路与b计划"><span class="nav-number">1.2.</span> <span class="nav-text">Nokia的未来之路与B计划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nokia-新款轻薄型卡片机-pure-view-系列"><span class="nav-number">1.2.1.</span> <span class="nav-text">Nokia 新款轻薄型卡片机 Pure View 系列</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nokia-huan-you-wei-lai-mo"><span class="nav-number">1.</span> <span class="nav-text">Nokia 还有未来么？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xian-zhuang"><span class="nav-number">1.1.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nokia-de-wei-lai-zhi-lu-yubji-hua"><span class="nav-number">1.2.</span> <span class="nav-text">Nokia的未来之路与B计划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nokia-xin-kuan-qing-bao-xing-ka-pian-ji-pure-view-xi-lie"><span class="nav-number">1.2.1.</span> <span class="nav-text">Nokia 新款轻薄型卡片机 Pure View 系列</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -477,26 +392,16 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -516,12 +421,12 @@
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -531,8 +436,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -549,30 +459,18 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -590,19 +488,6 @@
   
 
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

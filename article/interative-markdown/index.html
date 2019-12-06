@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -69,34 +69,15 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel='stylesheet' href='/assets/css/imarkdown-0.4.0-min.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.0-min.css'>
 
   <title>基于Markdown的响应(交互)式文档 | Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -142,8 +123,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -169,54 +149,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -225,7 +160,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -244,7 +178,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/interative-markdown/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -253,9 +187,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           基于Markdown的响应(交互)式文档
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -301,7 +235,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball lee</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -316,7 +250,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -328,11 +262,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="什么是响应-交互-式文档" class="heading-control">什么是响应(交互)式文档<a class="heading-anchor" href="#什么是响应-交互-式文档" aria-hidden="true"></a></h2>
+        <h2 id="shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang">什么是响应(交互)式文档</h2>
 <p>什么是响应(交互)式文档，简单的说就是文档内容能够实时响应读者的交互，根据交互实时变化的文档。在技术，教育领域中，为了将知识表述更清楚，常常需要✍文档能“动”起来，最极端的例子应该是🎮️“游戏”。虽然目前还不能让🎮️游戏文档直接“动”起来。不过未来就不一定了。</p>
 <p>我们接下来通过一个简单的响应(交互)式文档例子，来直观感受一下，请看下面。</p>
 <a id="more"></a>
-<h3 id="绘制矩形-rect-例子" class="heading-control">绘制矩形(Rect)例子<a class="heading-anchor" href="#绘制矩形-rect-例子" aria-hidden="true"></a></h3>
+<h3 id="hui-zhi-ju-xing-rect-li-zi">绘制矩形(Rect)例子</h3>
 <p><strong>参数</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p>
 <p>下面演示在提供好的画布上用上述参数绘制一个矩形，点击下方的播放按钮进行演示：</p>
 <pre><code class="output"># 演示绘制矩形的过程
@@ -366,7 +300,7 @@ tooltip: 现在你可以自己试一试了
 <li><code>text(50, 50, &quot;Hi world\n你好世界&quot;)</code></li>
 </ul>
 <p>响应(交互)式文档能够更加直观的看到结果的变化，使得知识更容易理解。</p>
-<h2 id="为什么响应-交互-式文档要基于markdown格式？" class="heading-control">为什么响应(交互)式文档要基于Markdown格式？<a class="heading-anchor" href="#为什么响应-交互-式文档要基于markdown格式？" aria-hidden="true"></a></h2>
+<h2 id="wei-shi-mo-xiang-ying-jiao-hu-shi-wen-dang-yao-ji-yu-markdown-ge-shi">为什么响应(交互)式文档要基于Markdown格式？</h2>
 <p>Markdown 是一种纯文本格式的轻量级标记语言，强调可读性高于一切。</p>
 <ul>
 <li>纯文本，所以兼容性极强，速度快，易保存，数据不易丢失，可以用所有文本编辑器编辑。</li>
@@ -404,7 +338,7 @@ tooltip: 现在你可以自己试一试了
 <p><span class="AMElement" data-embed="true" data-config="line=func: 0..2pi by 0.001, width=600, height=300">Chart</span></p>
 <p>读者就可以将鼠标移到上方Offset参数上进行拖动来改变参数值从而改变函数图像，也可以直接将函数<code>cos</code>改为<code>sin</code>看看。</p>
 <p><a href="/imarkdown">Interactive Markdown</a> 尚存在许多问题，目前还在内部测试中，语义规范尚未固定。</p>
-<h2 id="未来" class="heading-control">未来<a class="heading-anchor" href="#未来" aria-hidden="true"></a></h2>
+<h2 id="wei-lai">未来</h2>
 <p>我希望在不久的将来使用 markdown 来编写绘本故事书，<a href="https://medium.com/ai-club-iiitb/text-to-image-synthesis-62eb44e65cd0" target="_blank" rel="noopener">根据文字自动产生图画</a>故事。</p>
 <p>在更远的未来甚至可以开发游戏。</p>
 
@@ -428,23 +362,6 @@ tooltip: 现在你可以自己试一试了
     </div>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>Riceball LEE
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="/http:/riceball.me/article/interative-markdown/" title="基于Markdown的响应(交互)式文档">http://riceball.me/article/interative-markdown/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -506,14 +423,12 @@ tooltip: 现在你可以自己试一试了
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是响应-交互-式文档"><span class="nav-number">1.</span> <span class="nav-text">什么是响应(交互)式文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制矩形-rect-例子"><span class="nav-number">1.1.</span> <span class="nav-text">绘制矩形(Rect)例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么响应-交互-式文档要基于markdown格式？"><span class="nav-number">2.</span> <span class="nav-text">为什么响应(交互)式文档要基于Markdown格式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来"><span class="nav-number">3.</span> <span class="nav-text">未来</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang"><span class="nav-number">1.</span> <span class="nav-text">什么是响应(交互)式文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hui-zhi-ju-xing-rect-li-zi"><span class="nav-number">1.1.</span> <span class="nav-text">绘制矩形(Rect)例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wei-shi-mo-xiang-ying-jiao-hu-shi-wen-dang-yao-ji-yu-markdown-ge-shi"><span class="nav-number">2.</span> <span class="nav-text">为什么响应(交互)式文档要基于Markdown格式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wei-lai"><span class="nav-number">3.</span> <span class="nav-text">未来</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -528,26 +443,16 @@ tooltip: 现在你可以自己试一试了
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -567,12 +472,12 @@ tooltip: 现在你可以自己试一试了
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -582,8 +487,13 @@ tooltip: 现在你可以自己试一试了
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -600,30 +510,18 @@ tooltip: 现在你可以自己试一试了
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script>
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -641,25 +539,9 @@ tooltip: 现在你可以自己试一试了
   
 
 
-<script>
-NexT.utils.getScript('/assets/js/imarkdown-0.4.0-min.js', () => {
-  window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"基于Markdown的响应(交互)式文档.md"});
-}, window.iMarkdown);
-</script>
+<script src='/assets/imarkdown/imarkdown-0.4.0-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"基于Markdown的响应(交互)式文档.md"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -69,33 +69,14 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>Ubuntu Tips | Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -141,8 +122,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -168,54 +148,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -224,7 +159,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -243,7 +177,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/ubuntu-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -252,9 +186,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Ubuntu Tips
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -295,7 +229,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -310,7 +244,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -322,12 +256,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 class="heading-control">Ubuntu 16.10<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+        <h1 id="ubuntu-16-10">Ubuntu 16.10</h1>
 <p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>
 不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>
 策略路由，对于域名IP流量精确转发，变得so easy。</p>
 <p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
-<h2 id="shell" class="heading-control">Shell<a class="heading-anchor" href="#shell" aria-hidden="true"></a></h2>
+<h2 id="shell">Shell</h2>
 <p>我比较习惯 zsh, 下载安装zsh:</p>
 <pre><code class="bash">$&gt; sudo apt install zsh
 $&gt; sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
@@ -338,9 +272,9 @@ $&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"export 
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
 <pre><code>plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)
 </code></pre>
-<h2 id="ssd-磁盘" class="heading-control">SSD 磁盘<a class="heading-anchor" href="#ssd-磁盘" aria-hidden="true"></a></h2>
+<h2 id="ssd-ci-pan">SSD 磁盘</h2>
 <p>SSD磁盘的挂载和使用需要一些小技巧来延长SSD的使用寿命。</p>
-<h3 id="trim" class="heading-control">Trim<a class="heading-anchor" href="#trim" aria-hidden="true"></a></h3>
+<h3 id="trim">Trim</h3>
 <p>SSD 磁盘挂载需要启用trim指令，Liunx的磁盘系统支持两类trim（但注意不是所有的磁盘系统都支持）。</p>
 <ul>
 <li>discard 参数: 持续 trim(删除立刻trim)</li>
@@ -427,7 +361,7 @@ nvme0n1          512      512B       2T         0
 ├─nvme0n1p2        0      512B       2T         0
 </code></pre>
 <p>如果 <code>DISC-GRAN</code> 和 <code>DISC-MAX</code> 列的值<code>非0</code>就表示支持trim.</p>
-<h3 id="限制交换分区" class="heading-control">限制交换分区<a class="heading-anchor" href="#限制交换分区" aria-hidden="true"></a></h3>
+<h3 id="xian-zhi-jiao-huan-fen-qu">限制交换分区</h3>
 <p>Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。<br>
 该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。</p>
 <p>查看当前的<code>swappiness</code>设置：</p>
@@ -438,12 +372,12 @@ nvme0n1          512      512B       2T         0
 <pre><code># Sharply reduce the inclination to swap
 vm.swappiness=10
 </code></pre>
-<h3 id="启用-tmp目录ram盘" class="heading-control">启用/tmp目录RAM盘<a class="heading-anchor" href="#启用-tmp目录ram盘" aria-hidden="true"></a></h3>
+<h3 id="qi-yong-tmp-mu-lu-ram-pan">启用/tmp目录RAM盘</h3>
 <pre><code class="bash">sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount
 sudo systemctl <span class="hljs-built_in">enable</span> tmp.mount
 sudo systemctl start tmp.mount
 </code></pre>
-<h2 id="dnsmasq" class="heading-control">dnsmasq<a class="heading-anchor" href="#dnsmasq" aria-hidden="true"></a></h2>
+<h2 id="dnsmasq">dnsmasq</h2>
 <p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）<br>
 是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>
 需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
@@ -461,12 +395,12 @@ addn-hosts=/etc/hosts
 
 $&gt;sudo systemctl restart NetworkManager
 </code></pre>
-<h2 id="ipset" class="heading-control">ipset<a class="heading-anchor" href="#ipset" aria-hidden="true"></a></h2>
+<h2 id="ipset">ipset</h2>
 <p>ipset 配合 iptables 可实现基于域名的策略路由。</p>
 <p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配<br>
 性能问题。</p>
 <p>当然，首先你要安装: <code>sudo apt install ipset</code></p>
-<h3 id="黑名单方式" class="heading-control">黑名单方式<a class="heading-anchor" href="#黑名单方式" aria-hidden="true"></a></h3>
+<h3 id="hei-ming-dan-fang-shi">黑名单方式</h3>
 <p>Dnsmasq 从 2.66 版本之后就支持将域名的查询结果放进 ipset 中，这样就可以对这些域名对应的 IP<br>
 使用 iptables 处理。</p>
 <p>只转发名单内的IP, 可以配合gfwlist对指定的域名IP做重定向处理</p>
@@ -484,7 +418,7 @@ $&gt;sudo systemctl restart NetworkManager
 <p>然后创建<code>gfwlist</code>ipset规则集:</p>
 <pre><code class="bash">ipset -N gfwlist <span class="hljs-built_in">hash</span>:ip
 </code></pre>
-<h3 id="白名单方式" class="heading-control">白名单方式<a class="heading-anchor" href="#白名单方式" aria-hidden="true"></a></h3>
+<h3 id="bai-ming-dan-fang-shi">白名单方式</h3>
 <p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
 <ul>
 <li>获取国内 IP 列表</li>
@@ -507,7 +441,7 @@ ipset -N chnroute <span class="hljs-built_in">hash</span>:net maxelem 65536
 </code></pre>
 <p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，<br>
 而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
-<h2 id="shadowsocks-libev" class="heading-control">shadowsocks-libev<a class="heading-anchor" href="#shadowsocks-libev" aria-hidden="true"></a></h2>
+<h2 id="shadowsocks-libev">shadowsocks-libev</h2>
 <pre><code>apt install shadowsocks-libev
 </code></pre>
 <pre><code class="bash">$&gt; cat /etc/shadowsocks-libev/config.json
@@ -534,7 +468,7 @@ $&gt;systemctl <span class="hljs-built_in">enable</span> shadowsocks-libev
 $&gt;systemctl daemon-reload
 $&gt;systemctl start shadowsocks-libev
 </code></pre>
-<h2 id="iptables" class="heading-control">iptables<a class="heading-anchor" href="#iptables" aria-hidden="true"></a></h2>
+<h2 id="iptables">iptables</h2>
 <p>下面开始在iptables上做转发：</p>
 <p>首先为shadowsocks创建NAT表:</p>
 <pre><code class="bash"><span class="hljs-comment"># create a nat named SHADOWSOCKS:</span>
@@ -557,13 +491,13 @@ iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN
 iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN
 iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN
 </code></pre>
-<h3 id="黑名单" class="heading-control">黑名单<a class="heading-anchor" href="#黑名单" aria-hidden="true"></a></h3>
+<h3 id="hei-ming-dan">黑名单</h3>
 <pre><code class="bash"><span class="hljs-comment"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port</span>
 iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080
 <span class="hljs-comment"># Apply the rules</span>
 iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
 </code></pre>
-<h3 id="白名单" class="heading-control">白名单<a class="heading-anchor" href="#白名单" aria-hidden="true"></a></h3>
+<h3 id="bai-ming-dan">白名单</h3>
 <pre><code class="bash"><span class="hljs-comment"># Allow connection to chinese IPs</span>
 iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set chnroute dst -j RETURN
 
@@ -573,7 +507,7 @@ iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080
 <span class="hljs-comment"># Apply the rules</span>
 iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
 </code></pre>
-<h3 id="清除iptables规则" class="heading-control">清除iptables规则<a class="heading-anchor" href="#清除iptables规则" aria-hidden="true"></a></h3>
+<h3 id="qing-chu-iptables-gui-ze">清除iptables规则</h3>
 <pre><code class="bash"><span class="hljs-meta">#!/bin/bash
 </span>
 iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS
@@ -606,23 +540,6 @@ ipset destroy chnroute
     </div>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>riceball
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="/http:/riceball.me/article/ubuntu-tips/" title="Ubuntu Tips">http://riceball.me/article/ubuntu-tips/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -687,14 +604,12 @@ ipset destroy chnroute
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu 16.10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell"><span class="nav-number">1.1.</span> <span class="nav-text">Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ssd-磁盘"><span class="nav-number">1.2.</span> <span class="nav-text">SSD 磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#trim"><span class="nav-number">1.2.1.</span> <span class="nav-text">Trim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制交换分区"><span class="nav-number">1.2.2.</span> <span class="nav-text">限制交换分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用-tmp目录ram盘"><span class="nav-number">1.2.3.</span> <span class="nav-text">启用/tmp目录RAM盘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dnsmasq"><span class="nav-number">1.3.</span> <span class="nav-text">dnsmasq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ipset"><span class="nav-number">1.4.</span> <span class="nav-text">ipset</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#黑名单方式"><span class="nav-number">1.4.1.</span> <span class="nav-text">黑名单方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白名单方式"><span class="nav-number">1.4.2.</span> <span class="nav-text">白名单方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shadowsocks-libev"><span class="nav-number">1.5.</span> <span class="nav-text">shadowsocks-libev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables"><span class="nav-number">1.6.</span> <span class="nav-text">iptables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#黑名单"><span class="nav-number">1.6.1.</span> <span class="nav-text">黑名单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白名单"><span class="nav-number">1.6.2.</span> <span class="nav-text">白名单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除iptables规则"><span class="nav-number">1.6.3.</span> <span class="nav-text">清除iptables规则</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-16-10"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu 16.10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell"><span class="nav-number">1.1.</span> <span class="nav-text">Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ssd-ci-pan"><span class="nav-number">1.2.</span> <span class="nav-text">SSD 磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#trim"><span class="nav-number">1.2.1.</span> <span class="nav-text">Trim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xian-zhi-jiao-huan-fen-qu"><span class="nav-number">1.2.2.</span> <span class="nav-text">限制交换分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qi-yong-tmp-mu-lu-ram-pan"><span class="nav-number">1.2.3.</span> <span class="nav-text">启用/tmp目录RAM盘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dnsmasq"><span class="nav-number">1.3.</span> <span class="nav-text">dnsmasq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ipset"><span class="nav-number">1.4.</span> <span class="nav-text">ipset</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hei-ming-dan-fang-shi"><span class="nav-number">1.4.1.</span> <span class="nav-text">黑名单方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bai-ming-dan-fang-shi"><span class="nav-number">1.4.2.</span> <span class="nav-text">白名单方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shadowsocks-libev"><span class="nav-number">1.5.</span> <span class="nav-text">shadowsocks-libev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables"><span class="nav-number">1.6.</span> <span class="nav-text">iptables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hei-ming-dan"><span class="nav-number">1.6.1.</span> <span class="nav-text">黑名单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bai-ming-dan"><span class="nav-number">1.6.2.</span> <span class="nav-text">白名单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qing-chu-iptables-gui-ze"><span class="nav-number">1.6.3.</span> <span class="nav-text">清除iptables规则</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -709,26 +624,16 @@ ipset destroy chnroute
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -748,12 +653,12 @@ ipset destroy chnroute
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -763,8 +668,13 @@ ipset destroy chnroute
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -781,30 +691,18 @@ ipset destroy chnroute
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -822,19 +720,6 @@ ipset destroy chnroute
   
 
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

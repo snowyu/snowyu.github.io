@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -69,33 +69,14 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>如何选择一门语言学习计算机编程 | Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -141,8 +122,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -168,54 +148,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -224,7 +159,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -243,7 +177,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/howto-choose-programming-language/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -252,9 +186,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           如何选择一门语言学习计算机编程
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -304,7 +238,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -316,7 +250,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 class="heading-control">如何选择一门语言学习计算机编程<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+        <h1 id="ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng">如何选择一门语言学习计算机编程</h1>
 <p>实用派的想法：</p>
 <p>哪一门或一些语言适合你？取决于你想干什么？</p>
 <ul>
@@ -331,16 +265,16 @@
 <p>如果你已经决定为计算机软件开发奋斗终生，那这个首先必须掌握的最基础的语言的是什么？</p>
 <p>如果你只是偶尔心动，仅仅是为了完成某项任务来为之，请忽略直接跳到后面，你不妨根据你自己的项目需求来选择语言： [[Which-language-for-u#选择适合自己的计算机语言|选择适合自己的计算机语言]] 一节。</p>
 <p>打好基础，从阅读计算机英语开始。</p>
-<h1 class="heading-control">基础语言：计算机英语<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="ji-chu-yu-yan-ji-suan-ji-ying-yu">基础语言：计算机英语</h1>
 <p>毋庸置疑，计算机英语是必须彻底把握的首要的最重要的语言。相对于普通英语，计算机英语较为简单，没有过多的变化多样的语法，专业词汇兼简单的语法足矣。这是我们读懂别人写的代码前提要素之一。而后我们对自己代码模块、对象、函数方法、变量，参数的命名也离不开英语，精准，严谨的命名胜过一大段的注释，这也是书写可读性良好的代码的关键要素之一。要知道代码即文章，不过，庆幸的是，代码的文章很简单的，一般只需要初中英语的语法知识就足矣满足需求。而且不会要求你的口语，计算机英语的就是专业词汇量比较大，仅此而已。</p>
 <p>目标：</p>
 <ul>
 <li>用英文词汇正确命名</li>
 <li>用英文写代码注释</li>
 </ul>
-<h2 id="如何学习计算机英语" class="heading-control">如何学习计算机英语<a class="heading-anchor" href="#如何学习计算机英语" aria-hidden="true"></a></h2>
+<h2 id="ru-he-xue-xi-ji-suan-ji-ying-yu">如何学习计算机英语</h2>
 <p>阅读科技类的文章可以提高自己的文档写作能力，而开发类的文章则可以提高自己的开发能力。</p>
-<h3 id="阅读开发类或者科技类的英文blogs" class="heading-control">阅读开发类或者科技类的英文Blogs<a class="heading-anchor" href="#阅读开发类或者科技类的英文blogs" aria-hidden="true"></a></h3>
+<h3 id="yue-du-kai-fa-lei-huo-zhe-ke-ji-lei-de-ying-wen-blogs">阅读开发类或者科技类的英文Blogs</h3>
 <ul>
 <li>开发类Blogs
 <ul>
@@ -361,20 +295,20 @@
 </ul>
 </li>
 </ul>
-<h3 id="挑一个好的开源项目-看人家是怎么写的" class="heading-control">挑一个好的开源项目，看人家是怎么写的<a class="heading-anchor" href="#挑一个好的开源项目-看人家是怎么写的" aria-hidden="true"></a></h3>
+<h3 id="tiao-yi-ge-hao-de-kai-yuan-xiang-mu-kan-ren-jia-shi-zen-mo-xie-de">挑一个好的开源项目，看人家是怎么写的</h3>
 <ul>
 <li>读 wiki</li>
 <li>读代码</li>
 </ul>
 <p>然后，别忘记了还有https://google.com 和 <a href="http://stackoverflow.com/" target="_blank" rel="noopener">http://stackoverflow.com/</a></p>
-<h1 class="heading-control">选择适合自己的计算机语言<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="xuan-ze-shi-he-zi-ji-de-ji-suan-ji-yu-yan">选择适合自己的计算机语言</h1>
 <p>计算机语言五花八门，真是乱花渐欲迷人眼，泛泛来说，有命令式编程和声明式编程语言；而从用途来分有通用的适合多用途的语言，也有精专某项或几项的语言；从编译器来分，有编译型和解释型的语言；从编程语言模型来说，有面向对象类、过程式语言、函数式语言、逻辑类语言。等等。除开及其个别的编程语言外绝大多数的编程语言都是以英语为基础的。要想选择一门或者一些适合自己的开发语言是比较难，挑选适合自己的语言，我觉得这大概可以由三个因素来决定：</p>
 <ul>
 <li>基础</li>
 <li>用途</li>
 <li>目标</li>
 </ul>
-<h2 id="学习编程语言的基础" class="heading-control">学习编程语言的基础<a class="heading-anchor" href="#学习编程语言的基础" aria-hidden="true"></a></h2>
+<h2 id="xue-xi-bian-cheng-yu-yan-de-ji-chu">学习编程语言的基础</h2>
 <p>如果你想要在编程的路上走得更稳或者更远，那么这些基础必须打牢，对于科班出身的来说，这些是必须的:</p>
 <ul>
 <li>算法</li>
@@ -383,7 +317,7 @@
 </ul>
 <p>这些东西，往深了去1，2年时间也不够你啃，不过你也可以根据自己的具体需要掌握基本后按需学习。</p>
 <p>你的其它基础知识了解如何？下面是做的一些假定，如果下面的基础都没有，那就无所谓了，随便选看，看自己的爱好来定.</p>
-<h3 id="html-xml-css" class="heading-control">HTML/XML/CSS<a class="heading-anchor" href="#html-xml-css" aria-hidden="true"></a></h3>
+<h3 id="html-xml-css">HTML/XML/CSS</h3>
 <p>对于初步掌握html和css的前端人员来说，如果你用过javascript，那么从java或者javascript的某个framework着手自己编程之路可能更容易些；如果你对xml比较熟悉，那么<a href="http://blog.csdn.net/gobitan/article/details/1545998" target="_blank" rel="noopener">XQuery</a>也许也不错，如果你对CSS熟悉并愿意深入，那么从<a href="http://www.cnblogs.com/yizihan/p/4427900.html" target="_blank" rel="noopener">COMPASS</a>/<a href="http://www.w3cplus.com/sassguide/" target="_blank" rel="noopener">SASS</a>开始可能是一条比较有意思的路。</p>
 <p>关于SASS介绍：<a href="../sass-lang">在这里</a>。</p>
 <p>如果想继续深入前端，可以择一入门，如果要精深，那么MVC作为基础知识是必须要掌握的：</p>
@@ -402,13 +336,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="计算机艺术画-ux交互" class="heading-control">计算机艺术画/UX交互<a class="heading-anchor" href="#计算机艺术画-ux交互" aria-hidden="true"></a></h3>
+<h3 id="ji-suan-ji-yi-shu-hua-ux-jiao-hu">计算机艺术画/UX交互</h3>
 <p>如果你想通过程式来绘制图画或交互动画，并对电脑绘画和图片文件格式有初步的了解，那么Processing也许是你的选择</p>
 <ul>
 <li><a href="http://processing.org/" target="_blank" rel="noopener">http://processing.org/</a></li>
 </ul>
 <p>简单的介绍：<a href="../processing-language">在这里</a></p>
-<h3 id="sql-dba" class="heading-control">SQL/DBA<a class="heading-anchor" href="#sql-dba" aria-hidden="true"></a></h3>
+<h3 id="sql-dba">SQL/DBA</h3>
 <p>if u r a DBA, and learn sql well. maybe you are interested in the following sth:</p>
 <ul>
 <li><a href="http://www.datatables.org/" target="_blank" rel="noopener">YQL and community Open Data tables</a></li>
@@ -420,7 +354,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="math-statistics" class="heading-control">Math/Statistics<a class="heading-anchor" href="#math-statistics" aria-hidden="true"></a></h3>
+<h3 id="math-statistics">Math/Statistics</h3>
 <p>对于搞数学或统计的人来说，那么FORTRAN, MatLab/Octave, Python+Matplotlib 是不错的选择，个人首选推荐Python系列，不过如果是专业统计那么R语言比较合适。</p>
 <ul>
 <li><a href="http://www.python.org/" target="_blank" rel="noopener">“Python”</a>
@@ -438,9 +372,9 @@
 <li><a href="http://www.r-project.org/" target="_blank" rel="noopener">“R Language”</a></li>
 <li><a href="http://www.octave.org/" target="_blank" rel="noopener">“类MatLab的开源Octave”</a></li>
 </ul>
-<h2 id="学习编程语言的用途" class="heading-control">学习编程语言的用途<a class="heading-anchor" href="#学习编程语言的用途" aria-hidden="true"></a></h2>
+<h2 id="xue-xi-bian-cheng-yu-yan-de-yong-tu">学习编程语言的用途</h2>
 <p>你想用它来干嘛？这个也可以参考前面1节。</p>
-<h2 id="学习编程语言的终极目标" class="heading-control">学习编程语言的终极目标<a class="heading-anchor" href="#学习编程语言的终极目标" aria-hidden="true"></a></h2>
+<h2 id="xue-xi-bian-cheng-yu-yan-de-zhong-ji-mu-biao">学习编程语言的终极目标</h2>
 <p>你最终想攀登（到达）一个什么样的山峰？</p>
 <p>下面是我推荐的学习顺序 <code>1-&gt;2,3,4,6-&gt;5</code>,其中2，3，4，6应该可以并行阅读。不过5(算法和设计)应该在至少修完2，3后开始阅读。</p>
 <ol>
@@ -628,23 +562,6 @@
     </div>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>Riceball LEE
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="/http:/riceball.me/article/howto-choose-programming-language/" title="如何选择一门语言学习计算机编程">http://riceball.me/article/howto-choose-programming-language/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -703,14 +620,12 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">如何选择一门语言学习计算机编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">基础语言：计算机英语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何学习计算机英语"><span class="nav-number">2.1.</span> <span class="nav-text">如何学习计算机英语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读开发类或者科技类的英文blogs"><span class="nav-number">2.1.1.</span> <span class="nav-text">阅读开发类或者科技类的英文Blogs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挑一个好的开源项目-看人家是怎么写的"><span class="nav-number">2.1.2.</span> <span class="nav-text">挑一个好的开源项目，看人家是怎么写的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">选择适合自己的计算机语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习编程语言的基础"><span class="nav-number">3.1.</span> <span class="nav-text">学习编程语言的基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html-xml-css"><span class="nav-number">3.1.1.</span> <span class="nav-text">HTML/XML/CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机艺术画-ux交互"><span class="nav-number">3.1.2.</span> <span class="nav-text">计算机艺术画/UX交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-dba"><span class="nav-number">3.1.3.</span> <span class="nav-text">SQL/DBA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#math-statistics"><span class="nav-number">3.1.4.</span> <span class="nav-text">Math/Statistics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习编程语言的用途"><span class="nav-number">3.2.</span> <span class="nav-text">学习编程语言的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习编程语言的终极目标"><span class="nav-number">3.3.</span> <span class="nav-text">学习编程语言的终极目标</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng"><span class="nav-number">1.</span> <span class="nav-text">如何选择一门语言学习计算机编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ji-chu-yu-yan-ji-suan-ji-ying-yu"><span class="nav-number">2.</span> <span class="nav-text">基础语言：计算机英语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ru-he-xue-xi-ji-suan-ji-ying-yu"><span class="nav-number">2.1.</span> <span class="nav-text">如何学习计算机英语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yue-du-kai-fa-lei-huo-zhe-ke-ji-lei-de-ying-wen-blogs"><span class="nav-number">2.1.1.</span> <span class="nav-text">阅读开发类或者科技类的英文Blogs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tiao-yi-ge-hao-de-kai-yuan-xiang-mu-kan-ren-jia-shi-zen-mo-xie-de"><span class="nav-number">2.1.2.</span> <span class="nav-text">挑一个好的开源项目，看人家是怎么写的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xuan-ze-shi-he-zi-ji-de-ji-suan-ji-yu-yan"><span class="nav-number">3.</span> <span class="nav-text">选择适合自己的计算机语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xue-xi-bian-cheng-yu-yan-de-ji-chu"><span class="nav-number">3.1.</span> <span class="nav-text">学习编程语言的基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html-xml-css"><span class="nav-number">3.1.1.</span> <span class="nav-text">HTML/XML/CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-suan-ji-yi-shu-hua-ux-jiao-hu"><span class="nav-number">3.1.2.</span> <span class="nav-text">计算机艺术画/UX交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-dba"><span class="nav-number">3.1.3.</span> <span class="nav-text">SQL/DBA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#math-statistics"><span class="nav-number">3.1.4.</span> <span class="nav-text">Math/Statistics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xue-xi-bian-cheng-yu-yan-de-yong-tu"><span class="nav-number">3.2.</span> <span class="nav-text">学习编程语言的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xue-xi-bian-cheng-yu-yan-de-zhong-ji-mu-biao"><span class="nav-number">3.3.</span> <span class="nav-text">学习编程语言的终极目标</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -725,26 +640,16 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -764,12 +669,12 @@
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -779,8 +684,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -797,30 +707,18 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -838,19 +736,6 @@
   
 
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

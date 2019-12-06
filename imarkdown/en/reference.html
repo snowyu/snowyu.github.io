@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://riceball.me').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Notation The notation for specifying elements is similar to the regular Markdown syntax for links and images, generally following this format: [text content]{variable_name: configuration} The text rep">
+<meta name="keywords" content="interactive,reactive,document,javascript,markdown">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Interactive Markdown Reference Manual">
+<meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;en&#x2F;reference.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="Notation The notation for specifying elements is similar to the regular Markdown syntax for links and images, generally following this format: [text content]{variable_name: configuration} The text rep">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-06T12:02:00.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://riceball.me/imarkdown/en/reference">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false,
+    isPage: true,
+    isArchive: false
+  };
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.0-min.css'>
+
+  <title>Interactive Markdown Reference Manual | Riceball LEE
+  </title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Interactive Markdown Reference Manual
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/imarkdown/">IMARKDOWN</a></li>
+            <li><a href="/imarkdown/en/">EN</a></li>
+            <li>REFERENCE</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h2 id="notation">Notation</h2>
+<p>The notation for specifying elements is similar to the regular Markdown syntax<br>
+for links and images, generally following this format:</p>
+<p><code>[text content]{variable_name: configuration}</code></p>
+<p>The text representation of the element, like the link text or image alt text,<br>
+goes between the brackets, <code>[]</code>. The brackets are followed by braces, <code>{}</code>,<br>
+which contain the variable name, and any configuration. The variable name MUST<br>
+be followed by a colon, <code>:</code>, if there is any configuration present. The<br>
+configuration is what determines the kind of element, and specifies its<br>
+behavior. For example, a <em>RangeElement</em> can be constrained to a minimum and<br>
+maximum, and a <em>SwitchElement</em> can be given different labels for <code>true</code> and<br>
+<code>false</code>.</p>
+<h3 id="stringelement">StringElement</h3>
+<p>A read-only output of the current value of the specified variable <code>&lt;var_name&gt;</code>.<br>
+The text is the default value, and used whenever the value of the variable is<br>
+<code>undefined</code>.</p>
+<p><code>[&lt;text&gt;]{&lt;var_name&gt;}</code></p>
+<h4 id="stringelement-examples">StringElement Examples</h4>
+<h5 id="string-basic">String, basic</h5>
+<p><span class="AMElement" data-embed="false" data-config="egg_count">many eggs</span> - <code>[many eggs]{egg_count}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>egg_count</code>                       |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="egg_count">many eggs</span>            |</p>
+<h3 id="rangeelement">RangeElement</h3>
+<p>A number adjustable by dragging. The number MAY have a display precision<br>
+specified. The slider MAY be constrained to a minimum and/or maximum, and MAY<br>
+have a step value. The text is parsed, and the first number in the text becomes<br>
+the output value. The remaining text is added to the template, allowing for<br>
+units and other descriptive text to be included in the control.</p>
+<p>A range MUST be specified, but MAY be infinite in both directions. The range’s<br>
+interval is specified using the <a href="http://coffeescript.org/#loops" target="_blank" rel="noopener">CoffeeScript-style range<br>
+dots</a>, where <code>..</code> is inclusive and <code>...</code><br>
+excludes the end. ie, <code>1..4</code> covers the interval <code>1 &lt;= n &lt;= 4</code>, while <code>1...4</code><br>
+covers <code>1 &lt;= n &lt; 4</code>. The range MUST be ascending (to preserve consistency in<br>
+the UI — drag left for negative, drag right for positive). The range’s step is<br>
+specified using the <code>by</code> keyword and a number. The step MAY be omitted<br>
+(defaulting to <code>1</code>), but if specified MUST be positive.</p>
+<p>The text content MAY include a number to use as the default value. Any<br>
+surrounding text will be used as a template, allowing units or qualifiers to<br>
+be included in the element’s presentation.</p>
+<p>Specifying a display precision MAY be done using the default number value in<br>
+the text. <code>200.</code> formats to <code>0</code> decimal places. <code>200.000</code> formats to <code>3</code><br>
+decimals. If not specified, the value is unformatted.</p>
+<p>Numbers MAY use the constants in <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noopener"><code>Math</code></a><br>
+and combine them with a coefficient, eg <code>2pi</code> or <code>0.5pi</code>, which is treated as<br>
+<code>n * Math.PI</code>. This can be done in the range min or max, or in the step. The<br>
+constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <code>ln10</code>, <code>log2e</code>, <code>log10e</code>, <code>sqrt1_2</code>,<br>
+<code>sqrt2</code>, (uppercase or lowercase).</p>
+<p><code>[&lt;before&gt; &lt;number&gt;.&lt;decimal&gt; &lt;after&gt;]{&lt;var_name&gt;: &lt;bound&gt;..&lt;exclusive&gt;&lt;bound&gt; by &lt;step&gt;}</code></p>
+<h4 id="rangeelement-examples">RangeElement Examples</h4>
+<h5 id="specifying-step">Specifying step</h5>
+<p><span class="AMElement" data-embed="false" data-config="calories: 10..100 by 10">20. calories</span> - <code>[20. calories]{calories: 10..100 by 10}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>calories</code>                        |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="calories"></span>                      |<br>
+| interval              | <code>[10,100]</code>                        |<br>
+| step                  | <code>10</code>                              |<br>
+| default               | <code>20</code>                              |<br>
+| display precision     | <code>1</code>                               |<br>
+| display format        | <code>&quot;#{value.toFixed(0)} calories&quot;</code>  |</p>
+<h5 id="fractional-step-precision">Fractional step, precision</h5>
+<p><span class="AMElement" data-embed="false" data-config="calories_2: 10..100 by 0.1">20.0 calories</span> - <code>[20.0 calories]{calories_2: 10..100 by 0.1}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>calories_2</code>                      |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="calories_2"></span>                    |<br>
+| interval              | <code>[10,100]</code>                        |<br>
+| step                  | <code>0.1</code>                             |<br>
+| default               | <code>20.0</code>                            |<br>
+| display precision     | <code>0.1</code>                             |<br>
+| display format        | <code>&quot;#{value.toFixed(1)} calories&quot;</code>  |</p>
+<h5 id="with-constants">With constants</h5>
+<p><span class="AMElement" data-embed="false" data-config="period: 0..2pi by 0.25pi">period 0.00</span> - <code>[period 0.00]{period: 0..2pi by 0.25pi}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>period</code>                          |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="period"></span>                        |<br>
+| interval              | <code>[0,2pi]</code>                         |<br>
+| step                  | <code>0.25pi</code>                          |<br>
+| default               | <code>0</code>                               |<br>
+| display precision     | <code>0.01</code>                            |<br>
+| display format        | <code>&quot;#{value.toFixed(2)} period&quot;</code>    |</p>
+<h5 id="unbounded">Unbounded</h5>
+<p><span class="AMElement" data-embed="false" data-config="calories_3: ..">20 calories</span> - <code>[20 calories]{calories_3: ..}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>calories_3</code>                      |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="calories_3"></span>                    |<br>
+| interval              | <code>(−∞,∞)</code>                          |<br>
+| step                  | <code>1</code>                               |<br>
+| default               | <code>20</code>                              |<br>
+| display precision     | <code>undefined</code>                       |<br>
+| display format        | <code>&quot;#{value} calories&quot;</code>             |</p>
+<h5 id="unbounded-right-before-text">Unbounded right, before text</h5>
+<p><span class="AMElement" data-embed="false" data-config="calories_4: 1..">over 200 calories</span> - <code>[over 200 calories]{calories_4: 1.. by 2}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>calories_4</code>                      |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="calories_4"></span>                    |<br>
+| interval              | <code>[1,∞)</code>                           |<br>
+| step                  | <code>2</code>                               |<br>
+| default               | <code>200</code>                             |<br>
+| display precision     | <code>undefined</code>                       |<br>
+| display format        | <code>&quot;over #{value} calories&quot;</code>        |</p>
+<h3 id="switchelement">SwitchElement</h3>
+<p>A boolean flag that has a value of <code>true</code>, <code>false</code>, or <code>undefined</code>. The true<br>
+and false values can be labeled. If the label is present in the text, that value<br>
+becomes the default value. Otherwise, the value is <code>undefined</code>.</p>
+<p><code>[&lt;before&gt; &lt;true_label or false_label or *&gt; &lt;after&gt;]{&lt;var_name&gt;: &lt;true_label&gt; or &lt;false_label&gt;}</code></p>
+<h4 id="switchelement-examples">SwitchElement Examples</h4>
+<h5 id="switch-basic">Switch, basic</h5>
+<p><span class="AMElement" data-embed="false" data-config="some_flag_1: true or false">pick one</span> - <code>[pick one]{some_flag_1: true or false}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>some_flag_1</code>                     |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="some_flag_1"></span>                   |<br>
+| default               | <code>undefined</code>                       |<br>
+| true label            | <code>true</code>                            |<br>
+| false label           | <code>false</code>                           |<br>
+| display format        | <code>&quot;#{label}&quot;</code>                      |</p>
+<h5 id="switch-with-default">Switch, with default</h5>
+<p><span class="AMElement" data-embed="false" data-config="some_flag_2: true or false">true</span> - <code>[true]{some_flag_3: true or false}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>some_flag_2</code>                     |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="some_flag_2"></span>                   |<br>
+| default               | <code>true</code>                            |<br>
+| true label            | <code>true</code>                            |<br>
+| false label           | <code>false</code>                           |<br>
+| display format        | <code>&quot;#{label}&quot;</code>                      |</p>
+<h5 id="switch-default-labeled-before-after-text">Switch, default, labeled, before/after text</h5>
+<p><span class="AMElement" data-embed="false" data-config="some_flag_3: on or off">on deck</span> - <code>[on deck]{some_flag_3: on or off}</code></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>some_flag_3</code>                     |<br>
+| value                 | <span class="AMElement" data-embed="false" data-config="some_flag_3"></span>                   |<br>
+| default               | <code>true</code>                            |<br>
+| true label            | <code>on</code>                              |<br>
+| false label           | <code>off</code>                             |<br>
+| display format        | <code>&quot;#{label} deck&quot;</code>                 |</p>
+<h3 id="chartelement">ChartElement</h3>
+<p>An embedded chart, of type scatter, line, or bar. The chart is driven by the<br>
+specified function over the specified range. The <em>ChartElement</em> notation is<br>
+similar to the <em>RangeElement</em>, but with the addition of the <code>type</code>, and the<br>
+leading <code>!</code>. Also, the chart interval MUST be finite. Charts MUST have a<br>
+function defined in an <em>ActiveCodeBlock</em>.</p>
+<p><code>![&lt;x_label&gt; &lt;delimiter&gt; &lt;y_label&gt;]{&lt;type&gt;=&lt;fn_name&gt;: &lt;bound&gt;..&lt;exclusive&gt;&lt;bound&gt; by &lt;step&gt;}</code></p>
+<h4 id="chartelement-examples">ChartElement Examples</h4>
+<h5 id="scatter-basic">Scatter, basic</h5>
+<p><code>![y vs x]{scatter=scatterFn: -10..10}</code></p>
+<p><span class="AMElement" data-embed="false" data-config="scatter_offset: 0..100">Offset: 0.</span></p>
+<pre><code>@scatterFn = (x) =&gt;
+    return x + Math.random() * @scatter_offset
+</code></pre>
+<p><span class="AMElement" data-embed="true" data-config="scatter=scatterFn: -10..10">y vs x</span></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>scatterFn</code>                       |<br>
+| type                  | <code>scatter</code>                         |<br>
+| x label               | <code>&quot;x&quot;</code>                             |<br>
+| y label               | <code>&quot;y&quot;</code>                             |<br>
+| interval              | <code>[-10,10]</code>                        |<br>
+| step                  | <code>1</code>                               |</p>
+<h5 id="line-basic">Line, basic</h5>
+<p><code>![sin(x)]{line=lineFn: 0..2pi by 0.001}</code></p>
+<p><span class="AMElement" data-embed="false" data-config="period: 0.25..4 by 0.25">Period 1.00</span></p>
+<pre><code>b = 2 * Math.PI / @period
+@lineFn = (x) =&gt;
+    return Math.sin(b * x)
+</code></pre>
+<p><span class="AMElement" data-embed="true" data-config="line=lineFn: 0..2pi by 0.001">sin(x)</span></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>lineFn</code>                          |<br>
+| type                  | <code>line</code>                            |<br>
+| x label               | <code>null</code>                            |<br>
+| y label               | <code>null</code>                            |<br>
+| interval              | <code>[0,2pi]</code>                         |<br>
+| step                  | <code>0.001</code>                           |</p>
+<h5 id="bar-basic">Bar, basic</h5>
+<p><code>![money by year]{bar=barFn: 1983..2013}</code></p>
+<p><span class="AMElement" data-embed="false" data-config="threshold: 1..20">Threshold: 5.</span></p>
+<pre><code>@barFn = (x) =&gt;
+    return x % @threshold
+</code></pre>
+<p><span class="AMElement" data-embed="true" data-config="bar=barFn: 1983..2013">money by year</span></p>
+<p>| property              | value                             |<br>
+|=======================|===================================|<br>
+| name                  | <code>barFn</code>                           |<br>
+| type                  | <code>bar</code>                             |<br>
+| x label               | <code>&quot;year&quot;</code>                          |<br>
+| y label               | <code>&quot;money&quot;</code>                         |<br>
+| interval              | <code>[1983,2013]</code>                     |<br>
+| step                  | <code>1</code>                               |</p>
+<h2 id="codeblockelement">CodeBlockElement</h2>
+<p>The interactive code block also follows the Markdown specification. It can be indented by 4 spaces or three “`” symbols (without language instructions) around it. The code language is <a href="https://coffeescript.org/v1/" target="_blank" rel="noopener">CoffeeScript@v1</a></p>
+<pre><code class="markdown">
+<span class="hljs-section"># Indented by 4 spaces</span>
+
+<span class="hljs-code">    # initilizate the my_var variable， || means only init when no default value.</span>
+<span class="hljs-code">    @my_var ||= 123</span>
+<span class="hljs-code">    # set my_func function.</span>
+<span class="hljs-code">    @my_func = (x) =&gt; sin(x + @my_var)</span>
+
+<span class="hljs-section"># Three "`" symbols (without language instructions) around it</span>
+
+<span class="hljs-code">```
+# initilizate the my_var variable， || means only init when no default value.
+@my_var ||= 123
+# set my_func function.
+@my_func = (x) =&gt; sin(x + @my_var)
+```</span>
+</code></pre>
+<p>Three “`” symbols (with language instructions) around it will dispay the code block only.</p>
+<pre><code class="markdown"><span class="hljs-code">```coffee
+## This code will not be executed, just display it.
+@my_var ||= 123
+@my_func = (x) =&gt; sin(x + @my_var)
+```</span>
+</code></pre>
+<p>The Simple Code Block has not any output. You can do some logical work in it.</p>
+<p>You should use the <code>output</code> as the language if you wanna with output on it. If you want to specify a language, you should put it in front of <code>playable</code> and separate it with a “:” sign, for example, <code>output:playable</code>.</p>
+<pre><code class="md"><span class="hljs-code">```output
+# the code block with output
+@sayln 'hi world'
+```</span>
+
+<span class="hljs-code">```</span>coffee/output:playable
+<span class="hljs-section"># the code block with output and specified language(NOT IMPL YET, All are coffeescript)</span>
+@sayln 'hi world'
+<span class="hljs-code">```
+</span></code></pre>
+<p>The CodeBlock with output has a <code>@output</code> variable(it’s the binding <code>div</code> element for this block),  a <code>@say()</code> and <code>@sayln()</code> method to print text.</p>
+<h3 id="play-movie-for-codeblock">Play Movie for CodeBlock</h3>
+<p><strong>WARNING：UNSTABLE IT WILL BE CHANGED</strong></p>
+<p>The input of the code block can be played like a movie. You can enable it through three(<code>~~~</code>) or more than three tilde symbols <code>~</code> in a single line on the code block. Above the line is the common source code. The “|” above the code indicates the cursor position after the presentation is completed, and the lower part is the control input movie code.</p>
+<pre><code class="md">
+<span class="hljs-code">```</span>output:playable
+
+<span class="hljs-section"># demo how to draw a rect.</span>
+paper = @canvas
+
+|
+~~~
+tooltip: set the canvas size:200X100 ::: Init
+type:paper.setSize(200,100)\n
+tooltip: clear canvas
+type:paper.clear()\n
+tooltip: init x/y coor, width/height parameters coming from document
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: drawing rect nowing ::: Draw rect
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: fill red for the rect
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: you can try it by youself now
+<span class="hljs-code">```
+</span></code></pre>
+<ul>
+<li><code>tooltip</code> : show a tooltip
+<ul>
+<li><code>:::</code> Classified information after separation</li>
+</ul>
+</li>
+<li><code>type</code>: simulate keyboard input</li>
+<li><code>moveTo</code>: move the cursor to x:y</li>
+</ul>
+<h3 id="codeblock-examples">CodeBlock Examples</h3>
+<h4 id="examples-interactive-code-block-without-output">Examples: interactive code block without output</h4>
+<pre><code># this is an interactive code block without output
+a = 12 + 3
+</code></pre>
+<h4 id="examples-interactive-code-block-with-output">Examples: interactive code block with output</h4>
+<pre><code># this is an interactive code block with output
+@sayln 'hi world'
+</code></pre>
+<h4 id="examples-play-movie-for-codeblock">Examples: Play Movie for CodeBlock</h4>
+<pre><code class="output:playable">
+# demo how to draw a rect.
+paper = @canvas
+
+|
+~~~
+tooltip: set the canvas size:200X100 ::: Init
+type:paper.setSize(200,100)\n
+tooltip: clear canvas
+type:paper.clear()\n
+tooltip: init x/y coor, width/height parameters coming from document
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: drawing rect nowing ::: Draw rect
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: fill red for the rect
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: you can try it by youself now
+</code></pre>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/imarkdown/">IMARKDOWN</a></li>
+            <li><a href="/imarkdown/en/">EN</a></li>
+            <li>REFERENCE</li>
+          
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#notation"><span class="nav-number">1.</span> <span class="nav-text">Notation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stringelement"><span class="nav-number">1.1.</span> <span class="nav-text">StringElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stringelement-examples"><span class="nav-number">1.1.1.</span> <span class="nav-text">StringElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#string-basic"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">String, basic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rangeelement"><span class="nav-number">1.2.</span> <span class="nav-text">RangeElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rangeelement-examples"><span class="nav-number">1.2.1.</span> <span class="nav-text">RangeElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#specifying-step"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Specifying step</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fractional-step-precision"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Fractional step, precision</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#with-constants"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">With constants</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unbounded"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Unbounded</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unbounded-right-before-text"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">Unbounded right, before text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switchelement"><span class="nav-number">1.3.</span> <span class="nav-text">SwitchElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#switchelement-examples"><span class="nav-number">1.3.1.</span> <span class="nav-text">SwitchElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-basic"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Switch, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-with-default"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Switch, with default</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-default-labeled-before-after-text"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Switch, default, labeled, before/after text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chartelement"><span class="nav-number">1.4.</span> <span class="nav-text">ChartElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chartelement-examples"><span class="nav-number">1.4.1.</span> <span class="nav-text">ChartElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#scatter-basic"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Scatter, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#line-basic"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">Line, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bar-basic"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">Bar, basic</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#codeblockelement"><span class="nav-number">2.</span> <span class="nav-text">CodeBlockElement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#play-movie-for-codeblock"><span class="nav-number">2.1.</span> <span class="nav-text">Play Movie for CodeBlock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#codeblock-examples"><span class="nav-number">2.2.</span> <span class="nav-text">CodeBlock Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-interactive-code-block-without-output"><span class="nav-number">2.2.1.</span> <span class="nav-text">Examples: interactive code block without output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-interactive-code-block-with-output"><span class="nav-number">2.2.2.</span> <span class="nav-text">Examples: interactive code block with output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-play-movie-for-codeblock"><span class="nav-number">2.2.3.</span> <span class="nav-text">Examples: Play Movie for CodeBlock</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:30</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script src='/assets/imarkdown/imarkdown-0.4.0-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown Reference Manual.md"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

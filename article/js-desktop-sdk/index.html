@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="mask-icon" href="/favicon.ico" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -21,15 +21,15 @@
   var CONFIG = {
     hostname: new URL('http://riceball.me').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: true,
+    mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -71,33 +71,14 @@
     isArchive: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
-<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 
   <title>用 Javascript 开发桌面应用的框架工具列表 | Riceball LEE</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-75922641-1');
-      }
-    </script>
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -143,8 +124,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
+        <p class="site-subtitle">Go with wind.</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -170,54 +150,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
@@ -226,7 +161,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -245,7 +179,7 @@
     <link itemprop="mainEntityOfPage" href="http://riceball.me/article/js-desktop-sdk/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Riceball LEE">
       <meta itemprop="description" content="Go with wind.">
     </span>
@@ -254,9 +188,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           用 Javascript 开发桌面应用的框架工具列表
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -303,7 +237,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -318,7 +252,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -332,7 +266,7 @@
       
         <p>随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。</p>
 <a id="more"></a>
-<h1 class="heading-control"><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a><a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="electron"><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a></h1>
 <p>Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在<code>package.json</code>中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。</p>
 <p>下载需要翻墙：</p>
 <p><a href="https://www.npmjs.com/package/electron-download" target="_blank" rel="noopener">https://www.npmjs.com/package/electron-download</a><br>
@@ -345,7 +279,7 @@
 <span class="hljs-attr">ELECTRON_MIRROR</span>=<span class="hljs-string">"https://10.1.2.105/"</span>
 <span class="hljs-attr">ELECTRON_CUSTOM_DIR</span>=<span class="hljs-string">"our/internal/filePath"</span>
 </code></pre>
-<h1 class="heading-control"><a href="http://nwjs.io/" target="_blank" rel="noopener">NW.js</a> (以前叫 node-webkit)<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="nwjs-yi-qian-jiao-nodewebkit"><a href="http://nwjs.io/" target="_blank" rel="noopener">NW.js</a> (以前叫 node-webkit)</h1>
 <p>与<a href="http://appjs.org/" target="_blank" rel="noopener">App.js</a>类似，通过将node.js与Chromiuml联合在一起，实现本地桌面应用开发的，是App.js的后起之秀。实现原理是基于Chromium项目的Content Layer构建(Chromium Browser也同样基于Content Layer); 实现上的特点是把Node.js的消息循环(libuv)和Chromium Renderer进程的消息循环合并到一起，因为这样才能从DOM(HTML)中直接调用Node.js提供的函数；把Node.js使用的V8引擎和 Chromium的V8引擎合并，使得Node.js的Javascript和DOM里面的Javascript可以互相访问；另外因为是支持本地应用， 所以安全模型和Web程序有很大不同：node-webkit程序可以做web应用不允许做的很多事情，除了通过node.js访问本地OS以外，还可以进行跨域访问等操作。是英特尔开放源码技术中心（OTC）的软件架构师Rogerwang（王文睿）发起，在公司专职开发node-webkit(幸福啊)。</p>
 <p>本质上它和PhoneGap一样都是属于胶水层，只不过PhoneGap是尽量以遵循W3C最新规范的形式来提供本地访问API，其它的不规范接口以各种插件形式提供；而node-webkit则是通过node.js提供本地访问的接口。与PhoneGap比较而言，如果PhoneGap要为某个平台提供新的本地API接口，必须通过开发插件的形式提供，而且各个平台的插件开发的开发语言都不一样。而node.js有node-gyp(native addon build tool) 工具统一build。而node.js的 <a href="https://npmjs.org/package/node-ffi" target="_blank" rel="noopener">node-ffi</a> 附加插件更使得我们可以直接在js中调用动态链接库的API：</p>
 <pre><code>var ffi = require(&quot;node-ffi&quot;);
@@ -359,7 +293,7 @@ current.atoi(&quot;1234&quot;); // 1234
 </code></pre>
 <p>地址： <a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit</a></p>
 <p>如何把你的javascript 应用打包成一个可执行文件，这里已经说得很详细了：<a href="https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps</a></p>
-<h1 class="heading-control">node-x11<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="node-x11">node-x11</h1>
 <p>这个是用纯js实现了X11 Client的核心协议，包括Xrender, Damage, Composite, Big-Requests, Dpms, Screensaver, XFixes, Shape, XTest, XC-Misc, GLX and Apple-WM extensions。用来开发X-Windows GUI程序。基于 <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">node-x11</a> 有人做了进一步的封装：<a href="https://github.com/sidorares/ntk" target="_blank" rel="noopener">ntk(desktop UI toolkit)</a>, 然后做出了一个纯js的 VNC Viewer: <a href="https://github.com/sidorares/node-vnc" target="_blank" rel="noopener">node-vnc</a>.</p>
 <p>Windows用户要先安装  <a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener">XMing</a> or <a href="http://x.cygwin.com/" target="_blank" rel="noopener">Cygwin/X</a>。</p>
 <p>地址： <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">https://github.com/sidorares/node-x11</a></p>
@@ -380,7 +314,7 @@ current.atoi(&quot;1234&quot;); // 1234
         X.MapWindow(wid);
     });
 </code></pre>
-<p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt><br>
+<p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt=""><br>
 ntk 的例子:</p>
 <pre><code class="js">    <span class="hljs-keyword">var</span> ntk = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib'</span>);
 
@@ -397,7 +331,7 @@ ntk 的例子:</p>
        .map();
     }
 </code></pre>
-<h1 class="heading-control">node-qt<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="node-qt">node-qt</h1>
 <p><a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>是基于QT的node.js封装,而<a href="http://github.com/arturadib/node-five" target="_blank" rel="noopener">node-five</a> 则是基于<a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>的封装实现了HTML5 graphics and audio。</p>
 <p>地址：</p>
 <ul>
@@ -436,7 +370,7 @@ ntk 的例子:</p>
     ctx.fillStyle = <span class="hljs-string">'black'</span>;
     ctx.fillText(<span class="hljs-string">'hello node, hello qt'</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>);
 </code></pre>
-<h1 class="heading-control">wxNode<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="wxnode">wxNode</h1>
 <p><a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">wxNode</a>是基于跨平台的<a href="http://www.wxwidgets.org/" target="_blank" rel="noopener">wxWidgets</a>的node.js封装插件包。也就是能让你用wxWidgets GUI组件开发桌面应用。</p>
 <p>地址： <a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">https://github.com/joeferner/wxNode</a></p>
 <p>例子：</p>
@@ -471,10 +405,10 @@ app.run();
 <p>运行：</p>
 <pre><code>node examples/helloWorld.js
 </code></pre>
-<h1 class="heading-control">TideSDK<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="tidesdk">TideSDK</h1>
 <p>最后提下TideSDK, 就是以前的Titanium Desktop SDK，以web技术(HTML5. CSS3, JS)创建桌面应用的开源框架工具。与前面的框架相比它的特色是：它不仅仅支持用js来开发桌面应用，它还支持用C/C++, Ruby, Python, PHP来开发和写模块。而且这些语言写的模块可以彼此调用。Tide拥有一个用C++写的微内核，该微内核是支持跨平台，跨语言的绑定和调用框架。TideSDK没有加入node.js的支持是为遗憾。</p>
 <p>地址: <a href="http://tidesdk.org/" target="_blank" rel="noopener">http://tidesdk.org/</a></p>
-<h1 class="heading-control">游戏应用<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>
+<h1 id="you-xi-ying-yong">游戏应用</h1>
 <p>对于希望用js来开发游戏和动画交互强的应用，那么可能除了node-qt外，还可以考虑下下面的框架：</p>
 <ul>
 <li><a href="http://impactjs.com/ejecta" target="_blank" rel="noopener">Ejecta for iOS</a>: A Fast, Open Source JavaScript, Canvas &amp; Audio Implementation for iOS</li>
@@ -505,23 +439,6 @@ app.run();
     </div>
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>riceball
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="/http:/riceball.me/article/js-desktop-sdk/" title="用 Javascript 开发桌面应用的框架工具列表">http://riceball.me/article/js-desktop-sdk/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -584,14 +501,12 @@ app.run();
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Electron</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">NW.js (以前叫 node-webkit)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">node-x11</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">node-qt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">wxNode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">TideSDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">游戏应用</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#electron"><span class="nav-number">1.</span> <span class="nav-text">Electron</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nwjs-yi-qian-jiao-nodewebkit"><span class="nav-number">2.</span> <span class="nav-text">NW.js (以前叫 node-webkit)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#node-x11"><span class="nav-number">3.</span> <span class="nav-text">node-x11</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#node-qt"><span class="nav-number">4.</span> <span class="nav-text">node-qt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wxnode"><span class="nav-number">5.</span> <span class="nav-text">wxNode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tidesdk"><span class="nav-number">6.</span> <span class="nav-text">TideSDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#you-xi-ying-yong"><span class="nav-number">7.</span> <span class="nav-text">游戏应用</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
-      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
   <p class="site-author-name" itemprop="name">Riceball LEE</p>
   <div class="site-description" itemprop="description">Go with wind.</div>
 </div>
@@ -606,26 +521,16 @@ app.run();
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
@@ -645,12 +550,12 @@ app.run();
 
 <div class="copyright">
   
-  &copy; 2014 – 
+  &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+  <span class="author" itemprop="copyrightHolder">Riceball LEE</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -660,8 +565,13 @@ app.run();
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:01</span>
+    <span title="站点阅读时长">3:30</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
 
@@ -678,30 +588,18 @@ app.run();
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
-
-  <script src="/js/local-search.js"></script>
 
 
 
@@ -719,19 +617,6 @@ app.run();
   
 
 
-<script>
-if (document.querySelectorAll('pre code.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme: 'forest',
-      logLevel: 3,
-      flowchart: { curve: 'linear' },
-      gantt: { axisFormat: '%m/%d/%Y' },
-      sequence: { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>
