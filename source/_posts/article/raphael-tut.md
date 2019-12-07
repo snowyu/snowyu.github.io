@@ -7,7 +7,8 @@ categories:
   - Library
   - Graphic
 tags : [graphic, animation, vector, raphael, javascript, tut]
-reactive: true
+reactive:
+  editable: true
 ---
 
 raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。
@@ -23,7 +24,7 @@ raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面�
 
 下面演示在提供好的画布上用上述参数绘制一个矩形，点击下面的播放按钮进行演示：
 
-```canvas
+```output
 # 演示绘制矩形的过程
 paper = @canvas
 
@@ -59,7 +60,7 @@ tooltip: 现在你可以自己试一试了
 
 更复杂的对象也可以通过path来实现描述。路径是矢量绘图里最强大的工具，同时也比较复杂。
 
-```canvas
+```output
 paper = @canvas
 paper.setSize(200,100)
 paper.clear()
@@ -97,7 +98,7 @@ paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'}
 然后设定当对矩形点击的时候开始动画。
 
 
-```canvas
+```output
 paper = @canvas
 paper.setSize(300,160)
 paper.clear()

@@ -9,7 +9,8 @@ categories:
   - Document
   - Markdown
 tags : [interactive, reactive, document, raphael, javascript, markdown]
-reactive: true
+reactive:
+  editable: true
 ---
 
 ## 什么是响应(交互)式文档
@@ -26,7 +27,7 @@ reactive: true
 
 下面演示在提供好的画布上用上述参数绘制一个矩形，点击下方的播放按钮进行演示：
 
-```canvas
+```output
 # 演示绘制矩形的过程
 paper = @canvas
 
