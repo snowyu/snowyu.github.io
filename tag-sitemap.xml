@@ -598,13 +598,6 @@
     </url>
 
     <url>
-        <loc>http://riceball.me/tags/zfs/</loc>
-        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://riceball.me/tags/p2p/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -620,6 +613,13 @@
 
     <url>
         <loc>http://riceball.me/tags/tao/</loc>
+        <lastmod>2019-11-22T06:56:43.529Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/zfs/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
