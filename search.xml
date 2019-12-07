@@ -8106,44 +8106,11 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
 ]]></content>
   </entry>
   <entry>
-    <title>Going to St.ives</title>
-    <url>/imarkdown/stives.html</url>
-    <content><![CDATA[<p>An old riddle.</p>
-<blockquote>
-<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
-I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
-Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
-Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
-Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
-Kits, cats, sacks, wives<br>
-How many were going to St Ives?</p>
-</blockquote>
-<pre><code>total_sacks = @wives * @sacks
-total_cats  = total_sacks * @cats
-total_kits  = total_cats * @kits
-man         = 1
-
-if @travelers
-    narrator = 2
-    @verb = 'were'
-else
-    narrator = 1
-    @verb = 'was'
-</code></pre>
-<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
-<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
-</code></pre>
-<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
-<pre><code>@answer = narrator
-</code></pre>
-]]></content>
-  </entry>
-  <entry>
     <title>Interactive Markdown</title>
     <url>/imarkdown/index.html</url>
     <content><![CDATA[<h1 id="jie-shao">介绍</h1>
 <p><a href="http://riceball.me/imarkdown">Interactive Markdown</a>是使用纯文本的Markdown格式来制作响应式交互文档的工具。响应式Markdown增加了特有的交互组件和变量的标记符号。</p>
-<p>具体请参阅💁🏻‍♂️ <a href="http://riceball.me/imarkdown/reference.html">reference.html</a> .</p>
+<p>具体请参阅💁🏻‍♂️ <a href="http://riceball.me/imarkdown/reference.html">交互式Markdown文档参考手册</a> .</p>
 <a id="more"></a>
 <h2 id="yi-ge-jian-dan-jiao-hu-wen-dang-li-zi">一个简单交互文档例子</h2>
 <p>一首童谣</p>
@@ -8252,6 +8219,39 @@ tooltip: you can try it by youself now
 <p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> library for creating reactive documents.</p>
 <h2 id="license">License</h2>
 <p>MIT</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Going to St.ives</title>
+    <url>/imarkdown/stives.html</url>
+    <content><![CDATA[<p>An old riddle.</p>
+<blockquote>
+<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
+I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
+Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
+Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
+Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
+Kits, cats, sacks, wives<br>
+How many were going to St Ives?</p>
+</blockquote>
+<pre><code>total_sacks = @wives * @sacks
+total_cats  = total_sacks * @cats
+total_kits  = total_cats * @kits
+man         = 1
+
+if @travelers
+    narrator = 2
+    @verb = 'were'
+else
+    narrator = 1
+    @verb = 'was'
+</code></pre>
+<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
+<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
+</code></pre>
+<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
+<pre><code>@answer = narrator
+</code></pre>
 ]]></content>
   </entry>
   <entry>
@@ -8861,8 +8861,7 @@ tooltip: 现在你可以自己试一试了
     <url>/imarkdown/en/index.html</url>
     <content><![CDATA[<h2 id="introduction">Introduction</h2>
 <p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
-<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">reference.html</a> for a<br>
-complete reference of the elements and their configuration.</p>
+<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a complete reference of the elements and their configuration.</p>
 <a id="more"></a>
 <p>An Example Interactive document looks like this:</p>
 <h3 id="st-ives-example">St.Ives Example</h3>
@@ -8939,9 +8938,6 @@ The first guess is often [2753]{first_guess}…
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>I am thinking about whether to use the new <code>[]{}</code> to express interactive elements, or to expand on <code>[]()</code>. From the development point of view, it is simpler to use<code>[]{}</code>, so I chose it.</p>
-</blockquote>
 <h3 id="a-more-complex-example">A More Complex Example</h3>
 <p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
 <p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>

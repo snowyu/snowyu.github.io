@@ -72,7 +72,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.0-min.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.1-min.css'>
 
   <title>Interactive Markdown | Riceball LEE
   </title>
@@ -202,8 +202,7 @@
       <div class="post-body">
           <h2 id="introduction">Introduction</h2>
 <p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
-<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">reference.html</a> for a<br>
-complete reference of the elements and their configuration.</p>
+<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a complete reference of the elements and their configuration.</p>
 <a id="more"></a>
 <p>An Example Interactive document looks like this:</p>
 <h3 id="st-ives-example">St.Ives Example</h3>
@@ -280,9 +279,6 @@ The first guess is often [2753]{first_guess}…
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>I am thinking about whether to use the new <code>[]{}</code> to express interactive elements, or to expand on <code>[]()</code>. From the development point of view, it is simpler to use<code>[]{}</code>, so I chose it.</p>
-</blockquote>
 <h3 id="a-more-complex-example">A More Complex Example</h3>
 <p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
 <p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>
@@ -486,7 +482,7 @@ complete reference of the elements and their configuration.</p>
   
 
 
-<script src='/assets/imarkdown/imarkdown-0.4.0-min.js'></script><script>
+<script src='/assets/imarkdown/imarkdown-0.4.1-min.js'></script><script>
 window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown.md"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
