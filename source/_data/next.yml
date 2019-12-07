@@ -1,3 +1,19 @@
+# next_nightmode:
+#   enable: false
+#   # FontAwesome or ForkAwesome icon in sidebar button.
+#   icon: lightbulb-o
+#   # Text for sidebar button.
+#   text: Night Mode
+#   # If true, when you disable Night Mode, Hexo will show warning messages in your console.
+#   reminder: false
+#   # Debugger for alpha option below.
+#   debugger: false
+#   # Support experimental prefers-color-scheme media query.
+#   # For now if alpha mode enabled, sidebar button will be disabled.
+#   # The only way to toggle night mode is your system color scheme settings.
+#   # Also see: https://caniuse.com/#feat=prefers-color-scheme.
+#   alpha: false
+
 # Add some descriptions to your co-authors
 coauthors:
   [riceball]:
@@ -110,7 +126,7 @@ creative_commons:
 # Schemes
 # scheme: Muse
 scheme: Mist
-#scheme: Pisces
+# scheme: Pisces
 #scheme: Gemini
 
 
@@ -146,8 +162,8 @@ menu_settings:
 
 sidebar:
   # Sidebar Position.
-  # position: left
-  position: right
+  position: left
+  # position: right
 
   # Manual define the sidebar width. If commented, will be default for:
   # Muse | Mist: 320
@@ -896,3 +912,17 @@ canvas_ribbon:
   alpha: 0.6 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
 
+anchor:
+  enable: true
+  color: '#0e83cd'
+  position: right # If left, anchors will always be visible.
+  margin: 7px
+  text: '#'
+  icon:
+    # If true, the `text` option will be ignored.
+    enable: false
+    # By default, NexT has built-in FontAwesome support.
+    # This option means `font-family: FontAwesome`, so DO Not change it.
+    # Also you can choose ForkAwesome, but that's another story.
+    font: FontAwesome
+    content: \f0c1 # CSS content for FontAwesome & ForkAwesome.
