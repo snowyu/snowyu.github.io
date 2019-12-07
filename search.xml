@@ -8208,7 +8208,7 @@ tooltip: you can try it by youself now
 <h2 id="biao-ji">标记</h2>
 <p>交互元素的标记符号和<code>markdown</code>的链接和图像标记符号类似:</p>
 <p><code>[text content]{variable_name: configuration}</code></p>
-<p>具体请参阅💁🏻‍♂️ <a href="http://riceball.me/imarkdown/reference.html">reference.html</a> .</p>
+<p>具体请参阅💁🏻‍♂️ <a href="http://riceball.me/imarkdown/reference.html">交互式Markdown文档参考手册</a> .</p>
 <h2 id="zuo-zhe">作者</h2>
 <ul>
 <li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
@@ -8967,7 +8967,7 @@ tooltip: you can try it by youself now
 <p>The notation for specifying elements is similar to the regular Markdown syntax<br>
 for links and images, generally following this format:</p>
 <p><code>[text content]{variable_name: configuration}</code></p>
-<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">reference.html</a> for a<br>
+<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a<br>
 complete reference of the elements and their configuration.</p>
 <h2 id="authors">Authors</h2>
 <ul>
