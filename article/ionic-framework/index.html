@@ -317,8 +317,7 @@ ionic serve -l
 <pre><code>ionic g page login
 </code></pre>
 <p>Note: 懒加载的Page为独立的Module。<br>
-Ionic的懒加载Page很愚蠢，是编译时刻由ionic的app-scripts处理的(deep links config)，<br>
-必须是page.moudle.ts与page.compnent.ts分开文件（否则app-scripts会报错）</p>
+Ionic的懒加载Page很愚蠢，是编译时刻由ionic的app-scripts处理的(deep links config)，必须是page.moudle.ts与page.compnent.ts分开文件（否则app-scripts会报错）</p>
 <p>另外tab控件产生的url丑陋： <a href="https://github.com/ionic-team/ionic/issues/9012" target="_blank" rel="noopener">https://github.com/ionic-team/ionic/issues/9012</a></p>
 <p>如果不要<code>IonicPage</code>注解可以这：</p>
 <pre><code class="ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> deepLinkConfig: DeepLinkConfig = {
@@ -365,8 +364,7 @@ Ionic的懒加载Page很愚蠢，是编译时刻由ionic的app-scripts处理的(
 </ul>
 </li>
 </ul>
-<p>ionic 4将使用Web Component(通过stencil编译)的方式，来改变目前绑定在Angular框架的局面，<br>
-这样ionic的组件就和框架无关了，你可以用在任何框架上面使用， vue, react 都不是问题.</p>
+<p>ionic 4将使用Web Component(通过stencil编译)的方式，来改变目前绑定在Angular框架的局面，这样ionic的组件就和框架无关了，你可以用在任何框架上面使用， vue, react 都不是问题.</p>
 <h2 id="announcing-pwa-support-in-ionic2"><a href="http://blog.ionic.io/announcing-pwa-support-in-ionic-2/" target="_blank" rel="noopener">Announcing PWA support in Ionic2</a></h2>
 <p>We also provide the service worker registration code in your index.html file.</p>
 <pre><code class="js"><span class="hljs-keyword">if</span> (<span class="hljs-string">'serviceWorker'</span> <span class="hljs-keyword">in</span> navigator) {
@@ -483,8 +481,7 @@ npx <span class="hljs-built_in">cap</span> sync
 <p><a href="https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/" target="_blank" rel="noopener">https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/</a><br>
 <a href="https://robferguson.org/blog/2017/11/28/testing-your-ionic-3-app/" target="_blank" rel="noopener">https://robferguson.org/blog/2017/11/28/testing-your-ionic-3-app/</a></p>
 <h3 id="assertshtmlindexhtml-lian-jie-bu-cheng-gong-can-not-unsuccessful-connectwebview">/asserts/html/index.html 连接不成功(can not unsuccessful connect)，(webview)</h3>
-<p>里面的脚本太多加载超时导致。<br>
-在java中加入:</p>
+<p>里面的脚本太多加载超时导致。在java中加入:</p>
 <pre><code class="java"><span class="hljs-keyword">super</span>.setIntegerProperty(<span class="hljs-string">"loadUrlTimeoutValue"</span>, <span class="hljs-number">700000</span>);
 </code></pre>
 <p>或者在项目根目录 <code>config.xml</code>的 <code>andorid platform</code> 中加入:</p>
@@ -514,41 +511,28 @@ Use NPM (or NPM link) to get your library in node_modules<br>
 Code as normal</p>
 <p>We can’t support Typescript from a third party library at this time. It’s gotta be converted to Javascript because that is how libraries are distributed 99% of the time.</p>
 <h3 id="click-delays-dian-ji-yan-chi-wen-ti">Click Delays 点击延迟问题</h3>
-<p>熟悉前端的应该都知道，某些元素在click事件会有300ms的延迟，<br>
-在ionic里也是只有button和a可以立即响应的。如果要给其他的<br>
-元素比如div增加click事件，给该元素加上<code>tappable</code>属性即可解决。</p>
+<p>熟悉前端的应该都知道，某些元素在click事件会有300ms的延迟，在ionic里也是只有button和a可以立即响应的。如果要给其他的元素比如div增加click事件，给该元素加上<code>tappable</code>属性即可解决。</p>
 <h3 id="http-qing-qiu-kua-yu-wen-ti">http请求跨域问题</h3>
 <p>在ionic2里使用angular2的HTTP请求api时，如果在浏览器里运行，经常会遇到跨域问题，比如：</p>
 <pre><code>XMLHttpRequest cannot load http://www.xxx.com/clt/jsp/v3/channelContList.jsp?n=25950&amp;WD-UUID=864819028898243&amp;pageidx=1. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8101' is therefore not allowed access.
 </code></pre>
-<p>这是因为chrome不允许跨域访问。解决方法很简单，给chrome装一个ripple扩展，然后点击ripple，<br>
-选择启用，就可以跨域访问了。</p>
-<p>如果是自己同时开发api和app，很有可能api也是部署在本机上，比如api地址是http://localhost/api，<br>
-<code>ionic serve</code>跑起来后是http://localhost:8100，这样在调用的时候又会遇到Internet Server Error的问题，比如：</p>
+<p>这是因为chrome不允许跨域访问。解决方法很简单，给chrome装一个ripple扩展，然后点击ripple，选择启用，就可以跨域访问了。</p>
+<p>如果是自己同时开发api和app，很有可能api也是部署在本机上，比如api地址是http://localhost/api，<code>ionic serve</code>跑起来后是http://localhost:8100，这样在调用的时候又会遇到Internet Server Error的问题，比如：</p>
 <pre><code>Error code is:xhr_proxy?tinyhippos_apikey=ABC&amp;tinyhippos_rurl=http%3A//localhost%3A30673/ap‌​i/user/Get%3Fjson rippleapi.herokuapp.com Status Code:500 Internal Server Error I'am getting data from my localhost post adress:localhost:30673/api/user/Get'; It is working well in browser . And getting data from localhost:30673/api/user/Get. But in ripple it tries to get data from There: xhr_proxy?tinyhippos_apikey=ABC&amp;tinyhippos_rurl=http%3A//localhost%3A30673/api/u‌​ser/Get%3Fjson rippleapi.herokuapp.com
 </code></pre>
-<p>解决方法也很简单，ripple设置右上角有一个Cross Domain Proxy，有三个选择，Disabled、Local和Remote，<br>
-通过字面意思就可以看出来分别对应禁用、本地和远程访问，如果是访问本机的api的话，一般设置为Disabled就可以了。<br>
-如果访问远程主机的api，一般要设置为Remote或Disabled。</p>
+<p>解决方法也很简单，ripple设置右上角有一个Cross Domain Proxy，有三个选择，Disabled、Local和Remote，通过字面意思就可以看出来分别对应禁用、本地和远程访问，如果是访问本机的api的话，一般设置为Disabled就可以了。如果访问远程主机的api，一般要设置为Remote或Disabled。</p>
 <h3 id="yin-yong-di-san-fang-js-ku-de-wen-ti">引用第三方js库的问题</h3>
-<p>开发过程中不可避免的要用到第三方js库，如果直接在TypeScript里写的话，编译器是认不出来的，<br>
-会报错，编译也通不过。外部的类必须要import进来才可以用。TypeScript需要一个声明文件 d.ts<br>
+<p>开发过程中不可避免的要用到第三方js库，如果直接在TypeScript里写的话，编译器是认不出来的，会报错，编译也通不过。外部的类必须要import进来才可以用。TypeScript需要一个声明文件 d.ts<br>
 来知道第三方库的接口。可参考 <a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/Writing%20Definition%20Files.html" target="_blank" rel="noopener">https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/Writing Definition Files.html</a></p>
 <p>如果用流行的库的话，不用我们自己写d.ts，有个开源的项目已经做好了：<a href="https://github.com/DefinitelyTyped/DefinitelyTyped" target="_blank" rel="noopener">https://github.com/DefinitelyTyped/DefinitelyTyped</a><br>
 自己写的话很麻烦，特别是我用了一个项目平台的库，函数也不少，自己写的话也费时间，后来想到一个办法，</p>
-<p>TypeScript的编译器支持自动生成d.ts，可以用命令<code>tsc --declaration my.ts</code>来生成，这个命令是给ts文件生成声明的，<br>
-但TypeScript原生支持js，可以把第三方的js改后缀名为ts，tsc也可以生成。这里我又遇到一个问题，我的库里又调用了<br>
-Cordova的一些函数，编译的话tsc找不到，解决办法是复制一份js，将所有认不出的东西都注释掉，再生成就可以了。<br>
-反正这个命令只是生成一个声明文件，具体的js只要引入进来就可以用。用这个命令很快就可以生成一份声明了，然后在用<br>
-到的地方用</p>
+<p>TypeScript的编译器支持自动生成d.ts，可以用命令<code>tsc --declaration my.ts</code>来生成，这个命令是给ts文件生成声明的，但TypeScript原生支持js，可以把第三方的js改后缀名为ts，tsc也可以生成。这里我又遇到一个问题，我的库里又调用了<br>
+Cordova的一些函数，编译的话tsc找不到，解决办法是复制一份js，将所有认不出的东西都注释掉，再生成就可以了。反正这个命令只是生成一个声明文件，具体的js只要引入进来就可以用。用这个命令很快就可以生成一份声明了，然后在用到的地方用</p>
 <pre><code>/// &lt;reference path=&quot;../sdk.d.ts&quot;/&gt;
 </code></pre>
 <p>这样的方式引用。注意一定要写在文件第一行。</p>
 <h3 id="kai-fa-mo-shi-xuan-ze">开发模式选择</h3>
-<p>这个问题只是我做的项目的特殊情况，可能大部分人遇不到。我们的平台封装了Cordova的http请求，调用api必须用指定的<br>
-方法才可以。但在chrome里调试的时候是加载不到Cordova的，于是我想了一个办法，增加一个全局的isDebug变量，封装一<br>
-个全局的http方法，在debug模式时调用angular2的HTTP来请求，正式运行时才用Cordova的。其他的service都要调用这个方<br>
-法，就无需关注是什么模式了，如果真机运行的话就改一下isDebug的值就可以了。</p>
+<p>这个问题只是我做的项目的特殊情况，可能大部分人遇不到。我们的平台封装了Cordova的http请求，调用api必须用指定的方法才可以。但在chrome里调试的时候是加载不到Cordova的，于是我想了一个办法，增加一个全局的isDebug变量，封装一个全局的http方法，在debug模式时调用angular2的HTTP来请求，正式运行时才用Cordova的。其他的service都要调用这个方法，就无需关注是什么模式了，如果真机运行的话就改一下isDebug的值就可以了。</p>
 <p>放一段代码：</p>
 <pre><code class="js"><span class="hljs-comment">/// &lt;reference path="../sdk.d.ts"/&gt;</span>
 <span class="hljs-keyword">import</span> {Injectable, Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
@@ -594,11 +578,9 @@ Cordova的一些函数，编译的话tsc找不到，解决办法是复制一份j
 }
 
 </code></pre>
-<p>angular2的http是用的Promise，但平台提供的方法用的callback，于是需要在这里将回调函数的方式改为Promise的方式，<br>
-不管是不是debug模式都返回一个Promise，这样上层调用的时候就方便了。我是看的这里：</p>
+<p>angular2的http是用的Promise，但平台提供的方法用的callback，于是需要在这里将回调函数的方式改为Promise的方式，不管是不是debug模式都返回一个Promise，这样上层调用的时候就方便了。我是看的这里：</p>
 <p><a href="https://basarat.gitbooks.io/typescript/content/docs/promise.html" target="_blank" rel="noopener">https://basarat.gitbooks.io/typescript/content/docs/promise.html</a></p>
-<p>在angular2的官方文档中，是推荐用Observable模式的，但我还没有搞明白怎么将callback转为Observable，目前也没有时间<br>
-仔细研究这块，所以还是继续用Promise好了。</p>
+<p>在angular2的官方文档中，是推荐用Observable模式的，但我还没有搞明白怎么将callback转为Observable，目前也没有时间仔细研究这块，所以还是继续用Promise好了。</p>
 <h3 id="dan-li-mo-shi">单例模式</h3>
 <p>单例是经常用到的，我参考一个老外的代码用了一个单例，用来保存一些全局变量：</p>
 <pre><code class="js"><span class="hljs-keyword">import</span> {UserInfo} <span class="hljs-keyword">from</span> <span class="hljs-string">'./model/user'</span>;

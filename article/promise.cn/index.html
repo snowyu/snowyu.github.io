@@ -45,13 +45,13 @@
   };
 </script>
 
-  <meta name="description" content="Promise Promise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises. 简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。 因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。  promise只有三种状态，未">
+  <meta name="description" content="Promise Promise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises. 简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。  promise只有三种状态，未完">
 <meta name="keywords" content="programming,asynchronous,promise">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异步编程与 Promise">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;promise.cn&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="Promise Promise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises. 简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。 因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。  promise只有三种状态，未">
+<meta property="og:description" content="Promise Promise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises. 简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。  promise只有三种状态，未完">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-03-21T20:00:14.000Z">
 <meta name="twitter:card" content="summary">
@@ -264,8 +264,7 @@
       
         <h1 id="promise">Promise</h1>
 <p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p>
-<p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。<br>
-因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
+<p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
 <ul>
 <li>promise只有三种状态，未完成，完成(fulfilled)和失败(rejected)。</li>
 <li>promise的状态可以由未完成转换成完成，或者未完成转换成失败。</li>
@@ -297,8 +296,7 @@
 <li><code>some</code>是其中一些promise成功返回，可以指定个数。返回结果为一个数组.</li>
 <li><code>any</code> 是任意一个promise成功返回，是some个数固定为1的结果，另外它的返回结果是一个单值，不是数组。</li>
 </ul>
-<p>注意：它们是向<strong>所有</strong>的promises同时发起执行请求(并行)，但是只取最先返回结果的。不是顺序执行，<br>
-直到得到成功结果的个数，就不继续了。</p>
+<p>注意：它们是向<strong>所有</strong>的promises同时发起执行请求(并行)，但是只取最先返回结果的。不是顺序执行，直到得到成功结果的个数，就不继续了。</p>
 <pre><code class="coffee">Promise = <span class="hljs-built_in">require</span> <span class="hljs-string">'bluebird'</span>
 
 readFile = Promise.promisify (aPath, done) -&gt;
@@ -321,8 +319,7 @@ content= x ok
 </code></pre>
 <p>注：这个 <code>x</code> 表示可能是 ‘c’或者’e’。</p>
 <h3 id="shun-xu-zhi-hang-de-some-he-any">顺序执行的 <code>some</code> 和 <code>any</code></h3>
-<p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。<br>
-那么如何做到顺序执行（sequence）？</p>
+<p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。那么如何做到顺序执行（sequence）？</p>
 <p>这个时候，可以用<code>reduce</code>(<a href="http://bluebirdjs.com/docs/api/promise.reduce.html" target="_blank" rel="noopener">promise.reduce</a>)实现：</p>
 <pre><code class="coffee">Promise.reduce files, <span class="hljs-function"><span class="hljs-params">(content, file)</span>-&gt;</span>
   content = readFile(file).caught(<span class="hljs-function">-&gt;</span>) <span class="hljs-keyword">unless</span> content

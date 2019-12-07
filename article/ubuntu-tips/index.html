@@ -45,13 +45,13 @@
   };
 </script>
 
-  <meta name="description" content="Ubuntu 16.10 Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。 不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带 策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell 我比较习惯 zsh, 下载安装zsh:">
+  <meta name="description" content="Ubuntu 16.10 Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell 我比较习惯 zsh, 下载安装zsh:">
 <meta name="keywords" content="network,linux,ubuntu,dnsmasq,iptables,iproute2,dns,ipset,shadowsocks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu Tips">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;ubuntu-tips&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="Ubuntu 16.10 Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。 不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带 策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell 我比较习惯 zsh, 下载安装zsh:">
+<meta property="og:description" content="Ubuntu 16.10 Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell 我比较习惯 zsh, 下载安装zsh:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-22T06:56:43.545Z">
 <meta name="twitter:card" content="summary">
@@ -257,9 +257,7 @@
 
       
         <h1 id="ubuntu-16-10">Ubuntu 16.10</h1>
-<p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。<br>
-不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带<br>
-策略路由，对于域名IP流量精确转发，变得so easy。</p>
+<p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。</p>
 <p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
 <h2 id="shell">Shell</h2>
 <p>我比较习惯 zsh, 下载安装zsh:</p>
@@ -331,8 +329,7 @@ $&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"export 
 </tr>
 </tbody>
 </table>
-<p>我自己用的是Ext4以及Btrfs(支持ssd参数优化)。另外如果是用笔记本的话，可以适当将写commit的时间延长（秒为单位）。<br>
-添加<code>noatime</code>/<code>relatime</code>参数(在读取文件的时候禁止/减少写入)以便于提升SSD的读取性能（尽管Linux内核2.6.30以上为默认）。</p>
+<p>我自己用的是Ext4以及Btrfs(支持ssd参数优化)。另外如果是用笔记本的话，可以适当将写commit的时间延长（秒为单位）。添加<code>noatime</code>/<code>relatime</code>参数(在读取文件的时候禁止/减少写入)以便于提升SSD的读取性能（尽管Linux内核2.6.30以上为默认）。</p>
 <pre><code class="bash">✗ cat /etc/fstab
 <span class="hljs-comment"># /etc/fstab: static file system information.</span>
 <span class="hljs-comment">#</span>
@@ -362,8 +359,7 @@ nvme0n1          512      512B       2T         0
 </code></pre>
 <p>如果 <code>DISC-GRAN</code> 和 <code>DISC-MAX</code> 列的值<code>非0</code>就表示支持trim.</p>
 <h3 id="xian-zhi-jiao-huan-fen-qu">限制交换分区</h3>
-<p>Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。<br>
-该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。</p>
+<p>Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。</p>
 <p>查看当前的<code>swappiness</code>设置：</p>
 <pre><code class="bash">$&gt; cat /proc/sys/vm/swappiness
 60
@@ -378,8 +374,7 @@ sudo systemctl <span class="hljs-built_in">enable</span> tmp.mount
 sudo systemctl start tmp.mount
 </code></pre>
 <h2 id="dnsmasq">dnsmasq</h2>
-<p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）<br>
-是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>
+<p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>
 需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
 <pre><code class="bash">$&gt;cat /etc/resolv.dnsmasq.conf
 <span class="hljs-comment"># Google's nameservers, for example</span>
@@ -397,15 +392,13 @@ $&gt;sudo systemctl restart NetworkManager
 </code></pre>
 <h2 id="ipset">ipset</h2>
 <p>ipset 配合 iptables 可实现基于域名的策略路由。</p>
-<p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配<br>
-性能问题。</p>
+<p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配性能问题。</p>
 <p>当然，首先你要安装: <code>sudo apt install ipset</code></p>
 <h3 id="hei-ming-dan-fang-shi">黑名单方式</h3>
 <p>Dnsmasq 从 2.66 版本之后就支持将域名的查询结果放进 ipset 中，这样就可以对这些域名对应的 IP<br>
 使用 iptables 处理。</p>
 <p>只转发名单内的IP, 可以配合gfwlist对指定的域名IP做重定向处理</p>
-<p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases" target="_blank" rel="noopener">gfwlist_ipset.conf</a>文件，<br>
-放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
+<p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases" target="_blank" rel="noopener">gfwlist_ipset.conf</a>文件，放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
 <p>你需要修改文件中的域名服务器地址，最简单的方法是在代理服务器上自建一个域名服务器（用非标准端口）。</p>
 <pre><code class="yaml"><span class="hljs-comment">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器</span>
 <span class="hljs-string">server=/google.com/127.0.0.1#5353</span>
@@ -439,8 +432,7 @@ ipset -N chnroute <span class="hljs-built_in">hash</span>:net maxelem 65536
   ipset add chnroute <span class="hljs-variable">$ip</span>
 <span class="hljs-keyword">done</span>
 </code></pre>
-<p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，<br>
-而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
+<p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
 <h2 id="shadowsocks-libev">shadowsocks-libev</h2>
 <pre><code>apt install shadowsocks-libev
 </code></pre>

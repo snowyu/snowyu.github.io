@@ -570,8 +570,7 @@ Crafty.init(<span class="hljs-number">50</span>, <span class="hljs-number">580</
 );
 </code></pre>
 <p><strong>控制角色移动：</strong></p>
-<p>现在我们来学习如何来控制角色移动，我们希望按下左键角色向左移动，按下右键向右移动，按下空格键跳跃。<br>
-首先，我们需要知道这些键的ASCII码值，左键：37；右键：39；空格：32。</p>
+<p>现在我们来学习如何来控制角色移动，我们希望按下左键角色向左移动，按下右键向右移动，按下空格键跳跃。首先，我们需要知道这些键的ASCII码值，左键：37；右键：39；空格：32。</p>
 <p>使得角色移动和跳的方法是：move和jump。我们需要使得当相应建被按下后相应的方法被调用即可。勾挂键盘事件的是方法是在keyHandler.register（我们需要 gma/events 库）上：</p>
 <pre><code class="js">
 gma.keyHandler.register(<span class="hljs-number">37</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">keyEvent</span>) </span>{

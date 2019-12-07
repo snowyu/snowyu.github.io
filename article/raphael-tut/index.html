@@ -294,8 +294,7 @@ paper.setSize(200,100)
 paper.clear()
 paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'})
 </code></pre>
-<p>路径的参数是一组字符串，由“命令字母+坐标数字”的组合构成。数字表示坐标点，字母负责表示如何连接这些坐标点。<br>
-比如x的示例中，M表示起点，L表示直线连接，所以上述的path的信息可以这样解读：</p>
+<p>路径的参数是一组字符串，由“命令字母+坐标数字”的组合构成。数字表示坐标点，字母负责表示如何连接这些坐标点。比如x的示例中，M表示起点，L表示直线连接，所以上述的path的信息可以这样解读：</p>
 <ul>
 <li>M100,0      -&gt;    以（100，0）坐标点为起点</li>
 <li>L200,100    -&gt;    从（100，0）向（200，100）画一条直线</li>
@@ -311,8 +310,7 @@ paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'}
 <li>V: Vert(y)       垂直直线 保持当前点的x坐标不变，y轴移动到y，形成垂直线</li>
 </ul>
 <h2 id="dong-hua">动画</h2>
-<p>在raphael中绘制的每一个元素都可以轻易的制作动画，只要我们设定它的起始和结束属性即可。<br>
-假如我们对前面的矩形进行动画，设定它的结束属性为：</p>
+<p>在raphael中绘制的每一个元素都可以轻易的制作动画，只要我们设定它的起始和结束属性即可。假如我们对前面的矩形进行动画，设定它的结束属性为：</p>
 <ul>
 <li><span class="AMElement" data-embed="false" data-config="rex:0..">x轴坐标:100</span>，<span class="AMElement" data-embed="false" data-config="rey:0..">y轴坐标:40</span></li>
 <li><span class="AMElement" data-embed="false" data-config="rew:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="reh:1..">高度:100</span></li>

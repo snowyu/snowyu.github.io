@@ -295,11 +295,7 @@ Bitcoin_Address = Base58Encode(Key_hash+Checksum)
 <span class="hljs-comment">#前面的0被作为单个0保留。</span>
 </code></pre>
 <p><img src="bitcoin-dc-validate.png" alt=""></p>
-<p>Bitcoin 电子货币系统的核心功能是面对面（点对点）支付，就像真实货币一样，无需中间人，<br>
-几乎不需要交易费。它背后的技术实现是很巧妙的通过将造币(Mint)，交易(transaction，<br>
-这里提到的交易都是特指的支付)，交易验证(transaction verifiction)交织在一起，形成一<br>
-个完美的圆。所以要想把它的机理理解清楚，就必须同时理解bitcoin的电子货币，交易，<br>
-造币的确切含义。</p>
+<p>Bitcoin 电子货币系统的核心功能是面对面（点对点）支付，就像真实货币一样，无需中间人，几乎不需要交易费。它背后的技术实现是很巧妙的通过将造币(Mint)，交易(transaction，这里提到的交易都是特指的支付)，交易验证(transaction verifiction)交织在一起，形成一个完美的圆。所以要想把它的机理理解清楚，就必须同时理解bitcoin的电子货币，交易，造币的确切含义。</p>
 <p>首先从电子货币谈起。</p>
 <h3 id="dian-zi-huo-bi-he-jiao-yi-dan-transaction">电子货币和交易单(Transaction)</h3>
 <p>Bitcoin电子货币解决的是：</p>
@@ -307,9 +303,7 @@ Bitcoin_Address = Base58Encode(Key_hash+Checksum)
 <li>任意造币的问题：通过“挖矿”机制保证了不能任意造币。</li>
 <li>重复花钱的问题(Double-Spending)：利用P2P网络，通过HashCash的机制。</li>
 </ol>
-<p>事实上Bitcoin系统中不存在独立的电子货币，货币值是依附于交易单存在的，<br>
-所以在bitcoin中的电子货币的实质就是交易单，确切的说是货币交易（Transactions）<br>
-的 数字签名链，它的数字签名算法使用的是ECDSA（<a href="http://www.secg.org/collateral/sec2_final.pdf" target="_blank" rel="noopener">椭圆曲线数字签名算法</a> secp256k1曲线）进行签名的。</p>
+<p>事实上Bitcoin系统中不存在独立的电子货币，货币值是依附于交易单存在的，所以在bitcoin中的电子货币的实质就是交易单，确切的说是货币交易（Transactions）的 数字签名链，它的数字签名算法使用的是ECDSA（<a href="http://www.secg.org/collateral/sec2_final.pdf" target="_blank" rel="noopener">椭圆曲线数字签名算法</a> secp256k1曲线）进行签名的。</p>
 <p>交易单的数据如下：</p>
 <pre><code>In:
 Previous tx: f5d8ee39a430901c91a5917b9f2dc19d6d1a0e9cea205b009ca73dd0
@@ -324,10 +318,8 @@ Value: 5000000000
 scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 549d OP_EQUALVERIFY OP_CHECKSIG
 </code></pre>
-<p>交易单记录的是本次交易的收入来源(in)和支出(out)。当你支出（给）一笔钱的时候，<br>
-首先在交易单中就要描述清楚你要支出(out)的钱的收入来源(in)，然后在支出(out)<br>
-项中，指明要支出的金额，以及通过脚本的形式写明接收者的公钥，然后用自己的私钥<br>
-签名(scriptSig)认可该笔交易，最后将交易单广播到网络。</p>
+<p>交易单记录的是本次交易的收入来源(in)和支出(out)。当你支出（给）一笔钱的时候，首先在交易单中就要描述清楚你要支出(out)的钱的收入来源(in)，然后在支出(out)<br>
+项中，指明要支出的金额，以及通过脚本的形式写明接收者的公钥，然后用自己的私钥签名(scriptSig)认可该笔交易，最后将交易单广播到网络。</p>
 <p>收入来源(in):</p>
 <ul>
 <li>Previous tx: 为收入来源交易单的散列值，也就是待支付的钱是谁给你的，经常会有多个收入来源被列在交易单中</li>
@@ -390,8 +382,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 
     <span class="hljs-comment">//....</span>
 </code></pre>
-<p>每一笔交易单验证追查到最后，第一笔总是“挖矿”所得，这被称为coinbase。<br>
-如果是第一次“挖矿”所得，电子货币的内容用JSON格式表示如下：</p>
+<p>每一笔交易单验证追查到最后，第一笔总是“挖矿”所得，这被称为coinbase。如果是第一次“挖矿”所得，电子货币的内容用JSON格式表示如下：</p>
 <pre><code class="json">{
   <span class="hljs-attr">"hash"</span>:<span class="hljs-string">"b3141455cb397e42665b90b3726c4770fd36101715618718111403bc780ceaa2"</span>,
   <span class="hljs-attr">"ver"</span>:<span class="hljs-number">1</span>,
@@ -428,8 +419,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 <p>通过前面对交易单的描述，我想大家应该已经知道，交易的验证是通过不断的追溯交易单来完成的。那么交易验证的细节是如何实现的，bitcoin的交易验证的实现细节是很意思的，它是通过脚本来实现验证的，这样bitcoin就实现了一个可被脚本扩展的行为，更加广义的&quot;交易&quot;，这可以保证足够的灵活性和可扩展，可以想象也许以后会有真正的分布式计算任务跑在上面作为一笔交易。因此要想讲清楚验证的细节，就不得不从脚本系统讲起了。</p>
 <h3 id="jiao-ben-xi-tong">脚本系统</h3>
 <p>Bitcoin的脚本系统是使用类<a href="http://en.wikipedia.org/wiki/FORTH" target="_blank" rel="noopener">FORTH</a>语言（FORTH在嵌入式设备中是我最喜欢的一种语言）实现的，FORTH系统是面向栈的“高级机器”语言，它兼具了高级语言的特性（面向WORD）和机器语言的高性能与小尺寸，唯一的缺点就是可读性不高，基本上可以把FORTH当一种高级的机器语言吧。Bitcoin在实现上做了许多简化和特殊实现，所以只能算是类FORTH的系统。</p>
-<p>在<a href="http://en.wikipedia.org/wiki/FORTH" target="_blank" rel="noopener">FORTH</a>系统中所有的命令(函数)都被称为单词（WORD），所有数据的处理都要压入数据栈上进行，所以FORTH被称为面向栈的语言。<br>
-比如 1和2相加，在FORTH系统中则是 <code>1 2 ＋</code>，数字 1，2 表示将它们压入到数据栈中（在FORTH解释器执行后实际指令会有<code>OP_PUSH</code>），＋的操作则是将栈顶和次栈顶的数字取出并相加，并将结果压回数据栈。</p>
+<p>在<a href="http://en.wikipedia.org/wiki/FORTH" target="_blank" rel="noopener">FORTH</a>系统中所有的命令(函数)都被称为单词（WORD），所有数据的处理都要压入数据栈上进行，所以FORTH被称为面向栈的语言。比如 1和2相加，在FORTH系统中则是 <code>1 2 ＋</code>，数字 1，2 表示将它们压入到数据栈中（在FORTH解释器执行后实际指令会有<code>OP_PUSH</code>），＋的操作则是将栈顶和次栈顶的数字取出并相加，并将结果压回数据栈。</p>
 <p>Bitcoin的脚本系统的所有的操作指令（单词）见后面的附录，不是所有的操作指令都能被执行支持，因为安全上的考虑有的操作指令被禁止掉了，比如大多数的字符串操作和乘除运算。</p>
 <p>在FORTH系统中一般会定义该系统是8位FORTH, 16位FORTH还是32/64位FORTH，这和数据栈的值长有关。在Bitcoin中的脚本系统使用的堆栈是用（<code>vector&lt;vector&lt;unsigned char&gt; &gt;</code>）来模拟的，它在数据栈的每一项都是以字符串的形式存放，它的数值是统一用CBigNum来运算的（读到这里应该明白为啥bitcoin会限制乘除运算了），每一次从数据栈中压入(<code>CBigNum.getvch()</code>)或者取出数值(<code>CastToBigNum(stacktop[-1])</code>)都要进行一次转换。看着这样的实现，让我有点发怵，本能的不喜欢，怎么能把高效的FORTH搞成这个样子。Bitcoin的脚本系统与FORTH一样，有两个堆栈，一个数据栈，在Bitcoin中被称为main stack,一个返回栈，在Bitcoin中被称为alt stack（事实上在Bitcoin中将alt stack作为数据栈的中转而还没有作为FORTH意义上的返回栈）. Bitcoin的脚本系统没有实现单词定义，流程跳转，循环控制（FOR, WHILE），对IF的实现非常丑陋。事实上我对Bitcoin的脚本实现不是十分认可，堆栈采用变长的数据值，直接将big number 作为opcode，导致每一次opcode执行开销无法控制，由于没有完整实现FORTH的控制指令，导致用trick的方式来实现IF指令，在bitcoin中也因此无法定义新的WORD。总之我很不喜欢bitcoin的这个脚本引擎实现(参见script.cpp)。</p>
 <p>下一篇将接着介绍下和交易验证相关的几个操作符：<code>OP_DUP, OP_HASH160, OP_EQUALVERIFY , OP_CHECKSIG</code> 的功能，现在有点倦了。</p>
@@ -1103,19 +1093,14 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 <h3 id="cun-chu-he-liu-liang-wen-ti">存储和流量问题</h3>
 <ul>
 <li>存储：目前每个节点上文件数据是684M(我记得上个月已经上G，初步猜测脚本算法终于增加了pruning算法，把存储和流量给降了下来)，但是这始终会随着交易量的增加而持续增加的。</li>
-<li>流量：上个月，当连接数在115-130的时候，节点3小时内的流量大约143M。当在PC新安装Bitcoin客户端后全部获取900M交易单信息花了8小时。这个月因为算法改进，有所好转。<br>
-不过一旦参与的人数越来越多，交易日益频繁，这个上限依然存在。</li>
+<li>流量：上个月，当连接数在115-130的时候，节点3小时内的流量大约143M。当在PC新安装Bitcoin客户端后全部获取900M交易单信息花了8小时。这个月因为算法改进，有所好转。不过一旦参与的人数越来越多，交易日益频繁，这个上限依然存在。</li>
 </ul>
 <p>目前Bitcoin网络上Block的总数为：137741 <a href="http://blockexplorer.com/q/getblockcount" target="_blank" rel="noopener">http://blockexplorer.com/q/getblockcount</a><br>
 平均块大小为：25460 <a href="http://blockexplorer.com/q/avgblocksize" target="_blank" rel="noopener">http://blockexplorer.com/q/avgblocksize</a><br>
 那么所有块的总大小为：137741*25460=3506885860(bytes)=3344.427MB =3.266GB</p>
-<p>Visa组织目前平均每年大约处理28.4*1000000000(Billion)笔交易，也就是平均每秒大约处理54000笔交易(<a href="http://www.creditcards.com/credit-card-news/credit-card-industry-facts-personal-debt-statistics-1276.php" target="_blank" rel="noopener">参阅此处</a>)。<br>
-而Bitcoin网络目前的最大处理能力只有每秒7笔交易。如果按照目前的处理方式，假设要每秒处理2000笔交易，<br>
-那么每秒的数据流量就会达到大约1G Bytes的样子。(<a href="https://en.bitcoin.it/wiki/Scalability" target="_blank" rel="noopener">参阅此处</a>)</p>
-<p>存储和流量问题的根本原因在于：目前是完全对等的P2P交易系统，对于交易并没有分布式处理机制，<br>
-每一个节点都必须保持所有的历史交易单，而不是每一个节点上分担一部分。</p>
-<p>这需要采用分布式处理(Map-Reduce)方式对交易进行处理，不需要所有的节点都保持所有的数据。<br>
-我以为可以设定如下的分布Mapping方式：</p>
+<p>Visa组织目前平均每年大约处理28.4*1000000000(Billion)笔交易，也就是平均每秒大约处理54000笔交易(<a href="http://www.creditcards.com/credit-card-news/credit-card-industry-facts-personal-debt-statistics-1276.php" target="_blank" rel="noopener">参阅此处</a>)。而Bitcoin网络目前的最大处理能力只有每秒7笔交易。如果按照目前的处理方式，假设要每秒处理2000笔交易，那么每秒的数据流量就会达到大约1G Bytes的样子。(<a href="https://en.bitcoin.it/wiki/Scalability" target="_blank" rel="noopener">参阅此处</a>)</p>
+<p>存储和流量问题的根本原因在于：目前是完全对等的P2P交易系统，对于交易并没有分布式处理机制，每一个节点都必须保持所有的历史交易单，而不是每一个节点上分担一部分。</p>
+<p>这需要采用分布式处理(Map-Reduce)方式对交易进行处理，不需要所有的节点都保持所有的数据。我以为可以设定如下的分布Mapping方式：</p>
 <ol>
 <li>保持自己相关的交易数据：只保持自己钱包中的货币相关交易。</li>
 <li>保持临近节点的交易数据：只对邻居节点服务</li>
@@ -1124,8 +1109,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 <li>按远近切分成若干小网络：形成当地BTC货币，通过兑换维持各个网络之间的流通</li>
 </ol>
 <h3 id="duan-wang-de-yi-wen">断网的疑问</h3>
-<p>这是曹晓刚同学提出的，善意的说就是当海底光纤断掉后，两个网络之间没有别的连接通道的情况下<br>
-的重复花费问题。很遗憾，目前的Bitcoin体系中没有解决这样的问题。问题简化描述如下：</p>
+<p>这是曹晓刚同学提出的，善意的说就是当海底光纤断掉后，两个网络之间没有别的连接通道的情况下的重复花费问题。很遗憾，目前的Bitcoin体系中没有解决这样的问题。问题简化描述如下：</p>
 <pre><code>1A  2A
 |   |
 1B--2B
@@ -1133,8 +1117,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 1C  2C
 </code></pre>
 <p>比如将节点1A上的钱包有25000BTC数据复制到了节点2A。<br>
-1A,1B,1C和2A,2B,2C两个网络之间仅仅通过节点1B和2B连接。现在1B,2B之间的连接断了。<br>
-在1A上的花费，和在2A上的花费就成了重复花费。</p>
+1A,1B,1C和2A,2B,2C两个网络之间仅仅通过节点1B和2B连接。现在1B,2B之间的连接断了。在1A上的花费，和在2A上的花费就成了重复花费。</p>
 <p>可能的解决办法：</p>
 <ol>
 <li>1A上得来的钱，广播验证，首先是本网络的节点做的验证居多。那么如果移到2A，并且断网，大部分验证的节点必然就不再存在。</li>
@@ -1143,9 +1126,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 </ol>
 <p>通过兑换机制: A1B1C1产生的独立货币1，A2B2C2产生独立货币2，自由兑换。</p>
 <h3 id="dun-ji-cao-zong-shi-chang-wen-ti">囤积操纵市场问题</h3>
-<p>这几乎不算一个严重的问题，不过如果是限制了BTC总量（目前的算法是这样做的）。那么如果BTC被囤积操作市场，总感觉不对。<br>
-如何避免被BTC囤积？另外，Bitcoin币仅仅存在于wallet.dat文件中，如果该文件丢了，那么该wallet中的所有货币也就丢了。<br>
-如果足够长的时间内某一笔货币没有交易流通，那么就可以等效于失去了。</p>
+<p>这几乎不算一个严重的问题，不过如果是限制了BTC总量（目前的算法是这样做的）。那么如果BTC被囤积操作市场，总感觉不对。如何避免被BTC囤积？另外，Bitcoin币仅仅存在于wallet.dat文件中，如果该文件丢了，那么该wallet中的所有货币也就丢了。如果足够长的时间内某一笔货币没有交易流通，那么就可以等效于失去了。</p>
 <ol>
 <li>也许回收长时间没有流通的BTC币是一个法子。</li>
 <li>也许刺激赋予活跃度高的BTC更高的价值也是一个法子。</li>

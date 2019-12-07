@@ -45,13 +45,13 @@
   };
 </script>
 
-  <meta name="description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。 后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
+  <meta name="description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
 <meta name="keywords" content="openpgp,pgp,gpg,public key">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenPGP 密钥(GnuPG软件)安全随笔">
 <meta property="og:url" content="http:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;gpg&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。 后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
+<meta property="og:description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-26T17:27:00.000Z">
 <meta name="twitter:card" content="summary">
@@ -252,8 +252,7 @@
         <p>GnuPG软件（简称GPG） – OpenPGP</p>
 <h1 id="li-shi-jie-shao-history">历史介绍 History</h1>
 <h2 id="pgp-pretty-good-privacy">PGP (Pretty Good Privacy)</h2>
-<p>最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。<br>
-后续由赛门铁克公司继续开发维护PGP品牌。</p>
+<p>最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。</p>
 <h2 id="openpgp">OpenPGP</h2>
 <p>Zimmerman(最早的PGP开发人员)于1997年向IETF（互联网工程任务组）提交了<a href="https://tools.ietf.org/html/rfc4880" target="_blank" rel="noopener">开源PGP（OpenPGP）标准提案</a>。如今，OpenPGP成为了PGP的标准规范，是供公众使用的开源代码，并且该术语可用于描述支持OpenPGP系统的任何程序。</p>
 <h2 id="gpg-gnu-privacy-guard">GPG (GNU Privacy Guard)</h2>
@@ -442,8 +441,7 @@ openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -nokeys -out
 </code></pre>
 <p>还发现一个工具可以： openpgp2ssh <a href="http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html" target="_blank" rel="noopener">http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html</a></p>
 <p>但是只支持rsa以及没有密码的key.</p>
-<p><code>gpg --edit-key $KEYID</code> 然后用 <code>passwd</code> 子命令移除密码。<br>
-然后</p>
+<p><code>gpg --edit-key $KEYID</code> 然后用 <code>passwd</code> 子命令移除密码。然后</p>
 <p><code>gpg --export-secret-key $KEYID | openpgp2ssh $KEYID &gt; id_rsa</code></p>
 <p>然后可以建立 Certificate Signing Request (CSR):</p>
 <p>openssl req -new -key id_rsa -out id_rsa.csr</p>

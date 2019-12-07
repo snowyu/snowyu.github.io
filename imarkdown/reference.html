@@ -224,8 +224,7 @@
 </table>
 <h3 id="fan-wei-yuan-su-rangeelement-kong-jian">范围元素(RangeElement)控件</h3>
 <p><code>[&lt;before&gt; &lt;number&gt;.&lt;decimal&gt; &lt;after&gt;]{&lt;var_name&gt;: &lt;low_bound&gt;..&lt;exclusive&gt;&lt;high_bound&gt; by &lt;step&gt;}</code></p>
-<p>范围元素是可以通过拖动调整的数字，类似滑块。该数字可以指定显示精度。该元素可以被限制为最小值和/或最大值，并且可能具有步进值。<br>
-在<code>文本内容</code>中的第一个数字<code>&lt;number&gt;.&lt;decimal&gt;</code>将作为<code>默认数字值</code>，其它会原样输出，从而允许在控件中包含单位和其他描述性文本。</p>
+<p>范围元素是可以通过拖动调整的数字，类似滑块。该数字可以指定显示精度。该元素可以被限制为最小值和/或最大值，并且可能具有步进值。在<code>文本内容</code>中的第一个数字<code>&lt;number&gt;.&lt;decimal&gt;</code>将作为<code>默认数字值</code>，其它会原样输出，从而允许在控件中包含单位和其他描述性文本。</p>
 <p>在<code>配置</code>中必须指定范围，但在两个方向上都可以是无限的(不写值即可)。 范围的间隔是使用’…‘或’…’，其中“…”包含所有内容，而“…” 不包括结尾。 即，“1…4”覆盖区间“<math><mn>1</mn><mo>≤</mo><mi>n</mi><mo>≤</mo><mn>4</mn></math>”，而“1 … 4”覆盖区间“<math><mn>1</mn><mo>≤</mo><mi>n</mi><mo>&lt;</mo><mn>4</mn></math>”。范围必须是递增的（以保持UI的一致性 ———— 向左拖动表示负数，向右拖动表示正数）。 使用关键字“<code>by</code>”和一个数字用以指定<code>步长</code>，该关键字可以省略（默认为1），但如果指定则必须为正。</p>
 <p>可以使用<code>文本内容</code>中的<code>默认数字值</code>来指定显示精度。 “<code>200.</code>” 将格式化为 “<code>0</code>” 小数位。 而&quot;<code>200.000</code>“将格式化为”<code>3</code>&quot;小数。 如果未指定，则该值是未格式化的。</p>
 <p>数字还可以使用在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noopener"><code>Math</code></a>规范约定的常量，并可以将它们与系数组合，例如“<code>2pi</code>”或“<code>0.5pi</code>”，这将被视为“<code>n * Math.PI</code>”。 这可以写在最小、最大范围或步骤值上。常量必须是<code>e</code>，<code>pi</code>，<code>ln2</code>，<code>ln10</code>，<code>log2e</code>，<code>log10e</code>，<code>sqrt1_2</code>，<code>sqrt2</code>中的一个（大写或小写）。</p>
@@ -668,8 +667,7 @@
 </tbody>
 </table>
 <h2 id="jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian">交互代码块(CodeBlockElement)元素控件</h2>
-<p>交互的代码块同样遵循Markdown规范，可以是缩进4格或者三个&quot;```&quot;个符号（无语言指示）围绕的内容,例如：<br>
-代码的语法是使用的<a href="https://coffeescript.org/v1/" target="_blank" rel="noopener">CoffeeScript@v1</a>的语法。</p>
+<p>交互的代码块同样遵循Markdown规范，可以是缩进4格或者三个&quot;```&quot;个符号（无语言指示）围绕的内容,例如：代码的语法是使用的<a href="https://coffeescript.org/v1/" target="_blank" rel="noopener">CoffeeScript@v1</a>的语法。</p>
 <pre><code class="markdown">
 <span class="hljs-section"># 缩进4格</span>
 
@@ -718,8 +716,7 @@
 <p>带输出的代码块有<code>@output</code>变量(为该块绑定的<code>div</code>元素)，<code>@say()</code>和<code>@sayln()</code>文本输出。</p>
 <h3 id="play-movie-for-codeblock">Play Movie for CodeBlock</h3>
 <p><strong>警告：该标记因为尚未完全确定，未来可能会有改变</strong></p>
-<p>可以象电影一样播放代码块的输入。在代码块中单行启用三个<code>~~~</code>或三个以上的波浪符号<code>~</code>分隔即可。<br>
-波浪分隔符号<code>~~~</code>以上的为代码，代码上方的“|”表示演示完毕后的光标位置，下方为控制输入的电影代码.</p>
+<p>可以象电影一样播放代码块的输入。在代码块中单行启用三个<code>~~~</code>或三个以上的波浪符号<code>~</code>分隔即可。波浪分隔符号<code>~~~</code>以上的为代码，代码上方的“|”表示演示完毕后的光标位置，下方为控制输入的电影代码.</p>
 <pre><code class="md">
 <span class="hljs-code">```</span>output:playable
 

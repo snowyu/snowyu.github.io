@@ -314,24 +314,18 @@ Let's add some person properties now.
       <span class="hljs-keyword">return</span> <span class="hljs-number">12</span>;
     };
 </code></pre>
-<p>当你在IDE上设置添加并暴露出数据 model 后，就可以在IDE上直接运行。<br>
-你可以在这个地址: <a href="http://localhost:3000/explorer/" target="_blank" rel="noopener">http://localhost:3000/explorer/</a> 上查看产生的API的联机互动文档：</p>
+<p>当你在IDE上设置添加并暴露出数据 model 后，就可以在IDE上直接运行。你可以在这个地址: <a href="http://localhost:3000/explorer/" target="_blank" rel="noopener">http://localhost:3000/explorer/</a> 上查看产生的API的联机互动文档：</p>
 <p><img src="./loopback-explorer.png" alt=""></p>
 <p>另外在IDE上可以直接启动，停止服务。</p>
-<p>事实上，就<a href="https://zh.wikipedia.org/zh/MVC" target="_blank" rel="noopener">MVC模式</a>而言，<code>Loopback</code>的应用<br>
-一般不用关心<code>Controller</code>，所有的操作（远程方法）都直接在Model上暴露和控制，<br>
-进一步简化了开发。因为是 API，所以<code>View</code>也不用关心，只需要在配置中定义支持<br>
-的输出格式(json, xml)。</p>
+<p>事实上，就<a href="https://zh.wikipedia.org/zh/MVC" target="_blank" rel="noopener">MVC模式</a>而言，<code>Loopback</code>的应用一般不用关心<code>Controller</code>，所有的操作（远程方法）都直接在Model上暴露和控制，进一步简化了开发。因为是 API，所以<code>View</code>也不用关心，只需要在配置中定义支持的输出格式(json, xml)。</p>
 <p>Ok, 接下来以开发一个简单的博客API系统为例，进行说明。本例子修改自<a href="https://github.com/topcoderinc/TopBlogger-Loopback" target="_blank" rel="noopener">TopBlogger-Loopback</a>，特此说明。</p>
-<p>首先该博客系统有两个 model: Blog 和 Comment。我们使用loopback内置的用户体系<br>
-进行登陆认证，当然你可以扩展这个用户体系。这些 Model 的关系如下：</p>
+<p>首先该博客系统有两个 model: Blog 和 Comment。我们使用loopback内置的用户体系进行登陆认证，当然你可以扩展这个用户体系。这些 Model 的关系如下：</p>
 <ul>
 <li>一篇博文(Blog)属于一个用户(User)</li>
 <li>一篇博文可以有许多评论(Comment)</li>
 <li>一篇评论(Comment)属于一个用户(User)</li>
 </ul>
-<p>就认证授权来说，匿名用户只能看博文或者评论，不能发表。只有登录的用户才可以<br>
-发表博文或者评论，并且只可以编辑或者删除自己的博文或评论。</p>
+<p>就认证授权来说，匿名用户只能看博文或者评论，不能发表。只有登录的用户才可以发表博文或者评论，并且只可以编辑或者删除自己的博文或评论。</p>
 <p>首先你要选择一个你希望使用的数据库，loopback支持如下的数据库：</p>
 <ul>
 <li><a href="https://docs.strongloop.com/display/LB/Memory+connector" target="_blank" rel="noopener">Memory connector</a>：内置</li>
@@ -358,8 +352,7 @@ Let's add some person properties now.
 <p>选择好数据库后，需要安装相应的数据库Connector组件，在项目的根目录下:</p>
 <pre><code class="bash">npm install loopback-connector-mysql
 </code></pre>
-<p>使用<a href="https://docs.strongloop.com/display/LB/Data+source+generator" target="_blank" rel="noopener">data source generator</a>建立<br>
-新的数据源。</p>
+<p>使用<a href="https://docs.strongloop.com/display/LB/Data+source+generator" target="_blank" rel="noopener">data source generator</a>建立新的数据源。</p>
 <h2 id="slc-loopback-datasource">slc loopback:datasource</h2>
 <pre><code>$ slc loopback:datasource
 ? Enter the data-source name: myBlogger
@@ -501,10 +494,8 @@ Let's add some properties now.
 ? Optionally enter a custom foreign key:
 </code></pre>
 <p>注意：关系对应的方法名称参阅: <a href="https://docs.strongloop.com/display/public/LB/Accessing+related+models" target="_blank" rel="noopener">Accessing related models</a></p>
-<p>Ok, Model 自此建立完毕，建立的文件在项目的<code>/server/models/</code>目录或者<code>/common/models</code>目录下，<br>
-这个依赖您自己的配置。</p>
-<p>那么，对于Scheme化的关系型数据库，如何自动在数据库中建立对应的表和字段呢？<br>
-很简单，对于如下的数据库，loopback提供了自动迁移（Auto-migrate）机制:</p>
+<p>Ok, Model 自此建立完毕，建立的文件在项目的<code>/server/models/</code>目录或者<code>/common/models</code>目录下，这个依赖您自己的配置。</p>
+<p>那么，对于Scheme化的关系型数据库，如何自动在数据库中建立对应的表和字段呢？很简单，对于如下的数据库，loopback提供了自动迁移（Auto-migrate）机制:</p>
 <ul>
 <li>Oracle</li>
 <li>PostgreSQL</li>
@@ -514,8 +505,7 @@ Let's add some properties now.
 </ul>
 <p>注意：</p>
 <ul>
-<li>在mongoDB中的autoMigrate()会建立缺失的索引，但是不会修改它们，如果索引的定义改变了。所以你<br>
-必须要么在mongoDB Shell中修改，或者删除他们再重建。</li>
+<li>在mongoDB中的autoMigrate()会建立缺失的索引，但是不会修改它们，如果索引的定义改变了。所以你必须要么在mongoDB Shell中修改，或者删除他们再重建。</li>
 <li><code>autoMigrate</code> 会首先 <code>Drop table</code> ，然后再建表。要保留数据，请用 <code>autoUpdate</code>.</li>
 </ul>
 <p>把脚本作为启动脚本放在项目的<code>/server/boot/</code>目录下(启动顺序按ASCII字母表顺序)：</p>
@@ -748,8 +738,7 @@ Blog.upvote = <span class="hljs-function"><span class="hljs-keyword">function</s
 <p>另外，通过禁止Model内置的删除方法，还可以禁止任何删除评论,修改 <code>models/comment.js</code>:</p>
 <pre><code class="js">Comment.disableRemoteMethod(<span class="hljs-string">'deleteById'</span>, <span class="hljs-literal">true</span>);
 </code></pre>
-<p>我们还可以通过修改路由文件 <code>/server/boot/routes.js</code> 来扩展自己的定制路由，比如我们希望能<br>
-通过这样的路径访问到用户的博文: <code>/:user/:slug</code>：</p>
+<p>我们还可以通过修改路由文件 <code>/server/boot/routes.js</code> 来扩展自己的定制路由，比如我们希望能通过这样的路径访问到用户的博文: <code>/:user/:slug</code>：</p>
 <pre><code class="js">  app.get(<span class="hljs-string">'/:user/:slug'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
     Blog.findOne({ <span class="hljs-attr">where</span>: {<span class="hljs-attr">authorId</span>: req.params.user, <span class="hljs-attr">slug</span>:req.params.slug}, <span class="hljs-attr">include</span>: <span class="hljs-string">'comments'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, record</span>)</span>{
       <span class="hljs-keyword">if</span> (err) res.send(err);
@@ -762,8 +751,7 @@ Blog.upvote = <span class="hljs-function"><span class="hljs-keyword">function</s
   });
 </code></pre>
 <h2 id="storage-component">Storage component</h2>
-<p>通过使用<a href="https://docs.strongloop.com/display/public/LB/Storage+component" target="_blank" rel="noopener">Storage component</a>获得支持文件上传下载功能。<br>
-该组件作为一种特殊的Datasource来使用，它支持如下的存储：</p>
+<p>通过使用<a href="https://docs.strongloop.com/display/public/LB/Storage+component" target="_blank" rel="noopener">Storage component</a>获得支持文件上传下载功能。该组件作为一种特殊的Datasource来使用，它支持如下的存储：</p>
 <ul>
 <li>云存储
 <ul>
@@ -884,9 +872,7 @@ app.model(container);
 <p>注意当前container只支持1级目录，不支持多级目录。</p>
 <h1 id="shen-ru-tan-suo">深入探索</h1>
 <h2 id="slc-loopback-swagger">slc loopback:swagger</h2>
-<p>即由 <code>loopback:swagger</code> 可以把 Open API 文档直接导入进 loopback 应用。<br>
-不过，它会针对API文档的<code>basePath</code>虚拟一个非持久化model: <code>swagger_xxx</code>，在Open API上的接口<br>
-从这个虚拟model上暴露出来。</p>
+<p>即由 <code>loopback:swagger</code> 可以把 Open API 文档直接导入进 loopback 应用。不过，它会针对API文档的<code>basePath</code>虚拟一个非持久化model: <code>swagger_xxx</code>，在Open API上的接口从这个虚拟model上暴露出来。</p>
 <pre><code>slc loopback:swagger &lt;your_api_doc_path&gt;
 ? Enter the swagger spec url or file path: (wiki\user-api.yaml)
 ? Select models to be generated: (Press &lt;space&gt; to select)
@@ -1058,8 +1044,7 @@ LoopBack 的models 有一套内置的方法，每一个方法被映射为 <code>
   }
 </code></pre>
 <h5 id="yin-cang-fang-fa-he-rest-api">隐藏方法和REST API</h5>
-<p>如果你不想暴露特定的 create, retrieve, update, delete 操作, 那么你可以通过调用Model的 <code>disableRemoteMethod()</code> 方法来实现。<br>
-在你的model文件(<code>common/models/</code>目录下)中加入以下的代码，隐藏预定义的API方法:</p>
+<p>如果你不想暴露特定的 create, retrieve, update, delete 操作, 那么你可以通过调用Model的 <code>disableRemoteMethod()</code> 方法来实现。在你的model文件(<code>common/models/</code>目录下)中加入以下的代码，隐藏预定义的API方法:</p>
 <pre><code class="js"><span class="hljs-keyword">var</span> isStatic = <span class="hljs-literal">true</span>;
 <span class="hljs-comment">//hide the predefined remote methods</span>
 MyModel.disableRemoteMethod(<span class="hljs-string">'deleteById'</span>, isStatic);
@@ -1070,8 +1055,7 @@ MyModel.disableRemoteMethod(<span class="hljs-string">'deleteById'</span>, isSta
 MyModel.disableRemoteMethod(<span class="hljs-string">'updateAttributes'</span>, isStatic);
 </code></pre>
 <h4 id="ding-yi-shi-yong-role">定义使用Role</h4>
-<p>LoopBack 支持静态或动态的角色。静态角色保存在数据库中并映射到用户。作为对比，动态角色并不<br>
-事先和用户绑定，它是在访问时才被确定。</p>
+<p>LoopBack 支持静态或动态的角色。静态角色保存在数据库中并映射到用户。作为对比，动态角色并不事先和用户绑定，它是在访问时才被确定。</p>
 <h5 id="static-roles">Static roles</h5>
 <p>创建静态 Role 记录:</p>
 <pre><code class="coffee">Role.create name: <span class="hljs-string">'admin'</span>, <span class="hljs-function"><span class="hljs-params">(err, role)</span>-&gt;</span>
@@ -1122,8 +1106,7 @@ MyModel.disableRemoteMethod(<span class="hljs-string">'updateAttributes'</span>,
 </tr>
 </tbody>
 </table>
-<p>如何定义<code>动态角色</code>? 只需要在启动(boot)脚本中使用 <code>Role.registerResolver(name, fnRoleHandler)</code> 配置自己的<br>
-定制角色处理器即可。该函数有两个参数:</p>
+<p>如何定义<code>动态角色</code>? 只需要在启动(boot)脚本中使用 <code>Role.registerResolver(name, fnRoleHandler)</code> 配置自己的定制角色处理器即可。该函数有两个参数:</p>
 <ol>
 <li>该动态角色的名称</li>
 <li>角色处理器异步函数，确定一个 principal 是否在该动态角色里。该函数传入的参数为 <code>function(role, context, callback)</code></li>
