@@ -1,14 +1,14 @@
 ---
 title: Interactive Markdown
 date: 2019-11-23 22:22:00
-updated: 2019-11-23 22:22:00
+updated: 2019-12-07 09:35:00
 author: Riceball LEE
 categories:
   - Thinking
   - Reactive
   - Document
   - Markdown
-tags : [interactive, reactive, document, raphael, javascript, markdown]
+tags : [interactive, reactive, document, javascript, markdown]
 reactive:
   editable: true
 ---
@@ -16,6 +16,10 @@ reactive:
 ## Introduction
 
 [Interactive Markdown](http://riceball.me/imarkdown/en) is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.
+
+More detail see 💁🏻‍♂️ [Interactive Markdown Reference Manual](http://riceball.me/imarkdown/en/reference.html) for a complete reference of the elements and their configuration.
+
+<!--more-->
 
 An Example Interactive document looks like this:
 
@@ -94,8 +98,6 @@ The first guess is often [2753]{first_guess}…
 * `[7]{wives: 1..10}` is a slider from `1` to `10`, defaults to `7`
   * `wives` is a variable name, It can be referenced `@wives` in the code block.
 
-> I am thinking about whether to use the new `[]{}` to express interactive elements, or to expand on `[]()`. From the development point of view, it is simpler to use`[]{}`, so I chose it.
-
 ### A More Complex Example
 
 **Parameters**：[X Coor:10]{rx:10..}，[Y Coor:18]{ry:10..}，[Width:100]{rw:1..}，[Height:50]{rh:1..}
@@ -133,7 +135,7 @@ for links and images, generally following this format:
 
 `[text content]{variable_name: configuration}`
 
-More detail see 💁🏻‍♂️ [reference.html](http://riceball.me/imarkdown/en/reference.html) for a
+More detail see 💁🏻‍♂️ [Interactive Markdown Reference Manual](http://riceball.me/imarkdown/en/reference.html) for a
 complete reference of the elements and their configuration.
 
 ## Authors

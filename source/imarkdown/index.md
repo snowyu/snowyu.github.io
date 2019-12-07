@@ -1,14 +1,14 @@
 ---
 title: Interactive Markdown
 date: 2019-11-23 22:22:00
-updated: 2019-11-23 22:22:00
+updated: 2019-12-07 09:35:00
 author: Riceball LEE
 categories:
   - Thinking
   - Reactive
   - Document
   - Markdown
-tags : [interactive, reactive, document, raphael, javascript, markdown]
+tags : [interactive, reactive, document, javascript, markdown]
 reactive:
   editable: true
 ---
@@ -16,6 +16,10 @@ reactive:
 # 介绍
 
 [Interactive Markdown](http://riceball.me/imarkdown)是使用纯文本的Markdown格式来制作响应式交互文档的工具。响应式Markdown增加了特有的交互组件和变量的标记符号。
+
+具体请参阅💁🏻‍♂️ [交互式Markdown文档参考手册](http://riceball.me/imarkdown/reference.html) .
+
+<!--more-->
 
 ## 一个简单交互文档例子
 
@@ -121,7 +125,7 @@ tooltip: you can try it by youself now
 
 `[text content]{variable_name: configuration}`
 
-具体请参阅💁🏻‍♂️ [reference.html](http://riceball.me/imarkdown/reference.html) .
+具体请参阅💁🏻‍♂️ [交互式Markdown文档参考手册](http://riceball.me/imarkdown/reference.html) .
 
 ## 作者
 
