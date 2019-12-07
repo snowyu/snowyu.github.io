@@ -145,7 +145,9 @@ markdown:
     - markdown-it-sup
     - markdown-it-math
   anchors:
-    level: 2
+    level: 1
+    tone: false
+    permalink: false
     collisionSuffix: 'v'
 
 pandoc:
