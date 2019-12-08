@@ -25,20 +25,12 @@
     "hexo-generator-tag": "^1.0.0",
     "hexo-inject": "^1.0.0",
     "hexo-next-coauthor": "github:snowyu/hexo-next-coauthor",
+    "hexo-next-imarkdown": "^0.1.5",
     "hexo-next-share": "theme-next/hexo-next-share",
     "hexo-renderer-ejs": "^1.0.0",
-    "hexo-renderer-markdown-it": "github:snowyu/hexo-renderer-markdown-it",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
     "hexo-symbols-count-time": "^0.7.0",
-    "highlight.js": "^9.16.2",
-    "markdown-it-abbr": "^1.0.4",
-    "markdown-it-footnote": "^3.0.2",
-    "markdown-it-highlight-i": "^0.1.0",
-    "markdown-it-ins": "^3.0.0",
-    "markdown-it-interactive": "^0.1.0",
-    "markdown-it-math": "^4.1.1",
-    "markdown-it-sub": "^1.0.0",
-    "markdown-it-sup": "^1.0.0"
+    "highlight.js": "^9.16.2"
   }
 }
