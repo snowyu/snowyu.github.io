@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://riceball.me/article/interative-markdown/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://riceball.me/article/gpg/</loc>
         <lastmod>2019-11-26T17:27:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -34,14 +42,6 @@
     <url>
         <loc>http://riceball.me/article/couchdb/</loc>
         <lastmod>2019-11-25T19:30:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://riceball.me/article/interative-markdown/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

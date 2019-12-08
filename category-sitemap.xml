@@ -8,6 +8,34 @@
     </url>
 
     <url>
+        <loc>http://riceball.me/categories/Thinking/Reactive/Document/Markdown/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Thinking/Reactive/Document/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Thinking/Reactive/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/categories/Thinking/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://riceball.me/categories/Security/PGP/</loc>
         <lastmod>2019-11-26T17:27:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -73,34 +101,6 @@
     <url>
         <loc>http://riceball.me/categories/Database/</loc>
         <lastmod>2019-11-25T19:30:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive/Document/Markdown/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive/Document/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/categories/Thinking/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

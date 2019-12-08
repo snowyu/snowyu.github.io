@@ -3,6 +3,48 @@
 
 
     <url>
+        <loc>http://riceball.me/tags/markdown/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/raphael/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/document/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/reactive/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/interactive/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://riceball.me/tags/javascript/</loc>
+        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://riceball.me/tags/public-key/</loc>
         <lastmod>2019-11-26T17:27:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -53,20 +95,6 @@
 
     <url>
         <loc>http://riceball.me/tags/graphic/</loc>
-        <lastmod>2019-11-26T05:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/raphael/</loc>
-        <lastmod>2019-11-26T05:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/javascript/</loc>
         <lastmod>2019-11-26T05:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -124,34 +152,6 @@
     <url>
         <loc>http://riceball.me/tags/nosql/</loc>
         <lastmod>2019-11-25T19:30:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/markdown/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/document/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/reactive/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://riceball.me/tags/interactive/</loc>
-        <lastmod>2019-11-23T14:22:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
