@@ -101,7 +101,7 @@ Markdown 是一种纯文本格式的轻量级标记语言，强调可读性高�
 
 
 [Interactive Markdown](/imarkdown) 目前还在内部测试中，语义规范尚未固定。不过，我写了一个
-玩具可以让自己的互动文档博客，用的是[Hexo博客生成工具](https://hexo.io/)➕️[Theme-Next主题](https://theme-next.org/)，通过[hexo-next-imarkdown](https://github.com/snowyu/hexo-next-imarkdown)插件即可让您的博客支持互动Markdown文档格式，欢迎尝鲜。
+玩具可以让您自己的博客使用互动文档，用的是[Hexo博客生成工具](https://hexo.io/)➕️[Theme-Next主题](https://theme-next.org/)，通过[hexo-next-imarkdown](https://github.com/snowyu/hexo-next-imarkdown)插件即可让您的博客支持互动Markdown文档格式，欢迎尝鲜。
 
 更详尽的[Interactive Markdown](/imarkdown)语法请参阅💁🏻‍♂️ [交互式Markdown文档参考手册](http://riceball.me/imarkdown/reference.html) .
 
