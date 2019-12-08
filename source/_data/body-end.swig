@@ -1,10 +1,14 @@
-{%- if page.reactive %}
+{# {%- if page.reactive %}
 {% set vCollapsed = page.reactive.collapsed or false %}
-<script src='/assets/js/imarkdown-0.4.0.js'></script><script>
-window.iMarkdown.makeActive({"collapsed_code":{{vCollapsed}},"debug":false,"filename":"{{page.title}}.md"});</script>
-{%- endif %}
+<script {{ pjax }}>
+NexT.utils.getScript('/assets/js/imarkdown-0.4.0-min.js', () => {
+  window.iMarkdown.makeActive({"collapsed_code":{{vCollapsed}},"debug":false,"filename":"{{page.title}}.md"});
+}, window.iMarkdown);
+</script>
+{%- endif %} #}
 
-<script>
+{# {%- if theme.mermaid.enable and page.mermaid %} #}
+<script {{ pjax }}>
 if (document.querySelectorAll('pre code.mermaid').length) {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
     mermaid.initialize({
@@ -17,3 +21,4 @@ if (document.querySelectorAll('pre code.mermaid').length) {
   }, window.mermaid);
 }
 </script>
+{# {%- endif %} #}

@@ -44,6 +44,8 @@ markdown:
     typographer: true
     quotes: '“”‘’'
   plugins:
+    - markdown-it-interactive
+    - markdown-it-highlightjs
     - markdown-it-abbr
     - markdown-it-footnote
     - markdown-it-ins
