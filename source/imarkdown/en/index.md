@@ -19,6 +19,8 @@ reactive:
 
 More detail see 💁🏻‍♂️ [Interactive Markdown Reference Manual](http://riceball.me/imarkdown/en/reference.html) for a complete reference of the elements and their configuration.
 
+Status: Alpha Test
+
 <!--more-->
 
 An Example Interactive document looks like this:

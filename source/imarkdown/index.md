@@ -19,6 +19,8 @@ reactive:
 
 具体请参阅💁🏻‍♂️ [交互式Markdown文档参考手册](http://riceball.me/imarkdown/reference.html) .
 
+Status: Alpha Test
+
 <!--more-->
 
 ## 一个简单交互文档例子
