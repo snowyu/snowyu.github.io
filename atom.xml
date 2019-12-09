@@ -5,9 +5,9 @@
   <subtitle>Go with wind.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://riceball.me/"/>
+  <link href="https://riceball.me/"/>
   <updated>2019-11-26T17:27:00.000Z</updated>
-  <id>http://riceball.me/</id>
+  <id>https://riceball.me/</id>
   
   <author>
     <name>Riceball LEE</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>OpenPGP 密钥(GnuPG软件)安全随笔</title>
-    <link href="http://riceball.me/article/gpg/"/>
-    <id>http://riceball.me/article/gpg/</id>
+    <link href="https://riceball.me/article/gpg/"/>
+    <id>https://riceball.me/article/gpg/</id>
     <published>2019-11-26T17:27:00.000Z</published>
     <updated>2019-11-26T17:27:00.000Z</updated>
     
@@ -36,25 +36,25 @@
     </summary>
     
     
-      <category term="Security" scheme="http://riceball.me/categories/Security/"/>
+      <category term="Security" scheme="https://riceball.me/categories/Security/"/>
     
-      <category term="PGP" scheme="http://riceball.me/categories/Security/PGP/"/>
+      <category term="PGP" scheme="https://riceball.me/categories/Security/PGP/"/>
     
     
-      <category term="openpgp" scheme="http://riceball.me/tags/openpgp/"/>
+      <category term="openpgp" scheme="https://riceball.me/tags/openpgp/"/>
     
-      <category term="pgp" scheme="http://riceball.me/tags/pgp/"/>
+      <category term="pgp" scheme="https://riceball.me/tags/pgp/"/>
     
-      <category term="gpg" scheme="http://riceball.me/tags/gpg/"/>
+      <category term="gpg" scheme="https://riceball.me/tags/gpg/"/>
     
-      <category term="public key" scheme="http://riceball.me/tags/public-key/"/>
+      <category term="public key" scheme="https://riceball.me/tags/public-key/"/>
     
   </entry>
   
   <entry>
     <title>基于Markdown的响应(交互)式文档</title>
-    <link href="http://riceball.me/article/interative-markdown/"/>
-    <id>http://riceball.me/article/interative-markdown/</id>
+    <link href="https://riceball.me/article/interative-markdown/"/>
+    <id>https://riceball.me/article/interative-markdown/</id>
     <published>2019-11-23T14:22:00.000Z</published>
     <updated>2019-12-08T01:31:00.000Z</updated>
     
@@ -71,33 +71,33 @@
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Reactive" scheme="http://riceball.me/categories/Thinking/Reactive/"/>
+      <category term="Reactive" scheme="https://riceball.me/categories/Thinking/Reactive/"/>
     
-      <category term="Document" scheme="http://riceball.me/categories/Thinking/Reactive/Document/"/>
+      <category term="Document" scheme="https://riceball.me/categories/Thinking/Reactive/Document/"/>
     
-      <category term="Markdown" scheme="http://riceball.me/categories/Thinking/Reactive/Document/Markdown/"/>
+      <category term="Markdown" scheme="https://riceball.me/categories/Thinking/Reactive/Document/Markdown/"/>
     
     
-      <category term="javascript" scheme="http://riceball.me/tags/javascript/"/>
+      <category term="javascript" scheme="https://riceball.me/tags/javascript/"/>
     
-      <category term="interactive" scheme="http://riceball.me/tags/interactive/"/>
+      <category term="interactive" scheme="https://riceball.me/tags/interactive/"/>
     
-      <category term="reactive" scheme="http://riceball.me/tags/reactive/"/>
+      <category term="reactive" scheme="https://riceball.me/tags/reactive/"/>
     
-      <category term="document" scheme="http://riceball.me/tags/document/"/>
+      <category term="document" scheme="https://riceball.me/tags/document/"/>
     
-      <category term="raphael" scheme="http://riceball.me/tags/raphael/"/>
+      <category term="raphael" scheme="https://riceball.me/tags/raphael/"/>
     
-      <category term="markdown" scheme="http://riceball.me/tags/markdown/"/>
+      <category term="markdown" scheme="https://riceball.me/tags/markdown/"/>
     
   </entry>
   
   <entry>
     <title>CouchDB</title>
-    <link href="http://riceball.me/article/couchdb/"/>
-    <id>http://riceball.me/article/couchdb/</id>
+    <link href="https://riceball.me/article/couchdb/"/>
+    <id>https://riceball.me/article/couchdb/</id>
     <published>2018-10-09T21:30:59.000Z</published>
     <updated>2019-11-25T19:30:00.000Z</updated>
     
@@ -128,25 +128,25 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     </summary>
     
     
-      <category term="Database" scheme="http://riceball.me/categories/Database/"/>
+      <category term="Database" scheme="https://riceball.me/categories/Database/"/>
     
-      <category term="NoSQL" scheme="http://riceball.me/categories/Database/NoSQL/"/>
+      <category term="NoSQL" scheme="https://riceball.me/categories/Database/NoSQL/"/>
     
-      <category term="CouchDB" scheme="http://riceball.me/categories/Database/NoSQL/CouchDB/"/>
+      <category term="CouchDB" scheme="https://riceball.me/categories/Database/NoSQL/CouchDB/"/>
     
     
-      <category term="nosql" scheme="http://riceball.me/tags/nosql/"/>
+      <category term="nosql" scheme="https://riceball.me/tags/nosql/"/>
     
-      <category term="database" scheme="http://riceball.me/tags/database/"/>
+      <category term="database" scheme="https://riceball.me/tags/database/"/>
     
-      <category term="couchdb" scheme="http://riceball.me/tags/couchdb/"/>
+      <category term="couchdb" scheme="https://riceball.me/tags/couchdb/"/>
     
   </entry>
   
   <entry>
     <title>Ionic Framework</title>
-    <link href="http://riceball.me/article/ionic-framework/"/>
-    <id>http://riceball.me/article/ionic-framework/</id>
+    <link href="https://riceball.me/article/ionic-framework/"/>
+    <id>https://riceball.me/article/ionic-framework/</id>
     <published>2017-12-07T20:53:56.000Z</published>
     <updated>2019-11-25T21:00:00.000Z</updated>
     
@@ -164,31 +164,31 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     </summary>
     
     
-      <category term="JavaScript" scheme="http://riceball.me/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="https://riceball.me/categories/JavaScript/"/>
     
-      <category term="Framework" scheme="http://riceball.me/categories/JavaScript/Framework/"/>
+      <category term="Framework" scheme="https://riceball.me/categories/JavaScript/Framework/"/>
     
-      <category term="App" scheme="http://riceball.me/categories/JavaScript/Framework/App/"/>
+      <category term="App" scheme="https://riceball.me/categories/JavaScript/Framework/App/"/>
     
     
-      <category term="javascript" scheme="http://riceball.me/tags/javascript/"/>
+      <category term="javascript" scheme="https://riceball.me/tags/javascript/"/>
     
-      <category term="mobile" scheme="http://riceball.me/tags/mobile/"/>
+      <category term="mobile" scheme="https://riceball.me/tags/mobile/"/>
     
-      <category term="creation" scheme="http://riceball.me/tags/creation/"/>
+      <category term="creation" scheme="https://riceball.me/tags/creation/"/>
     
-      <category term="framework" scheme="http://riceball.me/tags/framework/"/>
+      <category term="framework" scheme="https://riceball.me/tags/framework/"/>
     
-      <category term="nodejs" scheme="http://riceball.me/tags/nodejs/"/>
+      <category term="nodejs" scheme="https://riceball.me/tags/nodejs/"/>
     
-      <category term="app" scheme="http://riceball.me/tags/app/"/>
+      <category term="app" scheme="https://riceball.me/tags/app/"/>
     
   </entry>
   
   <entry>
     <title>从分享经济到共享经济系列(一)——分享经济的前世今生</title>
-    <link href="http://riceball.me/article/sharing-economy/"/>
-    <id>http://riceball.me/article/sharing-economy/</id>
+    <link href="https://riceball.me/article/sharing-economy/"/>
+    <id>https://riceball.me/article/sharing-economy/</id>
     <published>2017-04-24T02:38:00.000Z</published>
     <updated>2019-11-22T06:56:43.541Z</updated>
     
@@ -205,31 +205,31 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Internet" scheme="http://riceball.me/categories/Thinking/Internet/"/>
+      <category term="Internet" scheme="https://riceball.me/categories/Thinking/Internet/"/>
     
-      <category term="Sharing Economy" scheme="http://riceball.me/categories/Thinking/Internet/Sharing-Economy/"/>
+      <category term="Sharing Economy" scheme="https://riceball.me/categories/Thinking/Internet/Sharing-Economy/"/>
     
     
-      <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
+      <category term="thinking" scheme="https://riceball.me/tags/thinking/"/>
     
-      <category term="internet" scheme="http://riceball.me/tags/internet/"/>
+      <category term="internet" scheme="https://riceball.me/tags/internet/"/>
     
-      <category term="creation" scheme="http://riceball.me/tags/creation/"/>
+      <category term="creation" scheme="https://riceball.me/tags/creation/"/>
     
-      <category term="share" scheme="http://riceball.me/tags/share/"/>
+      <category term="share" scheme="https://riceball.me/tags/share/"/>
     
-      <category term="economy" scheme="http://riceball.me/tags/economy/"/>
+      <category term="economy" scheme="https://riceball.me/tags/economy/"/>
     
-      <category term="blockchain" scheme="http://riceball.me/tags/blockchain/"/>
+      <category term="blockchain" scheme="https://riceball.me/tags/blockchain/"/>
     
   </entry>
   
   <entry>
     <title>MQTT 服务 - IoT界的消息订阅发布服务</title>
-    <link href="http://riceball.me/article/mqtt/"/>
-    <id>http://riceball.me/article/mqtt/</id>
+    <link href="https://riceball.me/article/mqtt/"/>
+    <id>https://riceball.me/article/mqtt/</id>
     <published>2017-03-21T03:35:00.000Z</published>
     <updated>2019-11-22T06:56:43.533Z</updated>
     
@@ -246,29 +246,29 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Architecture" scheme="http://riceball.me/categories/Thinking/Architecture/"/>
+      <category term="Architecture" scheme="https://riceball.me/categories/Thinking/Architecture/"/>
     
-      <category term="MQTT" scheme="http://riceball.me/categories/Thinking/Architecture/MQTT/"/>
+      <category term="MQTT" scheme="https://riceball.me/categories/Thinking/Architecture/MQTT/"/>
     
     
-      <category term="mqtt" scheme="http://riceball.me/tags/mqtt/"/>
+      <category term="mqtt" scheme="https://riceball.me/tags/mqtt/"/>
     
-      <category term="network" scheme="http://riceball.me/tags/network/"/>
+      <category term="network" scheme="https://riceball.me/tags/network/"/>
     
-      <category term="pubsub" scheme="http://riceball.me/tags/pubsub/"/>
+      <category term="pubsub" scheme="https://riceball.me/tags/pubsub/"/>
     
-      <category term="push" scheme="http://riceball.me/tags/push/"/>
+      <category term="push" scheme="https://riceball.me/tags/push/"/>
     
-      <category term="message" scheme="http://riceball.me/tags/message/"/>
+      <category term="message" scheme="https://riceball.me/tags/message/"/>
     
   </entry>
   
   <entry>
     <title>Ubuntu Tips</title>
-    <link href="http://riceball.me/article/ubuntu-tips/"/>
-    <id>http://riceball.me/article/ubuntu-tips/</id>
+    <link href="https://riceball.me/article/ubuntu-tips/"/>
+    <id>https://riceball.me/article/ubuntu-tips/</id>
     <published>2017-02-26T03:35:00.000Z</published>
     <updated>2019-11-22T06:56:43.545Z</updated>
     
@@ -285,35 +285,35 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     </summary>
     
     
-      <category term="Linux" scheme="http://riceball.me/categories/Linux/"/>
+      <category term="Linux" scheme="https://riceball.me/categories/Linux/"/>
     
-      <category term="Ubuntu" scheme="http://riceball.me/categories/Linux/Ubuntu/"/>
+      <category term="Ubuntu" scheme="https://riceball.me/categories/Linux/Ubuntu/"/>
     
     
-      <category term="network" scheme="http://riceball.me/tags/network/"/>
+      <category term="network" scheme="https://riceball.me/tags/network/"/>
     
-      <category term="linux" scheme="http://riceball.me/tags/linux/"/>
+      <category term="linux" scheme="https://riceball.me/tags/linux/"/>
     
-      <category term="ubuntu" scheme="http://riceball.me/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="https://riceball.me/tags/ubuntu/"/>
     
-      <category term="dnsmasq" scheme="http://riceball.me/tags/dnsmasq/"/>
+      <category term="dnsmasq" scheme="https://riceball.me/tags/dnsmasq/"/>
     
-      <category term="iptables" scheme="http://riceball.me/tags/iptables/"/>
+      <category term="iptables" scheme="https://riceball.me/tags/iptables/"/>
     
-      <category term="iproute2" scheme="http://riceball.me/tags/iproute2/"/>
+      <category term="iproute2" scheme="https://riceball.me/tags/iproute2/"/>
     
-      <category term="dns" scheme="http://riceball.me/tags/dns/"/>
+      <category term="dns" scheme="https://riceball.me/tags/dns/"/>
     
-      <category term="ipset" scheme="http://riceball.me/tags/ipset/"/>
+      <category term="ipset" scheme="https://riceball.me/tags/ipset/"/>
     
-      <category term="shadowsocks" scheme="http://riceball.me/tags/shadowsocks/"/>
+      <category term="shadowsocks" scheme="https://riceball.me/tags/shadowsocks/"/>
     
   </entry>
   
   <entry>
     <title>SaaS平台之殇</title>
-    <link href="http://riceball.me/article/open-saas/"/>
-    <id>http://riceball.me/article/open-saas/</id>
+    <link href="https://riceball.me/article/open-saas/"/>
+    <id>https://riceball.me/article/open-saas/</id>
     <published>2016-09-17T20:00:00.000Z</published>
     <updated>2019-11-22T06:56:43.533Z</updated>
     
@@ -330,27 +330,27 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Cloud Computing" scheme="http://riceball.me/categories/Thinking/Cloud-Computing/"/>
+      <category term="Cloud Computing" scheme="https://riceball.me/categories/Thinking/Cloud-Computing/"/>
     
-      <category term="SaaS" scheme="http://riceball.me/categories/Thinking/Cloud-Computing/SaaS/"/>
+      <category term="SaaS" scheme="https://riceball.me/categories/Thinking/Cloud-Computing/SaaS/"/>
     
     
-      <category term="cloud computing" scheme="http://riceball.me/tags/cloud-computing/"/>
+      <category term="cloud computing" scheme="https://riceball.me/tags/cloud-computing/"/>
     
-      <category term="open source" scheme="http://riceball.me/tags/open-source/"/>
+      <category term="open source" scheme="https://riceball.me/tags/open-source/"/>
     
-      <category term="saas" scheme="http://riceball.me/tags/saas/"/>
+      <category term="saas" scheme="https://riceball.me/tags/saas/"/>
     
-      <category term="software as a service" scheme="http://riceball.me/tags/software-as-a-service/"/>
+      <category term="software as a service" scheme="https://riceball.me/tags/software-as-a-service/"/>
     
   </entry>
   
   <entry>
     <title>Coffee Style Computer Language</title>
-    <link href="http://riceball.me/article/coffee-style-computer-language/"/>
-    <id>http://riceball.me/article/coffee-style-computer-language/</id>
+    <link href="https://riceball.me/article/coffee-style-computer-language/"/>
+    <id>https://riceball.me/article/coffee-style-computer-language/</id>
     <published>2016-08-30T14:30:06.000Z</published>
     <updated>2016-09-03T19:30:06.000Z</updated>
     
@@ -384,25 +384,25 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Programming" scheme="http://riceball.me/categories/Thinking/Programming/"/>
+      <category term="Programming" scheme="https://riceball.me/categories/Thinking/Programming/"/>
     
     
-      <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
+      <category term="thinking" scheme="https://riceball.me/tags/thinking/"/>
     
-      <category term="programming" scheme="http://riceball.me/tags/programming/"/>
+      <category term="programming" scheme="https://riceball.me/tags/programming/"/>
     
-      <category term="language" scheme="http://riceball.me/tags/language/"/>
+      <category term="language" scheme="https://riceball.me/tags/language/"/>
     
-      <category term="tech" scheme="http://riceball.me/tags/tech/"/>
+      <category term="tech" scheme="https://riceball.me/tags/tech/"/>
     
   </entry>
   
   <entry>
     <title>逝水流连，随风而去</title>
-    <link href="http://riceball.me/life/index/"/>
-    <id>http://riceball.me/life/index/</id>
+    <link href="https://riceball.me/life/index/"/>
+    <id>https://riceball.me/life/index/</id>
     <published>2016-04-19T03:00:00.000Z</published>
     <updated>2019-11-22T06:56:43.545Z</updated>
     
@@ -418,21 +418,21 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Life" scheme="http://riceball.me/categories/Life/"/>
+      <category term="Life" scheme="https://riceball.me/categories/Life/"/>
     
     
-      <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
+      <category term="thinking" scheme="https://riceball.me/tags/thinking/"/>
     
-      <category term="life" scheme="http://riceball.me/tags/life/"/>
+      <category term="life" scheme="https://riceball.me/tags/life/"/>
     
-      <category term="人生感悟" scheme="http://riceball.me/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/"/>
+      <category term="人生感悟" scheme="https://riceball.me/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/"/>
     
   </entry>
   
   <entry>
     <title>The Loopback Open API Framework</title>
-    <link href="http://riceball.me/article/loopback/"/>
-    <id>http://riceball.me/article/loopback/</id>
+    <link href="https://riceball.me/article/loopback/"/>
+    <id>https://riceball.me/article/loopback/</id>
     <published>2016-04-09T20:53:56.000Z</published>
     <updated>2016-05-04T18:40:14.000Z</updated>
     
@@ -458,29 +458,29 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="JavaScript" scheme="http://riceball.me/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="https://riceball.me/categories/JavaScript/"/>
     
-      <category term="Framework" scheme="http://riceball.me/categories/JavaScript/Framework/"/>
+      <category term="Framework" scheme="https://riceball.me/categories/JavaScript/Framework/"/>
     
-      <category term="API" scheme="http://riceball.me/categories/JavaScript/Framework/API/"/>
+      <category term="API" scheme="https://riceball.me/categories/JavaScript/Framework/API/"/>
     
     
-      <category term="javascript" scheme="http://riceball.me/tags/javascript/"/>
+      <category term="javascript" scheme="https://riceball.me/tags/javascript/"/>
     
-      <category term="creation" scheme="http://riceball.me/tags/creation/"/>
+      <category term="creation" scheme="https://riceball.me/tags/creation/"/>
     
-      <category term="framework" scheme="http://riceball.me/tags/framework/"/>
+      <category term="framework" scheme="https://riceball.me/tags/framework/"/>
     
-      <category term="nodejs" scheme="http://riceball.me/tags/nodejs/"/>
+      <category term="nodejs" scheme="https://riceball.me/tags/nodejs/"/>
     
-      <category term="api" scheme="http://riceball.me/tags/api/"/>
+      <category term="api" scheme="https://riceball.me/tags/api/"/>
     
   </entry>
   
   <entry>
     <title>异步编程与 Promise</title>
-    <link href="http://riceball.me/article/promise.cn/"/>
-    <id>http://riceball.me/article/promise.cn/</id>
+    <link href="https://riceball.me/article/promise.cn/"/>
+    <id>https://riceball.me/article/promise.cn/</id>
     <published>2015-12-06T00:44:06.000Z</published>
     <updated>2016-03-21T20:00:14.000Z</updated>
     
@@ -519,25 +519,25 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Learning" scheme="http://riceball.me/categories/Learning/"/>
+      <category term="Learning" scheme="https://riceball.me/categories/Learning/"/>
     
-      <category term="Programming" scheme="http://riceball.me/categories/Learning/Programming/"/>
+      <category term="Programming" scheme="https://riceball.me/categories/Learning/Programming/"/>
     
-      <category term="Asynchronous" scheme="http://riceball.me/categories/Learning/Programming/Asynchronous/"/>
+      <category term="Asynchronous" scheme="https://riceball.me/categories/Learning/Programming/Asynchronous/"/>
     
     
-      <category term="programming" scheme="http://riceball.me/tags/programming/"/>
+      <category term="programming" scheme="https://riceball.me/tags/programming/"/>
     
-      <category term="asynchronous" scheme="http://riceball.me/tags/asynchronous/"/>
+      <category term="asynchronous" scheme="https://riceball.me/tags/asynchronous/"/>
     
-      <category term="promise" scheme="http://riceball.me/tags/promise/"/>
+      <category term="promise" scheme="https://riceball.me/tags/promise/"/>
     
   </entry>
   
   <entry>
     <title>如何选择一门语言学习计算机编程</title>
-    <link href="http://riceball.me/article/howto-choose-programming-language/"/>
-    <id>http://riceball.me/article/howto-choose-programming-language/</id>
+    <link href="https://riceball.me/article/howto-choose-programming-language/"/>
+    <id>https://riceball.me/article/howto-choose-programming-language/</id>
     <published>2015-06-30T03:32:00.000Z</published>
     <updated>2019-11-22T06:56:43.529Z</updated>
     
@@ -561,23 +561,23 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Learning" scheme="http://riceball.me/categories/Learning/"/>
+      <category term="Learning" scheme="https://riceball.me/categories/Learning/"/>
     
-      <category term="Programming" scheme="http://riceball.me/categories/Learning/Programming/"/>
+      <category term="Programming" scheme="https://riceball.me/categories/Learning/Programming/"/>
     
     
-      <category term="programming" scheme="http://riceball.me/tags/programming/"/>
+      <category term="programming" scheme="https://riceball.me/tags/programming/"/>
     
-      <category term="computer language" scheme="http://riceball.me/tags/computer-language/"/>
+      <category term="computer language" scheme="https://riceball.me/tags/computer-language/"/>
     
-      <category term="howto" scheme="http://riceball.me/tags/howto/"/>
+      <category term="howto" scheme="https://riceball.me/tags/howto/"/>
     
   </entry>
   
   <entry>
     <title>虚拟现实（VR）体验</title>
-    <link href="http://riceball.me/article/vr/"/>
-    <id>http://riceball.me/article/vr/</id>
+    <link href="https://riceball.me/article/vr/"/>
+    <id>https://riceball.me/article/vr/</id>
     <published>2015-05-03T02:30:06.000Z</published>
     <updated>2016-08-30T14:30:06.000Z</updated>
     
@@ -608,25 +608,25 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="VR" scheme="http://riceball.me/categories/Thinking/VR/"/>
+      <category term="VR" scheme="https://riceball.me/categories/Thinking/VR/"/>
     
     
-      <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
+      <category term="thinking" scheme="https://riceball.me/tags/thinking/"/>
     
-      <category term="tech" scheme="http://riceball.me/tags/tech/"/>
+      <category term="tech" scheme="https://riceball.me/tags/tech/"/>
     
-      <category term="vr" scheme="http://riceball.me/tags/vr/"/>
+      <category term="vr" scheme="https://riceball.me/tags/vr/"/>
     
-      <category term="virtual reality" scheme="http://riceball.me/tags/virtual-reality/"/>
+      <category term="virtual reality" scheme="https://riceball.me/tags/virtual-reality/"/>
     
   </entry>
   
   <entry>
     <title>移动互联网（物联网）思维的探索</title>
-    <link href="http://riceball.me/article/explore-thinking-of-internet/"/>
-    <id>http://riceball.me/article/explore-thinking-of-internet/</id>
+    <link href="https://riceball.me/article/explore-thinking-of-internet/"/>
+    <id>https://riceball.me/article/explore-thinking-of-internet/</id>
     <published>2014-05-05T06:05:00.000Z</published>
     <updated>2019-11-22T06:56:43.529Z</updated>
     
@@ -643,31 +643,31 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Internet" scheme="http://riceball.me/categories/Thinking/Internet/"/>
+      <category term="Internet" scheme="https://riceball.me/categories/Thinking/Internet/"/>
     
-      <category term="IOT" scheme="http://riceball.me/categories/Thinking/Internet/IOT/"/>
+      <category term="IOT" scheme="https://riceball.me/categories/Thinking/Internet/IOT/"/>
     
     
-      <category term="thinking" scheme="http://riceball.me/tags/thinking/"/>
+      <category term="thinking" scheme="https://riceball.me/tags/thinking/"/>
     
-      <category term="iot" scheme="http://riceball.me/tags/iot/"/>
+      <category term="iot" scheme="https://riceball.me/tags/iot/"/>
     
-      <category term="internet" scheme="http://riceball.me/tags/internet/"/>
+      <category term="internet" scheme="https://riceball.me/tags/internet/"/>
     
-      <category term="tao" scheme="http://riceball.me/tags/tao/"/>
+      <category term="tao" scheme="https://riceball.me/tags/tao/"/>
     
-      <category term="explore" scheme="http://riceball.me/tags/explore/"/>
+      <category term="explore" scheme="https://riceball.me/tags/explore/"/>
     
-      <category term="p2p" scheme="http://riceball.me/tags/p2p/"/>
+      <category term="p2p" scheme="https://riceball.me/tags/p2p/"/>
     
   </entry>
   
   <entry>
     <title>用 Javascript 开发桌面应用的框架工具列表</title>
-    <link href="http://riceball.me/article/js-desktop-sdk/"/>
-    <id>http://riceball.me/article/js-desktop-sdk/</id>
+    <link href="https://riceball.me/article/js-desktop-sdk/"/>
+    <id>https://riceball.me/article/js-desktop-sdk/</id>
     <published>2013-07-13T22:05:39.000Z</published>
     <updated>2016-08-01T12:54:00.000Z</updated>
     
@@ -684,33 +684,33 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="JavaScript" scheme="http://riceball.me/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="https://riceball.me/categories/JavaScript/"/>
     
-      <category term="Framework" scheme="http://riceball.me/categories/JavaScript/Framework/"/>
+      <category term="Framework" scheme="https://riceball.me/categories/JavaScript/Framework/"/>
     
-      <category term="Desktop" scheme="http://riceball.me/categories/JavaScript/Framework/Desktop/"/>
+      <category term="Desktop" scheme="https://riceball.me/categories/JavaScript/Framework/Desktop/"/>
     
     
-      <category term="javascript" scheme="http://riceball.me/tags/javascript/"/>
+      <category term="javascript" scheme="https://riceball.me/tags/javascript/"/>
     
-      <category term="HTML5" scheme="http://riceball.me/tags/HTML5/"/>
+      <category term="HTML5" scheme="https://riceball.me/tags/HTML5/"/>
     
-      <category term="前端" scheme="http://riceball.me/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://riceball.me/tags/%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="desktop" scheme="http://riceball.me/tags/desktop/"/>
+      <category term="desktop" scheme="https://riceball.me/tags/desktop/"/>
     
-      <category term="framework" scheme="http://riceball.me/tags/framework/"/>
+      <category term="framework" scheme="https://riceball.me/tags/framework/"/>
     
-      <category term="sdk" scheme="http://riceball.me/tags/sdk/"/>
+      <category term="sdk" scheme="https://riceball.me/tags/sdk/"/>
     
-      <category term="webapp" scheme="http://riceball.me/tags/webapp/"/>
+      <category term="webapp" scheme="https://riceball.me/tags/webapp/"/>
     
   </entry>
   
   <entry>
     <title>无后端构建的无痛HTML应用开发[2013趋势]</title>
-    <link href="http://riceball.me/article/nobackend/"/>
-    <id>http://riceball.me/article/nobackend/</id>
+    <link href="https://riceball.me/article/nobackend/"/>
+    <id>https://riceball.me/article/nobackend/</id>
     <published>2013-07-13T07:06:01.000Z</published>
     <updated>2019-11-22T06:56:43.533Z</updated>
     
@@ -727,33 +727,33 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Architecture" scheme="http://riceball.me/categories/Thinking/Architecture/"/>
+      <category term="Architecture" scheme="https://riceball.me/categories/Thinking/Architecture/"/>
     
     
-      <category term="javascript" scheme="http://riceball.me/tags/javascript/"/>
+      <category term="javascript" scheme="https://riceball.me/tags/javascript/"/>
     
-      <category term="Cloud" scheme="http://riceball.me/tags/Cloud/"/>
+      <category term="Cloud" scheme="https://riceball.me/tags/Cloud/"/>
     
-      <category term="HTML5" scheme="http://riceball.me/tags/HTML5/"/>
+      <category term="HTML5" scheme="https://riceball.me/tags/HTML5/"/>
     
-      <category term="nobackend" scheme="http://riceball.me/tags/nobackend/"/>
+      <category term="nobackend" scheme="https://riceball.me/tags/nobackend/"/>
     
-      <category term="NoSQL" scheme="http://riceball.me/tags/NoSQL/"/>
+      <category term="NoSQL" scheme="https://riceball.me/tags/NoSQL/"/>
     
-      <category term="云存储" scheme="http://riceball.me/tags/%E4%BA%91%E5%AD%98%E5%82%A8/"/>
+      <category term="云存储" scheme="https://riceball.me/tags/%E4%BA%91%E5%AD%98%E5%82%A8/"/>
     
-      <category term="云计算" scheme="http://riceball.me/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+      <category term="云计算" scheme="https://riceball.me/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
     
-      <category term="前端" scheme="http://riceball.me/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://riceball.me/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
   <entry>
     <title>大道至简 -- 之iDB NoSQL数据库开发随笔（一）</title>
-    <link href="http://riceball.me/article/idb-1/"/>
-    <id>http://riceball.me/article/idb-1/</id>
+    <link href="https://riceball.me/article/idb-1/"/>
+    <id>https://riceball.me/article/idb-1/</id>
     <published>2013-03-24T05:30:59.000Z</published>
     <updated>2019-11-22T06:56:43.529Z</updated>
     
@@ -774,33 +774,33 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Database" scheme="http://riceball.me/categories/Database/"/>
+      <category term="Database" scheme="https://riceball.me/categories/Database/"/>
     
-      <category term="NoSQL" scheme="http://riceball.me/categories/Database/NoSQL/"/>
+      <category term="NoSQL" scheme="https://riceball.me/categories/Database/NoSQL/"/>
     
-      <category term="iDB" scheme="http://riceball.me/categories/Database/NoSQL/iDB/"/>
+      <category term="iDB" scheme="https://riceball.me/categories/Database/NoSQL/iDB/"/>
     
     
-      <category term="cloud computing" scheme="http://riceball.me/tags/cloud-computing/"/>
+      <category term="cloud computing" scheme="https://riceball.me/tags/cloud-computing/"/>
     
-      <category term="云存储" scheme="http://riceball.me/tags/%E4%BA%91%E5%AD%98%E5%82%A8/"/>
+      <category term="云存储" scheme="https://riceball.me/tags/%E4%BA%91%E5%AD%98%E5%82%A8/"/>
     
-      <category term="云计算" scheme="http://riceball.me/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+      <category term="云计算" scheme="https://riceball.me/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
     
-      <category term="nosql" scheme="http://riceball.me/tags/nosql/"/>
+      <category term="nosql" scheme="https://riceball.me/tags/nosql/"/>
     
-      <category term="idb" scheme="http://riceball.me/tags/idb/"/>
+      <category term="idb" scheme="https://riceball.me/tags/idb/"/>
     
-      <category term="database" scheme="http://riceball.me/tags/database/"/>
+      <category term="database" scheme="https://riceball.me/tags/database/"/>
     
-      <category term="cloud storage" scheme="http://riceball.me/tags/cloud-storage/"/>
+      <category term="cloud storage" scheme="https://riceball.me/tags/cloud-storage/"/>
     
   </entry>
   
   <entry>
     <title>Nokia 的B计划 - Nokia 还有未来么？</title>
-    <link href="http://riceball.me/article/nokia-b-plan/"/>
-    <id>http://riceball.me/article/nokia-b-plan/</id>
+    <link href="https://riceball.me/article/nokia-b-plan/"/>
+    <id>https://riceball.me/article/nokia-b-plan/</id>
     <published>2012-07-10T06:39:53.000Z</published>
     <updated>2019-11-22T06:56:43.533Z</updated>
     
@@ -817,21 +817,21 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
     
-      <category term="Camera" scheme="http://riceball.me/tags/Camera/"/>
+      <category term="Camera" scheme="https://riceball.me/tags/Camera/"/>
     
-      <category term="Nokia" scheme="http://riceball.me/tags/Nokia/"/>
+      <category term="Nokia" scheme="https://riceball.me/tags/Nokia/"/>
     
-      <category term="Pure View" scheme="http://riceball.me/tags/Pure-View/"/>
+      <category term="Pure View" scheme="https://riceball.me/tags/Pure-View/"/>
     
   </entry>
   
   <entry>
     <title>DIY与云计算（三）之 云存储与开源 ZFS 文件系统</title>
-    <link href="http://riceball.me/article/diy-cloud-computing-3/"/>
-    <id>http://riceball.me/article/diy-cloud-computing-3/</id>
+    <link href="https://riceball.me/article/diy-cloud-computing-3/"/>
+    <id>https://riceball.me/article/diy-cloud-computing-3/</id>
     <published>2012-05-12T05:55:43.000Z</published>
     <updated>2019-11-22T06:56:43.529Z</updated>
     
@@ -851,16 +851,16 @@ ZFS是一个具有高存储容量、文件系统与卷管理概念整合、崭�
     </summary>
     
     
-      <category term="Thinking" scheme="http://riceball.me/categories/Thinking/"/>
+      <category term="Thinking" scheme="https://riceball.me/categories/Thinking/"/>
     
-      <category term="Cloud Computing" scheme="http://riceball.me/categories/Thinking/Cloud-Computing/"/>
+      <category term="Cloud Computing" scheme="https://riceball.me/categories/Thinking/Cloud-Computing/"/>
     
     
-      <category term="cloud computing" scheme="http://riceball.me/tags/cloud-computing/"/>
+      <category term="cloud computing" scheme="https://riceball.me/tags/cloud-computing/"/>
     
-      <category term="diy" scheme="http://riceball.me/tags/diy/"/>
+      <category term="diy" scheme="https://riceball.me/tags/diy/"/>
     
-      <category term="zfs" scheme="http://riceball.me/tags/zfs/"/>
+      <category term="zfs" scheme="https://riceball.me/tags/zfs/"/>
     
   </entry>
   

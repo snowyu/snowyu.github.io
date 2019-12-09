@@ -2,279 +2,279 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://riceball.me</loc>
+        <loc>https://riceball.me</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive/Document/Markdown/</loc>
+        <loc>https://riceball.me/categories/Thinking/Reactive/Document/Markdown/</loc>
         <lastmod>2019-12-08T01:31:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive/Document/</loc>
+        <loc>https://riceball.me/categories/Thinking/Reactive/Document/</loc>
         <lastmod>2019-12-08T01:31:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Reactive/</loc>
+        <loc>https://riceball.me/categories/Thinking/Reactive/</loc>
         <lastmod>2019-12-08T01:31:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/</loc>
+        <loc>https://riceball.me/categories/Thinking/</loc>
         <lastmod>2019-12-08T01:31:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Security/PGP/</loc>
+        <loc>https://riceball.me/categories/Security/PGP/</loc>
         <lastmod>2019-11-26T17:27:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Security/</loc>
+        <loc>https://riceball.me/categories/Security/</loc>
         <lastmod>2019-11-26T17:27:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Library/Graphic/</loc>
+        <loc>https://riceball.me/categories/Library/Graphic/</loc>
         <lastmod>2019-11-26T05:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Library/</loc>
+        <loc>https://riceball.me/categories/Library/</loc>
         <lastmod>2019-11-26T05:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/JavaScript/Framework/App/</loc>
+        <loc>https://riceball.me/categories/JavaScript/Framework/App/</loc>
         <lastmod>2019-11-25T21:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/JavaScript/Framework/</loc>
+        <loc>https://riceball.me/categories/JavaScript/Framework/</loc>
         <lastmod>2019-11-25T21:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/JavaScript/</loc>
+        <loc>https://riceball.me/categories/JavaScript/</loc>
         <lastmod>2019-11-25T21:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Database/NoSQL/CouchDB/</loc>
+        <loc>https://riceball.me/categories/Database/NoSQL/CouchDB/</loc>
         <lastmod>2019-11-25T19:30:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Database/NoSQL/</loc>
+        <loc>https://riceball.me/categories/Database/NoSQL/</loc>
         <lastmod>2019-11-25T19:30:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Database/</loc>
+        <loc>https://riceball.me/categories/Database/</loc>
         <lastmod>2019-11-25T19:30:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Linux/Ubuntu/</loc>
+        <loc>https://riceball.me/categories/Linux/Ubuntu/</loc>
         <lastmod>2019-11-22T06:56:43.545Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Linux/</loc>
+        <loc>https://riceball.me/categories/Linux/</loc>
         <lastmod>2019-11-22T06:56:43.545Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Life/</loc>
+        <loc>https://riceball.me/categories/Life/</loc>
         <lastmod>2019-11-22T06:56:43.545Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Internet/Sharing-Economy/</loc>
+        <loc>https://riceball.me/categories/Thinking/Internet/Sharing-Economy/</loc>
         <lastmod>2019-11-22T06:56:43.541Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Internet/SNS/</loc>
+        <loc>https://riceball.me/categories/Thinking/Internet/SNS/</loc>
         <lastmod>2019-11-22T06:56:43.541Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Internet/</loc>
+        <loc>https://riceball.me/categories/Thinking/Internet/</loc>
         <lastmod>2019-11-22T06:56:43.541Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Learning/Programming/</loc>
+        <loc>https://riceball.me/categories/Learning/Programming/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Learning/</loc>
+        <loc>https://riceball.me/categories/Learning/</loc>
         <lastmod>2019-11-22T06:56:43.537Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Architecture/MQTT/</loc>
+        <loc>https://riceball.me/categories/Thinking/Architecture/MQTT/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Cloud-Computing/SaaS/</loc>
+        <loc>https://riceball.me/categories/Thinking/Cloud-Computing/SaaS/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Architecture/</loc>
+        <loc>https://riceball.me/categories/Thinking/Architecture/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/HTML5/</loc>
+        <loc>https://riceball.me/categories/HTML5/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Cloud-Computing/</loc>
+        <loc>https://riceball.me/categories/Thinking/Cloud-Computing/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/HTML5/Game-Development/</loc>
+        <loc>https://riceball.me/categories/HTML5/Game-Development/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/P2P/Digital-Currency/</loc>
+        <loc>https://riceball.me/categories/P2P/Digital-Currency/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/P2P/</loc>
+        <loc>https://riceball.me/categories/P2P/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Database/NoSQL/iDB/</loc>
+        <loc>https://riceball.me/categories/Database/NoSQL/iDB/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Internet/IOT/</loc>
+        <loc>https://riceball.me/categories/Thinking/Internet/IOT/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/Programming/</loc>
+        <loc>https://riceball.me/categories/Thinking/Programming/</loc>
         <lastmod>2016-09-03T19:30:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Thinking/VR/</loc>
+        <loc>https://riceball.me/categories/Thinking/VR/</loc>
         <lastmod>2016-08-30T14:30:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/JavaScript/Framework/Desktop/</loc>
+        <loc>https://riceball.me/categories/JavaScript/Framework/Desktop/</loc>
         <lastmod>2016-08-01T12:54:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/JavaScript/Framework/API/</loc>
+        <loc>https://riceball.me/categories/JavaScript/Framework/API/</loc>
         <lastmod>2016-05-04T18:40:14.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Open-Source/Hardware/</loc>
+        <loc>https://riceball.me/categories/Open-Source/Hardware/</loc>
         <lastmod>2016-04-04T12:54:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Open-Source/</loc>
+        <loc>https://riceball.me/categories/Open-Source/</loc>
         <lastmod>2016-04-04T12:54:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://riceball.me/categories/Learning/Programming/Asynchronous/</loc>
+        <loc>https://riceball.me/categories/Learning/Programming/Asynchronous/</loc>
         <lastmod>2016-03-21T20:00:14.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
