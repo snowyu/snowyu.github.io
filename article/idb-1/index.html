@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -333,17 +333,17 @@
 
       
         <p>iDB NoSQL数据库是结构化的面向列（Structured-Column Oriented），并基于目录（Directory-Based）的层级式（Hierarchy）NoSQL开源数据存储系统（项目主页：<a href="https://github.com/snowyu/iDB" target="_blank" rel="noopener">https://github.com/snowyu/iDB</a>），iDB有别于传统数据库基于文件的存储形式。我们可以把它视作新一代数据库系统(A new way to database engine)的核心。</p>
-<h3 id="ji-ge-gai-nian">几个概念：</h3>
+<h3 id="ji-ge-gai-nian" class="heading-control">几个概念：<a class="heading-anchor" href="#ji-ge-gai-nian" aria-hidden="true"></a></h3>
 <ul>
 <li>面向列：所谓面向列(Column Oriented)是和面向行(Row Oriented)相对而言的，绝大多数的关系型数据库就是面向行存储的，而iDB则是面向列基于Key/Value的存储系统。</li>
 <li>结构化：所谓结构化(Structured)是指值(Value)可以是带结构数据的复杂类型，而层级则是指Key可以有不同的层级关系，基于目录树的形式。</li>
 <li>基于目录：基于目录(Directory-Based)也是相对于基于文件(File-Based)而言，对于传统的数据库系统几乎都是通过创建少量的随机文件，然后把大量的数据存放在里面，而iDB则完全不同，也可以说是恰恰相反，它是创建大量的目录和文件，把数据分散在目录中，你可以认为这是一种创新。</li>
 </ul>
-<h3 id="background-she-ji-bei-jing">Background (设计背景)</h3>
+<h3 id="background-she-ji-bei-jing" class="heading-control">Background (设计背景)<a class="heading-anchor" href="#background-she-ji-bei-jing" aria-hidden="true"></a></h3>
 <p>iDB NoSQL数据库引擎的设计初衷是希望能更为合理的设计组织数据库引擎的层次架构，以及看到现代文件系统设计发展的变化有感而发，两者融合就促使我萌发设计iDB的念头。</p>
-<h4 id="kiss-yuan-ze">KISS 原则</h4>
+<h4 id="kiss-yuan-ze" class="heading-control">KISS 原则<a class="heading-anchor" href="#kiss-yuan-ze" aria-hidden="true"></a></h4>
 <p>大家都应该知道KISS(Keep It Simple, Stupid)原则，即保持架构简单而愚蠢的原则，因为简单，所以看上去足够的蠢。而将架构设计得足够的简单是架构师的梦寐以求，大道至简，说着看是容易，实际做起来，其实真难，知易行难是也。我希望iDB的架构设计做到了足够简单以及足够的愚蠢，这也是我从事架构设计中最接近KISS原则的一次架构体验，我很乐于与大家分享我这设计过程的经验和错误。</p>
-<h4 id="wen-jian-xi-tong-yu-shu-ju-ku">文件系统与数据库</h4>
+<h4 id="wen-jian-xi-tong-yu-shu-ju-ku" class="heading-control">文件系统与数据库<a class="heading-anchor" href="#wen-jian-xi-tong-yu-shu-ju-ku" aria-hidden="true"></a></h4>
 <p>前面我提到现代文件系统的发展和变化，这和NoSQL数据库的设计存在什么样的联系？数据库引擎的设计需要考虑文件系统的特性么？我们可以做一个列表来对比，文件系统和数据库的功能特性：</p>
 <p><strong>从操作对象和操作方式上看</strong></p>
 <ul>
@@ -366,11 +366,11 @@
 <li>XFS B+tree</li>
 </ul>
 <p>可以看到在最基本数据存储和访问上，数据库和文件系统有惊人的相似性。为了最大限度的优化数据库的性能，开发者做了许多与文件系统相同的重复工作，磁头位置预估，扇面连续，defragment等等，并针对SSD做优化。但是这些相同的工作文件系统也都在做。</p>
-<h4 id="bu-yao-zhong-fu-fa-ming-lun-zi-drtw">不要重复发明轮子(DRTW)</h4>
+<h4 id="bu-yao-zhong-fu-fa-ming-lun-zi-drtw" class="heading-control">不要重复发明轮子(DRTW)<a class="heading-anchor" href="#bu-yao-zhong-fu-fa-ming-lun-zi-drtw" aria-hidden="true"></a></h4>
 <p>那么不同的地方在哪里？数据库更复杂，除了基本的存储和访问需求外，它还需要对结构化的数据进行检索和处理。但是因为老的数据库思路是申请一个文件，也即是磁盘空间的一个区域在这上面进行数据存储和访问，这样，文件系统的成果自然无法用上。</p>
 <p>因此，根据懒人法则第一条，能躺绝坐，能坐绝不站。站在巨人的肩膀上，才能看得更远，走得更远。那么怎么样对数据存储才能利用上文件系统的成果呢？</p>
 <p>让我们跳出来文件这个限制框框思考，为啥数据库的数据一定要保存在文件中？为啥不能直接用文件的目录系统直接作为NoSQL数据库的存储呢？当我们跳出这个限制：数据必须保存到文件中。我们就会欣然发现，只要我们正视文件系统的一些限制，其实目录也可以存数据。既然文件系统都已经充分考虑并已经成熟（N多程序在通过不同方式使用着文件系统），为啥要重复发明轮子？作为数据库引擎应该更专注于数据处理才对，而不是数据存储。</p>
-<h3 id="kiss-it">KISS IT</h3>
+<h3 id="kiss-it" class="heading-control">KISS IT<a class="heading-anchor" href="#kiss-it" aria-hidden="true"></a></h3>
 <p>iDB就是这样的一次尝试。它试图充分而彻底的利用文件系统本身来进行数据存储，你甚至可以利用文件系统自己去浏览管理数据，看上去，我所做的一切似乎仅仅只是制定了数据存储的规范和一系列的约定。其中，最重要，最核心的约定是文件系统的目录名称为Key名，该目录下的“.value”文件内容为值的内容，“.type”文件内容为该Key的类型说明。</p>
 <p>听上去够简单吧。也许简单到能让你发笑。</p>
 <p>古语有云:</p>
@@ -382,7 +382,7 @@
 <p>Stay simple ,stay foolish…</p>
 </blockquote>
 <p>如上所述就是开发iDB的设计背景，下面从哪里谈起呢?想写的东西太多，就先从iDB规范讲起吧。</p>
-<h3 id="idb-jia-gou-yu-gui-fan">iDB 架构与规范</h3>
+<h3 id="idb-jia-gou-yu-gui-fan" class="heading-control">iDB 架构与规范<a class="heading-anchor" href="#idb-jia-gou-yu-gui-fan" aria-hidden="true"></a></h3>
 <p>草拟规范是架构设计中尤为重要的一环，架构如果没有规范，便如同建筑师没有设计蓝图就开始修建房屋，无论是自顶向下还是自底向上设计，每一步都离不开规范文档。单从数据库系统的设计上来讲，由底向上看，描述数据在文件系统中如何存储数据的存储规范便是整个系统的基石，如果没有它，那么一切都是空谈。</p>
 <p>在我们进行iDB设计的过程中，起初iDB规范只有一个，后来逐渐分为多个，下面让我们从底一步一步向上看:</p>
 <ul>
@@ -414,7 +414,7 @@
 </li>
 </ul>
 <p>目前只实现iDB存储规范中的内容，文档还很乱，写得比较糟糕，但是具体思路已经敲定了，只剩下文字增订的事情，但是iDB整体规范依然还在草拟中。</p>
-<h4 id="idb-cun-chu-gui-fan">iDB存储规范</h4>
+<h4 id="idb-cun-chu-gui-fan" class="heading-control">iDB存储规范<a class="heading-anchor" href="#idb-cun-chu-gui-fan" aria-hidden="true"></a></h4>
 <p>iDB存储规范是iDB最基础的规范约定，描述了iDB基础数据是如何被存储和访问。</p>
 <p>我们大概已经知道了，目录名为Key名，目录名下的&quot;.value&quot;文件内容为键值。我们将&quot;.value&quot;称之为key的一个属性，&quot;.value&quot;是其中最重要的一个属性。一个<br>
 key(键)可以有多个属性，对于一般使用者来说，是无法直接看见这些属性的，这些属性为iDB规范服务的。</p>
@@ -522,7 +522,7 @@ key(键)可以有多个属性，对于一般使用者来说，是无法直接看
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -727,6 +727,8 @@ key(键)可以有多个属性，对于一般使用者来说，是无法直接看
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -743,8 +745,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

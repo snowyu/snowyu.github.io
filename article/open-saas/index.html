@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -334,12 +334,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="saas-ping-tai-zhi-shang">SaaS平台之殇</h1>
-<h2 id="bei-jing">背景</h2>
+        <h1 id="saas-ping-tai-zhi-shang" class="heading-control">SaaS平台之殇<a class="heading-anchor" href="#saas-ping-tai-zhi-shang" aria-hidden="true"></a></h1>
+<h2 id="bei-jing" class="heading-control">背景<a class="heading-anchor" href="#bei-jing" aria-hidden="true"></a></h2>
 <p>商业应用的集中式托管可以追溯到20世纪60年代的时分系统中。SaaS通常使用多租架构为多个商业组织和用户提供服务。</p>
 <p>在多租环境中的相对低廉的用户服务开通（创建新客户），使得一些软件即服务供应商可以用免费模式来提供应用。在这种模式下，基本功能免费，增强功能或更大的范围则是要收费的。当然，也有完全对用户完全免费的SaaS，而他们的收入则产生于其它相关来源例如：广告。</p>
 <p>SaaS的本质是将规模经济应用到软件应用的运营上。故其规模决定了其发展。而影响企业用户决定是否采用SaaS的一个最关键因素就是<code>数据</code>。</p>
-<h2 id="shang-wen-ti">殇 - 问题</h2>
+<h2 id="shang-wen-ti" class="heading-control">殇 - 问题<a class="heading-anchor" href="#shang-wen-ti" aria-hidden="true"></a></h2>
 <p>数据的安全，以及数据的归属（政策法规上的搜索/占有保障法律并不保护服务存储的数据）。最终导致结果是，对数据的访问，以及进一步的对该数据的不当使用，仅仅由假定是诚信的第三方或他们自己的承诺书来限制（你没法知道他们到底是否违背了他们的承诺）。</p>
 <ul>
 <li>数据安全</li>
@@ -361,7 +361,7 @@
 <li>用户无知情权，监督权，数据归属权</li>
 </ul>
 <p>愚以上为制约SaaS发展规模的主要原因。</p>
-<h2 id="kai-yuan-saas-ping-tai">开源 SaaS 平台</h2>
+<h2 id="kai-yuan-saas-ping-tai" class="heading-control">开源 SaaS 平台<a class="heading-anchor" href="#kai-yuan-saas-ping-tai" aria-hidden="true"></a></h2>
 <p>借助开源 SaaS 平台联盟，借助最新的技术手段，借助开源社区的监督和研发，可以做到：</p>
 <ul>
 <li>无后门</li>
@@ -448,7 +448,7 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -653,6 +653,8 @@
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -669,8 +671,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

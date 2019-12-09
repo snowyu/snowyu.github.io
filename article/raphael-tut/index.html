@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -71,7 +71,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.2-min.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
 
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
@@ -322,9 +322,9 @@
 
       
         <p>raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。</p>
-<h1 id="chuang-jian-tu-xing-dui-xiang">创建图形对象</h1>
+<h1 id="chuang-jian-tu-xing-dui-xiang" class="heading-control">创建图形对象<a class="heading-anchor" href="#chuang-jian-tu-xing-dui-xiang" aria-hidden="true"></a></h1>
 <p>raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。</p>
-<h2 id="ju-xing-rect">矩形(Rect)</h2>
+<h2 id="ju-xing-rect" class="heading-control">矩形(Rect)<a class="heading-anchor" href="#ju-xing-rect" aria-hidden="true"></a></h2>
 <p>参数：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p>
 <p>下面演示在提供好的画布上用上述参数绘制一个矩形，点击下面的播放按钮进行演示：</p>
 <pre><code class="output"># 演示绘制矩形的过程
@@ -357,7 +357,7 @@ tooltip: 现在你可以自己试一试了
 <li>text(50, 50, “Hi world\n你好世界”)</li>
 </ul>
 <p>所有这些绘制后都会返回一个图形对象，你可以对它进行各种操作，比如show/hide,改变属性attr。</p>
-<h2 id="path-lu-jing">Path(路径)</h2>
+<h2 id="path-lu-jing" class="heading-control">Path(路径)<a class="heading-anchor" href="#path-lu-jing" aria-hidden="true"></a></h2>
 <p>更复杂的对象也可以通过path来实现描述。路径是矢量绘图里最强大的工具，同时也比较复杂。</p>
 <pre><code class="output">paper = @canvas
 paper.setSize(200,100)
@@ -379,7 +379,7 @@ paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'}
 <li>H: Horz(x)       水平直线 保持当前点的y坐标不变，x轴移动到x，形成水平线</li>
 <li>V: Vert(y)       垂直直线 保持当前点的x坐标不变，y轴移动到y，形成垂直线</li>
 </ul>
-<h2 id="dong-hua">动画</h2>
+<h2 id="dong-hua" class="heading-control">动画<a class="heading-anchor" href="#dong-hua" aria-hidden="true"></a></h2>
 <p>在raphael中绘制的每一个元素都可以轻易的制作动画，只要我们设定它的起始和结束属性即可。假如我们对前面的矩形进行动画，设定它的结束属性为：</p>
 <ul>
 <li><span class="AMElement" data-embed="false" data-config="rex:0..">x轴坐标:100</span>，<span class="AMElement" data-embed="false" data-config="rey:0..">y轴坐标:40</span></li>
@@ -502,7 +502,7 @@ rect.mousedown(  () -&gt;
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -707,6 +707,11 @@ rect.mousedown(  () -&gt;
 
   
 
+
+<script src='/assets/imarkdown/imarkdown-0.4.3-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Raphael 矢量图形和动画javascript库.md"});</script>
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -723,11 +728,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
-<script src='/assets/imarkdown/imarkdown-0.4.2-min.js'></script><script>
-window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Raphael 矢量图形和动画javascript库.md"});</script>
-
 
 
 

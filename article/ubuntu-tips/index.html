@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -326,10 +326,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="ubuntu-16-10">Ubuntu 16.10</h1>
+        <h1 id="ubuntu-16-10" class="heading-control">Ubuntu 16.10<a class="heading-anchor" href="#ubuntu-16-10" aria-hidden="true"></a></h1>
 <p>Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。</p>
 <p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
-<h2 id="shell">Shell</h2>
+<h2 id="shell" class="heading-control">Shell<a class="heading-anchor" href="#shell" aria-hidden="true"></a></h2>
 <p>我比较习惯 zsh, 下载安装zsh:</p>
 <pre><code class="bash">$&gt; sudo apt install zsh
 $&gt; sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
@@ -340,9 +340,9 @@ $&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"export 
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
 <pre><code>plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)
 </code></pre>
-<h2 id="ssd-ci-pan">SSD 磁盘</h2>
+<h2 id="ssd-ci-pan" class="heading-control">SSD 磁盘<a class="heading-anchor" href="#ssd-ci-pan" aria-hidden="true"></a></h2>
 <p>SSD磁盘的挂载和使用需要一些小技巧来延长SSD的使用寿命。</p>
-<h3 id="trim">Trim</h3>
+<h3 id="trim" class="heading-control">Trim<a class="heading-anchor" href="#trim" aria-hidden="true"></a></h3>
 <p>SSD 磁盘挂载需要启用trim指令，Liunx的磁盘系统支持两类trim（但注意不是所有的磁盘系统都支持）。</p>
 <ul>
 <li>discard 参数: 持续 trim(删除立刻trim)</li>
@@ -428,7 +428,7 @@ nvme0n1          512      512B       2T         0
 ├─nvme0n1p2        0      512B       2T         0
 </code></pre>
 <p>如果 <code>DISC-GRAN</code> 和 <code>DISC-MAX</code> 列的值<code>非0</code>就表示支持trim.</p>
-<h3 id="xian-zhi-jiao-huan-fen-qu">限制交换分区</h3>
+<h3 id="xian-zhi-jiao-huan-fen-qu" class="heading-control">限制交换分区<a class="heading-anchor" href="#xian-zhi-jiao-huan-fen-qu" aria-hidden="true"></a></h3>
 <p>Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。</p>
 <p>查看当前的<code>swappiness</code>设置：</p>
 <pre><code class="bash">$&gt; cat /proc/sys/vm/swappiness
@@ -438,12 +438,12 @@ nvme0n1          512      512B       2T         0
 <pre><code># Sharply reduce the inclination to swap
 vm.swappiness=10
 </code></pre>
-<h3 id="qi-yong-tmp-mu-lu-ram-pan">启用/tmp目录RAM盘</h3>
+<h3 id="qi-yong-tmp-mu-lu-ram-pan" class="heading-control">启用/tmp目录RAM盘<a class="heading-anchor" href="#qi-yong-tmp-mu-lu-ram-pan" aria-hidden="true"></a></h3>
 <pre><code class="bash">sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount
 sudo systemctl <span class="hljs-built_in">enable</span> tmp.mount
 sudo systemctl start tmp.mount
 </code></pre>
-<h2 id="dnsmasq">dnsmasq</h2>
+<h2 id="dnsmasq" class="heading-control">dnsmasq<a class="heading-anchor" href="#dnsmasq" aria-hidden="true"></a></h2>
 <p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>
 需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
 <pre><code class="bash">$&gt;cat /etc/resolv.dnsmasq.conf
@@ -460,11 +460,11 @@ addn-hosts=/etc/hosts
 
 $&gt;sudo systemctl restart NetworkManager
 </code></pre>
-<h2 id="ipset">ipset</h2>
+<h2 id="ipset" class="heading-control">ipset<a class="heading-anchor" href="#ipset" aria-hidden="true"></a></h2>
 <p>ipset 配合 iptables 可实现基于域名的策略路由。</p>
 <p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配性能问题。</p>
 <p>当然，首先你要安装: <code>sudo apt install ipset</code></p>
-<h3 id="hei-ming-dan-fang-shi">黑名单方式</h3>
+<h3 id="hei-ming-dan-fang-shi" class="heading-control">黑名单方式<a class="heading-anchor" href="#hei-ming-dan-fang-shi" aria-hidden="true"></a></h3>
 <p>Dnsmasq 从 2.66 版本之后就支持将域名的查询结果放进 ipset 中，这样就可以对这些域名对应的 IP<br>
 使用 iptables 处理。</p>
 <p>只转发名单内的IP, 可以配合gfwlist对指定的域名IP做重定向处理</p>
@@ -481,7 +481,7 @@ $&gt;sudo systemctl restart NetworkManager
 <p>然后创建<code>gfwlist</code>ipset规则集:</p>
 <pre><code class="bash">ipset -N gfwlist <span class="hljs-built_in">hash</span>:ip
 </code></pre>
-<h3 id="bai-ming-dan-fang-shi">白名单方式</h3>
+<h3 id="bai-ming-dan-fang-shi" class="heading-control">白名单方式<a class="heading-anchor" href="#bai-ming-dan-fang-shi" aria-hidden="true"></a></h3>
 <p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
 <ul>
 <li>获取国内 IP 列表</li>
@@ -503,7 +503,7 @@ ipset -N chnroute <span class="hljs-built_in">hash</span>:net maxelem 65536
 <span class="hljs-keyword">done</span>
 </code></pre>
 <p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
-<h2 id="shadowsocks-libev">shadowsocks-libev</h2>
+<h2 id="shadowsocks-libev" class="heading-control">shadowsocks-libev<a class="heading-anchor" href="#shadowsocks-libev" aria-hidden="true"></a></h2>
 <pre><code>apt install shadowsocks-libev
 </code></pre>
 <pre><code class="bash">$&gt; cat /etc/shadowsocks-libev/config.json
@@ -530,7 +530,7 @@ $&gt;systemctl <span class="hljs-built_in">enable</span> shadowsocks-libev
 $&gt;systemctl daemon-reload
 $&gt;systemctl start shadowsocks-libev
 </code></pre>
-<h2 id="iptables">iptables</h2>
+<h2 id="iptables" class="heading-control">iptables<a class="heading-anchor" href="#iptables" aria-hidden="true"></a></h2>
 <p>下面开始在iptables上做转发：</p>
 <p>首先为shadowsocks创建NAT表:</p>
 <pre><code class="bash"><span class="hljs-comment"># create a nat named SHADOWSOCKS:</span>
@@ -553,13 +553,13 @@ iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN
 iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN
 iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN
 </code></pre>
-<h3 id="hei-ming-dan">黑名单</h3>
+<h3 id="hei-ming-dan" class="heading-control">黑名单<a class="heading-anchor" href="#hei-ming-dan" aria-hidden="true"></a></h3>
 <pre><code class="bash"><span class="hljs-comment"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port</span>
 iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080
 <span class="hljs-comment"># Apply the rules</span>
 iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
 </code></pre>
-<h3 id="bai-ming-dan">白名单</h3>
+<h3 id="bai-ming-dan" class="heading-control">白名单<a class="heading-anchor" href="#bai-ming-dan" aria-hidden="true"></a></h3>
 <pre><code class="bash"><span class="hljs-comment"># Allow connection to chinese IPs</span>
 iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set chnroute dst -j RETURN
 
@@ -569,7 +569,7 @@ iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080
 <span class="hljs-comment"># Apply the rules</span>
 iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
 </code></pre>
-<h3 id="qing-chu-iptables-gui-ze">清除iptables规则</h3>
+<h3 id="qing-chu-iptables-gui-ze" class="heading-control">清除iptables规则<a class="heading-anchor" href="#qing-chu-iptables-gui-ze" aria-hidden="true"></a></h3>
 <pre><code class="bash"><span class="hljs-meta">#!/bin/bash
 </span>
 iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS
@@ -663,7 +663,7 @@ ipset destroy chnroute
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -868,6 +868,8 @@ ipset destroy chnroute
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -884,8 +886,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

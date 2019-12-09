@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -330,7 +330,7 @@
       
         <p><img src="http://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg" alt="sass"></p>
 <p>在Web开发的过程中，使用CSS的是很普遍的，虽然CSS本身并不复杂，但在大型网站中如何去有序地组织好CSS结构却是一个相当棘手的问题。为了解决开发者的这些问题，就有了Sass的出现。Sass 的全称是 (Syntactically Awesome Stylesheets)，是一种输出CSS的meta编程语言, 可以帮助开发者写出复用性更优的CSS文件。它能将类似CSS但是更简便的书写的sass语言最终转换为CSS代码。Sass提供了基于Ruby语言开发的工具能够很容易的将sass代码转换为CSS代码.</p>
-<h1 id="ta-de-yu-fa-te-xing">它的语法特性</h1>
+<h1 id="ta-de-yu-fa-te-xing" class="heading-control">它的语法特性<a class="heading-anchor" href="#ta-de-yu-fa-te-xing" aria-hidden="true"></a></h1>
 <ol>
 <li>变量: Sass中以”$”号打头的$name 都是变量。我们可以给变量赋值，然后在文件中使用它们。</li>
 <li>继承:<br>
@@ -341,10 +341,10 @@
 <li>操作 ：Sass支持简单的算术操作，例如±×/，以及函数。将这个特性和变量结合起来，会使得CSS变得更加灵活。工具需要保证操作的单位（px, pt）正确性（例如字体大小等, width: 1in + 8pt，将某颜色亮度增加10%: lighten(yellow, 10%)）。</li>
 </ol>
 <p>Sass语言支持的函数列表在这里：<a href="http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html" target="_blank" rel="noopener">http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html</a></p>
-<h2 id="scss">SCSS</h2>
+<h2 id="scss" class="heading-control">SCSS<a class="heading-anchor" href="#scss" aria-hidden="true"></a></h2>
 <p>2010年5月份Sass发布了支持CSS3的新语法叫做SCSS（Sassy CSS），它是CSS3的一个超集，也就是说它100%兼容CSS3，每一个有效的CSS3文件也是有效的SCSS文件。不仅如此，它还支持我们能够找到的所有扩展，甚至包括一些非标准语法，例如微软的expression()函数和filter属性。Sass修改后的语法希望能够尽量减少和CSS语法的差异，以吸引更多的用户使用。修改语法的另一个好处是可以使得CSS工具更容易支持Sass。Sass 的旧有语法将会继续存在并且能够为旧版本用户提供良好兼容性。</p>
-<h1 id="sass-de-an-zhuang-he-shi-yong">SASS的安装和使用</h1>
-<h2 id="yi-an-zhuang"><strong>一、安装：</strong></h2>
+<h1 id="sass-de-an-zhuang-he-shi-yong" class="heading-control">SASS的安装和使用<a class="heading-anchor" href="#sass-de-an-zhuang-he-shi-yong" aria-hidden="true"></a></h1>
+<h2 id="yi-an-zhuang" class="heading-control"><strong>一、安装：</strong><a class="heading-anchor" href="#yi-an-zhuang" aria-hidden="true"></a></h2>
 <p>因为sass的工具是基于ruby gems开发的，所以安装 ruby和gem是必须的</p>
 <pre><code class="bash">　　<span class="hljs-variable">$sudo</span> gem install haml
 </code></pre>
@@ -359,7 +359,7 @@
 <p>创建css项目：</p>
 <pre><code class="bash">　　<span class="hljs-variable">$compass</span> <span class="hljs-built_in">help</span> create
 </code></pre>
-<h2 id="er-sass-de-shi-yong"><strong>二、Sass的使用：</strong></h2>
+<h2 id="er-sass-de-shi-yong" class="heading-control"><strong>二、Sass的使用：</strong><a class="heading-anchor" href="#er-sass-de-shi-yong" aria-hidden="true"></a></h2>
 <p>创新一个新的CSS项目：</p>
 <pre><code class="bash">　　<span class="hljs-variable">$compass</span> create newProject
 </code></pre>
@@ -451,7 +451,7 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -656,6 +656,8 @@
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -672,8 +674,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

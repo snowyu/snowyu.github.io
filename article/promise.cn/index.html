@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -332,7 +332,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="promise">Promise</h1>
+        <h1 id="promise" class="heading-control">Promise<a class="heading-anchor" href="#promise" aria-hidden="true"></a></h1>
 <p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p>
 <p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
 <ul>
@@ -360,7 +360,7 @@
 </ul>
 <p>Promise API 标准存在多个提案，目前看来，<a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+</a> 已经正在成为事实上的标准。</p>
 <p>Bluebird 号称速度是所有 Promise 库里最快的 <a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+</a> 实现，里面做了许多的扩展。 想知道内部实现，可以阅读这个<a href="https://github.com/ysmood/yaku" target="_blank" rel="noopener">yaku</a>简单的实现（coffee-script)。</p>
-<h3 id="promise-any-and-promise-some">Promise.any and Promise.some</h3>
+<h3 id="promise-any-and-promise-some" class="heading-control">Promise.any and Promise.some<a class="heading-anchor" href="#promise-any-and-promise-some" aria-hidden="true"></a></h3>
 <p>并行的 <a href="http://bluebirdjs.com/docs/api/promise.any.html" target="_blank" rel="noopener">Promise.any</a> 和 <a href="http://bluebirdjs.com/docs/api/promise.some.html" target="_blank" rel="noopener">Promise.some</a></p>
 <ul>
 <li><code>some</code>是其中一些promise成功返回，可以指定个数。返回结果为一个数组.</li>
@@ -388,7 +388,7 @@ readFile e
 content= x ok
 </code></pre>
 <p>注：这个 <code>x</code> 表示可能是 ‘c’或者’e’。</p>
-<h3 id="shun-xu-zhi-hang-de-some-he-any">顺序执行的 <code>some</code> 和 <code>any</code></h3>
+<h3 id="shun-xu-zhi-hang-de-some-he-any" class="heading-control">顺序执行的 <code>some</code> 和 <code>any</code><a class="heading-anchor" href="#shun-xu-zhi-hang-de-some-he-any" aria-hidden="true"></a></h3>
 <p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。那么如何做到顺序执行（sequence）？</p>
 <p>这个时候，可以用<code>reduce</code>(<a href="http://bluebirdjs.com/docs/api/promise.reduce.html" target="_blank" rel="noopener">promise.reduce</a>)实现：</p>
 <pre><code class="coffee">Promise.reduce files, <span class="hljs-function"><span class="hljs-params">(content, file)</span>-&gt;</span>
@@ -555,7 +555,7 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -760,6 +760,8 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -776,8 +778,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

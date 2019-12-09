@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -332,16 +332,16 @@
       
         <p>开源 Bitcoin P2P电子货币是点对点的电子现金系统，创建于2009年[<a href="http://en.wikipedia.org/wiki/Bitcoin" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Bitcoin</a>]。无需金融机构直接点对点支付。该电子货币系统的特色是无需信托中间人，能够方便的进行互联网上的汇款。第三方不能够控制或者阻止您的交易。Bitcoin 交易几乎免费, 而信用卡的网上在线支付系统通常收取 1-5% 的交易费用，加上其他各种费用高达数百美元。避免了中央储备银行的不良政策和不稳定性所造成的安全隐患. Bitcoin系统的有限货币通胀是均匀分布(由CPU决定)于整个网络, 而不是由银行垄断。</p>
 <p>这被某些人认为是最危险的开源项目，但我觉得恰恰相反，这是有史以来最令人兴奋的开源项目。这样发行的币才是真正的“人 民 币”，人民才是被服务，而不是被管理。P2P必将从商业、政治、生活各个方面重新定义新的更加公平公正的意识形态。</p>
-<h2 id="ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu">名词解释以及背后的技术</h2>
+<h2 id="ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu" class="heading-control">名词解释以及背后的技术<a class="heading-anchor" href="#ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu" aria-hidden="true"></a></h2>
 <p>Bitcoin涉及到很多有意思的技术，要想搞懂bitcoin首先必须对这些技术理解和把握然后是对Bitcoin术语的理解，bitcoin最重要的技术支撑是P2P，数字签名(EC DSA)，散列(SHA256, RIPEMD-160), POW，和HashCash。而术语则是：transaction, block,  address, Merkle Tree.</p>
-<h3 id="gong-zuo-zheng-ming-powproofofwork-ji-zhi">工作证明 <a href="http://en.wikipedia.org/wiki/Proof-of-work_system" target="_blank" rel="noopener">POW(Proof-Of-Work)</a>机制</h3>
+<h3 id="gong-zuo-zheng-ming-powproofofwork-ji-zhi" class="heading-control">工作证明 <a href="http://en.wikipedia.org/wiki/Proof-of-work_system" target="_blank" rel="noopener">POW(Proof-Of-Work)</a>机制<a class="heading-anchor" href="#gong-zuo-zheng-ming-powproofofwork-ji-zhi" aria-hidden="true"></a></h3>
 <p>工作证明POW系统是要求对方服务前，必须要出据某种工作证明的机制。主要用于防止拒绝服务攻击和反垃圾信息。通常这种“工作证明”会花费一定的时间计算才能得到。最常见的例子是<a href="http://en.wikipedia.org/wiki/CAPTCHA" target="_blank" rel="noopener">CAPTCHA</a>。另外用于防止DoS和垃圾信息的机制是<a href="http://en.wikipedia.org/wiki/Hashcash" target="_blank" rel="noopener">HashCash</a>，bitcoin使用的原理就类似于<a href="http://en.wikipedia.org/wiki/Hashcash" target="_blank" rel="noopener">HashCash</a>.</p>
-<h3 id="hashcash-ji-zhi"><a href="http://en.wikipedia.org/wiki/Hashcash" target="_blank" rel="noopener">HashCash</a> 机制</h3>
+<h3 id="hashcash-ji-zhi" class="heading-control"><a href="http://en.wikipedia.org/wiki/Hashcash" target="_blank" rel="noopener">HashCash</a> 机制<a class="heading-anchor" href="#hashcash-ji-zhi" aria-hidden="true"></a></h3>
 <p>hashcash 的灵感来自于这样一个想法，即一些数学结果难于发现而易于校验。一个众所周知的例子是因数分解一个大的数字（尤其是因数较少的数字）。将数字相乘来获得它们的积的代价是低廉的，但首先找到那些因数的代价却要高得多。</p>
 <p>对交互式质询来说，因数分解足以胜任。比如，希望客户端能象征性地为其付出代价方能访问在线资源。这个时候可以定义协议，首先服务器向客户端发送一个消息，说“只要您能因数分解这个数，我将让您得到这个资源”。没有诚意的客户端将无法得到我的资源，只有那些能够证明自己有足够的兴趣、付出一些 CPU 周期来回答这个质询的才能得到这个资源。</p>
 <p>不过，有一些资源无法很方便地进行交互式协商。比如电子邮件反垃圾或者支付交易，怎么才能避免邮箱不被垃圾邮件所占据？“我并不介意陌生人给我写信，但是，我希望他们能以稍微认真的态度，亲自通过对我有价值的邮件与我取得联系。至少，我不希望他们是垃圾邮件制造者，那些人向我和上百万的其他人发送包含同样消息的邮件（double-spending），期望我们中的某些人能购买某种产品或者落入一个骗局。”而对于电子货币，内容的复制几乎是没有代价的，如何保证电子货币（内容）没有被交易（发送）多次？这和反垃圾邮件是同样的问题。</p>
 <p>hashcash的解决之道就是：在电子邮件的消息头中，增加一个 hashcash 戳记（hashcash stamp）散列值；该散列中包含收件人地址，发送时间，salt，该散列值特别之处在于它至少前20位必须是0才是一个合法的hashcash戳记。为了得到合法的散列值，发送者必须经过许多次尝试（改变salt值）才能获得。一旦生成戳记，不希望每一个给我发送邮件的垃圾邮件制造者都能重复使用它。所以，hashcash 戳记要带一个日期。这样可以指定时间更早的戳记是非法的。另外 hashcash 的接收端要实现一个double-spending数据库，用来记录戳记的历史信息。</p>
-<h3 id="bitcoin-zhong-de-shu-yu-jie-shi">Bitcoin中的术语解释</h3>
+<h3 id="bitcoin-zhong-de-shu-yu-jie-shi" class="heading-control">Bitcoin中的术语解释<a class="heading-anchor" href="#bitcoin-zhong-de-shu-yu-jie-shi" aria-hidden="true"></a></h3>
 <p>散列：bitcoin在计算散列时一般会计算2次。第一轮总是使用SHA-256散列，而第二次在大多数情况下，也是使用<a href="http://en.wikipedia.org/wiki/SHA-2" target="_blank" rel="noopener">SHA-256</a>散列，但用于生成较短的散列(例如生成 bitcoin接收地址的时候)会用<a href="http://en.wikipedia.org/wiki/RIPEMD" target="_blank" rel="noopener">RIPEMD-160</a>散列。</p>
 <pre><code>hello
  2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 ( sha-256)
@@ -364,10 +364,10 @@ Bitcoin_Address = Base58Encode(Key_hash+Checksum)
 <span class="hljs-comment">#Base58编码做了特殊处理，与通用的base58有一些区别：转换的时候</span>
 <span class="hljs-comment">#前面的0被作为单个0保留。</span>
 </code></pre>
-<p><img src="bitcoin-dc-validate.png" alt=""></p>
+<p><img src="bitcoin-dc-validate.png" alt></p>
 <p>Bitcoin 电子货币系统的核心功能是面对面（点对点）支付，就像真实货币一样，无需中间人，几乎不需要交易费。它背后的技术实现是很巧妙的通过将造币(Mint)，交易(transaction，这里提到的交易都是特指的支付)，交易验证(transaction verifiction)交织在一起，形成一个完美的圆。所以要想把它的机理理解清楚，就必须同时理解bitcoin的电子货币，交易，造币的确切含义。</p>
 <p>首先从电子货币谈起。</p>
-<h3 id="dian-zi-huo-bi-he-jiao-yi-dan-transaction">电子货币和交易单(Transaction)</h3>
+<h3 id="dian-zi-huo-bi-he-jiao-yi-dan-transaction" class="heading-control">电子货币和交易单(Transaction)<a class="heading-anchor" href="#dian-zi-huo-bi-he-jiao-yi-dan-transaction" aria-hidden="true"></a></h3>
 <p>Bitcoin电子货币解决的是：</p>
 <ol>
 <li>任意造币的问题：通过“挖矿”机制保证了不能任意造币。</li>
@@ -479,7 +479,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 </code></pre>
 <p>每一笔交易都会向整个P2P网络广播该货币的交易记录。通过投票机制，来决定该支付交易是否正常。如节点认为该交易记录是正常的那么就通过CPU计算POW(Proof-of-Work),然后广播，其它节点收到这个POW可以继续投票，形成Block 链（见挖矿）。如果节点收到不一致的两个交易记录，那么只信任链最长的。如果一笔Bitcoin被支出两次的情况广播出来，那么某些节点将先看到它第一次发生的支付交易，其他节点则看到的是它第二次发生的支付交易。究竟是哪一个支付交易“赢”了，则是由恰好创建了下一个block的那个节点来决定 —— 无论是哪个节点找到了“小的散列值”， 它的block中包含的那个支付交易被判断为有效的，其他的支付交易被视为无效。</p>
 <p>接下来讲讲交易单的类型和交易验证的实现细节。</p>
-<h2 id="jiao-yi-de-lei-xing-yu-yan-zheng">交易的类型与验证</h2>
+<h2 id="jiao-yi-de-lei-xing-yu-yan-zheng" class="heading-control">交易的类型与验证<a class="heading-anchor" href="#jiao-yi-de-lei-xing-yu-yan-zheng" aria-hidden="true"></a></h2>
 <p>交易单(Transaction)目前被bitcoin分为3种：</p>
 <ol>
 <li>按IP地址转账(Transfer)</li>
@@ -487,7 +487,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 <li>造币(Generation)</li>
 </ol>
 <p>通过前面对交易单的描述，我想大家应该已经知道，交易的验证是通过不断的追溯交易单来完成的。那么交易验证的细节是如何实现的，bitcoin的交易验证的实现细节是很意思的，它是通过脚本来实现验证的，这样bitcoin就实现了一个可被脚本扩展的行为，更加广义的&quot;交易&quot;，这可以保证足够的灵活性和可扩展，可以想象也许以后会有真正的分布式计算任务跑在上面作为一笔交易。因此要想讲清楚验证的细节，就不得不从脚本系统讲起了。</p>
-<h3 id="jiao-ben-xi-tong">脚本系统</h3>
+<h3 id="jiao-ben-xi-tong" class="heading-control">脚本系统<a class="heading-anchor" href="#jiao-ben-xi-tong" aria-hidden="true"></a></h3>
 <p>Bitcoin的脚本系统是使用类<a href="http://en.wikipedia.org/wiki/FORTH" target="_blank" rel="noopener">FORTH</a>语言（FORTH在嵌入式设备中是我最喜欢的一种语言）实现的，FORTH系统是面向栈的“高级机器”语言，它兼具了高级语言的特性（面向WORD）和机器语言的高性能与小尺寸，唯一的缺点就是可读性不高，基本上可以把FORTH当一种高级的机器语言吧。Bitcoin在实现上做了许多简化和特殊实现，所以只能算是类FORTH的系统。</p>
 <p>在<a href="http://en.wikipedia.org/wiki/FORTH" target="_blank" rel="noopener">FORTH</a>系统中所有的命令(函数)都被称为单词（WORD），所有数据的处理都要压入数据栈上进行，所以FORTH被称为面向栈的语言。比如 1和2相加，在FORTH系统中则是 <code>1 2 ＋</code>，数字 1，2 表示将它们压入到数据栈中（在FORTH解释器执行后实际指令会有<code>OP_PUSH</code>），＋的操作则是将栈顶和次栈顶的数字取出并相加，并将结果压回数据栈。</p>
 <p>Bitcoin的脚本系统的所有的操作指令（单词）见后面的附录，不是所有的操作指令都能被执行支持，因为安全上的考虑有的操作指令被禁止掉了，比如大多数的字符串操作和乘除运算。</p>
@@ -634,10 +634,10 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
     OP_INVALIDOPCODE = <span class="hljs-number">0xff</span>
 };
 </code></pre>
-<h2 id="fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao">附录Bitcoin脚本系统单词列表</h2>
-<h2 id="can-jian-httpsenbitcoinitwikiscript">参见：<a href="https://en.bitcoin.it/wiki/Script" target="_blank" rel="noopener">https://en.bitcoin.it/wiki/Script</a>：</h2>
-<h4 id="chang-liang"><strong>常量</strong></h4>
-<h4 id="chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci">常量就是用来把数据压入栈中的单词：</h4>
+<h2 id="fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao" class="heading-control">附录Bitcoin脚本系统单词列表<a class="heading-anchor" href="#fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao" aria-hidden="true"></a></h2>
+<h2 id="can-jian-httpsenbitcoinitwikiscript" class="heading-control">参见：<a href="https://en.bitcoin.it/wiki/Script" target="_blank" rel="noopener">https://en.bitcoin.it/wiki/Script</a>：<a class="heading-anchor" href="#can-jian-httpsenbitcoinitwikiscript" aria-hidden="true"></a></h2>
+<h4 id="chang-liang" class="heading-control"><strong>常量</strong><a class="heading-anchor" href="#chang-liang" aria-hidden="true"></a></h4>
+<h4 id="chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci" class="heading-control">常量就是用来把数据压入栈中的单词：<a class="heading-anchor" href="#chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci" aria-hidden="true"></a></h4>
 <p>| 单词             | 虚拟指令(opcode) | 输入       | 输出     | Description     |<br>
 | <code>OP_0, OP_FALSE</code> | 0                | Nothing.   | 0        | 压入数字0到栈中 |<br>
 | N/A              | 1-75             | (special)  | data     | 将紧随 <em>opcode</em> 的data数据 opcode个字节压入到堆栈。opcode兼作数据长度指示。 |<br>
@@ -647,7 +647,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <code>OP_1NEGATE</code>     | 79               | 无.        | -1       | 压入-1 |<br>
 | <code>OP_1, OP_TRUE</code>  | 81               | 无.        | 1        | 压入1. |<br>
 | <code>OP_2-OP_16</code>     | 82-96            | 无.        | 2-16     | 2－16被压入. |</p>
-<h3 id="kong-zhi-liu"><strong>控制流</strong></h3>
+<h3 id="kong-zhi-liu" class="heading-control"><strong>控制流</strong><a class="heading-anchor" href="#kong-zhi-liu" aria-hidden="true"></a></h3>
 <p>| 单词             | 虚拟指令(opcode) | 输入       | 输出     | Description     |<br>
 | <code>OP_NOP</code>         | 97               | 无         | 无       | 空指令.         |<br>
 | <code>OP_IF</code>          | 99               | <expression> if [statements] [else [statements]] endif | | If 判断指令，取出栈顶值，如果栈顶值为1, 则if后面的语句被执行，否则else中的语句被执行。 |<br>
@@ -655,13 +655,13 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <code>OP_ELSE</code>        | 103              | <expression> if [statements] [else [statements]] endif | | 放置在 OP_IF 或OP_NOTIF 后的指令，当前面的条件不满足的时候执行 |<br>
 | <code>OP_ENDIF</code>       | 104              | <expression> if [statements] [else [statements]] endif |  | 结束  if/else 执行块. |<br>
 | <code>OP_VERIFY</code>      | 105              | True / false | Nothing / False | <strong>标记交易单无效</strong> 如果栈顶值不为真。当栈顶值为真，移除该栈顶值，否则保留该值。 |<br>
-| <code>OP_RETURN</code>      | 106              | Nothing      | Nothing  | <strong>标记交易单无效</strong>. |</p>
-<h3 id="dui-zhan-cao-zuo"><strong>堆栈操作</strong></h3>
+| <code>OP_RETURN</code>      | 106              | Nothing      | Nothing  | <strong>标记交易单无效</strong>. |</expression></expression></expression></expression></p>
+<h3 id="dui-zhan-cao-zuo" class="heading-control"><strong>堆栈操作</strong><a class="heading-anchor" href="#dui-zhan-cao-zuo" aria-hidden="true"></a></h3>
 <p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
 | <code>OP_TOALTSTACK</code>   | 107    | x1         | (alt)x1      | 从数据栈中弹出栈顶 数据，压入辅助栈。 |<br>
 | <code>OP_FROMALTSTACK</code> | 108    | (alt)x1    | x1           | 从辅助栈弹出栈顶数据压入到数据栈  |<br>
 | <code>OP_IFDUP</code>        | 115    | x          | x / x x      | 如果栈顶非0则复制栈顶  |<br>
-| <code>OP_DEPTH</code>        | 116    | Nothing    | <Stack size> | 获取堆栈数据个数 |<br>
+| <code>OP_DEPTH</code>        | 116    | Nothing    | <stack size> | 获取堆栈数据个数 |<br>
 | <code>OP_DROP</code>         | 117    | x          | Nothing      | 丢弃栈顶数据. |<br>
 | <code>OP_DUP</code>          | 118    | x          | x x          | 复制栈顶数据. |<br>
 | <code>OP_NIP</code> | 119 | x1 x2 | x2 | 丢弃次栈顶数据 |<br>
@@ -676,8 +676,8 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <code>OP_3DUP</code>  | 111 | x1 x2 x3 | x1 x2 x3 x1 x2 x3 | 同 DUP，只是数据项是3项. |<br>
 | <code>OP_2OVER</code> | 112 | x1 x2 x3 x4 | x1 x2 x3 x4 x1 x2 | 同 OVER，只是数据项是2项. |<br>
 | <code>OP_2ROT</code> | 113 | x1 x2 x3 x4 x5 x6 | x3 x4 x5 x6 x1 x2 | 同 ROT，只是数据项是2项. |<br>
-| <code>OP_2SWAP</code> | 114 | x1 x2 x3 x4 | x3 x4 x1 x2 | 同 SWAP，只是数据项是2项. |</p>
-<h3 id="zi-fu-chuan-chu-li"><strong>字符串处理</strong></h3>
+| <code>OP_2SWAP</code> | 114 | x1 x2 x3 x4 | x3 x4 x1 x2 | 同 SWAP，只是数据项是2项. |</n></n></stack></p>
+<h3 id="zi-fu-chuan-chu-li" class="heading-control"><strong>字符串处理</strong><a class="heading-anchor" href="#zi-fu-chuan-chu-li" aria-hidden="true"></a></h3>
 <p>字符串处理的大多数指令都被禁止了。</p>
 <p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
 | <code>OP_CAT</code> | 126 | x1 x2 | out |  Concatenates two strings. [禁止] |<br>
@@ -685,7 +685,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <code>OP_LEFT</code> | 128 | in size | out | Keeps only characters left of the specified point in a string. <em>[禁止]</em> |<br>
 | <code>OP_RIGHT</code> | 129 | in size | out | Keeps only characters right of the specified point in a string. <em>[禁止]</em> |<br>
 | <code>OP_SIZE</code> | 130 | in | in size | 返回字符串长度 |</p>
-<h3 id="wei-yun-suan"><strong>位运算</strong></h3>
+<h3 id="wei-yun-suan" class="heading-control"><strong>位运算</strong><a class="heading-anchor" href="#wei-yun-suan" aria-hidden="true"></a></h3>
 <p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
 | <code>OP_INVERT</code> | 131 | in | out | Flips all of the bits in the input. <em>[禁止]</em> |<br>
 | <code>OP_AND</code> | 132 | x1 x2 | out | Boolean <em>and</em> between each bit in the inputs. <em>[禁止]</em> |<br>
@@ -693,7 +693,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <code>OP_XOR</code> | 134 | x1 x2 | out | Boolean <em>exclusive or</em> between each bit in the inputs. <em>[禁止]</em> |<br>
 | <code>OP_EQUAL</code> | 135 | x1 x2 | True / false | Returns 1 if the inputs are exactly equal, 0 otherwise. |<br>
 | <code>OP_EQUALVERIFY</code> | 136 | x1 x2 | True / false | Same as OP_EQUAL, but runs OP_VERIFY afterward. |</p>
-<h3 id="shu-xue-yun-suan"><strong>数学运算</strong></h3>
+<h3 id="shu-xue-yun-suan" class="heading-control"><strong>数学运算</strong><a class="heading-anchor" href="#shu-xue-yun-suan" aria-hidden="true"></a></h3>
 <p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
 | <code>OP_1ADD</code> | 139 | in | out | 1 is added to the input. |<br>
 | <code>OP_1SUB</code> | 140 | in | out | 1 is subtracted from the input. |<br>
@@ -722,7 +722,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <code>OP_MIN</code> | 163 | a b | out | Returns the smaller of a and b. |<br>
 | <code>OP_MAX</code> | 164 | a b | out | Returns the larger of a and b. |<br>
 | <code>OP_WITHIN</code> | 165 | x min max | out | Returns 1 if x is within the specified range (left-inclusive), 0 otherwise. |</p>
-<h3 id="jia-mi-xiang-guan"><strong>加密相关</strong></h3>
+<h3 id="jia-mi-xiang-guan" class="heading-control"><strong>加密相关</strong><a class="heading-anchor" href="#jia-mi-xiang-guan" aria-hidden="true"></a></h3>
 <p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
 | <code>OP_RIPEMD160</code>    | 166 | in | hash | The input is hashed using RIPEMD-160. |<br>
 | <code>OP_SHA1</code> | 167 | in | hash | The input is hashed using SHA-1. |<br>
@@ -733,14 +733,14 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <a href="https://en.bitcoin.it/wiki/OP_CHECKSIG" target="_blank" rel="noopener">OP_CHECKSIG</a> | 172 | sig pubkey | True / false | The entire transaction’s outputs, inputs, and script (from the most recently-executed <code>OP_CODESEPARATOR</code> to the end) are hashed. The signature used by <code>OP_CHECKSIG</code> must be a valid signature for this hash and public key. If it is, 1 is returned, 0 otherwise. |<br>
 | <code>OP_CHECKSIGVERIFY</code> | 173 | sig pubkey | True / false | Same as <code>OP_CHECKSIG</code>, but <code>OP_VERIFY</code> is executed afterward. |<br>
 | <code>OP_CHECKMULTISIG</code> | 174 | sig1 sig2 … <number of signatures> pub1 pub2 <number of public keys> | True / False | For each signature and public key pair, OP_CHECKSIG is executed. If more public keys than signatures are listed, some key/sig pairs can fail. All signatures need to match a public key. If all signatures are valid, 1 is returned, 0 otherwise. |<br>
-| <code>OP_CHECKMULTISIGVERIFY</code> | 175 | sig1 sig2 … <number of signatures> pub1 pub2 … <number of public keys> | True / False | Same as <code>OP_CHECKMULTISIG</code>, but <code>OP_VERIFY</code> is executed afterward. |</p>
-<h3 id="wei-ci-pseudowords"><strong>伪词（Pseudo-words）</strong></h3>
+| <code>OP_CHECKMULTISIGVERIFY</code> | 175 | sig1 sig2 … <number of signatures> pub1 pub2 … <number of public keys> | True / False | Same as <code>OP_CHECKMULTISIG</code>, but <code>OP_VERIFY</code> is executed afterward. |</number></number></number></number></p>
+<h3 id="wei-ci-pseudowords" class="heading-control"><strong>伪词（Pseudo-words）</strong><a class="heading-anchor" href="#wei-ci-pseudowords" aria-hidden="true"></a></h3>
 <p>下列词汇用于在内部使用，在脚本系统中实际上不存在的词。</p>
 <p>| 单词              | opcode  | Description      |<br>
 | <code>OP_PUBKEYHASH</code> | 253 | 表示OP_HASH160 后的公开密钥散列 |<br>
 | <code>OP_PUBKEY</code> | 254 | 表示一个公开密钥（可以被 <code>OP_CHECKSIG</code>）. |<br>
 | <code>OP_INVALIDOPCODE</code> | 255 | |</p>
-<h3 id="bao-liu-ci-reserved-words"><strong>保留词（Reserved words）</strong></h3>
+<h3 id="bao-liu-ci-reserved-words" class="heading-control"><strong>保留词（Reserved words）</strong><a class="heading-anchor" href="#bao-liu-ci-reserved-words" aria-hidden="true"></a></h3>
 <p>没有被定义的opcode被保留以后使用，如果在脚本中使用这些保留词，要么被忽略，要么使得交易无效。</p>
 <p>| Word | Opcode | When used… |<br>
 | <code>OP_RESERVED</code> | 80 | Transaction is invalid |<br>
@@ -751,16 +751,16 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
 | <code>OP_RESERVED2</code> | 138 | Transaction is invalid |<br>
 | <code>OP_NOP1-OP_NOP10</code> | 176-185 | The word is ignored. |</p>
 <p>Ok，接着描述交易验证的具体的过程。</p>
-<h2 id="she-ji-de-jiao-ben-ming-ling-cao-zuo-fu">涉及的脚本命令（操作符）</h2>
+<h2 id="she-ji-de-jiao-ben-ming-ling-cao-zuo-fu" class="heading-control">涉及的脚本命令（操作符）<a class="heading-anchor" href="#she-ji-de-jiao-ben-ming-ling-cao-zuo-fu" aria-hidden="true"></a></h2>
 <p>首先讲讲涉及到的脚本命令（操作符），描述栈顶项的变化方式如下：(n1 n2 –  )  用 &quot;–&quot;分隔操作符执行前后的栈中元素的变化，左边表示操作前，右边表示操作后。最右边的项表示栈顶元素。这里例子中，n2 表示栈顶，n1表示次栈顶，操作后n1,n2均被弹出。</p>
 <ul>
 <li>OP_EQUAL(n1 n2 – true/false): 判断栈顶两项是否相等的脚本命令，如果相等则压入true，否则false</li>
 <li>OP_VERIFY(true/false – NOTHING/false):  如果栈顶项为true，标记改交易单为有效，否则失败，压入false并返回</li>
 <li>OP_CODESEPARATOR( – ): 将当前执行PC(ProgramCount)保存到变量： pbegincodehash</li>
-<li>OP_CHECKSIG(<sig> <pubKey>– true/false): 校验收入来源(in)的签名是否有效。栈顶是公开密钥(PubKey)，次栈顶是签名(Sig)。如果验证通过会压入True，否则压入False。</li>
+<li>OP_CHECKSIG(<sig> <pubkey>– true/false): 校验收入来源(in)的签名是否有效。栈顶是公开密钥(PubKey)，次栈顶是签名(Sig)。如果验证通过会压入True，否则压入False。</pubkey></sig></li>
 <li><code>OP_EQUALVERIFY</code>(n1 n2 – NOTHING/false): 等于 <code>OP_EQUAL</code> <code>OP_VERIFY</code> 两个操作符的联合。</li>
 </ul>
-<h2 id="jiao-yi-yan-zheng">交易验证</h2>
+<h2 id="jiao-yi-yan-zheng" class="heading-control">交易验证<a class="heading-anchor" href="#jiao-yi-yan-zheng" aria-hidden="true"></a></h2>
 <p>以最常见的接收地址交易转账为例描述交易验证的过程（SendMoneyToBitcoinAddress）</p>
 <p>首先示例交易如下：</p>
 <pre><code class="json">{
@@ -792,7 +792,7 @@ scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
   ]
 }
 </code></pre>
-<p>ScriptSig(<sig> <pubKey>): 中有两个值，一是当前拥有者的该交易单的签名，二是拥有者的公开密钥（用来验证签名）。</p>
+<p>ScriptSig(<sig> <pubkey>): 中有两个值，一是当前拥有者的该交易单的签名，二是拥有者的公开密钥（用来验证签名）。</pubkey></sig></p>
 <pre><code>Sig: 304502204028931b310bfec094bbd04275f69beba6bf5f44ab3dbbec9564
 c34ef9bc1ddc022100d37c214e978808099fc96006b41244d31b203eb4b1c69
 be9d57b0e2f843ad93501
@@ -805,17 +805,17 @@ PubKey:0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6
 <ul>
 <li>执行 scriptSig:
 <ul>
-<li>压入 <sig> 和 <pubKey> : <sig> <pubKey></li>
+<li>压入 <sig> 和 <pubkey> : <sig> <pubkey></pubkey></sig></pubkey></sig></li>
 </ul>
 </li>
 <li>执行 scriptPubKey:</li>
-<li><code>OP_DUP</code> 复制栈顶<pubKey>: <sig> <pubKey> <pubKey></li>
-<li><code>OP_HASH160</code> 对栈顶项做HASH160（RIPEMD-160(SHA256(<pubKey>)）散列: <sig> <pubKey> <pubKeyhashA></li>
-<li><pubKeyHash> : 压入 <pubKeyHash></li>
-<li><code>OP_EQUALVERIFY</code>: 对栈顶两个元素 <pubKeyHashA> <pubKeyHash> 做是否相等校验，如果不相等那么标记交易单无效并返回，如果等于继续： <sig> <pubKey></li>
-<li><code>OP_CHECKSIG</code>: 校验收入来源的In的签名是否有效，根据pubKey去校验签名<sig>，签名的内容为交易单的Ins, Outs和脚本(从最近一次的 <code>OP_CODESEPARATOR</code> 到脚本结束的位置)的散列。 PubKey.Verify(SignatureHash(scriptCode, nIn, Outs), Sig)</li>
+<li><code>OP_DUP</code> 复制栈顶<pubkey>: <sig> <pubkey> <pubkey></pubkey></pubkey></sig></pubkey></li>
+<li><code>OP_HASH160</code> 对栈顶项做HASH160（RIPEMD-160(SHA256(<pubkey>)）散列: <sig> <pubkey> <pubkeyhasha></pubkeyhasha></pubkey></sig></pubkey></li>
+<li><pubkeyhash> : 压入 <pubkeyhash></pubkeyhash></pubkeyhash></li>
+<li><code>OP_EQUALVERIFY</code>: 对栈顶两个元素 <pubkeyhasha> <pubkeyhash> 做是否相等校验，如果不相等那么标记交易单无效并返回，如果等于继续： <sig> <pubkey></pubkey></sig></pubkeyhash></pubkeyhasha></li>
+<li><code>OP_CHECKSIG</code>: 校验收入来源的In的签名是否有效，根据pubKey去校验签名<sig>，签名的内容为交易单的Ins, Outs和脚本(从最近一次的 <code>OP_CODESEPARATOR</code> 到脚本结束的位置)的散列。 PubKey.Verify(SignatureHash(scriptCode, nIn, Outs), Sig)</sig></li>
 </ul>
-<p><img src="./bitcoin-pubkey-sig.png" alt=""></p>
+<p><img src="./bitcoin-pubkey-sig.png" alt></p>
 <pre><code class="c"><span class="hljs-comment">//nIn 当前的交易单的in的索引号</span>
 <span class="hljs-comment">//scriptCode: 保存的当前执行的代码从OP_CODESEPARATOR（如果没有就从脚本开始） 到脚本结束。</span>
 <span class="hljs-function">uint256 <span class="hljs-title">SignatureHash</span><span class="hljs-params">(CScript scriptCode, <span class="hljs-keyword">const</span> CTransaction&amp; txTo, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nIn, <span class="hljs-keyword">int</span> nHashType)</span>
@@ -880,7 +880,7 @@ PubKey:0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6
     <span class="hljs-keyword">return</span> Hash(ss.<span class="hljs-built_in">begin</span>(), ss.<span class="hljs-built_in">end</span>());
 }
 </code></pre>
-<h1 id="wa-kuang-yu-kuai-blocks">挖矿与块（Blocks）</h1>
+<h1 id="wa-kuang-yu-kuai-blocks" class="heading-control">挖矿与块（Blocks）<a class="heading-anchor" href="#wa-kuang-yu-kuai-blocks" aria-hidden="true"></a></h1>
 <p>接下来讲的是什么是挖矿，以及交易单在P2P网络上的存放，其实这个过程也是挖矿的过程。</p>
 <p>所有的交易单是以Block的形式在Bitcoin P2P网络上存放的。每一个Block包含了最近所有的有效交易单。Block中最为重要数据为：</p>
 <ul>
@@ -889,9 +889,9 @@ PubKey:0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6
 <li>前一个块的散列值</li>
 </ul>
 <p>在造币的Node总在侦听网络，接收信息，然后各自将接收到的新交易打包到一个新block（CBlock Class in main.h）。在块交易单集合中的第一个交易单总是“造币单”：给创建该块的人以新的货币，节点只需要校验货币金额是否合法即可：形成一个合法的新块得到的回报是初始金额为50BTC，每产生210,000块的时候这个金额减半(大约每隔4年会发生一次)。产生合法的新块是不容易的，需要通过无数次的计算尝试得到，另外如果大家都在计算同一个新块，那么还存在竞争关系，这个时候只有最困难（Difficulty）的那个块（指整个块链的困难度值加起来最大的）才会被网络认可。另外如果块中的某笔交易size大于该块中交易单的平均size，那么该笔交易单会被收取一笔小的交易费用。</p>
-<h2 id="kuai-de-shu-ju-jie-gou">块的数据结构</h2>
+<h2 id="kuai-de-shu-ju-jie-gou" class="heading-control">块的数据结构<a class="heading-anchor" href="#kuai-de-shu-ju-jie-gou" aria-hidden="true"></a></h2>
 <p>块的数据结构可以分为块头（block header）和块体（block body）</p>
-<h3 id="kuai-tou-block-header">块头（Block Header）</h3>
+<h3 id="kuai-tou-block-header" class="heading-control">块头（Block Header）<a class="heading-anchor" href="#kuai-tou-block-header" aria-hidden="true"></a></h3>
 <p>块头的数据是用于校验块、产生块ID（256位散列值），这个块ID也是决定块是否合法的数字。计算块ID的公式如下：</p>
 <pre><code class="java">BlockID = SHA256(SHA256(Block_Header));
 </code></pre>
@@ -904,16 +904,16 @@ PubKey:0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6
 <li>Bits: 一个紧凑格式的4字节的数字，它表示一个256位的当前目标（Target）数值，这也表示困难度（Difficulty），最后产生块的ID值必须不大于目标值才能被接受（如果有多人同时产生同一个块，那么最困难的将被接受）。这个数值会每隔2016个block(网络大约每小时创建6个块，创建2016块大约2周)调整一次，当产生前一个2016块的时间大于2周的时候，难度值将会被调低，当小于两周的时候难度值将被调高（关于Target和Difficulty详见后述）。</li>
 <li>nonce: 32位随机数。节点在产生Block的时候，会增量尝试改变nonce的值，直到产生的块的散列值符合bits的要求</li>
 </ul>
-<h3 id="ji-suan-mu-biao-target-he-kun-nan-du-difficulty">计算目标(Target)和困难度(Difficulty)</h3>
-<h4 id="ji-suan-mu-biao-target">计算目标（Target）</h4>
+<h3 id="ji-suan-mu-biao-target-he-kun-nan-du-difficulty" class="heading-control">计算目标(Target)和困难度(Difficulty)<a class="heading-anchor" href="#ji-suan-mu-biao-target-he-kun-nan-du-difficulty" aria-hidden="true"></a></h3>
+<h4 id="ji-suan-mu-biao-target" class="heading-control">计算目标（Target）<a class="heading-anchor" href="#ji-suan-mu-biao-target" aria-hidden="true"></a></h4>
 <p>计算目标（Target）是一个256位的数值，块的散列值ID必须小于或等于该目标数值，放可被接受。块头中的BITS是一个用紧凑的4字节格式表示的目标（Target）数值，它表示一个256位的当前目标数值，方式如下：</p>
 <pre><code class="java"><span class="hljs-comment">//假设BITS为：</span>
 BITS = <span class="hljs-number">0x1B0406CC</span>;
 <span class="hljs-comment">//那么target的数值则是：</span>
 Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2</span>^(<span class="hljs-number">8</span>*(<span class="hljs-number">0x1B</span>-<span class="hljs-number">3</span>))= <span class="hljs-number">0x00000000000406CC000000000000000000000000000000000000000000000000</span>;
 </code></pre>
-<h4 id="dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target">当前网络的目标值为：<a href="http://blockexplorer.com/q/hextarget" target="_blank" rel="noopener">Current target</a>。</h4>
-<h4 id="kun-nan-du-difficulty">困难度(Difficulty)</h4>
+<h4 id="dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target" class="heading-control">当前网络的目标值为：<a href="http://blockexplorer.com/q/hextarget" target="_blank" rel="noopener">Current target</a>。<a class="heading-anchor" href="#dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target" aria-hidden="true"></a></h4>
+<h4 id="kun-nan-du-difficulty" class="heading-control">困难度(Difficulty)<a class="heading-anchor" href="#kun-nan-du-difficulty" aria-hidden="true"></a></h4>
 <p>困难度(<code>Difficulty</code>)表示该块ID的计算难度，值越大表示越困难，1表示最容易。</p>
 <p>1困难度（<code>Difficulty</code>）的Target被定义为：</p>
 <pre><code>0x1D00FFFF(BITS)
@@ -923,7 +923,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 </code></pre>
 <p>因此困难度的计算公式为：<code>1 困难度（Target） / 当前目标</code></p>
 <p>我们可以在这里查看当前网络的困难度：<a href="http://blockexplorer.com/q/getdifficulty" target="_blank" rel="noopener">Current difficulty</a>（BitCoin的 getDifficulty 接口输出）。也可以通过这个网站查看困难度值的变化情况图：<a href="http://bitcoin.sipa.be/" target="_blank" rel="noopener">Graphs</a>。</p>
-<h4 id="kuai-ti-block-body">块体（Block Body）</h4>
+<h4 id="kuai-ti-block-body" class="heading-control">块体（Block Body）<a class="heading-anchor" href="#kuai-ti-block-body" aria-hidden="true"></a></h4>
 <p><code>Block Body</code> 实际上就是交易单的集合。</p>
 <p>你可以在这个网站上看到当前网络所有的交易单（Blocks）:  <a href="https://blockexplorer.com/" target="_blank" rel="noopener">https://blockexplorer.com/</a></p>
 <p>一个具体的块的示例：</p>
@@ -1150,17 +1150,17 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 </code></pre>
 <p><img src="./bitcoin-logo.jpg" alt="bitcoin"><br>
 趁今早，把以前零碎的分析给整理出来作为问题和展望，就算对开源Bitcoin P2P 电子货币系统内幕最后一篇的小结。</p>
-<h1 id="wen-ti">问题</h1>
+<h1 id="wen-ti" class="heading-control">问题<a class="heading-anchor" href="#wen-ti" aria-hidden="true"></a></h1>
 <p>Bitcoin目前存在的问题其实是非常多的，目前Bitcoin的主要成就是解决了数字货币的两个核心问题，并在线上做了验证，取得了一定的实际经验。</p>
-<h2 id="yi-jing-jie-jue-de-wen-ti">已经解决的问题</h2>
+<h2 id="yi-jing-jie-jue-de-wen-ti" class="heading-control">已经解决的问题<a class="heading-anchor" href="#yi-jing-jie-jue-de-wen-ti" aria-hidden="true"></a></h2>
 <p>Bitcoin 目前较好的解决了数字货币的两个核心问题：</p>
 <ul>
 <li>货币伪造复制</li>
 <li>货币重复花费</li>
 </ul>
-<h2 id="shang-wei-jie-jue-de-wen-ti">尚未解决的问题</h2>
+<h2 id="shang-wei-jie-jue-de-wen-ti" class="heading-control">尚未解决的问题<a class="heading-anchor" href="#shang-wei-jie-jue-de-wen-ti" aria-hidden="true"></a></h2>
 <p>在我看来 Bitcoin 其实只是一次试水，看看方案到底是否可行，从当前的试验结果看来，方案是可行的。这已经令人非常high了，但是这个方案现在看来还是比较粗糙的，许多细节需要完善，这里只提下最严重的问题。目前随着交易量的日益增加，当下最为严重的两个问题是关于存储和流量。</p>
-<h3 id="cun-chu-he-liu-liang-wen-ti">存储和流量问题</h3>
+<h3 id="cun-chu-he-liu-liang-wen-ti" class="heading-control">存储和流量问题<a class="heading-anchor" href="#cun-chu-he-liu-liang-wen-ti" aria-hidden="true"></a></h3>
 <ul>
 <li>存储：目前每个节点上文件数据是684M(我记得上个月已经上G，初步猜测脚本算法终于增加了pruning算法，把存储和流量给降了下来)，但是这始终会随着交易量的增加而持续增加的。</li>
 <li>流量：上个月，当连接数在115-130的时候，节点3小时内的流量大约143M。当在PC新安装Bitcoin客户端后全部获取900M交易单信息花了8小时。这个月因为算法改进，有所好转。不过一旦参与的人数越来越多，交易日益频繁，这个上限依然存在。</li>
@@ -1178,7 +1178,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 <li>按远近程度决定服务对象：越远服务费高</li>
 <li>按远近切分成若干小网络：形成当地BTC货币，通过兑换维持各个网络之间的流通</li>
 </ol>
-<h3 id="duan-wang-de-yi-wen">断网的疑问</h3>
+<h3 id="duan-wang-de-yi-wen" class="heading-control">断网的疑问<a class="heading-anchor" href="#duan-wang-de-yi-wen" aria-hidden="true"></a></h3>
 <p>这是曹晓刚同学提出的，善意的说就是当海底光纤断掉后，两个网络之间没有别的连接通道的情况下的重复花费问题。很遗憾，目前的Bitcoin体系中没有解决这样的问题。问题简化描述如下：</p>
 <pre><code>1A  2A
 |   |
@@ -1195,7 +1195,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 <li>Bitcoin 不再是一个大网，而是按网络远近切分的若干小网，见上述的分布式处理机制方案</li>
 </ol>
 <p>通过兑换机制: A1B1C1产生的独立货币1，A2B2C2产生独立货币2，自由兑换。</p>
-<h3 id="dun-ji-cao-zong-shi-chang-wen-ti">囤积操纵市场问题</h3>
+<h3 id="dun-ji-cao-zong-shi-chang-wen-ti" class="heading-control">囤积操纵市场问题<a class="heading-anchor" href="#dun-ji-cao-zong-shi-chang-wen-ti" aria-hidden="true"></a></h3>
 <p>这几乎不算一个严重的问题，不过如果是限制了BTC总量（目前的算法是这样做的）。那么如果BTC被囤积操作市场，总感觉不对。如何避免被BTC囤积？另外，Bitcoin币仅仅存在于wallet.dat文件中，如果该文件丢了，那么该wallet中的所有货币也就丢了。如果足够长的时间内某一笔货币没有交易流通，那么就可以等效于失去了。</p>
 <ol>
 <li>也许回收长时间没有流通的BTC币是一个法子。</li>
@@ -1203,7 +1203,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 <li>也许不应该限制BTC 总量，只需要能在网络中调控保持稳定的增加速率即可。</li>
 </ol>
 <p>不过，这一块也许专门研究货币金融的专家才更有资格说话。</p>
-<h1 id="zhan-wang-yu-wei-lai">展望与未来</h1>
+<h1 id="zhan-wang-yu-wei-lai" class="heading-control">展望与未来<a class="heading-anchor" href="#zhan-wang-yu-wei-lai" aria-hidden="true"></a></h1>
 <p>目前Bitcoin进入现实货币体制并能取代之，还为之过早，不过在私下的一些特殊场合可以取得一定现实货币的地位。</p>
 <p>类似Bitcoin P2P虚拟货币体系的目前最大的应用场景也许是在游戏（非实体）世界上。这样使用者的利益可以得到最大限度的保障，不用担心公司的倒闭，也不用担心公司随意增发虚拟货币。更加方便快捷，可以在任意的游戏或者非实体体系中使用。</p>
 <ol>
@@ -1294,7 +1294,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -1499,6 +1499,8 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -1515,8 +1517,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

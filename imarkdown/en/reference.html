@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -71,7 +71,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.2-min.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
 
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
@@ -271,7 +271,7 @@
       
       
       <div class="post-body">
-          <h2 id="notation">Notation</h2>
+          <h2 id="notation" class="heading-control">Notation<a class="heading-anchor" href="#notation" aria-hidden="true"></a></h2>
 <p>The notation for specifying elements is similar to the regular Markdown syntax<br>
 for links and images, generally following this format:</p>
 <p><code>[text content]{variable_name: configuration}</code></p>
@@ -283,19 +283,19 @@ configuration is what determines the kind of element, and specifies its<br>
 behavior. For example, a <em>RangeElement</em> can be constrained to a minimum and<br>
 maximum, and a <em>SwitchElement</em> can be given different labels for <code>true</code> and<br>
 <code>false</code>.</p>
-<h3 id="stringelement">StringElement</h3>
+<h3 id="stringelement" class="heading-control">StringElement<a class="heading-anchor" href="#stringelement" aria-hidden="true"></a></h3>
 <p>A read-only output of the current value of the specified variable <code>&lt;var_name&gt;</code>.<br>
 The text is the default value, and used whenever the value of the variable is<br>
 <code>undefined</code>.</p>
 <p><code>[&lt;text&gt;]{&lt;var_name&gt;}</code></p>
-<h4 id="stringelement-examples">StringElement Examples</h4>
-<h5 id="string-basic">String, basic</h5>
+<h4 id="stringelement-examples" class="heading-control">StringElement Examples<a class="heading-anchor" href="#stringelement-examples" aria-hidden="true"></a></h4>
+<h5 id="string-basic" class="heading-control">String, basic<a class="heading-anchor" href="#string-basic" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="egg_count">many eggs</span> - <code>[many eggs]{egg_count}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
 | name                  | <code>egg_count</code>                       |<br>
 | value                 | <span class="AMElement" data-embed="false" data-config="egg_count">many eggs</span>            |</p>
-<h3 id="rangeelement">RangeElement</h3>
+<h3 id="rangeelement" class="heading-control">RangeElement<a class="heading-anchor" href="#rangeelement" aria-hidden="true"></a></h3>
 <p>A number adjustable by dragging. The number MAY have a display precision<br>
 specified. The slider MAY be constrained to a minimum and/or maximum, and MAY<br>
 have a step value. The text is parsed, and the first number in the text becomes<br>
@@ -321,8 +321,8 @@ and combine them with a coefficient, eg <code>2pi</code> or <code>0.5pi</code>, 
 constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <code>ln10</code>, <code>log2e</code>, <code>log10e</code>, <code>sqrt1_2</code>,<br>
 <code>sqrt2</code>, (uppercase or lowercase).</p>
 <p><code>[&lt;before&gt; &lt;number&gt;.&lt;decimal&gt; &lt;after&gt;]{&lt;var_name&gt;: &lt;bound&gt;..&lt;exclusive&gt;&lt;bound&gt; by &lt;step&gt;}</code></p>
-<h4 id="rangeelement-examples">RangeElement Examples</h4>
-<h5 id="specifying-step">Specifying step</h5>
+<h4 id="rangeelement-examples" class="heading-control">RangeElement Examples<a class="heading-anchor" href="#rangeelement-examples" aria-hidden="true"></a></h4>
+<h5 id="specifying-step" class="heading-control">Specifying step<a class="heading-anchor" href="#specifying-step" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="calories: 10..100 by 10">20. calories</span> - <code>[20. calories]{calories: 10..100 by 10}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -333,7 +333,7 @@ constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <cod
 | default               | <code>20</code>                              |<br>
 | display precision     | <code>1</code>                               |<br>
 | display format        | <code>&quot;#{value.toFixed(0)} calories&quot;</code>  |</p>
-<h5 id="fractional-step-precision">Fractional step, precision</h5>
+<h5 id="fractional-step-precision" class="heading-control">Fractional step, precision<a class="heading-anchor" href="#fractional-step-precision" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="calories_2: 10..100 by 0.1">20.0 calories</span> - <code>[20.0 calories]{calories_2: 10..100 by 0.1}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -344,7 +344,7 @@ constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <cod
 | default               | <code>20.0</code>                            |<br>
 | display precision     | <code>0.1</code>                             |<br>
 | display format        | <code>&quot;#{value.toFixed(1)} calories&quot;</code>  |</p>
-<h5 id="with-constants">With constants</h5>
+<h5 id="with-constants" class="heading-control">With constants<a class="heading-anchor" href="#with-constants" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="period: 0..2pi by 0.25pi">period 0.00</span> - <code>[period 0.00]{period: 0..2pi by 0.25pi}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -355,7 +355,7 @@ constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <cod
 | default               | <code>0</code>                               |<br>
 | display precision     | <code>0.01</code>                            |<br>
 | display format        | <code>&quot;#{value.toFixed(2)} period&quot;</code>    |</p>
-<h5 id="unbounded">Unbounded</h5>
+<h5 id="unbounded" class="heading-control">Unbounded<a class="heading-anchor" href="#unbounded" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="calories_3: ..">20 calories</span> - <code>[20 calories]{calories_3: ..}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -366,7 +366,7 @@ constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <cod
 | default               | <code>20</code>                              |<br>
 | display precision     | <code>undefined</code>                       |<br>
 | display format        | <code>&quot;#{value} calories&quot;</code>             |</p>
-<h5 id="unbounded-right-before-text">Unbounded right, before text</h5>
+<h5 id="unbounded-right-before-text" class="heading-control">Unbounded right, before text<a class="heading-anchor" href="#unbounded-right-before-text" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="calories_4: 1..">over 200 calories</span> - <code>[over 200 calories]{calories_4: 1.. by 2}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -377,13 +377,13 @@ constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <cod
 | default               | <code>200</code>                             |<br>
 | display precision     | <code>undefined</code>                       |<br>
 | display format        | <code>&quot;over #{value} calories&quot;</code>        |</p>
-<h3 id="switchelement">SwitchElement</h3>
+<h3 id="switchelement" class="heading-control">SwitchElement<a class="heading-anchor" href="#switchelement" aria-hidden="true"></a></h3>
 <p>A boolean flag that has a value of <code>true</code>, <code>false</code>, or <code>undefined</code>. The true<br>
 and false values can be labeled. If the label is present in the text, that value<br>
 becomes the default value. Otherwise, the value is <code>undefined</code>.</p>
 <p><code>[&lt;before&gt; &lt;true_label or false_label or *&gt; &lt;after&gt;]{&lt;var_name&gt;: &lt;true_label&gt; or &lt;false_label&gt;}</code></p>
-<h4 id="switchelement-examples">SwitchElement Examples</h4>
-<h5 id="switch-basic">Switch, basic</h5>
+<h4 id="switchelement-examples" class="heading-control">SwitchElement Examples<a class="heading-anchor" href="#switchelement-examples" aria-hidden="true"></a></h4>
+<h5 id="switch-basic" class="heading-control">Switch, basic<a class="heading-anchor" href="#switch-basic" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="some_flag_1: true or false">pick one</span> - <code>[pick one]{some_flag_1: true or false}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -393,7 +393,7 @@ becomes the default value. Otherwise, the value is <code>undefined</code>.</p>
 | true label            | <code>true</code>                            |<br>
 | false label           | <code>false</code>                           |<br>
 | display format        | <code>&quot;#{label}&quot;</code>                      |</p>
-<h5 id="switch-with-default">Switch, with default</h5>
+<h5 id="switch-with-default" class="heading-control">Switch, with default<a class="heading-anchor" href="#switch-with-default" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="some_flag_2: true or false">true</span> - <code>[true]{some_flag_3: true or false}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -403,7 +403,7 @@ becomes the default value. Otherwise, the value is <code>undefined</code>.</p>
 | true label            | <code>true</code>                            |<br>
 | false label           | <code>false</code>                           |<br>
 | display format        | <code>&quot;#{label}&quot;</code>                      |</p>
-<h5 id="switch-default-labeled-before-after-text">Switch, default, labeled, before/after text</h5>
+<h5 id="switch-default-labeled-before-after-text" class="heading-control">Switch, default, labeled, before/after text<a class="heading-anchor" href="#switch-default-labeled-before-after-text" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="some_flag_3: on or off">on deck</span> - <code>[on deck]{some_flag_3: on or off}</code></p>
 <p>| property              | value                             |<br>
 |=<mark><mark><mark><mark><mark><mark><mark><mark><mark><mark><mark>|</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>=============|<br>
@@ -413,15 +413,15 @@ becomes the default value. Otherwise, the value is <code>undefined</code>.</p>
 | true label            | <code>on</code>                              |<br>
 | false label           | <code>off</code>                             |<br>
 | display format        | <code>&quot;#{label} deck&quot;</code>                 |</p>
-<h3 id="chartelement">ChartElement</h3>
+<h3 id="chartelement" class="heading-control">ChartElement<a class="heading-anchor" href="#chartelement" aria-hidden="true"></a></h3>
 <p>An embedded chart, of type scatter, line, or bar. The chart is driven by the<br>
 specified function over the specified range. The <em>ChartElement</em> notation is<br>
 similar to the <em>RangeElement</em>, but with the addition of the <code>type</code>, and the<br>
 leading <code>!</code>. Also, the chart interval MUST be finite. Charts MUST have a<br>
 function defined in an <em>ActiveCodeBlock</em>.</p>
 <p><code>![&lt;x_label&gt; &lt;delimiter&gt; &lt;y_label&gt;]{&lt;type&gt;=&lt;fn_name&gt;: &lt;bound&gt;..&lt;exclusive&gt;&lt;bound&gt; by &lt;step&gt;}</code></p>
-<h4 id="chartelement-examples">ChartElement Examples</h4>
-<h5 id="scatter-basic">Scatter, basic</h5>
+<h4 id="chartelement-examples" class="heading-control">ChartElement Examples<a class="heading-anchor" href="#chartelement-examples" aria-hidden="true"></a></h4>
+<h5 id="scatter-basic" class="heading-control">Scatter, basic<a class="heading-anchor" href="#scatter-basic" aria-hidden="true"></a></h5>
 <p><code>![y vs x]{scatter=scatterFn: -10..10}</code></p>
 <p><span class="AMElement" data-embed="false" data-config="scatter_offset: 0..100">Offset: 0.</span></p>
 <pre><code>@scatterFn = (x) =&gt;
@@ -436,7 +436,7 @@ function defined in an <em>ActiveCodeBlock</em>.</p>
 | y label               | <code>&quot;y&quot;</code>                             |<br>
 | interval              | <code>[-10,10]</code>                        |<br>
 | step                  | <code>1</code>                               |</p>
-<h5 id="line-basic">Line, basic</h5>
+<h5 id="line-basic" class="heading-control">Line, basic<a class="heading-anchor" href="#line-basic" aria-hidden="true"></a></h5>
 <p><code>![sin(x)]{line=lineFn: 0..2pi by 0.001}</code></p>
 <p><span class="AMElement" data-embed="false" data-config="period: 0.25..4 by 0.25">Period 1.00</span></p>
 <pre><code>b = 2 * Math.PI / @period
@@ -452,7 +452,7 @@ function defined in an <em>ActiveCodeBlock</em>.</p>
 | y label               | <code>null</code>                            |<br>
 | interval              | <code>[0,2pi]</code>                         |<br>
 | step                  | <code>0.001</code>                           |</p>
-<h5 id="bar-basic">Bar, basic</h5>
+<h5 id="bar-basic" class="heading-control">Bar, basic<a class="heading-anchor" href="#bar-basic" aria-hidden="true"></a></h5>
 <p><code>![money by year]{bar=barFn: 1983..2013}</code></p>
 <p><span class="AMElement" data-embed="false" data-config="threshold: 1..20">Threshold: 5.</span></p>
 <pre><code>@barFn = (x) =&gt;
@@ -467,7 +467,7 @@ function defined in an <em>ActiveCodeBlock</em>.</p>
 | y label               | <code>&quot;money&quot;</code>                         |<br>
 | interval              | <code>[1983,2013]</code>                     |<br>
 | step                  | <code>1</code>                               |</p>
-<h2 id="codeblockelement">CodeBlockElement</h2>
+<h2 id="codeblockelement" class="heading-control">CodeBlockElement<a class="heading-anchor" href="#codeblockelement" aria-hidden="true"></a></h2>
 <p>The interactive code block also follows the Markdown specification. It can be indented by 4 spaces or three “`” symbols (without language instructions) around it. The code language is <a href="https://coffeescript.org/v1/" target="_blank" rel="noopener">CoffeeScript@v1</a></p>
 <pre><code class="markdown">
 <span class="hljs-section"># Indented by 4 spaces</span>
@@ -506,7 +506,7 @@ function defined in an <em>ActiveCodeBlock</em>.</p>
 <span class="hljs-code">```
 </span></code></pre>
 <p>The CodeBlock with output has a <code>@output</code> variable(it’s the binding <code>div</code> element for this block),  a <code>@say()</code> and <code>@sayln()</code> method to print text.</p>
-<h3 id="play-movie-for-codeblock">Play Movie for CodeBlock</h3>
+<h3 id="play-movie-for-codeblock" class="heading-control">Play Movie for CodeBlock<a class="heading-anchor" href="#play-movie-for-codeblock" aria-hidden="true"></a></h3>
 <p><strong>WARNING：UNSTABLE IT WILL BE CHANGED</strong></p>
 <p>The input of the code block can be played like a movie. You can enable it through three(<code>~~~</code>) or more than three tilde symbols <code>~</code> in a single line on the code block. Above the line is the common source code. The “|” above the code indicates the cursor position after the presentation is completed, and the lower part is the control input movie code.</p>
 <pre><code class="md">
@@ -543,16 +543,16 @@ tooltip: you can try it by youself now
 <li><code>type</code>: simulate keyboard input</li>
 <li><code>moveTo</code>: move the cursor to x:y</li>
 </ul>
-<h3 id="codeblock-examples">CodeBlock Examples</h3>
-<h4 id="examples-interactive-code-block-without-output">Examples: interactive code block without output</h4>
+<h3 id="codeblock-examples" class="heading-control">CodeBlock Examples<a class="heading-anchor" href="#codeblock-examples" aria-hidden="true"></a></h3>
+<h4 id="examples-interactive-code-block-without-output" class="heading-control">Examples: interactive code block without output<a class="heading-anchor" href="#examples-interactive-code-block-without-output" aria-hidden="true"></a></h4>
 <pre><code># this is an interactive code block without output
 a = 12 + 3
 </code></pre>
-<h4 id="examples-interactive-code-block-with-output">Examples: interactive code block with output</h4>
+<h4 id="examples-interactive-code-block-with-output" class="heading-control">Examples: interactive code block with output<a class="heading-anchor" href="#examples-interactive-code-block-with-output" aria-hidden="true"></a></h4>
 <pre><code># this is an interactive code block with output
 @sayln 'hi world'
 </code></pre>
-<h4 id="examples-play-movie-for-codeblock">Examples: Play Movie for CodeBlock</h4>
+<h4 id="examples-play-movie-for-codeblock" class="heading-control">Examples: Play Movie for CodeBlock<a class="heading-anchor" href="#examples-play-movie-for-codeblock" aria-hidden="true"></a></h4>
 <pre><code class="output:playable">
 # demo how to draw a rect.
 paper = @canvas
@@ -601,7 +601,7 @@ tooltip: you can try it by youself now
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -806,6 +806,11 @@ tooltip: you can try it by youself now
 
   
 
+
+<script src='/assets/imarkdown/imarkdown-0.4.3-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown Reference Manual.md"});</script>
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -822,11 +827,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
-<script src='/assets/imarkdown/imarkdown-0.4.2-min.js'></script><script>
-window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown Reference Manual.md"});</script>
-
 
 
 

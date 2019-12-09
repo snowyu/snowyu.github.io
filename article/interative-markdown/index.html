@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -71,7 +71,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.2-min.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
 
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
@@ -339,11 +339,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang">什么是响应(交互)式文档</h2>
+        <h2 id="shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang" class="heading-control">什么是响应(交互)式文档<a class="heading-anchor" href="#shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang" aria-hidden="true"></a></h2>
 <p>什么是响应(交互)式文档，简单的说就是文档内容能够实时响应读者的交互，根据交互实时变化的文档。在技术，教育领域中，为了将知识表述更清楚，常常需要✍文档能“动”起来，最极端的例子应该是🎮️“游戏”。虽然目前还不能让🎮️游戏文档直接“动”起来。不过未来就不一定了。</p>
 <p>我们接下来通过一个简单的响应(交互)式文档例子，来直观感受一下，请看下面。</p>
 <a id="more"></a>
-<h3 id="hui-zhi-ju-xing-rect-li-zi">绘制矩形(Rect)例子</h3>
+<h3 id="hui-zhi-ju-xing-rect-li-zi" class="heading-control">绘制矩形(Rect)例子<a class="heading-anchor" href="#hui-zhi-ju-xing-rect-li-zi" aria-hidden="true"></a></h3>
 <p><strong>参数</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p>
 <p>下面演示在提供好的画布上用上述参数绘制一个矩形，点击下方的播放按钮进行演示：</p>
 <pre><code class="output"># 演示绘制矩形的过程
@@ -376,7 +376,7 @@ tooltip: 现在你可以自己试一试了
 <li><code>text(50, 50, &quot;Hi world\n你好世界&quot;)</code></li>
 </ul>
 <p>响应(交互)式文档能够更加直观的看到结果的变化，使得知识更容易理解。</p>
-<h2 id="wei-shi-mo-xiang-ying-jiao-hu-shi-wen-dang-yao-ji-yu-markdown-ge-shi">为什么响应(交互)式文档要基于Markdown格式？</h2>
+<h2 id="wei-shi-mo-xiang-ying-jiao-hu-shi-wen-dang-yao-ji-yu-markdown-ge-shi" class="heading-control">为什么响应(交互)式文档要基于Markdown格式？<a class="heading-anchor" href="#wei-shi-mo-xiang-ying-jiao-hu-shi-wen-dang-yao-ji-yu-markdown-ge-shi" aria-hidden="true"></a></h2>
 <p>Markdown 是一种纯文本格式的轻量级标记语言，强调可读性高于一切。</p>
 <ul>
 <li>纯文本，所以兼容性极强，速度快，易保存，数据不易丢失，可以用所有文本编辑器编辑。</li>
@@ -415,7 +415,7 @@ tooltip: 现在你可以自己试一试了
 <p>读者就可以将鼠标移到上方Offset参数上进行拖动来改变参数值从而改变函数图像，也可以直接将函数<code>cos</code>改为<code>sin</code>看看。</p>
 <p><a href="/imarkdown">Interactive Markdown</a> 目前还在内部测试中，语义规范尚未固定。不过，我写了一个玩具可以让您自己的博客使用互动文档，用的是<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo博客生成工具</a>➕️<a href="https://theme-next.org/" target="_blank" rel="noopener">Theme-Next主题</a>，通过<a href="https://github.com/snowyu/hexo-next-imarkdown" target="_blank" rel="noopener">hexo-next-imarkdown</a>插件即可让您的博客支持互动Markdown文档格式，欢迎尝鲜。</p>
 <p>更详尽的<a href="/imarkdown">Interactive Markdown</a>语法请参阅💁🏻‍♂️ <a href="http://riceball.me/imarkdown/reference.html">交互式Markdown文档参考手册</a> .</p>
-<h2 id="wei-lai">未来</h2>
+<h2 id="wei-lai" class="heading-control">未来<a class="heading-anchor" href="#wei-lai" aria-hidden="true"></a></h2>
 <p>我希望在不久的将来使用<a href="/imarkdown">Interactive Markdown</a> 来编写绘本故事书，<a href="https://medium.com/ai-club-iiitb/text-to-image-synthesis-62eb44e65cd0" target="_blank" rel="noopener">根据文字自动产生图画</a>故事。</p>
 <p>在更远的未来甚至可以开发游戏。</p>
 
@@ -497,7 +497,7 @@ tooltip: 现在你可以自己试一试了
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -702,6 +702,11 @@ tooltip: 现在你可以自己试一试了
 
   
 
+
+<script src='/assets/imarkdown/imarkdown-0.4.3-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"基于Markdown的响应(交互)式文档.md"});</script>
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -718,11 +723,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
-<script src='/assets/imarkdown/imarkdown-0.4.2-min.js'></script><script>
-window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"基于Markdown的响应(交互)式文档.md"});</script>
-
 
 
 

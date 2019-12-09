@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -336,7 +336,7 @@
       
         <p>随着近两年来nodejs的迅速走红（这个npm的功不可灭），nodejs实际上成为js服务端和工具桌面端开发事实上的标准。似乎用javascript开发桌面应用时代正在来临。各种开发桌面应用的js框架工具陈出不穷，下面主要介绍的是一些开源项目js框架工具 for Desktop Application。</p>
 <a id="more"></a>
-<h1 id="electron"><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a></h1>
+<h1 id="electron" class="heading-control"><a href="http://electron.atom.io/" target="_blank" rel="noopener">Electron</a><a class="heading-anchor" href="#electron" aria-hidden="true"></a></h1>
 <p>Github开源的，用JavaScript编写桌面应用的框架。Electron为用纯JavaScript创建桌面应用提供了运行时。原理是，Electron调用你在<code>package.json</code>中定义的main文件并执行它。main文件（通常被命名为main.js）会创建一个内含渲染完的web页面的应用窗口，并添加与你操作系统的原生GUI（图形界面）交互的功能。</p>
 <p>下载需要翻墙：</p>
 <p><a href="https://www.npmjs.com/package/electron-download" target="_blank" rel="noopener">https://www.npmjs.com/package/electron-download</a><br>
@@ -349,7 +349,7 @@
 <span class="hljs-attr">ELECTRON_MIRROR</span>=<span class="hljs-string">"https://10.1.2.105/"</span>
 <span class="hljs-attr">ELECTRON_CUSTOM_DIR</span>=<span class="hljs-string">"our/internal/filePath"</span>
 </code></pre>
-<h1 id="nwjs-yi-qian-jiao-nodewebkit"><a href="http://nwjs.io/" target="_blank" rel="noopener">NW.js</a> (以前叫 node-webkit)</h1>
+<h1 id="nwjs-yi-qian-jiao-nodewebkit" class="heading-control"><a href="http://nwjs.io/" target="_blank" rel="noopener">NW.js</a> (以前叫 node-webkit)<a class="heading-anchor" href="#nwjs-yi-qian-jiao-nodewebkit" aria-hidden="true"></a></h1>
 <p>与<a href="http://appjs.org/" target="_blank" rel="noopener">App.js</a>类似，通过将node.js与Chromiuml联合在一起，实现本地桌面应用开发的，是App.js的后起之秀。实现原理是基于Chromium项目的Content Layer构建(Chromium Browser也同样基于Content Layer); 实现上的特点是把Node.js的消息循环(libuv)和Chromium Renderer进程的消息循环合并到一起，因为这样才能从DOM(HTML)中直接调用Node.js提供的函数；把Node.js使用的V8引擎和 Chromium的V8引擎合并，使得Node.js的Javascript和DOM里面的Javascript可以互相访问；另外因为是支持本地应用， 所以安全模型和Web程序有很大不同：node-webkit程序可以做web应用不允许做的很多事情，除了通过node.js访问本地OS以外，还可以进行跨域访问等操作。是英特尔开放源码技术中心（OTC）的软件架构师Rogerwang（王文睿）发起，在公司专职开发node-webkit(幸福啊)。</p>
 <p>本质上它和PhoneGap一样都是属于胶水层，只不过PhoneGap是尽量以遵循W3C最新规范的形式来提供本地访问API，其它的不规范接口以各种插件形式提供；而node-webkit则是通过node.js提供本地访问的接口。与PhoneGap比较而言，如果PhoneGap要为某个平台提供新的本地API接口，必须通过开发插件的形式提供，而且各个平台的插件开发的开发语言都不一样。而node.js有node-gyp(native addon build tool) 工具统一build。而node.js的 <a href="https://npmjs.org/package/node-ffi" target="_blank" rel="noopener">node-ffi</a> 附加插件更使得我们可以直接在js中调用动态链接库的API：</p>
 <pre><code>var ffi = require(&quot;node-ffi&quot;);
@@ -363,7 +363,7 @@ current.atoi(&quot;1234&quot;); // 1234
 </code></pre>
 <p>地址： <a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit</a></p>
 <p>如何把你的javascript 应用打包成一个可执行文件，这里已经说得很详细了：<a href="https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps" target="_blank" rel="noopener">https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps</a></p>
-<h1 id="node-x11">node-x11</h1>
+<h1 id="node-x11" class="heading-control">node-x11<a class="heading-anchor" href="#node-x11" aria-hidden="true"></a></h1>
 <p>这个是用纯js实现了X11 Client的核心协议，包括Xrender, Damage, Composite, Big-Requests, Dpms, Screensaver, XFixes, Shape, XTest, XC-Misc, GLX and Apple-WM extensions。用来开发X-Windows GUI程序。基于 <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">node-x11</a> 有人做了进一步的封装：<a href="https://github.com/sidorares/ntk" target="_blank" rel="noopener">ntk(desktop UI toolkit)</a>, 然后做出了一个纯js的 VNC Viewer: <a href="https://github.com/sidorares/node-vnc" target="_blank" rel="noopener">node-vnc</a>.</p>
 <p>Windows用户要先安装  <a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener">XMing</a> or <a href="http://x.cygwin.com/" target="_blank" rel="noopener">Cygwin/X</a>。</p>
 <p>地址： <a href="https://github.com/sidorares/node-x11" target="_blank" rel="noopener">https://github.com/sidorares/node-x11</a></p>
@@ -384,7 +384,7 @@ current.atoi(&quot;1234&quot;); // 1234
         X.MapWindow(wid);
     });
 </code></pre>
-<p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt=""><br>
+<p><img src="https://a248.e.akamai.net/camo.github.com/58410fb1ae44f04f59b79af1461d304b64b113d3/687474703a2f2f696d672d666f746b692e79616e6465782e72752f6765742f343132332f33373531313039342e33302f305f38313731325f36633265626231315f4c" alt><br>
 ntk 的例子:</p>
 <pre><code class="js">    <span class="hljs-keyword">var</span> ntk = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib'</span>);
 
@@ -401,7 +401,7 @@ ntk 的例子:</p>
        .map();
     }
 </code></pre>
-<h1 id="node-qt">node-qt</h1>
+<h1 id="node-qt" class="heading-control">node-qt<a class="heading-anchor" href="#node-qt" aria-hidden="true"></a></h1>
 <p><a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>是基于QT的node.js封装,而<a href="http://github.com/arturadib/node-five" target="_blank" rel="noopener">node-five</a> 则是基于<a href="https://github.com/arturadib/node-qt" target="_blank" rel="noopener">node-qt</a>的封装实现了HTML5 graphics and audio。</p>
 <p>地址：</p>
 <ul>
@@ -440,7 +440,7 @@ ntk 的例子:</p>
     ctx.fillStyle = <span class="hljs-string">'black'</span>;
     ctx.fillText(<span class="hljs-string">'hello node, hello qt'</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>);
 </code></pre>
-<h1 id="wxnode">wxNode</h1>
+<h1 id="wxnode" class="heading-control">wxNode<a class="heading-anchor" href="#wxnode" aria-hidden="true"></a></h1>
 <p><a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">wxNode</a>是基于跨平台的<a href="http://www.wxwidgets.org/" target="_blank" rel="noopener">wxWidgets</a>的node.js封装插件包。也就是能让你用wxWidgets GUI组件开发桌面应用。</p>
 <p>地址： <a href="https://github.com/joeferner/wxNode" target="_blank" rel="noopener">https://github.com/joeferner/wxNode</a></p>
 <p>例子：</p>
@@ -475,10 +475,10 @@ app.run();
 <p>运行：</p>
 <pre><code>node examples/helloWorld.js
 </code></pre>
-<h1 id="tidesdk">TideSDK</h1>
+<h1 id="tidesdk" class="heading-control">TideSDK<a class="heading-anchor" href="#tidesdk" aria-hidden="true"></a></h1>
 <p>最后提下TideSDK, 就是以前的Titanium Desktop SDK，以web技术(HTML5. CSS3, JS)创建桌面应用的开源框架工具。与前面的框架相比它的特色是：它不仅仅支持用js来开发桌面应用，它还支持用C/C++, Ruby, Python, PHP来开发和写模块。而且这些语言写的模块可以彼此调用。Tide拥有一个用C++写的微内核，该微内核是支持跨平台，跨语言的绑定和调用框架。TideSDK没有加入node.js的支持是为遗憾。</p>
 <p>地址: <a href="http://tidesdk.org/" target="_blank" rel="noopener">http://tidesdk.org/</a></p>
-<h1 id="you-xi-ying-yong">游戏应用</h1>
+<h1 id="you-xi-ying-yong" class="heading-control">游戏应用<a class="heading-anchor" href="#you-xi-ying-yong" aria-hidden="true"></a></h1>
 <p>对于希望用js来开发游戏和动画交互强的应用，那么可能除了node-qt外，还可以考虑下下面的框架：</p>
 <ul>
 <li><a href="http://impactjs.com/ejecta" target="_blank" rel="noopener">Ejecta for iOS</a>: A Fast, Open Source JavaScript, Canvas &amp; Audio Implementation for iOS</li>
@@ -568,7 +568,7 @@ app.run();
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -773,6 +773,8 @@ app.run();
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -789,8 +791,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

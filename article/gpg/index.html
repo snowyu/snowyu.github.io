@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -320,16 +320,16 @@
 
       
         <p>GnuPG软件（简称GPG） – OpenPGP</p>
-<h1 id="li-shi-jie-shao-history">历史介绍 History</h1>
-<h2 id="pgp-pretty-good-privacy">PGP (Pretty Good Privacy)</h2>
+<h1 id="li-shi-jie-shao-history" class="heading-control">历史介绍 History<a class="heading-anchor" href="#li-shi-jie-shao-history" aria-hidden="true"></a></h1>
+<h2 id="pgp-pretty-good-privacy" class="heading-control">PGP (Pretty Good Privacy)<a class="heading-anchor" href="#pgp-pretty-good-privacy" aria-hidden="true"></a></h2>
 <p>最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。</p>
-<h2 id="openpgp">OpenPGP</h2>
+<h2 id="openpgp" class="heading-control">OpenPGP<a class="heading-anchor" href="#openpgp" aria-hidden="true"></a></h2>
 <p>Zimmerman(最早的PGP开发人员)于1997年向IETF（互联网工程任务组）提交了<a href="https://tools.ietf.org/html/rfc4880" target="_blank" rel="noopener">开源PGP（OpenPGP）标准提案</a>。如今，OpenPGP成为了PGP的标准规范，是供公众使用的开源代码，并且该术语可用于描述支持OpenPGP系统的任何程序。</p>
-<h2 id="gpg-gnu-privacy-guard">GPG (GNU Privacy Guard)</h2>
+<h2 id="gpg-gnu-privacy-guard" class="heading-control">GPG (GNU Privacy Guard)<a class="heading-anchor" href="#gpg-gnu-privacy-guard" aria-hidden="true"></a></h2>
 <p>GnuPGP由Werner Koch开发的开源加密工具软件，并于1999年发布，以替代现有的Symantec加密工具软件套件。 它可以免费下载，并且基于IETF建立的OpenPGP标准，因此可以与Symantec的PGP工具和支持OpenPGP标准的软件互操作。GPG可以打开和解密任何PGP和OpenPGP标准的文件。</p>
-<h2 id="keys">Keys</h2>
+<h2 id="keys" class="heading-control">Keys<a class="heading-anchor" href="#keys" aria-hidden="true"></a></h2>
 <p>在公开密钥算法中，一个Key(密钥)包括两个部分：公钥和私钥。公钥类似于印鉴，而私钥类似于印章。</p>
-<h2 id="subkeys"><a href="https://wiki.debian.org/Subkeys" target="_blank" rel="noopener">Subkeys</a></h2>
+<h2 id="subkeys" class="heading-control"><a href="https://wiki.debian.org/Subkeys" target="_blank" rel="noopener">Subkeys</a><a class="heading-anchor" href="#subkeys" aria-hidden="true"></a></h2>
 <p>在OpenPGP标准中你的钥匙包括一个主钥(master key)和若干子钥(subkeys)。在OpenPGP标准中主钥，子钥(Subkey)是必需理解，非常关键的概念，可以极大的提升安全性。</p>
 <ul>
 <li>主钥的主要作用是用于签发和吊销其它密钥、签名或用户Id，从安全角度考虑，主钥的私钥应该完全保持离线。</li>
@@ -344,7 +344,7 @@
 <li>Public-Subkey Packet Tag 是 14</li>
 <li>Secret-Subkey Packet Tag 是 7</li>
 </ul>
-<h3 id="subkey-usage">Subkey Usage</h3>
+<h3 id="subkey-usage" class="heading-control">Subkey Usage<a class="heading-anchor" href="#subkey-usage" aria-hidden="true"></a></h3>
 <p>OpenPGP subkeys 用于不同的设想：</p>
 <ul>
 <li>可以保持主键始终处于离线安全状态，您的主键不需要存放在线上(online)，可以只存放在本地的安全设备上。一旦有子键泄露，可以立刻使用主键轻松的吊销该子键，而没有撤销主键的麻烦（需要再次分享新的键,获取新的签名…）。Being able to store the primary key offline or a more secure device. If a machine with a subkey is harmed, you can easily revoke the subkey without all the hassles of revoking your primary key (sharing a new key, getting new signatures, …).</li>
@@ -352,7 +352,7 @@
 <li>使用较大尺寸的密钥作为主键长时间使用，而使用短而快速的子键，可以每天一换。Using a larger primary key for long lifetime, and shorter, but faster subkeys for day-to-day usage.</li>
 <li>某些算法不能同时支持加密和签名，例如: DSA 主密钥只能签名，因此它需要另一个密钥来加密，通常DSA与ElGamal算法成对使用。Some algorithms do not support both encrypting and signing. For example, a DSA primary key requires another key for encryption, typically paired with ElGamal.</li>
 </ul>
-<h3 id="binding-signatures">Binding Signatures</h3>
+<h3 id="binding-signatures" class="heading-control">Binding Signatures<a class="heading-anchor" href="#binding-signatures" aria-hidden="true"></a></h3>
 <p>There are special signature subtypes to bind subkeys to primary keys (and vice verse), listed in <a href="http://tools.ietf.org/html/rfc4880#section-5.2.1" target="_blank" rel="noopener">RFC 4880, OpenPGP, 5.2.1 Signature Types</a>:</p>
 <p>0x18: Subkey Binding Signature</p>
 <p>This signature is a statement by the top-level signing key that indicates that it owns the subkey. This signature is calculated directly on the primary key and subkey, and not on any User ID or other packets. A signature that binds a signing subkey MUST have an Embedded Signature subpacket in this binding signature that contains a 0x19 signature made by the signing subkey on the primary key and subkey.</p>
@@ -461,7 +461,7 @@ gpg&gt; addkey
   Your selection? 9
 gpg&gt; save
 </code></pre>
-<h3 id="dao-chu-mi-yue">导出密钥</h3>
+<h3 id="dao-chu-mi-yue" class="heading-control">导出密钥<a class="heading-anchor" href="#dao-chu-mi-yue" aria-hidden="true"></a></h3>
 <p>应用签名等需要。</p>
 <p><code>openpgp2ssh</code> 测试成功，其余失败,搞定。</p>
 <pre><code class="bash">sudo apt install monkeysphere
@@ -549,7 +549,7 @@ chmod 0600 foo.pem
 mv foo.pem ~/.ssh/id_rsa
 ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
 </code></pre>
-<h2 id="pgp-xin-ren-fang-shi">PGP 信任方式</h2>
+<h2 id="pgp-xin-ren-fang-shi" class="heading-control">PGP 信任方式<a class="heading-anchor" href="#pgp-xin-ren-fang-shi" aria-hidden="true"></a></h2>
 <p>PGP（Pretty Good Privacy）最初是用传统公钥密码学加密email信息的，之后又被用于加密本地文件。</p>
 <p>注意：PGP和WoT(Web of Trust)不是同一样事务，PGP采用了WoT的方式。</p>
 <p>PGP没有可信任的中心权威（第三方机构），但是相对应的是，系统中的每个人都可以签发自己的公钥并通过证书签名建立起自己的信任网。</p>
@@ -635,9 +635,9 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
 <p>在PGP中的CERT_DEPTH参数尽管定义了证书链长度的最大值，但是也不能用其确定出证书的有效性。</p>
 <p>也就是说，这些链的作用仅在于寻求用户之间的直接信任关系，帮助减少关系网的冗余度，使关系网更加清晰。</p>
 <p>信赖网路机制比S/MIME方案的集中管理的公钥基础设施有优势，但是没有被网络普通大众普遍采用，一般只在Unix-like的爱好者、开源软体界、和对隐私特别注意而且有电脑知识的人群之间使用。如何使一般用户容易并且乐意使用、接收证书然后手动的验证它们的有效性，这些潜在的推广阻碍目前还没有满意的解决方案。</p>
-<h2 id="key-server">Key Server</h2>
+<h2 id="key-server" class="heading-control">Key Server<a class="heading-anchor" href="#key-server" aria-hidden="true"></a></h2>
 <p><a href="https://roll.urown.net/server/pgp-keyserver.html" target="_blank" rel="noopener">https://roll.urown.net/server/pgp-keyserver.html</a></p>
-<h2 id="references">References</h2>
+<h2 id="references" class="heading-control">References<a class="heading-anchor" href="#references" aria-hidden="true"></a></h2>
 
     </div>
 
@@ -712,7 +712,7 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -917,6 +917,8 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
 
   
 
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -933,8 +935,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
 
 
 

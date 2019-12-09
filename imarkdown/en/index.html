@@ -32,7 +32,7 @@
     mediumzoom: true,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Load Disqus","order":-1},"utteranc":{"order":-2}}},
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
     algolia: {
       appID: '',
       apiKey: '',
@@ -71,7 +71,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.2-min.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
 
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 
@@ -270,13 +270,13 @@
       
       
       <div class="post-body">
-          <h2 id="introduction">Introduction</h2>
+          <h2 id="introduction" class="heading-control">Introduction<a class="heading-anchor" href="#introduction" aria-hidden="true"></a></h2>
 <p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
 <p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a complete reference of the elements and their configuration.</p>
 <p>Status: Alpha Test</p>
 <a id="more"></a>
 <p>An Example Interactive document looks like this:</p>
-<h3 id="st-ives-example">St.Ives Example</h3>
+<h3 id="st-ives-example" class="heading-control">St.Ives Example<a class="heading-anchor" href="#st-ives-example" aria-hidden="true"></a></h3>
 <p>An old riddle.</p>
 <blockquote>
 <p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
@@ -350,7 +350,7 @@ The first guess is often [2753]{first_guess}…
 </ul>
 </li>
 </ul>
-<h3 id="a-more-complex-example">A More Complex Example</h3>
+<h3 id="a-more-complex-example" class="heading-control">A More Complex Example<a class="heading-anchor" href="#a-more-complex-example" aria-hidden="true"></a></h3>
 <p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
 <p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>
 <pre><code class="output"># demo how to draw a rect.
@@ -375,21 +375,21 @@ moveTo: 8:13
 tooltip: you can try it by youself now
 </code></pre>
 <hr>
-<h2 id="notation">Notation</h2>
+<h2 id="notation" class="heading-control">Notation<a class="heading-anchor" href="#notation" aria-hidden="true"></a></h2>
 <p>The notation for specifying elements is similar to the regular Markdown syntax<br>
 for links and images, generally following this format:</p>
 <p><code>[text content]{variable_name: configuration}</code></p>
 <p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a<br>
 complete reference of the elements and their configuration.</p>
-<h2 id="authors">Authors</h2>
+<h2 id="authors" class="heading-control">Authors<a class="heading-anchor" href="#authors" aria-hidden="true"></a></h2>
 <ul>
 <li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
 <li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu" target="_blank" rel="noopener">https://github.com/snowyu</a></li>
 </ul>
-<h2 id="credits">Credits</h2>
+<h2 id="credits" class="heading-control">Credits<a class="heading-anchor" href="#credits" aria-hidden="true"></a></h2>
 <p>Thanks to <a href="https://github.com/joyrexus" target="_blank" rel="noopener">J Voight</a>, <a href="http://alexcabrera.me/" target="_blank" rel="noopener">Alex Cabrera</a>, <a href="http://johndebs.com/" target="_blank" rel="noopener">John Debs</a>, and <a href="http://supriyosinha.com" target="_blank" rel="noopener">Supriyo Sinha</a> for help with the notation.</p>
 <p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> library for creating reactive documents.</p>
-<h2 id="license">License</h2>
+<h2 id="license" class="heading-control">License<a class="heading-anchor" href="#license" aria-hidden="true"></a></h2>
 <p>MIT</p>
 
       </div>
@@ -416,7 +416,7 @@ complete reference of the elements and their configuration.</p>
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
-            <li class="tab"><a href="#comment-disqusjs">Load Disqus</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane utteranc" id="comment-utteranc">
@@ -621,6 +621,11 @@ complete reference of the elements and their configuration.</p>
 
   
 
+
+<script src='/assets/imarkdown/imarkdown-0.4.3-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown.md"});</script>
+
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
@@ -637,11 +642,6 @@ NexT.utils.loadComments(() => {
   }, window.DisqusJS);
 });
 </script>
-
-
-<script src='/assets/imarkdown/imarkdown-0.4.2-min.js'></script><script>
-window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown.md"});</script>
-
 
 
 
