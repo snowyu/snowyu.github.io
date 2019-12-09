@@ -14,21 +14,6 @@
 #   # Also see: https://caniuse.com/#feat=prefers-color-scheme.
 #   alpha: false
 
-# Add some descriptions to your co-authors
-coauthors:
-  [riceball]:
-    # It will display nick
-    nick: Riceball LEE
-    # When your co-authors is click, will jump to there
-    link: https://riceball.me
-  [riceball lee]:
-    # It will display nick
-    nick: Riceball LEE
-    # When your co-authors is click, will jump to there
-    link: https://riceball.me
-  # It defines the order of precedence in post meta
-  #post_meta_order: 0
-
 # Console reminder if new version released.
 reminder: true
 
@@ -321,9 +306,6 @@ post_edit:
 # Custom Page Settings
 # See: https://theme-next.org/docs/theme-settings/custom-pages
 # ---------------------------------------------------------------
-
-# Enable "cheers" for archive page.
-cheers: true
 
 # TagCloud settings for tags page.
 tagcloud:

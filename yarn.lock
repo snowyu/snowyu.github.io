@@ -1159,8 +1159,7 @@ hexo-bunyan@^2.0.0:
 
 hexo-cake-utils@^1.1.0:
   version "1.1.0"
-  resolved "https://registry.npm.taobao.org/hexo-cake-utils/download/hexo-cake-utils-1.1.0.tgz#d44c06dabac35f87be7b7b58551c67b1c470ebd9"
-  integrity sha1-1EwG2rrDX4e+e3tYVRxnscRw69k=
+  resolved "https://codeload.github.com/snowyu/hexo-cake-utils/tar.gz/f8db7604f9255cb39be7c4caf87b561ceda86a6b"
   dependencies:
     js-yaml "^3.13.1"
 
@@ -1309,7 +1308,7 @@ hexo-log@^1.0.0:
 
 "hexo-next-coauthor@github:snowyu/hexo-next-coauthor":
   version "0.0.2"
-  resolved "https://codeload.github.com/snowyu/hexo-next-coauthor/tar.gz/f64bb59894194d7f3e52bdf82b2437d53431e61e"
+  resolved "https://codeload.github.com/snowyu/hexo-next-coauthor/tar.gz/ffa747fdef6820a6e1a3ba2c81e67bdddfc788d9"
   dependencies:
     js-yaml "^3.13.1"
 
@@ -1341,6 +1340,12 @@ hexo-next-share@theme-next/hexo-next-share:
   resolved "https://codeload.github.com/theme-next/hexo-next-share/tar.gz/bc358ef1e7b8427df05c3739e8b2fd939489d4b3"
   dependencies:
     js-yaml "^3.13.1"
+
+"hexo-next-utteranc@github:theme-next/hexo-next-utteranc":
+  version "1.0.0"
+  resolved "https://codeload.github.com/theme-next/hexo-next-utteranc/tar.gz/6f841a67c9d12f1453be8269abb6307862542753"
+  dependencies:
+    next-util "github:theme-next/next-util"
 
 hexo-pagination@1.0.0:
   version "1.0.0"
@@ -1378,8 +1383,8 @@ hexo-server@^1.0.0:
 
 hexo-symbols-count-time@^0.7.0:
   version "0.7.0"
-  resolved "https://registry.npm.taobao.org/hexo-symbols-count-time/download/hexo-symbols-count-time-0.7.0.tgz#71bc58f7c0e7e32ecb2f4820d7c8b4dddee4f47d"
-  integrity sha1-cbxY98Dn4y7LL0gg18i03d7k9H0=
+  resolved "https://registry.yarnpkg.com/hexo-symbols-count-time/-/hexo-symbols-count-time-0.7.0.tgz#71bc58f7c0e7e32ecb2f4820d7c8b4dddee4f47d"
+  integrity sha512-x2ahTBI6SDTRz0i+EfbMwdQv0ioIji0EE5i8iswbEGsbK9ompDX0f0K73L7sNUL/cp48vRCYge1TzPzPr22M5A==
   dependencies:
     hexo-util "1.5.0"
 
@@ -2151,6 +2156,13 @@ negotiator@0.6.2:
   version "0.6.2"
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
+
+"next-util@github:theme-next/next-util":
+  version "0.1.0"
+  resolved "https://codeload.github.com/theme-next/next-util/tar.gz/b63786113c8f2d6ba439ab80fdeef38eb9709fea"
+  dependencies:
+    js-yaml "^3.13.1"
+    lodash "^4.17.15"
 
 nib@^1.1.2:
   version "1.1.2"
