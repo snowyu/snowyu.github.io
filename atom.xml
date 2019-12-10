@@ -339,11 +339,11 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
       <category term="cloud computing" scheme="https://riceball.me/tags/cloud-computing/"/>
     
-      <category term="open source" scheme="https://riceball.me/tags/open-source/"/>
-    
       <category term="saas" scheme="https://riceball.me/tags/saas/"/>
     
       <category term="software as a service" scheme="https://riceball.me/tags/software-as-a-service/"/>
+    
+      <category term="open source" scheme="https://riceball.me/tags/open-source/"/>
     
   </entry>
   

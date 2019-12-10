@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -47,17 +47,25 @@
 </script>
 
   <meta name="description" content="开源 Bitcoin P2P电子货币是点对点的电子现金系统，创建于2009年[http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Bitcoin]。无需金融机构直接点对点支付。该电子货币系统的特色是无需信托中间人，能够方便的进行互联网上的汇款。第三方不能够控制或者阻止您的交易。Bitcoin 交易几乎免费, 而信用卡的网上在线支付系统通常收取 1-5% 的交易费用，加上其他各种费用高达数百美">
-<meta name="keywords" content="p2p,learning,bitcoin,digital currency,hashcash,proof-of-work,redian">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开源 Bitcoin P2P电子货币系统技术内幕">
 <meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="开源 Bitcoin P2P电子货币是点对点的电子现金系统，创建于2009年[http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Bitcoin]。无需金融机构直接点对点支付。该电子货币系统的特色是无需信托中间人，能够方便的进行互联网上的汇款。第三方不能够控制或者阻止您的交易。Bitcoin 交易几乎免费, 而信用卡的网上在线支付系统通常收取 1-5% 的交易费用，加上其他各种费用高达数百美">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-dc-validate.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-pubkey-sig.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-logo.jpg">
-<meta property="og:updated_time" content="2019-11-22T06:56:43.529Z">
+<meta property="article:published_time" content="2011-05-30T07:33:47.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.529Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="p2p">
+<meta property="article:tag" content="learning">
+<meta property="article:tag" content="bitcoin">
+<meta property="article:tag" content="digital currency">
+<meta property="article:tag" content="hashcash">
+<meta property="article:tag" content="proof-of-work">
+<meta property="article:tag" content="redian">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-dc-validate.png">
 
@@ -303,7 +311,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -1363,7 +1371,7 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu"><span class="nav-number">1.</span> <span class="nav-text">名词解释以及背后的技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gong-zuo-zheng-ming-powproofofwork-ji-zhi"><span class="nav-number">1.1.</span> <span class="nav-text">工作证明 POW(Proof-Of-Work)机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashcash-ji-zhi"><span class="nav-number">1.2.</span> <span class="nav-text">HashCash 机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitcoin-zhong-de-shu-yu-jie-shi"><span class="nav-number">1.3.</span> <span class="nav-text">Bitcoin中的术语解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dian-zi-huo-bi-he-jiao-yi-dan-transaction"><span class="nav-number">1.4.</span> <span class="nav-text">电子货币和交易单(Transaction)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-yi-de-lei-xing-yu-yan-zheng"><span class="nav-number">2.</span> <span class="nav-text">交易的类型与验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jiao-ben-xi-tong"><span class="nav-number">2.1.</span> <span class="nav-text">脚本系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao"><span class="nav-number">3.</span> <span class="nav-text">附录Bitcoin脚本系统单词列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#can-jian-httpsenbitcoinitwikiscript"><span class="nav-number">4.</span> <span class="nav-text">参见：https://en.bitcoin.it/wiki/Script：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chang-liang"><span class="nav-number">4.0.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci"><span class="nav-number">4.0.2.</span> <span class="nav-text">常量就是用来把数据压入栈中的单词：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kong-zhi-liu"><span class="nav-number">4.1.</span> <span class="nav-text">控制流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dui-zhan-cao-zuo"><span class="nav-number">4.2.</span> <span class="nav-text">堆栈操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zi-fu-chuan-chu-li"><span class="nav-number">4.3.</span> <span class="nav-text">字符串处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wei-yun-suan"><span class="nav-number">4.4.</span> <span class="nav-text">位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-xue-yun-suan"><span class="nav-number">4.5.</span> <span class="nav-text">数学运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jia-mi-xiang-guan"><span class="nav-number">4.6.</span> <span class="nav-text">加密相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wei-ci-pseudowords"><span class="nav-number">4.7.</span> <span class="nav-text">伪词（Pseudo-words）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bao-liu-ci-reserved-words"><span class="nav-number">4.8.</span> <span class="nav-text">保留词（Reserved words）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#she-ji-de-jiao-ben-ming-ling-cao-zuo-fu"><span class="nav-number">5.</span> <span class="nav-text">涉及的脚本命令（操作符）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-yi-yan-zheng"><span class="nav-number">6.</span> <span class="nav-text">交易验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wa-kuang-yu-kuai-blocks"><span class="nav-number"></span> <span class="nav-text">挖矿与块（Blocks）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kuai-de-shu-ju-jie-gou"><span class="nav-number">1.</span> <span class="nav-text">块的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kuai-tou-block-header"><span class="nav-number">1.1.</span> <span class="nav-text">块头（Block Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-suan-mu-biao-target-he-kun-nan-du-difficulty"><span class="nav-number">1.2.</span> <span class="nav-text">计算目标(Target)和困难度(Difficulty)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ji-suan-mu-biao-target"><span class="nav-number">1.2.1.</span> <span class="nav-text">计算目标（Target）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target"><span class="nav-number">1.2.2.</span> <span class="nav-text">当前网络的目标值为：Current target。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kun-nan-du-difficulty"><span class="nav-number">1.2.3.</span> <span class="nav-text">困难度(Difficulty)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kuai-ti-block-body"><span class="nav-number">1.2.4.</span> <span class="nav-text">块体（Block Body）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wen-ti"><span class="nav-number"></span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yi-jing-jie-jue-de-wen-ti"><span class="nav-number">1.</span> <span class="nav-text">已经解决的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shang-wei-jie-jue-de-wen-ti"><span class="nav-number">2.</span> <span class="nav-text">尚未解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cun-chu-he-liu-liang-wen-ti"><span class="nav-number">2.1.</span> <span class="nav-text">存储和流量问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#duan-wang-de-yi-wen"><span class="nav-number">2.2.</span> <span class="nav-text">断网的疑问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dun-ji-cao-zong-shi-chang-wen-ti"><span class="nav-number">2.3.</span> <span class="nav-text">囤积操纵市场问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zhan-wang-yu-wei-lai"><span class="nav-number"></span> <span class="nav-text">展望与未来</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu"><span class="nav-number">1.</span> <span class="nav-text">名词解释以及背后的技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gong-zuo-zheng-ming-powproofofwork-ji-zhi"><span class="nav-number">1.1.</span> <span class="nav-text">工作证明 POW(Proof-Of-Work)机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashcash-ji-zhi"><span class="nav-number">1.2.</span> <span class="nav-text">HashCash 机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitcoin-zhong-de-shu-yu-jie-shi"><span class="nav-number">1.3.</span> <span class="nav-text">Bitcoin中的术语解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dian-zi-huo-bi-he-jiao-yi-dan-transaction"><span class="nav-number">1.4.</span> <span class="nav-text">电子货币和交易单(Transaction)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-yi-de-lei-xing-yu-yan-zheng"><span class="nav-number">2.</span> <span class="nav-text">交易的类型与验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jiao-ben-xi-tong"><span class="nav-number">2.1.</span> <span class="nav-text">脚本系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao"><span class="nav-number">3.</span> <span class="nav-text">附录Bitcoin脚本系统单词列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#can-jian-httpsenbitcoinitwikiscript"><span class="nav-number">4.</span> <span class="nav-text">参见：https:&#x2F;&#x2F;en.bitcoin.it&#x2F;wiki&#x2F;Script：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chang-liang"><span class="nav-number">4.0.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci"><span class="nav-number">4.0.2.</span> <span class="nav-text">常量就是用来把数据压入栈中的单词：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kong-zhi-liu"><span class="nav-number">4.1.</span> <span class="nav-text">控制流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dui-zhan-cao-zuo"><span class="nav-number">4.2.</span> <span class="nav-text">堆栈操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zi-fu-chuan-chu-li"><span class="nav-number">4.3.</span> <span class="nav-text">字符串处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wei-yun-suan"><span class="nav-number">4.4.</span> <span class="nav-text">位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-xue-yun-suan"><span class="nav-number">4.5.</span> <span class="nav-text">数学运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jia-mi-xiang-guan"><span class="nav-number">4.6.</span> <span class="nav-text">加密相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wei-ci-pseudowords"><span class="nav-number">4.7.</span> <span class="nav-text">伪词（Pseudo-words）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bao-liu-ci-reserved-words"><span class="nav-number">4.8.</span> <span class="nav-text">保留词（Reserved words）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#she-ji-de-jiao-ben-ming-ling-cao-zuo-fu"><span class="nav-number">5.</span> <span class="nav-text">涉及的脚本命令（操作符）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-yi-yan-zheng"><span class="nav-number">6.</span> <span class="nav-text">交易验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wa-kuang-yu-kuai-blocks"><span class="nav-number"></span> <span class="nav-text">挖矿与块（Blocks）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kuai-de-shu-ju-jie-gou"><span class="nav-number">1.</span> <span class="nav-text">块的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kuai-tou-block-header"><span class="nav-number">1.1.</span> <span class="nav-text">块头（Block Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-suan-mu-biao-target-he-kun-nan-du-difficulty"><span class="nav-number">1.2.</span> <span class="nav-text">计算目标(Target)和困难度(Difficulty)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ji-suan-mu-biao-target"><span class="nav-number">1.2.1.</span> <span class="nav-text">计算目标（Target）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target"><span class="nav-number">1.2.2.</span> <span class="nav-text">当前网络的目标值为：Current target。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kun-nan-du-difficulty"><span class="nav-number">1.2.3.</span> <span class="nav-text">困难度(Difficulty)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kuai-ti-block-body"><span class="nav-number">1.2.4.</span> <span class="nav-text">块体（Block Body）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wen-ti"><span class="nav-number"></span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yi-jing-jie-jue-de-wen-ti"><span class="nav-number">1.</span> <span class="nav-text">已经解决的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shang-wei-jie-jue-de-wen-ti"><span class="nav-number">2.</span> <span class="nav-text">尚未解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cun-chu-he-liu-liang-wen-ti"><span class="nav-number">2.1.</span> <span class="nav-text">存储和流量问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#duan-wang-de-yi-wen"><span class="nav-number">2.2.</span> <span class="nav-text">断网的疑问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dun-ji-cao-zong-shi-chang-wen-ti"><span class="nav-number">2.3.</span> <span class="nav-text">囤积操纵市场问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zhan-wang-yu-wei-lai"><span class="nav-number"></span> <span class="nav-text">展望与未来</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -1462,9 +1470,19 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -1482,7 +1500,9 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

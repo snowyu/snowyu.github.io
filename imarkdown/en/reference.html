@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -47,14 +47,20 @@
 </script>
 
   <meta name="description" content="Notation The notation for specifying elements is similar to the regular Markdown syntax for links and images, generally following this format: [text content]{variable_name: configuration} The text rep">
-<meta name="keywords" content="interactive,reactive,document,javascript,markdown">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Interactive Markdown Reference Manual">
 <meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;en&#x2F;reference.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Notation The notation for specifying elements is similar to the regular Markdown syntax for links and images, generally following this format: [text content]{variable_name: configuration} The text rep">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T12:02:00.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-06T12:02:00.000Z">
+<meta property="article:modified_time" content="2019-12-06T12:02:00.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="interactive">
+<meta property="article:tag" content="reactive">
+<meta property="article:tag" content="document">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="markdown">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/imarkdown/en/reference">
@@ -670,7 +676,7 @@ tooltip: you can try it by youself now
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#notation"><span class="nav-number">1.</span> <span class="nav-text">Notation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stringelement"><span class="nav-number">1.1.</span> <span class="nav-text">StringElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stringelement-examples"><span class="nav-number">1.1.1.</span> <span class="nav-text">StringElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#string-basic"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">String, basic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rangeelement"><span class="nav-number">1.2.</span> <span class="nav-text">RangeElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rangeelement-examples"><span class="nav-number">1.2.1.</span> <span class="nav-text">RangeElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#specifying-step"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Specifying step</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fractional-step-precision"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Fractional step, precision</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#with-constants"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">With constants</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unbounded"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Unbounded</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unbounded-right-before-text"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">Unbounded right, before text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switchelement"><span class="nav-number">1.3.</span> <span class="nav-text">SwitchElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#switchelement-examples"><span class="nav-number">1.3.1.</span> <span class="nav-text">SwitchElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-basic"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Switch, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-with-default"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Switch, with default</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-default-labeled-before-after-text"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Switch, default, labeled, before/after text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chartelement"><span class="nav-number">1.4.</span> <span class="nav-text">ChartElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chartelement-examples"><span class="nav-number">1.4.1.</span> <span class="nav-text">ChartElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#scatter-basic"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Scatter, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#line-basic"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">Line, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bar-basic"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">Bar, basic</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#codeblockelement"><span class="nav-number">2.</span> <span class="nav-text">CodeBlockElement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#play-movie-for-codeblock"><span class="nav-number">2.1.</span> <span class="nav-text">Play Movie for CodeBlock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#codeblock-examples"><span class="nav-number">2.2.</span> <span class="nav-text">CodeBlock Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-interactive-code-block-without-output"><span class="nav-number">2.2.1.</span> <span class="nav-text">Examples: interactive code block without output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-interactive-code-block-with-output"><span class="nav-number">2.2.2.</span> <span class="nav-text">Examples: interactive code block with output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-play-movie-for-codeblock"><span class="nav-number">2.2.3.</span> <span class="nav-text">Examples: Play Movie for CodeBlock</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#notation"><span class="nav-number">1.</span> <span class="nav-text">Notation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stringelement"><span class="nav-number">1.1.</span> <span class="nav-text">StringElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stringelement-examples"><span class="nav-number">1.1.1.</span> <span class="nav-text">StringElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#string-basic"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">String, basic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rangeelement"><span class="nav-number">1.2.</span> <span class="nav-text">RangeElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rangeelement-examples"><span class="nav-number">1.2.1.</span> <span class="nav-text">RangeElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#specifying-step"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Specifying step</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fractional-step-precision"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Fractional step, precision</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#with-constants"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">With constants</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unbounded"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Unbounded</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unbounded-right-before-text"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">Unbounded right, before text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switchelement"><span class="nav-number">1.3.</span> <span class="nav-text">SwitchElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#switchelement-examples"><span class="nav-number">1.3.1.</span> <span class="nav-text">SwitchElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-basic"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Switch, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-with-default"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Switch, with default</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-default-labeled-before-after-text"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Switch, default, labeled, before&#x2F;after text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chartelement"><span class="nav-number">1.4.</span> <span class="nav-text">ChartElement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chartelement-examples"><span class="nav-number">1.4.1.</span> <span class="nav-text">ChartElement Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#scatter-basic"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Scatter, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#line-basic"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">Line, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bar-basic"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">Bar, basic</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#codeblockelement"><span class="nav-number">2.</span> <span class="nav-text">CodeBlockElement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#play-movie-for-codeblock"><span class="nav-number">2.1.</span> <span class="nav-text">Play Movie for CodeBlock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#codeblock-examples"><span class="nav-number">2.2.</span> <span class="nav-text">CodeBlock Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-interactive-code-block-without-output"><span class="nav-number">2.2.1.</span> <span class="nav-text">Examples: interactive code block without output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-interactive-code-block-with-output"><span class="nav-number">2.2.2.</span> <span class="nav-text">Examples: interactive code block with output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examples-play-movie-for-codeblock"><span class="nav-number">2.2.3.</span> <span class="nav-text">Examples: Play Movie for CodeBlock</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -769,9 +775,19 @@ tooltip: you can try it by youself now
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -789,7 +805,9 @@ tooltip: you can try it by youself now
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

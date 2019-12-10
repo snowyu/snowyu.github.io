@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -47,14 +47,20 @@
 </script>
 
   <meta name="description" content="扩展标记 用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式： [文本内容]{variable_name: 可选的配置} 文本内容是该元素的文本表现，例如链接文本或图像替代文本，位于方括号“[]”之间。方括号后面是花括号“{}”，花括号中包含了变量名和配置(可选)，如果存在配置，则变量名后必须带有一个冒号“:”。 配置是决定元素类型并指定其行为的因素。 例如，">
-<meta name="keywords" content="interactive,reactive,document,javascript,markdown">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Interactive Markdown Reference Manual">
 <meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;reference.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="扩展标记 用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式： [文本内容]{variable_name: 可选的配置} 文本内容是该元素的文本表现，例如链接文本或图像替代文本，位于方括号“[]”之间。方括号后面是花括号“{}”，花括号中包含了变量名和配置(可选)，如果存在配置，则变量名后必须带有一个冒号“:”。 配置是决定元素类型并指定其行为的因素。 例如，">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T12:02:00.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-06T12:02:00.000Z">
+<meta property="article:modified_time" content="2019-12-06T12:02:00.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="interactive">
+<meta property="article:tag" content="reactive">
+<meta property="article:tag" content="document">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="markdown">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/imarkdown/reference">
@@ -941,7 +947,7 @@ tooltip: 现在你可以自己试一试了
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kuo-zhan-biao-ji"><span class="nav-number">1.</span> <span class="nav-text">扩展标记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zi-fu-chuan-yuan-su-stringelement-kong-jian"><span class="nav-number">1.1.</span> <span class="nav-text">字符串元素(StringElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zi-fu-chuan-yuan-su-li-zi"><span class="nav-number">1.1.1.</span> <span class="nav-text">字符串元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#string-basic"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">String, basic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fan-wei-yuan-su-rangeelement-kong-jian"><span class="nav-number">1.2.</span> <span class="nav-text">范围元素(RangeElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fan-wei-yuan-su-li-zi"><span class="nav-number">1.2.1.</span> <span class="nav-text">范围元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#zhi-ding-bu-chang"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">指定步长</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#xiao-shu-bu-chang-jing-du"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">小数步长，精度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dai-chang-liang"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">带常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mei-you-fan-wei"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">没有范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mei-you-zui-da-fan-wei"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">没有最大范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kai-guan-yuan-su-switchelement-kong-jian"><span class="nav-number">1.3.</span> <span class="nav-text">开关元素(SwitchElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kai-guan-yuan-su-li-zi"><span class="nav-number">1.3.1.</span> <span class="nav-text">开关元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-basic"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Switch, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-with-default"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Switch, with default</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-default-labeled-before-after-text"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Switch, default, labeled, before/after text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tu-biao-yuan-su-chartelement-kong-jian"><span class="nav-number">1.4.</span> <span class="nav-text">图表元素(ChartElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tu-biao-yuan-su-li-zi"><span class="nav-number">1.4.1.</span> <span class="nav-text">图表元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#san-dian-tu-basic"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">散点图, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zhe-xian-tu-basic"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">折线图, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tiao-xing-tu-basic"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">条形图, basic</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian"><span class="nav-number">2.</span> <span class="nav-text">交互代码块(CodeBlockElement)元素控件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#play-movie-for-codeblock"><span class="nav-number">2.1.</span> <span class="nav-text">Play Movie for CodeBlock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#codeblock-examples"><span class="nav-number">2.2.</span> <span class="nav-text">CodeBlock Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#example-interactive-code-block-without-output"><span class="nav-number">2.2.1.</span> <span class="nav-text">Example: interactive code block without output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example-interactive-code-block-with-output"><span class="nav-number">2.2.2.</span> <span class="nav-text">Example: interactive code block with output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example-play-movie-for-codeblock"><span class="nav-number">2.2.3.</span> <span class="nav-text">Example: Play Movie for CodeBlock</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kuo-zhan-biao-ji"><span class="nav-number">1.</span> <span class="nav-text">扩展标记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zi-fu-chuan-yuan-su-stringelement-kong-jian"><span class="nav-number">1.1.</span> <span class="nav-text">字符串元素(StringElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zi-fu-chuan-yuan-su-li-zi"><span class="nav-number">1.1.1.</span> <span class="nav-text">字符串元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#string-basic"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">String, basic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fan-wei-yuan-su-rangeelement-kong-jian"><span class="nav-number">1.2.</span> <span class="nav-text">范围元素(RangeElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fan-wei-yuan-su-li-zi"><span class="nav-number">1.2.1.</span> <span class="nav-text">范围元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#zhi-ding-bu-chang"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">指定步长</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#xiao-shu-bu-chang-jing-du"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">小数步长，精度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dai-chang-liang"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">带常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mei-you-fan-wei"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">没有范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mei-you-zui-da-fan-wei"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">没有最大范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kai-guan-yuan-su-switchelement-kong-jian"><span class="nav-number">1.3.</span> <span class="nav-text">开关元素(SwitchElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kai-guan-yuan-su-li-zi"><span class="nav-number">1.3.1.</span> <span class="nav-text">开关元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-basic"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Switch, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-with-default"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Switch, with default</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-default-labeled-before-after-text"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Switch, default, labeled, before&#x2F;after text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tu-biao-yuan-su-chartelement-kong-jian"><span class="nav-number">1.4.</span> <span class="nav-text">图表元素(ChartElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tu-biao-yuan-su-li-zi"><span class="nav-number">1.4.1.</span> <span class="nav-text">图表元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#san-dian-tu-basic"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">散点图, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zhe-xian-tu-basic"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">折线图, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tiao-xing-tu-basic"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">条形图, basic</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian"><span class="nav-number">2.</span> <span class="nav-text">交互代码块(CodeBlockElement)元素控件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#play-movie-for-codeblock"><span class="nav-number">2.1.</span> <span class="nav-text">Play Movie for CodeBlock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#codeblock-examples"><span class="nav-number">2.2.</span> <span class="nav-text">CodeBlock Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#example-interactive-code-block-without-output"><span class="nav-number">2.2.1.</span> <span class="nav-text">Example: interactive code block without output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example-interactive-code-block-with-output"><span class="nav-number">2.2.2.</span> <span class="nav-text">Example: interactive code block with output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example-play-movie-for-codeblock"><span class="nav-number">2.2.3.</span> <span class="nav-text">Example: Play Movie for CodeBlock</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1040,9 +1046,19 @@ tooltip: 现在你可以自己试一试了
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -1060,7 +1076,9 @@ tooltip: 现在你可以自己试一试了
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

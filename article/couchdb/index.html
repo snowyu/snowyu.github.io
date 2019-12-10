@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -47,14 +47,18 @@
 </script>
 
   <meta name="description" content="CouchDB 是一个面向文档的NoSQL数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为CouchApp，详见后述。  Source Build sudo apt-get --no-install-recommends -y install \     build-essential pkg-config erlang erlang-reltool \     libicu-d">
-<meta name="keywords" content="nosql,database,couchdb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CouchDB">
 <meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;couchdb&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="CouchDB 是一个面向文档的NoSQL数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为CouchApp，详见后述。  Source Build sudo apt-get --no-install-recommends -y install \     build-essential pkg-config erlang erlang-reltool \     libicu-d">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-25T19:30:00.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-09T21:30:59.000Z">
+<meta property="article:modified_time" content="2019-11-25T19:30:00.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="nosql">
+<meta property="article:tag" content="database">
+<meta property="article:tag" content="couchdb">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/article/couchdb/">
@@ -305,7 +309,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><span>riceball</span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -1383,7 +1387,7 @@ pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#source-build"><span class="nav-number">1.</span> <span class="nav-text">Source Build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gai-nian"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-ju-ku-database"><span class="nav-number">2.1.</span> <span class="nav-text">数据库(database)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nei-bu-shu-ju-ku"><span class="nav-number">2.1.1.</span> <span class="nav-text">内部数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#an-quan-yu-ren-zheng-users"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">安全与认证(_users)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wen-dang-document"><span class="nav-number">2.2.</span> <span class="nav-text">文档（document）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#wen-dang-cha-xun"><span class="nav-number">2.2.1.</span> <span class="nav-text">文档查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wen-dang-bian-geng-tong-zhi"><span class="nav-number">2.3.</span> <span class="nav-text">文档变更通知</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#changes-feed"><span class="nav-number">2.3.1.</span> <span class="nav-text">Changes Feed</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#polling"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">Polling</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#longpoll"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">longpoll</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#continuous"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">continuous</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#eventsource"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">eventsource</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shi-tu-view-yu-mapreduce-cha-xun"><span class="nav-number">2.4.</span> <span class="nav-text">视图（view） 与 Map/Reduce 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shi-tu-view-de-cha-xun-can-shu"><span class="nav-number">2.4.1.</span> <span class="nav-text">视图(View)的查询参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kuo-zhan-gai-nian"><span class="nav-number">2.5.</span> <span class="nav-text">扩展概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fu-jian-attatchment"><span class="nav-number">2.5.1.</span> <span class="nav-text">附件(attatchment)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#she-ji-wen-dang-design-document"><span class="nav-number">2.5.2.</span> <span class="nav-text">设计文档(design document)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#validate_doc_update"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">validate_doc_update</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchapp"><span class="nav-number">3.</span> <span class="nav-text">CouchApp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#couchapp"><span class="nav-number">3.1.</span> <span class="nav-text">Couchapp</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#change-your-app-id"><span class="nav-number">3.1.1.</span> <span class="nav-text">Change your App ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-config"><span class="nav-number">3.1.2.</span> <span class="nav-text">set config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add-some-web-pages"><span class="nav-number">3.1.3.</span> <span class="nav-text">Add Some Web Pages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#push-your-couchapp"><span class="nav-number">3.1.4.</span> <span class="nav-text">Push your CouchApp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fauxton"><span class="nav-number">4.</span> <span class="nav-text">Fauxton</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchdb-as-graph"><span class="nav-number">5.</span> <span class="nav-text">CouchDB As Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchdb-client"><span class="nav-number">6.</span> <span class="nav-text">CouchDB Client</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rxdb"><span class="nav-number">6.1.</span> <span class="nav-text">RxDB</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#source-build"><span class="nav-number">1.</span> <span class="nav-text">Source Build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gai-nian"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-ju-ku-database"><span class="nav-number">2.1.</span> <span class="nav-text">数据库(database)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nei-bu-shu-ju-ku"><span class="nav-number">2.1.1.</span> <span class="nav-text">内部数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#an-quan-yu-ren-zheng-users"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">安全与认证(_users)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wen-dang-document"><span class="nav-number">2.2.</span> <span class="nav-text">文档（document）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#wen-dang-cha-xun"><span class="nav-number">2.2.1.</span> <span class="nav-text">文档查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wen-dang-bian-geng-tong-zhi"><span class="nav-number">2.3.</span> <span class="nav-text">文档变更通知</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#changes-feed"><span class="nav-number">2.3.1.</span> <span class="nav-text">Changes Feed</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#polling"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">Polling</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#longpoll"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">longpoll</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#continuous"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">continuous</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#eventsource"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">eventsource</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shi-tu-view-yu-mapreduce-cha-xun"><span class="nav-number">2.4.</span> <span class="nav-text">视图（view） 与 Map&#x2F;Reduce 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shi-tu-view-de-cha-xun-can-shu"><span class="nav-number">2.4.1.</span> <span class="nav-text">视图(View)的查询参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kuo-zhan-gai-nian"><span class="nav-number">2.5.</span> <span class="nav-text">扩展概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fu-jian-attatchment"><span class="nav-number">2.5.1.</span> <span class="nav-text">附件(attatchment)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#she-ji-wen-dang-design-document"><span class="nav-number">2.5.2.</span> <span class="nav-text">设计文档(design document)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#validate_doc_update"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">validate_doc_update</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchapp"><span class="nav-number">3.</span> <span class="nav-text">CouchApp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#couchapp"><span class="nav-number">3.1.</span> <span class="nav-text">Couchapp</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#change-your-app-id"><span class="nav-number">3.1.1.</span> <span class="nav-text">Change your App ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-config"><span class="nav-number">3.1.2.</span> <span class="nav-text">set config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add-some-web-pages"><span class="nav-number">3.1.3.</span> <span class="nav-text">Add Some Web Pages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#push-your-couchapp"><span class="nav-number">3.1.4.</span> <span class="nav-text">Push your CouchApp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fauxton"><span class="nav-number">4.</span> <span class="nav-text">Fauxton</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchdb-as-graph"><span class="nav-number">5.</span> <span class="nav-text">CouchDB As Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchdb-client"><span class="nav-number">6.</span> <span class="nav-text">CouchDB Client</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rxdb"><span class="nav-number">6.1.</span> <span class="nav-text">RxDB</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1482,9 +1486,19 @@ pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -1502,7 +1516,9 @@ pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 
