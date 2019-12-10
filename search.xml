@@ -2072,7 +2072,7 @@ http-server
 </ol>
 <p>但是<strong>开源</strong>的只是万里长征的第一步，如果<strong>运作</strong>不开源，那么还是无法确保各方利益的真实执行。这需要一个各方满意并且各方看得见的<strong>运作</strong>机制。 这种机制必须允许保证各个参与者在平台上贡献的资源进行论功行赏，从而最终达到自洽和自我进化。</p>
 <h4 id="di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" class="heading-control">第二共识: 去中心化(去信任化,P2P)<a class="heading-anchor" href="#di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" aria-hidden="true"></a></h4>
-<p><img src="/blockchain-intro/central-vs-decentral.jpg" alt></p>
+<p><img src="./central-vs-decentral.jpg" alt></p>
 <p>以前信息是放在中心平台,平台负责管理,你完全不清楚平台是如何存储和管理您的数据，平台方以及平台维护者完全可以绕过您而任意滥用您的数据。而去中心化，首先是指信息的去中心化，数据在自己的手里，任何使用都经过自己的允许，其次才是指平台的去中心化。</p>
 <p>TO BE CONTINUE.</p>
 ]]></content>
