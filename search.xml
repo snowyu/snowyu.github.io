@@ -2041,7 +2041,7 @@ http-server
 <p>下一代的共享经济平台，实质上是一个对等社会平台网络，它是打通各个垂直领域，进行生产资料共享合作共赢的一个平台，可以说是全球的分布式经济系统，打通各个环节而不是处处设置门槛，让自动化流转更加便捷，使得各类创新的智能服务呈出不穷。这实际上就是新形式下全新的互联网。</p>
 <p>针对参与各方的开放，信任，权益的公平分配是下一代分享经济急需解决的主要问题。 那么如何能让各方都参与共建和共享利益呢？</p>
 <p>在我看来，作为一个没有任何背景，任何机构担保的项目，要让人用，最首先要解决的就是：信任。</p>
-<h3 id="jian-li-xin-ren" class="heading-control">建立信任<a class="heading-anchor" href="#jian-li-xin-ren" aria-hidden="true"></a></h3>
+<h3 id="xin-ren" class="heading-control">信任<a class="heading-anchor" href="#xin-ren" aria-hidden="true"></a></h3>
 <p>只有当我们在对待某些事情上达成一致，形成共识，才能有建立信任的基础。而事实上我们是有些共识的基础的：</p>
 <p>我们都相信:</p>
 <ul>
@@ -2054,7 +2054,7 @@ http-server
 <li>人人平等</li>
 <li>共识共产共治共赢</li>
 </ul>
-<h3 id="di-yi-gong-shi-kai-yuan" class="heading-control">第一共识:开源<a class="heading-anchor" href="#di-yi-gong-shi-kai-yuan" aria-hidden="true"></a></h3>
+<h4 id="di-yi-gong-shi-kai-yuan" class="heading-control">第一共识:开源<a class="heading-anchor" href="#di-yi-gong-shi-kai-yuan" aria-hidden="true"></a></h4>
 <p>为什么说共享经济的第一共识是开源（开放源代码）？简单来说：</p>
 <ul>
 <li>开源才能保障人人共有共享</li>
@@ -2071,7 +2071,9 @@ http-server
 <li>开源才能保证这是残各方自己拥有的自建平台</li>
 </ol>
 <p>但是<strong>开源</strong>的只是万里长征的第一步，如果<strong>运作</strong>不开源，那么还是无法确保各方利益的真实执行。这需要一个各方满意并且各方看得见的<strong>运作</strong>机制。 这种机制必须允许保证各个参与者在平台上贡献的资源进行论功行赏，从而最终达到自洽和自我进化。</p>
-<h3 id="di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" class="heading-control">第二共识: 去中心化(去信任化,P2P)<a class="heading-anchor" href="#di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" aria-hidden="true"></a></h3>
+<h4 id="di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" class="heading-control">第二共识: 去中心化(去信任化,P2P)<a class="heading-anchor" href="#di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" aria-hidden="true"></a></h4>
+<p><img src="/blockchain-intro/central-vs-decentral.jpg" alt></p>
+<p>以前信息是放在中心平台,平台负责管理,你完全不清楚平台是如何存储和管理您的数据，平台方以及平台维护者完全可以绕过您而任意滥用您的数据。而去中心化，首先是指信息的去中心化，数据在自己的手里，任何使用都经过自己的允许，其次才是指平台的去中心化。</p>
 <p>TO BE CONTINUE.</p>
 ]]></content>
       <categories>
@@ -2911,9 +2913,9 @@ ipset destroy chnroute
       </categories>
       <tags>
         <tag>cloud computing</tag>
+        <tag>open source</tag>
         <tag>saas</tag>
         <tag>software as a service</tag>
-        <tag>open source</tag>
       </tags>
   </entry>
   <entry>
@@ -7946,8 +7948,8 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
       </categories>
       <tags>
         <tag>thinking</tag>
-        <tag>open source</tag>
         <tag>arduino</tag>
+        <tag>open source</tag>
         <tag>hardware</tag>
         <tag>iot</tag>
       </tags>
@@ -8039,44 +8041,6 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
     <url>/categories/index.html</url>
     <content><![CDATA[<p>Collect all categories here.</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Going to St.ives</title>
-    <url>/imarkdown/stives.html</url>
-    <content><![CDATA[<p>An old riddle.</p>
-<blockquote>
-<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
-I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
-Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
-Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
-Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
-Kits, cats, sacks, wives<br>
-How many were going to St Ives?</p>
-</blockquote>
-<pre><code>total_sacks = @wives * @sacks
-total_cats  = total_sacks * @cats
-total_kits  = total_cats * @kits
-man         = 1
-
-if @travelers
-    narrator = 2
-    @verb = 'were'
-else
-    narrator = 1
-    @verb = 'was'
-</code></pre>
-<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
-<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
-</code></pre>
-<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
-<pre><code>@answer = narrator
-</code></pre>
-]]></content>
-  </entry>
-  <entry>
-    <title>tags</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Interactive Markdown</title>
@@ -8189,6 +8153,44 @@ tooltip: you can try it by youself now
 <h2 id="license" class="heading-control">License<a class="heading-anchor" href="#license" aria-hidden="true"></a></h2>
 <p>MIT</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Going to St.ives</title>
+    <url>/imarkdown/stives.html</url>
+    <content><![CDATA[<p>An old riddle.</p>
+<blockquote>
+<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
+I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
+Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
+Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
+Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
+Kits, cats, sacks, wives<br>
+How many were going to St Ives?</p>
+</blockquote>
+<pre><code>total_sacks = @wives * @sacks
+total_cats  = total_sacks * @cats
+total_kits  = total_cats * @kits
+man         = 1
+
+if @travelers
+    narrator = 2
+    @verb = 'were'
+else
+    narrator = 1
+    @verb = 'was'
+</code></pre>
+<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
+<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
+</code></pre>
+<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
+<pre><code>@answer = narrator
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>tags</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Interactive Markdown Reference Manual</title>

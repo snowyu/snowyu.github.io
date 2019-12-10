@@ -9,7 +9,7 @@
 
     <url>
         <loc>https://riceball.me/article/sharing-economy2/</loc>
-        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <lastmod>2019-12-10T07:21:50.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -112,6 +112,14 @@
     </url>
 
     <url>
+        <loc>https://riceball.me/article/phonegap/</loc>
+        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://riceball.me/article/open-saas/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -121,14 +129,6 @@
 
     <url>
         <loc>https://riceball.me/article/processing-language/</loc>
-        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://riceball.me/article/phonegap/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

@@ -4,42 +4,42 @@
 
     <url>
         <loc>https://riceball.me/tags/blockchain/</loc>
-        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <lastmod>2019-12-10T07:21:50.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://riceball.me/tags/economy/</loc>
-        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <lastmod>2019-12-10T07:21:50.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://riceball.me/tags/share/</loc>
-        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <lastmod>2019-12-10T07:21:50.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://riceball.me/tags/creation/</loc>
-        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <lastmod>2019-12-10T07:21:50.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://riceball.me/tags/internet/</loc>
-        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <lastmod>2019-12-10T07:21:50.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://riceball.me/tags/thinking/</loc>
-        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <lastmod>2019-12-10T07:21:50.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -346,6 +346,20 @@
     </url>
 
     <url>
+        <loc>https://riceball.me/tags/software-as-a-service/</loc>
+        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/tags/saas/</loc>
+        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://riceball.me/tags/application/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -382,20 +396,6 @@
 
     <url>
         <loc>https://riceball.me/tags/open-source/</loc>
-        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/tags/software-as-a-service/</loc>
-        <lastmod>2019-11-22T06:56:43.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/tags/saas/</loc>
         <lastmod>2019-11-22T06:56:43.533Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
