@@ -12,6 +12,7 @@ tags : [interactive, reactive, document, javascript, markdown]
 reactive:
   editable: true
 ---
+
 ## 扩展标记
 
 用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式：
