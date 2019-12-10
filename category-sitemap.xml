@@ -8,6 +8,27 @@
     </url>
 
     <url>
+        <loc>https://riceball.me/categories/Thinking/Internet/Sharing-Economy/</loc>
+        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/categories/Thinking/Internet/</loc>
+        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/categories/Thinking/</loc>
+        <lastmod>2019-12-10T02:36:32.207Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://riceball.me/categories/Thinking/Reactive/Document/Markdown/</loc>
         <lastmod>2019-12-08T01:31:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -23,13 +44,6 @@
 
     <url>
         <loc>https://riceball.me/categories/Thinking/Reactive/</loc>
-        <lastmod>2019-12-08T01:31:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/categories/Thinking/</loc>
         <lastmod>2019-12-08T01:31:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -127,21 +141,7 @@
     </url>
 
     <url>
-        <loc>https://riceball.me/categories/Thinking/Internet/Sharing-Economy/</loc>
-        <lastmod>2019-11-22T06:56:43.541Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://riceball.me/categories/Thinking/Internet/SNS/</loc>
-        <lastmod>2019-11-22T06:56:43.541Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/categories/Thinking/Internet/</loc>
         <lastmod>2019-11-22T06:56:43.541Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
