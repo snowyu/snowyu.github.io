@@ -35,6 +35,7 @@ tags:
 换吧，老早想换，因为PouchDB/CouchDB本来就不适合纯P2P（点对点）的存储，也就是人人都是中心的方式，P2P方式更类似于`Git`，本来考虑到是原型怎么着都无所谓，做做试验，试水一下，忍忍就过去了，但是，直到今天，再也无法忍了，还是一步到位，直接上Git作为存储。在开搞之前，决定写篇文字放松放松。
 
 以上文字，与我现在要写的文章没有半毛钱关系。
+
 <!--more-->
 
 ## Markdown 笔记
@@ -43,14 +44,14 @@ tags:
 
 不提EverNote/Notion这类商业软件(资料首选保存到云端，这明智得无语)。开源并支持[Markdown][markdown]笔记软件就非常多了：
 
-* [Joplin][Joplin]: ![Joplin](web-clipper/joplin.png)
-* [Cross Note](https://github.com/0xGG/crossnote): ![CrossNote](web-clipper/cross-note.png)
-* [μPad](https://getmicropad.com/): ![μPad](web-clipper/uPad.png)
-* [QOwnNotes](https://www.qownnotes.org/): ![QOwnNotes](web-clipper/qown-notes.png)
-* [Zim - A Desktop Wiki](https://zim-wiki.org/): ![Zim](web-clipper/zim.png)
-* [Cherry tree](https://www.giuspen.com/cherrytree/) (can export as Markdown): ![Cherry tree](web-clipper/cherry-tree.png)
-* [Notable](https://github.com/notable/notable) - Source Closed since v1.5.1: ![Notable](web-clipper/notable.png)
-* [Markor](https://github.com/gsantner/markor) - Android 平台超棒的 Markdown 记事本（含代办事宜）: ![Markor](web-clipper/markor.png)
+* [Joplin][Joplin]: ![Joplin](./joplin.png)
+* [Cross Note](https://github.com/0xGG/crossnote): ![CrossNote](./cross-note.png)
+* [μPad](https://getmicropad.com/): ![μPad](./uPad.png)
+* [QOwnNotes](https://www.qownnotes.org/): ![QOwnNotes](./qown-notes.png)
+* [Zim - A Desktop Wiki](https://zim-wiki.org/): ![Zim](./zim.png)
+* [Cherry tree](https://www.giuspen.com/cherrytree/) (can export as Markdown): ![Cherry tree](./cherry-tree.png)
+* [Notable](https://github.com/notable/notable) - Source Closed since v1.5.1: ![Notable](./notable.png)
+* [Markor](https://github.com/gsantner/markor) - Android 平台超棒的 Markdown 记事本（含代办事宜）: ![Markor](./markor.png)
 
 但是能方便进行网摘的就很少了，不过，可以使用网页转换为Markdown的浏览器插件: [markdown-clipper](https://github.com/deathau/markdown-clipper)，这个Clipper的问题是没保存图像数据。
 
@@ -69,7 +70,7 @@ tags:
 结合 [Joplin Web Clipper][JoplinWebClipper] 与 [Joplin Web Clipper Server][JoplinWebClipperServer] 协同进行网页摘要。
 
 [Joplin Web Clipper][JoplinWebClipper] 可以对文章全文以及选择部分内容进行提取，然后发送HTML内容到后台进行处理。
-![joplin-web-clipper](web-clipper/joplin-web-clipper.png)
+![joplin-web-clipper](./joplin-web-clipper.png)
 
 使用[Joplin Web Clipper][JoplinWebClipper]前必需运行[Joplin][Joplin]或者[Joplin Web Clipper Server][JoplinWebClipperServer]。
 
@@ -232,9 +233,9 @@ Enjoy!
 
 脑图不过是另类的大纲，用Markdown写大纲，不是更简单快捷，然后,要脑图还不简单，try:
 
-[![markmap](web-clipper/markmap.png)](https://markmap.js.org/repl/)
+[![markmap](./markmap.png)](https://markmap.js.org/repl/)
 
-至于用Markdown写幻灯片(SlideShow),![md-slideshow](web-clipper/md-slideshow.png)
+至于用Markdown写幻灯片(SlideShow),![md-slideshow](./md-slideshow.png)
 
 嵌入流程图，![markdown-mermaid](https://github.com/mjbvz/vscode-markdown-mermaid/raw/master/docs/example.png)
 
@@ -248,12 +249,12 @@ Enjoy!
 
 安装插件方法：进入VSCode, 按下`ctrl+P`，然后输入 `ext install` + `插件名称` 后，按下回车即可，例如, 安装流程图支持的markdown 插件: "ext install bierner.markdown-mermaid"。
 
-![vscode-outline](web-clipper/vscode-outline.png)
+![vscode-outline](./vscode-outline.png)
 VSCode 自带大纲显示和导航。再装上如下的插件(当心：多图杀🐈️猫)，就是一个专业的Markdown编辑器。
 
 * holmescn.vscode-wordcount-cjk: 在状态栏上显示文章的字数。
 * bierner.markdown-emoji:
-  * ![markdown-emoji](web-clipper/markdown-emoji.png)
+  * ![markdown-emoji](./markdown-emoji.png)
 * darkriszty.markdown-table-prettify:
   * ![darkriszty.markdown-table-prettify](https://github.com/darkriszty/MarkdownTablePrettify-VSCodeExt/raw/master/assets/animation.gif)
 * alefragnani.Bookmarks:
