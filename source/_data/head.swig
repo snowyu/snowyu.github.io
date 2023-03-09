@@ -1,5 +1,7 @@
 {# <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script> #}
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link href="https://github.com/snowyu" rel="me">
+
 
 {# <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 {%- if page.reactive %}
