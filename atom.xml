@@ -27,14 +27,10 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-si-ha-he-zi&quot; class=&quot;heading-control&quot;&gt;智能家居硬件采购避坑指要(四) HA盒子&lt;a class=&quot;heading-anchor&quot; href=&quot;#zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-si-ha-he-zi&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;HA是跑在PC上还是盒子里,这是个问题!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;PC性能远远强于盒子: CPU主频高(至少都是2G以上)核心多(8-16Cores),内存足(16G-64G),硬盘大&lt;/li&gt;
-&lt;li&gt;PC的功耗也远高于盒子,盒子功耗低&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;因此如果不在乎功耗和硬盘损耗,以及能够保持24小时开机(不能离线),无脑PC即可.&lt;/p&gt;
-&lt;h2 id=&quot;pc-de-wen-ti&quot; class=&quot;heading-control&quot;&gt;PC的问题&lt;a class=&quot;heading-anchor&quot; href=&quot;#pc-de-wen-ti&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+      
+      
+        &lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-si-ha-he-zi&quot; class=&quot;heading-control&quot;&gt;智能家居硬件采购避坑指要(四) HA盒子&lt;a class=&quot;heading-anchor&quot;
+      
     
     </summary>
     
@@ -75,22 +71,10 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-san-lan-ya-she-bei&quot; class=&quot;heading-control&quot;&gt;智能家居硬件采购避坑指要(三) 蓝牙设备&lt;a class=&quot;heading-anchor&quot; href=&quot;#zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-san-lan-ya-she-bei&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id=&quot;lan-ya-te-xing&quot; class=&quot;heading-control&quot;&gt;蓝牙特性&lt;a class=&quot;heading-anchor&quot; href=&quot;#lan-ya-te-xing&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;短距离通信：蓝牙技术的通信范围通常为10米以内&lt;/li&gt;
-&lt;li&gt;蓝牙信号穿墙能力有限,除非你购买BLE蓝牙网关中继设备,而且更容易受到干扰,尤其是不带自动跳频的蓝牙.&lt;/li&gt;
-&lt;li&gt;能耗相对较低：因为低功耗蓝牙设备在省电上还是比不过Zigbee设备,BLE蓝牙5.0在省电上与zigbee很接近了.
-&lt;ul&gt;
-&lt;li&gt;因此: 为了省电,米家的温度传感器(LYWSD03MMC)是大约10分钟发送一次数据,如果不刷第三方固件,想与空调联动就不要想了.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;简单易用：智能家居蓝牙设备使用普及度高的蓝牙协议，用户不需要额外的网关或路由器即可连接和控制设备&lt;/li&gt;
-&lt;li&gt;目前蓝牙协议大多数是私有协议，互通性较差,HA无法直接控制,只有少量的特定厂家的低功耗蓝牙传感设备才能通过第三方&lt;a href=&quot;https://github.com/custom-components/ble_monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Passive BLE Monitor 集成&lt;/a&gt; 直接接入HA,支持的设备详见下方的支持列表.&lt;/li&gt;
-&lt;li&gt;价格便宜:由于蓝牙技术在手机和其他消费电子设备上得到广泛应用，智能家居蓝牙设备的成本相对较低。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;di-san-fang-passive-ble-monitor-ji-cheng&quot; class=&quot;heading-control&quot;&gt;第三方&lt;a href=&quot;https://github.com/custom-components/ble_monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Passive BLE Monitor 集成&lt;/a&gt;&lt;a class=&quot;heading-anchor&quot; href=&quot;#di-san-fang-passive-ble-monitor-ji-cheng&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;: 最新HA版本(2022.8以后)的官方蓝牙集成开始直接支持Passive BLE 设备,目前还在移植更多的蓝牙设备.官方蓝牙集成不能与BLE Monitor集成同时工作!请做好选择,官方蓝牙集成同样支持蓝牙网关.&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-san-lan-ya-she-bei&quot; class=&quot;heading-control&quot;&gt;智能家居硬件采购避坑指要(三) 蓝牙设备&lt;a class=&quot;heading-
+      
     
     </summary>
     
@@ -131,17 +115,10 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-er-wifi-she-bei&quot; class=&quot;heading-control&quot;&gt;智能家居硬件采购避坑指要(二) Wifi设备&lt;a class=&quot;heading-anchor&quot; href=&quot;#zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-er-wifi-she-bei&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&quot;./wifi-smart-home.jpg&quot; alt&gt;&lt;/p&gt;
-&lt;h2 id=&quot;wifi-te-xing&quot; class=&quot;heading-control&quot;&gt;Wifi 特性&lt;a class=&quot;heading-anchor&quot; href=&quot;#wifi-te-xing&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;穿墙性能好(与Zigbee和蓝牙相比)&lt;/li&gt;
-&lt;li&gt;高带宽(与Zigbee和蓝牙相比)&lt;/li&gt;
-&lt;li&gt;Wifi模块便宜&lt;/li&gt;
-&lt;li&gt;需要考虑路由器的带机量,一般家用路由器的带机量都不大.&lt;/li&gt;
-&lt;li&gt;最好选择直接供电(非电池)的Wifi设备,避免频繁更换电池的麻烦&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Zigbee2MQTT的低功耗是源于它的低速,但某些场合则要求高带宽,比如&lt;code&gt;IP摄像头&lt;/code&gt;. 而对IP摄像头来说支持 &lt;code&gt;ONVIF(Open Network Video Interface Forum)&lt;/code&gt; 协议是必须的,不支持开放网络视频协议的都是在耍流氓,当用户是羊!比如:&lt;strong&gt;萤石&lt;/strong&gt;私有协议,看似可以接入HA,你不知道的是所有的控制都要去他们公司云上绕一圈才回来,为了达到偷窥家庭的目的,特意废弃一贯支持的&lt;code&gt;ONVIF&lt;/code&gt;,搞了萤石私有协议,让他们公司的有权限的人可以随时随地观看场景剧甚至动作片,不旺一番苦心.&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-er-wifi-she-bei&quot; class=&quot;heading-control&quot;&gt;智能家居硬件采购避坑指要(二) Wifi设备&lt;a class=&quot;heading-a
+      
     
     </summary>
     
@@ -182,11 +159,11 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;./zigbee-smart-home.jpg&quot; alt&gt;&lt;/p&gt;
-&lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-yi-zigbee-she-bei&quot; class=&quot;heading-control&quot;&gt;智能家居硬件采购避坑指要(一) Zigbee设备&lt;a class=&quot;heading-anchor&quot; href=&quot;#zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-yi-zigbee-she-bei&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;注意: &lt;a href=&quot;https://www.home-assistant.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Home Assistant&lt;/a&gt; 简称 HA, 后面我就用简称了.&lt;/p&gt;
-&lt;h2 id=&quot;zigbee-she-bei-de-te-xing&quot; class=&quot;heading-control&quot;&gt;Zigbee设备的特性&lt;a class=&quot;heading-anchor&quot; href=&quot;#zigbee-she-bei-de-te-xing&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;为啥要以Zigbee设备为主,这就要从它的特性谈起:&lt;/p&gt;
+      
+      
+        &lt;p&gt;&lt;img src=&quot;./zigbee-smart-home.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;h1 id=&quot;zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-yi-zigbee-she-bei&quot; class=&quot;heading-c
+      
     
     </summary>
     
@@ -227,12 +204,10 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;quan-wu-zhi-neng-huan-shi-quan-wu-zhi-neng-zhi-neng-chan-pin-huan-shi-zhi-zhang-chan-pin-fu-wu&quot; class=&quot;heading-control&quot;&gt;全屋智能还是全无智能,智能产品还是智障&amp;quot;产品&amp;quot;(服务)&lt;a class=&quot;heading-anchor&quot; href=&quot;#quan-wu-zhi-neng-huan-shi-quan-wu-zhi-neng-zhi-neng-chan-pin-huan-shi-zhi-zhang-chan-pin-fu-wu&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;要注意区分产品和服务,产品才是自己的,服务是别人的,是可以随时改变条款的. 不要花大价钱,买回一堆服务.&lt;/p&gt;
-&lt;h2 id=&quot;yi-dian-fei-hua&quot; class=&quot;heading-control&quot;&gt;一点废话&lt;a class=&quot;heading-anchor&quot; href=&quot;#yi-dian-fei-hua&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;现在越来越多&amp;quot;智能&amp;quot;产品,都要求注册/登陆后才能使用, 这不荒唐么,这是什么产品,还是服务?&lt;/p&gt;
-&lt;p&gt;听上去全屋智能高达上,其实只是是换了个词忽悠.你兴匆匆的东看看西看看,这家这个不错,便宜;那家那个功能强,都提全屋智能了,那还不赶紧随便挑.&lt;br&gt;
-嘿嘿,那你就想错了,各家是各家的,各家设备彼此是无法直接沟通的,没有互联互通,谈不上智能,唯有智障,弄一大堆按钮铺满在手机上遥控就是智能?&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;quan-wu-zhi-neng-huan-shi-quan-wu-zhi-neng-zhi-neng-chan-pin-huan-shi-zhi-zhang-chan-pin-fu-wu&quot; class=&quot;heading-control&quot;&gt;全屋智能还是全无智能,智
+      
     
     </summary>
     
@@ -271,8 +246,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;wang-zhai-yu-zhi-shi-bi-ji-za-dan&quot; class=&quot;heading-control&quot;&gt;网摘与知识笔记杂弹&lt;a class=&quot;heading-anchor&quot; href=&quot;#wang-zhai-yu-zhi-shi-bi-ji-za-dan&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id=&quot;qian-yan&quot; class=&quot;heading-control&quot;&gt;前言&lt;a class=&quot;heading-anchor&quot; href=&quot;#qian-yan&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+      &lt;h1 id=&quot;wang-zhai-yu-zhi-shi-bi-ji-za-dan&quot;&gt;网摘与知识笔记杂弹&lt;/h1&gt;
+&lt;h2 id=&quot;qian-yan&quot;&gt;前言&lt;/h2&gt;
 &lt;p&gt;忙活了许久，攻克了一个接一个的难关：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Offline first with P2P&lt;/li&gt;
@@ -286,6 +261,7 @@
 &lt;li&gt;简易动画相片编辑器（自动移位、缩放动画到人脸或者指定位置）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;眼看我的原型项目就快完成了，结果我栽在了同步上，没错，就是 &lt;code&gt;PouchDB&lt;/code&gt; 引以为豪的同步操作，第一次同步没有问题。第二次同步就歇菜，一大堆的冲突错误，但实际上我根本没有增加任何数据，粗步怀疑后续同步必需保存上一次的&lt;code&gt;last_seq&lt;/code&gt;的值，这不科学，万一这玩意弄丢了，那不就再也无法同步到服务器了，这太Low了。我还记得，前面发现一个PouchDB的严重错误：在特定情况下（&lt;code&gt;new_edits=false&lt;/code&gt;）的&lt;code&gt;bulkDocs&lt;/code&gt;函数并不返回操作成功的的数据。然后PouchDB的维护者说，他必需保证和CouchDB的完全一致，&lt;a href=&quot;https://github.com/pouchdb/pouchdb/issues/7916#issuecomment-560028271&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;CouchDB的Bug也必需在PouchDB完全重现&lt;/a&gt;，于是拒绝了我的PR，并关闭了Issue就当bug不存在！这脑洞到底该有多大。给PouchDB缝缝补补也有些时日，算了，累了，趁这个机会换吧，老早想换，因为PouchDB/CouchDB本来就不适合纯P2P（点对点）的存储，也就是人人都是中心的方式，P2P方式更类似于&lt;code&gt;Git&lt;/code&gt;，本来考虑到是原型怎么着都无所谓，做做试验，试水一下，忍忍就过去了，但是，直到今天，再也无法忍了，还是一步到位，直接上Git作为存储。在开搞之前，决定写篇文字放松放松。&lt;/p&gt;
+&lt;p&gt;以上文字，与我现在要写的文章没有半毛钱关系。&lt;/p&gt;
     
     </summary>
     
@@ -316,11 +292,11 @@
     
     <summary type="html">
     
-      &lt;p&gt;GnuPG软件（简称GPG） – OpenPGP&lt;/p&gt;
-&lt;h1 id=&quot;li-shi-jie-shao-history&quot; class=&quot;heading-control&quot;&gt;历史介绍 History&lt;a class=&quot;heading-anchor&quot; href=&quot;#li-shi-jie-shao-history&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id=&quot;pgp-pretty-good-privacy&quot; class=&quot;heading-control&quot;&gt;PGP (Pretty Good Privacy)&lt;a class=&quot;heading-anchor&quot; href=&quot;#pgp-pretty-good-privacy&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。&lt;/p&gt;
-&lt;h2 id=&quot;openpgp&quot; class=&quot;heading-control&quot;&gt;OpenPGP&lt;a class=&quot;heading-anchor&quot; href=&quot;#openpgp&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+      
+      
+        &lt;p&gt;GnuPG软件（简称GPG） – OpenPGP&lt;/p&gt;
+&lt;h1 id=&quot;li-shi-jie-shao-history&quot; class=&quot;heading-control&quot;&gt;历史介绍 History&lt;a class=&quot;heading-anchor&quot; href=&quot;#li-shi
+      
     
     </summary>
     
@@ -351,11 +327,9 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang&quot; class=&quot;heading-control&quot;&gt;什么是响应(交互)式文档&lt;a class=&quot;heading-anchor&quot; href=&quot;#shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+      &lt;h2 id=&quot;shi-mo-shi-xiang-ying-jiao-hu-shi-wen-dang&quot;&gt;什么是响应(交互)式文档&lt;/h2&gt;
 &lt;p&gt;什么是响应(交互)式文档，简单的说就是文档内容能够实时响应读者的交互，根据交互实时变化的文档。在技术，教育领域中，为了将知识表述更清楚，常常需要✍文档能“动”起来，最极端的例子应该是🎮️“游戏”。虽然目前还不能让🎮️游戏文档直接“动”起来。不过未来就不一定了。&lt;/p&gt;
 &lt;p&gt;我们接下来通过一个简单的响应(交互)式文档例子，来直观感受一下，请看下面。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;hui-zhi-ju-xing-rect-li-zi&quot; class=&quot;heading-control&quot;&gt;绘制矩形(Rect)例子&lt;a class=&quot;heading-anchor&quot; href=&quot;#hui-zhi-ju-xing-rect-li-zi&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h3&gt;
     
     </summary>
     
@@ -395,24 +369,6 @@
     <summary type="html">
     
       &lt;p&gt;CouchDB 是一个面向文档的&lt;code&gt;NoSQL&lt;/code&gt;数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为&lt;code&gt;CouchApp&lt;/code&gt;，详见后述。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;source-build&quot; class=&quot;heading-control&quot;&gt;Source Build&lt;a class=&quot;heading-anchor&quot; href=&quot;#source-build&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo apt-get --no-install-recommends -y install \
-    build-essential pkg-config erlang erlang-reltool \
-    libicu-dev libcurl4-openssl-dev
-sudo apt-get install devscripts libnspr4-dev pkg-kde-tools
-git &lt;span class=&quot;hljs-built_in&quot;&gt;clone&lt;/span&gt; https://github.com/apache/couchdb
-git &lt;span class=&quot;hljs-built_in&quot;&gt;clone&lt;/span&gt; https://github.com/apache/couchdb-pkg
-&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; couchdb-pkg
-make couch-js-debs PLATFORM=bionic &lt;span class=&quot;hljs-comment&quot;&gt;# howto use it? still cannot find jsapi.h&lt;/span&gt;
-sudo dpkg -i js/couch-libmozjs185-*.deb
-
-&lt;span class=&quot;hljs-comment&quot;&gt;# build dpkg needed:&lt;/span&gt;
-sudo apt install dh-exec dh-systemd nodejs python-sphinx
-
-make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;gai-nian&quot; class=&quot;heading-control&quot;&gt;概念&lt;a class=&quot;heading-anchor&quot; href=&quot;#gai-nian&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
     
     </summary>
     
@@ -443,12 +399,10 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
     <summary type="html">
     
-      &lt;h1 id=&quot;ionic-framework&quot; class=&quot;heading-control&quot;&gt;Ionic Framework&lt;a class=&quot;heading-anchor&quot; href=&quot;#ionic-framework&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Ionic 4 已经彻底解耦用户界面和框架,你可以在&lt;code&gt;angular&lt;/code&gt;和&lt;code&gt;react&lt;/code&gt;(甚至&lt;code&gt;vue&lt;/code&gt;)之间选择.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npm i -g ionic
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;已经是用angluar-cli(angular6配套的)。已经使用了angular的route.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://update.angular.io&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://update.angular.io&lt;/a&gt; 从老版本Angular升级到Angular6的指南。&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;ionic-framework&quot; class=&quot;heading-control&quot;&gt;Ionic Framework&lt;a class=&quot;heading-anchor&quot; href=&quot;#ionic-framework&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h
+      
     
     </summary>
     
@@ -485,11 +439,11 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
     <summary type="html">
     
-      &lt;p&gt;接前文：&lt;a href=&quot;./share-economy&quot;&gt;从分享经济到共享经济——分享经济的前世今生&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;xia-yi-dai-de-fen-xiang-jing-ji-gong-xiang-jing-ji&quot; class=&quot;heading-control&quot;&gt;下一代的分享经济:共享经济&lt;a class=&quot;heading-anchor&quot; href=&quot;#xia-yi-dai-de-fen-xiang-jing-ji-gong-xiang-jing-ji&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;设想下什么样的平台才能满足如下的需求：&lt;/p&gt;
-&lt;h2 id=&quot;ge-xing-hua-sheng-chan&quot; class=&quot;heading-control&quot;&gt;个性化生产&lt;a class=&quot;heading-anchor&quot; href=&quot;#ge-xing-hua-sheng-chan&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;当我构思出一种高度安全汽车概念，于是我在平台建立一个新项目，说明这个项目由来，以及这个项目的关键点：&lt;/p&gt;
+      
+      
+        &lt;p&gt;接前文：&lt;a href=&quot;./share-economy&quot;&gt;从分享经济到共享经济——分享经济的前世今生&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;xia-yi-dai-de-fen-xiang-jing-ji-gong-xiang-jing-ji&quot; class=&quot;heading-co
+      
     
     </summary>
     
@@ -526,11 +480,10 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
     <summary type="html">
     
-      &lt;h1 id=&quot;fen-xiang-jing-ji-de-qian-shi-jin-sheng&quot; class=&quot;heading-control&quot;&gt;分享经济的前世今生&lt;a class=&quot;heading-anchor&quot; href=&quot;#fen-xiang-jing-ji-de-qian-shi-jin-sheng&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;“分享”这一概念是很容易理解的，因为我们打小从幼儿园的时候，就被教育说要主动分享，乐于助人。 “分享”这更是慈善事业中的主旋律。 用一言而概之，就是将自己的(既有资源)，与他人分享。&lt;/p&gt;
-&lt;p&gt;“分享经济”这一概念则是最近几年才明确地提出来的。 然而往往却和&amp;quot;公司租赁&amp;quot;混在一块，在我看来，这错得离谱，他们有着本质的不同。 而目前“租赁经济”只不过是披着互联网皮的传统公司租赁模式。&lt;/p&gt;
-&lt;p&gt;那么“租赁经济”和“分享经济”最本质的不同之处在哪里？&lt;/p&gt;
-&lt;p&gt;虽然“分享经济”看上去和“租赁”差不多，都是“资源”出借的方式。 但是本质的区别在于“租赁模式”是一家公司的将采购（&lt;strong&gt;全新购买&lt;/strong&gt;）的资源租赁出去，并从中获得金钱收益的方式，而“分享经济”则是将每一个人(人人)&lt;strong&gt;已有的闲置资源&lt;/strong&gt;进行充分利用，不仅仅是租赁（还可以是交换，赠与，甚至买卖的方式），这实质是一种协同消费(collaborative consumption)，也是第一代分享经济的主要特征。&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;fen-xiang-jing-ji-de-qian-shi-jin-sheng&quot; class=&quot;heading-control&quot;&gt;分享经济的前世今生&lt;a class=&quot;heading-anchor&quot; href=&quot;#fen-xiang-jing-ji-de-qian
+      
     
     </summary>
     
@@ -567,11 +520,10 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
     <summary type="html">
     
-      &lt;h1 id=&quot;mqtt-fu-wu-iot-jie-de-xiao-xi-ding-yue-fa-bu&quot; class=&quot;heading-control&quot;&gt;MQTT 服务 - IoT界的消息订阅发布&lt;a class=&quot;heading-anchor&quot; href=&quot;#mqtt-fu-wu-iot-jie-de-xiao-xi-ding-yue-fa-bu&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，相当于你帮他们植入了常驻设备的推送后门。&lt;/p&gt;
-&lt;p&gt;只有自驾了。我选择了MQTT。&lt;/p&gt;
-&lt;p&gt;MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。用在手机设备最好不过。&lt;/p&gt;
-&lt;h2 id=&quot;mqtt-xie-yi-jian-dan-jie-shao&quot; class=&quot;heading-control&quot;&gt;MQTT 协议简单介绍&lt;a class=&quot;heading-anchor&quot; href=&quot;#mqtt-xie-yi-jian-dan-jie-shao&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
+      
+      
+        &lt;h1 id=&quot;mqtt-fu-wu-iot-jie-de-xiao-xi-ding-yue-fa-bu&quot; class=&quot;heading-control&quot;&gt;MQTT 服务 - IoT界的消息订阅发布&lt;a class=&quot;heading-anchor&quot; href=&quot;#mqtt-fu-
+      
     
     </summary>
     
@@ -606,11 +558,11 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
     <summary type="html">
     
-      &lt;h1 id=&quot;ubuntu-16-10&quot; class=&quot;heading-control&quot;&gt;Ubuntu 16.10&lt;a class=&quot;heading-anchor&quot; href=&quot;#ubuntu-16-10&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。&lt;/p&gt;
-&lt;p&gt;这里记录下 Ubuntu 16.10 以上版本的安装tips.&lt;/p&gt;
-&lt;h2 id=&quot;shell&quot; class=&quot;heading-control&quot;&gt;Shell&lt;a class=&quot;heading-anchor&quot; href=&quot;#shell&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;我比较习惯 zsh, 下载安装zsh:&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;ubuntu-16-10&quot; class=&quot;heading-control&quot;&gt;Ubuntu 16.10&lt;a class=&quot;heading-anchor&quot; href=&quot;#ubuntu-16-10&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Ubu
+      
     
     </summary>
     
@@ -651,11 +603,10 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
     <summary type="html">
     
-      &lt;h1 id=&quot;saas-ping-tai-zhi-shang&quot; class=&quot;heading-control&quot;&gt;SaaS平台之殇&lt;a class=&quot;heading-anchor&quot; href=&quot;#saas-ping-tai-zhi-shang&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id=&quot;bei-jing&quot; class=&quot;heading-control&quot;&gt;背景&lt;a class=&quot;heading-anchor&quot; href=&quot;#bei-jing&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;商业应用的集中式托管可以追溯到20世纪60年代的时分系统中。SaaS通常使用多租架构为多个商业组织和用户提供服务。&lt;/p&gt;
-&lt;p&gt;在多租环境中的相对低廉的用户服务开通（创建新客户），使得一些软件即服务供应商可以用免费模式来提供应用。在这种模式下，基本功能免费，增强功能或更大的范围则是要收费的。当然，也有完全对用户完全免费的SaaS，而他们的收入则产生于其它相关来源例如：广告。&lt;/p&gt;
-&lt;p&gt;SaaS的本质是将规模经济应用到软件应用的运营上。故其规模决定了其发展。而影响企业用户决定是否采用SaaS的一个最关键因素就是&lt;code&gt;数据&lt;/code&gt;。&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;saas-ping-tai-zhi-shang&quot; class=&quot;heading-control&quot;&gt;SaaS平台之殇&lt;a class=&quot;heading-anchor&quot; href=&quot;#saas-ping-tai-zhi-shang&quot; aria-hidden=&quot;true
+      
     
     </summary>
     
@@ -688,28 +639,10 @@ make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
     
     <summary type="html">
     
-      &lt;h2 id=&quot;coffee-style-smart-computer-language&quot; class=&quot;heading-control&quot;&gt;Coffee Style Smart Computer Language&lt;a class=&quot;heading-anchor&quot; href=&quot;#coffee-style-smart-computer-language&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I treat the coffee-script and &lt;code&gt;Literate CoffeeScript&lt;/code&gt; as the first &lt;code&gt;coffee style&lt;/code&gt; smart computer language concept.&lt;br&gt;
-This should be the basics of the next generation Smart Computer Language.&lt;/p&gt;
-&lt;p&gt;Features:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Space indents for block, the curly braces are optional.&lt;/li&gt;
-&lt;li&gt;The brackets are optional for function revocation.&lt;/li&gt;
-&lt;li&gt;The array, object(dict) assignment could be no comma, instead of using the block.&lt;/li&gt;
-&lt;li&gt;The functional expression definition could be ‘-&amp;gt;’ or ‘=&amp;gt;’.&lt;/li&gt;
-&lt;li&gt;Smart variable definition
-&lt;ul&gt;
-&lt;li&gt;It should be a compiler switcher.&lt;/li&gt;
-&lt;li&gt;The first variable assignment will be declared if no the same name variable before.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;RTL(run-time library) replace-able.
-&lt;ul&gt;
-&lt;li&gt;you can write your own &lt;code&gt;extends&lt;/code&gt;, &lt;code&gt;for in&lt;/code&gt; etc rtl functions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Pros:&lt;/p&gt;
+      
+      
+        &lt;h2 id=&quot;coffee-style-smart-computer-language&quot; class=&quot;heading-control&quot;&gt;Coffee Style Smart Computer Language&lt;a class=&quot;heading-anchor&quot; href=&quot;#c
+      
     
     </summary>
     
@@ -770,20 +703,10 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     
     <summary type="html">
     
-      &lt;h1 id=&quot;loopback-framework&quot; class=&quot;heading-control&quot;&gt;Loopback Framework&lt;a class=&quot;heading-anchor&quot; href=&quot;#loopback-framework&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;尽管我不怎么欣赏它的内部实现，但是不得不说这是Open API开发框架的又一次创新，使得开发API的过程更为简单和易用。&lt;br&gt;
-&lt;a href=&quot;http://loopback.io&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;LoopBack&lt;/a&gt; 是一个基于&lt;a href=&quot;http://expressjs.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Express&lt;/a&gt;的开源 Node.js API框架，用于快速构建自己的OpenAPI平台，提供API接口给mobile, web和其他设备。它能够同时连接多种不同的数据源，非常简单的暴露model为标准的RESTful API，用nodejs 开发API，提供JS, iOS 和 Android SDKs.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://strongloop.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;StrongLoop&lt;/a&gt;在2015年&lt;a href=&quot;https://developer.ibm.com/bluemix/2015/09/10/getting-started-node-js-loopback-framework-ibm-cloudant/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;被IBM收购了&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;features&quot; class=&quot;heading-control&quot;&gt;Features&lt;a class=&quot;heading-anchor&quot; href=&quot;#features&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;快速创建动态 end-to-end REST APIs.&lt;/li&gt;
-&lt;li&gt;连接设备/浏览器到数据和服务。&lt;/li&gt;
-&lt;li&gt;使用 Android, iOS, and AngularJS SDKs 轻松创建客户端应用.&lt;/li&gt;
-&lt;li&gt;提供 push, 文件管理, 第三方登录, 以及 geolocation 的附加组件.&lt;/li&gt;
-&lt;li&gt;使用 &lt;code&gt;StrongLoop Arc&lt;/code&gt; IDE 可视化的编辑，部署和监视 LoopBack API服务.&lt;/li&gt;
-&lt;li&gt;StrongLoop API网关充当API消费者与API提供者之间的中介，进行外部化的安全管理API。&lt;/li&gt;
-&lt;li&gt;可以部署运行在内部或者云端&lt;/li&gt;
-&lt;/ul&gt;
+      
+      
+        &lt;h1 id=&quot;loopback-framework&quot; class=&quot;heading-control&quot;&gt;Loopback Framework&lt;a class=&quot;heading-anchor&quot; href=&quot;#loopback-framework&quot; aria-hidden=&quot;true
+      
     
     </summary>
     
@@ -818,33 +741,11 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     
     <summary type="html">
     
-      &lt;h1 id=&quot;promise&quot; class=&quot;heading-control&quot;&gt;Promise&lt;a class=&quot;heading-anchor&quot; href=&quot;#promise&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Promise是简化异步编程的重要概念。这篇文章介绍得不错：&lt;a href=&quot;http://know.cujojs.com/tutorials/async/simplifying-async-with-promises&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Simplifying Async with Promises&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;promise只有三种状态，未完成，完成(fulfilled)和失败(rejected)。&lt;/li&gt;
-&lt;li&gt;promise的状态可以由未完成转换成完成，或者未完成转换成失败。&lt;/li&gt;
-&lt;li&gt;promise的状态转换只发生一次&lt;/li&gt;
-&lt;li&gt;promise有一个then方法: (&lt;code&gt;promise.then(onFulfilled, onRejected)&lt;/code&gt;)
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;then方法可以接受2个回调函数作为参数。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;对应promise的两种状态fulfilled, rejected的回调函数。回调函数的传递参数分别是resolve(value),reject(value) 函数。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;.then(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;resolve&lt;/span&gt;)&lt;/span&gt;{
-        &lt;span class=&quot;hljs-comment&quot;&gt;//当promise状态变成fulfilled时，调用此函数&lt;/span&gt;
-    },&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;reject&lt;/span&gt;)&lt;/span&gt;{
-        &lt;span class=&quot;hljs-comment&quot;&gt;//当promise状态变成rejected时，调用此函数&lt;/span&gt;
-    });
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;coffee&quot;&gt;.&lt;span class=&quot;hljs-keyword&quot;&gt;then&lt;/span&gt; (&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;(resolve)&lt;/span&gt;-&amp;gt;&lt;/span&gt;), &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;(reject)&lt;/span&gt;-&amp;gt;&lt;/span&gt;))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Promise API 标准存在多个提案，目前看来，&lt;a href=&quot;https://promisesaplus.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Promises/A+&lt;/a&gt; 已经正在成为事实上的标准。&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;promise&quot; class=&quot;heading-control&quot;&gt;Promise&lt;a class=&quot;heading-anchor&quot; href=&quot;#promise&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Promise是简化异步编程的重要概
+      
     
     </summary>
     
@@ -875,18 +776,10 @@ This should be the basics of the next generation Smart Computer Language.&lt;/p&
     
     <summary type="html">
     
-      &lt;h1 id=&quot;ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng&quot; class=&quot;heading-control&quot;&gt;如何选择一门语言学习计算机编程&lt;a class=&quot;heading-anchor&quot; href=&quot;#ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;实用派的想法：&lt;/p&gt;
-&lt;p&gt;哪一门或一些语言适合你？取决于你想干什么？&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;你是想做嵌入式系统开发？&lt;/li&gt;
-&lt;li&gt;或是想数据挖掘统计分析？&lt;/li&gt;
-&lt;li&gt;或是想开发web站点？&lt;/li&gt;
-&lt;li&gt;或是想做原生的iOS系统开发？&lt;/li&gt;
-&lt;li&gt;或是想做原生的Android系统开发？&lt;/li&gt;
-&lt;li&gt;或是想做跨移动平台的开发？&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;不同的选择决定你会去学习使用一些不同的语言。&lt;/p&gt;
+      
+      
+        &lt;h1 id=&quot;ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng&quot; class=&quot;heading-control&quot;&gt;如何选择一门语言学习计算机编程&lt;a class=&quot;heading-anchor&quot; href=&quot;#ru
+      
     
     </summary>
     
