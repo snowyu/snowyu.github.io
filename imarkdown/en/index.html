@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Introduction Interactive Markdown is a tool for making reactive&#x2F;interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The l">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Interactive Markdown">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;en&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="Introduction Interactive Markdown is a tool for making reactive&#x2F;interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The l">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-23T14:22:00.000Z">
+<meta property="article:modified_time" content="2019-12-07T01:35:00.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="interactive">
+<meta property="article:tag" content="reactive">
+<meta property="article:tag" content="document">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="markdown">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/imarkdown/en/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>Interactive Markdown | Riceball LEE
+  </title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">Interactive Markdown
+</h2>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/imarkdown/">IMARKDOWN</a></li>
+          <li>EN</li>
+        
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h2 id="introduction" class="heading-control">Introduction<a class="heading-anchor" href="#introduction" aria-hidden="true"></a></h2>
+<p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
+<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a complete reference of the elements and their configuration.</p>
+<p>Status: Alpha Test</p>
+<a id="more"></a>
+<p>An Example Interactive document looks like this:</p>
+<h3 id="st-ives-example" class="heading-control">St.Ives Example<a class="heading-anchor" href="#st-ives-example" aria-hidden="true"></a></h3>
+<p>An old riddle.</p>
+<blockquote>
+<p>As <span class="AMElement" data-embed="false" data-config="travelers: we or I">I</span> <span class="AMElement" data-embed="false" data-config="verb">was</span> going to <em>St Ives</em><br>
+I met a man with <span class="AMElement" data-embed="false" data-config="wives: 1..10">7 wives</span><br>
+Every wife had <span class="AMElement" data-embed="false" data-config="sacks: 1..10">7 sacks</span><br>
+Every sack had <span class="AMElement" data-embed="false" data-config="cats: 1..10">7 cats</span><br>
+Every cat had <span class="AMElement" data-embed="false" data-config="kits: 1..10">7 kits</span><br>
+Kits, cats, sacks, wives<br>
+How many were going to St Ives?</p>
+</blockquote>
+<pre><code>total_sacks = @wives * @sacks
+total_cats  = total_sacks * @cats
+total_kits  = total_cats * @kits
+man         = 1
+
+if @travelers
+    narrator = 2
+    @verb = 'were'
+else
+    narrator = 1
+    @verb = 'was'
+</code></pre>
+<p>The first guess is often <span class="AMElement" data-embed="false" data-config="first_guess">2753</span>…</p>
+<pre><code>@first_guess = man + @wives + total_cats + total_kits + narrator
+</code></pre>
+<p>…but the correct answer is <strong><span class="AMElement" data-embed="false" data-config="answer">1</span></strong>.</p>
+<pre><code>@answer = narrator
+</code></pre>
+<hr>
+<p>The sample raw Interactive Markdown file is:</p>
+<pre><code class="md">An old riddle.
+
+<span class="hljs-quote">&gt; As [I]{travelers: we or I} [was]{verb} going to *St Ives*</span>
+<span class="hljs-quote">&gt; I met a man with [7 wives]{wives: 1..10}</span>
+<span class="hljs-quote">&gt; Every wife had [7 sacks]{sacks: 1..10}</span>
+<span class="hljs-quote">&gt; Every sack had [7 cats]{cats: 1..10}</span>
+<span class="hljs-quote">&gt; Every cat had [7 kits]{kits: 1..10}</span>
+<span class="hljs-quote">&gt; Kits, cats, sacks, wives</span>
+<span class="hljs-quote">&gt; How many were going to St Ives?</span>
+
+<span class="hljs-code">    total_sacks = @wives * @sacks</span>
+<span class="hljs-code">    total_cats  = total_sacks * @cats</span>
+<span class="hljs-code">    total_kits  = total_cats * @kits</span>
+<span class="hljs-code">    man         = 1</span>
+
+<span class="hljs-code">    if @travelers</span>
+<span class="hljs-code">        narrator = 2</span>
+<span class="hljs-code">        @verb = 'were'</span>
+<span class="hljs-code">    else</span>
+<span class="hljs-code">        narrator = 1</span>
+<span class="hljs-code">        @verb = 'was'</span>
+
+The first guess is often [2753]{first_guess}…
+
+<span class="hljs-code">    @first_guess = man + @wives + total_cats + total_kits + narrator</span>
+
+…but the correct answer is <span class="hljs-strong">**[1]{answer}**</span>.
+
+<span class="hljs-code">    @answer = narrator</span>
+</code></pre>
+<ul>
+<li><code>[I]{travelers: We or I}</code> is a toggle switch between <code>We</code> or <code>I</code>
+<ul>
+<li><code>travelers</code> is a variable name, It can be referenced <code>@travelers</code> in the code block.</li>
+<li>the first value is <code>true</code>, the second is <code>false</code>.</li>
+</ul>
+</li>
+<li><code>[7]{wives: 1..10}</code> is a slider from <code>1</code> to <code>10</code>, defaults to <code>7</code>
+<ul>
+<li><code>wives</code> is a variable name, It can be referenced <code>@wives</code> in the code block.</li>
+</ul>
+</li>
+</ul>
+<h3 id="a-more-complex-example" class="heading-control">A More Complex Example<a class="heading-anchor" href="#a-more-complex-example" aria-hidden="true"></a></h3>
+<p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
+<p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>
+<pre><code class="output"># demo how to draw a rect.
+paper = @canvas
+
+|
+~~~
+tooltip: set the canvas size:200X100 ::: Init
+type:paper.setSize(200,100)\n
+tooltip: clear canvas
+type:paper.clear()\n
+tooltip: init x/y coor, width/height parameters coming from document
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: drawing rect nowing ::: Draw rect
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: fill red for the rect
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: you can try it by youself now
+</code></pre>
+<hr>
+<h2 id="notation" class="heading-control">Notation<a class="heading-anchor" href="#notation" aria-hidden="true"></a></h2>
+<p>The notation for specifying elements is similar to the regular Markdown syntax<br>
+for links and images, generally following this format:</p>
+<p><code>[text content]{variable_name: configuration}</code></p>
+<p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a<br>
+complete reference of the elements and their configuration.</p>
+<h2 id="authors" class="heading-control">Authors<a class="heading-anchor" href="#authors" aria-hidden="true"></a></h2>
+<ul>
+<li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
+<li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu" target="_blank" rel="noopener">https://github.com/snowyu</a></li>
+</ul>
+<h2 id="credits" class="heading-control">Credits<a class="heading-anchor" href="#credits" aria-hidden="true"></a></h2>
+<p>Thanks to <a href="https://github.com/joyrexus" target="_blank" rel="noopener">J Voight</a>, <a href="http://alexcabrera.me/" target="_blank" rel="noopener">Alex Cabrera</a>, <a href="http://johndebs.com/" target="_blank" rel="noopener">John Debs</a>, and <a href="http://supriyosinha.com" target="_blank" rel="noopener">Supriyo Sinha</a> for help with the notation.</p>
+<p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> library for creating reactive documents.</p>
+<h2 id="license" class="heading-control">License<a class="heading-anchor" href="#license" aria-hidden="true"></a></h2>
+<p>MIT</p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/imarkdown/">IMARKDOWN</a></li>
+          <li>EN</li>
+        
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">A More Complex Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#notation"><span class="nav-number">2.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#authors"><span class="nav-number">3.</span> <span class="nav-text">Authors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#credits"><span class="nav-number">4.</span> <span class="nav-text">Credits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#license"><span class="nav-number">5.</span> <span class="nav-text">License</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script src='/assets/imarkdown/imarkdown-0.4.3-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown.md"});</script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/imarkdown/en/index.html",
+      identifier: "imarkdown/en/index.html",
+      title: "Interactive Markdown",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

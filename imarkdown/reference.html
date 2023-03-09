@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="扩展标记 用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式： [文本内容]{variable_name: 可选的配置} 文本内容是该元素的文本表现，例如链接文本或图像替代文本，位于方括号“[]”之间。方括号后面是花括号“{}”，花括号中包含了变量名和配置(可选)，如果存在配置，则变量名后必须带有一个冒号“:”。 配置是决定元素类型并指定其行为的因素。 例如，">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Interactive Markdown Reference Manual">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;reference.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="扩展标记 用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式： [文本内容]{variable_name: 可选的配置} 文本内容是该元素的文本表现，例如链接文本或图像替代文本，位于方括号“[]”之间。方括号后面是花括号“{}”，花括号中包含了变量名和配置(可选)，如果存在配置，则变量名后必须带有一个冒号“:”。 配置是决定元素类型并指定其行为的因素。 例如，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-06T12:02:00.000Z">
+<meta property="article:modified_time" content="2019-12-06T12:02:00.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="interactive">
+<meta property="article:tag" content="reactive">
+<meta property="article:tag" content="document">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="markdown">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/imarkdown/reference">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>Interactive Markdown Reference Manual | Riceball LEE
+  </title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">Interactive Markdown Reference Manual
+</h2>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h2 id="kuo-zhan-biao-ji" class="heading-control">扩展标记<a class="heading-anchor" href="#kuo-zhan-biao-ji" aria-hidden="true"></a></h2>
+<p>用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式：</p>
+<p><code>[文本内容]{variable_name: 可选的配置}</code></p>
+<p><code>文本内容</code>是该元素的文本表现，例如链接文本或图像替代文本，位于方括号“[]”之间。方括号后面是花括号“{}”，花括号中包含了<code>变量名</code>和<code>配置</code>(可选)，如果存在<code>配置</code>，则变量名后必须带有一个冒号“:”。 配置是决定元素类型并指定其行为的因素。 例如， 一个范围元素(<em>RangeElement</em>)可以被限制为最小值和最大值，而开关元素(<em>SwitchElement</em>)可以为<code>true</code>和<code>false</code>设置不同的标签。</p>
+<h3 id="zi-fu-chuan-yuan-su-stringelement-kong-jian" class="heading-control">字符串元素(StringElement)控件<a class="heading-anchor" href="#zi-fu-chuan-yuan-su-stringelement-kong-jian" aria-hidden="true"></a></h3>
+<p><code>[&lt;text&gt;]{&lt;var_name&gt;}</code></p>
+<p>显示变量<code>&lt;var_name&gt;</code>的当前值（只读）。<code>&lt;text&gt;</code>是该变量的默认值。</p>
+<h4 id="zi-fu-chuan-yuan-su-li-zi" class="heading-control">字符串元素例子<a class="heading-anchor" href="#zi-fu-chuan-yuan-su-li-zi" aria-hidden="true"></a></h4>
+<h5 id="string-basic" class="heading-control">String, basic<a class="heading-anchor" href="#string-basic" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="egg_count">many eggs</span> - <code>[many eggs]{egg_count}</code></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>egg_count</code></td>
+</tr>
+<tr>
+<td>value</td>
+<td><span class="AMElement" data-embed="false" data-config="egg_count">many eggs</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="fan-wei-yuan-su-rangeelement-kong-jian" class="heading-control">范围元素(RangeElement)控件<a class="heading-anchor" href="#fan-wei-yuan-su-rangeelement-kong-jian" aria-hidden="true"></a></h3>
+<p><code>[&lt;before&gt; &lt;number&gt;.&lt;decimal&gt; &lt;after&gt;]{&lt;var_name&gt;: &lt;low_bound&gt;..&lt;exclusive&gt;&lt;high_bound&gt; by &lt;step&gt;}</code></p>
+<p>范围元素是可以通过拖动调整的数字，类似滑块。该数字可以指定显示精度。该元素可以被限制为最小值和/或最大值，并且可能具有步进值。在<code>文本内容</code>中的第一个数字<code>&lt;number&gt;.&lt;decimal&gt;</code>将作为<code>默认数字值</code>，其它会原样输出，从而允许在控件中包含单位和其他描述性文本。</p>
+<p>在<code>配置</code>中必须指定范围，但在两个方向上都可以是无限的(不写值即可)。 范围的间隔是使用’…‘或’…’，其中“…”包含所有内容，而“…” 不包括结尾。 即，“1…4”覆盖区间“<math><mn>1</mn><mo>≤</mo><mi>n</mi><mo>≤</mo><mn>4</mn></math>”，而“1 … 4”覆盖区间“<math><mn>1</mn><mo>≤</mo><mi>n</mi><mo>&lt;</mo><mn>4</mn></math>”。范围必须是递增的（以保持UI的一致性 ———— 向左拖动表示负数，向右拖动表示正数）。 使用关键字“<code>by</code>”和一个数字用以指定<code>步长</code>，该关键字可以省略（默认为1），但如果指定则必须为正。</p>
+<p>可以使用<code>文本内容</code>中的<code>默认数字值</code>来指定显示精度。 “<code>200.</code>” 将格式化为 “<code>0</code>” 小数位。 而&quot;<code>200.000</code>“将格式化为”<code>3</code>&quot;小数。 如果未指定，则该值是未格式化的。</p>
+<p>数字还可以使用在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noopener"><code>Math</code></a>规范约定的常量，并可以将它们与系数组合，例如“<code>2pi</code>”或“<code>0.5pi</code>”，这将被视为“<code>n * Math.PI</code>”。 这可以写在最小、最大范围或步骤值上。常量必须是<code>e</code>，<code>pi</code>，<code>ln2</code>，<code>ln10</code>，<code>log2e</code>，<code>log10e</code>，<code>sqrt1_2</code>，<code>sqrt2</code>中的一个（大写或小写）。</p>
+<h4 id="fan-wei-yuan-su-li-zi" class="heading-control">范围元素例子<a class="heading-anchor" href="#fan-wei-yuan-su-li-zi" aria-hidden="true"></a></h4>
+<h5 id="zhi-ding-bu-chang" class="heading-control">指定步长<a class="heading-anchor" href="#zhi-ding-bu-chang" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="calories: 10..100 by 10">20. calories</span> - <code>[20. calories]{calories: 10..100 by 10}</code></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>calories</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="calories"></span></td>
+</tr>
+<tr>
+<td>范围</td>
+<td><code>[10,100]</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td>显示精度</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;#{value.toFixed(0)} calories&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="xiao-shu-bu-chang-jing-du" class="heading-control">小数步长，精度<a class="heading-anchor" href="#xiao-shu-bu-chang-jing-du" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="calories_2: 10..100 by 0.1">20.0 calories</span> - <code>[20.0 calories]{calories_2: 10..100 by 0.1}</code></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>calories_2</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="calories_2"></span></td>
+</tr>
+<tr>
+<td>范围</td>
+<td><code>[10,100]</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>0.1</code></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>20.0</code></td>
+</tr>
+<tr>
+<td>显示精度</td>
+<td><code>0.1</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;#{value.toFixed(1)} calories&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="dai-chang-liang" class="heading-control">带常量<a class="heading-anchor" href="#dai-chang-liang" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="period: 0..2pi by 0.25pi">period 0.00</span> - <code>[period 0.00]{period: 0..2pi by 0.25pi}</code></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>period</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="period"></span></td>
+</tr>
+<tr>
+<td>范围</td>
+<td><code>[0,2pi]</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>0.25pi</code></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>显示精度</td>
+<td><code>0.01</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;#{value.toFixed(2)} period&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="mei-you-fan-wei" class="heading-control">没有范围<a class="heading-anchor" href="#mei-you-fan-wei" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="calories_3: ..">20 calories</span> - <code>[20 calories]{calories_3: ..}</code></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>calories_3</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="calories_3"></span></td>
+</tr>
+<tr>
+<td>范围</td>
+<td><code>(−∞,∞)</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td>显示精度</td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;#{value} calories&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="mei-you-zui-da-fan-wei" class="heading-control">没有最大范围<a class="heading-anchor" href="#mei-you-zui-da-fan-wei" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="calories_4: 1..">over 200 calories</span> - <code>[over 200 calories]{calories_4: 1.. by 2}</code></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>calories_4</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="calories_4"></span></td>
+</tr>
+<tr>
+<td>范围</td>
+<td><code>[1,∞)</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>200</code></td>
+</tr>
+<tr>
+<td>显示精度</td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;over #{value} calories&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="kai-guan-yuan-su-switchelement-kong-jian" class="heading-control">开关元素(SwitchElement)控件<a class="heading-anchor" href="#kai-guan-yuan-su-switchelement-kong-jian" aria-hidden="true"></a></h3>
+<p><code>[&lt;before&gt; &lt;true_label or false_label or *&gt; &lt;after&gt;]{&lt;var_name&gt;: &lt;true_label&gt; or &lt;false_label&gt;}</code></p>
+<p>一个布尔值，其值为<code>true</code>，<code>false</code>或<code>undefined</code>。 真值和假值均可在<code>配置</code>中设定标签。 如果<code>文字内容</code>中有标签，则该值将成为默认值。 否则值为 “<code>undefined</code>”。</p>
+<h4 id="kai-guan-yuan-su-li-zi" class="heading-control">开关元素例子<a class="heading-anchor" href="#kai-guan-yuan-su-li-zi" aria-hidden="true"></a></h4>
+<h5 id="switch-basic" class="heading-control">Switch, basic<a class="heading-anchor" href="#switch-basic" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="some_flag_1: true or false">pick one</span> - <code>[pick one]{some_flag_1: true or false}</code></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>some_flag_1</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="some_flag_1"></span></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>真值标签</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>假值标签</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;#{label}&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="switch-with-default" class="heading-control">Switch, with default<a class="heading-anchor" href="#switch-with-default" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="some_flag_2: true or false">true</span> - <code>[true]{some_flag_3: true or false}</code></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>some_flag_2</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="some_flag_2"></span></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>真值标签</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>假值标签</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;#{label}&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="switch-default-labeled-before-after-text" class="heading-control">Switch, default, labeled, before/after text<a class="heading-anchor" href="#switch-default-labeled-before-after-text" aria-hidden="true"></a></h5>
+<p><span class="AMElement" data-embed="false" data-config="some_flag_3: on or off">on deck</span> - <code>[on deck]{some_flag_3: on or off}</code></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>some_flag_3</code></td>
+</tr>
+<tr>
+<td>值</td>
+<td><span class="AMElement" data-embed="false" data-config="some_flag_3"></span></td>
+</tr>
+<tr>
+<td>默认值</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>真值标签</td>
+<td><code>on</code></td>
+</tr>
+<tr>
+<td>假值标签</td>
+<td><code>off</code></td>
+</tr>
+<tr>
+<td>显示格式</td>
+<td><code>&quot;#{label} deck&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="tu-biao-yuan-su-chartelement-kong-jian" class="heading-control">图表元素(ChartElement)控件<a class="heading-anchor" href="#tu-biao-yuan-su-chartelement-kong-jian" aria-hidden="true"></a></h3>
+<p><code>![&lt;x_label&gt; &lt;delimiter&gt; &lt;y_label&gt;]{&lt;type&gt;=&lt;fn_name&gt;: &lt;bound&gt;..&lt;exclusive&gt;&lt;bound&gt; by &lt;step&gt;}</code></p>
+<p>散点图，折线图或条形图的嵌入式图表。 该图表由指定函数(<code>fn_name</code>)在指定范围内驱动。 <em>ChartElement</em> 表示法与<em>RangeElement</em>类似，但是增加了<code>type</code>和前导<code>!</code>。 同样，图表间隔必须是有限的。 图表必须具有在 <em>代码块</em> 中定义的函数<code>fn_name</code>。</p>
+<h4 id="tu-biao-yuan-su-li-zi" class="heading-control">图表元素例子<a class="heading-anchor" href="#tu-biao-yuan-su-li-zi" aria-hidden="true"></a></h4>
+<h5 id="san-dian-tu-basic" class="heading-control">散点图, basic<a class="heading-anchor" href="#san-dian-tu-basic" aria-hidden="true"></a></h5>
+<p><code>![y vs x]{scatter=scatterFn: -10..10}</code></p>
+<p><span class="AMElement" data-embed="false" data-config="scatter_offset: 0..100">Offset: 0.</span></p>
+<pre><code>@scatterFn = (x) =&gt; x + Math.random() * @scatter_offset
+</code></pre>
+<p><span class="AMElement" data-embed="true" data-config="scatter=scatterFn: -10..10">y vs x</span></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>scatterFn</code></td>
+</tr>
+<tr>
+<td>类型</td>
+<td><code>scatter</code></td>
+</tr>
+<tr>
+<td>x 标签</td>
+<td><code>&quot;x&quot;</code></td>
+</tr>
+<tr>
+<td>y 标签</td>
+<td><code>&quot;y&quot;</code></td>
+</tr>
+<tr>
+<td>x的范围</td>
+<td><code>[-10,10]</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="zhe-xian-tu-basic" class="heading-control">折线图, basic<a class="heading-anchor" href="#zhe-xian-tu-basic" aria-hidden="true"></a></h5>
+<p><code>![sin(x)]{line=lineFn: 0..2pi by 0.001}</code></p>
+<p><span class="AMElement" data-embed="false" data-config="period: 0.25..4 by 0.25">Period 1.00</span></p>
+<pre><code>b = 2 * Math.PI / @period
+@lineFn = (x) =&gt; Math.sin(b * x)
+</code></pre>
+<p><span class="AMElement" data-embed="true" data-config="line=lineFn: 0..2pi by 0.001">sin(x)</span></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>lineFn</code></td>
+</tr>
+<tr>
+<td>类型</td>
+<td><code>line</code></td>
+</tr>
+<tr>
+<td>x 标签</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>y 标签</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>x的范围</td>
+<td><code>[0,2pi]</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>0.001</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="tiao-xing-tu-basic" class="heading-control">条形图, basic<a class="heading-anchor" href="#tiao-xing-tu-basic" aria-hidden="true"></a></h5>
+<p><code>![money by year]{bar=barFn: 1983..2013}</code></p>
+<p><span class="AMElement" data-embed="false" data-config="threshold: 1..20">Threshold: 5.</span></p>
+<pre><code>@barFn = (x) =&gt; x % @threshold
+</code></pre>
+<p><span class="AMElement" data-embed="true" data-config="bar=barFn: 1983..2013">money by year</span></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量名称</td>
+<td><code>barFn</code></td>
+</tr>
+<tr>
+<td>类型</td>
+<td><code>bar</code></td>
+</tr>
+<tr>
+<td>x 标签</td>
+<td><code>&quot;year&quot;</code></td>
+</tr>
+<tr>
+<td>y 标签</td>
+<td><code>&quot;money&quot;</code></td>
+</tr>
+<tr>
+<td>x的范围</td>
+<td><code>[1983,2013]</code></td>
+</tr>
+<tr>
+<td>步长</td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian" class="heading-control">交互代码块(CodeBlockElement)元素控件<a class="heading-anchor" href="#jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian" aria-hidden="true"></a></h2>
+<p>交互的代码块同样遵循Markdown规范，可以是缩进4格或者三个&quot;```&quot;个符号（无语言指示）围绕的内容,例如：代码的语法是使用的<a href="https://coffeescript.org/v1/" target="_blank" rel="noopener">CoffeeScript@v1</a>的语法。</p>
+<pre><code class="markdown">
+<span class="hljs-section"># 缩进4格</span>
+
+<span class="hljs-code">    # 设置交互变量初值， ||表示当存在初始值的时候不设置。</span>
+<span class="hljs-code">    @my_var ||= 123</span>
+<span class="hljs-code">    # 设置函数</span>
+<span class="hljs-code">    # @my_func = (x) =&gt; sin(x + @my_var)</span>
+
+
+<span class="hljs-section"># 使用普通没有language的代码块</span>
+
+
+<span class="hljs-code">```
+# 设置交互变量初值， ||表示当存在初始值的时候不设置。
+@my_var ||= 123
+# 设置函数
+@my_func = (x) =&gt; sin(x + @my_var)
+```</span>
+</code></pre>
+<p>如果希望只是显示代码块内容而不是执行，请使用加了语言的代码块，如:</p>
+<pre><code class="markdown">
+
+<span class="hljs-code">```coffee
+# 该代码块不会执行，不是交互代码块，只会显示
+@my_var ||= 123
+# 设置函数
+@my_func = (x) =&gt; sin(x + @my_var)
+```</span>
+</code></pre>
+<p>未来可能将支持指定交互语言，使用语言加后缀&quot;/playable&quot;的语法,例如如果希望使用js:</p>
+<pre><code class="md"><span class="hljs-code">```</span>js/playable
+// js交互代码块
+<span class="hljs-code">```
+</span></code></pre>
+<p>如果该代码块带输出，则在语言上使用<code>output</code>，表示默认语言带输出的代码块，如果要指定语言则应该加在playable前面，并用“:”号分隔, 如，<code>output:playable</code>。</p>
+<pre><code class="md"><span class="hljs-code">```output
+# 默认语言带输出的代码块
+@sayln 'hi world'
+```</span>
+
+<span class="hljs-code">```</span>coffee/output:playable
+<span class="hljs-section"># 指定语言带输出的代码块，暂未实现，指定语言没有，全部都是coffee.</span>
+@sayln 'hi world'
+<span class="hljs-code">```
+</span></code></pre>
+<p>带输出的代码块有<code>@output</code>变量(为该块绑定的<code>div</code>元素)，<code>@say()</code>和<code>@sayln()</code>文本输出。</p>
+<h3 id="play-movie-for-codeblock" class="heading-control">Play Movie for CodeBlock<a class="heading-anchor" href="#play-movie-for-codeblock" aria-hidden="true"></a></h3>
+<p><strong>警告：该标记因为尚未完全确定，未来可能会有改变</strong></p>
+<p>可以象电影一样播放代码块的输入。在代码块中单行启用三个<code>~~~</code>或三个以上的波浪符号<code>~</code>分隔即可。波浪分隔符号<code>~~~</code>以上的为代码，代码上方的“|”表示演示完毕后的光标位置，下方为控制输入的电影代码.</p>
+<pre><code class="md">
+<span class="hljs-code">```</span>output:playable
+
+<span class="hljs-section"># 演示绘制矩形的过程</span>
+paper = @canvas
+
+|
+~~~
+tooltip: 设置画布大小为200X100 ::: 初始化工作
+type:paper.setSize(200,100)\n
+tooltip: 清空画布
+type:paper.clear()\n
+tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: 开始绘制矩形 ::: 绘制矩形
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: 为矩形填充红色
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: 现在你可以自己试一试了
+<span class="hljs-code">```
+</span></code></pre>
+<ul>
+<li><code>tooltip</code> : 显示一个冒泡提示
+<ul>
+<li><code>:::</code> 分隔后的为分类信息</li>
+</ul>
+</li>
+<li><code>type</code>: 模拟键盘输入内容</li>
+<li><code>moveTo</code>: 移动光标位置</li>
+</ul>
+<h3 id="codeblock-examples" class="heading-control">CodeBlock Examples<a class="heading-anchor" href="#codeblock-examples" aria-hidden="true"></a></h3>
+<h4 id="example-interactive-code-block-without-output" class="heading-control">Example: interactive code block without output<a class="heading-anchor" href="#example-interactive-code-block-without-output" aria-hidden="true"></a></h4>
+<pre><code># this is an interactive code block without output
+a = 12 + 3
+</code></pre>
+<h4 id="example-interactive-code-block-with-output" class="heading-control">Example: interactive code block with output<a class="heading-anchor" href="#example-interactive-code-block-with-output" aria-hidden="true"></a></h4>
+<pre><code class="output"># this is an interactive code block with output
+@sayln 'hi world'
+</code></pre>
+<h4 id="example-play-movie-for-codeblock" class="heading-control">Example: Play Movie for CodeBlock<a class="heading-anchor" href="#example-play-movie-for-codeblock" aria-hidden="true"></a></h4>
+<pre><code class="output:playable">
+# 演示绘制矩形的过程
+paper = @canvas
+
+|
+~~~
+tooltip: 设置画布大小为200X100 ::: 初始化工作
+type:paper.setSize(200,100)\n
+tooltip: 清空画布
+type:paper.clear()\n
+tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量
+type:@rx ||=10\n
+type:@ry ||=18\n
+type:@rw ||=100\n
+type:@rh ||=50\n
+tooltip: 开始绘制矩形 ::: 绘制矩形
+type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
+tooltip: 为矩形填充红色
+type:rect.attr('fill', 'red')
+moveTo: 8:13
+tooltip: 现在你可以自己试一试了
+</code></pre>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kuo-zhan-biao-ji"><span class="nav-number">1.</span> <span class="nav-text">扩展标记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zi-fu-chuan-yuan-su-stringelement-kong-jian"><span class="nav-number">1.1.</span> <span class="nav-text">字符串元素(StringElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zi-fu-chuan-yuan-su-li-zi"><span class="nav-number">1.1.1.</span> <span class="nav-text">字符串元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#string-basic"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">String, basic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fan-wei-yuan-su-rangeelement-kong-jian"><span class="nav-number">1.2.</span> <span class="nav-text">范围元素(RangeElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fan-wei-yuan-su-li-zi"><span class="nav-number">1.2.1.</span> <span class="nav-text">范围元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#zhi-ding-bu-chang"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">指定步长</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#xiao-shu-bu-chang-jing-du"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">小数步长，精度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dai-chang-liang"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">带常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mei-you-fan-wei"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">没有范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mei-you-zui-da-fan-wei"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">没有最大范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kai-guan-yuan-su-switchelement-kong-jian"><span class="nav-number">1.3.</span> <span class="nav-text">开关元素(SwitchElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kai-guan-yuan-su-li-zi"><span class="nav-number">1.3.1.</span> <span class="nav-text">开关元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-basic"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Switch, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-with-default"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Switch, with default</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch-default-labeled-before-after-text"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Switch, default, labeled, before&#x2F;after text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tu-biao-yuan-su-chartelement-kong-jian"><span class="nav-number">1.4.</span> <span class="nav-text">图表元素(ChartElement)控件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tu-biao-yuan-su-li-zi"><span class="nav-number">1.4.1.</span> <span class="nav-text">图表元素例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#san-dian-tu-basic"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">散点图, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zhe-xian-tu-basic"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">折线图, basic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tiao-xing-tu-basic"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">条形图, basic</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian"><span class="nav-number">2.</span> <span class="nav-text">交互代码块(CodeBlockElement)元素控件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#play-movie-for-codeblock"><span class="nav-number">2.1.</span> <span class="nav-text">Play Movie for CodeBlock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#codeblock-examples"><span class="nav-number">2.2.</span> <span class="nav-text">CodeBlock Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#example-interactive-code-block-without-output"><span class="nav-number">2.2.1.</span> <span class="nav-text">Example: interactive code block without output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example-interactive-code-block-with-output"><span class="nav-number">2.2.2.</span> <span class="nav-text">Example: interactive code block with output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example-play-movie-for-codeblock"><span class="nav-number">2.2.3.</span> <span class="nav-text">Example: Play Movie for CodeBlock</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script src='/assets/imarkdown/imarkdown-0.4.3-min.js'></script><script>
+window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Interactive Markdown Reference Manual.md"});</script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/imarkdown/reference.html",
+      identifier: "imarkdown/reference.html",
+      title: "Interactive Markdown Reference Manual",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

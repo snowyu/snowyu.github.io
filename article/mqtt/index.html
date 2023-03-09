@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="MQTT 服务 - IoT界的消息订阅发布 关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，相当于你帮他们植入了常驻设备的推送后门。 只有自驾了。我选择了MQTT。 MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。用在手机设备最好不过。 MQTT 协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MQTT 服务 - IoT界的消息订阅发布服务">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;mqtt&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="MQTT 服务 - IoT界的消息订阅发布 关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，相当于你帮他们植入了常驻设备的推送后门。 只有自驾了。我选择了MQTT。 MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。用在手机设备最好不过。 MQTT 协议">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-21T03:35:00.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.533Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="mqtt">
+<meta property="article:tag" content="network">
+<meta property="article:tag" content="pubsub">
+<meta property="article:tag" content="push">
+<meta property="article:tag" content="message">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/mqtt/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>MQTT 服务 - IoT界的消息订阅发布服务 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/mqtt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          MQTT 服务 - IoT界的消息订阅发布服务
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-03-21 11:35:00" itemprop="dateCreated datePublished" datetime="2017-03-21T11:35:00+08:00">2017-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">Thinking</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Architecture/" itemprop="url" rel="index">
+                    <span itemprop="name">Architecture</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Architecture/MQTT/" itemprop="url" rel="index">
+                    <span itemprop="name">MQTT</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>17 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="mqtt-fu-wu-iot-jie-de-xiao-xi-ding-yue-fa-bu" class="heading-control">MQTT 服务 - IoT界的消息订阅发布<a class="heading-anchor" href="#mqtt-fu-wu-iot-jie-de-xiao-xi-ding-yue-fa-bu" aria-hidden="true"></a></h1>
+<p>关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，相当于你帮他们植入了常驻设备的推送后门。</p>
+<p>只有自驾了。我选择了MQTT。</p>
+<p>MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。用在手机设备最好不过。</p>
+<h2 id="mqtt-xie-yi-jian-dan-jie-shao" class="heading-control">MQTT 协议简单介绍<a class="heading-anchor" href="#mqtt-xie-yi-jian-dan-jie-shao" aria-hidden="true"></a></h2>
+<p>MQTT 协议使用最少的方法指示要在特定主题(Topic)上实施的操作，进而实施发布/订阅模式。<br>
+MQTT是发布订阅(Publish/Subscribe)模式的消息协议，与HTTP协议请求响应(Request/Response)模式是不同的。</p>
+<h3 id="xiao-xi-yu-zhu-ti-topic" class="heading-control">消息与主题 Topic<a class="heading-anchor" href="#xiao-xi-yu-zhu-ti-topic" aria-hidden="true"></a></h3>
+<p>MQTT发布者与订阅者之间通过”主题”(Topic)进行消息推送，主题(Topic)格式类似URL或文件路径，通过&quot;/&quot;分隔层级，例如:</p>
+<pre><code>sensor/1/temperature
+chat/room/subject
+presence/user/feng
+sensor/1/#
+sensor/+/temperature
+uber/drivers/joe/inbox
+</code></pre>
+<p>MQTT主题(Topic)支持’+’, ‘#’的通配符，’+’通配一个层级，’#’通配多个层级(必须在末尾)。<br>
+MQTT消息发布者(Publisher)只能向特定’名称主题’(不支持通配符)发布消息，订阅者(Subscriber)<br>
+通过订阅’过滤主题’(支持通配符)来匹配消息。</p>
+<p>注意：必须要转义’+’, ‘#’。</p>
+<p>MQTT支持推送消息的QoS(服务质量)。在MQTT 中有三个等级的 QoS：</p>
+<ul>
+<li>QoS 0: 该等级表示“最多一次”交付（最佳状况）。 消息不会得到确认，因而，这是一种一劳永逸的方法。</li>
+<li>QoS 1: 该等级表示“至少一次”交付。 用户可能不止一次获得消息，但是允许收到的人确认已经收到。</li>
+<li>QoS 2: 该等级表示“刚好一次”交付。最慢但是最有保障的服务质量等级。确保用户只收到一次消息，并包含四个阶段的交付握手。该等级最慢，但是最安全。</li>
+</ul>
+<h4 id="mqtt-yi-yuan-xiao-xi-last-will" class="heading-control">MQTT遗愿消息(Last Will)<a class="heading-anchor" href="#mqtt-yi-yuan-xiao-xi-last-will" aria-hidden="true"></a></h4>
+<p>MQTT客户端向服务器端CONNECT请求时，可以设置是否发送遗愿消息(Will Message)标志，和遗愿消息主题(Topic)与内容(Payload)。</p>
+<p>MQTT客户端异常下线时(客户端断开前未向服务器发送DISCONNECT消息)，MQTT消息服务器会发布遗愿消息。</p>
+<h4 id="mqtt-bao-liu-xiao-xi-retained-message" class="heading-control">MQTT保留消息(Retained Message)<a class="heading-anchor" href="#mqtt-bao-liu-xiao-xi-retained-message" aria-hidden="true"></a></h4>
+<p>MQTT客户端向服务器发布(PUBLISH)消息时，可以设置保留消息(Retained Message)标志。保留消息(Retained Message)会驻留在消息服务器，后来的订阅者订阅主题时仍可以接收该消息。</p>
+<p>保留消息(Retained Message)有两种清除方式:</p>
+<ul>
+<li>客户端向有保留消息的主题发布一个空消息:</li>
+<li>消息服务器设置保留消息的超期时间。</li>
+</ul>
+<h4 id="gong-xiang-ding-yue-shared-subscription" class="heading-control">共享订阅(Shared Subscription)<a class="heading-anchor" href="#gong-xiang-ding-yue-shared-subscription" aria-hidden="true"></a></h4>
+<p>共享订阅是非标准MQTT约定，不过大多数开源MQTT服务器已经实现。共享订阅(Shared Subscription)支持在多订阅者间采用分组负载平衡方式派发消息:<br>
+也就是订阅相同共享订阅(Shared Subscription)的客户根据负载平衡方式只有1人收到。这个场景可以用于：集群执行分布式任务（1个人接了活，其他人就不要接了）。</p>
+<pre><code>                            ---------
+                            |       | --Msg1--&gt; Subscriber1
+Publisher--Msg1,Msg2,Msg3--&gt;|  EMQ  | --Msg2--&gt; Subscriber2
+                            |       | --Msg3--&gt; Subscriber3
+                            ---------
+</code></pre>
+<p>共享订阅支持两种使用方式:</p>
+<table>
+<thead>
+<tr>
+<th>订阅前缀</th>
+<th>使用示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$queue/</code></td>
+<td><code>mosquitto_sub -t ‘$queue/topic’</code></td>
+</tr>
+<tr>
+<td><code>$share/&lt;group&gt;/</code></td>
+<td><code>mosquitto_sub -t ‘$share/group/topic’</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="ben-di-ding-yue-local-subscription" class="heading-control">本地订阅(Local Subscription)<a class="heading-anchor" href="#ben-di-ding-yue-local-subscription" aria-hidden="true"></a></h4>
+<p>本地订阅也是非标准MQTT约定。</p>
+<p>本地订阅(Local Subscription)只在本节点创建订阅与路由表，不会在集群节点间广播全局路由，非常适合物联网数据采集应用:</p>
+<pre><code class="bash">mosquitto_sub -t <span class="hljs-string">'$local/topic'</span>
+mosquitto_pub -t <span class="hljs-string">'topic'</span>
+</code></pre>
+<p>使用方式: 订阅者在主题(Topic)前增加’$local/’前缀。</p>
+<h3 id="mqtt-hui-hua-clean-session" class="heading-control">MQTT会话(Clean Session)<a class="heading-anchor" href="#mqtt-hui-hua-clean-session" aria-hidden="true"></a></h3>
+<p>MQTT支持Session(会话)，当MQTT客户端向服务器发起CONNECT请求时，可以通过’Clean Session’标志设置会话。</p>
+<ul>
+<li>‘Clean Session’设置为0，表示创建一个持久会话，在客户端断开连接时，会话仍然保持并保存离线消息，直到会话超时注销。</li>
+<li>‘Clean Session’设置为1，表示创建一个新的临时会话，在客户端断开时，会话自动清除销毁。</li>
+</ul>
+<p>MQTT 方法定义很简单：</p>
+<ul>
+<li>连接 - 建立与 MQTT 经纪人（Broker）之间的连接。</li>
+<li>断开连接 - 断开与 MQTT 经纪人（Broker）之间的连接。</li>
+<li>发布 - 在 MQTT 经纪人（Broker）上发布主题。</li>
+<li>订阅 - 从 MQTT 经纪人（Broker）上订阅主题。</li>
+<li>退订 - 从 MQTT 经纪人（Broker）上退订主题。</li>
+</ul>
+<h2 id="open-source-mqtt-server" class="heading-control">Open Source MQTT Server<a class="heading-anchor" href="#open-source-mqtt-server" aria-hidden="true"></a></h2>
+<ul>
+<li><a href="https://vernemq.com" target="_blank" rel="noopener">VerneMQ</a> Erlang</li>
+<li><a href="http://emqtt.com" target="_blank" rel="noopener">EMQ</a> Erlang
+<ul>
+<li>文档：<a href="http://emqtt.com/docs/v2/getstarted.html" target="_blank" rel="noopener">http://emqtt.com/docs/v2/getstarted.html</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/mcollina/mosca" target="_blank" rel="noopener">Mosca</a> NodeJS</li>
+<li><a href="https://github.com/eclipse/mosquitto" target="_blank" rel="noopener">Mosquitto</a> C</li>
+</ul>
+<h3 id="emq" class="heading-control">EMQ<a class="heading-anchor" href="#emq" aria-hidden="true"></a></h3>
+<p>支持MQTT 3.1.1协议。<br>
+EMQ 2.0消息服务器默认占用的TCP端口包括:</p>
+<ul>
+<li>1883  MQTT协议端口</li>
+<li>8883  MQTT(SSL)端口</li>
+<li>8083  MQTT(WebSocket), HTTP API端口</li>
+<li>18083 Dashboard管理控制台端口</li>
+</ul>
+<p><a href="https://github.com/emqtt/emq-docker" target="_blank" rel="noopener">https://github.com/emqtt/emq-docker</a><br>
+<a href="https://github.com/eclipse/paho.mqtt.android" target="_blank" rel="noopener">https://github.com/eclipse/paho.mqtt.android</a></p>
+<ul>
+<li>用户登陆绑定</li>
+<li>用户权限绑定，只能订阅或者发送本组织下的</li>
+</ul>
+<h2 id="ke-hu-duan" class="heading-control">客户端<a class="heading-anchor" href="#ke-hu-duan" aria-hidden="true"></a></h2>
+<h3 id="android" class="heading-control">Android<a class="heading-anchor" href="#android" aria-hidden="true"></a></h3>
+<p><a href="http://www.eclipse.org/paho/clients/android/" target="_blank" rel="noopener">Eclipse Paho Android Service</a></p>
+<h4 id="install" class="heading-control">Install<a class="heading-anchor" href="#install" aria-hidden="true"></a></h4>
+<pre><code class="java">repositories {
+    maven {
+        url <span class="hljs-string">"https://repo.eclipse.org/content/repositories/paho-releases/"</span>
+    }
+}
+
+
+dependencies {
+    compile <span class="hljs-string">'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'</span>
+    compile <span class="hljs-string">'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'</span>
+}
+</code></pre>
+<p>The Paho Android Service needs the following permissions to work:</p>
+<pre><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.WAKE_LOCK"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.INTERNET"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span>
+</code></pre>
+<h4 id="usage" class="heading-control">Usage<a class="heading-anchor" href="#usage" aria-hidden="true"></a></h4>
+<pre><code class="java">Log.i(LOGTAG, <span class="hljs-string">"MQTT Start"</span>);
+
+<span class="hljs-comment">//如果是走 "ssl://192.168.0.13:8883"</span>
+<span class="hljs-keyword">final</span> MqttAndroidClient mqttAndroidClient = <span class="hljs-keyword">new</span> MqttAndroidClient(
+  getApplicationContext(), <span class="hljs-string">"tcp://192.168.0.13:1883"</span>, clientId);
+
+
+<span class="hljs-comment">//设置回调，在这里接收订阅的消息</span>
+mqttAndroidClient.setCallback(<span class="hljs-keyword">new</span> MqttCallbackExtended() {
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectComplete</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> reconnect, String serverURI)</span> </span>{
+
+      <span class="hljs-keyword">if</span> (reconnect) {
+          Log.i(LOGTAG, <span class="hljs-string">"Reconnected to : "</span> + serverURI);
+          <span class="hljs-comment">// if Clean Session is true, we need to re-subscribe</span>
+          <span class="hljs-comment">// subscribe('SampleTopic');</span>
+      } <span class="hljs-keyword">else</span> {
+          Log.i(LOGTAG, <span class="hljs-string">"Connected to: "</span> + serverURI);
+      }
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectionLost</span><span class="hljs-params">(Throwable cause)</span> </span>{
+      Log.i(LOGTAG, <span class="hljs-string">"The Connection was lost."</span>);
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">messageArrived</span><span class="hljs-params">(String topic, MqttMessage message)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+      Log.i(LOGTAG, <span class="hljs-string">"Incoming message: "</span> + <span class="hljs-keyword">new</span> String(message.getPayload()));
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deliveryComplete</span><span class="hljs-params">(IMqttDeliveryToken token)</span> </span>{
+  }
+});
+
+MqttConnectOptions mqttConnectOptions = <span class="hljs-keyword">new</span> MqttConnectOptions();
+mqttConnectOptions.setAutomaticReconnect(<span class="hljs-keyword">true</span>);
+mqttConnectOptions.setCleanSession(<span class="hljs-keyword">false</span>);
+mqttConnectOptions.setUserName(<span class="hljs-string">"USERNAME"</span>);
+mqttConnectOptions.setPassword(<span class="hljs-string">"PASSWORD"</span>.toCharArray());
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-comment">//第二个参数是可选的object,可以传递给回调函数</span>
+  client.connect(mqttConnectOptions, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken mqttToken)</span> </span>{
+      Log.i(LOGTAG, <span class="hljs-string">"Client connected"</span>);
+      Log.i(LOGTAG, <span class="hljs-string">"Topics="</span>+mqttToken.getTopics());
+      subscribe(<span class="hljs-string">'sampleTopic'</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken arg0, Throwable arg1)</span> </span>{
+      <span class="hljs-comment">// TODO Auto-generated method stub</span>
+      Log.i(LOGTAG, <span class="hljs-string">"Client connection failed: "</span>+arg1.getMessage());
+    }
+  });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subscribe</span><span class="hljs-params">(String topic)</span></span>{
+  <span class="hljs-keyword">try</span> {
+    mqttAndroidClient.subscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"Subscribed!"</span>);
+      }
+
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken, Throwable exception)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"Failed to subscribe"</span>);
+      }
+    });
+
+    <span class="hljs-comment">// THIS DOES NOT WORK!</span>
+    mqttAndroidClient.subscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span> IMqttMessageListener() {
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">messageArrived</span><span class="hljs-params">(String topic, MqttMessage message)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+          <span class="hljs-comment">// message Arrived!</span>
+          System.out.println(<span class="hljs-string">"InMessage: "</span> + topic + <span class="hljs-string">" : "</span> + <span class="hljs-keyword">new</span> String(message.getPayload()));
+      }
+    });
+
+  } <span class="hljs-keyword">catch</span> (MqttException ex){
+    System.err.println(<span class="hljs-string">"Exception whilst subscribing"</span>);
+    ex.printStackTrace();
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unsubscribe</span><span class="hljs-params">(String topic)</span></span>{
+  <span class="hljs-keyword">try</span> {
+    mqttAndroidClient.unsubscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"unsubscribed!"</span>);
+      }
+
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken, Throwable exception)</span> </span>{
+          Log.i(LOGTAG, <span class="hljs-string">"Failed to unsubscribed"</span>);
+      }
+    });
+
+  } <span class="hljs-keyword">catch</span> (MqttException ex){
+    System.err.println(<span class="hljs-string">"Exception whilst subscribing"</span>);
+    ex.printStackTrace();
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">publishMessage</span><span class="hljs-params">(String topic, String msg)</span></span>{
+  <span class="hljs-keyword">try</span> {
+    MqttMessage message = <span class="hljs-keyword">new</span> MqttMessage();
+    message.setQos(<span class="hljs-number">0</span>);
+    message.setRetained(<span class="hljs-keyword">false</span>);
+    message.setPayload(msg.getBytes());
+    mqttAndroidClient.publish(topic, message);
+    Log.i(LOGTAG, <span class="hljs-string">"Message Published"</span>);
+    <span class="hljs-keyword">if</span>(!mqttAndroidClient.isConnected()){
+      Log.i(LOGTAG, mqttAndroidClient.getBufferedMessageCount() + <span class="hljs-string">" messages in buffer."</span>);
+    }
+  } <span class="hljs-keyword">catch</span> (MqttPersistenceException e) {
+    <span class="hljs-comment">// TODO Auto-generated catch block</span>
+    e.printStackTrace();
+
+  } <span class="hljs-keyword">catch</span> (MqttException e) {
+    <span class="hljs-comment">// TODO Auto-generated catch block</span>
+    System.err.println(<span class="hljs-string">"Error Publishing: "</span> + e.getMessage());
+    e.printStackTrace();
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">disconnect</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">try</span> {
+      IMqttToken disconToken = client.disconnect();
+      disconToken.setActionCallback(<span class="hljs-keyword">new</span> IMqttActionListener() {
+          <span class="hljs-meta">@Override</span>
+          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
+              <span class="hljs-comment">// we are now successfully disconnected</span>
+          }
+
+          <span class="hljs-meta">@Override</span>
+          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken,
+                                Throwable exception)</span> </span>{
+              <span class="hljs-comment">// something went wrong, but probably we are disconnected anyway</span>
+          }
+      });
+  } <span class="hljs-keyword">catch</span> (MqttException e) {
+      e.printStackTrace();
+  }
+}
+</code></pre>
+<p>Demo:</p>
+<ul>
+<li><a href="https://github.com/eclipse/paho.mqtt.android/tree/develop/paho.mqtt.android.example" target="_blank" rel="noopener">简单DEMO</a></li>
+<li><a href="https://github.com/eclipse/paho.mqtt.android/tree/develop/org.eclipse.paho.android.sample" target="_blank" rel="noopener">复杂DEMO</a></li>
+</ul>
+<h4 id="ios" class="heading-control">IOS<a class="heading-anchor" href="#ios" aria-hidden="true"></a></h4>
+<p><a href="https://github.com/ckrey/MQTT-Client-Framework" target="_blank" rel="noopener">MQTT Client Framework</a></p>
+<pre><code class="objc"><span class="hljs-meta">#import <span class="hljs-meta-string">"MQTTClient.h"</span></span>
+
+MQTTSession *session = [[MQTTSession alloc] init];
+
+<span class="hljs-comment">//specifies the protocol to be used.</span>
+<span class="hljs-comment">//The value of the Protocol Level field for the version 3.1.1 of the protocol is 4.</span>
+<span class="hljs-comment">//The value for the version 3.1 is 3.</span>
+session.protocolLevel = <span class="hljs-number">4</span>;
+session.clientId = <span class="hljs-string">@"clientId"</span>;
+session.cleanSessionFlag = <span class="hljs-literal">NO</span>;
+session.userName = <span class="hljs-string">@"myname"</span>;
+session.password = <span class="hljs-string">@"secret"</span>;
+
+[session connectToHost:<span class="hljs-string">@"192.168.0.1"</span> port:<span class="hljs-number">1883</span> usingSSL:<span class="hljs-literal">NO</span>];
+</code></pre>
+<p>启用SSL use a custom security</p>
+<pre><code class="objc">NSString* certificate = [[NSBundle bundleForClass:[MQTTSession class]] pathForResource:@"certificate" ofType:@"cer"];
+session.securityPolicy = [MQTTSSLSecurityPolicy policyWithPinningMode:MQTTSSLPinningModeCertificate];
+session.securityPolicy.pinnedCertificates = @[ [NSData dataWithContentsOfFile:certificate] ];
+session.securityPolicy.allowInvalidCertificates = YES;
+[session connectToHost:@"192.168.0.1" port:8883 usingSSL:YES];
+
+//Use  client certificates:
+NSString *path = [[NSBundle bundleForClass:[MQTTClientTests class]] pathForResource:parameters[@„client"] ofType:@"p12"];
+
+session.certificates = [MQTTSession clientCertsFromP12:path passphrase:@„secret“];
+
+[session connectToHost:@"192.168.0.1" port:8883 usingSSL:YES];
+</code></pre>
+<pre><code class="objc">[session publishData:[<span class="hljs-string">@"Sample Data"</span> dataUsingEncoding:<span class="hljs-built_in">NSUTF8StringEncoding</span>]
+    topic:<span class="hljs-string">@"example/data"</span>
+    <span class="hljs-keyword">retain</span>:<span class="hljs-literal">NO</span>
+    qos:<span class="hljs-number">0</span>];
+[session subscribeToTopic:<span class="hljs-string">@"example/#"</span> atLevel:<span class="hljs-number">2</span>]; <span class="hljs-comment">//atLevel is QoS level</span>
+[session unsubscribeTopic:<span class="hljs-string">@"example/#"</span>];
+[session close];
+</code></pre>
+<p>Demo: <a href="https://github.com/ckrey/MQTTChat" target="_blank" rel="noopener">https://github.com/ckrey/MQTTChat</a></p>
+<h4 id="nodejs" class="heading-control">Nodejs<a class="heading-anchor" href="#nodejs" aria-hidden="true"></a></h4>
+<pre><code>npm install mqtt
+</code></pre>
+<p><a href="https://github.com/mqttjs/MQTT.js" target="_blank" rel="noopener">https://github.com/mqttjs/MQTT.js</a></p>
+<pre><code class="coffee">mqtt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mqtt'</span>)
+<span class="hljs-comment"># 如果是websocket,对于emqtt必须加 path: '/mqtt'</span>
+<span class="hljs-comment"># client  = mqtt.connect('ws://127.0.0.1:8083', path: '/mqtt', clientId: 'MQTTCLI1', clean:false,username:'',password:'')</span>
+
+client  = mqtt.connect(<span class="hljs-string">'mqtt://127.0.0.1'</span>, clientId: <span class="hljs-string">'MQTTCLI1'</span>, clean:<span class="hljs-literal">false</span>,username:<span class="hljs-string">''</span>,password:<span class="hljs-string">''</span>)
+
+client.<span class="hljs-literal">on</span> <span class="hljs-string">'connect'</span>, <span class="hljs-function">-&gt;</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connect'</span>)
+  client.subscribe <span class="hljs-string">'presence'</span>, <span class="hljs-function"><span class="hljs-params">(err, granted)</span>-&gt;</span>
+    <span class="hljs-keyword">return</span> client.end() <span class="hljs-keyword">if</span> err
+    <span class="hljs-built_in">console</span>.log <span class="hljs-string">'subscribe ok'</span>, granted
+    <span class="hljs-comment"># client.publish 'presence', 'Hello mqtt', (err)-&gt;</span>
+    <span class="hljs-comment">#   console.log 'publish'</span>
+    <span class="hljs-comment">#   console.log 'pub', err if err</span>
+
+client.<span class="hljs-literal">on</span> <span class="hljs-string">'error'</span>, <span class="hljs-function"><span class="hljs-params">(error)</span>-&gt;</span>
+  <span class="hljs-built_in">console</span>.log error
+
+<span class="hljs-comment"># received messages:</span>
+client.<span class="hljs-literal">on</span> <span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-params">(topic, message)</span>-&gt;</span>
+  <span class="hljs-comment"># message is Buffer</span>
+  <span class="hljs-built_in">console</span>.log(topic, message.toString())
+  <span class="hljs-comment"># client.end()</span>
+</code></pre>
+<p>SSL:</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> mqtt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mqtt'</span>)
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">var</span> KEY = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/tls-key.pem'</span>))
+<span class="hljs-keyword">var</span> CERT = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/tls-cert.pem'</span>))
+<span class="hljs-keyword">var</span> TRUSTED_CA_LIST = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/crt.ca.cg.pem'</span>))
+
+<span class="hljs-keyword">var</span> PORT = <span class="hljs-number">8443</span>
+<span class="hljs-keyword">var</span> HOST = <span class="hljs-string">'stark'</span>
+
+<span class="hljs-keyword">var</span> options = {
+  <span class="hljs-attr">port</span>: PORT,
+  <span class="hljs-attr">host</span>: HOST,
+  <span class="hljs-attr">key</span>: KEY,
+  <span class="hljs-attr">cert</span>: CERT,
+  <span class="hljs-attr">rejectUnauthorized</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-comment">// The CA list will be used to determine if server is authorized</span>
+  <span class="hljs-attr">ca</span>: TRUSTED_CA_LIST
+}
+
+<span class="hljs-keyword">var</span> client = mqtt.connect(options)
+
+client.subscribe(<span class="hljs-string">'messages'</span>)
+client.publish(<span class="hljs-string">'messages'</span>, <span class="hljs-string">'Current time is: '</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>())
+client.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">topic, message</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(message)
+})
+
+client.on(<span class="hljs-string">'connect'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Connected'</span>)
+})
+</code></pre>
+<p>Demo: <a href="https://github.com/mqttjs/MQTT.js/tree/master/examples" target="_blank" rel="noopener">https://github.com/mqttjs/MQTT.js/tree/master/examples</a><br>
+Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/Demo-mqtt-push" target="_blank" rel="noopener">https://github.com/Guou/Demo-mqtt-push</a></p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/mqtt/" title="MQTT 服务 - IoT界的消息订阅发布服务">https://riceball.me/article/mqtt/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/mqtt/" rel="tag"><i class="fa fa-tag"></i> mqtt</a>
+              <a href="/tags/network/" rel="tag"><i class="fa fa-tag"></i> network</a>
+              <a href="/tags/pubsub/" rel="tag"><i class="fa fa-tag"></i> pubsub</a>
+              <a href="/tags/push/" rel="tag"><i class="fa fa-tag"></i> push</a>
+              <a href="/tags/message/" rel="tag"><i class="fa fa-tag"></i> message</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/ubuntu-tips/" rel="prev" title="Ubuntu Tips">
+      <i class="fa fa-chevron-left"></i> Ubuntu Tips
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/sharing-economy/" rel="next" title="从分享经济到共享经济系列(一)——分享经济的前世今生">
+      从分享经济到共享经济系列(一)——分享经济的前世今生 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mqtt-fu-wu-iot-jie-de-xiao-xi-ding-yue-fa-bu"><span class="nav-number">1.</span> <span class="nav-text">MQTT 服务 - IoT界的消息订阅发布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mqtt-xie-yi-jian-dan-jie-shao"><span class="nav-number">1.1.</span> <span class="nav-text">MQTT 协议简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xiao-xi-yu-zhu-ti-topic"><span class="nav-number">1.1.1.</span> <span class="nav-text">消息与主题 Topic</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mqtt-yi-yuan-xiao-xi-last-will"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">MQTT遗愿消息(Last Will)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mqtt-bao-liu-xiao-xi-retained-message"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">MQTT保留消息(Retained Message)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gong-xiang-ding-yue-shared-subscription"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">共享订阅(Shared Subscription)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ben-di-ding-yue-local-subscription"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">本地订阅(Local Subscription)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mqtt-hui-hua-clean-session"><span class="nav-number">1.1.2.</span> <span class="nav-text">MQTT会话(Clean Session)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#open-source-mqtt-server"><span class="nav-number">1.2.</span> <span class="nav-text">Open Source MQTT Server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#emq"><span class="nav-number">1.2.1.</span> <span class="nav-text">EMQ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ke-hu-duan"><span class="nav-number">1.3.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#android"><span class="nav-number">1.3.1.</span> <span class="nav-text">Android</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#install"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#usage"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ios"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">IOS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodejs"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">Nodejs</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/mqtt/",
+      identifier: "article/mqtt/",
+      title: "MQTT 服务 - IoT界的消息订阅发布服务",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

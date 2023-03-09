@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="如何选择一门语言学习计算机编程 实用派的想法： 哪一门或一些语言适合你？取决于你想干什么？  你是想做嵌入式系统开发？ 或是想数据挖掘统计分析？ 或是想开发web站点？ 或是想做原生的iOS系统开发？ 或是想做原生的Android系统开发？ 或是想做跨移动平台的开发？  不同的选择决定你会去学习使用一些不同的语言。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何选择一门语言学习计算机编程">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;howto-choose-programming-language&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="如何选择一门语言学习计算机编程 实用派的想法： 哪一门或一些语言适合你？取决于你想干什么？  你是想做嵌入式系统开发？ 或是想数据挖掘统计分析？ 或是想开发web站点？ 或是想做原生的iOS系统开发？ 或是想做原生的Android系统开发？ 或是想做跨移动平台的开发？  不同的选择决定你会去学习使用一些不同的语言。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-06-30T03:32:00.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.529Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="howto">
+<meta property="article:tag" content="computer language">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/howto-choose-programming-language/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>如何选择一门语言学习计算机编程 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/howto-choose-programming-language/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          如何选择一门语言学习计算机编程
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-06-30 11:32:00" itemprop="dateCreated datePublished" datetime="2015-06-30T11:32:00+08:00">2015-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Learning</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng" class="heading-control">如何选择一门语言学习计算机编程<a class="heading-anchor" href="#ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng" aria-hidden="true"></a></h1>
+<p>实用派的想法：</p>
+<p>哪一门或一些语言适合你？取决于你想干什么？</p>
+<ul>
+<li>你是想做嵌入式系统开发？</li>
+<li>或是想数据挖掘统计分析？</li>
+<li>或是想开发web站点？</li>
+<li>或是想做原生的iOS系统开发？</li>
+<li>或是想做原生的Android系统开发？</li>
+<li>或是想做跨移动平台的开发？</li>
+</ul>
+<p>不同的选择决定你会去学习使用一些不同的语言。</p>
+<p>如果你已经决定为计算机软件开发奋斗终生，那这个首先必须掌握的最基础的语言的是什么？</p>
+<p>如果你只是偶尔心动，仅仅是为了完成某项任务来为之，请忽略直接跳到后面，你不妨根据你自己的项目需求来选择语言： [[Which-language-for-u#选择适合自己的计算机语言|选择适合自己的计算机语言]] 一节。</p>
+<p>打好基础，从阅读计算机英语开始。</p>
+<h1 id="ji-chu-yu-yan-ji-suan-ji-ying-yu" class="heading-control">基础语言：计算机英语<a class="heading-anchor" href="#ji-chu-yu-yan-ji-suan-ji-ying-yu" aria-hidden="true"></a></h1>
+<p>毋庸置疑，计算机英语是必须彻底把握的首要的最重要的语言。相对于普通英语，计算机英语较为简单，没有过多的变化多样的语法，专业词汇兼简单的语法足矣。这是我们读懂别人写的代码前提要素之一。而后我们对自己代码模块、对象、函数方法、变量，参数的命名也离不开英语，精准，严谨的命名胜过一大段的注释，这也是书写可读性良好的代码的关键要素之一。要知道代码即文章，不过，庆幸的是，代码的文章很简单的，一般只需要初中英语的语法知识就足矣满足需求。而且不会要求你的口语，计算机英语的就是专业词汇量比较大，仅此而已。</p>
+<p>目标：</p>
+<ul>
+<li>用英文词汇正确命名</li>
+<li>用英文写代码注释</li>
+</ul>
+<h2 id="ru-he-xue-xi-ji-suan-ji-ying-yu" class="heading-control">如何学习计算机英语<a class="heading-anchor" href="#ru-he-xue-xi-ji-suan-ji-ying-yu" aria-hidden="true"></a></h2>
+<p>阅读科技类的文章可以提高自己的文档写作能力，而开发类的文章则可以提高自己的开发能力。</p>
+<h3 id="yue-du-kai-fa-lei-huo-zhe-ke-ji-lei-de-ying-wen-blogs" class="heading-control">阅读开发类或者科技类的英文Blogs<a class="heading-anchor" href="#yue-du-kai-fa-lei-huo-zhe-ke-ji-lei-de-ying-wen-blogs" aria-hidden="true"></a></h3>
+<ul>
+<li>开发类Blogs
+<ul>
+<li><a href="http://www.hanselman.com/blog/" target="_blank" rel="noopener">http://www.hanselman.com/blog/</a></li>
+<li><a href="http://www.codinghorror.com/blog/" target="_blank" rel="noopener">http://www.codinghorror.com/blog/</a></li>
+<li><a href="http://codebetter.com/" target="_blank" rel="noopener">http://codebetter.com/</a></li>
+<li><a href="http://highscalability.com/" target="_blank" rel="noopener">http://highscalability.com/</a></li>
+<li><a href="http://www.infoq.com/" target="_blank" rel="noopener">http://www.infoq.com/</a>  （ 文章质量和数量大不如以前了）</li>
+</ul>
+</li>
+<li>科技类Blogs
+<ul>
+<li><a href="http://readwriteweb.com/" target="_blank" rel="noopener">http://readwriteweb.com/</a></li>
+<li><a href="http://www.engadget.com/" target="_blank" rel="noopener">http://www.engadget.com/</a></li>
+<li><a href="http://gizmodo.com/" target="_blank" rel="noopener">http://gizmodo.com/</a></li>
+<li><a href="http://hackedgadgets.com/" target="_blank" rel="noopener">http://hackedgadgets.com/</a></li>
+<li><a href="http://venturebeat.com/" target="_blank" rel="noopener">http://venturebeat.com/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="tiao-yi-ge-hao-de-kai-yuan-xiang-mu-kan-ren-jia-shi-zen-mo-xie-de" class="heading-control">挑一个好的开源项目，看人家是怎么写的<a class="heading-anchor" href="#tiao-yi-ge-hao-de-kai-yuan-xiang-mu-kan-ren-jia-shi-zen-mo-xie-de" aria-hidden="true"></a></h3>
+<ul>
+<li>读 wiki</li>
+<li>读代码</li>
+</ul>
+<p>然后，别忘记了还有https://google.com 和 <a href="http://stackoverflow.com/" target="_blank" rel="noopener">http://stackoverflow.com/</a></p>
+<h1 id="xuan-ze-shi-he-zi-ji-de-ji-suan-ji-yu-yan" class="heading-control">选择适合自己的计算机语言<a class="heading-anchor" href="#xuan-ze-shi-he-zi-ji-de-ji-suan-ji-yu-yan" aria-hidden="true"></a></h1>
+<p>计算机语言五花八门，真是乱花渐欲迷人眼，泛泛来说，有命令式编程和声明式编程语言；而从用途来分有通用的适合多用途的语言，也有精专某项或几项的语言；从编译器来分，有编译型和解释型的语言；从编程语言模型来说，有面向对象类、过程式语言、函数式语言、逻辑类语言。等等。除开及其个别的编程语言外绝大多数的编程语言都是以英语为基础的。要想选择一门或者一些适合自己的开发语言是比较难，挑选适合自己的语言，我觉得这大概可以由三个因素来决定：</p>
+<ul>
+<li>基础</li>
+<li>用途</li>
+<li>目标</li>
+</ul>
+<h2 id="xue-xi-bian-cheng-yu-yan-de-ji-chu" class="heading-control">学习编程语言的基础<a class="heading-anchor" href="#xue-xi-bian-cheng-yu-yan-de-ji-chu" aria-hidden="true"></a></h2>
+<p>如果你想要在编程的路上走得更稳或者更远，那么这些基础必须打牢，对于科班出身的来说，这些是必须的:</p>
+<ul>
+<li>算法</li>
+<li>数据结构</li>
+<li>设计模式</li>
+</ul>
+<p>这些东西，往深了去1，2年时间也不够你啃，不过你也可以根据自己的具体需要掌握基本后按需学习。</p>
+<p>你的其它基础知识了解如何？下面是做的一些假定，如果下面的基础都没有，那就无所谓了，随便选看，看自己的爱好来定.</p>
+<h3 id="html-xml-css" class="heading-control">HTML/XML/CSS<a class="heading-anchor" href="#html-xml-css" aria-hidden="true"></a></h3>
+<p>对于初步掌握html和css的前端人员来说，如果你用过javascript，那么从java或者javascript的某个framework着手自己编程之路可能更容易些；如果你对xml比较熟悉，那么<a href="http://blog.csdn.net/gobitan/article/details/1545998" target="_blank" rel="noopener">XQuery</a>也许也不错，如果你对CSS熟悉并愿意深入，那么从<a href="http://www.cnblogs.com/yizihan/p/4427900.html" target="_blank" rel="noopener">COMPASS</a>/<a href="http://www.w3cplus.com/sassguide/" target="_blank" rel="noopener">SASS</a>开始可能是一条比较有意思的路。</p>
+<p>关于SASS介绍：<a href="../sass-lang">在这里</a>。</p>
+<p>如果想继续深入前端，可以择一入门，如果要精深，那么MVC作为基础知识是必须要掌握的：</p>
+<ul>
+<li>Javascript 前端 Frameworks
+<ul>
+<li>“Mootools”:<a href="http://mootools.net/" target="_blank" rel="noopener">http://mootools.net/</a></li>
+<li>“ExtJS”:<a href="http://www.sencha.com/" target="_blank" rel="noopener">http://www.sencha.com/</a></li>
+<li>“Dojo”:<a href="http://dojotoolkit.org/" target="_blank" rel="noopener">http://dojotoolkit.org/</a></li>
+<li>“JQuery”:<a href="http://jquery.org/" target="_blank" rel="noopener">http://jquery.org/</a> （对初学者阅读该框架代码可能有些难度）</li>
+</ul>
+</li>
+<li>Javsascript 后端，如果想用javascript玩玩后端开发，建议在至少完全掌握一个javascript前端framework之后进行
+<ul>
+<li>“NodeJS”:<a href="http://nodejs.org/" target="_blank" rel="noopener">http://nodejs.org/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="ji-suan-ji-yi-shu-hua-ux-jiao-hu" class="heading-control">计算机艺术画/UX交互<a class="heading-anchor" href="#ji-suan-ji-yi-shu-hua-ux-jiao-hu" aria-hidden="true"></a></h3>
+<p>如果你想通过程式来绘制图画或交互动画，并对电脑绘画和图片文件格式有初步的了解，那么Processing也许是你的选择</p>
+<ul>
+<li><a href="http://processing.org/" target="_blank" rel="noopener">http://processing.org/</a></li>
+</ul>
+<p>简单的介绍：<a href="../processing-language">在这里</a></p>
+<h3 id="sql-dba" class="heading-control">SQL/DBA<a class="heading-anchor" href="#sql-dba" aria-hidden="true"></a></h3>
+<p>if u r a DBA, and learn sql well. maybe you are interested in the following sth:</p>
+<ul>
+<li><a href="http://www.datatables.org/" target="_blank" rel="noopener">YQL and community Open Data tables</a></li>
+<li>NoSQL
+<ul>
+<li><a href="http://www.unqlspec.org/display/UnQL/Home" target="_blank" rel="noopener">UnQL</a></li>
+<li><a href="http://www.datastax.com/dev/blog/what%E2%80%99s-new-in-cassandra-0-8-part-1-cql-the-cassandra-query-language" target="_blank" rel="noopener">Cassandra Query Language (CQL)</a></li>
+<li><a href="https://cwiki.apache.org/confluence/display/Hive/Home" target="_blank" rel="noopener">Apache Hive(Hadoop)</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="math-statistics" class="heading-control">Math/Statistics<a class="heading-anchor" href="#math-statistics" aria-hidden="true"></a></h3>
+<p>对于搞数学或统计的人来说，那么FORTRAN, MatLab/Octave, Python+Matplotlib 是不错的选择，个人首选推荐Python系列，不过如果是专业统计那么R语言比较合适。</p>
+<ul>
+<li><a href="http://www.python.org/" target="_blank" rel="noopener">“Python”</a>
+<ul>
+<li><a href="http://matplotlib.sourceforge.net/" target="_blank" rel="noopener">“Matplotlib”</a></li>
+<li><a href="http://www.scipy.org/SciPy" target="_blank" rel="noopener">“SciPy+NumPy”</a>
+<ul>
+<li><a href="http://www.scipy.org/NumPy_for_Matlab_Users" target="_blank" rel="noopener">“NumPy guide for Matlab users”</a></li>
+<li><a href="http://mpi4py.scipy.org/" target="_blank" rel="noopener">“MPI clusters”</a></li>
+<li><a href="http://mathema.tician.de/software/pycuda" target="_blank" rel="noopener">“GPUs”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://www.r-project.org/" target="_blank" rel="noopener">“R Language”</a></li>
+<li><a href="http://www.octave.org/" target="_blank" rel="noopener">“类MatLab的开源Octave”</a></li>
+</ul>
+<h2 id="xue-xi-bian-cheng-yu-yan-de-yong-tu" class="heading-control">学习编程语言的用途<a class="heading-anchor" href="#xue-xi-bian-cheng-yu-yan-de-yong-tu" aria-hidden="true"></a></h2>
+<p>你想用它来干嘛？这个也可以参考前面1节。</p>
+<h2 id="xue-xi-bian-cheng-yu-yan-de-zhong-ji-mu-biao" class="heading-control">学习编程语言的终极目标<a class="heading-anchor" href="#xue-xi-bian-cheng-yu-yan-de-zhong-ji-mu-biao" aria-hidden="true"></a></h2>
+<p>你最终想攀登（到达）一个什么样的山峰？</p>
+<p>下面是我推荐的学习顺序 <code>1-&gt;2,3,4,6-&gt;5</code>,其中2，3，4，6应该可以并行阅读。不过5(算法和设计)应该在至少修完2，3后开始阅读。</p>
+<ol>
+<li>计算机科学入门: 我以为应该是入门的
+<ul>
+<li><a href="https://www.coursera.org/course/cs101" target="_blank" rel="noopener">斯坦福大学 计算机科学入门课程</a></li>
+</ul>
+</li>
+<li>计算机科学及Python编程导论 这个是非常棒的计算机开发入门课程(授课老师Prof. Eric Grimson是MIT的副校长, 此为MIT Online课程)不过是用python语言作为示范讲解的：</li>
+</ol>
+<ul>
+<li><a href="http://mooc.guokr.com/course/244/Introduction-to-Computer-Science-and-Programming-Using-Python/" target="_blank" rel="noopener">中文介绍</a></li>
+<li>上课地址：<a href="https://www.edx.org/course/introduction-computer-science-mitx-6-00-1x-0#.U_HC-_mSxSU" target="_blank" rel="noopener">introduction-computer-science</a></li>
+<li><a href="http://open.163.com/special/opencourse/bianchengdaolun.html" target="_blank" rel="noopener">中文字幕</a>(建议和英文字幕对照看，据说翻译有点渣)</li>
+</ul>
+<ol start="3">
+<li>编程入门</li>
+</ol>
+<ul>
+<li>java
+<ul>
+<li>推荐书籍:
+<ol>
+<li><a href="http://pan.baidu.com/wap/album/file?uk=1194571246&amp;album_id=2582121585932296218&amp;fsid=3195473174" target="_blank" rel="noopener">java编程思想第4版.pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=3123832520&amp;shareid=3024054320&amp;third=1" target="_blank" rel="noopener">Java编程思想(第4版 英文版).pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=2721512979&amp;shareid=507450&amp;third=0" target="_blank" rel="noopener">大话JAVA：从零基础到数据库、WEB开发 PDF</a></li>
+<li><a href="http://google.github.io/styleguide/javaguide.html" target="_blank" rel="noopener">Google Java 编程规范</a></li>
+</ol>
+<ul>
+<li><a href="https://github.com/codeset/google-java-styleguide" target="_blank" rel="noopener">中</a></li>
+</ul>
+<ol start="5">
+<li><a href="http://pan.baidu.com/wap/link?uk=1057303646&amp;shareid=2705566019&amp;third=0" target="_blank" rel="noopener">Head First Java, 2nd Edition 高质非扫描版</a></li>
+</ol>
+<ul>
+<li><a href="http://pan.baidu.com/wap/link?uk=1613735521&amp;shareid=1685526979&amp;third=0" target="_blank" rel="noopener">Head First Java(中文版)(第2版)(涵盖Java5.0).pdf</a></li>
+</ul>
+</li>
+<li>下面的<strong>MOOC课程</strong>你自己看看哪一个更适合你(可以在<a href="http://open.163.com/" target="_blank" rel="noopener">网易公开课</a>上找对应带中文字幕的课程):
+<ol>
+<li><a href="https://www.udacity.com/course/intro-to-java-programming--cs046" target="_blank" rel="noopener">Intro to Java ProgrammingBuilding Programs with Classes &amp; Objects</a></li>
+<li><a href="https://www.edx.org/course/introduction-programming-java-part-1-uc3mx-it-1-1x#.VQZrMo6Ueo0" target="_blank" rel="noopener">Java编程导论 - 第1部分：开始使用Java编程</a></li>
+<li><a href="https://www.edx.org/course/introduction-java-programming-part-1-hkustx-comp102-1x" target="_blank" rel="noopener">Introduction to Java Programming – Part 1(香港大学 港式英语很High)</a></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>c 语言
+<ul>
+<li>courses:
+<ul>
+<li><a href="http://www.icourse163.org/course/zju-199001#/info" target="_blank" rel="noopener">程序设计入门——C语言（浙大）</a></li>
+<li><a href="https://www.coursera.org/course/cprogramming" target="_blank" rel="noopener">计算机程序设计-C 台湾大学</a></li>
+</ul>
+</li>
+<li>books:
+<ul>
+<li><a href="http://akaedu.github.io/book/" target="_blank" rel="noopener">C编程一站式学习</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>编程相关指导书籍
+<ul>
+<li><a href="http://pan.baidu.com/wap/link?uk=1614005835&amp;shareid=1886001644&amp;third=1" target="_blank" rel="noopener">《程序设计实践》中文</a>
+<ul>
+<li><a href="http://pan.baidu.com/wap/link?shareid=328163782&amp;uk=2970225049&amp;third=3&amp;dir=%2F%E5%B7%A5%E4%BD%9C%E8%88%87%E5%AD%B8%E7%BF%92%2F%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%2F%5BPT%5D.C%2B%2B%E5%AD%A6%E4%B9%A0%E5%85%A8%E7%A8%8B%E4%B9%A6%E7%B1%8D%E4%B8%AD%E8%8B%B1%E6%96%87pdf%2FThe%20Practice%20of%20Programming&amp;page=1&amp;" target="_blank" rel="noopener">The Practice of Programming pdf</a></li>
+</ul>
+</li>
+<li>《Code Complete[代码大全]》: 一书在手开发无求
+<ul>
+<li><a href="http://pan.baidu.com/wap/link?uk=3389964651&amp;shareid=514781&amp;third=3" target="_blank" rel="noopener">Code Complete 代码大全 – 第2版(中文版).pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=2801929386&amp;shareid=493255&amp;third=3" target="_blank" rel="noopener">Code Complete 代码大全 – 第2版(英文版).pdf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>计算机组成原理(basics of technical computer science,猜的可能是讲这个)</li>
+</ol>
+<ul>
+<li>课程:
+<ul>
+<li><a href="http://www.chinesemooc.org/mooc/4392" target="_blank" rel="noopener">计算机组成(北大)</a></li>
+<li><a href="https://www.coursera.org/course/hwswinterface" target="_blank" rel="noopener">The Hardware/Software Interface 课程</a>
+<ul>
+<li>(对初学者来说有些深，不过课程非常棒): 可能至少要修完Introduction to Java，才能完全看懂</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>书籍(可能有些深，国内的太渣，据说北大那个课程讲得还行):
+<ul>
+<li><a href="http://pan.baidu.com/wap/link?uk=908410137&amp;shareid=2879930344&amp;third=0" target="_blank" rel="noopener">深入理解计算机系统(原书第2版)英文版.pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=4227866569&amp;shareid=1706493678&amp;third=0" target="_blank" rel="noopener">深入理解计算机系统 中文.pdf</a>
+<ul>
+<li>The Hardware/Software Interface 课程 指定用书</li>
+</ul>
+</li>
+<li><a href="http://pan.baidu.com/wap/link?uk=1946220390&amp;shareid=18873311&amp;third=0" target="_blank" rel="noopener">计算机组成与设计：硬件、软件接口（第三版中文）.pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/shareview?&amp;shareid=678623063&amp;uk=1862273438&amp;dir=%2F%E8%AF%BB%E7%A7%80%E8%B5%84%E6%96%99&amp;page=3&amp;num=20&amp;fsid=688886060&amp;third=0" target="_blank" rel="noopener">计算机组成与设计：硬件、软件接口（原书第4版）.pdf</a></li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>算法与设计</li>
+</ol>
+<ul>
+<li>课程:
+<ul>
+<li><a href="https://www.coursera.org/course/algs4partI" target="_blank" rel="noopener">算法，第一部分(普林斯顿大学)</a></li>
+<li><a href="https://www.coursera.org/course/algs4partII" target="_blank" rel="noopener">算法，第二部分(普林斯顿大学)</a></li>
+</ul>
+</li>
+<li>书籍
+<ul>
+<li><a href="http://pan.baidu.com/share/link?uk=2184679390&amp;shareid=419524&amp;third=3" target="_blank" rel="noopener">算法 第4版-谢路云 译(Java描述) pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=940665991&amp;shareid=1729537564&amp;third=3" target="_blank" rel="noopener">算法 第4版Algorithms 4th Edition.pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=1577879470&amp;shareid=645166851&amp;third=3" target="_blank" rel="noopener">设计模式之禅.pdf</a></li>
+<li>设计模式 可复用面向对象软件的基础 Design.Patterns,.Elements.Of.Reusable.Object.Oriented.Software
+<ul>
+<li><a href="http://www.sendsms.cn/box/dl/_25B1_25E0_25B3_25CC_25BC_25BC_25CA_25F5/_25D4_25AD_25C0_25ED_25CB_25BC_25CF_25EB/_25C9_25E8_25BC_25C6_25BC_25DC_25B9_25B9/_25C9_25E8_25BC_25_0875C83619" target="_blank" rel="noopener">中</a></li>
+<li><a href="http://pan.baidu.com/wap/shareview?&amp;shareid=809818578&amp;uk=2869779580&amp;dir=%2F%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B&amp;page=1&amp;num=20&amp;fsid=2203721337&amp;third=0" target="_blank" rel="noopener">英</a></li>
+</ul>
+</li>
+<li>Head First Design Patterns 设计模式(高清版)
+<ul>
+<li><a href="(http://pan.baidu.com/wap/link?uk=1343102438&amp;shareid=1982573272&amp;third=3)">中</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=4030029226&amp;shareid=1265604584&amp;third=0" target="_blank" rel="noopener">英</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>算法_模式_架构</code>书籍汇集:
+<ul>
+<li><a href="http://pan.baidu.com/share/link?shareid=1210846675&amp;uk=1076602916&amp;third=3&amp;page=1&amp;dir=/Java&amp;#path=%252FJava%252F%25E7%25AE%2597%25E6%25B3%2595_%25E6%25A8%25A1%25E5%25BC%258F_%25E6%259E%25B6%25E6%259E%2584" target="_blank" rel="noopener">算法 模式 架构</a></li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>操作系统概念</li>
+</ol>
+<ul>
+<li>Courses:</li>
+<li><a href="http://mooc.study.163.com/course/HIT-1000002004#/info" target="_blank" rel="noopener">操作系统之基础(哈尔滨大学)</a></li>
+<li>Books:
+<ul>
+<li><a href="http://pan.baidu.com/wap/link?uk=788966016&amp;shareid=421794&amp;third=0" target="_blank" rel="noopener">操作系统概念第七版中文版.pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/link?uk=2117599147&amp;shareid=443667&amp;third=6" target="_blank" rel="noopener">操作系统概念 (第9版).zip</a></li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>其它</li>
+</ol>
+<ul>
+<li><a href="http://pan.baidu.com/share/link?uk=3710133669&amp;shareid=432998199&amp;fid=284720175" target="_blank" rel="noopener">数据库系统概念 中文</a></li>
+<li><a href="http://pan.baidu.com/share/link?&amp;shareid=2247901396&amp;uk=1125778630" target="_blank" rel="noopener">数据库系统概念第六版Database System Concepts.pdf</a></li>
+<li><a href="http://pan.baidu.com/wap/shareview?&amp;shareid=2681801025&amp;uk=3778155569&amp;dir=%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80&amp;page=1&amp;num=20&amp;fsid=3497987523&amp;third=0" target="_blank" rel="noopener">具体数学-计算机科学基础.rar</a></li>
+<li><a href="http://pan.baidu.com/wap/link?shareid=117265344&amp;uk=540536034&amp;third=3" target="_blank" rel="noopener">计算机科学45部经典著作</a>
+<ul>
+<li>C语言程序设计</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Riceball LEE
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/howto-choose-programming-language/" title="如何选择一门语言学习计算机编程">https://riceball.me/article/howto-choose-programming-language/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/programming/" rel="tag"><i class="fa fa-tag"></i> programming</a>
+              <a href="/tags/howto/" rel="tag"><i class="fa fa-tag"></i> howto</a>
+              <a href="/tags/computer-language/" rel="tag"><i class="fa fa-tag"></i> computer language</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/vr/" rel="prev" title="虚拟现实（VR）体验">
+      <i class="fa fa-chevron-left"></i> 虚拟现实（VR）体验
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/promise.cn/" rel="next" title="异步编程与 Promise">
+      异步编程与 Promise <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ru-he-xuan-ze-yi-men-yu-yan-xue-xi-ji-suan-ji-bian-cheng"><span class="nav-number">1.</span> <span class="nav-text">如何选择一门语言学习计算机编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ji-chu-yu-yan-ji-suan-ji-ying-yu"><span class="nav-number">2.</span> <span class="nav-text">基础语言：计算机英语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ru-he-xue-xi-ji-suan-ji-ying-yu"><span class="nav-number">2.1.</span> <span class="nav-text">如何学习计算机英语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yue-du-kai-fa-lei-huo-zhe-ke-ji-lei-de-ying-wen-blogs"><span class="nav-number">2.1.1.</span> <span class="nav-text">阅读开发类或者科技类的英文Blogs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tiao-yi-ge-hao-de-kai-yuan-xiang-mu-kan-ren-jia-shi-zen-mo-xie-de"><span class="nav-number">2.1.2.</span> <span class="nav-text">挑一个好的开源项目，看人家是怎么写的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xuan-ze-shi-he-zi-ji-de-ji-suan-ji-yu-yan"><span class="nav-number">3.</span> <span class="nav-text">选择适合自己的计算机语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xue-xi-bian-cheng-yu-yan-de-ji-chu"><span class="nav-number">3.1.</span> <span class="nav-text">学习编程语言的基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html-xml-css"><span class="nav-number">3.1.1.</span> <span class="nav-text">HTML&#x2F;XML&#x2F;CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-suan-ji-yi-shu-hua-ux-jiao-hu"><span class="nav-number">3.1.2.</span> <span class="nav-text">计算机艺术画&#x2F;UX交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-dba"><span class="nav-number">3.1.3.</span> <span class="nav-text">SQL&#x2F;DBA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#math-statistics"><span class="nav-number">3.1.4.</span> <span class="nav-text">Math&#x2F;Statistics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xue-xi-bian-cheng-yu-yan-de-yong-tu"><span class="nav-number">3.2.</span> <span class="nav-text">学习编程语言的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xue-xi-bian-cheng-yu-yan-de-zhong-ji-mu-biao"><span class="nav-number">3.3.</span> <span class="nav-text">学习编程语言的终极目标</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/howto-choose-programming-language/",
+      identifier: "article/howto-choose-programming-language/",
+      title: "如何选择一门语言学习计算机编程",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

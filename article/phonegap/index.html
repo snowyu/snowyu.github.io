@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="在开发移动应用的过程当中，如果你的应用只定位在一种平台上，这可不是一个好主意，但是为许多不同的平台Building应用又是一件非常麻烦和非常不爽的事情，因为你会发现每一种手机平台都有自己的SDK，它们需要使用不同语言来进行开发，你可能不得不需要5、6个代码仓库来管理不同设备上的代码，而且需要不同设备的开发人员来开发维护这些仓库，你还不得不装上各个设备的sdk，设置好路径和各种配置信息，来编译不同设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phonegap：快速开发跨平台HTML5应用的胶水层">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;phonegap&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="在开发移动应用的过程当中，如果你的应用只定位在一种平台上，这可不是一个好主意，但是为许多不同的平台Building应用又是一件非常麻烦和非常不爽的事情，因为你会发现每一种手机平台都有自己的SDK，它们需要使用不同语言来进行开发，你可能不得不需要5、6个代码仓库来管理不同设备上的代码，而且需要不同设备的开发人员来开发维护这些仓库，你还不得不装上各个设备的sdk，设置好路径和各种配置信息，来编译不同设">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;build.phonegap.com&#x2F;images&#x2F;marketing&#x2F;build-diagram.png">
+<meta property="article:published_time" content="2011-03-05T00:01:29.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.533Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="HTML5">
+<meta property="article:tag" content="mobile">
+<meta property="article:tag" content="移动开发">
+<meta property="article:tag" content="phonegap">
+<meta property="article:tag" content="cordova">
+<meta property="article:tag" content="hybrid">
+<meta property="article:tag" content="application">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;build.phonegap.com&#x2F;images&#x2F;marketing&#x2F;build-diagram.png">
+
+<link rel="canonical" href="https://riceball.me/article/phonegap/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>Phonegap：快速开发跨平台HTML5应用的胶水层 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/phonegap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Phonegap：快速开发跨平台HTML5应用的胶水层
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2011-03-05 08:01:29" itemprop="dateCreated datePublished" datetime="2011-03-05T08:01:29+08:00">2011-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML5/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML5</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在开发移动应用的过程当中，如果你的应用只定位在一种平台上，这可不是一个好主意，但是为许多不同的平台Building应用又是一件非常麻烦和非常不爽的事情，因为你会发现每一种手机平台都有自己的SDK，它们需要使用不同语言来进行开发，你可能不得不需要5、6个代码仓库来管理不同设备上的代码，而且需要不同设备的开发人员来开发维护这些仓库，你还不得不装上各个设备的sdk，设置好路径和各种配置信息，来编译不同设备上的应用包。那么移动网站模式是不是一个可以接受的替代方案呢？幸运的是移动应用和移动网站并不是对立的两端，通过Phonegap我们可以采用html5的网站形式来开发移动应用。也许开源Phonegap 会成为 WebApp 上设备端开发的事实上标准，ShowMuch本期就为你推荐移动开发利器：PhoneGap。我们先来看看PhoneGap的特性：</p>
+<ul>
+<li>支持6种移动设备平台：iOS, Android, BlackBerry, WebOS, Symbian WRT, Windows Mobile(内部测试)，以及桌面环境（内部测试）</li>
+<li>HTML5 + CSS3 + JavaScript  利用标准的Web技术开发应用</li>
+<li><a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a>: write once, compile on cloud, run anywhere. 提供在线Builder平台：只写一次，云端编译，运行在任何地方</li>
+<li>目前已经有上千基于<a href="http://www.phonegap.com/apps" target="_blank" rel="noopener">Phonegap的应用</a>在AppStore上</li>
+</ul>
+<h2 id="kai-shi-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz" class="heading-control">开始玩![](data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf/AABEIACAAIAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD/8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH/xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE/9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb/ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA/dz/ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj/V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP//Z)<a class="heading-anchor" href="#kai-shi-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz" aria-hidden="true"></a></h2>
+<p>首先自然是需要下载 phonegap： <a href="http://www.phonegap.com/" target="_blank" rel="noopener">http://www.phonegap.com/</a></p>
+<p>然后你还需要相应设备的SDK</p>
+<h3 id="zhen-dui-iphone" class="heading-control"><strong>针对iPhone:</strong><a class="heading-anchor" href="#zhen-dui-iphone" aria-hidden="true"></a></h3>
+<ol>
+<li>从 <a href="http://developer.apple.com/" target="_blank" rel="noopener">Apple Developer Portal</a> 下载安装 XCode.</li>
+<li>解开下载好的phonegap压缩包，进入iphone目录安装好phonegap</li>
+<li>打开XCode，在文件菜单选择 New Project… 菜单</li>
+<li>点开“User Templates”栏，选择Phonegap，然后选中右边的“<strong>PhoneGap-based Application</strong>”，点击“Choose…”按钮，命名你的项目，选择项目文件的位置.</li>
+</ol>
+<h3 id="zhen-dui-android" class="heading-control"><strong>针对Android:</strong><a class="heading-anchor" href="#zhen-dui-android" aria-hidden="true"></a></h3>
+<ol>
+<li>![](data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhIPDxUTEBIWEBASFBIRFBgVFBMdGRQbHxUcFhgXFxIYJyYeIyUoGhgeHzsgIzMpMTAtFx4xNTwqNScrLCkBCQoKDQsNGQ4OGTUkHiQ1NTU1NDQ1NTU2LjU1NSw1NSw1NDUyNDU1NDY1LjQ1NSw1NDQsNTYpNDQtLDUpLC81LP/AABEIAE8ATwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQMEBQYCB//EADgQAAIBAwIDBQQJAwUAAAAAAAECAwAEEQUhEhMxBiJRYXEyQYGRFEJSobGys+HwJENyFiM0NYL/xAAZAQADAQEBAAAAAAAAAAAAAAAAAgMEAQX/xAAoEQACAgEDAQcFAAAAAAAAAAAAAQIRAxIhMRMEQWFxgbHBFFGRofD/2gAMAwEAAhEDEQA/APcKKKKACiikJoAWq++v+XJCvXmuyH0EbNn5qB8aNX1qK1jLytgdAB7THwUVQ2NyTKLu8PKyClvFuWUHqeEblj5DpU5Tp6VyXx4m1rfHua0UtM2s3GMlSmfc2M/EDp6U9VEQ4CiiigAooooAK5alJqLdanFEQJHVWPRSe83og3PwoOMyul230m/uZrjvG2bgiQ9F6kEDzAB9T5Cu+xEi3LS3Ep4rjjK4P9tMbBR7h1G3XG9XMtjiYXEPtMAsq4xzFzscH6w92eoyPCqnTNEMOpyPDtCUy/hxsc8A/N5ZHjWXQ4td56nVhkhNN1sq9OV6mtWuqhXmpJAvE/FwgEkqjNgDqTwg09Z3iTIHjYOjDKspyDWqjy7H6KKKDoUUUUAIax+v6Nb2jNdBrmOSRwrmFifaO5biDYUfGtTfX8cKF5XWNB1LEAfzyqHJePNC/wBHBRyp5byxkLk9O6cN91NFtOxJU9jNJrNoR/3EnoWhH4pmkTV7EsB9NubgkgYV5yPjyVXanDdaimA+nQTsBjiWSPfzw3zqZpl3qLSDjtILeLPe/wB3vY8RwZ+RrQ0qv5RJXx8Fld3y26BIUaSQgcuNMkt5sx9keLNXPZHR2tLVY3ILlnkfHsgseIqvkOlWk0yxqWchVAySfdjxNdxyBhkbg7j8azXtRat7OxRRRXBgoNFIaAIGr6PDdoEnQSKDxDORg+II3Bqok7Kcof081wgH1RdNgegkDipXbOZksZWRirDgwVJBHfUbEU3DrZighHJmndoY3JRcj2RklycZ8qXraHpfBX6dzgpryIZ0y7H927PpNZ/iUrltMuz1N03+V3Av6aZqZ/rOLkNNwSYjdY5FKjijJ+0M4qdqGupBysgtz2VE4QPfjBPlvTLOubQr7LNOmv5FRD2enLZIiQ/akee4cenMKrn51pLO2MaYLtIdyWcjJPwwB6Daqe97ViIvm3nZIyQziPujB3IJOSKs7DUBOgdAeBgGVtu8P2rnUU3QPDOEdTWxNFFIKWuiBSGlpDQBn+3H/Al/8fqLVOmsuZIbfni0jFrDIXIQlzwDYF9h+xq87TaTJdqsSuEhLZl2PEQOgX3fwVOk0iF1QPEjiMBV4lBwBsMVnlCTna8DdjzY4YlGSvd/BjtBtBcpfxh+bxsArnHf7pKtgbdd/CmuzM7Xk9srbizjYvn7WeFPuwfhW9itETJRQpbGcADOBtnHlXMFlHGSURULHJIAGfUilWBqt/P3Hl23Up7c8eG1P9GIn1trmK4aS6FuEMkSwgJlsDYMzZbJ6bVpOxQ/oIf8T+c1PbSYTJx8pOYfrcC5+dSbeFUXhQBVHQAYA+FPDG1LU2SzdohLH04qt0+77fkdFFAoq5jP/9k=)下载安装 JDK 1.5</li>
+<li>下载安装 <a href="http://developer.android.com/sdk/index.html" target="_blank" rel="noopener">Android SDK</a></li>
+<li>下载安装 <a href="http://ant.apache.org/ivy/download.cgi" target="_blank" rel="noopener">Apache ANT</a></li>
+<li>下载安装 Ruby (命令行方式开发需要)</li>
+<li>解压已经下载好的 PhoneGap, 进入android 目录，my god，最新的0.9.4ZIP包中没有命令行创建项目的方式，好吧，你需要从最新的仓库中把代码取出来： git clone <a href="https://github.com/phonegap/phonegap-android.git" target="_blank" rel="noopener">https://github.com/phonegap/phonegap-android.git</a></li>
+<li>命令行方式(Droidgap)脚本的开发者没有修改路径以配合新的0.9.4版本，这是这次在发布中被拿掉的原因吧。需要自己改改，蛮简单的，就不多说。</li>
+<li>将 android下的bin目录 加入你的搜索 path:<br>
+UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
+在windows下将phonegap-android/bin 路径加到Path中就不用多说了。</li>
+<li>ok，在命令行下输入 “droidgap gen demo”,即可创建phonegap支撑的html5应用项目。</li>
+<li>cd demo;ant debug install 即可安装到设备或模拟器</li>
+<li>adb logcat 在控制台查看设备的输出日志</li>
+</ol>
+<h3 id="shi-yong-phonegap-lai-chuang-jian-yi-dong-app-ying-yong" class="heading-control"><strong>使用PhoneGap来创建移动App应用：</strong><a class="heading-anchor" href="#shi-yong-phonegap-lai-chuang-jian-yi-dong-app-ying-yong" aria-hidden="true"></a></h3>
+<p>打开项目的www目录（android是在项目的assets/www目录下），编辑index.html，在body中键入</p><h1 class="heading-control">hello world<a class="heading-anchor" href="#undefined" aria-hidden="true"></a></h1>（你也可以加上js和css文件在这个目录下面），保存，然后你就可以首先部署到模拟器上看看。<p></p>
+<p>也许你会说，哈，这不就是网页嘛！是的，这就是网页，不过通过phonegap，这样的网页应用就有能力访问设备的所有功能：文件系统，GPS，相机，重力加速度计，电话簿等，当然不同的设备支持的功能会有所不同（目前phonegap还不能支持完所有的功能，具体看各个设备支持的特性列表）。另外要想呈现和移动应用一样的外观，你还需要选择一种HTML5 Mobile UI Framework库，这样的Framework库已经很多了: Sencha Touch, JQTouch, JMobile, XUI, The-M-Project,Dojo Mobile, dhtmlxTouch, wink, jo, <a href="http://webapp.net" target="_blank" rel="noopener">webapp.net</a>…</p>
+<h2 id="phonegap-build" class="heading-control"><a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a><a class="heading-anchor" href="#phonegap-build" aria-hidden="true"></a></h2>
+<p>除了在本地编译应用之外，您还可以使用Phonegap提供的云端Build工具进行应用编译。那就是：Phonegap Build，通过它，您只需要将用HTML5写好的应用上传到Phonegap的云端服务器，它即可以帮你编译不同平台平的应用。</p>
+<p><img src="https://build.phonegap.com/images/marketing/build-diagram.png" alt></p>
+<p><a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a> 当前<a href="https://build.phonegap.com/" target="_blank" rel="noopener">Phonegap Build</a>依然处于beta状态，你需要申请，等到通过方可使用。另外推荐一个Chrome的插件，<a href="http://ripple.tinyhippos.com/" target="_blank" rel="noopener">Ripple Emulator</a> 可以在Chrome浏览器上测试你的应用，支持phonegap。</p>
+<p>（文章作者：李雪愚，盛大创新院高级架构师，雪愚对于使用Phonegap有着丰富的经验，曾用Phonegap开发基于Android和iOS的应用。编辑BY：Handaoliang）</p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/phonegap/" title="Phonegap：快速开发跨平台HTML5应用的胶水层">https://riceball.me/article/phonegap/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/HTML5/" rel="tag"><i class="fa fa-tag"></i> HTML5</a>
+              <a href="/tags/mobile/" rel="tag"><i class="fa fa-tag"></i> mobile</a>
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 移动开发</a>
+              <a href="/tags/phonegap/" rel="tag"><i class="fa fa-tag"></i> phonegap</a>
+              <a href="/tags/cordova/" rel="tag"><i class="fa fa-tag"></i> cordova</a>
+              <a href="/tags/hybrid/" rel="tag"><i class="fa fa-tag"></i> hybrid</a>
+              <a href="/tags/application/" rel="tag"><i class="fa fa-tag"></i> application</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/open-hardware-ages/" rel="prev" title="开源硬件的三个时代">
+      <i class="fa fa-chevron-left"></i> 开源硬件的三个时代
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/processing-language/" rel="next" title="Processing语言——专为开发者中的艺术家而创建">
+      Processing语言——专为开发者中的艺术家而创建 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kai-shi-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz"><span class="nav-number">1.</span> <span class="nav-text">开始玩![](data:image&#x2F;jpg;base64,&#x2F;9j&#x2F;4AAQSkZJRgABAQAAAQABAAD&#x2F;2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf&#x2F;AABEIACAAIAMBIgACEQEDEQH&#x2F;xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD&#x2F;8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH&#x2F;xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH&#x2F;xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE&#x2F;9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb&#x2F;ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA&#x2F;dz&#x2F;ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj&#x2F;V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP&#x2F;&#x2F;Z)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zhen-dui-iphone"><span class="nav-number">1.1.</span> <span class="nav-text">针对iPhone:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zhen-dui-android"><span class="nav-number">1.2.</span> <span class="nav-text">针对Android:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shi-yong-phonegap-lai-chuang-jian-yi-dong-app-ying-yong"><span class="nav-number">1.3.</span> <span class="nav-text">使用PhoneGap来创建移动App应用：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#phonegap-build"><span class="nav-number">1.</span> <span class="nav-text">Phonegap Build</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/phonegap/",
+      identifier: "article/phonegap/",
+      title: "Phonegap：快速开发跨平台HTML5应用的胶水层",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

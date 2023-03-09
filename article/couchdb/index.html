@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="CouchDB 是一个面向文档的NoSQL数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为CouchApp，详见后述。  Source Build sudo apt-get --no-install-recommends -y install \     build-essential pkg-config erlang erlang-reltool \     libicu-d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CouchDB">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;couchdb&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="CouchDB 是一个面向文档的NoSQL数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为CouchApp，详见后述。  Source Build sudo apt-get --no-install-recommends -y install \     build-essential pkg-config erlang erlang-reltool \     libicu-d">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-09T21:30:59.000Z">
+<meta property="article:modified_time" content="2019-11-25T19:30:00.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="nosql">
+<meta property="article:tag" content="couchdb">
+<meta property="article:tag" content="database">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/couchdb/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>CouchDB | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/couchdb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          CouchDB
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-10 05:30:59" itemprop="dateCreated datePublished" datetime="2018-10-10T05:30:59+08:00">2018-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-26 03:30:00" itemprop="dateModified" datetime="2019-11-26T03:30:00+08:00">2019-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/NoSQL/" itemprop="url" rel="index">
+                    <span itemprop="name">NoSQL</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/NoSQL/CouchDB/" itemprop="url" rel="index">
+                    <span itemprop="name">CouchDB</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>26k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>48 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>CouchDB 是一个面向文档的<code>NoSQL</code>数据库。CouchDB还可以把整个H5网站直接放到数据库中，这称为<code>CouchApp</code>，详见后述。</p>
+<a id="more"></a>
+<h2 id="source-build" class="heading-control">Source Build<a class="heading-anchor" href="#source-build" aria-hidden="true"></a></h2>
+<pre><code class="bash">sudo apt-get --no-install-recommends -y install \
+    build-essential pkg-config erlang erlang-reltool \
+    libicu-dev libcurl4-openssl-dev
+sudo apt-get install devscripts libnspr4-dev pkg-kde-tools
+git <span class="hljs-built_in">clone</span> https://github.com/apache/couchdb
+git <span class="hljs-built_in">clone</span> https://github.com/apache/couchdb-pkg
+<span class="hljs-built_in">cd</span> couchdb-pkg
+make couch-js-debs PLATFORM=bionic <span class="hljs-comment"># howto use it? still cannot find jsapi.h</span>
+sudo dpkg -i js/couch-libmozjs185-*.deb
+
+<span class="hljs-comment"># build dpkg needed:</span>
+sudo apt install dh-exec dh-systemd nodejs python-sphinx
+
+make build-couch $(lsb_release -cs) PLATFORM=$(lsb_release -cs)
+</code></pre>
+<h2 id="gai-nian" class="heading-control">概念<a class="heading-anchor" href="#gai-nian" aria-hidden="true"></a></h2>
+<h3 id="shu-ju-ku-database" class="heading-control">数据库(database)<a class="heading-anchor" href="#shu-ju-ku-database" aria-hidden="true"></a></h3>
+<p>概念比较:</p>
+<table>
+<thead>
+<tr>
+<th>MongoDB</th>
+<th>CouchDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collection</td>
+<td>Database</td>
+</tr>
+<tr>
+<td>Key/Value</td>
+<td>_id/Document</td>
+</tr>
+</tbody>
+</table>
+<p>在MongoDB中称 <code>database</code> 为 <code>Collection</code>。 一个<code>K/V键值对</code>在<code>CouchDB</code>称为 <code>Document</code>.</p>
+<p>可以查询、创建和删除数据库，数据库的名称只能是小写字母、数字以及特殊字符_$()±/。</p>
+<ul>
+<li><code>GET /_all_dbs</code>: 查询 CouchDB 中所有的数据库名称。该请求返回的是一个 JSON 数组<pre><code class="js">[<span class="hljs-string">"_global_changes"</span>,<span class="hljs-string">"_replicator"</span>,<span class="hljs-string">"_users"</span>]
+</code></pre>
+</li>
+<li><code>GET /[database-name]</code>: 查询名为databasename的数据库的具体信息.<pre><code class="js">{<span class="hljs-string">"db_name"</span>:<span class="hljs-string">"_users"</span>,<span class="hljs-string">"update_seq"</span>:<span class="hljs-string">"1-g1AAAA"</span>,<span class="hljs-string">"sizes"</span>:{<span class="hljs-string">"file"</span>:<span class="hljs-number">38054</span>,<span class="hljs-string">"external"</span>:<span class="hljs-number">5024</span>,<span class="hljs-string">"active"</span>:<span class="hljs-number">2197</span>},<span class="hljs-string">"purge_seq"</span>:<span class="hljs-number">0</span>,<span class="hljs-string">"other"</span>:{<span class="hljs-string">"data_size"</span>:<span class="hljs-number">5024</span>},<span class="hljs-string">"doc_del_count"</span>:<span class="hljs-number">0</span>,<span class="hljs-string">"doc_count"</span>:<span class="hljs-number">1</span>,<span class="hljs-string">"disk_size"</span>:<span class="hljs-number">38054</span>,<span class="hljs-string">"disk_format_version"</span>:<span class="hljs-number">6</span>,<span class="hljs-string">"data_size"</span>:<span class="hljs-number">2197</span>,<span class="hljs-string">"compact_running"</span>:<span class="hljs-literal">false</span>,<span class="hljs-string">"instance_start_time"</span>:<span class="hljs-string">"0"</span>}
+</code></pre>
+</li>
+<li><code>PUT /[database-name]</code>: 创建名为databasename的数据库。如果数据库创建成功的话，返回 HTTP 状态代码 201 ；如果已有一个同名数据库的话，返回 HTTP 状态代码 412 。</li>
+<li><code>DELETE /[database-name]</code>: 删除名为databasename的数据库。如果数据库删除成功的话，返回 HTTP 状态代码 200 ；如果数据库不存在，返回 HTTP 状态代码 404 。</li>
+</ul>
+<h4 id="nei-bu-shu-ju-ku" class="heading-control">内部数据库<a class="heading-anchor" href="#nei-bu-shu-ju-ku" aria-hidden="true"></a></h4>
+<p>内部数据库以&quot;_&quot;打头。</p>
+<ul>
+<li><code>_users</code> 为用户数据库(authentication)，默认匿名用户可以创建用户。可以在<code>_design/_auth</code>中添加限制，参考后面的代码样例。</li>
+<li><code>_session</code>: 服务器端的用户会话管理。</li>
+<li><code>_config</code> 为系统配置数据库，管理员配置也在其中。</li>
+</ul>
+<h5 id="an-quan-yu-ren-zheng-users" class="heading-control">安全与认证(_users)<a class="heading-anchor" href="#an-quan-yu-ren-zheng-users" aria-hidden="true"></a></h5>
+<p><a href="http://docs.couchdb.org/en/2.1.1/intro/security.html" target="_blank" rel="noopener">http://docs.couchdb.org/en/2.1.1/intro/security.html</a></p>
+<ul>
+<li><code>_id</code> (string): Document ID. Contains user’s login with special prefix Why the <code>org.couchdb.user</code>: prefix?</li>
+<li><code>derived_key</code> (string): PBKDF2 key</li>
+<li><code>name</code> (string): User’s name aka login. Immutable e.g. you cannot rename an existing user - you have to create new one</li>
+<li><code>roles</code> (array of string): List of user roles. CouchDB doesn’t provide any built-in roles, so you’re free to define your own depending on your needs. However, you cannot set system roles like _admin there. Also, only administrators may assign roles to users - by default all users have no roles. 你可以自己定义role，然后在<code>validate_doc_update</code>中去检测角色。</li>
+<li><code>password_sha</code> (string): Hashed password with salt. Used for simple password_scheme</li>
+<li><code>password_scheme</code> (string): Password hashing scheme. May be simple or pbkdf2</li>
+<li><code>salt</code> (string): Hash salt. Used for simple password_scheme</li>
+<li><code>type</code> (string): Document type. Constantly has the value user</li>
+</ul>
+<p>Why the <code>org.couchdb.user</code>: prefix?</p>
+<p>The reason there is a special prefix before a user’s login name is to have namespaces that users belong to. This prefix is designed to prevent replication conflicts when you try merging two or more <code>_user</code> databases.</p>
+<p>For current CouchDB releases, all users belong to the same <code>org.couchdb.user</code> namespace and this cannot be changed. This may be changed in future releases.</p>
+<h3 id="wen-dang-document" class="heading-control">文档（document）<a class="heading-anchor" href="#wen-dang-document" aria-hidden="true"></a></h3>
+<p>文档是 CouchDB 中的核心概念。一个 CouchDB 数据库实际上是一系列文档的集合。每个文档是一系列数据项的集合。每个数据项都有一个名称与对应的值，值既可以是简单的数据类型，如字符串、数字和日期等；也可以是复杂的类型，如数组和对象。每个文档都有一个全局惟一的标识符（ID）以及一个修订版本号（revision number）。 ID 用来惟一标识一个文档（相当于Key），而修订版本号则用来实现多版本并发控制（Multiversion concurrency control，MVVC）。在 CouchDB 中，文档是以 JSON 对象的形式保存的。文档中至少要包含<code>_id</code>和<code>_rev</code>字段，其中以“_”作为前缀的顶层字段是由 CouchDB 保留使用的。</p>
+<ul>
+<li>
+<p><code>_id</code> : 全局惟一的标识符，用来惟一标识一个文档；</p>
+</li>
+<li>
+<p><code>_rev</code> : 修订版本号，用来实现多版本并发控制（Multiversion concurrency control，MVVC）；</p>
+</li>
+<li>
+<p><code>_attachments</code> : 内嵌型附件，以 base64 编码的格式作为文档的一个字段保存；</p>
+</li>
+<li>
+<p><code>GET /[databasename]/[doc_id]</code></p>
+</li>
+<li>
+<p><code>PUT /[databasename]/[doc_id]</code> 创建或更新文档</p>
+</li>
+<li>
+<p>更新已有的文档:在 PUT 请求内容的文档中需要包含_rev字段，表示文档的修订版本号。 CouchDB 使用该字段来做更新时的冲突检测。如果该字段的值与 CouchDB 中保存的该文档的修订版本号一致，则表明没有冲突，可以进行更新。当更新完成之后，返回 HTTP 状态代码 201 ；否则返回 HTTP 状态代码 409，表示有版本冲突。</p>
+</li>
+<li>
+<p><code>POST /[databasename]</code> 创建文档,<code>_id</code>由系统决定。</p>
+</li>
+<li>
+<p><code>DELETE /[databasename]/[doc_id]?rev=[rev_id]</code> 删除数据库databasename中 ID 为doc_id，并且修订版本号为rev_id的文档。</p>
+</li>
+</ul>
+<p>用文档来描述关系：</p>
+<pre><code class="js"><span class="hljs-comment">// 用内嵌文档 ID 描述多对多关系</span>
+ {
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"user1"</span>,
+  <span class="hljs-string">"username"</span> : <span class="hljs-string">"Alex"</span>,
+  <span class="hljs-string">"email"</span> : <span class="hljs-string">"alexcheng1982@gmail.com"</span>,
+  <span class="hljs-string">"roles"</span>:[<span class="hljs-string">"db_admin"</span>,<span class="hljs-string">"backup_admin"</span>]
+ }
+ {
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"db_admin"</span>,
+  <span class="hljs-string">"name"</span> : <span class="hljs-string">" 数据库管理员 "</span>,
+  <span class="hljs-string">"priority"</span> : <span class="hljs-number">2</span>
+ }
+
+ <span class="hljs-comment">// 用关联文档描述多对多关系</span>
+ {
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"user1"</span>,
+  <span class="hljs-string">"username"</span> : <span class="hljs-string">"Alex"</span>,
+  <span class="hljs-string">"email"</span> : <span class="hljs-string">"alexcheng1982@gmail.com"</span>
+ }
+ {
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"db_admin"</span>,
+  <span class="hljs-string">"name"</span> : <span class="hljs-string">" 数据库管理员 "</span>,
+  <span class="hljs-string">"priority"</span> : <span class="hljs-number">2</span>
+ }
+ {
+  <span class="hljs-string">"_id"</span> : <span class="hljs-string">"user_role_001"</span>,
+  <span class="hljs-string">"user_id"</span> : <span class="hljs-string">"user1"</span>,
+  <span class="hljs-string">"role_id"</span> : <span class="hljs-string">"db_admin"</span>
+ }
+</code></pre>
+<h4 id="wen-dang-cha-xun" class="heading-control">文档查询<a class="heading-anchor" href="#wen-dang-cha-xun" aria-hidden="true"></a></h4>
+<p><a href="https://pouchdb.com/2014/04/14/pagination-strategies-with-pouchdb.html" target="_blank" rel="noopener">https://pouchdb.com/2014/04/14/pagination-strategies-with-pouchdb.html</a><br>
+<a href="https://pouchdb.com/guides/queries.html#pouchdb-find" target="_blank" rel="noopener">https://pouchdb.com/guides/queries.html#pouchdb-find</a></p>
+<p>Pouchdb这里推荐是all_docs</p>
+<ul>
+<li><code>GET /[db]/_all_docs</code> is a special case for CouchDB. Instead of the normal Unicode Collation, it uses ASCII collation. 故不推荐使用<a href="https://wiki.apache.org/couchdb/View_collation" target="_blank" rel="noopener">1</a>。</li>
+<li><a href="http://docs.couchdb.org/en/2.0.0/api/database/find.html" target="_blank" rel="noopener">POST /[db]/_find</a>: 可以</li>
+</ul>
+<pre><code class="js">{
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"_id"</span>: {<span class="hljs-string">"$gt"</span>: <span class="hljs-string">"产品\u0000"</span>, <span class="hljs-string">"$lt"</span>: <span class="hljs-string">"产品/\uffff"</span>}
+  }
+}
+</code></pre>
+<p><code>_find</code> 是类似MongoDB的查询方式(<a href="https://pouchdb.com/guides/mango-queries.html" target="_blank" rel="noopener">https://pouchdb.com/guides/mango-queries.html</a>).<br>
+这里被称为<code>Mango queries</code>, 从CouchDB@2.1.1开始支持<code>partial indexes</code>查询以及分页。</p>
+<p>数组的Mango查询类型：</p>
+<pre><code class="js">{
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"tags"</span>: {<span class="hljs-attr">$elemMatch</span>: {<span class="hljs-attr">$eq</span>: <span class="hljs-string">'apple'</span>}}
+  }
+}
+<span class="hljs-comment">//等价于</span>
+{
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"tags"</span>: {<span class="hljs-attr">$in</span>: [<span class="hljs-string">'apple'</span>]}
+  }
+}
+</code></pre>
+<p>如果数组类型是<code>json object</code>好像可以加索引(经测试无效，还是不能利用索引！)：<a href="https://stackoverflow.com/questions/35784178/how-to-index-multidimensional-arrays-in-couchdb" target="_blank" rel="noopener">https://stackoverflow.com/questions/35784178/how-to-index-multidimensional-arrays-in-couchdb</a><br>
+看到了，是Cloudant的扩展，全文检索引擎，索引类型必须为 <code>text</code>. 大致看来需要自己编译couchdb并使用它的dreyfus插件，菜可以和lucene连上。<br>
+<a href="https://developer.ibm.com/dwblog/2015/text-search-apache-couchdb/" target="_blank" rel="noopener">https://developer.ibm.com/dwblog/2015/text-search-apache-couchdb/</a><br>
+<a href="https://github.com/cloudant-labs/dreyfus/wiki/Introduce-dreyfus-into-couchdb" target="_blank" rel="noopener">https://github.com/cloudant-labs/dreyfus/wiki/Introduce-dreyfus-into-couchdb</a><br>
+<a href="https://github.com/apache/couchdb-docker/issues/8" target="_blank" rel="noopener">https://github.com/apache/couchdb-docker/issues/8</a><br>
+<a href="https://github.com/grueni/oi-userland/tree/couchdb-dreyfus" target="_blank" rel="noopener">https://github.com/grueni/oi-userland/tree/couchdb-dreyfus</a><br>
+<a href="https://github.com/neutrinity/ntr-couch-docker" target="_blank" rel="noopener">https://github.com/neutrinity/ntr-couch-docker</a></p>
+<pre><code class="js">{
+<span class="hljs-string">"Teams"</span>: [
+  {
+   <span class="hljs-string">"id"</span>: <span class="hljs-string">"79d25d41d991890350af672e0b76faed"</span>,
+   <span class="hljs-string">"name"</span>: <span class="hljs-string">"First Team"</span>,
+   <span class="hljs-string">"level"</span>: <span class="hljs-string">"123"</span>
+  },
+  {
+   <span class="hljs-string">"id"</span>: <span class="hljs-string">"e500c1bf691b9cfc99f05634da80b6d1"</span>,
+   <span class="hljs-string">"name"</span>: <span class="hljs-string">"Second Team Name"</span>,
+   <span class="hljs-string">"level"</span>: <span class="hljs-string">""</span>
+  },
+  {
+   <span class="hljs-string">"id"</span>: <span class="hljs-string">"4645e8a4958421f7d843d9b34c4cd9fe"</span>,
+   <span class="hljs-string">"name"</span>: <span class="hljs-string">"Third Team Name"</span>,
+   <span class="hljs-string">"level"</span>: <span class="hljs-string">"123"</span>
+  }
+ ],
+ <span class="hljs-string">"LastTeam"</span>: <span class="hljs-string">"79d25d41d991890350af672e0b76faed"</span>
+}
+
+<span class="hljs-comment">//index:</span>
+{
+  <span class="hljs-string">"index"</span>: {
+    <span class="hljs-string">"fields"</span>: [
+      {<span class="hljs-string">"name"</span>: <span class="hljs-string">"Teams.[].id"</span>, <span class="hljs-string">"type"</span>: <span class="hljs-string">"string"</span>}
+    ]
+  },
+  <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>
+}
+
+<span class="hljs-comment">//query:</span>
+{
+  <span class="hljs-string">"selector"</span>: {
+    <span class="hljs-string">"Teams"</span>: {<span class="hljs-string">"$elemMatch"</span>: {<span class="hljs-string">"id"</span>: <span class="hljs-string">"79d25d41d991890350af672e0b76faed"</span>}}
+  },
+  <span class="hljs-string">"fields"</span>: [
+    <span class="hljs-string">"_id"</span>,
+    <span class="hljs-string">"FirstName"</span>,
+    <span class="hljs-string">"LastName"</span>
+  ]
+}
+</code></pre>
+<p>对数组的查询可以，但是目前没有索引支持！！<br>
+Currently couchdb find does not support indexing array members (<a href="https://issues.apache.org/jira/browse/COUCHDB-2867" target="_blank" rel="noopener">https://issues.apache.org/jira/browse/COUCHDB-2867</a>). Pouchdb is matching Couchdb’s implementation here.</p>
+<p>用Map/Reduce查询数组：</p>
+<pre><code class="js"><span class="hljs-comment">//创建Map/Reduce索引</span>
+<span class="hljs-keyword">var</span> designDoc = {
+  <span class="hljs-attr">_id</span>: <span class="hljs-string">'_design/_index'</span>,
+  <span class="hljs-attr">views</span>: {
+    <span class="hljs-string">'by_tags'</span>: {
+      <span class="hljs-attr">map</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(doc.tags)) {
+          doc.tags.forEach(<span class="hljs-function"><span class="hljs-params">tag</span>=&gt;</span>emit(tag));
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (doc.tags) {
+          emit(doc.tags)
+        }
+      }.toString()
+    }
+  }
+};
+
+pouch.put(designDoc).then(<span class="hljs-function"><span class="hljs-params">r</span>=&gt;</span><span class="hljs-built_in">console</span>.log(r)).catch(<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span><span class="hljs-built_in">console</span>.log(e))
+
+<span class="hljs-comment">//查询参数：详见后述「视图(View)的查询参数」</span>
+<span class="hljs-comment">//keys 参数: 只获取在数组中的key名称。</span>
+pouch.query(viewName, {<span class="hljs-attr">keys</span>:[<span class="hljs-string">'apple'</span>], <span class="hljs-attr">inclusive_end</span>: <span class="hljs-literal">false</span>});
+
+</code></pre>
+<p>避免使用数组:</p>
+<pre><code>_id:  人/{id}/.tag/apple
+name: apple
+type: tag
+</code></pre>
+<p>至于limit的配置只能通过<a href="http://docs.couchdb.org/en/master/config/couchdb.html" target="_blank" rel="noopener">max_document_size</a>.<br>
+或者 <a href="http://docs.couchdb.org/en/master/config/http.html" target="_blank" rel="noopener">max_http_request_size</a></p>
+<pre><code class="ini"><span class="hljs-section">[couchdb]</span>
+<span class="hljs-attr">max_document_size</span> = <span class="hljs-number">4294967296</span> <span class="hljs-comment">; 4 GB</span>
+<span class="hljs-section">[httpd]</span>
+<span class="hljs-attr">max_http_request_size</span> = <span class="hljs-number">4294967296</span> <span class="hljs-comment">; 4 GB</span>
+</code></pre>
+<p>不过有人在改： <a href="https://github.com/apache/couchdb-couch-mrview/pull/56/files" target="_blank" rel="noopener">https://github.com/apache/couchdb-couch-mrview/pull/56/files</a><br>
+<a href="https://jira.hyperledger.org/browse/FAB-2809" target="_blank" rel="noopener">https://jira.hyperledger.org/browse/FAB-2809</a></p>
+<h3 id="wen-dang-bian-geng-tong-zhi" class="heading-control">文档变更通知<a class="heading-anchor" href="#wen-dang-bian-geng-tong-zhi" aria-hidden="true"></a></h3>
+<p><code>GET /[db]/_changes</code><br>
+<code>POST /[db]/_changes?filter=_doc_ids</code> 如果有大量的<code>doc_ids</code>，那么就只能用POST.</p>
+<pre><code>POST /recipes/_changes?filter=_doc_ids HTTP/1.1
+Accept: application/json
+Content-Length: 40
+Content-Type: application/json
+Host: localhost:5984
+
+{
+    &quot;doc_ids&quot;: [
+        &quot;SpaghettiWithMeatballs&quot;
+    ]
+}
+</code></pre>
+<h4 id="changes-feed" class="heading-control">Changes Feed<a class="heading-anchor" href="#changes-feed" aria-hidden="true"></a></h4>
+<p>文档变更通知的三种方式</p>
+<h5 id="polling" class="heading-control">Polling<a class="heading-anchor" href="#polling" aria-hidden="true"></a></h5>
+<p>A list of changes made to documents in the database, in the order they were made, can be obtained from the database’s _changes resource. You can query the _changes resource by issuing a GET request with the following (optional) parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Default Value</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>since</td>
+<td>seqnum/now</td>
+<td>0</td>
+<td>(1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>maxsequences</td>
+<td>none</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td>descending</td>
+<td>boolean</td>
+<td>false</td>
+<td>(3)</td>
+</tr>
+<tr>
+<td>feed</td>
+<td>normal/longpoll/continuous/eventsource</td>
+<td>normal</td>
+<td>(4)</td>
+</tr>
+<tr>
+<td>heartbeat</td>
+<td>milliseconds</td>
+<td>60000</td>
+<td>(5)</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>milliseconds</td>
+<td>60000</td>
+<td>(6)</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>designdoc/filtername/_view</td>
+<td>none</td>
+<td>(7)</td>
+</tr>
+<tr>
+<td>include_docs</td>
+<td>boolean</td>
+<td>false</td>
+<td>(8)</td>
+</tr>
+<tr>
+<td>style</td>
+<td>all_docs/main_only</td>
+<td>main_only</td>
+<td>(9)</td>
+</tr>
+<tr>
+<td>view</td>
+<td>designdoc/filtername</td>
+<td>none</td>
+<td>(10)</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ol>
+<li>Start the results from the change immediately after the given sequence number.</li>
+<li>Limit number of result rows to the specified value (note that using 0 here has the same effect as 1).</li>
+<li>Return the change results in descending sequence order (most recent change first)</li>
+<li>Select the type of feed.</li>
+<li>Period in milliseconds after which an empty line is sent in the results. Only applicable for longpoll or continuous feeds. Overrides any timeout to keep the feed alive indefinitely.</li>
+<li>Maximum period in milliseconds to wait for a change before the response is sent, even if there are no results. Only applicable for longpoll or continuous feeds. Note that 60000 is also the default maximum timeout to prevent undetected dead connections.</li>
+</ol>
+<p>You can change the default maximum timeout in your ini-configuration:</p>
+<pre><code class="ini"><span class="hljs-section">[httpd]</span>
+<span class="hljs-attr">changes_timeout</span>=<span class="hljs-comment">#millisecs</span>
+</code></pre>
+<ol start="7">
+<li>Reference to a filter function from a design document that will filter whole stream emitting only filtered events. See the section in the book for more information.</li>
+<li>Include the associated document with each result. If there are conflicts, only the winning revision is returned.</li>
+<li>Specifies how many revisions are returned in the changes array. The default, main_only, will only return the current “winning” revision; all_docs will return all leaf revisions (including conflicts and deleted former conflicts.)</li>
+<li>Allows to use view functions as filters. It requires to set filter special value _view to enable this feature. Documents counted as “passed” for view filter in case if map function emits at least one record for them.</li>
+</ol>
+<h5 id="longpoll" class="heading-control">longpoll<a class="heading-anchor" href="#longpoll" aria-hidden="true"></a></h5>
+<p>打开连接，等待直到有改变发生后，就立刻连接关闭。适合于低频率的更新。</p>
+<h5 id="continuous" class="heading-control">continuous<a class="heading-anchor" href="#continuous" aria-hidden="true"></a></h5>
+<p>一直打开连接,永不disconnect.</p>
+<p><code>GET /somedatabase/_changes?feed=continuous HTTP/1.1</code></p>
+<pre><code>{&quot;seq&quot;:1,&quot;id&quot;:&quot;fresh&quot;,&quot;changes&quot;:[{&quot;rev&quot;:&quot;1-967a00dff5e02add41819138abb3284d&quot;}]}
+{&quot;seq&quot;:3,&quot;id&quot;:&quot;updated&quot;,&quot;changes&quot;:[{&quot;rev&quot;:&quot;2-7051cbe5c8faecd085a3fa619e6e6337&quot;}]}
+{&quot;seq&quot;:5,&quot;id&quot;:&quot;deleted&quot;,&quot;changes&quot;:[{&quot;rev&quot;:&quot;2-eec205a9d413992850a6e32678485900&quot;}],&quot;deleted&quot;:true}
+... tum tee tum ...
+{&quot;seq&quot;:6,&quot;id&quot;:&quot;updated&quot;,&quot;changes&quot;:[{&quot;rev&quot;:&quot;3-825cb35de44c433bfb2df415563a19de&quot;}]}
+</code></pre>
+<h5 id="eventsource" class="heading-control">eventsource<a class="heading-anchor" href="#eventsource" aria-hidden="true"></a></h5>
+<p>The eventsource feed provides push notifications that can be consumed in the form of DOM events in the browser. Refer to the <a href="http://www.w3.org/TR/eventsource/" target="_blank" rel="noopener">W3C eventsource specification</a> for further details. CouchDB honors the Last-Event-ID header, and if it’s present it will take precedence over the since query parameter.</p>
+<pre><code class="js"><span class="hljs-comment">// define the event handling function</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.EventSource) {
+
+  <span class="hljs-keyword">var</span> source = <span class="hljs-keyword">new</span> EventSource(<span class="hljs-string">"/somedatabase/_changes?feed=eventsource"</span>);
+  source.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    alert(<span class="hljs-string">'EventSource failed.'</span>);
+  };
+
+  <span class="hljs-keyword">var</span> results = [];
+  <span class="hljs-keyword">var</span> sourceListener = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-keyword">var</span> data = <span class="hljs-built_in">JSON</span>.parse(e.data);
+    results.push(data);
+  };
+
+  <span class="hljs-comment">// start listening for events</span>
+  source.addEventListener(<span class="hljs-string">'message'</span>, sourceListener, <span class="hljs-literal">false</span>);
+
+  <span class="hljs-comment">// stop listening for events</span>
+  source.removeEventListener(<span class="hljs-string">'message'</span>, sourceListener, <span class="hljs-literal">false</span>);
+
+}
+</code></pre>
+<ul>
+<li><a href="http://guide.couchdb.org/draft/notifications.html" target="_blank" rel="noopener">http://guide.couchdb.org/draft/notifications.html</a></li>
+<li><a href="http://docs.couchdb.org/en/2.1.1/api/database/changes.html" target="_blank" rel="noopener">http://docs.couchdb.org/en/2.1.1/api/database/changes.html</a> 这个是最新的</li>
+<li><a href="http://docs.couchdb.org/en/1.4.0/changes.html" target="_blank" rel="noopener">http://docs.couchdb.org/en/1.4.0/changes.html</a> 这个写得简单清晰点。</li>
+<li><a href="https://www.npmjs.com/package/couch-streams" target="_blank" rel="noopener">https://www.npmjs.com/package/couch-streams</a></li>
+</ul>
+<h3 id="shi-tu-view-yu-mapreduce-cha-xun" class="heading-control">视图（view） 与 Map/Reduce 查询<a class="heading-anchor" href="#shi-tu-view-yu-mapreduce-cha-xun" aria-hidden="true"></a></h3>
+<p>视图是 CouchDB 中文档的呈现方式。在很多情况下，应用都需要对文档进行一定的处理，包括过滤、组织、聚合和生成报表等。在关系数据库中，这通常是通过 SQL 语句来完成的。 CouchDB 中的视图声明了如何从文档中提取数据，以及如何对提取出来的数据进行处理。</p>
+<p>CouchDB 中有两种视图：永久视图和临时视图。永久视图保存在设计文档的views字段中。临时视图是通过发送 POST 请求到 <code>/[databasename]/_temp_view</code> 来执行的。临时视图只在开发测试中使用，因为它是即时生成的，性能比较差；永久视图的运行结果可以被 CouchDB 缓存，因此一般用在生产环境中。</p>
+<p>视图的运行由专门的视图服务器来完成。 CouchDB 中默认的视图定义语言是 JavaScript 。 CouchDB 中的视图运行使用的是 MapReduce 编程模型。每个视图的定义中至少需要提供 Map 方法，Reduce 方法是可选的。</p>
+<p>Map 方法的参数只有一个，就是当前的文档对象。 Map 方法的实现需要根据文档对象的内容，确定是否要输出结果。如果需要输出的话，可以通过<code>emit</code>来完成。<code>emit</code>方法有两个参数，分别是key和value，分别表示输出结果的键和值。使用什么样的键和值应该根据视图的实际需要来确定。当希望对文档的某个字段进行排序和过滤操作的时候，应该把该字段作为键（key）或是键的一部分；value的值可以提供给 Reduce 方法使用，也可能会出现在最终的结果中。可以作为键的不仅是简单数据类型，也可以是任意的 JSON 对象。比如<code>emit([doc.title, doc.price], doc)</code>中，使用数组作为键。</p>
+<pre><code class="js"><span class="hljs-comment">//map</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+  <span class="hljs-comment">//checks whether our document has a date and a title attribute</span>
+  <span class="hljs-keyword">if</span>(doc.date &amp;&amp; doc.title) {
+      <span class="hljs-comment">//The most important feature of a view result is that it is sorted by key.</span>
+      <span class="hljs-comment">//emit key, value</span>
+      emit(doc.date, doc.title);
+  }
+}
+</code></pre>
+<p>通过 Map 方法输出的结果称为中间结果。中间结果可以通过 Reduce 方法来进一步做聚集操作。聚集操作是对结果中键（key）相同的数据集合来进行的。 Reduce 方法的输入不仅是 Map 方法输出的中间结果，也可以是上一次 Reduce 方法的结果，后面这种情况称为 <code>rereduce</code> 。 Reduce 方法的参数有三个：key、values和rereduce，分别表示键、值和是否是 rereduce 。由于 rereduce 情况的存在，Reduce 方法一般需要处理两种情况：</p>
+<ul>
+<li>传入的参数<code>rereduce</code>的值为false：这表明 Reduce 方法的输入是 Map 方法输出的中间结果。参数key的值是一个数组，对应于中间结果中的每条记录。该数组的每个元素都是一个包含两个元素的数组，第一个元素是在 Map 方法中通过emit输出的键（key），第二个元素是记录所在的文档 ID 。参数values的值是一个数组，对应于 Map 方法中通过emit输出的值（value）。</li>
+<li>传入的参数rereduce的值为true：这表明 Reduce 方法的输入是上次 Reduce 方法的输出。参数key的值为null。参数values的值是一个数组，对应于上次 Reduce 方法的输出结果。</li>
+</ul>
+<pre><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">keys, values, rereduce</span>) </span>{
+    <span class="hljs-keyword">return</span> sum(values);
+}
+</code></pre>
+<pre><code class="js">{
+  <span class="hljs-string">"_id"</span>: <span class="hljs-string">"_design/foo"</span>,
+  <span class="hljs-string">"views"</span>: {
+    <span class="hljs-string">"bar"</span>: {
+      <span class="hljs-string">"map"</span>: <span class="hljs-string">"function (doc) { emit(doc.author, 1); }"</span>,
+      <span class="hljs-string">"reduce"</span>: <span class="hljs-string">"_sum"</span> <span class="hljs-comment">//use the buildin reduce func to speedup.</span>
+      <span class="hljs-comment">//"reduce": "function (keys, values, rereduce) { return sum(values); }"</span>
+    }
+  }
+}
+</code></pre>
+<p><a href="http://docs.couchdb.org/en/2.1.0/ddocs/ddocs.html#reducefun-builtin" target="_blank" rel="noopener">http://docs.couchdb.org/en/2.1.0/ddocs/ddocs.html#reducefun-builtin</a></p>
+<h4 id="shi-tu-view-de-cha-xun-can-shu" class="heading-control">视图(View)的查询参数<a class="heading-anchor" href="#shi-tu-view-de-cha-xun-can-shu" aria-hidden="true"></a></h4>
+<p>在查询视图的时候，支持以下的参数查询：</p>
+<ul>
+<li>conflicts (boolean) – Includes conflicts information in response. Ignored if include_docs isn’t true. Default is false</li>
+<li>descending (boolean) – Return the documents in descending by key order. Default is false</li>
+<li>endkey (json) – Stop returning records when the specified key is reached. Optional</li>
+<li>end_key (json) – Alias for endkey param</li>
+<li>endkey_docid (string) – Stop returning records when the specified document ID is reached. Requires endkey to be specified for this to have any effect. Optional</li>
+<li>end_key_doc_id (string) – Alias for endkey_docid param</li>
+<li>group (boolean) – Group the results using the reduce function to a group or single row. Default is false</li>
+<li>group_level (number) – Specify the group level to be used. Optional</li>
+<li>include_docs (boolean) – Include the associated document with each row. Default is false.</li>
+<li>attachments (boolean) – Include the Base64-encoded content of attachments in the documents that are included if include_docs is true. Ignored if include_docs isn’t true. Default is false.</li>
+<li>att_encoding_info (boolean) – Include encoding information in attachment stubs if include_docs is true and the particular attachment is compressed. Ignored if include_docs isn’t true. Default is false.</li>
+<li>inclusive_end (boolean) – Specifies whether the specified end key should be included in the result. Default is true</li>
+<li>key (json) – Return only documents that match the specified key. Optional</li>
+<li>keys (json-array) – Return only documents where the key matches one of the keys specified in the array. Optional</li>
+<li>limit (number) – Limit the number of the returned documents to the specified number. Optional</li>
+<li>reduce (boolean) – Use the reduction function. Default is true</li>
+<li>skip (number) – Skip this number of records before starting to return the results. Default is 0</li>
+<li>sorted (boolean) – Sort returned rows (see Sorting Returned Rows). Setting this to false offers a performance boost. The total_rows and offset fields are not available when this is set to false. Default is true</li>
+<li>stable (boolean) – Whether or not the view results should be returned from a stable set of shards. Default is false. Optional</li>
+<li>stale (string) – Allow the results from a stale view to be used. Supported values: ok, update_after and false. ok is equivalent to stable=true&amp;update=false. update_after is equivalent to stable=true&amp;update=lazy. false is equivalent to stable=false&amp;update=true. Optional</li>
+<li>startkey (json) – Return records starting with the specified key. Optional</li>
+<li>start_key (json) – Alias for startkey param</li>
+<li>startkey_docid (string) – Return records starting with the specified document ID. Requires startkey to be specified for this to have any effect. Optional</li>
+<li>start_key_doc_id (string) – Alias for startkey_docid param</li>
+<li>update (string) – Whether or not the view in question should be updated prior to responding to the user. Supported values: true, false, lazy. Default is true. Optional</li>
+<li>update_seq (boolean) – Response includes an update_seq value indicating which sequence id of the database the view reflects. Default is false.</li>
+</ul>
+<h3 id="kuo-zhan-gai-nian" class="heading-control">扩展概念<a class="heading-anchor" href="#kuo-zhan-gai-nian" aria-hidden="true"></a></h3>
+<h4 id="fu-jian-attatchment" class="heading-control">附件(attatchment)<a class="heading-anchor" href="#fu-jian-attatchment" aria-hidden="true"></a></h4>
+<p>CouchDB 中也可以保存二进制文件。这些文件是以文档的附件形式存储的。 CouchDB 支持两种形式的附件：一种是内嵌型的，附件是以 base64 编码的格式作为文档的一个字段保存；另一种是独立型，附件是独立于文档保存和管理的。附件的存在使得可以在 CouchDB 中保存 Web 应用中的 HTML、CSS 和 JavaScript 文件。每个附件都包含名称、MIME 类型和数据等三项内容。</p>
+<p>在请求文档的时候，内嵌型附件的实际数据默认是不包含的，包含的只是附件的元数据:</p>
+<pre><code class="js">{
+   <span class="hljs-string">"_id"</span>: <span class="hljs-string">"testdoc"</span>,
+   <span class="hljs-string">"_rev"</span>: <span class="hljs-string">"3-1364618102"</span>,
+   <span class="hljs-string">"_attachments"</span>: {
+       <span class="hljs-string">"Screenshot.png"</span>: {
+           <span class="hljs-string">"stub"</span>: <span class="hljs-literal">true</span>,
+           <span class="hljs-string">"content_type"</span>: <span class="hljs-string">"image/png"</span>,
+           <span class="hljs-string">"length"</span>: <span class="hljs-number">164279</span>
+       }
+   }
+ }
+</code></pre>
+<p>独立型附件可以在不改变文档的情况下，对附件进行操作。另外，不需要对附件进行 base64 编码。要创建独立型附件，只需要发送 PUT 请求到<code>databasename/doc_id/attachment?rev=rev_id</code>就可以创建或更新一个名为attachment的附件。 PUT 请求的内容类型（Content-Type）和内容指明了附件的类型和数据。</p>
+<h4 id="she-ji-wen-dang-design-document" class="heading-control">设计文档(design document)<a class="heading-anchor" href="#she-ji-wen-dang-design-document" aria-hidden="true"></a></h4>
+<p>设计文档是一类特殊的文档，其 ID 必须以<code>_design/</code>开头。设计文档的存在是使用 CouchDB 开发 Web 应用的基础。在 CouchDB 中，一个 Web 应用是与一个设计文档相对应的。在设计文档中可以包含一些特殊的字段，其中包括：</p>
+<ul>
+<li><code>views</code>: 包含永久的视图定义；</li>
+<li><code>shows</code>: 包含把文档转换成非 JSON 格式的方法；</li>
+<li><code>lists</code>: 包含把视图运行结果转换成非 JSON 格式的方法；</li>
+<li><code>validate_doc_update</code>: 包含验证文档更新是否有效的方法。</li>
+<li><code>updatefun(doc, req)</code>: 服务器端进行<a href="http://docs.couchdb.org/en/2.1.1/ddocs/ddocs.html#update-functions" target="_blank" rel="noopener">更新文档处理器</a>，在这里可以修改文档的值。</li>
+</ul>
+<h5 id="validate_doc_update" class="heading-control"><code>validate_doc_update</code><a class="heading-anchor" href="#validate_doc_update" aria-hidden="true"></a></h5>
+<p><code>function(newDoc, oldDoc, userCtx, secObj)</code></p>
+<p>回调函数参数说明:</p>
+<ul>
+<li><code>newDoc</code>: incoming</li>
+<li><code>oldDoc</code>: 如果是新建则无。</li>
+<li><code>userCtx</code>:当前登录的用户的信息(来自<code>_users</code>数据库)
+<ul>
+<li>db: 当前数据库名称</li>
+<li>name: 用户名</li>
+<li>roles: 角色列表</li>
+</ul>
+</li>
+<li><code>secObj</code>: Security Object(来自 <code>_security</code> 数据库)
+<ul>
+<li>admins: 	Roles/Users with admin privileges
+<ul>
+<li>roles [array] 	List of roles with parent privilege</li>
+<li>names [array] 	List of users with parent privilege</li>
+</ul>
+</li>
+<li>members 	Roles/Users with non-admin privileges
+<ul>
+<li>roles [array] 	List of roles with parent privilege</li>
+<li>names [array] 	List of users with parent privilege</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>这个例子是 <code>_users</code> 数据库的，用来在注册/编辑/删除系统用户时候对数据进行验证。</p>
+<pre><code class="js">{
+  <span class="hljs-string">"_id"</span>: <span class="hljs-string">"_design/_auth"</span>,
+  <span class="hljs-string">"_rev"</span>: <span class="hljs-string">"1-c79bc00c889ce9b912fbde8a3f52de37"</span>,
+  <span class="hljs-string">"language"</span>: <span class="hljs-string">"javascript"</span>,
+  <span class="hljs-string">"validate_doc_update"</span>: <span class="hljs-string">"function(newDoc, oldDoc, userCtx, secObj){...see below...}"</span>
+}
+</code></pre>
+<pre><code class="js"><span class="hljs-comment">//validate_doc_update</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">newDoc, oldDoc, userCtx, secObj</span>) </span>{
+    <span class="hljs-keyword">if</span> (newDoc._deleted === <span class="hljs-literal">true</span>) {
+        <span class="hljs-comment">// allow deletes by admins and matching users</span>
+        <span class="hljs-comment">// without checking the other fields</span>
+        <span class="hljs-keyword">if</span> ((userCtx.roles.indexOf(<span class="hljs-string">'_admin'</span>) !== <span class="hljs-number">-1</span>) ||
+            (userCtx.name == oldDoc.name)) {
+            <span class="hljs-keyword">return</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only admins may delete other user docs.'</span>});
+        }
+    }
+
+    <span class="hljs-keyword">if</span> (newDoc.type !== <span class="hljs-string">'user'</span>) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span> : <span class="hljs-string">'doc.type must be user'</span>});
+    } <span class="hljs-comment">// we only allow user docs for now</span>
+
+    <span class="hljs-keyword">if</span> (!newDoc.name) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.name is required'</span>});
+    }
+
+    <span class="hljs-keyword">if</span> (!newDoc.roles) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.roles must exist'</span>});
+    }
+
+    <span class="hljs-keyword">if</span> (!isArray(newDoc.roles)) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.roles must be an array'</span>});
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; newDoc.roles.length; idx++) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> newDoc.roles[idx] !== <span class="hljs-string">'string'</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'doc.roles can only contain strings'</span>});
+        }
+    }
+
+    <span class="hljs-keyword">if</span> (newDoc._id !== (<span class="hljs-string">'org.couchdb.user:'</span> + newDoc.name)) {
+        <span class="hljs-keyword">throw</span>({
+            <span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Doc ID must be of the form org.couchdb.user:name'</span>
+        });
+    }
+
+    <span class="hljs-keyword">if</span> (oldDoc) { <span class="hljs-comment">// validate all updates</span>
+        <span class="hljs-keyword">if</span> (oldDoc.name !== newDoc.name) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Usernames can not be changed.'</span>});
+        }
+    }
+
+    <span class="hljs-keyword">if</span> (newDoc.password_sha &amp;&amp; !newDoc.salt) {
+        <span class="hljs-keyword">throw</span>({
+            <span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Users with password_sha must have a salt.'</span> +
+                <span class="hljs-string">'See /_utils/script/couch.js for example code.'</span>
+        });
+    }
+
+    <span class="hljs-keyword">if</span> (newDoc.password_scheme === <span class="hljs-string">"pbkdf2"</span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(newDoc.iterations) !== <span class="hljs-string">"number"</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">"iterations must be a number."</span>});
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(newDoc.derived_key) !== <span class="hljs-string">"string"</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">"derived_key must be a string."</span>});
+        }
+    }
+
+    <span class="hljs-keyword">var</span> is_server_or_database_admin = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">userCtx, secObj</span>) </span>{
+        <span class="hljs-comment">// see if the user is a server admin</span>
+        <span class="hljs-keyword">if</span>(userCtx.roles.indexOf(<span class="hljs-string">'_admin'</span>) !== <span class="hljs-number">-1</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// a server admin</span>
+        }
+
+        <span class="hljs-comment">// see if the user a database admin specified by name</span>
+        <span class="hljs-keyword">if</span>(secObj &amp;&amp; secObj.admins &amp;&amp; secObj.admins.names) {
+            <span class="hljs-keyword">if</span>(secObj.admins.names.indexOf(userCtx.name) !== <span class="hljs-number">-1</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// database admin</span>
+            }
+        }
+
+        <span class="hljs-comment">// see if the user a database admin specified by role</span>
+        <span class="hljs-keyword">if</span>(secObj &amp;&amp; secObj.admins &amp;&amp; secObj.admins.roles) {
+            <span class="hljs-keyword">var</span> db_roles = secObj.admins.roles;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; userCtx.roles.length; idx++) {
+                <span class="hljs-keyword">var</span> user_role = userCtx.roles[idx];
+                <span class="hljs-keyword">if</span>(db_roles.indexOf(user_role) !== <span class="hljs-number">-1</span>) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// role matches!</span>
+                }
+            }
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// default to no admin</span>
+    }
+
+    <span class="hljs-keyword">if</span> (!is_server_or_database_admin(userCtx, secObj)) {
+        <span class="hljs-keyword">if</span> (oldDoc) { <span class="hljs-comment">// validate non-admin updates</span>
+            <span class="hljs-keyword">if</span> (userCtx.name !== newDoc.name) {
+                <span class="hljs-keyword">throw</span>({
+                    <span class="hljs-attr">forbidden</span>: <span class="hljs-string">'You may only update your own user document.'</span>
+                });
+            }
+            <span class="hljs-comment">// validate role updates</span>
+            <span class="hljs-keyword">var</span> oldRoles = (oldDoc.roles || []).sort();
+            <span class="hljs-keyword">var</span> newRoles = newDoc.roles.sort();
+
+            <span class="hljs-keyword">if</span> (oldRoles.length !== newRoles.length) {
+                <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only _admin may edit roles'</span>});
+            }
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; oldRoles.length; i++) {
+                <span class="hljs-keyword">if</span> (oldRoles[i] !== newRoles[i]) {
+                    <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only _admin may edit roles'</span>});
+                }
+            }
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (newDoc.roles.length &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Only _admin may set roles'</span>});
+        }
+    }
+
+    <span class="hljs-comment">// no system roles in users db</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; newDoc.roles.length; i++) {
+        <span class="hljs-keyword">if</span> (newDoc.roles[i][<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
+            <span class="hljs-keyword">throw</span>({
+                <span class="hljs-attr">forbidden</span>:
+                <span class="hljs-string">'No system roles (starting with underscore) in users db.'</span>
+            });
+        }
+    }
+
+    <span class="hljs-comment">// no system names as names</span>
+    <span class="hljs-keyword">if</span> (newDoc.name[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) {
+        <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Username may not start with underscore.'</span>});
+    }
+
+    <span class="hljs-keyword">var</span> badUserNameChars = [<span class="hljs-string">':'</span>];
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; badUserNameChars.length; i++) {
+        <span class="hljs-keyword">if</span> (newDoc.name.indexOf(badUserNameChars[i]) &gt;= <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span>({<span class="hljs-attr">forbidden</span>: <span class="hljs-string">'Character `'</span> + badUserNameChars[i] +
+                    <span class="hljs-string">'` is not allowed in usernames.'</span>});
+        }
+    }
+}
+
+</code></pre>
+<h2 id="couchapp" class="heading-control">CouchApp<a class="heading-anchor" href="#couchapp" aria-hidden="true"></a></h2>
+<p>由于 CouchDB 的 REST API 使用 JSON 作为展现形式，因此使用 CouchDB 的 Web 应用只需要编写浏览器端的代码就可以使用 JavaScript 与 CouchDB 进行交互；而 CouchDB 所支持的附件功能，又使得浏览器端的 HTML、JavaScript 和 CSS 代码可以直接存放在 CouchDB 中。这样 CouchDB 中不但保存了 Web 应用的数据，也保存了 Web 应用的逻辑。也就是说，只需要 CouchDB 就可以构建一个完整的 Web 应用运行环境。</p>
+<ul>
+<li><a href="https://github.com/couchapp/couchapp" target="_blank" rel="noopener">https://github.com/couchapp/couchapp</a></li>
+<li><a href="https://github.com/jo/couchdb-push" target="_blank" rel="noopener">https://github.com/jo/couchdb-push</a> Nodejs</li>
+</ul>
+<p>结合CouchDB自带virtualhosts和pretty-urls，就可以实现将页面url地址重写到root.</p>
+<ul>
+<li><a href="http://docs.couchdb.org/en/1.3.0/pretty_urls.html" target="_blank" rel="noopener">http://docs.couchdb.org/en/1.3.0/pretty_urls.html</a></li>
+<li><a href="https://stackoverflow.com/questions/35643281/rewrite-urls-in-couchdb-pouchdb-server" target="_blank" rel="noopener">https://stackoverflow.com/questions/35643281/rewrite-urls-in-couchdb-pouchdb-server</a></li>
+</ul>
+<h3 id="couchapp" class="heading-control">Couchapp<a class="heading-anchor" href="#couchapp" aria-hidden="true"></a></h3>
+<pre><code class="bash">python2.7&gt; pip install --user couchapp
+couchapp init myapp
+<span class="hljs-built_in">cd</span> myapp
+</code></pre>
+<h4 id="change-your-app-id" class="heading-control">Change your App ID<a class="heading-anchor" href="#change-your-app-id" aria-hidden="true"></a></h4>
+<p>open the <code>_id</code> file: change your app name.</p>
+<h4 id="set-config" class="heading-control">set config<a class="heading-anchor" href="#set-config" aria-hidden="true"></a></h4>
+<p><code>.couchapprc</code>:</p>
+<pre><code class="js">{
+  <span class="hljs-string">"env"</span> : {
+    <span class="hljs-string">"default"</span> : {
+      <span class="hljs-string">"db"</span> : <span class="hljs-string">"http://admin:secret@localhost:5984/test"</span>
+    },
+    <span class="hljs-string">"prod"</span> : {
+      <span class="hljs-string">"db"</span> : <span class="hljs-string">"http://admin:password@myhost.com/mydb"</span>
+    }
+  }
+}
+</code></pre>
+<p>couchapp push<br>
+couchapp push prod</p>
+<h4 id="add-some-web-pages" class="heading-control">Add Some Web Pages<a class="heading-anchor" href="#add-some-web-pages" aria-hidden="true"></a></h4>
+<p>Now we are going to add a index page for our CouchApp. So we can place the index.html under _attachments. CouchDB can directly serve our attachments as static files.</p>
+<pre><code class="html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CouchApp<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello CouchApp!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h4 id="push-your-couchapp" class="heading-control">Push your CouchApp<a class="heading-anchor" href="#push-your-couchapp" aria-hidden="true"></a></h4>
+<p>Now that we have created our basic application, it’s time to push it to our CouchDB server. Our CouchDB server is at the url <a href="http://127.0.0.1:5984" target="_blank" rel="noopener">http://127.0.0.1:5984</a> and we want to push our app in the database testdb:</p>
+<pre><code class="bash">$ couchapp push testdb
+</code></pre>
+<p>Go on <a href="http://127.0.0.1:5984/testdb/_design/myapp/index.html" target="_blank" rel="noopener">http://127.0.0.1:5984/testdb/_design/myapp/index.html</a>, you will see.</p>
+<h2 id="fauxton" class="heading-control"><a href="https://github.com/apache/couchdb-fauxton/" target="_blank" rel="noopener">Fauxton</a><a class="heading-anchor" href="#fauxton" aria-hidden="true"></a></h2>
+<p>是Couchdb自带的WebUI: <a href="http://127.0.0.1:5984/_utils/index.html" target="_blank" rel="noopener">http://127.0.0.1:5984/_utils/index.html</a></p>
+<p>似乎还没有启用，所以暂时没有语法高亮，但：<br>
+app/addons/components/components/codeeditor.js</p>
+<p><a href="https://github.com/apache/couchdb-nano" target="_blank" rel="noopener">CouchDB Nano Client NodeJS</a></p>
+<h2 id="couchdb-as-graph" class="heading-control">CouchDB As Graph<a class="heading-anchor" href="#couchdb-as-graph" aria-hidden="true"></a></h2>
+<p><a href="https://stackoverflow.com/questions/25949524/implications-of-modeling-a-graph-in-couchdb" target="_blank" rel="noopener">https://stackoverflow.com/questions/25949524/implications-of-modeling-a-graph-in-couchdb</a></p>
+<p>I’ve been toying with modeling a graph structure (property graph with named relationships) in couchdb and would like to know what are the potential bottlenecks in performance that I will find.</p>
+<p>I’m using the following principles:</p>
+<pre><code>Keep documents small.
+Try to embed as little as possible.
+Record all relationships between documents as a new document (a link).
+</code></pre>
+<p>It seems that all these principles are in contradiction with couchdb’s philosophy. But bare with me.</p>
+<p>With this principles, for example, tagging a person becomes three documents:</p>
+<pre><code class="js">{ <span class="hljs-attr">_id</span>: <span class="hljs-string">'10'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'person'</span>, <span class="hljs-string">'name'</span>: <span class="hljs-string">'John Doe'</span> }
+{ <span class="hljs-attr">_id</span>: <span class="hljs-string">'20'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'tag'</span>, <span class="hljs-string">'name'</span>: <span class="hljs-string">'Important'</span> }
+{ <span class="hljs-attr">_id</span>: <span class="hljs-string">'30'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'link'</span>, <span class="hljs-attr">from</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">to</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'tag'</span> }
+</code></pre>
+<p>I have also created the following views in a _design document called links:</p>
+<pre><code class="js">{
+  <span class="hljs-attr">outgoing</span>: {
+    <span class="hljs-attr">map</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+      <span class="hljs-keyword">if</span> (doc.type == <span class="hljs-string">'link'</span>) {
+        emit([doc.from, doc.name], {<span class="hljs-attr">_id</span>: doc.to});
+      }
+    }
+  },
+  <span class="hljs-attr">incoming</span>: {
+    <span class="hljs-attr">map</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc</span>) </span>{
+      <span class="hljs-keyword">if</span> (doc.type == <span class="hljs-string">'link'</span>) {
+        emit([doc.to, doc.name], { <span class="hljs-attr">_id</span>: doc.from });
+      }
+    }
+  }
+}
+</code></pre>
+<p>I can get all the links incoming or outgoing from a document with these urls:</p>
+<pre><code>http://host/db/_design/links/_view/incoming?startkey=[&quot;10&quot;]&amp;endkey=[&quot;10&quot;,{}]
+http://host/db/_design/links/_view/outgoing?startkey=[&quot;10&quot;]&amp;endkey=[&quot;10&quot;,{}]
+</code></pre>
+<p>I can even get all the links by name with these urls:</p>
+<pre><code>http://host/db/_design/links/_view/incoming?startkey=[&quot;10&quot;,&quot;tag&quot;]&amp;endkey=[&quot;10&quot;,&quot;tag&quot;,{}]
+http://host/db/_design/links/_view/outgoing?startkey=[&quot;10&quot;,&quot;tag&quot;]&amp;endkey=[&quot;10&quot;,&quot;tag&quot;,{}]
+</code></pre>
+<p>And if I include the include_docs=true parameter I get the documents referenced by the link; either incoming or outgoing. So far so good. There is a graph structure and a way to query it, albeit on a node by node basis.</p>
+<p>Good things about this approach:</p>
+<pre><code>It is a general way of storing all relationships. Not necessarily tags, but every relationship.
+You can change the tag name quickly, without changing every person tagged.
+You can merge persons or tags and just update the link documents, which should be very simple.
+Tagging when using replication does not change the documents being tagged or the tags themselves. Just add or delete a tiny link document.
+It would be easy to keep a history of tags for each element.
+</code></pre>
+<p>Bad things, and where I need your help:</p>
+<pre><code>Query for a list of people with their tags is not trivial. In general, querying for a list of documents and their relationships is a very expensive operation that requires many hits.
+Updating the database and keeping it consistent could be a problem. Maybe this is something that will never go away when using couch.
+Doing 'maintenance' on the database, like finding orphan links, could be expensive. Perhaps the database requires garbage collection?
+Visualizing and manipulating this graph structure is neither intuitive nor simple, and applications developed on top of it are responsible for all the graph structure management (which is a bit scary!).
+</code></pre>
+<p>So back to my questions:</p>
+<pre><code>What are the potencial bottlenecks to expect?
+Will this approach scale to millions of records?
+How to do traversing of this structure efficiently without having to do many server hits?
+</code></pre>
+<p><a href="http://grokbase.com/t/couchdb/user/09735ya0m7/map-reduce-graph-traversal-in-couchdb" target="_blank" rel="noopener">http://grokbase.com/t/couchdb/user/09735ya0m7/map-reduce-graph-traversal-in-couchdb</a></p>
+<p><a href="http://grokbase.com/t/couchdb/user/115gv4yhr6/data-js-a-graph-manipulation-framework-on-top-of-couchdb" target="_blank" rel="noopener">http://grokbase.com/t/couchdb/user/115gv4yhr6/data-js-a-graph-manipulation-framework-on-top-of-couchdb</a></p>
+<p>就是这个： <a href="https://github.com/substance/data" target="_blank" rel="noopener">https://github.com/substance/data</a><br>
+<a href="https://github.com/substance/substance" target="_blank" rel="noopener">https://github.com/substance/substance</a></p>
+<p><a href="http://probablyprogramming.com/2008/07/04/storing-hierarchical-data-in-couchdb" target="_blank" rel="noopener">http://probablyprogramming.com/2008/07/04/storing-hierarchical-data-in-couchdb</a><br>
+<a href="https://stackoverflow.com/questions/6129561/retrieving-hierarchical-nested-data-from-couchdb" target="_blank" rel="noopener">https://stackoverflow.com/questions/6129561/retrieving-hierarchical-nested-data-from-couchdb</a></p>
+<hr>
+<p>CouchBase已经fork了很远以前，查询语言也不一样。</p>
+<p>CouchDB的手机端用PouchDB. CouchBase也有CouchBaseLite（可以同步到CouchDB）.<br>
+CouchDB在单机时候就要预先订好shard数量。</p>
+<h2 id="couchdb-client" class="heading-control">CouchDB Client<a class="heading-anchor" href="#couchdb-client" aria-hidden="true"></a></h2>
+<ul>
+<li>PouchDB
+<ul>
+<li><a href="https://github.com/pouchdb/pouchdb/issues/2521" target="_blank" rel="noopener">https://github.com/pouchdb/pouchdb/issues/2521</a></li>
+</ul>
+</li>
+</ul>
+<pre><code class="js"><span class="hljs-keyword">var</span> PouchDB = <span class="hljs-built_in">require</span>(<span class="hljs-string">'pouchdb'</span>);
+<span class="hljs-keyword">var</span> pouch = <span class="hljs-keyword">new</span> PouchDB(<span class="hljs-string">'testdb_changes'</span>);
+<span class="hljs-keyword">var</span> remotePouch = <span class="hljs-keyword">new</span> PouchDB(<span class="hljs-string">'http://localhost:5984/testdb_changes'</span>);
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Promise</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bluebird'</span>);
+
+pouch.bulkDocs([{<span class="hljs-attr">_id</span>: <span class="hljs-string">'1'</span>}, {<span class="hljs-attr">_id</span>: <span class="hljs-string">'2'</span>}]).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>{
+    pouch.replicate.to(remotePouch).on(<span class="hljs-string">'complete'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">changes</span>) </span>{
+      resolve(changes);
+    }).on(<span class="hljs-string">'error'</span>, reject);
+  });
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">change</span>) </span>{
+  <span class="hljs-keyword">var</span> lastSeq = change.last_seq;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"lastSeq is: "</span> + lastSeq);
+  <span class="hljs-keyword">return</span> pouch.put({<span class="hljs-attr">_id</span>: <span class="hljs-string">'3'</span>}).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> pouch.changes({<span class="hljs-attr">since</span>: lastSeq});
+  }).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">changes</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'local changes are: '</span> + <span class="hljs-built_in">JSON</span>.stringify(changes));
+    <span class="hljs-keyword">return</span> remotePouch.allDocs();
+  }).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'remote pouch contains: '</span> + <span class="hljs-built_in">JSON</span>.stringify(res));
+    <span class="hljs-keyword">return</span> pouch.allDocs();
+  }).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'local pouch contains: '</span> + <span class="hljs-built_in">JSON</span>.stringify(res));
+  });
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(err);
+});
+</code></pre>
+<ul>
+<li><a href="https://github.com/pouchdb/pouchdb/issues/5713" target="_blank" rel="noopener">https://github.com/pouchdb/pouchdb/issues/5713</a>
+<ul>
+<li><code>change</code> 事件中有 <code>pending</code> 属性检测同步进度。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="js"><span class="hljs-keyword">var</span> pendingMax = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> batch_size = <span class="hljs-number">1000</span>;    <span class="hljs-comment">// must match your replication options</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProgress</span>(<span class="hljs-params">pending</span>) </span>{
+  <span class="hljs-keyword">var</span> progress;
+  pendingMax = pendingMax &lt; pending ? pending + batch_size : pendingMax;  <span class="hljs-comment">// first time capture</span>
+  <span class="hljs-comment">//pendingMax = pendingMax &lt; pending ? pending : pendingMax;  // wouldn't use batch size in the calculation</span>
+  <span class="hljs-keyword">if</span> (pendingMax &gt; <span class="hljs-number">0</span>) {
+    progress = <span class="hljs-number">1</span> - pending/pendingMax;
+    <span class="hljs-keyword">if</span> (pending === <span class="hljs-number">0</span>) {
+      pendingMax = <span class="hljs-number">0</span>;    <span class="hljs-comment">// reset for live/next replication</span>
+    }
+  } <span class="hljs-keyword">else</span> {
+    progress = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 100%</span>
+  }
+  <span class="hljs-keyword">return</span> progress;
+}
+
+<span class="hljs-keyword">var</span> replication = db.replicate.from(remote, {
+  <span class="hljs-attr">live</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">retry</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">batches_limit</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">batch_size</span>: <span class="hljs-number">1000</span>      <span class="hljs-comment">// must match above batch_size</span>
+}).on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">info</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Replication Progress'</span>, getProgress(info.pending));
+})
+</code></pre>
+<h3 id="rxdb" class="heading-control">RxDB<a class="heading-anchor" href="#rxdb" aria-hidden="true"></a></h3>
+<ul>
+<li>RxDB: 内部使用PouchDB，
+<ul>
+<li>不爽的地方：一个Collection就是一个PouchDB数据库。</li>
+<li>RXJS支持。</li>
+</ul>
+</li>
+</ul>
+<p>rxdb 不支持utf8(unicode)字段名。完全没有必要es5部分支持，es6完全支持unicode 标识符：<br>
+<a href="https://mathiasbynens.be/notes/javascript-identifiers" target="_blank" rel="noopener">https://mathiasbynens.be/notes/javascript-identifiers</a><br>
+<a href="https://mathiasbynens.be/notes/javascript-identifiers-es6" target="_blank" rel="noopener">https://mathiasbynens.be/notes/javascript-identifiers-es6</a><br>
+<a href="https://stackoverflow.com/questions/1661197/what-characters-are-valid-for-javascript-variable-names" target="_blank" rel="noopener">https://stackoverflow.com/questions/1661197/what-characters-are-valid-for-javascript-variable-names</a></p>
+<pre><code class="js"><span class="hljs-comment">//plugins/schema-check.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkFieldNameRegex</span>(<span class="hljs-params">fieldName</span>) </span>{
+    <span class="hljs-keyword">if</span> (fieldName == <span class="hljs-string">''</span>) <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-keyword">if</span> ([<span class="hljs-string">'properties'</span>, <span class="hljs-string">'language'</span>].includes(fieldName))
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`fieldname is not allowed: <span class="hljs-subst">${fieldName}</span>`</span>);
+
+<span class="hljs-comment">/* //comments for support unicode:
+    const regexStr = '^[a-zA-Z][[a-zA-Z0-9_]*]?[a-zA-Z0-9]$';
+    const regex = new RegExp(regexStr);
+    if (!fieldName.match(regex)) {
+        throw RxError.newRxError(
+            'fieldnames do not match the regex', {
+                regex: regexStr,
+                fieldName
+            }
+        );
+    }
+*/</span>
+};
+</code></pre>
+<p>目前PouchDB有个问题没有解决，直接会导致本地数据库越来越大，同时也难以LRU。<br>
+<a href="https://github.com/pouchdb/pouchdb/issues/802" target="_blank" rel="noopener">https://github.com/pouchdb/pouchdb/issues/802</a></p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/couchdb/" title="CouchDB">https://riceball.me/article/couchdb/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/nosql/" rel="tag"><i class="fa fa-tag"></i> nosql</a>
+              <a href="/tags/couchdb/" rel="tag"><i class="fa fa-tag"></i> couchdb</a>
+              <a href="/tags/database/" rel="tag"><i class="fa fa-tag"></i> database</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/ionic-framework/" rel="prev" title="Ionic Framework">
+      <i class="fa fa-chevron-left"></i> Ionic Framework
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/raphael-tut/" rel="next" title="Raphael 矢量图形和动画javascript库">
+      Raphael 矢量图形和动画javascript库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#source-build"><span class="nav-number">1.</span> <span class="nav-text">Source Build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gai-nian"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-ju-ku-database"><span class="nav-number">2.1.</span> <span class="nav-text">数据库(database)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nei-bu-shu-ju-ku"><span class="nav-number">2.1.1.</span> <span class="nav-text">内部数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#an-quan-yu-ren-zheng-users"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">安全与认证(_users)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wen-dang-document"><span class="nav-number">2.2.</span> <span class="nav-text">文档（document）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#wen-dang-cha-xun"><span class="nav-number">2.2.1.</span> <span class="nav-text">文档查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wen-dang-bian-geng-tong-zhi"><span class="nav-number">2.3.</span> <span class="nav-text">文档变更通知</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#changes-feed"><span class="nav-number">2.3.1.</span> <span class="nav-text">Changes Feed</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#polling"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">Polling</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#longpoll"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">longpoll</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#continuous"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">continuous</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#eventsource"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">eventsource</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shi-tu-view-yu-mapreduce-cha-xun"><span class="nav-number">2.4.</span> <span class="nav-text">视图（view） 与 Map&#x2F;Reduce 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shi-tu-view-de-cha-xun-can-shu"><span class="nav-number">2.4.1.</span> <span class="nav-text">视图(View)的查询参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kuo-zhan-gai-nian"><span class="nav-number">2.5.</span> <span class="nav-text">扩展概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fu-jian-attatchment"><span class="nav-number">2.5.1.</span> <span class="nav-text">附件(attatchment)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#she-ji-wen-dang-design-document"><span class="nav-number">2.5.2.</span> <span class="nav-text">设计文档(design document)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#validate_doc_update"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">validate_doc_update</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchapp"><span class="nav-number">3.</span> <span class="nav-text">CouchApp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#couchapp"><span class="nav-number">3.1.</span> <span class="nav-text">Couchapp</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#change-your-app-id"><span class="nav-number">3.1.1.</span> <span class="nav-text">Change your App ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-config"><span class="nav-number">3.1.2.</span> <span class="nav-text">set config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add-some-web-pages"><span class="nav-number">3.1.3.</span> <span class="nav-text">Add Some Web Pages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#push-your-couchapp"><span class="nav-number">3.1.4.</span> <span class="nav-text">Push your CouchApp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fauxton"><span class="nav-number">4.</span> <span class="nav-text">Fauxton</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchdb-as-graph"><span class="nav-number">5.</span> <span class="nav-text">CouchDB As Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#couchdb-client"><span class="nav-number">6.</span> <span class="nav-text">CouchDB Client</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rxdb"><span class="nav-number">6.1.</span> <span class="nav-text">RxDB</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/couchdb/",
+      identifier: "article/couchdb/",
+      title: "CouchDB",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

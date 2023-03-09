@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="智能家居硬件采购避坑指要(三) 蓝牙设备 蓝牙特性  短距离通信：蓝牙技术的通信范围通常为10米以内 蓝牙信号穿墙能力有限,除非你购买BLE蓝牙网关中继设备,而且更容易受到干扰,尤其是不带自动跳频的蓝牙. 能耗相对较低：因为低功耗蓝牙设备在省电上还是比不过Zigbee设备,BLE蓝牙5.0在省电上与zigbee很接近了.  因此: 为了省电,米家的温度传感器(LYWSD03MMC)是大约10分钟发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能家居硬件采购避坑指要(三) Bluetooth设备">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="智能家居硬件采购避坑指要(三) 蓝牙设备 蓝牙特性  短距离通信：蓝牙技术的通信范围通常为10米以内 蓝牙信号穿墙能力有限,除非你购买BLE蓝牙网关中继设备,而且更容易受到干扰,尤其是不带自动跳频的蓝牙. 能耗相对较低：因为低功耗蓝牙设备在省电上还是比不过Zigbee设备,BLE蓝牙5.0在省电上与zigbee很接近了.  因此: 为了省电,米家的温度传感器(LYWSD03MMC)是大约10分钟发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;mi_temp2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;ble_monitor_options.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;ble_monitor_options_device.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;mi_temp2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;qingping_CGPR1.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;mi_scale2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;Yeelight-YLKG08YL.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;mi_temp2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;mi_scale2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;sel-bodymiscale.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;bodymiscale.png">
+<meta property="article:published_time" content="2022-05-05T00:38:18.000Z">
+<meta property="article:modified_time" content="2023-03-09T02:08:54.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="thinking">
+<meta property="article:tag" content="open source">
+<meta property="article:tag" content="hardware">
+<meta property="article:tag" content="iot">
+<meta property="article:tag" content="smarthome">
+<meta property="article:tag" content="homeassistant">
+<meta property="article:tag" content="ha">
+<meta property="article:tag" content="wifi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;home-assistant-bluetooth&#x2F;mi_temp2.jpg">
+
+<link rel="canonical" href="https://riceball.me/article/home-assistant-bluetooth/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>智能家居硬件采购避坑指要(三) Bluetooth设备 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/home-assistant-bluetooth/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          智能家居硬件采购避坑指要(三) Bluetooth设备
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-05 08:38:18" itemprop="dateCreated datePublished" datetime="2022-05-05T08:38:18+08:00">2022-05-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-09 10:08:54" itemprop="dateModified" datetime="2023-03-09T10:08:54+08:00">2023-03-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Open-Source/" itemprop="url" rel="index">
+                    <span itemprop="name">Open Source</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Open-Source/Hardware/" itemprop="url" rel="index">
+                    <span itemprop="name">Hardware</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Open-Source/Hardware/SmartHome/" itemprop="url" rel="index">
+                    <span itemprop="name">SmartHome</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-san-lan-ya-she-bei" class="heading-control">智能家居硬件采购避坑指要(三) 蓝牙设备<a class="heading-anchor" href="#zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-san-lan-ya-she-bei" aria-hidden="true"></a></h1>
+<h2 id="lan-ya-te-xing" class="heading-control">蓝牙特性<a class="heading-anchor" href="#lan-ya-te-xing" aria-hidden="true"></a></h2>
+<ol>
+<li>短距离通信：蓝牙技术的通信范围通常为10米以内</li>
+<li>蓝牙信号穿墙能力有限,除非你购买BLE蓝牙网关中继设备,而且更容易受到干扰,尤其是不带自动跳频的蓝牙.</li>
+<li>能耗相对较低：因为低功耗蓝牙设备在省电上还是比不过Zigbee设备,BLE蓝牙5.0在省电上与zigbee很接近了.
+<ul>
+<li>因此: 为了省电,米家的温度传感器(LYWSD03MMC)是大约10分钟发送一次数据,如果不刷第三方固件,想与空调联动就不要想了.</li>
+</ul>
+</li>
+<li>简单易用：智能家居蓝牙设备使用普及度高的蓝牙协议，用户不需要额外的网关或路由器即可连接和控制设备</li>
+<li>目前蓝牙协议大多数是私有协议，互通性较差,HA无法直接控制,只有少量的特定厂家的低功耗蓝牙传感设备才能通过第三方<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a> 直接接入HA,支持的设备详见下方的支持列表.</li>
+<li>价格便宜:由于蓝牙技术在手机和其他消费电子设备上得到广泛应用，智能家居蓝牙设备的成本相对较低。</li>
+</ol>
+<h2 id="di-san-fang-passive-ble-monitor-ji-cheng" class="heading-control">第三方<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a><a class="heading-anchor" href="#di-san-fang-passive-ble-monitor-ji-cheng" aria-hidden="true"></a></h2>
+<p><strong>注意</strong>: 最新HA版本(2022.8以后)的官方蓝牙集成开始直接支持Passive BLE 设备,目前还在移植更多的蓝牙设备.官方蓝牙集成不能与BLE Monitor集成同时工作!请做好选择,官方蓝牙集成同样支持蓝牙网关.</p>
+<p>采用第三方<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>用于跳过所谓的蓝牙网关直接将蓝牙传感器设备接入HA,<strong>注意</strong>,目前<strong>只支持</strong>获取蓝牙传感器数据,<strong>不支持</strong>发送控制指令的蓝牙设备(比如:开关)!</p>
+<blockquote>
+<p>该集成使用的前提是:需要至少支持BLE蓝牙4.0(蓝牙是向下兼容的,所以BLE蓝牙5也可)的适配器,一般的HA盒子都有,如果是用PC就看带WIFI不,一般WIFI都带蓝牙,没有就买一个支持BLE蓝牙的USB WIFI适配器. 如果你使用<code>开源ESPHome通用蓝牙网关</code>接入,那么HA上可以不用配置蓝牙适配器.</p>
+</blockquote>
+<p>BLE 监视器(<code>Passive BLE Monitor</code>)支持来自小米、青萍、Govee、Kegtron、Thermoplus、Brifit、Ruuvitag、iNode 等制造商的蓝牙设备,比内置蓝牙集成支持的设备多得多。详见第三方<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>支持的设备列表: <a href="https://custom-components.github.io/ble_monitor/by_brand" target="_blank" rel="noopener">https://custom-components.github.io/ble_monitor/by_brand</a></p>
+<h3 id="an-zhuang-yu-shi-yong" class="heading-control">安装与使用<a class="heading-anchor" href="#an-zhuang-yu-shi-yong" aria-hidden="true"></a></h3>
+<p>安装很简单,在 <code>HACS</code> 第三方集成商场中搜索<code>Passive BLE Monitor</code>并安装即可.</p>
+<p>这里以<code>小米蓝牙温湿度计2</code>为例讲解使用方法. <img src="./mi_temp2.jpg" alt="XiaoMi temp2"></p>
+<p><strong>注意</strong>: 如果你拿到手的米家蓝牙传感器默认没有BLE Advertisements 广播,那么你必须先接入米家App才能打开广播.如果你的传感器刷了第三方ATC固件,那么就不需要先接入米家.</p>
+<p>然后在<code>设备和集成</code>配置中添加<code>Passive BLE Monitor</code>集成即可:</p>
+<p><img src="./ble_monitor_options.png" alt="ble_monitor_options"></p>
+<ol>
+<li>勾选要使用的<code>蓝牙接口/适配器 的 MAC 地址</code>,如果没有就勾选<code>Don't use Bluetooth adapter</code>让<code>开源ESPHome通用蓝牙网关</code>传入数据.</li>
+<li>勾选<code>自动发现设备及传感器</code>后会自动添加发现的蓝牙传感器设备(前提是没加密)</li>
+<li>勾选<code>重启后恢复状态</code>(可选): 是否重启后恢复设备状态,如果没有勾选,那么重启后在没有收到广播前,设备状态为 <code>Unavailable</code></li>
+<li>对于加密数据传输的,还是必须点最下面的<code>设备</code>下拉列表框,选择<code>Add devices...</code></li>
+<li>点击<code>提交</code>按钮.</li>
+<li>如果选择了添加设备,这时候会弹出<code>配置设备</code>对话框
+<ul>
+<li>输入蓝牙设备的MAC地址,如果是Beacon输入Beacon的UUID</li>
+<li>输入加密密钥,如果有的话</li>
+<li>最后点击<code>提交</code>按钮</li>
+</ul>
+</li>
+</ol>
+<p><img src="./ble_monitor_options_device.png" alt="ble_monitor_options_device"></p>
+<p>等待几分钟,如果一切顺利,就可以看到该集成下出现的新设备.</p>
+<h2 id="kai-yuan-esphome-tong-yong-lan-ya-wang-guan" class="heading-control">开源ESPHome通用蓝牙网关<a class="heading-anchor" href="#kai-yuan-esphome-tong-yong-lan-ya-wang-guan" aria-hidden="true"></a></h2>
+<p>因为蓝牙穿墙能力弱,为了解决蓝牙信号穿墙问题,就有了所谓的<code>开源ESPHome通用蓝牙网关</code>: 蓝牙信号过不来的就走<code>开源ESPHome通用蓝牙网关</code>,通过wifi信号再到HA上的<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>. 另外<code>开源ESPHome通用蓝牙网关</code>还可以接入只支持<code>Active BLE connection</code>的蓝牙设备.</p>
+<ol>
+<li>蓝牙信号过不来的就走开源ESPHome通用蓝牙网关,通过wifi信号再到HA上的 <a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>.</li>
+<li>接入只支持<strong>Active BLE connection</strong>的蓝牙设备</li>
+</ol>
+<p>硬件很简单,你只需要自备ESP32的主板一枚,建议最好选4M Flash的, 虽然2M的也能刷,但是稍微麻烦些. 我选的是<code>ESP-C3-32S(4M)</code>的开发板.</p>
+<blockquote>
+<p><code>ESP32-C3</code>是Espressif新出的RISC-V 32位单核处理器(160MHz)支持蓝牙5.0(BLE支持),以前的ESP32是基于蓝牙4.2.</p>
+</blockquote>
+<p>ESP32-C3板子目前最便宜的是LuatOS(合宙)的<code>ESP32C3-CORE开发板（简版）</code>,￥9.9.</p>
+<p>然后准备好ESPHome开发环境,请升级到ESPHome的最新版(至少2022.1版本以后),请不要在arm环境下开发,因为<code>Espressif</code>目前还不支持<code>ESP-C3</code>在arm下的编译.</p>
+<p>在Linux环境下安装使用很简单:</p>
+<pre><code class="bash">sudo apt -y install python3 python3-pip python3-pip-whl
+sudo -H pip3 install --upgrade pip
+pip3 install --user esphome
+<span class="hljs-comment"># To set this permanently, you can run echo 'export PATH=$PATH:$HOME/.local/bin' &gt;&gt; $HOME/.bashrc</span>
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span>/bin
+<span class="hljs-comment"># You may need to logout and back in for the new group to take effect.</span>
+sudo usermod -a -G dialout <span class="hljs-variable">$USER</span>
+</code></pre>
+<p>好了,刷机的YAML<code>bluetooth-gateway.yaml</code>配置如下(如果板子不是<code>ESP32-C3</code>请自行调整board参数),记得在相同目录下的<code>secrets.yaml</code>文件中填好<code>!secret</code>中的参数:</p>
+<pre><code class="yml"><span class="hljs-attr">substitutions:</span>
+  <span class="hljs-comment"># Name the device and it's entities</span>
+  <span class="hljs-attr">device:</span> <span class="hljs-string">ble_gateway</span>
+  <span class="hljs-attr">device_name:</span> <span class="hljs-string">blegateway1</span>
+
+<span class="hljs-attr">esphome:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">$device_name</span>
+  <span class="hljs-attr">comment:</span> <span class="hljs-string">$device</span>
+  <span class="hljs-attr">platformio_options:</span>
+    <span class="hljs-attr">board_build.flash_mode:</span> <span class="hljs-string">dio</span>
+
+    <span class="hljs-comment"># 还可以通过 tasmota 使用 Arduino:</span>
+    <span class="hljs-attr">board_build.mcu:</span> <span class="hljs-string">esp32c3</span>
+    <span class="hljs-attr">platform_packages:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">platformio/framework-arduinoespressif32</span> <span class="hljs-string">@</span> <span class="hljs-string">https://github.com/espressif/arduino-esp32.git#2.0.2</span>
+
+<span class="hljs-attr">esp32:</span>
+  <span class="hljs-attr">board:</span> <span class="hljs-string">esp32-c3-devkitm-1</span>
+  <span class="hljs-attr">variant:</span> <span class="hljs-string">esp32c3</span>
+  <span class="hljs-attr">framework:</span>
+    <span class="hljs-comment"># 使用 esp-idf</span>
+    <span class="hljs-comment"># type: esp-idf</span>
+    <span class="hljs-comment"># sdkconfig_options:</span>
+    <span class="hljs-comment">#   CONFIG_BT_BLE_50_FEATURES_SUPPORTED: y</span>
+    <span class="hljs-comment">#   CONFIG_BT_BLE_42_FEATURES_SUPPORTED: y</span>
+    <span class="hljs-comment">#   CONFIG_ESP_TASK_WDT_TIMEOUT_S: "10" # Defaults to 5</span>
+
+    <span class="hljs-comment"># 使用 tasmota:</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">arduino</span>
+    <span class="hljs-attr">version:</span> <span class="hljs-number">2.0</span><span class="hljs-number">.3</span>
+    <span class="hljs-attr">platform_version:</span> <span class="hljs-string">https://github.com/tasmota/platform-espressif32/releases/download/v.2.0.3/platform-espressif32-v.2.0.3.zip</span>
+    <span class="hljs-comment"># version: 2.0.2</span>
+    <span class="hljs-comment"># platform_version: https://github.com/tasmota/platform-espressif32/releases/download/v2.0.2.3/platform-espressif32-2.0.2.3.zip</span>
+
+<span class="hljs-attr">external_components:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">source:</span> <span class="hljs-string">github://myhomeiot/esphome-components</span>
+
+<span class="hljs-comment"># WIFI 每个信道停留的时间，默认主动扫描为 120 ms，被动扫描为 360 ms。</span>
+<span class="hljs-attr">esp32_ble_tracker:</span>
+  <span class="hljs-attr">scan_parameters:</span>
+    <span class="hljs-attr">interval:</span> <span class="hljs-string">320ms</span> <span class="hljs-comment"># if Option “Software controls WiFi/Bluetooth coexistence” is enabled, the BLE scan interval shall not exceed 0x100 slots (about 160 ms).</span>
+    <span class="hljs-attr">window:</span> <span class="hljs-string">100ms</span>
+    <span class="hljs-attr">duration:</span> <span class="hljs-string">1min</span> <span class="hljs-comment"># Defaults to 5min</span>
+    <span class="hljs-comment"># active: true # Defaults to true</span>
+
+<span class="hljs-comment"># Enable logging</span>
+<span class="hljs-attr">logger:</span>
+  <span class="hljs-attr">level:</span> <span class="hljs-string">DEBUG</span> <span class="hljs-comment"># defaults to DEBUG, NONE ERROR WARN INFO DEBUG VERBOSE VERY_VERBOSE</span>
+
+<span class="hljs-comment"># Enable Home Assistant API</span>
+<span class="hljs-attr">api:</span>
+  <span class="hljs-attr">reboot_timeout:</span> <span class="hljs-string">1h</span>
+
+<span class="hljs-attr">ota:</span>
+  <span class="hljs-attr">password:</span> <span class="hljs-type">!secret</span> <span class="hljs-string">ota_password</span>
+
+<span class="hljs-attr">wifi:</span>
+  <span class="hljs-attr">ssid:</span> <span class="hljs-type">!secret</span> <span class="hljs-string">wifi_ssid</span>
+  <span class="hljs-attr">password:</span> <span class="hljs-type">!secret</span> <span class="hljs-string">wifi_password</span>
+
+  <span class="hljs-comment"># Enable fallback hotspot in case wifi connection fails</span>
+  <span class="hljs-attr">ap:</span>
+    <span class="hljs-attr">ssid:</span> <span class="hljs-string">"$device_name Fallback Hotspot"</span>
+    <span class="hljs-attr">password:</span> <span class="hljs-type">!secret</span> <span class="hljs-string">ap_password</span>
+
+<span class="hljs-attr">ble_gateway:</span>
+  <span class="hljs-attr">id:</span> <span class="hljs-string">$device_name</span>
+  <span class="hljs-comment"># devices:</span>
+  <span class="hljs-comment">#   - mac_address: 01:23:45:67:89:AB</span>
+  <span class="hljs-comment">#   - mac_address: !secret lywsd03mmc_mac</span>
+  <span class="hljs-attr">on_ble_advertise:</span>
+    <span class="hljs-attr">then:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">homeassistant.service:</span>
+          <span class="hljs-attr">service:</span> <span class="hljs-string">ble_monitor.parse_data</span>
+          <span class="hljs-attr">data:</span>
+            <span class="hljs-attr">packet:</span> <span class="hljs-type">!lambda</span> <span class="hljs-string">return</span> <span class="hljs-string">packet;</span>
+            <span class="hljs-attr">gateway_id:</span> <span class="hljs-string">$device_name</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">homeassistant.event:</span>
+          <span class="hljs-attr">event:</span> <span class="hljs-string">esphome.on_ble_advertise</span>
+          <span class="hljs-attr">data:</span>
+            <span class="hljs-attr">packet:</span> <span class="hljs-type">!lambda</span> <span class="hljs-string">return</span> <span class="hljs-string">packet;</span>
+
+<span class="hljs-attr">binary_sensor:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">homeassistant</span>
+    <span class="hljs-attr">id:</span> <span class="hljs-string">ble_gateway_discovery</span>
+    <span class="hljs-attr">entity_id:</span> <span class="hljs-string">binary_sensor.ble_gateway</span>
+    <span class="hljs-attr">attribute:</span> <span class="hljs-string">discovery</span>
+    <span class="hljs-attr">on_state:</span>
+      <span class="hljs-attr">then:</span>
+        <span class="hljs-attr">lambda:</span> <span class="hljs-string">id($device_name).set_discovery(x);</span>
+
+<span class="hljs-attr">text_sensor:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">homeassistant</span>
+    <span class="hljs-attr">id:</span> <span class="hljs-string">ble_gateway_devices</span>
+    <span class="hljs-attr">entity_id:</span> <span class="hljs-string">binary_sensor.ble_gateway</span>
+    <span class="hljs-attr">attribute:</span> <span class="hljs-string">devices</span>
+    <span class="hljs-attr">on_value:</span>
+      <span class="hljs-attr">then:</span>
+        <span class="hljs-attr">lambda:</span> <span class="hljs-string">id($device_name).set_devices(x);</span>
+  <span class="hljs-comment"># IP address of device. Not really needed for HA (as HA already knows it), but for showing on the display during startup. The startup screen will leave on if no instance connects to the API.</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">wifi_info</span>
+    <span class="hljs-attr">ip_address:</span>
+      <span class="hljs-attr">name:</span> <span class="hljs-string">$device_name</span> <span class="hljs-string">IP</span> <span class="hljs-string">address</span>
+      <span class="hljs-attr">id:</span> <span class="hljs-string">ip_address</span>
+  <span class="hljs-comment"># ESPHome version used to compile the app</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">version</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">$device_name</span> <span class="hljs-string">ESPHome</span> <span class="hljs-string">Version</span>
+
+<span class="hljs-attr">sensor:</span>
+  <span class="hljs-comment"># WiFi signals strength sensor</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">wifi_signal</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">$device_name</span> <span class="hljs-string">WiFi</span> <span class="hljs-string">Signal</span> <span class="hljs-string">Sensor</span>
+    <span class="hljs-attr">update_interval:</span> <span class="hljs-string">60s</span>
+</code></pre>
+<pre><code class="yml"><span class="hljs-comment"># secrets.yaml 例子</span>
+<span class="hljs-attr">ota_password:</span> <span class="hljs-string">your</span> <span class="hljs-string">ota</span> <span class="hljs-string">password</span>
+<span class="hljs-attr">wifi_ssid:</span> <span class="hljs-string">your</span> <span class="hljs-string">wifi</span> <span class="hljs-string">ssid</span>
+<span class="hljs-attr">wifi_password:</span> <span class="hljs-string">your</span> <span class="hljs-string">password</span>
+<span class="hljs-attr">ap_password:</span> <span class="hljs-string">your</span> <span class="hljs-string">password</span>
+
+</code></pre>
+<p>注意： 如果使用LuatOS(合宙)的<code>ESP32C3-CORE开发板（简版）</code>的<code>arduino框架</code>要么禁用log组件,要么改用<code>esp-idf框架</code>并设置log组件的参数为:<code>hardware_uart: USB_SERIAL_JTAG</code>.</p>
+<p>USB插上ESP32开发板,看清楚串口号(<code>ls /dev/tty*</code>),一般是<code>/dev/ttyUSB0</code>,然后执行如下语句编译烧录固件:</p>
+<pre><code class="bash"><span class="hljs-comment"># choose the port after compiling</span>
+esphome run bluetooth-gateway.yaml
+</code></pre>
+<p>至此,通用蓝牙网关的硬件烧录部分完成.</p>
+<p>接着,还要在HA上配置与<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>的搭配部分.</p>
+<p>注意:</p>
+<ol>
+<li><a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a> 版本要求 至少是 8.x</li>
+<li><code>input_boolean.settings_ble_gateway</code> 是否启用蓝牙网关</li>
+<li><code>input_boolean.settings_ble_gateway_discovery</code> 是否启用设备自动发现</li>
+</ol>
+<p>修改HA <code>configuration.yaml</code>文件:</p>
+<pre><code class="yml"><span class="hljs-attr">input_boolean:</span>
+  <span class="hljs-attr">ha_started:</span>
+    <span class="hljs-attr">initial:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">settings_ble_gateway:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">BLE</span> <span class="hljs-string">Gateway</span>
+    <span class="hljs-attr">icon:</span> <span class="hljs-string">mdi:bluetooth</span>
+  <span class="hljs-attr">settings_ble_gateway_discovery:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">BLE</span> <span class="hljs-string">Gateway</span> <span class="hljs-string">Discovery</span>
+    <span class="hljs-attr">icon:</span> <span class="hljs-string">mdi:bluetooth-connect</span>
+
+<span class="hljs-attr">input_text:</span>
+  <span class="hljs-attr">settings_ble_gateway_add_device:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">BLE</span> <span class="hljs-string">Gateway</span> <span class="hljs-string">Add</span> <span class="hljs-string">Device</span>
+    <span class="hljs-attr">icon:</span> <span class="hljs-string">mdi:bluetooth-connect</span>
+    <span class="hljs-attr">initial:</span> <span class="hljs-string">''</span>
+
+<span class="hljs-attr">template:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">binary_sensor:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">BLE</span> <span class="hljs-string">Gateway</span> <span class="hljs-string">Add</span> <span class="hljs-string">Device</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">"{{ (state_attr('binary_sensor.ble_gateway_add_device', 'mac_address')) }}"</span>
+        <span class="hljs-attr">availability:</span> <span class="hljs-string">"{{ is_state('input_boolean.ha_started', 'on') }}"</span>
+        <span class="hljs-attr">attributes:</span>
+          <span class="hljs-attr">mac_address:</span> <span class="hljs-string">"{{ states('input_text.settings_ble_gateway_add_device') | replace(':', '') | trim }}"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">binary_sensor:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">BLE</span> <span class="hljs-string">Gateway</span>
+        <span class="hljs-attr">icon:</span> <span class="hljs-string">mdi:bluetooth</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">"{{ is_state('input_boolean.settings_ble_gateway', 'on') }}"</span>
+        <span class="hljs-attr">availability:</span> <span class="hljs-string">"{{ is_state('input_boolean.ha_started', 'on') }}"</span>
+        <span class="hljs-attr">attributes:</span>
+          <span class="hljs-attr">discovery:</span> <span class="hljs-string">"{{ is_state('input_boolean.settings_ble_gateway_discovery', 'on') }}"</span>
+          <span class="hljs-attr">devices:</span> <span class="hljs-string">"{{ states | selectattr('entity_id', 'search', '^(device_tracker||(binary_)?sensor).ble_') | selectattr('attributes.mac_address', 'defined') | map(attribute='attributes.mac_address') | unique | sort | join('') | replace(':', '') if is_state('binary_sensor.ble_gateway', 'on') }}"</span>
+</code></pre>
+<p>然后修改<code>automations.yaml</code>文件:</p>
+<pre><code class="yml"><span class="hljs-bullet">-</span> <span class="hljs-attr">alias:</span> <span class="hljs-string">HA</span> <span class="hljs-string">Start</span> <span class="hljs-string">automation</span>
+  <span class="hljs-attr">initial_state:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">trigger:</span>
+    <span class="hljs-attr">platform:</span> <span class="hljs-string">homeassistant</span>
+    <span class="hljs-attr">event:</span> <span class="hljs-string">start</span>
+  <span class="hljs-attr">action:</span>
+    <span class="hljs-attr">service:</span> <span class="hljs-string">input_boolean.turn_on</span>
+    <span class="hljs-attr">entity_id:</span> <span class="hljs-string">input_boolean.ha_started</span>
+  <span class="hljs-attr">id:</span> <span class="hljs-string">ha_start</span>
+</code></pre>
+<p>重启HA即可. 对了记得把刚刚新鲜出炉的蓝牙网关加入进来.</p>
+<p>然后该蓝牙网关就会自动转发已发现的并且在<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>中设备.</p>
+<p>如果要添加新的蓝牙设备请在<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>上添加.<br>
+如果想只针对个别设备在指定的蓝牙网关上转发,那么请使用<code>input_text.settings_ble_gateway_add_device</code>添加该设备的MAC地址.</p>
+<p><strong>注意</strong>: <a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>上的<code>自动发现设备及传感器</code>不能在蓝牙网关上使用,只限本地HA. 换句话说,如果HA本机没有蓝牙适配器,只用蓝牙网关,那么必须手动在<a href="https://github.com/custom-components/ble_monitor" target="_blank" rel="noopener">Passive BLE Monitor 集成</a>中添加设备.</p>
+<p>蓝牙网关接收到已注册设备的广播后会同时触发事件<code>esphome.on_ble_advertise</code>发送原始数据.</p>
+<p>最后,记得设置<code>input_boolean.settings_ble_gateway</code>为&quot;on&quot;,启用蓝牙网关功能.<br>
+设置<code>input_boolean.settings_ble_gateway_discovery</code>为&quot;on&quot;,启用自动发现功能.</p>
+<p>已知问题:</p>
+<ul>
+<li>ESP32可能会遗漏广播消息,这是由于ESP32的蓝牙和WIFI共用通道造成,目前无解,除非不用WIFI,才能完全不遗漏.<br>
+调教<code>scan_parameters</code>参数会有好转,但是依然不能保证. 可以参阅: <a href="https://bbs.hassbian.com/thread-16350-1-1.html" target="_blank" rel="noopener">【难题求解】ESPHome+ESP32打造通用蓝牙网关漏收广播信息</a></li>
+</ul>
+<p><strong>版本更新</strong></p>
+<ul>
+<li>2022-5-09: [Bug] esp-idf 下无法更改 <code>scan_parameters</code>, 使用 Arduino framework now.</li>
+<li>2022-5-21: [feat] 新增 启用自动发现开关</li>
+</ul>
+<h2 id="wo-mai-guo-de-she-bei" class="heading-control">我买过的设备<a class="heading-anchor" href="#wo-mai-guo-de-she-bei" aria-hidden="true"></a></h2>
+<ul>
+<li>小米蓝牙温湿度计2 价格便宜(Zigbee的一半不到)还带屏幕, 但是原始固件10分钟才报告1次温湿度,耗电高, 因此需要刷第三方开源固件
+<ul>
+<li><img src="./mi_temp2.jpg" alt="XiaoMi temp2"></li>
+<li>刷入第三方开源固件后
+<ul>
+<li>更省电</li>
+<li>可调节报告频率,默认是2.5秒报告1次温湿度,这个频率联动完全足够,报告频率越低越省电.</li>
+<li>可以读取设备上记录的温湿度数据(循环记录19632个测量结果),记录的时间间隔也可以配置</li>
+<li>可以校准温湿度以及设置自己的舒适温度区间</li>
+<li>可调节蓝牙发射功率(自己权衡省电或信号覆盖率)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>青萍动作和环境光传感器(CGPR1), 分体构思不错,光强能够识别弱光,缺点是动作感知<code>没人</code>会偶尔失灵,感知<code>有人</code>灵敏
+<ul>
+<li><img src="./qingping_CGPR1.jpg" alt="QingPing CGPR1.jpg"></li>
+<li>我主要是用它的环境光(光强)传感器,因为绿米M1S网关带和绿米(RTCGQ11LM)人体PIR传感带的光强传感器弱光下全部为0,根本没用!</li>
+</ul>
+</li>
+<li>小米体脂秤2: 因为是接收广播所以数据不能立马出现,开机后要等一会儿,换句话说首次测量结果可能不会出现
+<ul>
+<li><img src="./mi_scale2.jpg" alt="mi_scale2"></li>
+<li>查看体脂信息需要安装 <a href="https://github.com/dckiller51/bodymiscale" target="_blank" rel="noopener">BodyMiScale 集成</a> 以及 前端 <a href="https://github.com/dckiller51/lovelace-body-miscale-card" target="_blank" rel="noopener">lovelace-body-miscale-card</a> 详见后述</li>
+</ul>
+</li>
+<li><a href="#%E5%BC%80%E6%BA%90esphome%E9%80%9A%E7%94%A8%E8%93%9D%E7%89%99%E7%BD%91%E5%85%B3">自制开源ESPHome通用蓝牙网关(ESP32-C3)</a></li>
+<li>Yeelight 智能调光开关(YLKG08YL) 贴装版 旋动一格有明显的喀哒声音,不错,但是,并没有信号发出,必须连续扭动两格(大约)才是1 step, 如果单独一格一格的扭动,也没有信号.
+<ul>
+<li><img src="./Yeelight-YLKG08YL.jpg" alt="Yeelight-YLKG08YL"></li>
+</ul>
+</li>
+</ul>
+<h3 id="xiao-mi-lan-ya-wen-shi-du-ji-2-shua-di-san-fang-kai-yuan-gu-jian" class="heading-control">小米蓝牙温湿度计2刷第三方开源固件<a class="heading-anchor" href="#xiao-mi-lan-ya-wen-shi-du-ji-2-shua-di-san-fang-kai-yuan-gu-jian" aria-hidden="true"></a></h3>
+<p><img src="./mi_temp2.jpg" alt="Mi temp2"></p>
+<ul>
+<li>小米蓝牙温湿度计2价格便宜,只有Zigbee温湿度计的一半不到,还带屏幕</li>
+<li>蓝牙穿墙能力弱于Zigbee</li>
+<li>官方原始固件:
+<ul>
+<li>10分钟报告1次温湿度,大约1小时报告1次电量.如果想和其它设备联动(如,空调),这个上报频率就没法用.</li>
+<li>依然耗电</li>
+<li>无法调整配置</li>
+</ul>
+</li>
+</ul>
+<p>而在刷入第三方开源固件后:</p>
+<ul>
+<li>更省电</li>
+<li>可调节报告频率,默认是2.5秒报告1次温湿度,这个频率联动完全足够,报告频率越低越省电.</li>
+<li>可以读取设备上记录的温湿度数据(循环记录19632个测量结果),记录的时间间隔也可以配置</li>
+<li>可以校准温湿度以及设置自己的舒适温度区间</li>
+<li>可调节蓝牙发射功率(自己权衡省电或信号覆盖率)</li>
+</ul>
+<h4 id="di-san-fang-gu-jian-shua-ji" class="heading-control">第三方固件刷机<a class="heading-anchor" href="#di-san-fang-gu-jian-shua-ji" aria-hidden="true"></a></h4>
+<p>使用Chrome浏览器即可直接Web刷机,请启用浏览器的<a href="chrome://flags/#enable-experimental-web-platform-features">#enable-experimental-web-platform-features</a>功能后重启浏览器.</p>
+<ol>
+<li>点击 <a href="https://pvvx.github.io/ATC_MiThermometer/TelinkMiFlasher.html" target="_blank" rel="noopener">TelinkMiFlasher.html</a> 进入刷机页面</li>
+<li>点击 <code>Connect</code> 按钮,连接待刷机的小米蓝牙温湿度计2,设备名一般是: <code>LYWSD03MMC</code></li>
+<li>配对连接后,点击<code>Do Activate</code>按钮,自动获取小米蓝牙温湿度计2的token和绑定密码</li>
+<li>然后点 <code>Custom firmware ver 3.7</code> 按钮, 旁边那个<code>Original_OTA_Xiaomi_LYWSD03MMC_v1.0.0_0130.bin</code>按钮是恢复原来的官方固件</li>
+<li>点<code>Start Flashing</code>按钮开始刷机</li>
+<li>成功后即可在该页面上修改各种配置参数.要想更省电可以把发射功率和上报频率调节得更小些即可.</li>
+<li>点击参数配置的 <code>Show all mi keys</code>按钮,显示设备的MAC地址,并自己记录下来温湿度计的MAC(不包括最后4位,最后4位是随机数,不是MAC地址),后面要用</li>
+</ol>
+<p>最后,请关闭刚才用于刷机的蓝牙适配器设备,不然HA设备没法发现小米蓝牙温湿度计2.</p>
+<p>我修改后的温度计配置:</p>
+<ul>
+<li>Advertising interval: 3125 ms</li>
+<li>Measure interval: 4 x(Advertising interval)</li>
+<li>Connect latency: 2600 ms</li>
+<li>Recording averaging measurements to flash memory: 90 x(measure interval)</li>
+</ul>
+<h3 id="xiao-mi-ti-zhi-cheng-2-jie-ru-ha-duo-ren-ti-zhong-zi-dong-ji-lu-fang-an" class="heading-control">小米体脂秤2接入HA多人体重自动记录方案<a class="heading-anchor" href="#xiao-mi-ti-zhi-cheng-2-jie-ru-ha-duo-ren-ti-zhong-zi-dong-ji-lu-fang-an" aria-hidden="true"></a></h3>
+<p><img src="./mi_scale2.jpg" alt="mi_scale2"></p>
+<p>本解决方案可以支持多人体重自动记录(前提是每个人有明显的体重区分或阻抗区分),以及完美显示最近一次的的人体体重,体脂信息.</p>
+<blockquote>
+<p>使用的前提硬件,需要至少支持BLE蓝牙4.0(蓝牙是向下兼容的,所以BLE蓝牙5也可)的适配器,一般的HA盒子都有,如果是用PC就看带WIFI不,一般WIFI都带蓝牙,没有就买一个支持的USB WIFI适配器.</p>
+</blockquote>
+<p>请首先安装 <code>Passive BLE Monitor 集成</code>.</p>
+<p>如果你已经勾选了<code>Passive BLE Monitor 集成</code>的&quot;自动发现设备及传感器&quot;,那么小米体脂秤2开机后多等一会(保持体脂秤屏幕常亮),就应该看到在该集成(Bluetooth Low Energy Monitor)下多出一个<code>Mi Scale V2</code>设备,你可以重命名一个有意义的名字.</p>
+<p>如果你希望看到详细的体脂信息,那么需要先在HACS第三方集成商场中安装 <a href="https://github.com/dckiller51/bodymiscale" target="_blank" rel="noopener">BodyMiScale 集成</a>: 点击 <code>HACS</code> -&gt; <code>集成</code> -&gt; <code>自定义存储库</code>(右上角三个点中) -&gt; 存储库设置为 “<a href="https://github.com/dckiller51/bodymiscale" target="_blank" rel="noopener">https://github.com/dckiller51/bodymiscale</a>” , 类别为: <code>集成</code></p>
+<p><strong>注意</strong>,<a href="https://github.com/dckiller51/bodymiscale" target="_blank" rel="noopener">BodyMiScale 集成</a>的最新版本<code>2.1 版本</code>需要您安装的<code>Home Assistant</code>是 <code>2022.4</code> 以上版本才能支持,否则您只能安装<code>bodymiscale@2.0</code>以下版本,切勿升级.</p>
+<p><a href="https://github.com/dckiller51/bodymiscale" target="_blank" rel="noopener">BodyMiScale 集成</a>的最新版本已经支持直接在配置界面中配置:</p>
+<ol>
+<li><code>配置</code> -&gt; <code>设备与服务</code> -&gt; <code>添加集成</code> -&gt; 搜索 <code>BodyMiScale</code>
+<ul>
+<li><img src="./sel-bodymiscale.png" alt="Sel-BodyMiScale"></li>
+</ul>
+</li>
+<li>开始配置 <code>BodyMiScale</code>
+<ul>
+<li><img src="./bodymiscale.png" alt="BodyMiScale"></li>
+</ul>
+</li>
+<li>如果有多人重复上述操作</li>
+</ol>
+<p>如果是<a href="https://github.com/dckiller51/bodymiscale" target="_blank" rel="noopener">BodyMiScale</a>@2.0及以下的版本必须在<code>configuration.yaml</code>手工配置传感器:</p>
+<pre><code class="yml"><span class="hljs-attr">bodymiscale:</span>
+  <span class="hljs-attr">your_name1:</span>
+    <span class="hljs-attr">sensors:</span>
+      <span class="hljs-attr">weight:</span> <span class="hljs-string">sensor.ble_stabilized_weight_XXXX</span>
+      <span class="hljs-attr">impedance:</span> <span class="hljs-string">sensor.ble_impedance_XXXX</span>
+    <span class="hljs-attr">height:</span> <span class="hljs-number">176</span>
+    <span class="hljs-attr">born:</span> <span class="hljs-string">"1990-04-10"</span>
+    <span class="hljs-attr">gender:</span> <span class="hljs-string">"male"</span>
+    <span class="hljs-attr">model_miscale:</span> <span class="hljs-string">"181B"</span> <span class="hljs-comment"># miscale2</span>
+  <span class="hljs-attr">your_name2:</span>
+    <span class="hljs-attr">sensors:</span>
+      <span class="hljs-attr">weight:</span> <span class="hljs-string">sensor.ble_stabilized_weight_XXXX</span>
+      <span class="hljs-attr">impedance:</span> <span class="hljs-string">sensor.ble_impedance_XXXX</span>
+    <span class="hljs-attr">height:</span> <span class="hljs-number">176</span>
+    <span class="hljs-attr">born:</span> <span class="hljs-string">"1990-04-10"</span>
+    <span class="hljs-attr">gender:</span> <span class="hljs-string">"male"</span>
+    <span class="hljs-attr">model_miscale:</span> <span class="hljs-string">"181D"</span> <span class="hljs-comment">#  miscale1</span>
+</code></pre>
+<p>重启后就会多出来名为: <code>bodymiscale.your_name1</code> 和 <code>bodymiscale.your_name2</code>的实体.</p>
+<p>然后你需要在HACS第三方集成商场中安装<a href="https://github.com/dckiller51/lovelace-body-miscale-card" target="_blank" rel="noopener">lovelace-body-miscale-card</a> 界面, 来使用该实体.</p>
+<p>先加库: 点击 <code>HACS</code> -&gt; <code>集成</code> -&gt; <code>自定义存储库</code>(右上角三个点中) -&gt; 存储库设置为 <code>https://github.com/dckiller51/lovelace-body-miscale-card</code> , 类别为: <code>Lovelace</code></p>
+<p>然后再安装该界面. 最后复制仓库中的图片文件(<code>src/images/*</code>)到<code>config/www/images</code>目录下.</p>
+<p>接着就可以在 lovelace 中进行配置了:</p>
+<pre><code class="yml"><span class="hljs-attr">type:</span> <span class="hljs-string">custom:body-miscale-card</span>
+<span class="hljs-attr">entity:</span> <span class="hljs-string">bodymiscale.your_name1</span>
+<span class="hljs-attr">show_name:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">image:</span> <span class="hljs-string">/local/images/miscale2.jpg</span>
+<span class="hljs-attr">show_states:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">show_attributes:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">show_body:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">show_buttons:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">show_toolbar:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>如果有多个人需要分别记录,并且可以通过体重区分的话,当然你也可以加上阻抗值(impedance)来判断,那么可以在<code>configuration.yaml</code>中:</p>
+<pre><code class="yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">template</span>
+  <span class="hljs-attr">sensors:</span>
+    <span class="hljs-comment"># the first person's weight</span>
+    <span class="hljs-attr">weight_your_name:</span>
+      <span class="hljs-attr">friendly_name:</span> <span class="hljs-string">"Weight Your Name"</span>
+      <span class="hljs-attr">value_template:</span> <span class="hljs-string">&gt;-
+        {% set weight = states('sensor.ble_stabilized_weight_XXXX') | float %}
+        {% if 66.9 <= weight <="77" %} {{ states("sensor.ble_stabilized_weight_xxxx") }} {% else states("sensor.weight_your_name") endif span>      <span class="hljs-attr">unit_of_measurement:</span> <span class="hljs-string">'kg'</span>
+      <span class="hljs-attr">icon_template:</span> <span class="hljs-string">mdi:weight-kilogram</span>
+    <span class="hljs-comment"># the first person's impedance</span>
+    <span class="hljs-attr">impedance_your_name:</span>
+      <span class="hljs-attr">friendly_name:</span> <span class="hljs-string">"Impedance Your Name"</span>
+      <span class="hljs-attr">value_template:</span> <span class="hljs-string">&gt;-
+        {% set weight = states('sensor.ble_stabilized_weight_XXXX') | float %}
+        {% if 66.9 <= weight <="77" %} {{ states("sensor.ble_impedance_xxxx") }} {% else states("sensor.impedance_your_name") endif span>      <span class="hljs-attr">unit_of_measurement:</span> <span class="hljs-string">'ohm'</span>
+      <span class="hljs-attr">icon_template:</span> <span class="hljs-string">mdi:omega</span>
+</=></span></=></span></code></pre>
+<p>问题又来了,如何显示最近的历史数据. 因为当电子秤离线后或者HA重启后,就没当前数据(最近一次的)了!</p>
+<p>还是用的SQL Sensor获取的最近一次的历史数据:</p>
+<pre><code class="yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">sql</span>
+  <span class="hljs-attr">db_url:</span> <span class="hljs-type">!secret</span> <span class="hljs-string">db_url</span>
+  <span class="hljs-attr">queries:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Latest</span> <span class="hljs-string">Weight</span> <span class="hljs-string">Your</span> <span class="hljs-string">Name</span>
+      <span class="hljs-attr">query:</span> <span class="hljs-string">"SELECT state FROM states WHERE entity_id = 'sensor.weight_your_name' and state &lt;&gt; 'unknown' and state &lt;&gt; 'unavailable' ORDER BY created DESC LIMIT 1;"</span>
+      <span class="hljs-attr">column:</span> <span class="hljs-string">"state"</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Latest</span> <span class="hljs-string">Impedance</span> <span class="hljs-string">Your</span> <span class="hljs-string">Name</span>
+      <span class="hljs-attr">query:</span> <span class="hljs-string">"SELECT state FROM states WHERE entity_id = 'sensor.impedance_your_name' and state &lt;&gt; 'unknown' and state &lt;&gt; 'unavailable' ORDER BY created DESC LIMIT 1;"</span>
+      <span class="hljs-attr">column:</span> <span class="hljs-string">"state"</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">platform:</span> <span class="hljs-string">template</span>
+  <span class="hljs-attr">sensors:</span>
+    <span class="hljs-attr">weight_your_name:</span>
+      <span class="hljs-attr">friendly_name:</span> <span class="hljs-string">"Weight Your Name"</span>
+      <span class="hljs-attr">value_template:</span> <span class="hljs-string">&gt;-
+        {% set weight = states('sensor.ble_stabilized_weight_XXXX') | float(0) %}
+        {% set id = 'weight_your_name' %}
+          {% if 66.9 <= weight <="77" %} {{ }} {% elif state_attr("sensor.latest_"+id, 'state') else states("sensor."+id) endif span>      <span class="hljs-attr">unit_of_measurement:</span> <span class="hljs-string">'kg'</span>
+      <span class="hljs-attr">icon_template:</span> <span class="hljs-string">mdi:weight-kilogram</span>
+    <span class="hljs-attr">impedance_your_name:</span>
+      <span class="hljs-attr">friendly_name:</span> <span class="hljs-string">"Impedance Your Name"</span>
+      <span class="hljs-attr">value_template:</span> <span class="hljs-string">&gt;-
+        {% set weight = states('sensor.ble_stabilized_weight_XXXX') | float(0) %}
+        {% set id = 'impedance_your_name' %}
+          {% if 66 <= weight <="77" %} {{ states("sensor.ble_impedance_xxxx") }} {% elif state_attr("sensor.latest_"+id, 'state') else states("sensor."+id) endif span>      <span class="hljs-attr">unit_of_measurement:</span> <span class="hljs-string">'ohm'</span>
+      <span class="hljs-attr">icon_template:</span> <span class="hljs-string">mdi:omega</span>
+</=></span></=></span></code></pre>
+<p>注意:   <code>db_url: !secret db_url</code> 要填写自己<code>recorder</code>数据库的url. 详细请参阅 : <a href="https://www.home-assistant.io/integrations/sql/" target="_blank" rel="noopener">SQL Sensor</a></p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/home-assistant-bluetooth/" title="智能家居硬件采购避坑指要(三) Bluetooth设备">https://riceball.me/article/home-assistant-bluetooth/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/thinking/" rel="tag"><i class="fa fa-tag"></i> thinking</a>
+              <a href="/tags/open-source/" rel="tag"><i class="fa fa-tag"></i> open source</a>
+              <a href="/tags/hardware/" rel="tag"><i class="fa fa-tag"></i> hardware</a>
+              <a href="/tags/iot/" rel="tag"><i class="fa fa-tag"></i> iot</a>
+              <a href="/tags/smarthome/" rel="tag"><i class="fa fa-tag"></i> smarthome</a>
+              <a href="/tags/homeassistant/" rel="tag"><i class="fa fa-tag"></i> homeassistant</a>
+              <a href="/tags/ha/" rel="tag"><i class="fa fa-tag"></i> ha</a>
+              <a href="/tags/wifi/" rel="tag"><i class="fa fa-tag"></i> wifi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/home-assistant-box/" rel="prev" title="智能家居硬件采购避坑指要(四) HA盒子">
+      <i class="fa fa-chevron-left"></i> 智能家居硬件采购避坑指要(四) HA盒子
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#zhi-neng-jia-ju-ying-jian-cai-gou-bi-keng-zhi-yao-san-lan-ya-she-bei"><span class="nav-number">1.</span> <span class="nav-text">智能家居硬件采购避坑指要(三) 蓝牙设备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lan-ya-te-xing"><span class="nav-number">1.1.</span> <span class="nav-text">蓝牙特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-san-fang-passive-ble-monitor-ji-cheng"><span class="nav-number">1.2.</span> <span class="nav-text">第三方Passive BLE Monitor 集成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#an-zhuang-yu-shi-yong"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装与使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kai-yuan-esphome-tong-yong-lan-ya-wang-guan"><span class="nav-number">1.3.</span> <span class="nav-text">开源ESPHome通用蓝牙网关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wo-mai-guo-de-she-bei"><span class="nav-number">1.4.</span> <span class="nav-text">我买过的设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xiao-mi-lan-ya-wen-shi-du-ji-2-shua-di-san-fang-kai-yuan-gu-jian"><span class="nav-number">1.4.1.</span> <span class="nav-text">小米蓝牙温湿度计2刷第三方开源固件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#di-san-fang-gu-jian-shua-ji"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">第三方固件刷机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xiao-mi-ti-zhi-cheng-2-jie-ru-ha-duo-ren-ti-zhong-zi-dong-ji-lu-fang-an"><span class="nav-number">1.4.2.</span> <span class="nav-text">小米体脂秤2接入HA多人体重自动记录方案</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/home-assistant-bluetooth/",
+      identifier: "article/home-assistant-bluetooth/",
+      title: "智能家居硬件采购避坑指要(三) Bluetooth设备",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

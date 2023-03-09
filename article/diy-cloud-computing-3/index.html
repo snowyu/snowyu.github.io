@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="ZFS 介绍 首先ZFS是&quot;Zettabyte File System&quot;的首字母缩写。ZFS 源自于Sun Microsystems为Solaris操作系统开发的文件系统。 ZFS是一个具有高存储容量、文件系统与卷管理概念整合、崭新的磁盘逻辑结构的轻量级文件系统，同时也是一个便捷的存储池管理系统。ZFS使用CDDL开源协议条款授权。后来被移植到FreeBSD和NetBSD系统上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DIY与云计算（三）之 云存储与开源 ZFS 文件系统">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;diy-cloud-computing-3&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="ZFS 介绍 首先ZFS是&quot;Zettabyte File System&quot;的首字母缩写。ZFS 源自于Sun Microsystems为Solaris操作系统开发的文件系统。 ZFS是一个具有高存储容量、文件系统与卷管理概念整合、崭新的磁盘逻辑结构的轻量级文件系统，同时也是一个便捷的存储池管理系统。ZFS使用CDDL开源协议条款授权。后来被移植到FreeBSD和NetBSD系统上">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2012-05-12T05:55:43.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.529Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="cloud computing">
+<meta property="article:tag" content="diy">
+<meta property="article:tag" content="zfs">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/diy-cloud-computing-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>DIY与云计算（三）之 云存储与开源 ZFS 文件系统 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/diy-cloud-computing-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          DIY与云计算（三）之 云存储与开源 ZFS 文件系统
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2012-05-12 13:55:43" itemprop="dateCreated datePublished" datetime="2012-05-12T13:55:43+08:00">2012-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">Thinking</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Cloud-Computing/" itemprop="url" rel="index">
+                    <span itemprop="name">Cloud Computing</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="zfs-jie-shao" class="heading-control">ZFS 介绍<a class="heading-anchor" href="#zfs-jie-shao" aria-hidden="true"></a></h2>
+<p>首先ZFS是&quot;Zettabyte File System&quot;的首字母缩写。ZFS 源自于Sun Microsystems为Solaris操作系统开发的文件系统。<br>
+ZFS是一个具有高存储容量、文件系统与卷管理概念整合、崭新的磁盘逻辑结构的轻量级文件系统，同时也是一个便捷的存储池管理系统。ZFS使用CDDL开源协议条款授权。后来被移植到FreeBSD和NetBSD系统上。</p>
+<p>ZFS是一个128位的文件系统，这意味着它能存储1800亿亿（18.4 × 10^18）倍于当前64位文件系统的数据。窃以为目前ZFS文件系统是云存储以及NoSQL数据库的最佳首选。</p>
+<h3 id="te-xing" class="heading-control">特性<a class="heading-anchor" href="#te-xing" aria-hidden="true"></a></h3>
+<ul>
+<li>Data integrity 数据完整性</li>
+</ul>
+<p>保障数据完整性是ZFS的主要功能和任务。ZFS使用了许多技术来检测和修复毁坏的数据，以此保障数据的完整性。代价是要求比普通RAID文件系统更多的CPU处理能力。</p>
+<ul>
+<li>Storage pool 存储池</li>
+</ul>
+<p>ZFS建立在虚拟的“zpools”的存储池之上。每个存储池由若干虚拟设备（virtual devices， vdevs）组成。这些虚拟设备可以是原始磁盘，也可能是一个RAID1镜像设备，或是非标准RAID等级的多磁盘组。</p>
+<ul>
+<li>Read-only Snapshot support (it is possible to get a read-write copy of them, those are named clones)</li>
+<li>Built-in RAID-5-like-over-steroid capabilities known as RAID-Z and RAID-6-like-over-steroid capabilities known as RAID-Z2. RAID-Z3 (triple parity) also exists.</li>
+<li>Copy-on-Write transactional filesystem</li>
+<li>Meta-attributes support (properties) allowing you to you easily drive the show like “That directory is encrypted”, “that directory is limited to 5GiB”, “That directory is exported via NFS” and so on. Depending on what you define, ZFS takes the appropriates actions!</li>
+<li>Dynamic striping to optimize data throughput</li>
+<li>Variable block length</li>
+<li>Data duplication</li>
+<li>Automatic pool re-silvering</li>
+<li>Transparent data compression / encryption (later requires Solaris 11)</li>
+</ul>
+<h3 id="dai-jia-he-lie-shi" class="heading-control">代价和劣势<a class="heading-anchor" href="#dai-jia-he-lie-shi" aria-hidden="true"></a></h3>
+<ul>
+<li>CPU开销较大(目前的CPU性能来说足已)</li>
+<li>内存开销大，为了获得更好的性能，而需要更多的内存</li>
+<li>1TB大约需要1GB 内存</li>
+<li>启用 dedup 需要巨量内存或者SSD，否则性能变差，1TB大约需要32GB RAM或SSD.</li>
+<li>缺乏&quot;Block Pointer rewrite functionality&quot; 功能(已计划开发), 因为没有该功能所以不能:</li>
+<li>没有能力整理磁盘碎片(Pool defragmentation) (已通过COW技术来缓解该问题)</li>
+<li>没有能力动态扩大或缩小(Pool Resize)存储池</li>
+<li>数据压缩 (已解决)</li>
+<li>无法添加新的单块设备到现有的RAID-Z/Z2/Z3 存储池，用以增加池的大小(不过，可以通过同时替换该池中的设备来扩展 RAID-Z/Z2/Z3 大小，还可以添加另一组同样大小的虚拟设备到现有池的形式扩展)</li>
+<li>没有类似Lustre, GFS or OCFS2集群文件系统</li>
+<li>单个存储设备上不能保障数据完整(健康)性(损害依然可以被检测到), 避免方法是设置数据强制重复。</li>
+<li>修复(Resilver)损害的磁盘时间长，磁盘越大，所需时间越多，一般5或者6TB的磁盘需要几天来修复。这意味着最好Raidz1(RAID-5)当心这样的修复，因为在修复的过程中，会给原有的所有磁盘相当的压力。在这么长的修复时间如果另一个磁盘也crash了，那数据就彻底完蛋了。所以对于大于3TB的磁盘，最好是用Raidz2(允许2个磁盘同时失效)或Raidz3(允许3个磁盘同时失效)</li>
+<li>IOPS 性能会随ZFS阵列的配置不同差异很大，8磁盘的raidz2阵列，写性能会很差，等于单磁盘写的性能，但是读性能则可以达到所有8个磁盘性能之和。在ZFS中正确配置阵列是关键。</li>
+</ul>
+<h2 id="zfs-on-linux" class="heading-control">ZFS on Linux<a class="heading-anchor" href="#zfs-on-linux" aria-hidden="true"></a></h2>
+<p>如果你是在用Linux/Gentoo 发行版本:</p>
+<pre><code class="bash"><span class="hljs-variable">$sudo</span> -s
+<span class="hljs-comment">#emerge --sync</span>
+<span class="hljs-comment">#echo "sys-fs/zfs **" &gt; /etc/portage/package.keywords/zfs</span>
+<span class="hljs-comment">#echo "sys-kernel/spl **" &gt;&gt; /etc/portage/package.keywords/zfs</span>
+<span class="hljs-comment">#emerge -v =sys-kernel/spl-9999 =sys-fs/zfs-9999</span>
+</code></pre>
+<p>如果你用Ubuntu那就更简单了：</p>
+<pre><code class="bash">$ sudo -s
+<span class="hljs-comment"># apt-add-repository ppa:zfs-native/daily</span>
+<span class="hljs-comment"># apt-get update</span>
+<span class="hljs-comment"># apt-get install debootstrap ubuntu-zfs</span>
+</code></pre>
+<p>如果不出意外的话，这样ZFS就安装好了，检查是否安装OK：</p>
+<pre><code class="bash"><span class="hljs-comment"># modprobe zfs</span>
+<span class="hljs-comment"># dmesg | grep ZFS:</span>
+ZFS: Loaded module v0.6.0-rc8, ZFS pool version 28, ZFS filesystem version 5
+</code></pre>
+<p>如果要玩Boot From ZFS Root Filesystem，那么这个比较复杂，还是等进阶后，再去详细了解吧。</p>
+<h2 id="shi-yong-zfs" class="heading-control">使用 ZFS<a class="heading-anchor" href="#shi-yong-zfs" aria-hidden="true"></a></h2>
+<p>ZFS有四个主要的概念，理清这些概念非常重要：虚拟设备(<code>vdevs</code>)，存储池(<code>Storage Pool</code>), 卷(<code>Volume</code>)，快照(<code>Snapshot</code>)</p>
+<p>虚拟设备由若干块设备配置的指定阵列构成，块设备可以是文件，磁盘分区或者磁盘(推荐整盘使用)。存储池(<code>Storage Pool</code>)由若干虚拟设备构成。卷可以树状目录的形式在存储池中被任意的创建。然后我们可以为卷创建任意时刻的快照。</p>
+<p>如果你的所有磁盘都是完全同样的大小，并且只准备使用同一阵列模式，那么你可以将整盘作为虚拟设备加入。否则你需要分区你的磁盘，除了条带(stripe)阵列外，要求同一阵列的分区大小必须相同，如果大小不同，那么存储池实际容量将会以最小的分区作为基准计算。</p>
+<p>ZFS 支持条带(stripe)阵列，镜像(Mirror)阵列，Raidz(raidz1,raidz2,raidz3)阵列。</p>
+<ul>
+<li>条带(stripe)阵列性能最好，空间利用率最大(容量=所有磁盘之和)，但是数据完整性最差。</li>
+<li>镜像(Mirror)阵列性能最差(几乎等同于单盘性能)，空间利用率最小(容量=单个磁盘)，但是数据完整性最好。</li>
+<li>Raidz(RAID5/6/7)阵列是一种折衷选择，性能居中，空间利用率居中，但是数据完整性居中(Raidz1允许1个磁盘同时失效, Raidz2允许2个磁盘同时失效，Raidz3允许3个磁盘同时失效)。<br>
+Raidz至少要3块盘。Raidz2至少4块盘。假设磁盘块数为N，大小为X，那么Raidz的实际使用空间＝<code>(N-1)*X, Raidz2的实际使用空间=(N-2)*X</code></li>
+</ul>
+<p>假设你有四个同样大小的sata磁盘: /dev/sda /dev/sdb /dev/sdc /dev/sdd</p>
+<h3 id="chuang-jian-zfs-raidz-cun-chu-chi" class="heading-control">创建ZFS Raidz 存储池：<a class="heading-anchor" href="#chuang-jian-zfs-raidz-cun-chu-chi" aria-hidden="true"></a></h3>
+<pre><code class="bash">    $ sudo zpool create myzpool /dev/sda /dev/sdb /dev/sdc /dev/sdd
+    $ sudo zfs list
+    NAME      USED  AVAIL  REFER  MOUNTPOINT
+    myzpool  96.5K   146M  31.4K  /myzpool
+    $
+</code></pre>
+<h3 id="cha-kan-cun-chu-chi-shu-xing" class="heading-control">查看存储池属性<a class="heading-anchor" href="#cha-kan-cun-chu-chi-shu-xing" aria-hidden="true"></a></h3>
+<pre><code class="bash">    $ sudo zfs get all myzpool
+    NAME     PROPERTY              VALUE                  SOURCE
+    myzpool  <span class="hljs-built_in">type</span>                  filesystem             -
+    myzpool  creation              Sat Nov 13 22:43 2010  -
+    myzpool  used                  96.5K                  -
+    myzpool  available             146M                   -
+    myzpool  referenced            31.4K                  -
+    myzpool  compressratio         1.00x                  -
+    myzpool  mounted               yes                    -
+    myzpool  quota                 none                   default
+    myzpool  reservation           none                   default
+    myzpool  recordsize            128K                   default
+    myzpool  mountpoint            /myzpool               default
+    myzpool  sharenfs              off                    default
+    myzpool  checksum              on                     default
+    myzpool  compression           off                    default
+    myzpool  atime                 on                     default
+    myzpool  copies                1                      default
+    myzpool  version               4                      -
+    ...
+    myzpool  primarycache          all                    default
+    myzpool  secondarycache        all                    default
+    myzpool  usedbysnapshots       0                      -
+    myzpool  usedbydataset         31.4K                  -
+    myzpool  usedbychildren        65.1K                  -
+    myzpool  usedbyrefreservation  0                      -
+    $
+</code></pre>
+<h3 id="zfs-de-wen-jian-ya-suo-neng-li" class="heading-control">ZFS的文件压缩能力<a class="heading-anchor" href="#zfs-de-wen-jian-ya-suo-neng-li" aria-hidden="true"></a></h3>
+<pre><code class="bash">    $ sudo zfs create myzpool/myzdev
+    $ sudo zfs list
+    NAME             USED  AVAIL  REFER  MOUNTPOINT
+    myzpool          139K   146M  31.4K  /myzpool
+    myzpool/myzdev  31.4K   146M  31.4K  /myzpool/myzdev
+    $ sudo zfs <span class="hljs-built_in">set</span> compression=on myzpool/myzdev
+    $ ls /myzpool/myzdev/
+    $ sudo cp ../linux/Documentation/devices.txt /myzpool/myzdev/
+    $ ls -la ../linux/Documentation/devices.txt
+    -rw-r--r-- 1 mtj mtj 118144 2010-05-16 14:17 ../linux-2.6.34/Documentation/devices.txt
+    $ ls -la /myzpool/myzdev/
+    total 5
+    drwxr-xr-x 2 root root      3 2010-11-20 22:59 .
+    drwxr-xr-x 3 root root      3 2010-11-20 22:55 ..
+    -rw-r--r-- 1 root root 118144 2010-11-20 22:59 devices.txt
+    $ du -ah /myzpool/myzdev/
+    60K /myzpool/myzdev/devices.txt
+    62K /myzpool/myzdev/
+    $ sudo zfs get compressratio myzpool
+    NAME     PROPERTY       VALUE  SOURCE
+    myzpool  compressratio  1.55x  -
+    $
+</code></pre>
+<h3 id="cha-kan-pool-de-zhuang-tai" class="heading-control">查看Pool的状态<a class="heading-anchor" href="#cha-kan-pool-de-zhuang-tai" aria-hidden="true"></a></h3>
+<pre><code class="bash">$ sudo zpool status myzpool
+  pool: myzpool
+ state: ONLINE
+ scrub: none requested
+config:
+
+    NAME        STATE     READ WRITE CKSUM
+    myzpool     ONLINE       0     0     0
+      raidz1    ONLINE       0     0     0
+        sda     ONLINE       0     0     0
+        sdb     ONLINE       0     0     0
+        sdc     ONLINE       0     0     0
+        sdd     ONLINE       0     0     0
+
+errors: No known data errors
+$
+</code></pre>
+<h3 id="pool-zhong-yi-ge-ci-pan-sun-hai-hou-de-xiu-fu" class="heading-control">Pool中一个磁盘损害后的修复<a class="heading-anchor" href="#pool-zhong-yi-ge-ci-pan-sun-hai-hou-de-xiu-fu" aria-hidden="true"></a></h3>
+<p>首先弄坏一个磁盘的数据:</p>
+<pre><code class="bash">$ dd <span class="hljs-keyword">if</span>=/dev/zero of=/dev/sdd bs=64M count=1
+1+0 records <span class="hljs-keyword">in</span>
+1+0 records out
+67108864 bytes (67 MB) copied, 1.84791 s, 36.3 MB/s
+$
+</code></pre>
+<p>然后检查Pool:</p>
+<pre><code class="bash">$ sudo zpool scrub myzpool
+$ sudo zpool status myzpool
+  pool: myzpool
+ state: ONLINE
+status: One or more devices could not be used because the label is missing or
+    invalid.  Sufficient replicas exist <span class="hljs-keyword">for</span> the pool to <span class="hljs-built_in">continue</span>
+    functioning <span class="hljs-keyword">in</span> a degraded state.
+action: Replace the device using <span class="hljs-string">'zpool replace'</span>.
+   see: http://www.sun.com/msg/ZFS-8000-4J
+ scrub: scrub completed after 0h0m with 0 errors on Sat Nov 20 23:15:03 2010
+config:
+
+    NAME        STATE     READ WRITE CKSUM
+    myzpool     ONLINE       0     0     0
+      raidz1    ONLINE       0     0     0
+        sda     ONLINE       0     0     0
+        sdb     ONLINE       0     0     0
+        sdc     ONLINE       0     0     0
+        sdd     UNAVAIL      0     0     0  corrupted data
+
+errors: No known data errors
+$ wc -l /myzpool/myzdev/devices.txt
+3340 /myzpool/myzdev/devices.txt
+$
+</code></pre>
+<p>使用replace修复:</p>
+<pre><code class="bash">$ sudo zpool replace myzpool sdd sdd
+$ sudo zpool status myzpool
+  pool: myzpool
+ state: ONLINE
+ scrub: resilver completed after 0h0m with 0 errors on Sat Nov 20 23:23:12 2010
+config:
+
+    NAME        STATE     READ WRITE CKSUM
+    myzpool     ONLINE       0     0     0
+      raidz1    ONLINE       0     0     0
+        sda     ONLINE       0     0     0
+        sdb     ONLINE       0     0     0
+        sdc     ONLINE       0     0     0
+        sdd     ONLINE       0     0     0  59.5K resilvered
+
+errors: No known data errors
+$ sudo zpool scrub myzpool
+$ sudo zpool status myzpool
+  pool: myzpool
+ state: ONLINE
+ scrub: scrub completed after 0h0m with 0 errors on Sat Nov 20 23:23:23 2010
+config:
+
+    NAME        STATE     READ WRITE CKSUM
+    myzpool     ONLINE       0     0     0
+      raidz1    ONLINE       0     0     0
+        sda     ONLINE       0     0     0
+        sdb     ONLINE       0     0     0
+        sdc     ONLINE       0     0     0
+        sdd     ONLINE       0     0     0
+
+errors: No known data errors
+$
+</code></pre>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/diy-cloud-computing-3/" title="DIY与云计算（三）之 云存储与开源 ZFS 文件系统">https://riceball.me/article/diy-cloud-computing-3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/cloud-computing/" rel="tag"><i class="fa fa-tag"></i> cloud computing</a>
+              <a href="/tags/diy/" rel="tag"><i class="fa fa-tag"></i> diy</a>
+              <a href="/tags/zfs/" rel="tag"><i class="fa fa-tag"></i> zfs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/diy-cloud-computing-2/" rel="prev" title="DIY与云计算（二）之 DIY自己的开源NAS">
+      <i class="fa fa-chevron-left"></i> DIY与云计算（二）之 DIY自己的开源NAS
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/nokia-b-plan/" rel="next" title="Nokia 的B计划 - Nokia 还有未来么？">
+      Nokia 的B计划 - Nokia 还有未来么？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zfs-jie-shao"><span class="nav-number">1.</span> <span class="nav-text">ZFS 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#te-xing"><span class="nav-number">1.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dai-jia-he-lie-shi"><span class="nav-number">1.2.</span> <span class="nav-text">代价和劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zfs-on-linux"><span class="nav-number">2.</span> <span class="nav-text">ZFS on Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shi-yong-zfs"><span class="nav-number">3.</span> <span class="nav-text">使用 ZFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chuang-jian-zfs-raidz-cun-chu-chi"><span class="nav-number">3.1.</span> <span class="nav-text">创建ZFS Raidz 存储池：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cha-kan-cun-chu-chi-shu-xing"><span class="nav-number">3.2.</span> <span class="nav-text">查看存储池属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zfs-de-wen-jian-ya-suo-neng-li"><span class="nav-number">3.3.</span> <span class="nav-text">ZFS的文件压缩能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cha-kan-pool-de-zhuang-tai"><span class="nav-number">3.4.</span> <span class="nav-text">查看Pool的状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pool-zhong-yi-ge-ci-pan-sun-hai-hou-de-xiu-fu"><span class="nav-number">3.5.</span> <span class="nav-text">Pool中一个磁盘损害后的修复</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/diy-cloud-computing-3/",
+      identifier: "article/diy-cloud-computing-3/",
+      title: "DIY与云计算（三）之 云存储与开源 ZFS 文件系统",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

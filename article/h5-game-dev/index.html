@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="![](data:image&#x2F;jpg;base64,&#x2F;9j&#x2F;4AAQSkZJRgABAQAAAQABAAD&#x2F;2wCEAAkGBhMSEBUUEhQVFBUVFxYZGBcYFxwdGBsWGBcWGBwXGRwXHCYfGR0kGhgVHy8hIygpLCwsFx8xNTAqNSYrLCkBCQoKDgwOGg8PGiwlHyQsLCwsLCwqLCwsLCwsLCwsLCwsLCwsLCwpLD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML Web游戏开发之浮光掠影">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;h5-game-dev&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="![](data:image&#x2F;jpg;base64,&#x2F;9j&#x2F;4AAQSkZJRgABAQAAAQABAAD&#x2F;2wCEAAkGBhMSEBUUEhQVFBUVFxYZGBcYFxwdGBsWGBcWGBwXGRwXHCYfGR0kGhgVHy8hIygpLCwsFx8xNTAqNSYrLCkBCQoKDgwOGg8PGiwlHyQsLCwsLCwqLCwsLCwsLCwsLCwsLCwsLCwpLD">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;h5-game-dev&#x2F;pulse-circle.png">
+<meta property="article:published_time" content="2011-03-17T23:37:26.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.529Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="html5">
+<meta property="article:tag" content="h5">
+<meta property="article:tag" content="2d">
+<meta property="article:tag" content="3d">
+<meta property="article:tag" content="webgl">
+<meta property="article:tag" content="game">
+<meta property="article:tag" content="engine">
+<meta property="article:tag" content="development">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;h5-game-dev&#x2F;pulse-circle.png">
+
+<link rel="canonical" href="https://riceball.me/article/h5-game-dev/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>HTML Web游戏开发之浮光掠影 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/h5-game-dev/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          HTML Web游戏开发之浮光掠影
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2011-03-18 07:37:26" itemprop="dateCreated datePublished" datetime="2011-03-18T07:37:26+08:00">2011-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML5/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML5</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML5/Game-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">Game Development</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>48k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:27</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>![](data:image/jpg;base64,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<ins>eg6U17N/ZugZJ8YAMtjHANVQ/Wf6z/AHfds0WKjAsCBTgSVWwsK+15EgPWvVACpUqVACpE0qGY+VqAJkuNRdzVV5m5gukuX9nFGzvY2JNmIW4NxfK2vlTWPlbWqxiMRZpY5NEnTLfzAcWv5q7eoFcn8bKccEnDv7evP4K4UnNJkDA4hJIEkmZmdgH7ruijN3soSNgoAvbahkCGfHRxuxaOUFGGxNhMwN1IN8uRbm9+94ih5ilhURyKe4MqsASrAaAggb2GoOoNO8uu68Rw+ZWW3aPqCDlEMvesdQNDqd6TKsTxOeOrp0130Ui8inxl76YzwWOObHvhplOXPKsR7WYkSIzst7yG5N5DfTUnq1V/DvN+m9gZHRlkKvGZJOyyi+Zrh7hQoLk32F6WPxEiYqSRLhlnaRT+8JMyn5gUb52xMRvjIyM+MhVALagG3asL+6co7Lx7xHjUlyhOO21ONdvUl/df+DP5k/s/we+XsWMR+mOUdVghaaG8subulimY9obnQHS2tQ+VJUxcOLeWMM2HhMiXZ7A62X3/AHRYafbTfs9zrDjx3rNhygvcjM2bQeZHSnOQmK4fiIMZRjh1S1jqWz6W3ufDyqWa4/FSb1xrb/mbC3x0t34CvNGJkbCRSO13WVG93Le4bcAnTSw1Gg9T949jZMOcIIs3fiilY5mLAgqe6Se6B4CpnO2BccMAYAEGG1s1yWGQLt71yPDRT6g+foZpGwaQhzIsESWW981l7vxudq6szTy40nq3f9BMfJQl/vkt2GwcmORMRM0IS7vcIwMaLIcwZhIoV9L7Eag7XqsQc7tDNK2Fw2eMnukk3NrjOSb7726CjHDeGSdnHw5Gd1bNNi5tcraLeGNrWI0UWvqAT9KwrXFeW5YseIrsILPM6pc2w6ZjqLaZspUDqdOouuGa5vLelpbe/b/t9t+QmnXBrf6fgLccmnxHDzOGAlimjknQG6qGS8V7nXKr3PgWYWuKD4HEriMRBDOEkaVo0lYu+ZnZipyhGC2C5BqPGiPJ3HInxUqGOUHGqwkDyq4uczDurCp1Jy3J0DeVAOX+C9hxfDqcxy4hctlNioYENfa1rfCpqc25wyN39S37XWvT/YakkpRS9M88cbDYbGYiDsI1EfaKj98tmyXS92y+8QDptRTimFR+HYOVYVMmJd492sCGdVyAtYE2XU0E5zxB/wCkMQwjBLvcMwJ0KrsNjVknxbx8O4YzqxMM5lYZdcvaym9um2npWPkseGVu3V7e/lf7m/8Aaapavx9wLxvhUWCxH6MkSTSIFMskmYrnYBssagiygEam5PlRrBYKP9FfGwoI5YWCSqLlbG1mTMbqNdRfoai894VmxbYmPvwzBWV11GwFieh23+8GzuGxRw3DJ0cESYt1EaH3uzW15CDqFN2t42BGlCnKeHHki3ybje/f1Kv6/pRjXGbi1rf+C3YPiMnZCaBizRJEZ4b3NpYY5Q6Dce81h1CnqKg4vmmVyWik3fDKp3yiUzBjvY+4tvWgOExk2HxwkjuGEGEBU3AZP0aAMh08vQgHpRTi+FhymaC6iefDXjt7ro0xfyHvi48dRoayE543GE23GTVP073F/mvto1pSuSW0tr9zVOHcXuo1vpRfD8RNZ/wlXsKtvDo2I1r1jjLFFir1IBodh4jU9RpQB6ry8YO4r1SoAgYjg6N5UIx3KCuCNCDVmpUAZpivZoQSUaVL6WSRwLeAs2npQWf2YZb5QwJ3ILAm3ib3PrWy0qVQivA3J+zB8R7PXHRj8ST99C8TyJJpobC9t9Lm5t4a610SYlO4Hyrw2CQ7qPlW0jLObG5TnQWUuovewJAvprp8B8qiScCxANzIwAa7FpMu+5OZhmJA8zpXTLcJiO6LUHG8nYSW3aQo1tris4r0HJ+zE+ZcCjjLhWiDGRGVxLlK2Lb5iAv0Df7rCqkeBYgMQXbMp17waxtfcXB0Pj1ro0+zrh//ANunyFSIeS8IossQA8qOK9G8n7OccFgcRFLHIxeVUZWMbE5WAOqm1tCLirJzi0aoqYaMJLMQ2dJCSsQs66D3SQyG4INriwubbYeUMN9So0PIeDVywiAJ3P8AQo4R9Byfs5yg5enBLKzhmFmIJBI0NiRvqAalJwLE/wB5Ltb3m2ve2+17G1dIDlTDf3de15aw4/5Yo4r0Zyfs5xPKsz2zl2ttmJNvhfapycpTte7ykHcF2sfIi+tdCrwKAf8ALWnV4ZENkX5UcV6DkzBcByVMvuNKn8Dsuvj3SKJYT2cMTmKsWO7Ekt8bnWtuXDKNlHyr2FHhRxV3QWzKeHezMg3IYnX3mJtfe2Ym17CjcHs2jzBmGoN9za/jbYn41fKVbSC2B8Jy6iURjwiin6VaYfAK+0qVAH//2Q==)![](data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhISERUUEBQUFRQVFBcWFBQWGBUVFxYcFBQXFxcUGBUXHCYfGBojGRUWHy8gIycpLSwtFh4xNTAqNSYrLCkBCQoKDgwOGg8PGi4kHyQtLDAvLDUsKS0tLC8pLCosKSkpKTUpLCoqKSwpLSksLSwqLCksKiwpLCwsLCosNC8tLP/AABEIAMwAzAMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAABgUHAQMEAgj/xABDEAACAQIDBQUFBQYDCAMAAAABAgMAEQQFIQYSMUFRE2FxgZEHIjKhsSNCUnLBFGKCotHhc5LwFTNDY7LC0vFEU1T/xAAbAQEAAgMBAQAAAAAAAAAAAAAAAQIDBAUGB//EADQRAAEEAAMFBwQBAwUAAAAAAAEAAgMRBCExBRJBUWETcZGxwdHwIjKBoeEGFPEkM0JSkv/aAAwDAQACEQMRAD8AvGiiiiIooooiKKKKIiiiiiIooooiKKKKIiiiiiIooooiKKKKIiiiiiIooooiKKKKIiiiiiIorXJKACTyF/SufLszjniSWFg0bqGVhzB+h7qjeF1xU1xXZRWAazUqEUUUURFY3q1ySWpGz7aCSbGw4WIskRkPayKbFzEFd41I4AArfvaqudSkC0+g1mtEUt63CrKFmiiiiIooooiKKKKIsE0XrVLJalDLs/eHGSYeUloy/wBk513TICwQnodbeFVc6iFIFp1vRWqOS9basoRRRRREUVgmuXMczjgieWZgkcalnY8gKIuuitGFxSyIrp8LqGXlowBGh4aGt9EXHiZLVVWzeaPleIxEUrE4P9pIN/8A4xmO/DJ/guG3Sfush61aWNXSq323g7JxiSoaMr2GKUi4aJz7rkc9xz6O1YZG5g/PnoSrtPBWdh8QCNK6AaqHZPa/9ikXDYhycMxth5mNzETwgkb8P4W8jVrYfEAirtdeR1VSF01g0A1h6uoUZmuM3EZvwqT6C9IG/wBn/s2Y9ZBIf3sUN8sfFqctoFLRuo5ow9QRVew4lZsIkbG32agHmrILA+IIqhFn585KboK08FJcVIA0j7GbR9qvZym00ejj8Q5OOoNMWPz+GBbyuq9AeJ8FGp8qteSUpbeovSBm230hRjh03FA+OX4j+WPl/F6U0bP4l2w8RlYs5RSxPMkXP1paUpisXrzvVxZjiCI33DZt07p77aUcaBKAWaXfegmkrLtuG3VOITQj449QPzLxHlTHhM5jlXejdWHcfqOVVDwcvnzuSl7xslhSPjPtI8fIOKmPsz+9hxvXHmbVM7UZ72a7qayPog+rHuFLGKxQiwjoDf3GufxM3E+ZNMnHoE0Cf8oxm+it+JQfUA1LA0t7OLuxRr0RR6KBTGlS37RaHVeqwTQTWmaYAVZQsYicAXJtVN7d5vJmkkMEDFcK+JWJSOOIZDeaQf8AKjUWvzZhUntXtX+2u2Gw7lcOptiJlNjJbjDGen4m8hXPsXCMRiDiVULBCn7PhFGihQftJFHQnQdwqhzVhkrTwZAAC6AAADuGgHpXYK4MEulSAq6qtM8dxS1nOBDKysAVYEMDwIIsQfKmthUdjsNcVBF5FF875/h2wchw8vvREExM2oZOG4b8WXQHyPOpvYX2pnCEQYpi+H4JIbs8P7rc2Tv4jvpu222VTFQtG2jDWN+aNyPhyI6V8+ZlhJsPK0UoKuhsR9CDzB4g1jA/4nXgfn7V+oX2Ll+ZJKivGwZWF1ZSCCDzBFdhNfJmx+32LwDfYvvRk+9E+qHw/Ce8VdOzntqwU4AnJw78w+qeTj9bVbeI+757KKvROWappVM5nKcNPJEdBvFk/K5v8jcVdMsqyKGUggi4I1BB4EGknaXZmKchpFuwFgQSD8qnkQo6JGGakMrqxR11VhobH6ityZoN7eJLMeLMd5vU1q2vyMYdgUJ3QEjseIKoANefConLsK8rBYwSTUb7A3fOSnccXbgU/Jj+0AQfeYD5045vtl2K9lAftLAFuSDh5tb0rzs77O41AbEkluO6Da3iR+nrTdh8qw0YskMY/hBPmTxrRfjAT9OQ6+3+FsCEN1Nnp7rzFtNhyB9tFew/4iX4eNQeB2uE28jWDqSB0cAnUUxPhYDoYo/8i/0qMxmzWFfURhGHBk90jv6VhfjDd5eJVxCw5Zj9pDlx3ZsyfhdgPC9x9a0f7Ss28pKt+JTY+fXzru2k2SkQmRG7Qc78dBbX040nySEGx0Nb2GnjmZu8QMwteaJ0ZvhzU</ins>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<ins>4qxsHmUeg31v03hf0vVNYvHRyC0gDdL8R4HiKiMS2FXqDy3WYn5k10mSOiG6KpRiNnDFSGVziCdcr9Qvo5ZK93qndhNtcQl0nWWSEC6uRd1HIEXuwNOI9o+FHHtr9Oyf8ApWwzFRuGeS40uzcQx5a1pd1AtON6N6lAbfxtpFDipD3RMPma58z2uxKRNJ2KQKo0Mzh3YnRVSKK92J0ALCr9szh89FgODmBpza78v1qncNWaW9kFxAh3sXIXmkO+w4LHcaRqo4WHHvpiBrI128Lpa727riLtceMTSkraXLmYrJEd2aO5RuRvxRuqnp50/SpeoPNMHoaOaHCipjeY3BzVXmN2uk7Byg3JksHRtStzYkdR0NSKZZi+ySQY25ZQ26UUpY6jUAfSuXMMqhmxDRy3BEJcFdG1kVRrzFt7TwrRExw0Zj7Qug+C4sV6i/SuW4ODvq05gr1sErZY29kKddkEA2DyJB9NV7baGWM7uJUa6CRNUN+RB1Xzpf2gyiJwSgtbXdHLvTp+Xge41nMsZvghbMWtcXAIsb6A6k6cajMTiZ7G0cl+5WP0Fa4lDrDjp4rrGANbvacx/HzosZJs3I435JCsN7IVBdpT0RePj016G3djMkHCMyo/3VmXdDW5A9aacvzhcG+6tt+CKNFvY2303nPncenfStnm0pckXuSb+Bve/drWKMySRiXf10HCuF961YojK4ivz/Fevgt+zyhI5Vt7wKh2195ibtbuGi+V+dNeSSLBGGDOQ9mdSd4KTzQWuAdLilqTG/Z73DfRD5sxJ+dakzzdAW/AWrHhWjtHudx88rWp2DpiayVnQ4kMAQQQeBHA1s36q7BbVvA1095CbtGeB7wfunv9adck2ogxQtG1n5xto48vvDvF62XAjRa8uFfF9wU5v0b9ab1D5ntPFESqntJPwqdB+ZuXhxqos5BYAy9FMYjFhRcn+/cO+oOHFb07seR3R/CLfW9Rq5oSd+Q3bkOS9wFcOFxV2AJ0JJbvvx+tam0Ii+MRjUlZexcNVnaSRWYBtVYFWt0YcR3jj5UmjB4ou0aRs5X7yj3SDwa/CxGtMUaGaRIgdd4C/QdfQGmpcvheFi8rRxoCIo0O6ZLGxJbmSbmw5EE8anCB0bBFH92d3oBwPtz/AAskLnMkIP25ePcqmx8WIQhZVdSdALHXuB51M7P5CCd6U8DrzsRyHInqeXK51EviZ0VxHvM0b+77xuyE8Crcf6VAxYpoGMJuSjEDvF7g+hrca8uJa/h+11g1wduHjmOqdxn6QARwIWY6hF/6mb9TXZhI8xn1EsUPRbb58CTelDL523mLKy72775FhpyN7aeHMejTgsyfcIiKh+AJ4D97TjVmS75IvIcAq4mHs23GBfMi/wCPVeMBtPMhlXFsPsiAW0BvrdSFJBOnLrXTk6yYuZZ5wRGhvBEep/4rD8VuHSoXEbPLh3w5kftTNKwYEEANu3DAcyT1qwcowXCtzDsc77+H7XC2niYm/TCMyMzVDkaHCz/CmsApqTUVow0NhXTaugvOoNcGPXSpCuPGrpRFRftCzCSDMFeM2IhA7iCzXB7qiZdoXkGoA8zTtt7skcTKjqwXdBDki5txFh14+tIeHZIzaMcD8R1bxvy8q5zoXvcQOZXqMJtTD4aJpcLdWiyYDxkO6D14nwUan6d9deU4lO0sqk2F95zfXT7o0HneuDGSbxv3f1oy57OfCsseCjbm/Py8PdaeM29isT9LTut5DXx18KUrtwjbyYmO+5IgRyOTppY+IA9DSthg0jhVBLMbCmZM7aIMtleNvijcXU/0NbNmc2ifFxxph441ckMQSWOhsLngL20rnPglwzHANtrQSDfAZ0RzGmWq2sNtcBgafu0XNmmJADIpuIexS46jfLfPTyqKxZ+0bx+tacQCrTL0ksfJmFNGSbDT41TLGyIgsCXJGoUfoRWAAR5/NAu3DIyCnOOXPwS2pvTRkWzKsd6TTdsWI0N+KoCOHUkfrWvH7DYrDEOhjl3Tf7M3On7pGvgL10vmTHDGaL4L/apziY8T+U/650jnjLxnl68AeStjZe3YAw23j38PnNZz2d//ANE27wZe0exB7r1EyzmE7tuVweRB5itOWQPi5CWO7Eg3pX5ADl4mpWHZ7EY5g0SiOFdI96/wjmFAJN+vCrTYlrX1dc/T8qkDIoXXwrP0rr6KOTNiSB1Nq2T5puygdONS+N9m80KGYSxuI/edRvKwA1JsRSXinJlN+O9b52qrSJHWDoFkc+GZ+8w2AP2m7ZBr4kHmd4DxEf8AUmoV9pXEYjN7pdfQ/wCh5V7gx5hMci8QS/j74NvQ2rZn2z5nY4nBDfSQ7zILb0bH4gV6X1/tUNaYZN92QcAL6jge+8u5czDYqPtHMd8q1DLimZhrrcW9abM6xQW9y4tYXRiONuKk2PHuqFynI2iYS4obgXVUPxMRw0ozDFlwxPM3+dbkEDJ3knNoH76dy19q7Sc1zOydRC8mItqjb/rvDxU6+lx313Zdngj+K4+dQiNXXiMQG+MX7+Df5ufneth2Ccw2w38+clkh/qMSN7PFN/I9vbwXfi9pWxOLwyrcJHItgeJLEXJ8gBV45SmgqkNjtmzJiI5VN40ck30YFRcAjgRqNavPK00FZ4A6yT0XH2nLFI5vZaV5lSyCvVYWs1tLlIrTOlxW6sMKIlTPsGSrbvxWNvG2nzqgpkeJykgKspsQf9cK+lsfh7iq/wBrtkUxA1G64+FxxHceo7qlQqpMt6zFLY15zfKZsM1pV0+64+FvA9e41w/tNSoUhPPcVpyfG9niY3/C6n0YXrjbEVy9tqaq9oc0tPFSDRtO0+SdpmskH3ZJkb+FvfPyJFWjs5BGcRilt9msiFE+7dk3S1vFbUj5C/bS4TGLreAxy9zxMBr3kX9BTdlzbhkI+I7v8jMf+6vEyYkRkMeLoUR1GXmPJesfc0QLTwTJjinwuigHQMttPkLfOqp2hk/YMaXUb0UwIlTk3JtOtiD43606vmRc2491IftLxAvEvO7N5aCsEEwxGI3SMjfhXTkdFmwUJiO67QjNdEkEXbJgsOCsH</ins>mN9ZL6qpPQe6P/VWtgvs0CQhBugbxNwL24WHd6aVT2W4sDMQD96EKPHdB/Q1YDY9162NuGvK1WfN/bOA4ka8c7s31NfgKuJiMrGAd/wCV17STdphpg2jBGGneNRfmCKqzb3L1TGK6CyyqG8wNf0qwcRIzRte43hzpU2yw5ZsObfCTc9Buqf0t51ODxZfKAdTfl/hIm9g0nvSdnku6VX90j6f0qPTMHQXjdkOmqsVPHqKztNP7yfxH51FdvpXtmMAYGleTe4lxKmkxzMbuzMerEsfU1tae4qHjxFbP2msoAAoLGc1I9rXvDo8rhI1LMeAH+tB31tyHZyfFEFRux85CNP4R94/KrU2Z2SjgWyLqfic/E3iendS0pethtmzh47Md5mbeboDYCw7rCrDwUVhXDl+BtUvGlqhSvYrNFFERRRRRFrkjvUXjcvBqYrwyURImb5ArqVdQyniCLg1V+0ns4dLthDcf/Ux1/hY8fA+tfQGIwYNQ2Nym/KiL5cxG8jFXBVhxVhYjyNczT1fu0excOIW0yA9GGjL4Nx8uFVTtH7McRBdoLzJ04SD+Hg3l6URc+x+2cuFkEYAeKRwGQ8ixC76nkeHcbVcmCzGNxvA8Br1Fuo6188ZehE8YIIYSoLHQg740saueKIqbi6n0/tXG2hsmPFfW3J3Pn3+63cPjHxfScwveM9p2EVfsxI7cl3d31Lf3qus5zt8TKZJOegUcFHICnPO9lY8Td1Ajl/EB7rfmA+o+dIeY5ZLA27KpB5HiD3g861MJgocO4gAh3X04EfCu/h8QxwtpUjnOLZMQGU2ZVQg9CALU3ZX7UowgGIjcMOaWIPfYkEfOkbPD9r/Cn0qSyXZB5LNMCq/h5nx/CPnWSfCQzsaJB3c0MzWxjeVkJtRBLAsyEneuAmgYEGxDW4f3FK+YYh5WJb+w7hUhFlYRQAAAOA4CvQwBPAX/ANd9ZsBsqPDEv1PkuHicYZPpboq120G68f5Sf5qX1xFOu3eRzSYiGOFC7mMkhQTb3zqTwA7zapDZz2RkkNjGv/ykOngz/oPWu0uekvKsvmxDbkCM5524DvZuA86svZr2ZqtmxJ7R/wAA+Af+Xnp3U85Ps0kShI0VFHBVFh/c99MuDyoDlRFE5fkwFtNBTDhMvArrhwoFdKrRF5jjtWyiiiIooooiKKKKIiiiiiLBFa5IQa20URRmJy8HlUNjMm7qaiK0yRiiKts12EgnZXkjG+pBVx7rDdNxqOI04Gu85J3U5GAVj9nWiJHkyO3AfpUbmGz4kUq6hgeR1/8AR76saTDL0rimwi9KxyRtkFOCsx7mG2lVthNkEWTf3fe0AJ1IA0Fun1qbhyg2tramlcIvSuuLCr0qsUDI9PHirySuk+4pWhyPuruiyPupljw69K3pCKzLElpck7q7cNlAHKpsRCtioKIuSDAgV1pHavYFZoixas0UURFFFFERRRRRF//Z)</p>
+<h1 id="you-xi-kai-fa" class="heading-control">游戏开发<a class="heading-anchor" href="#you-xi-kai-fa" aria-hidden="true"></a></h1>
+<p>自打DHTML出来后，开发者就开始在web上弄一些好玩的东西，早在1999年，就有人开始用DHTML做网页游戏，比如：<a href="http://www.downes.ca/post/276" target="_blank" rel="noopener">Fun and Games with DHTML</a> 。可惜限于当时浏览器的性能和特性，加上CPU处理能力有限，许多还是停留在设想中，但这并不能挡住开发者前进的脚步，他们并没有 Give Up。随着浏览器性能的改进以及HTML语言本身的发展，加上硬件性能也有了长足的进步，现在如今诸多的 Javascript Game Engines 已经如雨后春笋般的冒出来了。</p>
+<p>相较于HTML4，HTML5做了像素控制机制以及图形加速方面的改进，正是这些改进，让WEB游戏开发变得简单，那么，接下来，在本文的上半篇，我们首先要介绍的是两个2D HTML5游戏引擎，下篇我们会介绍一些好玩的3D HTML5游戏引擎。</p>
+<h2 id="yi-gamejs-kai-yuan-2d-html5-you-xi-yin-qing" class="heading-control">一、GameJS 开源2D HTML5 游戏引擎<a class="heading-anchor" href="#yi-gamejs-kai-yuan-2d-html5-you-xi-yin-qing" aria-hidden="true"></a></h2>
+<p><a href="http://gamejs.org/" target="_blank" rel="noopener">GameJS</a> 的前身是从Python界著名的开源 <a href="http://www.pygame.org/" target="_blank" rel="noopener">PyGame </a>游戏引擎移植而来。如果你熟悉PyGame的开发，那么对于 <a href="http://gamejs.org/" target="_blank" rel="noopener">GameJS</a> 应该可以很快上手。<a href="http://gamejs.org/" target="_blank" rel="noopener">GameJS</a> 可以和服务端的<a href="http://ringojs.org/" target="_blank" rel="noopener">RingoJS</a>集成使用，而<a href="http://ringojs.org/" target="_blank" rel="noopener">RingoJS</a>是用Java写的js运行环境，所以你需要Java 1.5以上版本，同时还svfd安装Ant。下载代码仓库还需要用到<a href="http://git-scm.com/download" target="_blank" rel="noopener">GIT</a>.</p>
+<h3 id="kai-shi-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz" class="heading-control">开始玩![](data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf/AABEIACAAIAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD/8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH/xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE/9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb/ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA/dz/ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj/V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP//Z)<a class="heading-anchor" href="#kai-shi-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz" aria-hidden="true"></a></h3>
+<p>首先从版本仓库中取回GameJS, 进入gamejs目录:</p>
+<pre><code class="bash">git <span class="hljs-built_in">clone</span> git://github.com/oberhamsi/gamejs.git
+<span class="hljs-built_in">cd</span> gamejs
+</code></pre>
+<p>接着获取编译所需要的依赖项:</p>
+<pre><code class="bash">git submodule init
+git submodule update
+</code></pre>
+<p>编译 RingoJs:</p>
+<pre><code class="bash">ant -f ./server/ringojs/build.xml jar
+</code></pre>
+<p>OK, 现在可以启动GameJS的Web Server了：</p>
+<pre><code class="bash">gjs-server.sh   (如果是 windows环境用： gjs-server.cmd)
+</code></pre>
+<p>然后你可以在浏览器中访问 <a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> 了。你应该在页面上可以看到游戏例子的链接，这些例子的源代码在GameJS的examples目录下面。  你也可以本地部署你的HTML5游戏(去掉服务端支持)：</p>
+<pre><code class="bash">gjs-statify.sh &lt;app&gt; &lt;output-directory&gt;
+</code></pre>
+<p>例如，部署GameJS的一个例子程序：</p>
+<pre><code class="bash">gjs-statify.sh example-draw /var/www/games/foo
+</code></pre>
+<p>供参考学习的一个很小的GameJS游戏代码，点击会变颜色的脉动的圆：  <a href="http://gamejs.org/apps/minimal/" target="_blank" rel="noopener"><img src="./pulse-circle.png" alt></a></p>
+<pre><code class="js"><span class="hljs-comment">// 一个非常小的 GameJS 应用用于展示GameJS的编程概念</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// 一个脉动的彩色圆，单击改变颜色</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Play: &lt;http://gamejs.org/apps/minimal/&gt;</span>
+
+<span class="hljs-keyword">var</span> gamejs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gamejs'</span>);
+
+<span class="hljs-keyword">var</span> SCREEN_WIDTH = <span class="hljs-number">400</span>;
+<span class="hljs-keyword">var</span> SCREEN_HEIGHT = <span class="hljs-number">400</span>;
+
+<span class="hljs-comment">// ball 是一个带颜色的圆.</span>
+<span class="hljs-comment">// ball 的颜色可以按照一个色彩列表(Ball.COLORS)进行变化. ball.color 是色彩列表的索引号</span>
+<span class="hljs-comment">// ball constantly pulsates in size.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Ball</span>(<span class="hljs-params">center</span>) </span>{
+   <span class="hljs-keyword">this</span>.center = center;
+   <span class="hljs-comment">//设置圆每秒增长的半径大小</span>
+   <span class="hljs-keyword">this</span>.growPerSec = Ball.GROW_PER_SEC;
+   <span class="hljs-comment">//圆的半径</span>
+   <span class="hljs-keyword">this</span>.radius = <span class="hljs-keyword">this</span>.growPerSec * <span class="hljs-number">2</span>;
+   <span class="hljs-comment">//圆的当前颜色在色彩列表的索引号</span>
+   <span class="hljs-keyword">this</span>.color = <span class="hljs-number">0</span>;
+   <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+};
+Ball.MAX_SIZE = <span class="hljs-number">200</span>;
+Ball.GROW_PER_SEC = <span class="hljs-number">50</span>;
+Ball.COLORS = [<span class="hljs-string">'#ff0000'</span>, <span class="hljs-string">'#00ff00'</span>, <span class="hljs-string">'#0000cc'</span>];
+Ball.prototype.nextColor = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+   <span class="hljs-keyword">this</span>.color += <span class="hljs-number">1</span>;
+   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.color &gt; Ball.COLORS.length) {
+      <span class="hljs-keyword">this</span>.color = <span class="hljs-number">0</span>;
+   }
+};
+Ball.prototype.draw = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">display</span>) </span>{
+   <span class="hljs-keyword">var</span> rgbColor = Ball.COLORS[<span class="hljs-keyword">this</span>.color];
+   <span class="hljs-keyword">var</span> lineWidth = <span class="hljs-number">0</span>; <span class="hljs-comment">// 线宽为零将以指定的颜色填充该圆</span>
+   gamejs.draw.circle(display, rgbColor, <span class="hljs-keyword">this</span>.center, <span class="hljs-keyword">this</span>.radius, lineWidth);
+};
+Ball.prototype.update = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msDuration</span>) </span>{
+   <span class="hljs-keyword">this</span>.radius += <span class="hljs-keyword">this</span>.growPerSec * (msDuration / <span class="hljs-number">1000</span>);
+   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.radius &gt; Ball.MAX_SIZE || <span class="hljs-keyword">this</span>.radius &lt; <span class="hljs-built_in">Math</span>.abs(<span class="hljs-keyword">this</span>.growPerSec)) {
+      <span class="hljs-keyword">this</span>.radius = <span class="hljs-keyword">this</span>.radius &gt; Ball.MAX_SIZE ? Ball.MAX_SIZE : <span class="hljs-built_in">Math</span>.abs(<span class="hljs-keyword">this</span>.growPerSec);
+      <span class="hljs-keyword">this</span>.growPerSec = -<span class="hljs-keyword">this</span>.growPerSec;
+   }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+
+   <span class="hljs-comment">// 当鼠标UP事件发生的时候，圆改变颜色</span>
+   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleEvent</span>(<span class="hljs-params">event</span>) </span>{
+      <span class="hljs-keyword">switch</span>(event.type) {
+         <span class="hljs-keyword">case</span> gamejs.event.MOUSE_UP:
+            ball.nextColor();
+            <span class="hljs-keyword">break</span>;
+      };
+   };
+
+   <span class="hljs-comment">// handle events.</span>
+   <span class="hljs-comment">// update models.</span>
+   <span class="hljs-comment">// clear screen.</span>
+   <span class="hljs-comment">// draw screen.</span>
+   <span class="hljs-comment">// called ~ 30 times per second by fps.callback</span>
+   <span class="hljs-comment">// msDuration = actual time in milliseconds since last call</span>
+   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gameTick</span>(<span class="hljs-params">msDuration</span>) </span>{
+      gamejs.event.get().forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
+         handleEvent(event);
+      });
+      ball.update(msDuration);
+      display.clear();
+      ball.draw(display);
+   };
+
+   <span class="hljs-comment">// setup screen and ball.</span>
+   <span class="hljs-comment">// ball in screen center.</span>
+   <span class="hljs-comment">// start game loop.</span>
+   <span class="hljs-keyword">var</span> display = gamejs.display.setMode([SCREEN_WIDTH, SCREEN_HEIGHT]);
+   <span class="hljs-keyword">var</span> ballCenter = [SCREEN_WIDTH / <span class="hljs-number">2</span>, SCREEN_HEIGHT / <span class="hljs-number">2</span>];
+   <span class="hljs-keyword">var</span> ball = <span class="hljs-keyword">new</span> Ball(ballCenter);
+   <span class="hljs-comment">//安装FPS回调: gameTick ，帧速：30fps</span>
+   gamejs.time.fpsCallback(gameTick, <span class="hljs-keyword">this</span>, <span class="hljs-number">30</span>);
+};
+
+<span class="hljs-comment">// call main after all resources have finished loading</span>
+gamejs.ready(main);
+</code></pre>
+<p>GameJS的文档在：<a href="http://docs.gamejs.org/%EF%BC%8C" target="_blank" rel="noopener">http://docs.gamejs.org/，</a> 另外 PyGame 的<a href="http://pygame.org/wiki/tutorials" target="_blank" rel="noopener">教程</a>和<a href="http://www.pygame.org/docs/" target="_blank" rel="noopener">文档</a>你也可以参考.</p>
+<h2 id="er-qing-liang-ji-duan-xiao-jing-han-de-craftyjs-2d-js-you-xi-yin-qing" class="heading-control">二、轻量级短小精悍的CraftyJS 2D JS游戏引擎<a class="heading-anchor" href="#er-qing-liang-ji-duan-xiao-jing-han-de-craftyjs-2d-js-you-xi-yin-qing" aria-hidden="true"></a></h2>
+<p><a href="http://craftyjs.com/" target="_blank" rel="noopener">CraftyJS</a> 压缩处理（Minified+GZIP）后代码只有10k左右。虽然精悍但是也包含了动画，事件管理，区域重绘，冲突检测，精灵等组件。</p>
+<h3 id="kai-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz" class="heading-control">开玩![](data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf/AABEIACAAIAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD/8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH/xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE/9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb/ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA/dz/ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj/V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP//Z)<a class="heading-anchor" href="#kai-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz" aria-hidden="true"></a></h3>
+<p>这个很简单，从<a href="http://craftyjs.com/" target="_blank" rel="noopener">CraftyJS</a> 下载 crafty.js文件。  它的游戏对象分为实体(Entity)和组件(Component):</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> player = Crafty.e();
+player.addComponent(<span class="hljs-string">"2D, gravity"</span>);
+</code></pre>
+<p>上面的代码就建立一个 player 实体，并在player实体上添加了两个组件(2D 和 gravirty).  OK，这里就解释下它主页上的最小代码的例子，你可以在它的主页上运行这个例子，运行这个例子你可以看到一个铅笔掉了下来，你可以用左右光标键去控制这只笔移动，按上则是跳跃：</p>
+<pre><code class="js"><span class="hljs-comment">//初始化 Crafty 游戏，指定FPS为50,宽度为580, 高度为225</span>
+Crafty.init(<span class="hljs-number">50</span>, <span class="hljs-number">580</span>, <span class="hljs-number">225</span>);
+
+<span class="hljs-comment">//创建player(铅笔)实体,这个铅笔是2D，挂在DOM上的，受重力（gravity）影响的,</span>
+<span class="hljs-comment">//可以左右移动(twoway)的图像(image)</span>
+<span class="hljs-comment">//设置它的x位置在Crafty.viewport.width / 2, 宽度和高度都是16</span>
+<span class="hljs-comment">//重力方向是落向floor实体(该实体是在后面创建的)</span>
+<span class="hljs-comment">//设置twoway参数: 有三个控制键，左键，右键，上键</span>
+<span class="hljs-comment">//设置图像元素</span>
+<span class="hljs-keyword">var</span> player = Crafty.e(<span class="hljs-string">"2D, DOM, gravity, controls, twoway, image"</span>)
+  .attr({<span class="hljs-attr">x</span>: Crafty.viewport.width / <span class="hljs-number">2</span>, <span class="hljs-attr">w</span>: <span class="hljs-number">16</span>, <span class="hljs-attr">h</span>: <span class="hljs-number">16</span>})
+  .gravity(<span class="hljs-string">"floor"</span>)
+  .twoway(<span class="hljs-number">2</span>)
+  .image(<span class="hljs-string">"favicon.png"</span>, <span class="hljs-string">"no-repeat"</span>);
+
+<span class="hljs-comment">//创建不可见的 floor 实体</span>
+<span class="hljs-keyword">var</span> floor = Crafty.e(<span class="hljs-string">"2D, floor"</span>)
+  .attr({<span class="hljs-attr">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">225</span>, <span class="hljs-attr">w</span>: <span class="hljs-number">580</span>, <span class="hljs-attr">h</span>: <span class="hljs-number">5</span>});
+</code></pre>
+<p>可以去玩玩它的sample应用：<a href="https://github.com/craftyjs/demos" target="_blank" rel="noopener">Demos</a></p>
+<p>或者去学习下他的教程：<a href="http://cykod.github.io/Presentations/HTML5/Crafty" target="_blank" rel="noopener">Tutorials</a>。当然你也可以去看看他的开发文档：<a href="http://craftyjs.com/api/" target="_blank" rel="noopener">API 文档</a></p>
+<p>随着OpenGL/ES WebGL的标准正式确立，如今Web 3D 游戏开发的序幕也被揭开了:</p>
+<ul>
+<li><a href="http://www.mozilla.com/en-US/firefox/all-beta.html" target="_blank" rel="noopener">Firefox/4.0b8+</a> 以上的版本以及 <a href="http://nightly.mozilla.org/" target="_blank" rel="noopener">Firefox Nighting Building</a> 已经默认支持WebGL</li>
+<li>Safari： WebGL is supported on Mac OS X 10.6 in the <a href="http://nightly.webkit.org/" target="_blank" rel="noopener">WebKit nightly builds</a>.</li>
+<li>Chrome/Chromium： WebGL is available in <a href="http://www.google.com/chrome/" target="_blank" rel="noopener">the stable release of Chrome</a>.  BTW: <a href="http://blogs.sonyericsson.com/developerworld/2011/02/24/webgl-support-in-the-android-web-browser/" target="_blank" rel="noopener">Android上web 浏览器 已经支持WebGL</a>了</li>
+<li>Opera： WebGL is supported on Windows in <a href="http://my.opera.com/core/blog/2011/02/28/webgl-and-hardware-acceleration-2" target="_blank" rel="noopener">the Opera 11 preview build</a></li>
+</ul>
+<p>接上随着WebGL（OpenGL ES2.0）标准规范在2011 GDC（游戏开发者大会）上正式发布，支持WebGL的浏览器可以不借助任何插件便可提供硬件图形加速从而提供高质量的3D体验。Web 3D 游戏开发的序幕也被揭开了，WebGL目前是唯一能在各个浏览器中充分利用GPU硬件加速的形式，这更利于HTML5的游戏开发以及各种更酷的直接呈现，不过这仍然算是较新的技术，目前不是所有的浏览器都支持，请留意你的使用的浏览器和版本：</p>
+<ul>
+<li><a href="http://www.mozilla.com/en-US/firefox/all-beta.html" target="_blank" rel="noopener">Firefox/4.0b8+</a> 以上的版本以及 <a href="http://nightly.mozilla.org/" target="_blank" rel="noopener">Firefox Nighting Building</a> 已经默认支持WebGL</li>
+<li>Safari： WebGL is supported on Mac OS X 10.6 in the <a href="http://nightly.webkit.org/" target="_blank" rel="noopener">WebKit nightly builds</a>.</li>
+<li>Chrome/Chromium： WebGL is available in <a href="http://www.google.com/chrome/" target="_blank" rel="noopener">the stable release of Chrome</a>. BTW:<a href="http://blogs.sonyericsson.com/developerworld/2011/02/24/webgl-support-in-the-android-web-browser/" target="_blank" rel="noopener">Android上web 浏览器 已经支持WebGL</a>了</li>
+<li>Opera： WebGL is supported on Windows in <a href="http://my.opera.com/core/blog/2011/02/28/webgl-and-hardware-acceleration-2" target="_blank" rel="noopener">the Opera 11 preview build</a></li>
+</ul>
+<p>需要注意的是，虽然Chrome已经完全支持WebGL，但是如果你还在XP下使用，那么有可能你的显卡（GPU）是在黑名单中，是没有打开WebGL的，你需要手工执行命令，以忽略GPU黑名单：</p>
+<pre><code class="bash">chrome.exe --ignore-gpu-blacklist
+</code></pre>
+<h2 id="gammajs-zui-jian-dan-de-webgl-xia-kai-fa-you-xi-de-kai-yuan-kuang-jia" class="heading-control">GammaJS 最简单的WebGL下开发游戏的开源框架<a class="heading-anchor" href="#gammajs-zui-jian-dan-de-webgl-xia-kai-fa-you-xi-de-kai-yuan-kuang-jia" aria-hidden="true"></a></h2>
+<p>站点：<a href="http://gamma.delfick.com/" target="_blank" rel="noopener">http://gamma.delfick.com/</a></p>
+<p>GammaJS 以极其简单的开发体验给我留下了深刻印象。他能快速的帮助我们利用WebGL搭建2.5D游戏。</p>
+<p>下载：<a href="https://github.com/downloads/Royce/GammaJS/gma-min.js" target="_blank" rel="noopener">gma-min.js</a></p>
+<pre><code class="bash">wget https://github.com/downloads/Royce/GammaJS/gma-min.js
+</code></pre>
+<p>使用:</p>
+<p><strong>最基本的架子：</strong></p>
+<p>Game.html</p>
+<pre><code class="html"><span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/1999/xhtml"</span> <span class="hljs-attr">xml:lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>My Awesome Game<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--
+        Include any style sheets here
+        &lt;link rel="stylesheet" type="text/css" href="gamma.css" media="all"/&gt;
+    --&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Include the Gamma Library --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"gma-min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- The element to contain the rendering canvas is called #gamma by default --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"gamma"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- This javascript file contains the game specification --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"game.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>game.js:</p>
+<pre><code class="js"><span class="hljs-built_in">require</span>([<span class="hljs-string">'gma/base'</span>, <span class="hljs-string">'gma/manager'</span>],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-comment">// The game specification is contained within this function.</span>
+        <span class="hljs-keyword">var</span> manager = gma.manager();
+        manager.storeLevels({});
+        manager.init();
+    }
+);
+</code></pre>
+<p>在 game.js 我们需要用 require 函数来导入GammaJS 功能库的部分（gma/base, gma/manager），当需要的功能库都被加载后，匿名初始化函数function(gma)就会被执行。在初始化函数中，我们要创建一个gma.manager，它默认会维护一个canvas在id“gamma”的div标签中。</p>
+<p>和以前一样，我们先来做一个最简单的“游戏”：</p>
+<p>game.js:</p>
+<pre><code class="js"><span class="hljs-built_in">require</span>([<span class="hljs-string">'gma/base'</span>, <span class="hljs-string">'gma/manager'</span>],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-comment">// 设置该画布的大小是600x500,可以设置 containerID 来改变默认的div id名称.</span>
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+           <span class="hljs-attr">width</span>: <span class="hljs-number">600</span>,
+           <span class="hljs-attr">height</span>: <span class="hljs-number">500</span>
+        });
+        manager.storeLevels({});
+        manager.init();
+    }
+);
+</code></pre>
+<p>要让游戏跑起来，我们需要初始化游戏设置，比如 level 信息，manager.storeLevels用来存放游戏的level，然后manager.init。</p>
+<p>OK，我们首先配置游戏的一个 Level，首先 Level 里面要有游戏角色站立、行走、跳跃的台子(platform)：</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> myLevel = {
+    <span class="hljs-attr">entities</span> : [
+        {<span class="hljs-attr">type</span>: <span class="hljs-string">'platform'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+        {<span class="hljs-attr">type</span>: <span class="hljs-string">'platform'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">36</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>}
+    ]
+};
+</code></pre>
+<p>platform是默认实体（entities）类型，所以如果实体是台子(platform)则类型可以省略:</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> myLevel = {
+    <span class="hljs-attr">entities</span> : [
+        {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+        {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">36</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>}
+    ]
+};
+</code></pre>
+<p>好了，现在我们使用 storeLevels 将 myLevel 加进来。</p>
+<pre><code class="js">manager.storeLevels(myLevel);
+</code></pre>
+<p>现在我们的game.js 像这样：</p>
+<pre><code class="js"><span class="hljs-built_in">require</span>([<span class="hljs-string">'gma/base'</span>, <span class="hljs-string">'gma/manager'</span>],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+            <span class="hljs-attr">width</span> : <span class="hljs-number">600</span>,
+            <span class="hljs-attr">height</span> : <span class="hljs-number">500</span>
+        });
+        <span class="hljs-keyword">var</span> myLevel = {
+            <span class="hljs-attr">entities</span> : [
+                {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">36</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>}
+            ]
+        };
+        manager.storeLevels(myLevel);
+        manager.init();
+    }
+);
+</code></pre>
+<p>接下来就轮到我们的主角上场了，首先我们需要在require中添加 gma/entities/character 库引入对角色的支持，然后我们就可以创建角色实例（规定它的位置和大小）:</p>
+<pre><code class="js">manager.character = gma.character({
+    <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+    <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+    <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+    <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+    <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>
+});
+</code></pre>
+<p>接着我们要设置角色在level中的出生点位置(spawn)：</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> mylevel = {
+    <span class="hljs-attr">spawn</span> : {
+        <span class="hljs-attr">main</span> : [<span class="hljs-number">15</span>, <span class="hljs-number">24</span>]
+    }
+}
+</code></pre>
+<p>注意，如果没有指定spawn main 的位置，那么默认spawn出生点是(0,0).</p>
+<p>现在我们的game.js像这样子了：</p>
+<pre><code class="js"><span class="hljs-built_in">require</span>([
+    <span class="hljs-string">'gma/base'</span>,
+    <span class="hljs-string">'gma/manager'</span>,
+    <span class="hljs-string">'gma/entities/character'</span>,
+    <span class="hljs-string">'gma/events'</span>
+],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+            <span class="hljs-attr">width</span> : <span class="hljs-number">600</span>,
+            <span class="hljs-attr">height</span> : <span class="hljs-number">500</span>
+        });
+        manager.character = gma.character({
+            <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+            <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>
+        });
+
+        <span class="hljs-keyword">var</span> myLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">15</span>, <span class="hljs-number">24</span>]
+            },
+            <span class="hljs-attr">entities</span> : [
+                {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">36</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>}
+            ]
+        };
+        manager.storeLevels(myLevel);
+        manager.init();
+    }
+);
+</code></pre>
+<p><strong>控制角色移动：</strong></p>
+<p>现在我们来学习如何来控制角色移动，我们希望按下左键角色向左移动，按下右键向右移动，按下空格键跳跃。首先，我们需要知道这些键的ASCII码值，左键：37；右键：39；空格：32。</p>
+<p>使得角色移动和跳的方法是：move和jump。我们需要使得当相应建被按下后相应的方法被调用即可。勾挂键盘事件的是方法是在keyHandler.register（我们需要 gma/events 库）上：</p>
+<pre><code class="js">
+gma.keyHandler.register(<span class="hljs-number">37</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">keyEvent</span>) </span>{
+    manager.character.move(gma.constants.LEFT, keyEvent);
+});
+
+gma.keyHandler.register(<span class="hljs-number">39</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">keyEvent</span>) </span>{
+    manager.character.move(gma.constants.RIGHT, keyEvent);
+});
+
+gma.keyHandler.register(<span class="hljs-number">32</span>, manager.character.jump);
+
+</code></pre>
+<p>事实上，GammaJS提供了Curry函数来使得勾挂移动函数更为简单，下面f1是和f2等价的：</p>
+<pre><code class="js">
+f1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">keyEvent</span>) </span>{
+    manager.character.move(gma.constants.LEFT, keyEvent);
+};
+f2 = manager.character.move.curry(gma.constants.LEFT);
+
+</code></pre>
+<p>因此上面的函数可以简单的写成：</p>
+<pre><code class="js">gma.keyHandler.register(<span class="hljs-number">37</span>, manager.character.move.curry(gma.constants.LEFT));
+gma.keyHandler.register(<span class="hljs-number">39</span>, manager.character.move.curry(gma.constants.RIGHT));
+gma.keyHandler.register(<span class="hljs-number">32</span>, manager.character.jump);
+</code></pre>
+<p>现在我们game.js是这样的了:</p>
+<pre><code class="js">
+<span class="hljs-built_in">require</span>([
+    <span class="hljs-string">'gma/base'</span>,
+    <span class="hljs-string">'gma/manager'</span>,
+    <span class="hljs-string">'gma/entities/character'</span>,
+    <span class="hljs-string">'gma/events'</span>
+],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+            <span class="hljs-attr">width</span> : <span class="hljs-number">600</span>,
+            <span class="hljs-attr">height</span> : <span class="hljs-number">500</span>
+        });
+        manager.character = gma.character({
+            <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+            <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>
+        });
+
+        <span class="hljs-keyword">var</span> myLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">15</span>, <span class="hljs-number">24</span>]
+            },
+            <span class="hljs-attr">entities</span> : [
+                {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">36</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>}
+            ]
+        };
+        manager.storeLevels(myLevel);
+
+        gma.keyHandler.register(<span class="hljs-number">37</span>, manager.character.move.curry(gma.constants.LEFT));
+        gma.keyHandler.register(<span class="hljs-number">39</span>, manager.character.move.curry(gma.constants.RIGHT));
+        gma.keyHandler.register(<span class="hljs-number">32</span>, manager.character.jump);
+
+        manager.init();
+    }
+);
+</code></pre>
+<p><strong>创建一个敌人</strong></p>
+<p>有了一个主要角色，自然得有敌人，这样游戏才会具有一定的趣味性。所以，现在我们来创建一些敌人吧，GammaJS支持如下的敌人实体（每一种敌人有自己的习惯）：</p>
+<ul>
+<li>gma.platformEnemy: 从台子上一端移动到另端</li>
+<li>gma.patrolEnemy: 在指定范围内巡视，需要制定巡视的范围：limitLeft和limitRight</li>
+<li>gma.jumpingEnemy: 指定的位置上跳动的敌人</li>
+</ul>
+<pre><code class="js">
+<span class="hljs-attr">entities</span> : [
+    gma.platformEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">45</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>}),
+    gma.patrolEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">limitLeft</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">limitRight</span>:<span class="hljs-number">12</span>}),
+    gma.jumpingEnemy ({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">7</span>,  <span class="hljs-attr">width</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">2</span>}),
+    gma.jumpingEnemy ({<span class="hljs-attr">bottom</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">8</span>,  <span class="hljs-attr">width</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">2</span>}),
+    gma.jumpingEnemy ({<span class="hljs-attr">bottom</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">9</span>,  <span class="hljs-attr">width</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">2</span>})
+]
+</code></pre>
+<p>当许多敌人有相同的属性的时候，我们可以通过使用定制类型（addCustomDefinitions）来设置这些相同的属性，比如jumpingEnemy的宽度和高度都是1和2：</p>
+<pre><code class="js">
+manager.addCustomDefinitions({
+    <span class="hljs-attr">types</span> : {
+        <span class="hljs-attr">jumpingJack</span>: [<span class="hljs-string">'jumpingEnemy'</span>, {
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">1</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">2</span>
+        }]
+    }
+});
+
+</code></pre>
+<p>定义自定类型后，我们就可以这样来使用：</p>
+<pre><code class="js">
+<span class="hljs-comment">// Now we can reference jumping jack</span>
+<span class="hljs-attr">entities</span> : [
+    gma.platformEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">45</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>}),
+    gma.patrolEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">limitLeft</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">limitRight</span>:<span class="hljs-number">12</span>}),
+    {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">21</span>},
+    {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">24</span>},
+    {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">27</span>}
+]
+
+</code></pre>
+<p><strong>材质模板</strong></p>
+<p>默认下，所有的实体会被作为蓝色的方块渲染，这个是通过实体的template属性控制的，template的默认值是cube：</p>
+<pre><code class="js">manager.addCustomDefinitions({
+    <span class="hljs-attr">types</span>: {
+        <span class="hljs-attr">jumpingJack</span>: [<span class="hljs-string">'jumpingEnemy'</span>, {
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">1</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">2</span>
+            <span class="hljs-attr">template</span> : <span class="hljs-string">'cube'</span>
+        }]
+    }
+});
+
+</code></pre>
+<p>如果你希望定制实体的外观，你首先要在templates中创建自己的材质，下面是创建绿色的方块材质（greencube ）：</p>
+<pre><code class="js">
+manager.addCustomDefinitions({,
+    <span class="hljs-attr">templates</span> : {
+        <span class="hljs-attr">greencube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+            <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+            <span class="hljs-attr">material</span> : {<span class="hljs-attr">color</span> : <span class="hljs-string">"#090"</span>}   <span class="hljs-comment">// Very Green</span>
+        }]
+    }
+});
+
+</code></pre>
+<p>现在我们将greencube 应用到jumpingJack上：</p>
+<pre><code class="js">
+manager.addCustomDefinitions({
+    <span class="hljs-attr">types</span> : {
+        <span class="hljs-attr">jumpingJack</span>: [<span class="hljs-string">'jumpingEnemy'</span>, {
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">1</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">2</span>
+            <span class="hljs-attr">template</span> : <span class="hljs-string">'greencube'</span>
+        }]
+    }
+});
+
+</code></pre>
+<p><strong>注意</strong>：默认cube和 redcube已经在GammaJS中存在。</p>
+<p>我们还可以给我们的方块加上贴图：</p>
+<pre><code class="js">
+manager.addCustomDefinitions({
+    <span class="hljs-attr">templates</span> : {
+        <span class="hljs-attr">brickscube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+            <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+            <span class="hljs-attr">material</span> : {<span class="hljs-attr">texture</span> : <span class="hljs-string">'bricks.jpg'</span>}
+        }]
+    }
+});
+
+</code></pre>
+<p><strong>注意</strong>： bricks.jpg必须在和html文件同一文件夹中.</p>
+<p>如果希望贴图重复，使用repeatX,repeatY属性：</p>
+<pre><code class="js">
+manager.addCustomDefinitions({
+    <span class="hljs-attr">templates</span> : {
+        <span class="hljs-attr">brickscube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+            <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+            <span class="hljs-attr">material</span> : {
+                <span class="hljs-attr">texture</span> : <span class="hljs-string">'bricks.jpg'</span>,
+                <span class="hljs-comment">//This will make the bricks double the size</span>
+                <span class="hljs-attr">repeatX</span> : <span class="hljs-number">0.5</span>,
+                <span class="hljs-attr">repeatY</span> : <span class="hljs-number">0.5</span>
+            }
+        }]
+    }
+});
+
+</code></pre>
+<p>OK，现在可以使用新的brickscube材质了：</p>
+<pre><code class="js">
+<span class="hljs-keyword">var</span> myLevel = {
+    <span class="hljs-comment">//...,</span>
+    <span class="hljs-attr">entities</span> : [
+        {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+        {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">39</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+        <span class="hljs-comment">//...</span>
+        <span class="hljs-comment">// Enemy specifications removed for clarity</span>
+    ]
+};
+
+</code></pre>
+<p>现在我们的game.js变成这样了：</p>
+<pre><code class="js">
+<span class="hljs-built_in">require</span>([
+    <span class="hljs-string">'gma/base'</span>,
+    <span class="hljs-string">'gma/manager'</span>,
+    <span class="hljs-string">'gma/entities/character'</span>,
+    <span class="hljs-string">'gma/events'</span>,
+    <span class="hljs-string">'gma/entities/enemy'</span>
+],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+            <span class="hljs-attr">width</span> : <span class="hljs-number">600</span>,
+            <span class="hljs-attr">height</span> : <span class="hljs-number">500</span>
+        });
+        manager.character = gma.character({
+            <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+            <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>
+        });
+        manager.addCustomDefinitions({
+            <span class="hljs-attr">templates</span> : {
+                <span class="hljs-attr">greencube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">material</span> : {<span class="hljs-attr">color</span> : <span class="hljs-string">"#090"</span>}
+                }],
+                <span class="hljs-attr">brickscube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">texture</span> : {
+                        <span class="hljs-attr">src</span>:<span class="hljs-string">'bricks.jpg'</span>,
+                        <span class="hljs-attr">repeatX</span>:<span class="hljs-number">0.5</span>,
+                        <span class="hljs-attr">repeatY</span>:<span class="hljs-number">0.5</span>
+                    }
+                }]
+            },
+
+            <span class="hljs-attr">types</span> : {
+                <span class="hljs-attr">jumpingJack</span>: [<span class="hljs-string">'jumpingEnemy'</span>, {
+                    <span class="hljs-attr">width</span>    : <span class="hljs-number">1</span>,
+                    <span class="hljs-attr">height</span>   : <span class="hljs-number">2</span>,
+                    <span class="hljs-attr">template</span> : <span class="hljs-string">'greencube'</span>
+                }]
+            }
+        });
+
+        <span class="hljs-keyword">var</span> myLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">15</span>, <span class="hljs-number">24</span>]
+            },
+            <span class="hljs-attr">camera</span> : {
+                <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">60</span>]
+            },
+            <span class="hljs-attr">light</span> : {
+                <span class="hljs-attr">myLight</span> : {
+                     <span class="hljs-attr">type</span> : GLGE.L_POINT,
+                     <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+                     <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+                     <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+                }
+             },
+            <span class="hljs-attr">entities</span> : [
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">39</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                gma.platformEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">45</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>}),
+                gma.patrolEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">limitLeft</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">limitRight</span>:<span class="hljs-number">12</span>}),
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">21</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">24</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">27</span>}
+            ]
+        };
+        manager.storeLevels(myLevel);
+
+        gma.keyHandler.register(<span class="hljs-number">37</span>, manager.character.move.curry(gma.constants.LEFT));
+        gma.keyHandler.register(<span class="hljs-number">39</span>, manager.character.move.curry(gma.constants.RIGHT));
+        gma.keyHandler.register(<span class="hljs-number">32</span>, manager.character.jump);
+
+        manager.init();
+    }
+);
+
+</code></pre>
+<p><strong>定制摄像机</strong></p>
+<p>Gamma默认的摄像机总是跟随这角色的移动离角色面前50个距离单位和z轴的50个距离单位。你可以改变某个level中的摄像机的属性：</p>
+<pre><code class="js">
+<span class="hljs-keyword">var</span> myLevel = {
+     <span class="hljs-attr">camera</span> : {
+         <span class="hljs-attr">locZ</span> : <span class="hljs-number">60</span>,
+          <span class="hljs-comment">//跟随指定的角色在指定的位置 x,y[,z]</span>
+         <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>,<span class="hljs-number">0</span>, <span class="hljs-number">6</span>]
+     }
+ };
+
+</code></pre>
+<p><strong>要有灯光</strong></p>
+<p>在游戏中在指定的level中添加灯光：</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> myLevel = {
+    <span class="hljs-attr">light</span> : {
+        <span class="hljs-attr">myLight</span> : {
+            <span class="hljs-attr">type</span> : GLGE.L_POINT,
+            <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+            <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+            <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+        }
+    }
+};
+</code></pre>
+<p>上面我们定了一个白色(#fff)的点光源(point light)，它始终在角色的前面5个单位，上面20个单位。我们把这个点光源旋转了180度(1.54 弧度radians)以指向场景.</p>
+<p>用方块作为主角似乎太丑了，怎么着也得整个猩猩模型来着，GammaJS支持Collada模型定义，<a href="https://collada.org/" target="_blank" rel="noopener">Collada</a>是开放的标准xml模型定义格式。大多数的3D模型应用支持导出成这样的格式(.dae)文件。</p>
+<p>你可以下载猩猩模型：<a href="https://github.com/Royce/GammaJS/raw/master/media/collada/gorilla/gorilla.dae" target="_blank" rel="noopener">https://github.com/Royce/GammaJS/raw/master/media/collada/gorilla/gorilla.dae</a>,<br>
+以及对应的贴图文件：<a href="https://github.com/Royce/GammaJS/raw/master/media/collada/gorilla/skin.jpg" target="_blank" rel="noopener">https://github.com/Royce/GammaJS/raw/master/media/collada/gorilla/skin.jpg</a></p>
+<p>假定下载的文件放在和html文件同一目录下，现在可以把我们的大猩猩放在templates里了：</p>
+<pre><code class="js">manager.addCustomDefinitions({
+    <span class="hljs-attr">templates</span> : {
+        <span class="hljs-attr">gorilla</span> : [<span class="hljs-string">'colladaTemplate'</span>,
+            {
+                <span class="hljs-attr">collada</span> : {
+                    <span class="hljs-attr">document</span> : <span class="hljs-string">'gorilla.dae'</span>
+                }
+            }
+        ]
+    }
+})
+</code></pre>
+<p>不过我们要调整下，大猩猩的位置不对，中心不对，因此我们把它转180度，移动0.5个unit,缩放0.7倍。</p>
+<pre><code class="js">manager.addCustomDefinitions({
+    <span class="hljs-attr">templates</span> : {
+        <span class="hljs-attr">gorilla</span> : [<span class="hljs-string">'colladaTemplate'</span>,
+            {
+                <span class="hljs-attr">collada</span> : {
+                    <span class="hljs-attr">document</span> : <span class="hljs-string">'gorilla.dae'</span>
+                },
+                <span class="hljs-attr">yRot</span> : <span class="hljs-number">1.57</span>,
+                <span class="hljs-attr">yOffset</span> : <span class="hljs-number">-0.5</span>,
+                <span class="hljs-attr">yScale</span> : <span class="hljs-number">0.7</span>
+            }
+        ]
+    }
+})
+</code></pre>
+<p>ok，将大猩猩应用到角色：</p>
+<pre><code class="js">manager.character = gma.character({
+    <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+    <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+    <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+    <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+    <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>,
+    <span class="hljs-attr">template</span> : <span class="hljs-string">'gorilla'</span>
+});
+</code></pre>
+<p>好了，如今，再看看我们的game.js：</p>
+<pre><code class="js"><span class="hljs-built_in">require</span>([
+    <span class="hljs-string">'gma/base'</span>,
+    <span class="hljs-string">'gma/manager'</span>,
+    <span class="hljs-string">'gma/entities/character'</span>,
+    <span class="hljs-string">'gma/events'</span>,
+    <span class="hljs-string">'gma/entities/enemy'</span>
+],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+            <span class="hljs-attr">width</span> : <span class="hljs-number">600</span>,
+            <span class="hljs-attr">height</span> : <span class="hljs-number">500</span>
+        });
+        manager.character = gma.character({
+            <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+            <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">template</span> : <span class="hljs-string">'gorilla'</span>
+        });
+        manager.addCustomDefinitions({
+            <span class="hljs-attr">templates</span> : {
+                <span class="hljs-attr">greencube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">material</span> : {<span class="hljs-attr">color</span> : <span class="hljs-string">"#090"</span>}
+                }],
+                <span class="hljs-attr">brickscube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">texture</span> : {
+                        <span class="hljs-attr">src</span>:<span class="hljs-string">'bricks.jpg'</span>,
+                        <span class="hljs-attr">repeatX</span>:<span class="hljs-number">0.5</span>,
+                        <span class="hljs-attr">repeatY</span>:<span class="hljs-number">0.5</span>
+                    }
+                }],
+                <span class="hljs-attr">gorilla</span> : [<span class="hljs-string">'colladaTemplate'</span>,
+                    {
+                        <span class="hljs-attr">collada</span> : {
+                            <span class="hljs-attr">document</span> : <span class="hljs-string">'gorilla.dae'</span>
+                        },
+                        <span class="hljs-attr">yRot</span> : <span class="hljs-number">1.57</span>,
+                        <span class="hljs-attr">yOffset</span> : <span class="hljs-number">-0.5</span>,
+                        <span class="hljs-attr">yScale</span> : <span class="hljs-number">0.7</span>
+                    }
+                ]
+            },
+
+            <span class="hljs-attr">types</span> : {
+                <span class="hljs-attr">jumpingJack</span>: [<span class="hljs-string">'jumpingEnemy'</span>, {
+                    <span class="hljs-attr">width</span>    : <span class="hljs-number">1</span>,
+                    <span class="hljs-attr">height</span>   : <span class="hljs-number">2</span>,
+                    <span class="hljs-attr">template</span> : <span class="hljs-string">'greencube'</span>
+                }]
+            }
+        });
+
+        <span class="hljs-keyword">var</span> myLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">15</span>, <span class="hljs-number">24</span>]
+            },
+            <span class="hljs-attr">camera</span> : {
+                <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">60</span>]
+            },
+            <span class="hljs-attr">light</span> : {
+                <span class="hljs-attr">myLight</span> : {
+                     <span class="hljs-attr">type</span> : GLGE.L_POINT,
+                     <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+                     <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+                     <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+                }
+             },
+            <span class="hljs-attr">entities</span> : [
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">39</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                gma.platformEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">45</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>}),
+                gma.patrolEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">limitLeft</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">limitRight</span>:<span class="hljs-number">12</span>}),
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">21</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">24</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">27</span>}
+            ]
+        };
+        manager.storeLevels(myLevel);
+
+        gma.keyHandler.register(<span class="hljs-number">37</span>, manager.character.move.curry(gma.constants.LEFT));
+        gma.keyHandler.register(<span class="hljs-number">39</span>, manager.character.move.curry(gma.constants.RIGHT));
+        gma.keyHandler.register(<span class="hljs-number">32</span>, manager.character.jump);
+
+        manager.init();
+    }
+);
+</code></pre>
+<p>一个游戏肯定应该是有多个level的，如何定义多个level呢？很简单：</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> myLevel = {
+    <span class="hljs-comment">//specification</span>
+};
+<span class="hljs-keyword">var</span> anotherLevel = {
+    <span class="hljs-comment">//specification</span>
+};
+</code></pre>
+<p>然后在初始化函数中：</p>
+<pre><code class="js">manager.storeLevels(myLevel);
+manager.storeLevels(anotherLevel);
+</code></pre>
+<p>或者这样：</p>
+<pre><code class="js">manager.storeLevels([myLevel, anotherLevel]);
+</code></pre>
+<p>当mananger初始化的时候，首先是第一个level会被载入。然后我们只需要从一个level进入另一个level，这被称为门（door），下面演示如何创建一个门：</p>
+<pre><code class="js">entities : [
+    gma.door({
+        <span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">5</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>,
+        <span class="hljs-attr">level</span>:<span class="hljs-number">1</span>
+    })
+]
+</code></pre>
+<p>注意：level 的索引是从0开始的。所以上面的level＝1是进入的第二个level（anotherLevel），现在我们来正式创建anotherLevel，它有一个门返回到第一个level：</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> otherLevel = {
+    <span class="hljs-attr">spawn</span> : {
+        <span class="hljs-attr">main</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+    },
+    <span class="hljs-attr">camera</span> : {
+        <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">60</span>]
+    },
+    <span class="hljs-attr">light</span> : {
+        <span class="hljs-attr">myLight</span> : {
+             <span class="hljs-attr">type</span> : GLGE.L_POINT,
+             <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+             <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+             <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+        }
+     },
+    <span class="hljs-attr">entities</span> : [
+        gma.door({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">25</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">9</span>, <span class="hljs-attr">level</span>:<span class="hljs-number">0</span>}),
+        {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>}
+    ]
+};
+</code></pre>
+<p>好了，到现在为止，在我们的game.js中有两个level了：</p>
+<pre><code class="js"><span class="hljs-built_in">require</span>([
+    <span class="hljs-string">'gma/base'</span>,
+    <span class="hljs-string">'gma/manager'</span>,
+    <span class="hljs-string">'gma/entities/character'</span>,
+    <span class="hljs-string">'gma/events'</span>,
+    <span class="hljs-string">'gma/entities/enemy'</span>,
+    <span class="hljs-string">'gma/entities/door'</span>
+],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+            <span class="hljs-attr">width</span> : <span class="hljs-number">600</span>,
+            <span class="hljs-attr">height</span> : <span class="hljs-number">500</span>
+        });
+        manager.character = gma.character({
+            <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+            <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">template</span> : <span class="hljs-string">'gorilla'</span>
+        });
+        manager.addCustomDefinitions({
+            <span class="hljs-attr">templates</span> : {
+                <span class="hljs-attr">greencube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">material</span> : {<span class="hljs-attr">color</span> : <span class="hljs-string">"#090"</span>}
+                }],
+                <span class="hljs-attr">gorilla</span> : [<span class="hljs-string">'colladaTemplate'</span>,
+                {
+                    <span class="hljs-attr">collada</span> : {
+                        <span class="hljs-attr">document</span> : <span class="hljs-string">'gorilla.dae'</span>
+                    },
+                    <span class="hljs-attr">yRot</span> : <span class="hljs-number">1.57</span>,
+                    <span class="hljs-attr">yOffset</span> : <span class="hljs-number">-0.5</span>,
+                    <span class="hljs-attr">yScale</span>:<span class="hljs-number">0.7</span>
+                }],
+                <span class="hljs-attr">brickscube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">texture</span> : {
+                        <span class="hljs-attr">src</span>:<span class="hljs-string">'bricks.jpg'</span>,
+                        <span class="hljs-attr">repeatX</span>:<span class="hljs-number">0.5</span>,
+                        <span class="hljs-attr">repeatY</span>:<span class="hljs-number">0.5</span>
+                    }
+                }]
+            },
+
+            <span class="hljs-attr">types</span> : {
+                <span class="hljs-attr">jumpingJack</span>: [<span class="hljs-string">'jumpingEnemy'</span>, {
+                    <span class="hljs-attr">width</span>    : <span class="hljs-number">1</span>,
+                    <span class="hljs-attr">height</span>   : <span class="hljs-number">2</span>,
+                    <span class="hljs-attr">template</span> : <span class="hljs-string">'greencube'</span>
+                }]
+            }
+        });
+
+        <span class="hljs-keyword">var</span> myLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">15</span>, <span class="hljs-number">24</span>]
+            },
+            <span class="hljs-attr">camera</span> : {
+                <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">60</span>]
+            },
+            <span class="hljs-attr">light</span> : {
+                <span class="hljs-attr">myLight</span> : {
+                     <span class="hljs-attr">type</span> : GLGE.L_POINT,
+                     <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+                     <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+                     <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+                }
+             },
+            <span class="hljs-attr">entities</span> : [
+                gma.door({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">55</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">9</span>, <span class="hljs-attr">level</span>:<span class="hljs-number">1</span>}),
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">39</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                gma.platformEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">45</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>}),
+                gma.patrolEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">limitLeft</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">limitRight</span>:<span class="hljs-number">12</span>}),
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">21</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">24</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">27</span>}
+            ]
+        };
+
+        <span class="hljs-keyword">var</span> otherLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+            },
+            <span class="hljs-attr">camera</span> : {
+                <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">60</span>]
+            },
+            <span class="hljs-attr">light</span> : {
+                <span class="hljs-attr">myLight</span> : {
+                     <span class="hljs-attr">type</span> : GLGE.L_POINT,
+                     <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+                     <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+                     <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+                }
+             },
+            <span class="hljs-attr">entities</span> : [
+                gma.door({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">25</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">9</span>, <span class="hljs-attr">level</span>:<span class="hljs-number">0</span>}),
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>}
+            ]
+        };
+
+        manager.storeLevels(myLevel);
+        manager.storeLevels(otherLevel);
+
+        gma.keyHandler.register(<span class="hljs-number">37</span>, manager.character.move.curry(gma.constants.LEFT));
+        gma.keyHandler.register(<span class="hljs-number">39</span>, manager.character.move.curry(gma.constants.RIGHT));
+        gma.keyHandler.register(<span class="hljs-number">32</span>, manager.character.jump);
+        manager.init();
+    }
+);
+</code></pre>
+<p>我们现在还需要什么？还少一个显示的HUP（Heads Up Display），让我们在右下角显示FPS：</p>
+<pre><code class="js">manager.hud.setup({
+    <span class="hljs-attr">bottom_right</span>: {
+        <span class="hljs-attr">fps</span> : manager.getFPS
+    }
+});
+</code></pre>
+<p>HUD的显示类型可由CSS控制:</p>
+<pre><code class="css"><span class="hljs-comment">/* Setup the bars */</span>
+
+<span class="hljs-selector-id">#top_hud</span>, <span class="hljs-selector-id">#bottom_hud</span> {
+    <span class="hljs-attribute">height</span>:<span class="hljs-number">2em</span>;
+    <span class="hljs-attribute">position</span>:absolute;
+    <span class="hljs-attribute">left</span>:<span class="hljs-number">0em</span>;
+    <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">background-color</span>: black;
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(0, 0, 0, 0.7);
+}
+
+<span class="hljs-selector-id">#top_hud</span> {
+    <span class="hljs-attribute">top</span>:<span class="hljs-number">0em</span>;
+}
+<span class="hljs-selector-id">#bottom_hud</span> {
+    <span class="hljs-attribute">bottom</span>:<span class="hljs-number">0em</span>;
+}
+
+<span class="hljs-comment">/* Setup left and right part of each bar */</span>
+
+<span class="hljs-selector-id">#bottom_hud</span> <span class="hljs-selector-tag">dl</span>, <span class="hljs-selector-id">#top_hud</span> <span class="hljs-selector-tag">dl</span> {
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0.3em</span>;
+}
+
+<span class="hljs-selector-id">#bottom_hud</span> <span class="hljs-selector-tag">dl</span><span class="hljs-selector-class">.left</span>, <span class="hljs-selector-id">#top_hud</span> <span class="hljs-selector-tag">dl</span><span class="hljs-selector-class">.left</span> {
+    <span class="hljs-attribute">float</span>: left;
+}
+<span class="hljs-selector-id">#bottom_hud</span> <span class="hljs-selector-tag">dl</span><span class="hljs-selector-class">.right</span>, <span class="hljs-selector-id">#top_hud</span> <span class="hljs-selector-tag">dl</span><span class="hljs-selector-class">.right</span> {
+    <span class="hljs-attribute">float</span>: right;
+}
+
+<span class="hljs-comment">/* Setup labels for each item */</span>
+
+<span class="hljs-selector-id">#bottom_hud</span> <span class="hljs-selector-tag">dt</span>, <span class="hljs-selector-id">#top_hud</span> <span class="hljs-selector-tag">dt</span>,
+<span class="hljs-selector-id">#bottom_hud</span> <span class="hljs-selector-tag">dd</span>, <span class="hljs-selector-id">#top_hud</span> <span class="hljs-selector-tag">dd</span> {
+    <span class="hljs-attribute">display</span>: inline-block;
+    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.4em</span>;
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-selector-id">#bottom_hud</span> <span class="hljs-selector-tag">dt</span>, <span class="hljs-selector-id">#top_hud</span> <span class="hljs-selector-tag">dt</span> {
+    <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">0.5em</span>;
+}
+
+<span class="hljs-selector-id">#bottom_hud</span> <span class="hljs-selector-tag">dd</span>, <span class="hljs-selector-id">#top_hud</span> <span class="hljs-selector-tag">dd</span> {
+    <span class="hljs-attribute">text-align</span>: right;
+}
+<span class="hljs-selector-tag">dl</span><span class="hljs-selector-class">.left</span> <span class="hljs-selector-tag">dd</span> {
+    <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">1em</span>;
+}
+<span class="hljs-selector-tag">dl</span><span class="hljs-selector-class">.right</span> <span class="hljs-selector-tag">dt</span> {
+    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">1em</span>;
+}
+</code></pre>
+<p>将这个CSS保存为game.css文件放在game.js所在的目录下，取消html中的注释：</p>
+<pre><code class="html"><span class="hljs-comment">&lt;!--
+    Include any style sheets here
+    &lt;link rel="stylesheet" type="text/css" href="gamma.css" media="all"/&gt;
+--&gt;</span>
+</code></pre>
+<p>ok，现在是这个没啥意思的游戏最后一个，当前，如果角色如果从台子上掉了下去，那么角色就会处于永远的掉之中，不会结束。怎么停止这个状态？很简单，在台子下面放一个“死亡台子”（deathPlatform），只要角色掉在这个台子上就会被杀掉：</p>
+<pre><code class="js"><span class="hljs-comment">// Create a deathplatform type</span>
+<span class="hljs-attr">types</span> : {
+    <span class="hljs-attr">lava</span> : [<span class="hljs-string">'deathPlatform'</span>, {<span class="hljs-attr">template</span> : <span class="hljs-string">'redcube'</span>, <span class="hljs-attr">depth</span>:<span class="hljs-number">50</span>}]
+}
+<span class="hljs-comment">// Add this lava / death platform to the list of entities</span>
+<span class="hljs-attr">entities</span> : [
+    {<span class="hljs-attr">type</span>:<span class="hljs-string">'lava'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">-10</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">-50</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">1000</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">50</span>},
+]
+</code></pre>
+<p>当角色死掉后，怎么重生呢？我们将重生的过程绑定到按键“r”上，当按下“r”就让角色重生：</p>
+<pre><code class="js">gma.keyHandler.register(<span class="hljs-number">82</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    manager.respawn(<span class="hljs-string">"main"</span>);
+});
+</code></pre>
+<p>现在，我们终于完成了我们的游戏：</p>
+<pre><code class="js"><span class="hljs-built_in">require</span>([
+    <span class="hljs-string">'gma/base'</span>,
+    <span class="hljs-string">'gma/manager'</span>,
+    <span class="hljs-string">'gma/entities/character'</span>,
+    <span class="hljs-string">'gma/events'</span>,
+    <span class="hljs-string">'gma/entities/enemy'</span>,
+    <span class="hljs-string">'gma/entities/door'</span>
+],
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">gma</span>) </span>{
+        <span class="hljs-keyword">var</span> manager = gma.manager({
+            <span class="hljs-attr">width</span> : <span class="hljs-number">600</span>,
+            <span class="hljs-attr">height</span> : <span class="hljs-number">500</span>
+        });
+        manager.character = gma.character({
+            <span class="hljs-attr">left</span>     : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">bottom</span>   : <span class="hljs-number">0</span>,
+            <span class="hljs-attr">width</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">height</span>   : <span class="hljs-number">6</span>,
+            <span class="hljs-attr">depth</span>    : <span class="hljs-number">3</span>,
+            <span class="hljs-attr">template</span> : <span class="hljs-string">'gorilla'</span>
+        });
+        manager.addCustomDefinitions({
+            <span class="hljs-attr">templates</span> : {
+                <span class="hljs-attr">greencube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">material</span> : {<span class="hljs-attr">color</span> : <span class="hljs-string">"#090"</span>}
+                }],
+                <span class="hljs-attr">gorilla</span> : [<span class="hljs-string">'colladaTemplate'</span>,
+                {
+                    <span class="hljs-attr">collada</span> : {
+                        <span class="hljs-attr">document</span> : <span class="hljs-string">'gorilla.dae'</span>
+                    },
+                    <span class="hljs-attr">yRot</span> : <span class="hljs-number">1.57</span>,
+                    <span class="hljs-attr">yOffset</span> : <span class="hljs-number">-0.5</span>,
+                    <span class="hljs-attr">yScale</span>:<span class="hljs-number">0.7</span>
+                }],
+                <span class="hljs-attr">brickscube</span> : [<span class="hljs-string">'meshTemplate'</span>, {
+                    <span class="hljs-attr">mesh</span> : gma.unitCubeInfo.mesh,
+                    <span class="hljs-attr">texture</span> : {
+                        <span class="hljs-attr">src</span>:<span class="hljs-string">'bricks.jpg'</span>,
+                        <span class="hljs-attr">repeatX</span>:<span class="hljs-number">0.5</span>,
+                        <span class="hljs-attr">repeatY</span>:<span class="hljs-number">0.5</span>
+                    }
+                }]
+            },
+
+            <span class="hljs-attr">types</span> : {
+                <span class="hljs-attr">jumpingJack</span>: [<span class="hljs-string">'jumpingEnemy'</span>, {
+                    <span class="hljs-attr">width</span>    : <span class="hljs-number">1</span>,
+                    <span class="hljs-attr">height</span>   : <span class="hljs-number">2</span>,
+                    <span class="hljs-attr">template</span> : <span class="hljs-string">'greencube'</span>
+                }],
+                <span class="hljs-attr">lava</span> : [<span class="hljs-string">'deathPlatform'</span>, {<span class="hljs-attr">template</span> : <span class="hljs-string">'redcube'</span>, <span class="hljs-attr">depth</span>:<span class="hljs-number">50</span>}]
+            }
+
+        });
+
+        manager.hud.setup({
+            <span class="hljs-attr">bottom_right</span>: {
+                <span class="hljs-attr">fps</span> : manager.getFPS
+            }
+        });
+
+        <span class="hljs-keyword">var</span> myLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">15</span>, <span class="hljs-number">24</span>]
+            },
+            <span class="hljs-attr">camera</span> : {
+                <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">60</span>]
+            },
+            <span class="hljs-attr">light</span> : {
+                <span class="hljs-attr">myLight</span> : {
+                     <span class="hljs-attr">type</span> : GLGE.L_POINT,
+                     <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+                     <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+                     <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+                }
+             },
+            <span class="hljs-attr">entities</span> : [
+                gma.door({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">55</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">9</span>, <span class="hljs-attr">level</span>:<span class="hljs-number">1</span>}),
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">39</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'deathPlatform'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">-10</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">-50</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">1000</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">depth</span>:<span class="hljs-number">50</span>},
+                gma.platformEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">45</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>}),
+                gma.patrolEnemy({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">limitLeft</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">limitRight</span>:<span class="hljs-number">12</span>}),
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">21</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">24</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'jumpingJack'</span>, <span class="hljs-attr">bottom</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">27</span>}
+            ]
+        };
+
+        <span class="hljs-keyword">var</span> otherLevel = {
+            <span class="hljs-attr">spawn</span> : {
+                <span class="hljs-attr">main</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+            },
+            <span class="hljs-attr">camera</span> : {
+                <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">60</span>]
+            },
+            <span class="hljs-attr">light</span> : {
+                <span class="hljs-attr">myLight</span> : {
+                     <span class="hljs-attr">type</span> : GLGE.L_POINT,
+                     <span class="hljs-attr">rotY</span> : <span class="hljs-number">1.54</span>,
+                     <span class="hljs-attr">color</span>    : <span class="hljs-string">"#fff"</span>,
+                     <span class="hljs-attr">attached</span> : [<span class="hljs-string">'character'</span>, <span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">20</span>]
+                }
+             },
+            <span class="hljs-attr">entities</span> : [
+                gma.door({<span class="hljs-attr">bottom</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">25</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">9</span>, <span class="hljs-attr">level</span>:<span class="hljs-number">0</span>}),
+                {<span class="hljs-attr">template</span>:<span class="hljs-string">'brickscube'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">30</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">3</span>},
+                {<span class="hljs-attr">type</span>:<span class="hljs-string">'deathPlatform'</span>, <span class="hljs-attr">top</span>:<span class="hljs-number">-10</span>, <span class="hljs-attr">left</span>:<span class="hljs-number">-50</span>, <span class="hljs-attr">width</span>:<span class="hljs-number">1000</span>, <span class="hljs-attr">height</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">depth</span>:<span class="hljs-number">50</span>}
+            ]
+        };
+
+        manager.storeLevels(myLevel);
+        manager.storeLevels(otherLevel);
+
+        gma.keyHandler.register(<span class="hljs-number">37</span>, manager.character.move.curry(gma.constants.LEFT));
+        gma.keyHandler.register(<span class="hljs-number">39</span>, manager.character.move.curry(gma.constants.RIGHT));
+        gma.keyHandler.register(<span class="hljs-number">32</span>, manager.character.jump);
+        gma.keyHandler.register(<span class="hljs-number">82</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{ manager.respawn(<span class="hljs-string">"main"</span>); });
+        manager.init();
+    }
+);
+</code></pre>
+<p>更完整的例子在:<a href="https://github.com/Royce/GammaJS/tree/master/examples/fancy" target="_blank" rel="noopener">这里</a></p>
+<p>本教程翻译自： <a href="https://github.com/Royce/GammaJS/tree/master/docs/tutorials" target="_blank" rel="noopener">这里</a></p>
+<p>还有很多好玩的3D引擎，限于时间就不一一介绍了，下面就罗列下：</p>
+<ul>
+<li><a href="https://minko.io/engine/" target="_blank" rel="noopener">Minko Engine</a>:
+<ul>
+<li>Build cross-platform 3D apps for HTML5, iOS, Android, Windows, OS X and Linux using a single C/C++ code base.</li>
+<li><a href="https://github.com/aerys/minko/" target="_blank" rel="noopener">Source Code</a></li>
+</ul>
+</li>
+<li><a href="http://goocreate.com/" target="_blank" rel="noopener">Goo Engine</a>
+<ul>
+<li><a href="https://code.gooengine.com/" target="_blank" rel="noopener">Source Code</a></li>
+</ul>
+</li>
+<li><a href="http://www.ambiera.com/copperlicht/" target="_blank" rel="noopener">CooperLicht</a>: Open Source WebGL 3D engine with editor</li>
+<li><a href="https://www.blend4web.com/zh/" target="_blank" rel="noopener">Blend4Web</a> 做演示不错</li>
+<li><a href="http://www.babylonjs.com/" target="_blank" rel="noopener">Babylon.js</a>: JavaScript 3D games engine</li>
+<li><a href="http://voxeljs.com/" target="_blank" rel="noopener">Voxel.JS</a>:
+<ul>
+<li>a collection of projects that make it easier than ever to create 3D voxel games like Minecraft.</li>
+<li><a href="https://github.com/maxogden/voxel-engine" target="_blank" rel="noopener">Source coe on Github</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/wise9/enchant.js" target="_blank" rel="noopener">Enchant.js</a>: A simple JavaScript framework for creating games and apps</li>
+<li><a href="http://www.kickjs.org/" target="_blank" rel="noopener">KickJS</a>:  WebGL based game engine
+<ul>
+<li><a href="https://github.com/mortennobel/KickJS/" target="_blank" rel="noopener">Source code on GitHub</a></li>
+</ul>
+</li>
+<li><a href="http://famo.us/" target="_blank" rel="noopener">Famo.us</a>: HTML5 3D development Framework
+<ul>
+<li><a href="http://famo.us/university/home/" target="_blank" rel="noopener">University</a></li>
+<li><a href="https://github.com/Famous/famous" target="_blank" rel="noopener">Source code on GitHub</a></li>
+</ul>
+</li>
+<li><a href="https://playcanvas.com/" target="_blank" rel="noopener">PlayCanvas.js</a></li>
+<li><a href="http://threejs.org/" target="_blank" rel="noopener">Three.js</a></li>
+<li><a href="http://biz.turbulenz.com/developers" target="_blank" rel="noopener">Turbulenz</a>: Open source HTML5 2D/3D game engine since 2009</li>
+<li><a href="code.google.com/p/o3d/">Google O3D</a></li>
+<li><a href="http://osgjs.org/" target="_blank" rel="noopener">OSG.JS</a>: a WebGL framework based on OpenSceneGraph concepts
+<ul>
+<li><a href="http://github.com/cedricpinson/osgjs" target="_blank" rel="noopener">Source code on GitHub</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/x3dom/x3dom" target="_blank" rel="noopener">X3DOM</a>: integrating and manipulating (X)3D scenes as HTML5 DOM elements</li>
+<li><a href="http://www.scenejs.org/" target="_blank" rel="noopener">SceneJS - WebGL Scene Graph Library</a></li>
+<li><a href="http://www.c3dl.org/" target="_blank" rel="noopener">C3DL</a>: a Canvas 3D JavaScript library</li>
+<li><a href="http://www.senchalabs.org/philogl/" target="_blank" rel="noopener">PhiloJS</a>: a WebGL Framework for Data Visualization</li>
+<li><a href="http://www.glge.org/" target="_blank" rel="noopener">GLGE</a></li>
+<li><a href="http://www.jiglibjs.org/" target="_blank" rel="noopener">JigLibJS 物理引擎</a>－ 强烈推荐去看看</li>
+</ul>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/h5-game-dev/" title="HTML Web游戏开发之浮光掠影">https://riceball.me/article/h5-game-dev/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/html5/" rel="tag"><i class="fa fa-tag"></i> html5</a>
+              <a href="/tags/h5/" rel="tag"><i class="fa fa-tag"></i> h5</a>
+              <a href="/tags/2d/" rel="tag"><i class="fa fa-tag"></i> 2d</a>
+              <a href="/tags/3d/" rel="tag"><i class="fa fa-tag"></i> 3d</a>
+              <a href="/tags/webgl/" rel="tag"><i class="fa fa-tag"></i> webgl</a>
+              <a href="/tags/game/" rel="tag"><i class="fa fa-tag"></i> game</a>
+              <a href="/tags/engine/" rel="tag"><i class="fa fa-tag"></i> engine</a>
+              <a href="/tags/development/" rel="tag"><i class="fa fa-tag"></i> development</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/processing-language/" rel="prev" title="Processing语言——专为开发者中的艺术家而创建">
+      <i class="fa fa-chevron-left"></i> Processing语言——专为开发者中的艺术家而创建
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/bitcoin-tech/" rel="next" title="开源 Bitcoin P2P电子货币系统技术内幕">
+      开源 Bitcoin P2P电子货币系统技术内幕 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#you-xi-kai-fa"><span class="nav-number">1.</span> <span class="nav-text">游戏开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yi-gamejs-kai-yuan-2d-html5-you-xi-yin-qing"><span class="nav-number">1.1.</span> <span class="nav-text">一、GameJS 开源2D HTML5 游戏引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kai-shi-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz"><span class="nav-number">1.1.1.</span> <span class="nav-text">开始玩![](data:image&#x2F;jpg;base64,&#x2F;9j&#x2F;4AAQSkZJRgABAQAAAQABAAD&#x2F;2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf&#x2F;AABEIACAAIAMBIgACEQEDEQH&#x2F;xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD&#x2F;8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH&#x2F;xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH&#x2F;xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE&#x2F;9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb&#x2F;ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA&#x2F;dz&#x2F;ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj&#x2F;V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP&#x2F;&#x2F;Z)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#er-qing-liang-ji-duan-xiao-jing-han-de-craftyjs-2d-js-you-xi-yin-qing"><span class="nav-number">1.2.</span> <span class="nav-text">二、轻量级短小精悍的CraftyJS 2D JS游戏引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kai-wan-dataimagejpgbase649j4aaqskzjrgabaqaaaqabaad2wceaakgbgggbqkibwgkcqkkdryodqwmdrotfbawhxwhib8chh4jjziqiyuvjr4ekzsslzm1odg4iso9qtw2qti3odubcqokdqsngq4ogtukhiq1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu1ntu0ntu1ntu1nsk1ntutnfaabeiacaaiambigaceqedeqhxaaxaaebaqeaaaaaaaaaaaaaaaagbwud8qalraaagiabqmbbgcaaaaaaaaaaqidbaaferihbiixb0fryzkhwrmuqknxgzhxaawaqebaqaaaaaaaaaaaaaaaaadbahxaadeqacagmbaqeaaaaaaaaaaaabagaderihqfae9oadambaairaxeapwc44n9a5mavwcalkin3gvlpjuadbzyf5p4oembxqm6lnlkv4erh9uh3wls7ufeo1tultv6yzcpds2vo7tkccykxaqadzacrp8owgwe6kiljyu20qbfe5iyju13kaf1hkkafdchgommrnroyazjbtwuasli1isumy1zm9mcfvfixn46jquysmu4b8wy7pf5p7eh7ggh11b400gmj1ezwzlkvnar2tkqej2z68zcrs6oqfo0dzad3jy8doxhvov8qlkmud1gjvixjbx7maw9dqkbhujyr3fp0tftisp9xzsoox5yw1gk1jztwrgj49d3laljgqcf5pgk8emi0dzy1eng6mnvztqcpemrqz6hzujbxr5ibc0zbiokqtk7seafcjyt4w79oy84tjldztuko13sf6nazveqrmoyl9p4jcsdpg5trr7abydgc9lkkqwudmphpz"><span class="nav-number">1.2.1.</span> <span class="nav-text">开玩![](data:image&#x2F;jpg;base64,&#x2F;9j&#x2F;4AAQSkZJRgABAQAAAQABAAD&#x2F;2wCEAAkGBggGBQkIBwgKCQkKDRYODQwMDRoTFBAWHxwhIB8cHh4jJzIqIyUvJR4eKzssLzM1ODg4ISo9QTw2QTI3ODUBCQoKDQsNGQ4OGTUkHiQ1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0NTU1NTU1NSk1NTUtNf&#x2F;AABEIACAAIAMBIgACEQEDEQH&#x2F;xAAXAAEBAQEAAAAAAAAAAAAAAAAGBwUD&#x2F;8QALRAAAgIABQMBBgcAAAAAAAAAAQIDBAAFERIhBiIxB0FRYZKhwRMUQkNxgZH&#x2F;xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH&#x2F;xAAdEQACAgMBAQEAAAAAAAAAAAABAgADERIhQfAE&#x2F;9oADAMBAAIRAxEAPwC44N9a5maVWCAlkin3GVlPJUaDb&#x2F;ZYf5p4OEmBXqM6LNlKv4eRh9UH3wlS7uFEO1tULTV6YzCpds2Vo7tkccYkXaQA&#x2F;dz&#x2F;ACRp8owgwe6Kiljyu20qbFe5IYju13KAF1+HKkafDCHGOMMRNrOyAzjbtwUasli1IsUMY1Zm9mCfVFiXN46jQUysMU4b8wy7pF5P7eh7GGh11B400GMj1ezWzlk+VNar2TkQEj2Z68ZcRS6oqF+O0dzAd3JY8doxhVOv8qlKMud1Gj&#x2F;V+Ixjbx7mAw9dQKbhujyR3fp0tFTISp9xzsoOX5y+W1gk1JzTWRgJ49d3LaljGQCF5Pgk8eMI0dZY1eNg6MNVZTqCPeMRqz6hZUJBXr5ibc0zBIoKqtK7seAFCjyT4w79OY84TJLDZtUko13sF6NaZVEqRMoYl9p4JcsdpG5Trr7ABYDGc9lKkqwUDmPhP&#x2F;&#x2F;Z)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gammajs-zui-jian-dan-de-webgl-xia-kai-fa-you-xi-de-kai-yuan-kuang-jia"><span class="nav-number">1.3.</span> <span class="nav-text">GammaJS 最简单的WebGL下开发游戏的开源框架</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/h5-game-dev/",
+      identifier: "article/h5-game-dev/",
+      title: "HTML Web游戏开发之浮光掠影",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

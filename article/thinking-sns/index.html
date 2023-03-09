@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="就目前的互联网来说，最火爆的当属于社交媒体。从产品形态上来区分，当前的社交媒体主要有两大流派，一是以短信息为中心的其代表twitter；二是以社交圈子为中心其代表为Facebook。 现状 虽然目前大家都在关注微博类和社交类，但是事实上社交媒体本身可不仅仅限于此。下面一一絮叨之。社交媒体，从产品层面上来看固有元素有二：内容（Contents）和SNS（社会化网络关系）。 一、内容 首先说说内容，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于信息的社交媒体网络进一步的创新兼谈 Google+">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;thinking-sns&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="就目前的互联网来说，最火爆的当属于社交媒体。从产品形态上来区分，当前的社交媒体主要有两大流派，一是以短信息为中心的其代表twitter；二是以社交圈子为中心其代表为Facebook。 现状 虽然目前大家都在关注微博类和社交类，但是事实上社交媒体本身可不仅仅限于此。下面一一絮叨之。社交媒体，从产品层面上来看固有元素有二：内容（Contents）和SNS（社会化网络关系）。 一、内容 首先说说内容，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;thinking-sns&#x2F;google-plus-logo.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;thinking-sns&#x2F;google-plus.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;thinking-sns&#x2F;post1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;thinking-sns&#x2F;self-post.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;thinking-sns&#x2F;other-post.png">
+<meta property="article:published_time" content="2011-07-05T00:38:00.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.541Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="thinking">
+<meta property="article:tag" content="internet">
+<meta property="article:tag" content="creation">
+<meta property="article:tag" content="sns">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;thinking-sns&#x2F;google-plus-logo.png">
+
+<link rel="canonical" href="https://riceball.me/article/thinking-sns/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>基于信息的社交媒体网络进一步的创新兼谈 Google+ | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/thinking-sns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          基于信息的社交媒体网络进一步的创新兼谈 Google+
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2011-07-05 08:38:00" itemprop="dateCreated datePublished" datetime="2011-07-05T08:38:00+08:00">2011-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">Thinking</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">Internet</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Internet/SNS/" itemprop="url" rel="index">
+                    <span itemprop="name">SNS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="./google-plus-logo.png" alt><br>
+就目前的互联网来说，最火爆的当属于社交媒体。从产品形态上来区分，当前的社交媒体主要有两大流派，一是以短信息为中心的其代表twitter；二是以社交圈子为中心其代表为Facebook。</p>
+<h1 id="xian-zhuang" class="heading-control">现状<a class="heading-anchor" href="#xian-zhuang" aria-hidden="true"></a></h1>
+<p>虽然目前大家都在关注微博类和社交类，但是事实上社交媒体本身可不仅仅限于此。下面一一絮叨之。社交媒体，从产品层面上来看固有元素有二：内容（Contents）和SNS（社会化网络关系）。</p>
+<h2 id="yi-nei-rong" class="heading-control">一、内容<a class="heading-anchor" href="#yi-nei-rong" aria-hidden="true"></a></h2>
+<p>首先说说内容，或者叫媒体，又或者叫信息。内容可以从内容的量的多寡来看，也可以从内容的类型来看。</p>
+<h3 id="nei-rong-de-liang" class="heading-control">内容的量<a class="heading-anchor" href="#nei-rong-de-liang" aria-hidden="true"></a></h3>
+<p>从内容的量来看，大致可以分为3级：1、大量/巨量内容；2、短篇内容 ；3、百字短文</p>
+<ol>
+<li>大量/巨量内容
+<ul>
+<li>这个是以小说或者电视剧为代表，通常出现在网站上是以连载形式出现。</li>
+</ul>
+</li>
+<li>短篇内容
+<ul>
+<li>这个是以博文或者新闻为代表。</li>
+</ul>
+</li>
+<li>百字短文
+<ul>
+<li>这个是以微博或者短信为代表。</li>
+</ul>
+</li>
+</ol>
+<h3 id="nei-rong-de-lei-xing" class="heading-control">内容的类型<a class="heading-anchor" href="#nei-rong-de-lei-xing" aria-hidden="true"></a></h3>
+<p>从内容的类型来看，大致可以分为：</p>
+<ol>
+<li>视频动画；</li>
+<li>音乐</li>
+<li>图片</li>
+<li>富媒体</li>
+<li>富文本</li>
+<li>垂直领域的内容（鲜花、汽车、房屋、…）</li>
+</ol>
+<h2 id="er-sns" class="heading-control">二、SNS<a class="heading-anchor" href="#er-sns" aria-hidden="true"></a></h2>
+<p>从社交关系来看，可以从两个维度来看：一是私密维度；二是关系维度。</p>
+<h3 id="cong-si-you-cheng-du-lai-kan" class="heading-control">从私有程度来看:<a class="heading-anchor" href="#cong-si-you-cheng-du-lai-kan" aria-hidden="true"></a></h3>
+<ol>
+<li>完全私有 这个是以短信/kik 为代表。</li>
+<li>部分私有 这个是以聊天室，FaceBook为代表。</li>
+<li>完全开放 这个是以微博(twitter)为代表。</li>
+</ol>
+<h3 id="cong-guan-xi-cheng-du-lai-kan" class="heading-control">从关系程度来看：<a class="heading-anchor" href="#cong-guan-xi-cheng-du-lai-kan" aria-hidden="true"></a></h3>
+<ul>
+<li>双向关系：FaceBook</li>
+<li>单向关系：Twitter</li>
+<li>反向单向关系：Path (别人需要邀请你，你才能关注)</li>
+<li>弱关系：仅当在指定的地点、时间才会有某种关系</li>
+<li>没有关系：网上闲置租车(UBER)</li>
+</ul>
+<p>将它们每一个联系组织起来就会有不同的玩法，也许会是一个好的产品，也许不是。是不是好的产品的关键是是否能满足某类人的某种需求。比如下面的例子：</p>
+<p>FaceBook：</p>
+<ul>
+<li>默认只有朋友可见(部分私有)，私有程度可以在任何人，朋友的朋友，只有朋友，定制程度切换</li>
+<li>双向关系(互相收听)</li>
+<li>字数限制：貌似没有</li>
+<li>媒体类型：要么文本、要么图片、要么视频、要么链接、要么问题</li>
+<li>评论：有</li>
+</ul>
+<p>Twitter:</p>
+<ul>
+<li>默认完全开放，私有程度可以在完全私有和完全开放之间切换</li>
+<li>单向关系</li>
+<li>没有关系：通过指定人(@)收听</li>
+<li>字数限制: 140，</li>
+<li>媒体类型：仅限文本</li>
+<li>评论：无</li>
+</ul>
+<p>OK，现在是回过头来看看Google+的时候了。我以为G+对圈子的激动人心的创新在于，通过圈子，把双向关系变成“单向”：你只需要维护好你自己的圈子就行了，这实质上就一个以个人为中心(P2P)的圈。而无需去操心别的。当然如果有需求要强制别人去阅读你推送的消息（已阅），而对于这样的场景可能G+并不太合适（从技术上说只要G+API推出后也许会出现某类应用满足这个需求）。</p>
+<h1 id="google" class="heading-control">Google+<a class="heading-anchor" href="#google" aria-hidden="true"></a></h1>
+<p><img src="./google-plus.png" alt></p>
+<p>Google+：</p>
+<ul>
+<li>公开关系</li>
+<li>圈子关系：通过圈子来决定信息的流转</li>
+<li>没有关系：通过指定人(@或+)收听</li>
+<li>字数限制：貌似没有</li>
+<li>媒体类型：带格式的文本(一个消息可以插入多张图片或者一个视频或者一个链接</li>
+<li>评论：有</li>
+<li>LBS 位置</li>
+</ul>
+<h2 id="quan-zi-circle" class="heading-control">圈子（“Circle”）<a class="heading-anchor" href="#quan-zi-circle" aria-hidden="true"></a></h2>
+<p>Google对于社交网络进一步思索和创新首先在于圈子（“Circle”），通过圈子来完成轻松的对信息的私有程度进行缩放的过程。你只需组织你的联系人到不同的圈子即可。</p>
+<p>通过圈子可以针对你的不同通讯录上的联系人灵活的介于公开和非公开之间的社交领域去分享信息。所有的信息的推送或者获取都将基于圈子。信息的推送有点类似于邮件组的感觉，在理解了圈子的含义后，我感觉比微博和facebook的推送机制好用多了。当然，理解圈子会是个槛。</p>
+<p>如果某人将你圈了进来，你会收到邮件通知和页面通知（在你的姓名右上角），你可以决定是否将对方也圈起来。这样，他推送到消息将会出现在你圈的圈子中，当然不圈也没有关系，这个时候，他推送的消息只会出现在Incoming的圈子里的。</p>
+<p>当你post一张相片或者更新某个玩意的时候，如何通过圈子控制该消息的私密程度？请看下面：</p>
+<p><img src="post1.png" alt></p>
+<ul>
+<li>Public: 完全公开，任何人都能看到</li>
+<li>特定的圈子：可以选择多个你建立的圈子</li>
+<li>Your circles: 你的建立的所有的圈子里的人都可以看到</li>
+<li>Extended Circles：扩展圈子，你的圈子的人以及圈子的圈子的人都可以看到</li>
+<li>特定的联系人：选择多个特定的联系人(email)可以看到</li>
+</ul>
+<p>我以为G+对圈子的激动人心的创新在于，通过圈子，把双向关系变成“单向”：你只需要维护好你自己的圈子就行了，这实质上就一个以个人为中心(P2P)的圈。而无需去操心别的。当然如果有需求要强制别人去阅读你推送的消息（已阅），而对于这样的场景可能G+并不太合适（从技术上说只要G+API推出后也许会出现某类应用满足这个需求）。</p>
+<p>另外一些微小的改进也是很有爱的，针对POST：</p>
+<p>自己发的：</p>
+<p><img src="./self-post.png" alt></p>
+<ul>
+<li>Edit this post: 编辑</li>
+<li>Delete this post: 删除</li>
+<li>Disable comments：禁止评论</li>
+<li>Disable reshare：禁止分享</li>
+</ul>
+<p>别人发的：</p>
+<p><img src="./other-post.png" alt></p>
+<ul>
+<li>Link to this post: 链接</li>
+<li>Report abuse：滥用</li>
+<li>Mute this post：不想再看到这个帖子把它沉底吧</li>
+<li>Block this persion：不想再看到此人发的贴</li>
+</ul>
+<p>另外蛮有意思的是hangouts，创建多人视频群聊，以及Sparks 基于搜索的主题关注（要是能集成Google Reader的RSS，才有大用）。</p>
+<h2 id="can-kao" class="heading-control">参考：<a class="heading-anchor" href="#can-kao" aria-hidden="true"></a></h2>
+<ul>
+<li><a href="http://www.36kr.com/googleplus50/" target="_blank" rel="noopener">http://www.36kr.com/googleplus50/</a></li>
+<li><a href="https://plus.google.com/photos/108443027359212340995/albums/5625655838907702241" target="_blank" rel="noopener">https://plus.google.com/photos/108443027359212340995/albums/5625655838907702241</a></li>
+<li><a href="http://www.36kr.com/google-plus-team-leaders-talk-about-product-details/" target="_blank" rel="noopener">http://www.36kr.com/google-plus-team-leaders-talk-about-product-details/</a></li>
+<li><a href="http://article.yeeyan.org/view/216086/204409" target="_blank" rel="noopener">http://article.yeeyan.org/view/216086/204409</a></li>
+<li><a href="http://www.ifanr.com/45060" target="_blank" rel="noopener">http://www.ifanr.com/45060</a></li>
+<li><a href="http://www.ifanr.com/45467" target="_blank" rel="noopener">http://www.ifanr.com/45467</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/thinking-sns/" title="基于信息的社交媒体网络进一步的创新兼谈 Google+">https://riceball.me/article/thinking-sns/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/thinking/" rel="tag"><i class="fa fa-tag"></i> thinking</a>
+              <a href="/tags/internet/" rel="tag"><i class="fa fa-tag"></i> internet</a>
+              <a href="/tags/creation/" rel="tag"><i class="fa fa-tag"></i> creation</a>
+              <a href="/tags/sns/" rel="tag"><i class="fa fa-tag"></i> sns</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/bitcoin-tech/" rel="prev" title="开源 Bitcoin P2P电子货币系统技术内幕">
+      <i class="fa fa-chevron-left"></i> 开源 Bitcoin P2P电子货币系统技术内幕
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/diy-cloud-computing-1/" rel="next" title="DIY 与 云计算（一）">
+      DIY 与 云计算（一） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#xian-zhuang"><span class="nav-number">1.</span> <span class="nav-text">现状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yi-nei-rong"><span class="nav-number">1.1.</span> <span class="nav-text">一、内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nei-rong-de-liang"><span class="nav-number">1.1.1.</span> <span class="nav-text">内容的量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nei-rong-de-lei-xing"><span class="nav-number">1.1.2.</span> <span class="nav-text">内容的类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#er-sns"><span class="nav-number">1.2.</span> <span class="nav-text">二、SNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cong-si-you-cheng-du-lai-kan"><span class="nav-number">1.2.1.</span> <span class="nav-text">从私有程度来看:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cong-guan-xi-cheng-du-lai-kan"><span class="nav-number">1.2.2.</span> <span class="nav-text">从关系程度来看：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#google"><span class="nav-number">2.</span> <span class="nav-text">Google+</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#quan-zi-circle"><span class="nav-number">2.1.</span> <span class="nav-text">圈子（“Circle”）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#can-kao"><span class="nav-number">2.2.</span> <span class="nav-text">参考：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/thinking-sns/",
+      identifier: "article/thinking-sns/",
+      title: "基于信息的社交媒体网络进一步的创新兼谈 Google+",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

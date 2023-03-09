@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="开源 Bitcoin P2P电子货币是点对点的电子现金系统，创建于2009年[http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Bitcoin]。无需金融机构直接点对点支付。该电子货币系统的特色是无需信托中间人，能够方便的进行互联网上的汇款。第三方不能够控制或者阻止您的交易。Bitcoin 交易几乎免费, 而信用卡的网上在线支付系统通常收取 1-5% 的交易费用，加上其他各种费用高达数百美">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源 Bitcoin P2P电子货币系统技术内幕">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="开源 Bitcoin P2P电子货币是点对点的电子现金系统，创建于2009年[http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Bitcoin]。无需金融机构直接点对点支付。该电子货币系统的特色是无需信托中间人，能够方便的进行互联网上的汇款。第三方不能够控制或者阻止您的交易。Bitcoin 交易几乎免费, 而信用卡的网上在线支付系统通常收取 1-5% 的交易费用，加上其他各种费用高达数百美">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-dc-validate.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-pubkey-sig.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-logo.jpg">
+<meta property="article:published_time" content="2011-05-30T07:33:47.000Z">
+<meta property="article:modified_time" content="2019-11-22T06:56:43.529Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="learning">
+<meta property="article:tag" content="bitcoin">
+<meta property="article:tag" content="digital currency">
+<meta property="article:tag" content="hashcash">
+<meta property="article:tag" content="p2p">
+<meta property="article:tag" content="proof-of-work">
+<meta property="article:tag" content="redian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;bitcoin-tech&#x2F;bitcoin-dc-validate.png">
+
+<link rel="canonical" href="https://riceball.me/article/bitcoin-tech/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>开源 Bitcoin P2P电子货币系统技术内幕 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/bitcoin-tech/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          开源 Bitcoin P2P电子货币系统技术内幕
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2011-05-30 15:33:47" itemprop="dateCreated datePublished" datetime="2011-05-30T15:33:47+08:00">2011-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/P2P/" itemprop="url" rel="index">
+                    <span itemprop="name">P2P</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/P2P/Digital-Currency/" itemprop="url" rel="index">
+                    <span itemprop="name">Digital Currency</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>28k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>51 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>开源 Bitcoin P2P电子货币是点对点的电子现金系统，创建于2009年[<a href="http://en.wikipedia.org/wiki/Bitcoin" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Bitcoin</a>]。无需金融机构直接点对点支付。该电子货币系统的特色是无需信托中间人，能够方便的进行互联网上的汇款。第三方不能够控制或者阻止您的交易。Bitcoin 交易几乎免费, 而信用卡的网上在线支付系统通常收取 1-5% 的交易费用，加上其他各种费用高达数百美元。避免了中央储备银行的不良政策和不稳定性所造成的安全隐患. Bitcoin系统的有限货币通胀是均匀分布(由CPU决定)于整个网络, 而不是由银行垄断。</p>
+<p>这被某些人认为是最危险的开源项目，但我觉得恰恰相反，这是有史以来最令人兴奋的开源项目。这样发行的币才是真正的“人 民 币”，人民才是被服务，而不是被管理。P2P必将从商业、政治、生活各个方面重新定义新的更加公平公正的意识形态。</p>
+<h2 id="ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu" class="heading-control">名词解释以及背后的技术<a class="heading-anchor" href="#ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu" aria-hidden="true"></a></h2>
+<p>Bitcoin涉及到很多有意思的技术，要想搞懂bitcoin首先必须对这些技术理解和把握然后是对Bitcoin术语的理解，bitcoin最重要的技术支撑是P2P，数字签名(EC DSA)，散列(SHA256, RIPEMD-160), POW，和HashCash。而术语则是：transaction, block,  address, Merkle Tree.</p>
+<h3 id="gong-zuo-zheng-ming-powproofofwork-ji-zhi" class="heading-control">工作证明 <a href="http://en.wikipedia.org/wiki/Proof-of-work_system" target="_blank" rel="noopener">POW(Proof-Of-Work)</a>机制<a class="heading-anchor" href="#gong-zuo-zheng-ming-powproofofwork-ji-zhi" aria-hidden="true"></a></h3>
+<p>工作证明POW系统是要求对方服务前，必须要出据某种工作证明的机制。主要用于防止拒绝服务攻击和反垃圾信息。通常这种“工作证明”会花费一定的时间计算才能得到。最常见的例子是<a href="http://en.wikipedia.org/wiki/CAPTCHA" target="_blank" rel="noopener">CAPTCHA</a>。另外用于防止DoS和垃圾信息的机制是<a href="http://en.wikipedia.org/wiki/Hashcash" target="_blank" rel="noopener">HashCash</a>，bitcoin使用的原理就类似于<a href="http://en.wikipedia.org/wiki/Hashcash" target="_blank" rel="noopener">HashCash</a>.</p>
+<h3 id="hashcash-ji-zhi" class="heading-control"><a href="http://en.wikipedia.org/wiki/Hashcash" target="_blank" rel="noopener">HashCash</a> 机制<a class="heading-anchor" href="#hashcash-ji-zhi" aria-hidden="true"></a></h3>
+<p>hashcash 的灵感来自于这样一个想法，即一些数学结果难于发现而易于校验。一个众所周知的例子是因数分解一个大的数字（尤其是因数较少的数字）。将数字相乘来获得它们的积的代价是低廉的，但首先找到那些因数的代价却要高得多。</p>
+<p>对交互式质询来说，因数分解足以胜任。比如，希望客户端能象征性地为其付出代价方能访问在线资源。这个时候可以定义协议，首先服务器向客户端发送一个消息，说“只要您能因数分解这个数，我将让您得到这个资源”。没有诚意的客户端将无法得到我的资源，只有那些能够证明自己有足够的兴趣、付出一些 CPU 周期来回答这个质询的才能得到这个资源。</p>
+<p>不过，有一些资源无法很方便地进行交互式协商。比如电子邮件反垃圾或者支付交易，怎么才能避免邮箱不被垃圾邮件所占据？“我并不介意陌生人给我写信，但是，我希望他们能以稍微认真的态度，亲自通过对我有价值的邮件与我取得联系。至少，我不希望他们是垃圾邮件制造者，那些人向我和上百万的其他人发送包含同样消息的邮件（double-spending），期望我们中的某些人能购买某种产品或者落入一个骗局。”而对于电子货币，内容的复制几乎是没有代价的，如何保证电子货币（内容）没有被交易（发送）多次？这和反垃圾邮件是同样的问题。</p>
+<p>hashcash的解决之道就是：在电子邮件的消息头中，增加一个 hashcash 戳记（hashcash stamp）散列值；该散列中包含收件人地址，发送时间，salt，该散列值特别之处在于它至少前20位必须是0才是一个合法的hashcash戳记。为了得到合法的散列值，发送者必须经过许多次尝试（改变salt值）才能获得。一旦生成戳记，不希望每一个给我发送邮件的垃圾邮件制造者都能重复使用它。所以，hashcash 戳记要带一个日期。这样可以指定时间更早的戳记是非法的。另外 hashcash 的接收端要实现一个double-spending数据库，用来记录戳记的历史信息。</p>
+<h3 id="bitcoin-zhong-de-shu-yu-jie-shi" class="heading-control">Bitcoin中的术语解释<a class="heading-anchor" href="#bitcoin-zhong-de-shu-yu-jie-shi" aria-hidden="true"></a></h3>
+<p>散列：bitcoin在计算散列时一般会计算2次。第一轮总是使用SHA-256散列，而第二次在大多数情况下，也是使用<a href="http://en.wikipedia.org/wiki/SHA-2" target="_blank" rel="noopener">SHA-256</a>散列，但用于生成较短的散列(例如生成 bitcoin接收地址的时候)会用<a href="http://en.wikipedia.org/wiki/RIPEMD" target="_blank" rel="noopener">RIPEMD-160</a>散列。</p>
+<pre><code>hello
+ 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 ( sha-256)
+ 9595c9df90075148eb06860365df33584b75bff782a510c6cd4883a419833d50 (sha-256)
+</code></pre>
+<p>生成比特币地址时(RIPEMD-160)：</p>
+<pre><code>hello
+ 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 (sha-256)
+ b6a9c8c230722b7c748331a8b450f05566dc7d0f (ripemd-160)
+</code></pre>
+<p>Addresses: Bitcoin Address是ECDSA公钥(public key)的散列，计算方法如下：</p>
+<pre><code class="python"><span class="hljs-keyword">if</span> 正式网络
+  Version=<span class="hljs-number">0x00</span>
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> 测试网络
+  Version=<span class="hljs-number">0x6F</span>
+end
+key_hash=Version+RIPEMD<span class="hljs-number">-160</span>(SHA<span class="hljs-number">-256</span>(public_key))
+Checksum = SHA<span class="hljs-number">-256</span>(SHA<span class="hljs-number">-256</span>(Key hash))[<span class="hljs-number">0.</span><span class="hljs-number">.3</span>]  <span class="hljs-comment">#取两次散列值后的前4位</span>
+Bitcoin_Address = Base58Encode(Key_hash+Checksum)
+<span class="hljs-comment">#Base58编码做了特殊处理，与通用的base58有一些区别：转换的时候</span>
+<span class="hljs-comment">#前面的0被作为单个0保留。</span>
+</code></pre>
+<p><img src="bitcoin-dc-validate.png" alt></p>
+<p>Bitcoin 电子货币系统的核心功能是面对面（点对点）支付，就像真实货币一样，无需中间人，几乎不需要交易费。它背后的技术实现是很巧妙的通过将造币(Mint)，交易(transaction，这里提到的交易都是特指的支付)，交易验证(transaction verifiction)交织在一起，形成一个完美的圆。所以要想把它的机理理解清楚，就必须同时理解bitcoin的电子货币，交易，造币的确切含义。</p>
+<p>首先从电子货币谈起。</p>
+<h3 id="dian-zi-huo-bi-he-jiao-yi-dan-transaction" class="heading-control">电子货币和交易单(Transaction)<a class="heading-anchor" href="#dian-zi-huo-bi-he-jiao-yi-dan-transaction" aria-hidden="true"></a></h3>
+<p>Bitcoin电子货币解决的是：</p>
+<ol>
+<li>任意造币的问题：通过“挖矿”机制保证了不能任意造币。</li>
+<li>重复花钱的问题(Double-Spending)：利用P2P网络，通过HashCash的机制。</li>
+</ol>
+<p>事实上Bitcoin系统中不存在独立的电子货币，货币值是依附于交易单存在的，所以在bitcoin中的电子货币的实质就是交易单，确切的说是货币交易（Transactions）的 数字签名链，它的数字签名算法使用的是ECDSA（<a href="http://www.secg.org/collateral/sec2_final.pdf" target="_blank" rel="noopener">椭圆曲线数字签名算法</a> secp256k1曲线）进行签名的。</p>
+<p>交易单的数据如下：</p>
+<pre><code>In:
+Previous tx: f5d8ee39a430901c91a5917b9f2dc19d6d1a0e9cea205b009ca73dd0
+4470b9a6
+Index: 0
+scriptSig: 304502206e21798a42fae0e854281abd38bacd1aeed3ee3738d9e1446
+618c4571d1090db022100e2ac980643b0b82c0e88ffdfec6b64e3e6ba35e7ba5fd
+d7d5d6cc8d25c6b241501
+
+Out:
+Value: 5000000000
+scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35
+549d OP_EQUALVERIFY OP_CHECKSIG
+</code></pre>
+<p>交易单记录的是本次交易的收入来源(in)和支出(out)。当你支出（给）一笔钱的时候，首先在交易单中就要描述清楚你要支出(out)的钱的收入来源(in)，然后在支出(out)<br>
+项中，指明要支出的金额，以及通过脚本的形式写明接收者的公钥，然后用自己的私钥签名(scriptSig)认可该笔交易，最后将交易单广播到网络。</p>
+<p>收入来源(in):</p>
+<ul>
+<li>Previous tx: 为收入来源交易单的散列值，也就是待支付的钱是谁给你的，经常会有多个收入来源被列在交易单中</li>
+<li>index: 指明是收入来源交易单中具体哪一个out，也就是Previous tx交易单中的out索引值（因为out也可以有多个）。</li>
+<li>scriptSig: 拥有者对该交易的ECDSA签名认可。</li>
+</ul>
+<p>接收对象(out):</p>
+<ul>
+<li>Value: 发送的币值，以Satoshi 为单位，1BTC = 100,000,000 Satoshi</li>
+<li>scriptPubKey: 接收方的公钥脚本。</li>
+</ul>
+<p>in与out的关系：</p>
+<ul>
+<li>每一笔交易，out的总额应该等于in的总额。但是，在这个交易单里，只会有out的Value，没有in的Value，而是通过in的Pervious与index，追溯到上一个交易单的某一个out，获得Value。</li>
+<li>一次send bitcoin，剩下的钱，应该out给自己，否则这个钱就丢了。</li>
+</ul>
+<p>情况列举：</p>
+<ul>
+<li>我有10个BTC，是某一次交易获得的，我要送给朋友A，10个BTC。这时候，有一个in，一个out。</li>
+<li>我有10个BTC，是某一次交易获得的，我要送给朋友A，5个BTC，这时候，有一个in，两个out，一个指向朋友5个BTC，一个指向我自己，得到剩下的5个BTC。</li>
+<li>我有10个BTC，是以前的两次交易获得的，我要送给朋友A，10个BTC，这时候，有两个in，一个out。</li>
+<li>我有10个BTC，是以前的两次交易获得的，其中一次获得了6个BTC，另一次获得了4个BTC，我要送给我的朋友7个BTC，这时候，有两个in，两个out。</li>
+</ul>
+<pre><code class="c++"><span class="hljs-comment">// An input of a transaction.  It contains the location of the previous</span>
+<span class="hljs-comment">// transaction's output that it claims and a signature that matches the</span>
+<span class="hljs-comment">// output's public key.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CTxIn</span>
+{</span>
+<span class="hljs-keyword">public</span>:
+    COutPoint prevout;
+    CScript scriptSig;
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nSequence;
+    <span class="hljs-comment">//....</span>
+}
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// An output of a transaction.  It contains the public key that the next input</span>
+<span class="hljs-comment">// must be able to sign with to claim it.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CTxOut</span>
+{</span>
+<span class="hljs-keyword">public</span>:
+    int64 nValue;
+    CScript scriptPubKey;
+    <span class="hljs-comment">//....</span>
+}
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// The basic transaction that is broadcasted on the network and contained in</span>
+<span class="hljs-comment">// blocks.  A transaction can contain multiple inputs and outputs.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CTransaction</span>
+{</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> nVersion;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;CTxIn&gt; vin;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;CTxOut&gt; vout;
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nLockTime;
+
+    <span class="hljs-comment">//....</span>
+</code></pre>
+<p>每一笔交易单验证追查到最后，第一笔总是“挖矿”所得，这被称为coinbase。如果是第一次“挖矿”所得，电子货币的内容用JSON格式表示如下：</p>
+<pre><code class="json">{
+  <span class="hljs-attr">"hash"</span>:<span class="hljs-string">"b3141455cb397e42665b90b3726c4770fd36101715618718111403bc780ceaa2"</span>,
+  <span class="hljs-attr">"ver"</span>:<span class="hljs-number">1</span>,
+  <span class="hljs-attr">"vin_sz"</span>:<span class="hljs-number">1</span>,
+  <span class="hljs-attr">"vout_sz"</span>:<span class="hljs-number">1</span>,
+  <span class="hljs-attr">"lock_time"</span>:<span class="hljs-number">0</span>,
+  <span class="hljs-attr">"size"</span>:<span class="hljs-number">135</span>,
+  <span class="hljs-attr">"in"</span>:[
+    {
+      <span class="hljs-attr">"prev_out"</span>:{
+        <span class="hljs-attr">"hash"</span>:<span class="hljs-string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,
+        <span class="hljs-attr">"n"</span>:<span class="hljs-number">4294967295</span>
+      },
+      <span class="hljs-attr">"coinbase"</span>:<span class="hljs-string">"042194261a02f200"</span>
+    }
+  ],
+  <span class="hljs-attr">"out"</span>:[
+    {
+      <span class="hljs-attr">"value"</span>:<span class="hljs-string">"50.01000000"</span>,
+      <span class="hljs-attr">"scriptPubKey"</span>:<span class="hljs-string">"0452d1a02ffeacfc0c78fcf2ceeaf04d5416c15af1c65da13d9cdaa56844c825c1aa2f540e9439bf38a43419002d8441eea627cb56d6ed51e7848da5c3f6eee6ec OP_CHECKSIG"</span>
+    }
+  ]
+}
+</code></pre>
+<p>每一笔交易都会向整个P2P网络广播该货币的交易记录。通过投票机制，来决定该支付交易是否正常。如节点认为该交易记录是正常的那么就通过CPU计算POW(Proof-of-Work),然后广播，其它节点收到这个POW可以继续投票，形成Block 链（见挖矿）。如果节点收到不一致的两个交易记录，那么只信任链最长的。如果一笔Bitcoin被支出两次的情况广播出来，那么某些节点将先看到它第一次发生的支付交易，其他节点则看到的是它第二次发生的支付交易。究竟是哪一个支付交易“赢”了，则是由恰好创建了下一个block的那个节点来决定 —— 无论是哪个节点找到了“小的散列值”， 它的block中包含的那个支付交易被判断为有效的，其他的支付交易被视为无效。</p>
+<p>接下来讲讲交易单的类型和交易验证的实现细节。</p>
+<h2 id="jiao-yi-de-lei-xing-yu-yan-zheng" class="heading-control">交易的类型与验证<a class="heading-anchor" href="#jiao-yi-de-lei-xing-yu-yan-zheng" aria-hidden="true"></a></h2>
+<p>交易单(Transaction)目前被bitcoin分为3种：</p>
+<ol>
+<li>按IP地址转账(Transfer)</li>
+<li>按接收地址转账(Transfer)</li>
+<li>造币(Generation)</li>
+</ol>
+<p>通过前面对交易单的描述，我想大家应该已经知道，交易的验证是通过不断的追溯交易单来完成的。那么交易验证的细节是如何实现的，bitcoin的交易验证的实现细节是很意思的，它是通过脚本来实现验证的，这样bitcoin就实现了一个可被脚本扩展的行为，更加广义的&quot;交易&quot;，这可以保证足够的灵活性和可扩展，可以想象也许以后会有真正的分布式计算任务跑在上面作为一笔交易。因此要想讲清楚验证的细节，就不得不从脚本系统讲起了。</p>
+<h3 id="jiao-ben-xi-tong" class="heading-control">脚本系统<a class="heading-anchor" href="#jiao-ben-xi-tong" aria-hidden="true"></a></h3>
+<p>Bitcoin的脚本系统是使用类<a href="http://en.wikipedia.org/wiki/FORTH" target="_blank" rel="noopener">FORTH</a>语言（FORTH在嵌入式设备中是我最喜欢的一种语言）实现的，FORTH系统是面向栈的“高级机器”语言，它兼具了高级语言的特性（面向WORD）和机器语言的高性能与小尺寸，唯一的缺点就是可读性不高，基本上可以把FORTH当一种高级的机器语言吧。Bitcoin在实现上做了许多简化和特殊实现，所以只能算是类FORTH的系统。</p>
+<p>在<a href="http://en.wikipedia.org/wiki/FORTH" target="_blank" rel="noopener">FORTH</a>系统中所有的命令(函数)都被称为单词（WORD），所有数据的处理都要压入数据栈上进行，所以FORTH被称为面向栈的语言。比如 1和2相加，在FORTH系统中则是 <code>1 2 ＋</code>，数字 1，2 表示将它们压入到数据栈中（在FORTH解释器执行后实际指令会有<code>OP_PUSH</code>），＋的操作则是将栈顶和次栈顶的数字取出并相加，并将结果压回数据栈。</p>
+<p>Bitcoin的脚本系统的所有的操作指令（单词）见后面的附录，不是所有的操作指令都能被执行支持，因为安全上的考虑有的操作指令被禁止掉了，比如大多数的字符串操作和乘除运算。</p>
+<p>在FORTH系统中一般会定义该系统是8位FORTH, 16位FORTH还是32/64位FORTH，这和数据栈的值长有关。在Bitcoin中的脚本系统使用的堆栈是用（<code>vector&lt;vector&lt;unsigned char&gt; &gt;</code>）来模拟的，它在数据栈的每一项都是以字符串的形式存放，它的数值是统一用CBigNum来运算的（读到这里应该明白为啥bitcoin会限制乘除运算了），每一次从数据栈中压入(<code>CBigNum.getvch()</code>)或者取出数值(<code>CastToBigNum(stacktop[-1])</code>)都要进行一次转换。看着这样的实现，让我有点发怵，本能的不喜欢，怎么能把高效的FORTH搞成这个样子。Bitcoin的脚本系统与FORTH一样，有两个堆栈，一个数据栈，在Bitcoin中被称为main stack,一个返回栈，在Bitcoin中被称为alt stack（事实上在Bitcoin中将alt stack作为数据栈的中转而还没有作为FORTH意义上的返回栈）. Bitcoin的脚本系统没有实现单词定义，流程跳转，循环控制（FOR, WHILE），对IF的实现非常丑陋。事实上我对Bitcoin的脚本实现不是十分认可，堆栈采用变长的数据值，直接将big number 作为opcode，导致每一次opcode执行开销无法控制，由于没有完整实现FORTH的控制指令，导致用trick的方式来实现IF指令，在bitcoin中也因此无法定义新的WORD。总之我很不喜欢bitcoin的这个脚本引擎实现(参见script.cpp)。</p>
+<p>下一篇将接着介绍下和交易验证相关的几个操作符：<code>OP_DUP, OP_HASH160, OP_EQUALVERIFY , OP_CHECKSIG</code> 的功能，现在有点倦了。</p>
+<pre><code class="c"><span class="hljs-keyword">enum</span> opcodetype
+{
+    <span class="hljs-comment">// push value</span>
+    OP_0=<span class="hljs-number">0</span>,
+    OP_FALSE=OP_0,
+    OP_PUSHDATA1=<span class="hljs-number">76</span>,
+    OP_PUSHDATA2,
+    OP_PUSHDATA4,
+    OP_1NEGATE,
+    OP_RESERVED,
+    OP_1,
+    OP_TRUE=OP_1,
+    OP_2,
+    OP_3,
+    OP_4,
+    OP_5,
+    OP_6,
+    OP_7,
+    OP_8,
+    OP_9,
+    OP_10,
+    OP_11,
+    OP_12,
+    OP_13,
+    OP_14,
+    OP_15,
+    OP_16,
+
+    <span class="hljs-comment">// control</span>
+    OP_NOP,
+    OP_VER,
+    OP_IF,
+    OP_NOTIF,
+    OP_VERIF,
+    OP_VERNOTIF,
+    OP_ELSE,
+    OP_ENDIF,
+    OP_VERIFY,
+    OP_RETURN,
+
+    <span class="hljs-comment">// stack ops</span>
+    OP_TOALTSTACK,
+    OP_FROMALTSTACK,
+    OP_2DROP,
+    OP_2DUP,
+    OP_3DUP,
+    OP_2OVER,
+    OP_2ROT,
+    OP_2SWAP,
+    OP_IFDUP,
+    OP_DEPTH,
+    OP_DROP,
+    OP_DUP,
+    OP_NIP,
+    OP_OVER,
+    OP_PICK,
+    OP_ROLL,
+    OP_ROT,
+    OP_SWAP,
+    OP_TUCK,
+
+    <span class="hljs-comment">// splice ops</span>
+    OP_CAT,
+    OP_SUBSTR,
+    OP_LEFT,
+    OP_RIGHT,
+    OP_SIZE,
+
+    <span class="hljs-comment">// bit logic</span>
+    OP_INVERT,
+    OP_AND,
+    OP_OR,
+    OP_XOR,
+    OP_EQUAL,
+    OP_EQUALVERIFY,
+    OP_RESERVED1,
+    OP_RESERVED2,
+
+    <span class="hljs-comment">// numeric</span>
+    OP_1ADD,
+    OP_1SUB,
+    OP_2MUL,
+    OP_2DIV,
+    OP_NEGATE,
+    OP_ABS,
+    OP_NOT,
+    OP_0NOTEQUAL,
+
+    OP_ADD,
+    OP_SUB,
+    OP_MUL,
+    OP_DIV,
+    OP_MOD,
+    OP_LSHIFT,
+    OP_RSHIFT,
+
+    OP_BOOLAND,
+    OP_BOOLOR,
+    OP_NUMEQUAL,
+    OP_NUMEQUALVERIFY,
+    OP_NUMNOTEQUAL,
+    OP_LESSTHAN,
+    OP_GREATERTHAN,
+    OP_LESSTHANOREQUAL,
+    OP_GREATERTHANOREQUAL,
+    OP_MIN,
+    OP_MAX,
+
+    OP_WITHIN,
+
+    <span class="hljs-comment">// crypto</span>
+    OP_RIPEMD160,
+    OP_SHA1,
+    OP_SHA256,
+    OP_HASH160,
+    OP_HASH256,
+    OP_CODESEPARATOR,
+    OP_CHECKSIG,
+    OP_CHECKSIGVERIFY,
+    OP_CHECKMULTISIG,
+    OP_CHECKMULTISIGVERIFY,
+
+    <span class="hljs-comment">// expansion</span>
+    OP_NOP1,
+    OP_NOP2,
+    OP_NOP3,
+    OP_NOP4,
+    OP_NOP5,
+    OP_NOP6,
+    OP_NOP7,
+    OP_NOP8,
+    OP_NOP9,
+    OP_NOP10,
+
+    <span class="hljs-comment">// template matching params</span>
+    OP_PUBKEYHASH = <span class="hljs-number">0xfd</span>,
+    OP_PUBKEY = <span class="hljs-number">0xfe</span>,
+
+    OP_INVALIDOPCODE = <span class="hljs-number">0xff</span>
+};
+</code></pre>
+<h2 id="fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao" class="heading-control">附录Bitcoin脚本系统单词列表<a class="heading-anchor" href="#fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao" aria-hidden="true"></a></h2>
+<h2 id="can-jian-httpsenbitcoinitwikiscript" class="heading-control">参见：<a href="https://en.bitcoin.it/wiki/Script" target="_blank" rel="noopener">https://en.bitcoin.it/wiki/Script</a>：<a class="heading-anchor" href="#can-jian-httpsenbitcoinitwikiscript" aria-hidden="true"></a></h2>
+<h4 id="chang-liang" class="heading-control"><strong>常量</strong><a class="heading-anchor" href="#chang-liang" aria-hidden="true"></a></h4>
+<h4 id="chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci" class="heading-control">常量就是用来把数据压入栈中的单词：<a class="heading-anchor" href="#chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci" aria-hidden="true"></a></h4>
+<p>| 单词             | 虚拟指令(opcode) | 输入       | 输出     | Description     |<br>
+| <code>OP_0, OP_FALSE</code> | 0                | Nothing.   | 0        | 压入数字0到栈中 |<br>
+| N/A              | 1-75             | (special)  | data     | 将紧随 <em>opcode</em> 的data数据 opcode个字节压入到堆栈。opcode兼作数据长度指示。 |<br>
+| <code>OP_PUSHDATA1</code>   | 76               | (special)  | data     | 紧随该指令的下一个字节是被压入数据大小，然后是被压入数据 |<br>
+| <code>OP_PUSHDATA2</code>   | 77               | (special)  | data     | 紧随该指令的两个字节是被压入数据大小，然后是被压入数据. |<br>
+| <code>OP_PUSHDATA4</code>   | 78               | (special)  | data     | 紧随该指令的4个字节是被压入数据大小，然后是被压入数据. |<br>
+| <code>OP_1NEGATE</code>     | 79               | 无.        | -1       | 压入-1 |<br>
+| <code>OP_1, OP_TRUE</code>  | 81               | 无.        | 1        | 压入1. |<br>
+| <code>OP_2-OP_16</code>     | 82-96            | 无.        | 2-16     | 2－16被压入. |</p>
+<h3 id="kong-zhi-liu" class="heading-control"><strong>控制流</strong><a class="heading-anchor" href="#kong-zhi-liu" aria-hidden="true"></a></h3>
+<p>| 单词             | 虚拟指令(opcode) | 输入       | 输出     | Description     |<br>
+| <code>OP_NOP</code>         | 97               | 无         | 无       | 空指令.         |<br>
+| <code>OP_IF</code>          | 99               | <expression> if [statements] [else [statements]] endif | | If 判断指令，取出栈顶值，如果栈顶值为1, 则if后面的语句被执行，否则else中的语句被执行。 |<br>
+| <code>OP_NOTIF</code>       | 100              | <expression> ifnot [statements] [else [statements]] endif | | Ifnot 判断指令，取出栈顶值，如果栈顶值为0, 则if后面的语句被执行，否则else中的语句被执行。 |<br>
+| <code>OP_ELSE</code>        | 103              | <expression> if [statements] [else [statements]] endif | | 放置在 OP_IF 或OP_NOTIF 后的指令，当前面的条件不满足的时候执行 |<br>
+| <code>OP_ENDIF</code>       | 104              | <expression> if [statements] [else [statements]] endif |  | 结束  if/else 执行块. |<br>
+| <code>OP_VERIFY</code>      | 105              | True / false | Nothing / False | <strong>标记交易单无效</strong> 如果栈顶值不为真。当栈顶值为真，移除该栈顶值，否则保留该值。 |<br>
+| <code>OP_RETURN</code>      | 106              | Nothing      | Nothing  | <strong>标记交易单无效</strong>. |</expression></expression></expression></expression></p>
+<h3 id="dui-zhan-cao-zuo" class="heading-control"><strong>堆栈操作</strong><a class="heading-anchor" href="#dui-zhan-cao-zuo" aria-hidden="true"></a></h3>
+<p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
+| <code>OP_TOALTSTACK</code>   | 107    | x1         | (alt)x1      | 从数据栈中弹出栈顶 数据，压入辅助栈。 |<br>
+| <code>OP_FROMALTSTACK</code> | 108    | (alt)x1    | x1           | 从辅助栈弹出栈顶数据压入到数据栈  |<br>
+| <code>OP_IFDUP</code>        | 115    | x          | x / x x      | 如果栈顶非0则复制栈顶  |<br>
+| <code>OP_DEPTH</code>        | 116    | Nothing    | <stack size> | 获取堆栈数据个数 |<br>
+| <code>OP_DROP</code>         | 117    | x          | Nothing      | 丢弃栈顶数据. |<br>
+| <code>OP_DUP</code>          | 118    | x          | x x          | 复制栈顶数据. |<br>
+| <code>OP_NIP</code> | 119 | x1 x2 | x2 | 丢弃次栈顶数据 |<br>
+| <code>OP_OVER</code> | 120 | x1 x2 | x1 x2 x1 | 复制次栈顶数据到栈顶. |<br>
+| <code>OP_PICK</code> | 121 | xn … x2 x1 x0 <n> | xn … x2 x1 x0 xn | 复制第n项数据到栈顶. |<br>
+| <code>OP_ROLL</code> | 122 | xn … x2 x1 x0 <n> | … x2 x1 x0 xn | 将第n项数据移到栈顶. |<br>
+| <code>OP_ROT</code> | 123 | x1 x2 x3 | x2 x3 x1 | 栈顶3项数据向左旋转. |<br>
+| <code>OP_SWAP</code> | 124 | x1 x2 | x2 x1 | 栈顶2项数据交换. |<br>
+| <code>OP_TUCK</code> | 125 | x1 x2 | x2 x1 x2 | 栈顶数据复制并插入到次栈顶数据前 |<br>
+| <code>OP_2DROP</code> | 109 | x1 x2 | Nothing | 同 DROP，只是数据项是2项. |<br>
+| <code>OP_2DUP</code> | 110 | x1 x2 | x1 x2 x1 x2 | 同 DUP，只是数据项是2项. |<br>
+| <code>OP_3DUP</code>  | 111 | x1 x2 x3 | x1 x2 x3 x1 x2 x3 | 同 DUP，只是数据项是3项. |<br>
+| <code>OP_2OVER</code> | 112 | x1 x2 x3 x4 | x1 x2 x3 x4 x1 x2 | 同 OVER，只是数据项是2项. |<br>
+| <code>OP_2ROT</code> | 113 | x1 x2 x3 x4 x5 x6 | x3 x4 x5 x6 x1 x2 | 同 ROT，只是数据项是2项. |<br>
+| <code>OP_2SWAP</code> | 114 | x1 x2 x3 x4 | x3 x4 x1 x2 | 同 SWAP，只是数据项是2项. |</n></n></stack></p>
+<h3 id="zi-fu-chuan-chu-li" class="heading-control"><strong>字符串处理</strong><a class="heading-anchor" href="#zi-fu-chuan-chu-li" aria-hidden="true"></a></h3>
+<p>字符串处理的大多数指令都被禁止了。</p>
+<p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
+| <code>OP_CAT</code> | 126 | x1 x2 | out |  Concatenates two strings. [禁止] |<br>
+| <code>OP_SUBSTR</code> | 127 | in begin size | out | Returns a section of a string. <em>[禁止]</em> |<br>
+| <code>OP_LEFT</code> | 128 | in size | out | Keeps only characters left of the specified point in a string. <em>[禁止]</em> |<br>
+| <code>OP_RIGHT</code> | 129 | in size | out | Keeps only characters right of the specified point in a string. <em>[禁止]</em> |<br>
+| <code>OP_SIZE</code> | 130 | in | in size | 返回字符串长度 |</p>
+<h3 id="wei-yun-suan" class="heading-control"><strong>位运算</strong><a class="heading-anchor" href="#wei-yun-suan" aria-hidden="true"></a></h3>
+<p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
+| <code>OP_INVERT</code> | 131 | in | out | Flips all of the bits in the input. <em>[禁止]</em> |<br>
+| <code>OP_AND</code> | 132 | x1 x2 | out | Boolean <em>and</em> between each bit in the inputs. <em>[禁止]</em> |<br>
+| <code>OP_OR</code> | 133 | x1 x2 | out | Boolean <em>or</em> between each bit in the inputs. <em>[禁止]</em> |<br>
+| <code>OP_XOR</code> | 134 | x1 x2 | out | Boolean <em>exclusive or</em> between each bit in the inputs. <em>[禁止]</em> |<br>
+| <code>OP_EQUAL</code> | 135 | x1 x2 | True / false | Returns 1 if the inputs are exactly equal, 0 otherwise. |<br>
+| <code>OP_EQUALVERIFY</code> | 136 | x1 x2 | True / false | Same as OP_EQUAL, but runs OP_VERIFY afterward. |</p>
+<h3 id="shu-xue-yun-suan" class="heading-control"><strong>数学运算</strong><a class="heading-anchor" href="#shu-xue-yun-suan" aria-hidden="true"></a></h3>
+<p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
+| <code>OP_1ADD</code> | 139 | in | out | 1 is added to the input. |<br>
+| <code>OP_1SUB</code> | 140 | in | out | 1 is subtracted from the input. |<br>
+| <code>OP_2MUL</code> | 141 | in | out | The input is multiplied by 2. <em>[禁止]</em> |<br>
+| <code>OP_2DIV</code> | 142 | in | out | The input is divided by 2. <em>[禁止]</em> |<br>
+| <code>OP_NEGATE</code> | 143 | in | out | The sign of the input is flipped. |<br>
+| <code>OP_ABS</code> | 144 | in | out | The input is made positive. |<br>
+| <code>OP_NOT</code> | 145 | in | out | If the input is 0 or 1, it is flipped. Otherwise the output will be 0. |<br>
+| <code>OP_0NOTEQUAL</code> | 146 | in | out | Returns 1 if the input is 0. 0 otherwise. |<br>
+| <code>OP_ADD</code> | 147 | a b | out | a is added to b. |<br>
+| <code>OP_SUB</code> | 148 | a b | out | b is subtracted from a. |<br>
+| <code>OP_MUL</code> | 149 | a b | out | a is multiplied by b. <em>[禁止]</em> |<br>
+| <code>OP_DIV</code> | 150 | a b | out | a is divided by b. <em>[禁止]</em> |<br>
+| <code>OP_MOD</code> | 151 | a b | out | Returns the remainder after dividing a by b. <em>[禁止]</em> |<br>
+| <code>OP_LSHIFT</code> | 152 | a b | out | Shifts a left b bits, preserving sign. <em>[禁止]</em> |<br>
+| <code>OP_RSHIFT</code> | 153 | a b | out | Shifts a right b bits, preserving sign. <em>[禁止]</em> |<br>
+| <code>OP_BOOLAND</code> | 154 | a b | out | If both a and b are not 0, the output is 1. Otherwise 0. |<br>
+| <code>OP_BOOLOR</code> | 155 | a b | out | If a or b is not 0, the output is 1. Otherwise 0. |<br>
+| <code>OP_NUMEQUAL</code> | 156 | a b | out | Returns 1 if the numbers are equal, 0 otherwise. |<br>
+| <code>OP_NUMEQUALVERIFY</code> | 157 | a b | out | Same as OP_NUMEQUAL, but runs OP_VERIFY afterward. |<br>
+| <code>OP_NUMNOTEQUAL</code> | 158 | a b | out | Returns 1 if the numbers are not equal, 0 otherwise. |<br>
+| <code>OP_LESSTHAN</code> | 159 | a b | out | Returns 1 if a is less than b, 0 otherwise. |<br>
+| <code>OP_GREATERTHAN</code> | 160 | a b | out | Returns 1 if a is greater than b, 0 otherwise. |<br>
+| <code>OP_LESSTHANOREQUAL</code> | 161 | a b | out | Returns 1 if a is less than or equal to b, 0 otherwise. |<br>
+| <code>OP_GREATERTHANOREQUAL</code> | 162 | a b | out | Returns 1 if a is greater than or equal to b, 0 otherwise. |<br>
+| <code>OP_MIN</code> | 163 | a b | out | Returns the smaller of a and b. |<br>
+| <code>OP_MAX</code> | 164 | a b | out | Returns the larger of a and b. |<br>
+| <code>OP_WITHIN</code> | 165 | x min max | out | Returns 1 if x is within the specified range (left-inclusive), 0 otherwise. |</p>
+<h3 id="jia-mi-xiang-guan" class="heading-control"><strong>加密相关</strong><a class="heading-anchor" href="#jia-mi-xiang-guan" aria-hidden="true"></a></h3>
+<p>| 单词              | opcode | 输入       | 输出         | Description      |<br>
+| <code>OP_RIPEMD160</code>    | 166 | in | hash | The input is hashed using RIPEMD-160. |<br>
+| <code>OP_SHA1</code> | 167 | in | hash | The input is hashed using SHA-1. |<br>
+| <code>OP_SHA256</code> | 168 | in | hash | The input is hashed using SHA-256. |<br>
+| <code>OP_HASH160</code> | 169 | in | hash | The input is hashed twice: first with SHA-256 and then with RIPEMD-160. |<br>
+| <code>OP_HASH256</code> | 170 | in | hash | The input is hashed two times with SHA-256. |<br>
+| <code>OP_CODESEPARATOR</code> | 171 | Nothing | Nothing | All of the signature checking words will only match signatures to the data after the most recently-executed <code>OP_CODESEPARATOR</code>. |<br>
+| <a href="https://en.bitcoin.it/wiki/OP_CHECKSIG" target="_blank" rel="noopener">OP_CHECKSIG</a> | 172 | sig pubkey | True / false | The entire transaction’s outputs, inputs, and script (from the most recently-executed <code>OP_CODESEPARATOR</code> to the end) are hashed. The signature used by <code>OP_CHECKSIG</code> must be a valid signature for this hash and public key. If it is, 1 is returned, 0 otherwise. |<br>
+| <code>OP_CHECKSIGVERIFY</code> | 173 | sig pubkey | True / false | Same as <code>OP_CHECKSIG</code>, but <code>OP_VERIFY</code> is executed afterward. |<br>
+| <code>OP_CHECKMULTISIG</code> | 174 | sig1 sig2 … <number of signatures> pub1 pub2 <number of public keys> | True / False | For each signature and public key pair, OP_CHECKSIG is executed. If more public keys than signatures are listed, some key/sig pairs can fail. All signatures need to match a public key. If all signatures are valid, 1 is returned, 0 otherwise. |<br>
+| <code>OP_CHECKMULTISIGVERIFY</code> | 175 | sig1 sig2 … <number of signatures> pub1 pub2 … <number of public keys> | True / False | Same as <code>OP_CHECKMULTISIG</code>, but <code>OP_VERIFY</code> is executed afterward. |</number></number></number></number></p>
+<h3 id="wei-ci-pseudowords" class="heading-control"><strong>伪词（Pseudo-words）</strong><a class="heading-anchor" href="#wei-ci-pseudowords" aria-hidden="true"></a></h3>
+<p>下列词汇用于在内部使用，在脚本系统中实际上不存在的词。</p>
+<p>| 单词              | opcode  | Description      |<br>
+| <code>OP_PUBKEYHASH</code> | 253 | 表示OP_HASH160 后的公开密钥散列 |<br>
+| <code>OP_PUBKEY</code> | 254 | 表示一个公开密钥（可以被 <code>OP_CHECKSIG</code>）. |<br>
+| <code>OP_INVALIDOPCODE</code> | 255 | |</p>
+<h3 id="bao-liu-ci-reserved-words" class="heading-control"><strong>保留词（Reserved words）</strong><a class="heading-anchor" href="#bao-liu-ci-reserved-words" aria-hidden="true"></a></h3>
+<p>没有被定义的opcode被保留以后使用，如果在脚本中使用这些保留词，要么被忽略，要么使得交易无效。</p>
+<p>| Word | Opcode | When used… |<br>
+| <code>OP_RESERVED</code> | 80 | Transaction is invalid |<br>
+| <code>OP_VER</code> | 98 | Transaction is invalid |<br>
+| <code>OP_VERIF</code> | 101 | Transaction is invalid |<br>
+| <code>OP_VERNOTIF</code> | 102 | Transaction is invalid |<br>
+| <code>OP_RESERVED1</code> | 137 | Transaction is invalid |<br>
+| <code>OP_RESERVED2</code> | 138 | Transaction is invalid |<br>
+| <code>OP_NOP1-OP_NOP10</code> | 176-185 | The word is ignored. |</p>
+<p>Ok，接着描述交易验证的具体的过程。</p>
+<h2 id="she-ji-de-jiao-ben-ming-ling-cao-zuo-fu" class="heading-control">涉及的脚本命令（操作符）<a class="heading-anchor" href="#she-ji-de-jiao-ben-ming-ling-cao-zuo-fu" aria-hidden="true"></a></h2>
+<p>首先讲讲涉及到的脚本命令（操作符），描述栈顶项的变化方式如下：(n1 n2 –  )  用 &quot;–&quot;分隔操作符执行前后的栈中元素的变化，左边表示操作前，右边表示操作后。最右边的项表示栈顶元素。这里例子中，n2 表示栈顶，n1表示次栈顶，操作后n1,n2均被弹出。</p>
+<ul>
+<li>OP_EQUAL(n1 n2 – true/false): 判断栈顶两项是否相等的脚本命令，如果相等则压入true，否则false</li>
+<li>OP_VERIFY(true/false – NOTHING/false):  如果栈顶项为true，标记改交易单为有效，否则失败，压入false并返回</li>
+<li>OP_CODESEPARATOR( – ): 将当前执行PC(ProgramCount)保存到变量： pbegincodehash</li>
+<li>OP_CHECKSIG(<sig> <pubkey>– true/false): 校验收入来源(in)的签名是否有效。栈顶是公开密钥(PubKey)，次栈顶是签名(Sig)。如果验证通过会压入True，否则压入False。</pubkey></sig></li>
+<li><code>OP_EQUALVERIFY</code>(n1 n2 – NOTHING/false): 等于 <code>OP_EQUAL</code> <code>OP_VERIFY</code> 两个操作符的联合。</li>
+</ul>
+<h2 id="jiao-yi-yan-zheng" class="heading-control">交易验证<a class="heading-anchor" href="#jiao-yi-yan-zheng" aria-hidden="true"></a></h2>
+<p>以最常见的接收地址交易转账为例描述交易验证的过程（SendMoneyToBitcoinAddress）</p>
+<p>首先示例交易如下：</p>
+<pre><code class="json">{
+  "hash":"23c9e8a3140938a65c73fa0712b1d8614c8eeef486a4ab14107fcce54fbf768c",
+  "ver":1,
+  "vin_sz":1,
+  "vout_sz":2,
+  "lock_time":0,
+  "size":258,
+  "in":[
+    {
+      "prev_out":{
+        "hash":"0740c9ecdef03e46e4c0f74833db5af3cb24c7d48810ef73411662252046f9c6",
+        "n":0
+      },
+      "scriptSig":"304502204028931b310bfec094bbd04275f69beba6bf5f44ab3dbbec9564c34ef9bc1ddc022100d37c214e978808099fc96006b41244d31b203eb4b1c69be9d57b0e2f843ad93501
+      0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6864d9e9c18c9c16e5887c3f03be519fd42cae52f6d1a05d10a2fa7c783b19e9b74be07d6"
+    }
+  ],
+  "out":[
+    {
+      "value":"12.99000000",
+      "scriptPubKey":"OP_DUP OP_HASH160 ef055cb1e8e192cbd8b6a89ccf1eb73552d9764b OP_EQUALVERIFY OP_CHECKSIG"
+    },
+    {
+      "value":"17.00000000",
+      "scriptPubKey":"OP_DUP OP_HASH160 923f3cdf648c1755455a17097d22f0be6add7c7c OP_EQUALVERIFY OP_CHECKSIG"
+    }
+  ]
+}
+</code></pre>
+<p>ScriptSig(<sig> <pubkey>): 中有两个值，一是当前拥有者的该交易单的签名，二是拥有者的公开密钥（用来验证签名）。</pubkey></sig></p>
+<pre><code>Sig: 304502204028931b310bfec094bbd04275f69beba6bf5f44ab3dbbec9564
+c34ef9bc1ddc022100d37c214e978808099fc96006b41244d31b203eb4b1c69
+be9d57b0e2f843ad93501
+
+PubKey:0481f6d0a51bfecb5112f223807ba668c67ac975fb096d07ef65b852a6
+864d9e9c18c9c16e5887c3f03be519fd42cae52f6d1a05d10a2fa7c783b19e9b7
+4be07d6
+</code></pre>
+<p>脚本执行验证过程：</p>
+<ul>
+<li>执行 scriptSig:
+<ul>
+<li>压入 <sig> 和 <pubkey> : <sig> <pubkey></pubkey></sig></pubkey></sig></li>
+</ul>
+</li>
+<li>执行 scriptPubKey:</li>
+<li><code>OP_DUP</code> 复制栈顶<pubkey>: <sig> <pubkey> <pubkey></pubkey></pubkey></sig></pubkey></li>
+<li><code>OP_HASH160</code> 对栈顶项做HASH160（RIPEMD-160(SHA256(<pubkey>)）散列: <sig> <pubkey> <pubkeyhasha></pubkeyhasha></pubkey></sig></pubkey></li>
+<li><pubkeyhash> : 压入 <pubkeyhash></pubkeyhash></pubkeyhash></li>
+<li><code>OP_EQUALVERIFY</code>: 对栈顶两个元素 <pubkeyhasha> <pubkeyhash> 做是否相等校验，如果不相等那么标记交易单无效并返回，如果等于继续： <sig> <pubkey></pubkey></sig></pubkeyhash></pubkeyhasha></li>
+<li><code>OP_CHECKSIG</code>: 校验收入来源的In的签名是否有效，根据pubKey去校验签名<sig>，签名的内容为交易单的Ins, Outs和脚本(从最近一次的 <code>OP_CODESEPARATOR</code> 到脚本结束的位置)的散列。 PubKey.Verify(SignatureHash(scriptCode, nIn, Outs), Sig)</sig></li>
+</ul>
+<p><img src="./bitcoin-pubkey-sig.png" alt></p>
+<pre><code class="c"><span class="hljs-comment">//nIn 当前的交易单的in的索引号</span>
+<span class="hljs-comment">//scriptCode: 保存的当前执行的代码从OP_CODESEPARATOR（如果没有就从脚本开始） 到脚本结束。</span>
+<span class="hljs-function">uint256 <span class="hljs-title">SignatureHash</span><span class="hljs-params">(CScript scriptCode, <span class="hljs-keyword">const</span> CTransaction&amp; txTo, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nIn, <span class="hljs-keyword">int</span> nHashType)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (nIn &gt;= txTo.vin.<span class="hljs-built_in">size</span>())
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ERROR: SignatureHash() : nIn=%d out of range\n"</span>, nIn);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-function">CTransaction <span class="hljs-title">txTmp</span><span class="hljs-params">(txTo)</span></span>;
+
+    <span class="hljs-comment">// In case concatenating two scripts ends up with two codeseparators,</span>
+    <span class="hljs-comment">// or an extra one at the end, this prevents all those possible incompatibilities.</span>
+    scriptCode.FindAndDelete(CScript(OP_CODESEPARATOR));
+
+    <span class="hljs-comment">// Blank out other inputs' signatures</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; txTmp.vin.<span class="hljs-built_in">size</span>(); i++)
+        txTmp.vin[i].scriptSig = CScript();
+    txTmp.vin[nIn].scriptSig = scriptCode;
+
+    <span class="hljs-comment">// Blank out some of the outputs</span>
+    <span class="hljs-keyword">if</span> ((nHashType &amp; <span class="hljs-number">0x1f</span>) == SIGHASH_NONE)
+    {
+        <span class="hljs-comment">// Wildcard payee</span>
+        txTmp.vout.<span class="hljs-built_in">clear</span>();
+
+        <span class="hljs-comment">// Let the others update at will</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; txTmp.vin.<span class="hljs-built_in">size</span>(); i++)
+            <span class="hljs-keyword">if</span> (i != nIn)
+                txTmp.vin[i].nSequence = <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((nHashType &amp; <span class="hljs-number">0x1f</span>) == SIGHASH_SINGLE)
+    {
+        <span class="hljs-comment">// Only lockin the txout payee at same index as txin</span>
+        <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nOut = nIn;
+        <span class="hljs-keyword">if</span> (nOut &gt;= txTmp.vout.<span class="hljs-built_in">size</span>())
+        {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ERROR: SignatureHash() : nOut=%d out of range\n"</span>, nOut);
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        }
+        txTmp.vout.resize(nOut+<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nOut; i++)
+            txTmp.vout[i].SetNull();
+
+        <span class="hljs-comment">// Let the others update at will</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; txTmp.vin.<span class="hljs-built_in">size</span>(); i++)
+            <span class="hljs-keyword">if</span> (i != nIn)
+                txTmp.vin[i].nSequence = <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-comment">// Blank out other inputs completely, not recommended for open transactions</span>
+    <span class="hljs-keyword">if</span> (nHashType &amp; SIGHASH_ANYONECANPAY)
+    {
+        txTmp.vin[<span class="hljs-number">0</span>] = txTmp.vin[nIn];
+        txTmp.vin.resize(<span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-comment">// Serialize and hash</span>
+    <span class="hljs-function">CDataStream <span class="hljs-title">ss</span><span class="hljs-params">(SER_GETHASH)</span></span>;
+    ss.reserve(<span class="hljs-number">10000</span>);
+    ss &lt;&lt; txTmp &lt;&lt; nHashType;
+    <span class="hljs-keyword">return</span> Hash(ss.<span class="hljs-built_in">begin</span>(), ss.<span class="hljs-built_in">end</span>());
+}
+</code></pre>
+<h1 id="wa-kuang-yu-kuai-blocks" class="heading-control">挖矿与块（Blocks）<a class="heading-anchor" href="#wa-kuang-yu-kuai-blocks" aria-hidden="true"></a></h1>
+<p>接下来讲的是什么是挖矿，以及交易单在P2P网络上的存放，其实这个过程也是挖矿的过程。</p>
+<p>所有的交易单是以Block的形式在Bitcoin P2P网络上存放的。每一个Block包含了最近所有的有效交易单。Block中最为重要数据为：</p>
+<ul>
+<li>最近交易单集合</li>
+<li>Nonce随机数</li>
+<li>前一个块的散列值</li>
+</ul>
+<p>在造币的Node总在侦听网络，接收信息，然后各自将接收到的新交易打包到一个新block（CBlock Class in main.h）。在块交易单集合中的第一个交易单总是“造币单”：给创建该块的人以新的货币，节点只需要校验货币金额是否合法即可：形成一个合法的新块得到的回报是初始金额为50BTC，每产生210,000块的时候这个金额减半(大约每隔4年会发生一次)。产生合法的新块是不容易的，需要通过无数次的计算尝试得到，另外如果大家都在计算同一个新块，那么还存在竞争关系，这个时候只有最困难（Difficulty）的那个块（指整个块链的困难度值加起来最大的）才会被网络认可。另外如果块中的某笔交易size大于该块中交易单的平均size，那么该笔交易单会被收取一笔小的交易费用。</p>
+<h2 id="kuai-de-shu-ju-jie-gou" class="heading-control">块的数据结构<a class="heading-anchor" href="#kuai-de-shu-ju-jie-gou" aria-hidden="true"></a></h2>
+<p>块的数据结构可以分为块头（block header）和块体（block body）</p>
+<h3 id="kuai-tou-block-header" class="heading-control">块头（Block Header）<a class="heading-anchor" href="#kuai-tou-block-header" aria-hidden="true"></a></h3>
+<p>块头的数据是用于校验块、产生块ID（256位散列值），这个块ID也是决定块是否合法的数字。计算块ID的公式如下：</p>
+<pre><code class="java">BlockID = SHA256(SHA256(Block_Header));
+</code></pre>
+<p>块头(Block Header)的内容如下：</p>
+<ul>
+<li>ver: 版本号（4字节）</li>
+<li>prev_block: 前一个块的256位散列值</li>
+<li>mrkl_root: 所有交易单的256位散列</li>
+<li>time: 时间戳（4字节）</li>
+<li>Bits: 一个紧凑格式的4字节的数字，它表示一个256位的当前目标（Target）数值，这也表示困难度（Difficulty），最后产生块的ID值必须不大于目标值才能被接受（如果有多人同时产生同一个块，那么最困难的将被接受）。这个数值会每隔2016个block(网络大约每小时创建6个块，创建2016块大约2周)调整一次，当产生前一个2016块的时间大于2周的时候，难度值将会被调低，当小于两周的时候难度值将被调高（关于Target和Difficulty详见后述）。</li>
+<li>nonce: 32位随机数。节点在产生Block的时候，会增量尝试改变nonce的值，直到产生的块的散列值符合bits的要求</li>
+</ul>
+<h3 id="ji-suan-mu-biao-target-he-kun-nan-du-difficulty" class="heading-control">计算目标(Target)和困难度(Difficulty)<a class="heading-anchor" href="#ji-suan-mu-biao-target-he-kun-nan-du-difficulty" aria-hidden="true"></a></h3>
+<h4 id="ji-suan-mu-biao-target" class="heading-control">计算目标（Target）<a class="heading-anchor" href="#ji-suan-mu-biao-target" aria-hidden="true"></a></h4>
+<p>计算目标（Target）是一个256位的数值，块的散列值ID必须小于或等于该目标数值，放可被接受。块头中的BITS是一个用紧凑的4字节格式表示的目标（Target）数值，它表示一个256位的当前目标数值，方式如下：</p>
+<pre><code class="java"><span class="hljs-comment">//假设BITS为：</span>
+BITS = <span class="hljs-number">0x1B0406CC</span>;
+<span class="hljs-comment">//那么target的数值则是：</span>
+Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2</span>^(<span class="hljs-number">8</span>*(<span class="hljs-number">0x1B</span>-<span class="hljs-number">3</span>))= <span class="hljs-number">0x00000000000406CC000000000000000000000000000000000000000000000000</span>;
+</code></pre>
+<h4 id="dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target" class="heading-control">当前网络的目标值为：<a href="http://blockexplorer.com/q/hextarget" target="_blank" rel="noopener">Current target</a>。<a class="heading-anchor" href="#dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target" aria-hidden="true"></a></h4>
+<h4 id="kun-nan-du-difficulty" class="heading-control">困难度(Difficulty)<a class="heading-anchor" href="#kun-nan-du-difficulty" aria-hidden="true"></a></h4>
+<p>困难度(<code>Difficulty</code>)表示该块ID的计算难度，值越大表示越困难，1表示最容易。</p>
+<p>1困难度（<code>Difficulty</code>）的Target被定义为：</p>
+<pre><code>0x1D00FFFF(BITS)
+</code></pre>
+<p>展开后：</p>
+<pre><code>0x00FFFF * 2^(8*(0x1D - 3)) = 0x00000000FFFF0000000000000000000000000000000000000000000000000000
+</code></pre>
+<p>因此困难度的计算公式为：<code>1 困难度（Target） / 当前目标</code></p>
+<p>我们可以在这里查看当前网络的困难度：<a href="http://blockexplorer.com/q/getdifficulty" target="_blank" rel="noopener">Current difficulty</a>（BitCoin的 getDifficulty 接口输出）。也可以通过这个网站查看困难度值的变化情况图：<a href="http://bitcoin.sipa.be/" target="_blank" rel="noopener">Graphs</a>。</p>
+<h4 id="kuai-ti-block-body" class="heading-control">块体（Block Body）<a class="heading-anchor" href="#kuai-ti-block-body" aria-hidden="true"></a></h4>
+<p><code>Block Body</code> 实际上就是交易单的集合。</p>
+<p>你可以在这个网站上看到当前网络所有的交易单（Blocks）:  <a href="https://blockexplorer.com/" target="_blank" rel="noopener">https://blockexplorer.com/</a></p>
+<p>一个具体的块的示例：</p>
+<pre><code class="json">{
+   //hash: 自身ID的sha256散列值
+  "hash":"0000000000001470ed62a9d73c1c74a4b3754e18db0abb057be5ad5ffed659bb",
+  "ver":1,
+  "prev_block":"000000000000158a4051185f339d59227b776ac6bfe6120fa18293b5c08644a8",
+  "mrkl_root":"c5341062635c427b79a730dca8d4a5eb6a482fa21f82cc37c84ae01ea5945fc3",
+  "time":1307565484,
+  "bits":438145839,
+  "nonce":2323396371,
+  //交易单数量
+  "n_tx":6,
+  "size":2193,
+  "tx":[
+    {
+      "hash":"67dbdbc6c4a49bc3364d34aebe76b6f470ced66eb731f9d099d0da6c58e466cf",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":1,
+      "lock_time":0,
+      "size":135,
+      "in":[
+        {
+          "prev_out":{
+            "hash":"0000000000000000000000000000000000000000000000000000000000000000",
+            "n":4294967295
+          },
+          "coinbase":"042f931d1a022301"
+        }
+      ],
+      "out":[
+        {
+          "value":"50.04000000",
+          "scriptPubKey":"049db428c19890bb7706bebdcf69a93c192daef8a73eb7035e2600468b4e1f83d4c2134640f6c619e5521c2050ebc9be9e9c502fdab655a570236418e5c2e95137 OP_CHECKSIG"
+        }
+      ]
+    },
+    {
+      "hash":"c96eb8f874d105e24121cdc5918440c85af27b797013679796fcc26e40938ad2",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":258,
+      "in":[
+        {
+          "prev_out":{
+            "hash":"c8caedb7edb2665b8543916a1e6b1dee2bf1733f75b4604c423db08efa570d65",
+            "n":0
+          },
+          "scriptSig":"3045022100b47c10ebd2413c575510563363fe9cad7f0fdcbefca9dd219bd345bcfeff98a1022049d7037c0be3493650cb2a410a655394678e75a28b8f4cd587644813ccee383801
+          041f5853d9d43b81af0999a4add012e6580db5edc7dabf99bc2aff1a01b1296e7004b73b10a9e2d3ebe0d7377c545aacc56e24aff1c9b130e0721332315e414f72"
+        }
+      ],
+      "out":[
+        {
+          "value":"3.98000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 22718315d786b8f64510be88ad590760de676a59 OP_EQUALVERIFY OP_CHECKSIG"
+        },
+        {
+          "value":"0.01000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 d52804c9bc12e7a7186e53b41784dcd2afed9a92 OP_EQUALVERIFY OP_CHECKSIG"
+        }
+      ]
+    },
+    {
+      "hash":"cd74421dd3d32346bdbef02cde4bc0ed19b5cc15621f761b465a869b2f51287c",
+      "ver":1,
+      "vin_sz":2,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":437,
+      "in":[
+        {
+          "prev_out":{
+            "hash":"e38b71a89071be2820ce95841da03ba8bac77d536d9ac5fe5347136e9bbca104",
+            "n":1
+          },
+          "scriptSig":"3045022100ed5c3626adf84a6d364d7b58fb182ee3bd35758a883ebe2e642e83f4103e91cd022063f61a1d89c1a30f713c2ca277c08c1c4ceb585babef82301f738fdc2312329d01
+          047b4277bb4c23988986c44552156130d4155a1020ec411ca4a07904191d9054de705ec2b79a46155a0d59e8a39b5d450ac73d485b082789b6dad55d5e2230f597"
+        },
+        {
+          "prev_out":{
+            "hash":"a6fc46a5a4a6b202c644cc4854feb2d8cf7befcf695ad810346c8dfb4cc18138",
+            "n":1
+          },
+          "scriptSig":"304402207de219304bfca0e2d93524a2547767ce5044501bb0d9107e04d35cf3d644136d02201244a1ce47c2f3aab6c205e75e433371efb01dad5073d316bf68488ea1ad064301
+          04d74d74c0f2bd415a94090c83bbe10b4949c7ee8f3bb957352d02fb50f3e1ddc5ab79a28b1228eaf2986339a3735e32869019d4894f34a46645288a68900ef6a5"
+        }
+      ],
+      "out":[
+        {
+          "value":"0.01000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 e95281e139fc37bb2aabd84028835c6513a6ac99 OP_EQUALVERIFY OP_CHECKSIG"
+        },
+        {
+          "value":"2.01000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 234c6c8644008de240d90753904789868100786c OP_EQUALVERIFY OP_CHECKSIG"
+        }
+      ]
+    },
+    {
+      "hash":"9d4f130995dbc1ddc5346c109992c0779aa44122195eff51dc00109afc5cad7d",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":258,
+      "in":[
+        {
+          "prev_out":{
+            "hash":"d84cd74d4b470f96379fa9737c43be544e4e57f33e83fc8bf26f232ec5ea97b5",
+            "n":0
+          },
+          "scriptSig":"3045022100d8f3bbb19b4d2593649b4f6ac0074a772ff78fce1fb60e7957c7d99d2627931802205ad4774f58af0b52e37f87592bea7bae84c883c9230e722962f2e52e7eb061e201
+          04732060c3f57ccc0703e05f86f442e45617b446ebca7e9f6c96ca1ec754b9d8a9f2bd727a15c7821cbca0498c2b7f60081873a450f29c5937e9593407166dc71b"
+        }
+      ],
+      "out":[
+        {
+          "value":"30.26538895",
+          "scriptPubKey":"OP_DUP OP_HASH160 7fa1d78819360231c6bc1b23ff644e9124da075f OP_EQUALVERIFY OP_CHECKSIG"
+        },
+        {
+          "value":"4.76000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 847f4729a1464d7a2103796cca32022fe0481d58 OP_EQUALVERIFY OP_CHECKSIG"
+        }
+      ]
+    },
+    {
+      "hash":"68050dc3810310e1e5e9eb3464b1581a353de523a6f26d8b978370bd63880eb7",
+      "ver":1,
+      "vin_sz":4,
+      "vout_sz":1,
+      "lock_time":0,
+      "size":766,
+      "in":[
+        {
+          "prev_out":{
+            "hash":"07a39559553efb329af1538e0fc8a037f20048a83b2278a5041975054e425c3e",
+            "n":17
+          },
+          "scriptSig":"3046022100c3ce1ee6c222d74ff9c97d5729e5c6702c3cabdb61ea0fb3ae8632eae36f03fb0221009cea5a9f94fe14e4673fd87f75750e1d151f6e846c371d8e4af72b5d213bb5c001
+          04ee9e80055248ed804ca6724b2d784c91eec04abdc4ec00b14dc01e56c90513a85453026acf90f1cb1bdd3e3ca07035be40d0b3e3ac6076b5b12bd3234ac8c20b"
+        },
+        {
+          "prev_out":{
+            "hash":"07f95bfdd09e98bf7ce0543e8fdd82f9e8532449ab7167f69aa3d1f030399b96",
+            "n":0
+          },
+          "scriptSig":"3044022011f922460d01986255a6f5e5ce88586bb3a9a32edc836e420d2347dae9df12e1022018d9d4e48dea2b821e01d3253dfaa03af801d01e79ab4eb3ef48f22f84f196aa01
+          04398f321ea6140c6ad51fea724f7c13e1df6c43afb8e4f6f9ab2385b6e18d8eae52516a0b3487512a3dbeb36109d3fcb6391fbc156518c96f57467f97dc55d0a3"
+        },
+        {
+          "prev_out":{
+            "hash":"6c93900990b712fbf2a386ba53bc3aad8f5bcdda73b855a24628d7eae80cf3f9",
+            "n":0
+          },
+          "scriptSig":"3046022100b688feeb1012f913b6366b5b9bd5313238d00b61b48a0e3956c33d1dffc9a1f2022100ed159808e8a732e646ba5af7ed5a0d896c7db0a10757aeccc9c58a67ec42ec7501
+          047e79adbe50ae668041d2b08702c12de83fdaecb866b261755cbba27fe344c6fc67f3fc2593edc0bb053b0fde62c4d42d152b6525c10bde365d80a8d2d8d77a85"
+        },
+        {
+          "prev_out":{
+            "hash":"ed416acb1373bcce28ec63e6e600e0da7f8892b557591bc0386210c56e8c034f",
+            "n":1
+          },
+          "scriptSig":"3046022100c1ffdf383d108a9b1e8e33ed3ef8bd6b368b1ed0584ac187eb0897c90422fc5b022100f7bfb8f0b17c3b121943622a4d04a8a818391c68028b6a63d9cd2536d9f3714501
+          04ee9e80055248ed804ca6724b2d784c91eec04abdc4ec00b14dc01e56c90513a85453026acf90f1cb1bdd3e3ca07035be40d0b3e3ac6076b5b12bd3234ac8c20b"
+        }
+      ],
+      "out":[
+        {
+          "value":"1.69000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 71b9ea593ba56d1159493cb2b37a03f368fb6c40 OP_EQUALVERIFY OP_CHECKSIG"
+        }
+      ]
+    },
+    {
+      "hash":"4e6e47f0fa7a559219be309db20c5c17296956304cf47dc8c52910c24b505a92",
+      "ver":1,
+      "vin_sz":1,
+      "vout_sz":2,
+      "lock_time":0,
+      "size":258,
+      "in":[
+        {
+          "prev_out":{
+            "hash":"897f67e6ec0b5a64b511c2052d05f0e2437811260041bb0915f2c40879025215",
+            "n":1
+          },
+          "scriptSig":"304502200dbe53f77f947b12dfabb737e0862c1f2d37515f6293b06c08710ccdb69419d6022100b379ab597d8d17034f1654f20e68c72930050342884743869b6421ee7eaad83801
+          04bdd996cd29ca3d34604306de8983d1fadf978ae43c12c1e832ce803ae57241cd7762a40dc1e5f6176ca3b0caac622c82e271b59c66fb1f8fa8225930a8807edf"
+        }
+      ],
+      "out":[
+        {
+          "value":"0.04000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 50e44bb02555c7084e08cda95eb43a9c621fa0ac OP_EQUALVERIFY OP_CHECKSIG"
+        },
+        {
+          "value":"0.03000000",
+          "scriptPubKey":"OP_DUP OP_HASH160 ecd8f97222481950eed4f98db82455635ccb86b4 OP_EQUALVERIFY OP_CHECKSIG"
+        }
+      ]
+    }
+  ],
+  "mrkl_tree":[
+    "67dbdbc6c4a49bc3364d34aebe76b6f470ced66eb731f9d099d0da6c58e466cf",
+    "c96eb8f874d105e24121cdc5918440c85af27b797013679796fcc26e40938ad2",
+    "cd74421dd3d32346bdbef02cde4bc0ed19b5cc15621f761b465a869b2f51287c",
+    "9d4f130995dbc1ddc5346c109992c0779aa44122195eff51dc00109afc5cad7d",
+    "68050dc3810310e1e5e9eb3464b1581a353de523a6f26d8b978370bd63880eb7",
+    "4e6e47f0fa7a559219be309db20c5c17296956304cf47dc8c52910c24b505a92",
+    "f4462bd30c529d154dc1b35d8f68961441e09ffaceaa25da17eb1814101f8ad5",
+    "1961263895b63d4760f81eda7ae94848eb68e2170b79a224ba704a3c21fd6feb",
+    "0427a2dbd54fa6ec034d704336fa255f6c139e6d7b9bf803714cfbc9dcc61b85",
+    "42441420d09c91336e69bae9f7eb39b1c6d90562028de3094bea5f675a25a082",
+    "4af79ccb4bf857df3e75a50106b15ef35aa73a209efa5089f2f2193ff70ab93d",
+    "c5341062635c427b79a730dca8d4a5eb6a482fa21f82cc37c84ae01ea5945fc3"
+  ]
+}
+</code></pre>
+<p><img src="./bitcoin-logo.jpg" alt="bitcoin"><br>
+趁今早，把以前零碎的分析给整理出来作为问题和展望，就算对开源Bitcoin P2P 电子货币系统内幕最后一篇的小结。</p>
+<h1 id="wen-ti" class="heading-control">问题<a class="heading-anchor" href="#wen-ti" aria-hidden="true"></a></h1>
+<p>Bitcoin目前存在的问题其实是非常多的，目前Bitcoin的主要成就是解决了数字货币的两个核心问题，并在线上做了验证，取得了一定的实际经验。</p>
+<h2 id="yi-jing-jie-jue-de-wen-ti" class="heading-control">已经解决的问题<a class="heading-anchor" href="#yi-jing-jie-jue-de-wen-ti" aria-hidden="true"></a></h2>
+<p>Bitcoin 目前较好的解决了数字货币的两个核心问题：</p>
+<ul>
+<li>货币伪造复制</li>
+<li>货币重复花费</li>
+</ul>
+<h2 id="shang-wei-jie-jue-de-wen-ti" class="heading-control">尚未解决的问题<a class="heading-anchor" href="#shang-wei-jie-jue-de-wen-ti" aria-hidden="true"></a></h2>
+<p>在我看来 Bitcoin 其实只是一次试水，看看方案到底是否可行，从当前的试验结果看来，方案是可行的。这已经令人非常high了，但是这个方案现在看来还是比较粗糙的，许多细节需要完善，这里只提下最严重的问题。目前随着交易量的日益增加，当下最为严重的两个问题是关于存储和流量。</p>
+<h3 id="cun-chu-he-liu-liang-wen-ti" class="heading-control">存储和流量问题<a class="heading-anchor" href="#cun-chu-he-liu-liang-wen-ti" aria-hidden="true"></a></h3>
+<ul>
+<li>存储：目前每个节点上文件数据是684M(我记得上个月已经上G，初步猜测脚本算法终于增加了pruning算法，把存储和流量给降了下来)，但是这始终会随着交易量的增加而持续增加的。</li>
+<li>流量：上个月，当连接数在115-130的时候，节点3小时内的流量大约143M。当在PC新安装Bitcoin客户端后全部获取900M交易单信息花了8小时。这个月因为算法改进，有所好转。不过一旦参与的人数越来越多，交易日益频繁，这个上限依然存在。</li>
+</ul>
+<p>目前Bitcoin网络上Block的总数为：137741 <a href="http://blockexplorer.com/q/getblockcount" target="_blank" rel="noopener">http://blockexplorer.com/q/getblockcount</a><br>
+平均块大小为：25460 <a href="http://blockexplorer.com/q/avgblocksize" target="_blank" rel="noopener">http://blockexplorer.com/q/avgblocksize</a><br>
+那么所有块的总大小为：137741*25460=3506885860(bytes)=3344.427MB =3.266GB</p>
+<p>Visa组织目前平均每年大约处理28.4*1000000000(Billion)笔交易，也就是平均每秒大约处理54000笔交易(<a href="http://www.creditcards.com/credit-card-news/credit-card-industry-facts-personal-debt-statistics-1276.php" target="_blank" rel="noopener">参阅此处</a>)。而Bitcoin网络目前的最大处理能力只有每秒7笔交易。如果按照目前的处理方式，假设要每秒处理2000笔交易，那么每秒的数据流量就会达到大约1G Bytes的样子。(<a href="https://en.bitcoin.it/wiki/Scalability" target="_blank" rel="noopener">参阅此处</a>)</p>
+<p>存储和流量问题的根本原因在于：目前是完全对等的P2P交易系统，对于交易并没有分布式处理机制，每一个节点都必须保持所有的历史交易单，而不是每一个节点上分担一部分。</p>
+<p>这需要采用分布式处理(Map-Reduce)方式对交易进行处理，不需要所有的节点都保持所有的数据。我以为可以设定如下的分布Mapping方式：</p>
+<ol>
+<li>保持自己相关的交易数据：只保持自己钱包中的货币相关交易。</li>
+<li>保持临近节点的交易数据：只对邻居节点服务</li>
+<li>保持交换的交易数据信息：如果对方节点保存了自己的相关交易则也为对方他的交易数据</li>
+<li>按远近程度决定服务对象：越远服务费高</li>
+<li>按远近切分成若干小网络：形成当地BTC货币，通过兑换维持各个网络之间的流通</li>
+</ol>
+<h3 id="duan-wang-de-yi-wen" class="heading-control">断网的疑问<a class="heading-anchor" href="#duan-wang-de-yi-wen" aria-hidden="true"></a></h3>
+<p>这是曹晓刚同学提出的，善意的说就是当海底光纤断掉后，两个网络之间没有别的连接通道的情况下的重复花费问题。很遗憾，目前的Bitcoin体系中没有解决这样的问题。问题简化描述如下：</p>
+<pre><code>1A  2A
+|   |
+1B--2B
+|   |
+1C  2C
+</code></pre>
+<p>比如将节点1A上的钱包有25000BTC数据复制到了节点2A。<br>
+1A,1B,1C和2A,2B,2C两个网络之间仅仅通过节点1B和2B连接。现在1B,2B之间的连接断了。在1A上的花费，和在2A上的花费就成了重复花费。</p>
+<p>可能的解决办法：</p>
+<ol>
+<li>1A上得来的钱，广播验证，首先是本网络的节点做的验证居多。那么如果移到2A，并且断网，大部分验证的节点必然就不再存在。</li>
+<li>实名交易</li>
+<li>Bitcoin 不再是一个大网，而是按网络远近切分的若干小网，见上述的分布式处理机制方案</li>
+</ol>
+<p>通过兑换机制: A1B1C1产生的独立货币1，A2B2C2产生独立货币2，自由兑换。</p>
+<h3 id="dun-ji-cao-zong-shi-chang-wen-ti" class="heading-control">囤积操纵市场问题<a class="heading-anchor" href="#dun-ji-cao-zong-shi-chang-wen-ti" aria-hidden="true"></a></h3>
+<p>这几乎不算一个严重的问题，不过如果是限制了BTC总量（目前的算法是这样做的）。那么如果BTC被囤积操作市场，总感觉不对。如何避免被BTC囤积？另外，Bitcoin币仅仅存在于wallet.dat文件中，如果该文件丢了，那么该wallet中的所有货币也就丢了。如果足够长的时间内某一笔货币没有交易流通，那么就可以等效于失去了。</p>
+<ol>
+<li>也许回收长时间没有流通的BTC币是一个法子。</li>
+<li>也许刺激赋予活跃度高的BTC更高的价值也是一个法子。</li>
+<li>也许不应该限制BTC 总量，只需要能在网络中调控保持稳定的增加速率即可。</li>
+</ol>
+<p>不过，这一块也许专门研究货币金融的专家才更有资格说话。</p>
+<h1 id="zhan-wang-yu-wei-lai" class="heading-control">展望与未来<a class="heading-anchor" href="#zhan-wang-yu-wei-lai" aria-hidden="true"></a></h1>
+<p>目前Bitcoin进入现实货币体制并能取代之，还为之过早，不过在私下的一些特殊场合可以取得一定现实货币的地位。</p>
+<p>类似Bitcoin P2P虚拟货币体系的目前最大的应用场景也许是在游戏（非实体）世界上。这样使用者的利益可以得到最大限度的保障，不用担心公司的倒闭，也不用担心公司随意增发虚拟货币。更加方便快捷，可以在任意的游戏或者非实体体系中使用。</p>
+<ol>
+<li>游戏（虚拟）世界的主流货币</li>
+<li>分布式计算能力交换的计量单位</li>
+<li>自动化的分布式的兑换体系</li>
+<li>去中心化的钱包(decentralized wallet)</li>
+<li>P2P的担保人（中间人）体系</li>
+<li>去中心化的认证体系(Decentralized OpenID)</li>
+</ol>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/bitcoin-tech/" title="开源 Bitcoin P2P电子货币系统技术内幕">https://riceball.me/article/bitcoin-tech/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/learning/" rel="tag"><i class="fa fa-tag"></i> learning</a>
+              <a href="/tags/bitcoin/" rel="tag"><i class="fa fa-tag"></i> bitcoin</a>
+              <a href="/tags/digital-currency/" rel="tag"><i class="fa fa-tag"></i> digital currency</a>
+              <a href="/tags/hashcash/" rel="tag"><i class="fa fa-tag"></i> hashcash</a>
+              <a href="/tags/p2p/" rel="tag"><i class="fa fa-tag"></i> p2p</a>
+              <a href="/tags/proof-of-work/" rel="tag"><i class="fa fa-tag"></i> proof-of-work</a>
+              <a href="/tags/redian/" rel="tag"><i class="fa fa-tag"></i> redian</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/h5-game-dev/" rel="prev" title="HTML Web游戏开发之浮光掠影">
+      <i class="fa fa-chevron-left"></i> HTML Web游戏开发之浮光掠影
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/thinking-sns/" rel="next" title="基于信息的社交媒体网络进一步的创新兼谈 Google+">
+      基于信息的社交媒体网络进一步的创新兼谈 Google+ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ming-ci-jie-shi-yi-ji-bei-hou-de-ji-shu"><span class="nav-number">1.</span> <span class="nav-text">名词解释以及背后的技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gong-zuo-zheng-ming-powproofofwork-ji-zhi"><span class="nav-number">1.1.</span> <span class="nav-text">工作证明 POW(Proof-Of-Work)机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashcash-ji-zhi"><span class="nav-number">1.2.</span> <span class="nav-text">HashCash 机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitcoin-zhong-de-shu-yu-jie-shi"><span class="nav-number">1.3.</span> <span class="nav-text">Bitcoin中的术语解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dian-zi-huo-bi-he-jiao-yi-dan-transaction"><span class="nav-number">1.4.</span> <span class="nav-text">电子货币和交易单(Transaction)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-yi-de-lei-xing-yu-yan-zheng"><span class="nav-number">2.</span> <span class="nav-text">交易的类型与验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jiao-ben-xi-tong"><span class="nav-number">2.1.</span> <span class="nav-text">脚本系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fu-lu-bitcoin-jiao-ben-xi-tong-dan-ci-lie-biao"><span class="nav-number">3.</span> <span class="nav-text">附录Bitcoin脚本系统单词列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#can-jian-httpsenbitcoinitwikiscript"><span class="nav-number">4.</span> <span class="nav-text">参见：https:&#x2F;&#x2F;en.bitcoin.it&#x2F;wiki&#x2F;Script：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chang-liang"><span class="nav-number">4.0.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chang-liang-jiu-shi-yong-lai-ba-shu-ju-ya-ru-zhan-zhong-de-dan-ci"><span class="nav-number">4.0.2.</span> <span class="nav-text">常量就是用来把数据压入栈中的单词：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kong-zhi-liu"><span class="nav-number">4.1.</span> <span class="nav-text">控制流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dui-zhan-cao-zuo"><span class="nav-number">4.2.</span> <span class="nav-text">堆栈操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zi-fu-chuan-chu-li"><span class="nav-number">4.3.</span> <span class="nav-text">字符串处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wei-yun-suan"><span class="nav-number">4.4.</span> <span class="nav-text">位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-xue-yun-suan"><span class="nav-number">4.5.</span> <span class="nav-text">数学运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jia-mi-xiang-guan"><span class="nav-number">4.6.</span> <span class="nav-text">加密相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wei-ci-pseudowords"><span class="nav-number">4.7.</span> <span class="nav-text">伪词（Pseudo-words）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bao-liu-ci-reserved-words"><span class="nav-number">4.8.</span> <span class="nav-text">保留词（Reserved words）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#she-ji-de-jiao-ben-ming-ling-cao-zuo-fu"><span class="nav-number">5.</span> <span class="nav-text">涉及的脚本命令（操作符）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jiao-yi-yan-zheng"><span class="nav-number">6.</span> <span class="nav-text">交易验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wa-kuang-yu-kuai-blocks"><span class="nav-number"></span> <span class="nav-text">挖矿与块（Blocks）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kuai-de-shu-ju-jie-gou"><span class="nav-number">1.</span> <span class="nav-text">块的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kuai-tou-block-header"><span class="nav-number">1.1.</span> <span class="nav-text">块头（Block Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-suan-mu-biao-target-he-kun-nan-du-difficulty"><span class="nav-number">1.2.</span> <span class="nav-text">计算目标(Target)和困难度(Difficulty)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ji-suan-mu-biao-target"><span class="nav-number">1.2.1.</span> <span class="nav-text">计算目标（Target）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dang-qian-wang-luo-de-mu-biao-zhi-wei-current-target"><span class="nav-number">1.2.2.</span> <span class="nav-text">当前网络的目标值为：Current target。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kun-nan-du-difficulty"><span class="nav-number">1.2.3.</span> <span class="nav-text">困难度(Difficulty)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kuai-ti-block-body"><span class="nav-number">1.2.4.</span> <span class="nav-text">块体（Block Body）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wen-ti"><span class="nav-number"></span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yi-jing-jie-jue-de-wen-ti"><span class="nav-number">1.</span> <span class="nav-text">已经解决的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shang-wei-jie-jue-de-wen-ti"><span class="nav-number">2.</span> <span class="nav-text">尚未解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cun-chu-he-liu-liang-wen-ti"><span class="nav-number">2.1.</span> <span class="nav-text">存储和流量问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#duan-wang-de-yi-wen"><span class="nav-number">2.2.</span> <span class="nav-text">断网的疑问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dun-ji-cao-zong-shi-chang-wen-ti"><span class="nav-number">2.3.</span> <span class="nav-text">囤积操纵市场问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zhan-wang-yu-wei-lai"><span class="nav-number"></span> <span class="nav-text">展望与未来</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/bitcoin-tech/",
+      identifier: "article/bitcoin-tech/",
+      title: "开源 Bitcoin P2P电子货币系统技术内幕",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

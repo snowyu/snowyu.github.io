@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenPGP 密钥(GnuPG软件)安全随笔">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;gpg&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-26T17:27:00.000Z">
+<meta property="article:modified_time" content="2019-11-26T17:27:00.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="openpgp">
+<meta property="article:tag" content="pgp">
+<meta property="article:tag" content="gpg">
+<meta property="article:tag" content="public key">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/gpg/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+
+
+
+  <title>OpenPGP 密钥(GnuPG软件)安全随笔 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/gpg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          OpenPGP 密钥(GnuPG软件)安全随笔
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-27 01:27:00" itemprop="dateCreated datePublished" datetime="2019-11-27T01:27:00+08:00">2019-11-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/" itemprop="url" rel="index">
+                    <span itemprop="name">Security</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/PGP/" itemprop="url" rel="index">
+                    <span itemprop="name">PGP</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>21 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>GnuPG软件（简称GPG） – OpenPGP</p>
+<h1 id="li-shi-jie-shao-history" class="heading-control">历史介绍 History<a class="heading-anchor" href="#li-shi-jie-shao-history" aria-hidden="true"></a></h1>
+<h2 id="pgp-pretty-good-privacy" class="heading-control">PGP (Pretty Good Privacy)<a class="heading-anchor" href="#pgp-pretty-good-privacy" aria-hidden="true"></a></h2>
+<p>最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。</p>
+<h2 id="openpgp" class="heading-control">OpenPGP<a class="heading-anchor" href="#openpgp" aria-hidden="true"></a></h2>
+<p>Zimmerman(最早的PGP开发人员)于1997年向IETF（互联网工程任务组）提交了<a href="https://tools.ietf.org/html/rfc4880" target="_blank" rel="noopener">开源PGP（OpenPGP）标准提案</a>。如今，OpenPGP成为了PGP的标准规范，是供公众使用的开源代码，并且该术语可用于描述支持OpenPGP系统的任何程序。</p>
+<h2 id="gpg-gnu-privacy-guard" class="heading-control">GPG (GNU Privacy Guard)<a class="heading-anchor" href="#gpg-gnu-privacy-guard" aria-hidden="true"></a></h2>
+<p>GnuPGP由Werner Koch开发的开源加密工具软件，并于1999年发布，以替代现有的Symantec加密工具软件套件。 它可以免费下载，并且基于IETF建立的OpenPGP标准，因此可以与Symantec的PGP工具和支持OpenPGP标准的软件互操作。GPG可以打开和解密任何PGP和OpenPGP标准的文件。</p>
+<h2 id="keys" class="heading-control">Keys<a class="heading-anchor" href="#keys" aria-hidden="true"></a></h2>
+<p>在公开密钥算法中，一个Key(密钥)包括两个部分：公钥和私钥。公钥类似于印鉴，而私钥类似于印章。</p>
+<h2 id="subkeys" class="heading-control"><a href="https://wiki.debian.org/Subkeys" target="_blank" rel="noopener">Subkeys</a><a class="heading-anchor" href="#subkeys" aria-hidden="true"></a></h2>
+<p>在OpenPGP标准中你的钥匙包括一个主钥(master key)和若干子钥(subkeys)。在OpenPGP标准中主钥，子钥(Subkey)是必需理解，非常关键的概念，可以极大的提升安全性。</p>
+<ul>
+<li>主钥的主要作用是用于签发和吊销其它密钥、签名或用户Id，从安全角度考虑，主钥的私钥应该完全保持离线。</li>
+<li>子钥：根据设置用途可以用于加密或签名，一旦子钥泄密可以用主钥吊销该子钥。
+<ul>
+<li>GPG会随机选择用于加密或签名(GPG默认策略会挑选钥匙size最大的，以及创建时间最近的)。</li>
+</ul>
+</li>
+</ul>
+<p>而就内部结构上看，子钥和主钥没啥不同的，只是PacketId上有差别，另外子钥要求有绑定主钥的签名包（见后面描述Binding Signatures）。</p>
+<ul>
+<li>Public-Subkey Packet Tag 是 14</li>
+<li>Secret-Subkey Packet Tag 是 7</li>
+</ul>
+<h3 id="subkey-usage" class="heading-control">Subkey Usage<a class="heading-anchor" href="#subkey-usage" aria-hidden="true"></a></h3>
+<p>OpenPGP subkeys 用于不同的设想：</p>
+<ul>
+<li>可以保持主键始终处于离线安全状态，您的主键不需要存放在线上(online)，可以只存放在本地的安全设备上。一旦有子键泄露，可以立刻使用主键轻松的吊销该子键，而没有撤销主键的麻烦（需要再次分享新的键,获取新的签名…）。Being able to store the primary key offline or a more secure device. If a machine with a subkey is harmed, you can easily revoke the subkey without all the hassles of revoking your primary key (sharing a new key, getting new signatures, …).</li>
+<li>可以在不同的机器上使用不同的子键。例如在构建服务器上使用单独的子键。记住，吊销单独的子键非常容易。Having different subkeys on different machines, for example a signing subkey on a build server. Again, revoking single keys is easy.</li>
+<li>使用较大尺寸的密钥作为主键长时间使用，而使用短而快速的子键，可以每天一换。Using a larger primary key for long lifetime, and shorter, but faster subkeys for day-to-day usage.</li>
+<li>某些算法不能同时支持加密和签名，例如: DSA 主密钥只能签名，因此它需要另一个密钥来加密，通常DSA与ElGamal算法成对使用。Some algorithms do not support both encrypting and signing. For example, a DSA primary key requires another key for encryption, typically paired with ElGamal.</li>
+</ul>
+<h3 id="binding-signatures" class="heading-control">Binding Signatures<a class="heading-anchor" href="#binding-signatures" aria-hidden="true"></a></h3>
+<p>There are special signature subtypes to bind subkeys to primary keys (and vice verse), listed in <a href="http://tools.ietf.org/html/rfc4880#section-5.2.1" target="_blank" rel="noopener">RFC 4880, OpenPGP, 5.2.1 Signature Types</a>:</p>
+<p>0x18: Subkey Binding Signature</p>
+<p>This signature is a statement by the top-level signing key that indicates that it owns the subkey. This signature is calculated directly on the primary key and subkey, and not on any User ID or other packets. A signature that binds a signing subkey MUST have an Embedded Signature subpacket in this binding signature that contains a 0x19 signature made by the signing subkey on the primary key and subkey.</p>
+<p>0x19: Primary Key Binding Signature</p>
+<p>This signature is a statement by a signing subkey, indicating that it is owned by the primary key and subkey. This signature is calculated the same way as a 0x18 signature: directly on the primary key and subkey, and not on any User ID or other packets.</p>
+<p>OpenPGP 更进一步的支持 <code>subkeys</code>, 它像普通的钥匙,但 subkeys 是和一个 master 钥匙绑定的，子钥 可以用于签名或加密。子钥可以独立于主钥匙进行撤销和存放。</p>
+<p>换句话说，子钥像单独的钥匙对，但是自动与您的主钥匙关联。</p>
+<p>GnuPG 实际上用一个签名(signing-only)钥匙作为主钥匙。然后自动创建了一个用于加密的子钥。 Without a subkey for encryption, you can’t have encrypted e-mails with GnuPG at all. Debian requires you to have the encryption subkey so that certain kinds of things can be e-mailed to you safely, such as the initial password for your <a href="http://debian.org" target="_blank" rel="noopener">debian.org</a> shell account.</p>
+<p>主钥仅当在以下情况下才被使用：</p>
+<ul>
+<li>when you sign someone else’s key or revoke an existing signature,</li>
+<li>when you add a new UID or mark an existing UID as primary,</li>
+<li>when you create a new subkey,</li>
+<li>when you revoke an existing UID or subkey,</li>
+<li>when you change the preferences (e.g., with setpref) on a UID,</li>
+<li>when you change the expiration date on your master key or any of its subkey, or</li>
+<li>when you revoke or generate a revocation certificate for the complete key.</li>
+</ul>
+<p>看 openpgpjs 的代码，好像可以独立使用subkey,但是必须存在 master key的公钥。</p>
+<pre><code class="bash">gpg --<span class="hljs-built_in">help</span>
+gpg --gen-key
+gpg --expert --gen-key <span class="hljs-comment"># 可以打开ECC等其它加密算法的支持, or --full-gen-key</span>
+
+　　gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+　　This is free software: you are free to change and redistribute it.
+　　There is NO WARRANTY, to the extent permitted by law.
+　　请选择您要使用的密钥种类：
+　　　(1) RSA and RSA (default)
+　　　(2) DSA and Elgamal
+　　　(3) DSA (仅用于签名)　
+　　　(4) RSA (仅用于签名)
+　　您的选择？
+
+<span class="hljs-comment"># 生成一张"撤销证书"，以备以后密钥作废时，可以请求外部的公钥服务器撤销你的公钥。</span>
+gpg --gen-revoke [用户ID]
+
+gpg --list-keys --list-options show-keyring
+
+/home/XXX/.gnupg/pubring.kbx
+---------------------------------
+pub   rsa4096 2016-10-05 [SC]
+      72ECF46A56B4AD39C907BBB71646B01B86E50310
+uid           [ unknown] Yarn Packaging &lt;yarn@dan.cx&gt;
+sub   rsa4096 2016-10-05 [E]
+sub   rsa4096 2016-10-05 [S] [expires: 2017-10-05]
+sub   rsa4096 2016-10-30 [S]
+
+pub   rsa4096 2017-04-17 [SC]
+      EAD16A2C6AE2C4C70344D76855C2BF1FD36EBB60
+uid           [ultimate] Riceball LEE &lt;snowyu.lee@gmail.com&gt;
+sub   rsa4096 2017-04-17 [E]
+
+<span class="hljs-comment"># 输出密钥,armor参数可以将其转换为ASCII码显示。</span>
+gpg --armor --output public-key.txt --<span class="hljs-built_in">export</span> [用户ID]
+gpg --armor --output private-key.txt --<span class="hljs-built_in">export</span>-secret-keys
+<span class="hljs-comment"># 上传公钥 公钥服务器是网络上专门储存用户公钥的服务器</span>
+gpg --send-keys [用户ID]
+
+<span class="hljs-comment"># 除了生成自己的密钥，还需要将他人的公钥或者你的其他密钥输入系统。这时可以使用import参数。</span>
+gpg --import [密钥文件]
+
+<span class="hljs-comment"># 为了获得他人的公钥，可以让对方直接发给你，或者到公钥服务器上寻找。</span>
+gpg --search-keys [用户ID]
+
+<span class="hljs-comment"># encrypt参数用于加密。</span>
+gpg --recipient [用户ID] --output demo.en.txt --encrypt demo.txt
+
+<span class="hljs-comment"># 解密 GPG允许省略decrypt参数。</span>
+gpg --decrypt demo.en.txt --output demo.de.txt
+
+<span class="hljs-comment"># 对文件签名 当前目录下生成demo.txt.gpg文件 -a 将为ascii armored 输出 demo.txt.asc</span>
+<span class="hljs-comment"># -o demo.txt.sig 自定义输出文件名</span>
+gpg --detach-sig demo.txt
+<span class="hljs-comment"># 生成ASCII码的签名文件</span>
+gpg --clearsign demo.txt
+
+<span class="hljs-comment">#  验证签名</span>
+gpg --verify demo.txt.asc demo.txt
+
+
+<span class="hljs-comment"># 增加 subkey 启用 ECC 支持</span>
+
+gpg --expert --edit-key YOURMASTERKEYID
+gpg&gt; addkey
+  Please select what kind of key you want:
+    (3) DSA (sign only)
+    (4) RSA (sign only)
+    (5) Elgamal (encrypt only)
+    (6) RSA (encrypt only)
+    (7) DSA (<span class="hljs-built_in">set</span> your own capabilities)
+    (8) RSA (<span class="hljs-built_in">set</span> your own capabilities)
+    (10) ECC (sign only)
+    (11) ECC (<span class="hljs-built_in">set</span> your own capabilities)
+    (12) ECC (encrypt only)
+    (13) Existing key
+  Your selection? 10
+  Please select <span class="hljs-built_in">which</span> elliptic curve you want:
+    (1) Curve 25519
+    (3) NIST P-256
+    (4) NIST P-384
+    (5) NIST P-521
+    (6) Brainpool P-256
+    (7) Brainpool P-384
+    (8) Brainpool P-512
+    (9) secp256k1
+  Your selection? 9
+gpg&gt; save
+</code></pre>
+<h3 id="dao-chu-mi-yue" class="heading-control">导出密钥<a class="heading-anchor" href="#dao-chu-mi-yue" aria-hidden="true"></a></h3>
+<p>应用签名等需要。</p>
+<p><code>openpgp2ssh</code> 测试成功，其余失败,搞定。</p>
+<pre><code class="bash">sudo apt install monkeysphere
+<span class="hljs-comment"># 弄之前先解密需要导出的密钥</span>
+<span class="hljs-comment"># 10F15E84852CB868 是subkey的id,可以用 gpg --list-keys 看到</span>
+gpg --<span class="hljs-built_in">export</span>-secret-subkeys youmasterid@gmail.com | openpgp2ssh 10F15E84852CB868 &gt; id_rsa
+openssl rsa -<span class="hljs-keyword">in</span> id_rsa -outform pem &gt; key.pem
+<span class="hljs-comment"># 将子密钥转为 pkcs8 格式。</span>
+openssl pkcs8 -topk8 -outform DER -<span class="hljs-keyword">in</span> key.pem -inform PEM -out key.pk8 -nocrypt
+<span class="hljs-comment"># 产生请求签名的证书文件,发给签名方签名形成签名证书。</span>
+openssl req -new -key key.pem -out request.pem
+<span class="hljs-comment"># 签名方进行签名，产生签名证书。</span>
+<span class="hljs-comment"># 这样一来变成了自签名的，而不是主钥签名的。如果要主钥签名，首先得导出主钥。</span>
+openssl x509 -req -days 9999 -<span class="hljs-keyword">in</span> request.pem -signkey key.pem -out certificate.pem
+<span class="hljs-comment"># 使用 Android 提供的 SignApk.jar 进行 apk签名</span>
+java -jar SignApk.jar certificate.pem key.pk8 Application.apk Application_signed.apk
+<span class="hljs-comment"># 可以用这个脚本转到keytool去用java的 jarsigner, -p keystore-password</span>
+keytool-importkeypair -k ~/.android/debug.keystore -p android -pk8 key.pk8 -cert certificate.pem -<span class="hljs-built_in">alias</span> platform
+<span class="hljs-comment"># 使用 java自带的签名工具进行签名</span>
+jarsigner -verbose -keystore ~/.android/debug.keystore Application_unsign.apk platform
+</code></pre>
+<p><a href="https://github.com/getfatday/keytool-importkeypair" target="_blank" rel="noopener">https://github.com/getfatday/keytool-importkeypair</a></p>
+<pre><code class="bash"><span class="hljs-comment"># keytool-importkeypair</span>
+<span class="hljs-comment"># 将pkcs8 转回 pem 格式</span>
+openssl pkcs8 -inform DER -nocrypt -<span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${pk8}</span>"</span> -out <span class="hljs-string">"<span class="hljs-variable">${key}</span>"</span>
+<span class="hljs-comment"># 将密钥绑定签名证书，使用 keystore的密码加密</span>
+openssl pkcs12 -<span class="hljs-built_in">export</span> -<span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${cert}</span>"</span> -inkey <span class="hljs-string">"<span class="hljs-variable">${key}</span>"</span> -out <span class="hljs-string">"<span class="hljs-variable">${p12}</span>"</span> -password pass:<span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span> -name <span class="hljs-string">"<span class="hljs-variable">${alias}</span>"</span>
+<span class="hljs-comment"># 导入keystore</span>
+keytool -importkeystore -deststorepass <span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span> -destkeystore <span class="hljs-string">"<span class="hljs-variable">${keystore}</span>"</span> -srckeystore <span class="hljs-string">"<span class="hljs-variable">${p12}</span>"</span> -srcstoretype PKCS12 -srcstorepass <span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span>
+</code></pre>
+<hr>
+<p>以下为测试失败的一些方法：</p>
+<p>It’s separate key storage: <code>gpg</code> has <code>~/.gnupg/pubring.gpg</code>, <code>gpgsm</code> has <code>~/.gnupg/pubring.kbx</code><br>
+So keys added with gpgsm aren’t usable with gpg; gpg doesn’t read ~/.gnupg/pubring.kbx.</p>
+<pre><code class="bash">gpg -o secret-key.p12 --<span class="hljs-built_in">export</span> [key id] --<span class="hljs-built_in">export</span>-format pkcs12 --cert
+</code></pre>
+<p><code>pkcs12</code> Only binary blocks are output; the default file extension is .p12; a signed key must be paired; and input must match exactly one key. In this case, --cert is required.</p>
+<p><code>--cert</code> This option is the X.509 issuer long name or the 32-bit or 64-bit key ID, if the signing key is available.</p>
+<p>And there is an option concerning the charset of the exported key, which often is a problem with (especially older) windows programs:</p>
+<p><code>--p12-charset</code> name gpgsm uses the UTF-8 encoding when encoding passphrases for PKCS#12 files. This option may be used to force the passphrase to be encoded in the specified encoding name. This is useful if the application used to import the key uses a different encoding and thus will not be able to import a file generated by gpgsm. Commonly used values for name are Latin1 and CP850. Note that gpgsm itself automagically imports any file with a passphrase encoded to the most commonly used encodings.</p>
+<p>It contains keys and certificates. Then you can split them with openSSL and transform it in .pem at the same time</p>
+<pre><code class="bash">openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -out gpg-certs.pem -clcerts -nokeys -passin <span class="hljs-string">'pass:P@s5w0rD'</span>
+openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -out gpg-key.pem -nocerts -nodes
+
+openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -nocerts -out gpg-key.pem
+openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -nokeys -out gpg-certs.pem
+</code></pre>
+<p>还发现一个工具可以： openpgp2ssh <a href="http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html" target="_blank" rel="noopener">http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html</a></p>
+<p>但是只支持rsa以及没有密码的key.</p>
+<p><code>gpg --edit-key $KEYID</code> 然后用 <code>passwd</code> 子命令移除密码。然后</p>
+<p><code>gpg --export-secret-key $KEYID | openpgp2ssh $KEYID &gt; id_rsa</code></p>
+<p>然后可以建立 Certificate Signing Request (CSR):</p>
+<p>openssl req -new -key id_rsa -out id_rsa.csr</p>
+<p>id_rsa.csr’s content should look like:</p>
+<pre><code>-----BEGIN CERTIFICATE REQUEST-----
+MIIC9jCCAd4CAQAwgZkxCzAJBgNVBAYTAkRFMRMwEQYDVQQIEwpTb21lLVN0YXRl[...]
+-----END CERTIFICATE REQUEST-----
+</code></pre>
+<p>然后发给CA，CA签名后发给你证书文件:</p>
+<pre><code>-----BEGIN CERTIFICATE-----
+MIIFRjCCAy6gAwIBAgIDCuP8MA0GCSqGSIb3DQEBBQUAMHkxEDAOBgNVBAoTB1Jv[...]
+-----END CERTIFICATE-----
+</code></pre>
+<p>你把<code>id_rsa</code>和证书合并在一起：</p>
+<pre><code>-----BEGIN CERTIFICATE-----
+MIIFRjCCAy6gAwIBAgIDCuP8MA0GCSqGSIb3DQEBBQUAMHkxEDAOBgNVBAoTB1Jv[...]
+-----END CERTIFICATE-----
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEA0s2wNIWuUzuBYU9U0cK/mGa4LMtsWTEZEFTQhHj2eg4ZHmdt[...]
+-----END RSA PRIVATE KEY-----
+</code></pre>
+<p>最后创建a PKCS#12 container:</p>
+<p>openssl pkcs12 -export -in email@address.pem -out email@address.pem.p12</p>
+<p><a href="http://wiki.cacert.org/ConvertingPgpKeyToCertificate" target="_blank" rel="noopener">Creating a new X.509 certificate from your PGP key pair</a></p>
+<pre><code class="bash"><span class="hljs-comment"># 失败，没有 p12-export参数了！！！</span>
+/usr/lib/gnupg/gpg-protect-tool --p12-export -P &lt;passphrase&gt; ~/.gnupg/private-keys-v1.d/[keygrip] &gt;foo.p12
+</code></pre>
+<p><code>[keygrip]</code> is the hash of the key.  you can find it by:</p>
+<pre><code class="bash">gpg --with-keygrip --list-key
+</code></pre>
+<p>prepend the above line by space to avoid login the passphrase in history.</p>
+<p>then (as per this guide, in fact)</p>
+<pre><code>openssl pkcs12 -in foo.p12 -nocerts -out foo.pem
+chmod 0600 foo.pem
+mv foo.pem ~/.ssh/id_rsa
+ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
+</code></pre>
+<h2 id="pgp-xin-ren-fang-shi" class="heading-control">PGP 信任方式<a class="heading-anchor" href="#pgp-xin-ren-fang-shi" aria-hidden="true"></a></h2>
+<p>PGP（Pretty Good Privacy）最初是用传统公钥密码学加密email信息的，之后又被用于加密本地文件。</p>
+<p>注意：PGP和WoT(Web of Trust)不是同一样事务，PGP采用了WoT的方式。</p>
+<p>PGP没有可信任的中心权威（第三方机构），但是相对应的是，系统中的每个人都可以签发自己的公钥并通过证书签名建立起自己的信任网。</p>
+<p>一、公钥证书</p>
+<p>公钥证书是PGP的重要核心。每个证书包含公钥所有者的用户ID（通常使用email地址），公钥，密钥ID，日期以及创建时间。证书需要被多个“介绍人”签名，“介绍人”是指用户完全信任的实体。PGP信任网的每个实体的主要标识是其公钥ID，而非与证书相关的用户ID号(这是因为用户ID号不稳定而公钥ID全局唯一且稳定不变)。但是公钥ID难以记忆，这也是唯一的问题（目前尚未完全解决）。</p>
+<p>二、信任的定义</p>
+<p>在PGP中有两个方面来定义信任：</p>
+<ol>
+<li>公钥证书的有效性；</li>
+<li>介绍人的可信度。</li>
+</ol>
+<p>在此做个说明：一是所谓公钥之间的“介绍”其实就是“介绍人”对“被介绍人”的公钥证书上进行签名，其它人通过证书上的签名判断“被介绍人”的可信度，后面会讲到如何判断；二是公钥的有效性是指公钥通过证书上完全可信的签名将其与对应的公钥ID号紧密相连，如果失联则有效性消失。</p>
+<p>首先介绍公钥证书有效性的层级：</p>
+<ul>
+<li>未定义有效（undefined）:公钥的有效性无法判断；</li>
+<li>边际有效（marginal）：公钥可具有一定的有效性，但是无法完全确认；</li>
+<li>完全有效（complete）：公钥完全有效。</li>
+</ul>
+<p>“介绍人”可信度主要定义的是用户认为某公钥所有者作为其它公钥的“介绍人”的可信任度。</p>
+<p>下面再介绍“介绍人”可信度的层级：</p>
+<ul>
+<li>完全可信（full）：该公钥介绍其它公钥是完全值得信任的；</li>
+<li>边际可信(marginal)：该公钥可以介绍其它公钥，但其可信度值得怀疑；</li>
+<li>不可信(untrustworthy)：该公钥完全不值得信任，它为其它公钥所做的签名可忽略不计；</li>
+<li>可信未知（don’t know）：该公钥介绍其它公钥的可信度仍属未知状态。</li>
+</ul>
+<p>然而以上的有效性和可信度定义得十分模糊，PGP就想办法使其更具实际指导意义。PGP赋予用户自行调节标准的能力，它定义了两个参数：COMPLETES_NEEDED（完全需要数量）和MARGINALS_NEEDED（边际需要数量）。前者定义为使公钥证书完全有效时所需的完全可信签名的数量，后者定义为使公钥部分有效时所需的边际签名的数量。这两个参数都是需要用户根据自身情况定的。</p>
+<p>三、信任评估算法</p>
+<p>当PGP评估一个公钥证书的可信度时，它需要运用如下算法，即信任评估算法（用伪代码表示）：</p>
+<pre><code>1. For each signature do
+
+// scan signatures
+
+2. if signature is completely valid then
+
+3. if key trust ∈{undefined,unknown,untrusted} then
+
+4. ignore signature
+
+5. if key trust is marginal then
+
+6. accumulate marginals_counter
+
+7. if key trust is complete then
+
+8. accumulate completes_counter
+
+9. else
+
+10. ignore signature
+
+// decision
+
+11. if (marginals_counter&gt;0) or (completes_counter&gt;0) then
+
+12. if (marginals_counter&gt;=MARGINALS_NEEDED) or
+
+13.(completes_counter&gt;=COMPLETES_NEEDED) then
+
+14. mark key validity as 'complete'
+
+15. else
+
+16. mark key validity as 'marginal'
+</code></pre>
+<p>其中：</p>
+<ul>
+<li>line 6: marginals_counter  计算该公钥证书的边际信任签名个数；</li>
+<li>line 8: completes_counter 计算该公钥证书的完全信任签名个数；</li>
+<li>line 10:非完全有效的签名将被忽略，即便它是由可信任的“介绍人”提出；</li>
+<li>lines 11,12,13: COMPLETES_NEEDED（完全需要数量）和MARGINALS_NEEDED（边际需要数量）均大于1。</li>
+</ul>
+<p>四、介绍人</p>
+<p>PGP是通过证书的签名人来证明公钥的有效性的，这些签名人又被称为“介绍人”，即，一个用户通过用自己的私钥签名一个新的公钥证书来向其它用户证明该证书中包含的公钥的有效性。如果一个用户有幸被划分为“完全可信介绍人”，则其被人完全信任，它在介绍其它公钥证书时影响力更大，介绍的人不需更多；若该用户被划分为“边际可信介绍人”，则其影响力就不足，需要更多这样的人来签名证书作证明。其中每个介绍人的可信度都是根据用户的考虑和隐私的需求结合起来定义的。</p>
+<p>在PGP中，信任是不可以传递的。即在下图的介绍人（证书）链中，Carol不能假设Eric 的证书是有效的，除非通过介绍人的介绍。</p>
+<pre><code>Carol --&gt; Alice --&gt; Bob --&gt; Eric
+</code></pre>
+<pre><code class="mermaid">graph LR
+  Carol --&gt; Alice
+  Alice --&gt; Bob
+  Bob --&gt; Eric
+</code></pre>
+<p>在PGP中的CERT_DEPTH参数尽管定义了证书链长度的最大值，但是也不能用其确定出证书的有效性。</p>
+<p>也就是说，这些链的作用仅在于寻求用户之间的直接信任关系，帮助减少关系网的冗余度，使关系网更加清晰。</p>
+<p>信赖网路机制比S/MIME方案的集中管理的公钥基础设施有优势，但是没有被网络普通大众普遍采用，一般只在Unix-like的爱好者、开源软体界、和对隐私特别注意而且有电脑知识的人群之间使用。如何使一般用户容易并且乐意使用、接收证书然后手动的验证它们的有效性，这些潜在的推广阻碍目前还没有满意的解决方案。</p>
+<h2 id="key-server" class="heading-control">Key Server<a class="heading-anchor" href="#key-server" aria-hidden="true"></a></h2>
+<p><a href="https://roll.urown.net/server/pgp-keyserver.html" target="_blank" rel="noopener">https://roll.urown.net/server/pgp-keyserver.html</a></p>
+<h2 id="references" class="heading-control">References<a class="heading-anchor" href="#references" aria-hidden="true"></a></h2>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/gpg/" title="OpenPGP 密钥(GnuPG软件)安全随笔">https://riceball.me/article/gpg/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/openpgp/" rel="tag"><i class="fa fa-tag"></i> openpgp</a>
+              <a href="/tags/pgp/" rel="tag"><i class="fa fa-tag"></i> pgp</a>
+              <a href="/tags/gpg/" rel="tag"><i class="fa fa-tag"></i> gpg</a>
+              <a href="/tags/public-key/" rel="tag"><i class="fa fa-tag"></i> public key</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/interative-markdown/" rel="prev" title="基于Markdown的响应(交互)式文档">
+      <i class="fa fa-chevron-left"></i> 基于Markdown的响应(交互)式文档
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/web-clipper/" rel="next" title="网摘与知识笔记杂弹">
+      网摘与知识笔记杂弹 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#li-shi-jie-shao-history"><span class="nav-number">1.</span> <span class="nav-text">历史介绍 History</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pgp-pretty-good-privacy"><span class="nav-number">1.1.</span> <span class="nav-text">PGP (Pretty Good Privacy)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#openpgp"><span class="nav-number">1.2.</span> <span class="nav-text">OpenPGP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gpg-gnu-privacy-guard"><span class="nav-number">1.3.</span> <span class="nav-text">GPG (GNU Privacy Guard)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keys"><span class="nav-number">1.4.</span> <span class="nav-text">Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subkeys"><span class="nav-number">1.5.</span> <span class="nav-text">Subkeys</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#subkey-usage"><span class="nav-number">1.5.1.</span> <span class="nav-text">Subkey Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#binding-signatures"><span class="nav-number">1.5.2.</span> <span class="nav-text">Binding Signatures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dao-chu-mi-yue"><span class="nav-number">1.5.3.</span> <span class="nav-text">导出密钥</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pgp-xin-ren-fang-shi"><span class="nav-number">1.6.</span> <span class="nav-text">PGP 信任方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#key-server"><span class="nav-number">1.7.</span> <span class="nav-text">Key Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">1.8.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/gpg/",
+      identifier: "article/gpg/",
+      title: "OpenPGP 密钥(GnuPG软件)安全随笔",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
