@@ -125,7 +125,7 @@ ChatGPT已经能够理解人类的心智，这是人工智能领域的一个重�
 
 ## 附录
 
-### GPT1-3
+### GPT1-4
 
 Generative Pre-trained Transformer（GPT）系列是由OpenAI提出的非常强大的预训练语言模型.
 
