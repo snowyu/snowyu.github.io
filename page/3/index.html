@@ -70,10 +70,10 @@
     isPost: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -244,6 +244,148 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/promise.cn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/article/promise.cn/" class="post-title-link" itemprop="url">异步编程与 Promise</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-12-06 08:44:06" itemprop="dateCreated datePublished" datetime="2015-12-06T08:44:06+08:00">2015-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2016-03-22 04:00:14" itemprop="dateModified" datetime="2016-03-22T04:00:14+08:00">2016-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Learning</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning/Programming/Asynchronous/" itemprop="url" rel="index">
+                    <span itemprop="name">Asynchronous</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="promise" class="heading-control">Promise<a class="heading-anchor" href="#promise" aria-hidden="true"></a></h1>
+<p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p>
+<p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
+<ul>
+<li>promise只有三种状态，未完成，完成(fulfilled)和失败(rejected)。</li>
+<li>promise的状态可以由未完成转换成完成，或者未完成转换成失败。</li>
+<li>promise的状态转换只发生一次</li>
+<li>promise有一个then方法: (<code>promise.then(onFulfilled, onRejected)</code>)
+<ul>
+<li>
+<p>then方法可以接受2个回调函数作为参数。</p>
+<ul>
+<li>对应promise的两种状态fulfilled, rejected的回调函数。回调函数的传递参数分别是resolve(value),reject(value) 函数。</li>
+</ul>
+<pre><code class="js">.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>)</span>{
+        <span class="hljs-comment">//当promise状态变成fulfilled时，调用此函数</span>
+    },<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reject</span>)</span>{
+        <span class="hljs-comment">//当promise状态变成rejected时，调用此函数</span>
+    });
+</code></pre>
+<pre><code class="coffee">.<span class="hljs-keyword">then</span> (<span class="hljs-function"><span class="hljs-params">(resolve)</span>-&gt;</span>), <span class="hljs-function">(<span class="hljs-params">(reject)</span>-&gt;</span>))
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>Promise API 标准存在多个提案，目前看来，<a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+</a> 已经正在成为事实上的标准。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/article/promise.cn/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1299,120 +1441,6 @@ NAS提供给我们的功能有：</p>
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/diy-cloud-computing-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
-      <meta itemprop="name" content="Riceball LEE">
-      <meta itemprop="description" content="Go with wind.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Riceball LEE">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/diy-cloud-computing-1/" class="post-title-link" itemprop="url">DIY 与 云计算（一）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2012-05-01 06:07:30" itemprop="dateCreated datePublished" datetime="2012-05-01T06:07:30+08:00">2012-05-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-22 14:56:43" itemprop="dateModified" datetime="2019-11-22T14:56:43+08:00">2019-11-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">Thinking</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/Cloud-Computing/" itemprop="url" rel="index">
-                    <span itemprop="name">Cloud Computing</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  <span class="post-meta-item">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-copyright"></i>
-    </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
-  </span>
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>DIY相信大家都知道，就是自己动手做的意思(Do It by Youself)，而云计算呢？那么何谓云计算，云计算与分布式计算，网格计算的差异在哪里？DIY与云计算能扯得上关系么？然后顺着DIY思路再看看国内，谁能告诉我真正的国内的云计算数据中心在哪里？</p>
-<p>在我看来，目前云计算是以超大规模的服务器组成若干数据中心，通过商业运营，为互联网提供可伸缩的，按需供给的基础设施服务。对于希望能对整个互联网提供商业运营服务，如此超大规模的可配置的数据中心，成本就是关键，对于超大规模来说，哪怕是一台的成本能节约100元，那么以万台计算，就可以节约百万，无论采购成本还是运营成本在超大规模的运营下每台的小额节省将会极大的增强成本竞争力。</p>
-<p>真正的云计算服务是离不开DIY的，越有技术能力的公司DIY的程度越深，从硬件到软件无一不是在深度定制，用以压榨出更多硬件性能和节能。下面以Google举例来说。Google 的数据中心一直以来都是戒备森严的禁地，众所周知，Google和Amazon这些大佬总是对数据中心内部运营状态严格保密，因为Google把自己在对数据中心服务器的DIY定制能力视作为公司的核心竞争力之一。事实上google一直对于自己定制数据中心硬件严加保密，直到2009年才对外开了一个窗，向外界展示了它5年前的google定制数据中心的面貌。Google 定制自己的主板、机箱、机柜（集装箱），乃至数据中心，甚至利用地势来节能。</p>
-<p>Google 展示了自己DIY的一种<a href="./google-server.jpg">服务器</a>，使用一个12瓦电池供电，这比数据中心的 UPS 更可靠。Rich Miller 在<a href="http://www.datacenterknowledge.com/archives/2009/04/01/efficient-ups-aids-googles-extreme-pue/" target="_blank" rel="noopener">一篇关于数据中心的博客文章</a>中表示，这个设计让 Google 的 UPS 利用率达到99.9%，而一般数据中心只能达到92%～95%。</p>
-<p><img src="./google-server-l.jpg" alt="Google DIY Server Image"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/article/diy-cloud-computing-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1485,20 +1513,20 @@ NAS提供给我们的功能有：</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">117</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1541,13 +1569,13 @@ NAS提供给我们的功能有：</p>
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">269k</span>
+    <span title="站点总字数">287k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:09</span>
+    <span title="站点阅读时长">8:42</span>
 </div>
 
         
