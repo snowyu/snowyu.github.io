@@ -88,7 +88,7 @@
 </ol>
 <p>最后，如果我们想要实现对人工智能的有效控制、可解释性以及审核性，我们需要将神经网络、自然语言处理和知识库三个方面结合起来，而不是仅仅使用单一的神经网络。否则，这就像是在造电子大脑一样，缺乏必要的解释和可控性。只有当我们将多个技术结合起来，才能够真正掌握和管理人工智能的发展。</p>
 <h2 id="fu-lu" class="heading-control">附录<a class="heading-anchor" href="#fu-lu" aria-hidden="true"></a></h2>
-<h3 id="gpt1-3" class="heading-control">GPT1-3<a class="heading-anchor" href="#gpt1-3" aria-hidden="true"></a></h3>
+<h3 id="gpt1-4" class="heading-control">GPT1-4<a class="heading-anchor" href="#gpt1-4" aria-hidden="true"></a></h3>
 <p>Generative Pre-trained Transformer（GPT）系列是由OpenAI提出的非常强大的预训练语言模型.</p>
 <h4 id="gpt1-wu-jian-du-xue-xi" class="heading-control">GPT-1:无监督学习<a class="heading-anchor" href="#gpt1-wu-jian-du-xue-xi" aria-hidden="true"></a></h4>
 <p>在GPT-1之前传统的NLP模型通常需要大量有标签的数据进行有监督的训练，这些数据通常需要手动标注，而标注工作既耗费时间，又容易出现标注错误，从而影响模型的训练效果。此外，这些标注数据往往只适用于特定的任务，难以适应其他的任务，也限制了模型的应用场景。</p>
