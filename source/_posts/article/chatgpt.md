@@ -1,23 +1,20 @@
 ---
 author: riceball
 date: 2023-03-15 10:11:07+08:00
-title: 我看 ChatGPT: 人类在作死还是在创造"生命"
+title: 我看 ChatGPT：人类在作死还是在创造生命
 categories:
-  - P2P
-  _ BlockChain
-  - Digital Currency
+  - AI
+  - GPT
 tags:
   - learning
-  - blockchain
-  - bitcoin
-  - digital currency
-  - hashcash
-  - p2p
-  - proof-of-work
+  - ai
+  - gpt
+  - chatgpt
+  - deep learning
 ---
 
 
-## 我看 ChatGPT: 人类在作死还是在创造"生命"
+## 我看 ChatGPT：人类在作死还是在创造"生命"
 
 ChatGPT所使用`GPT3.5`的语言模型有 1750 亿个参数,与GPT2相比,比 GPT2 大 100 倍。GPT3 发布后是当时最大的神经网络，并且现在仍然是最大的神经网络。它的语言专长和无数能力令大多数人感到惊讶。与我们的大脑比较,一般人类的大脑有大约 80-1000 亿个神经元和大约 100 万亿个突触,如果将GPT3语言模型的参数和大脑的突触类比(尽管这并不恰当),大概只相当于人类大脑的千分之一.尽管只有人类大脑的千分之一但是`GPT3.5`的语言模型已经表现出非常强大的语言处理能力，例如可以生成准确的语法和语义、理解上下文和推断语境等,甚至首次出现了心智。
 

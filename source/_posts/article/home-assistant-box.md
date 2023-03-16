@@ -31,7 +31,7 @@ HA是跑在PC上还是盒子里,这是个问题!
 
 简单提下我用PC碰到的问题,主要是RAM的问题, 常规 RAM 不支持 ECC 校验, 如果关键地址出错,导致系统崩溃,而有些文件系统严重依赖RAM的稳定性,比如ZFS(可组ZFS软阵列),如果RAM出错就会导致文件系统数据错误.
 
-![nas8bay](/articlehome-assistant-wifi/nas8bay.jpg)
+![nas8bay](./nas8bay.jpg)
 
 而我,家里的NAS早就不是24小时开机了,而是按需开机. 我也不想家里PC24小时保持开机, 所以需要盒子作为智能中枢.
 
@@ -50,22 +50,22 @@ HA是跑在PC上还是盒子里,这是个问题!
 PC没啥说的,盒子的明堂不少.我买过的盒子:作为机顶盒，路由器，硬盘盒...:
 
 * CubieTruck Box:  Allwinner A20(双核) 1Ghz, 2GiB DDR3 480MHz, 8G NAND(支持内置2.5硬盘)
-  * ![CubieTruck](/articlehome-assistant-wifi/CubieTruck.jpg)
+  * ![CubieTruck](/article/home-assistant-wifi/CubieTruck.jpg)
 * NanoPC T4 Box: RK3399, 内存 双通道4GB LPDDR3-1866, 16GB eMMC 5.1 Flash, Bluetooth 4.1 双频Wi-Fi蓝牙模块, 2x2 MIMO, 2xUSB3.0(1xTypeC),2xUsb2.0, 1xPcieX4(M.2 M-Key), 40PinGPIO, microSD(TF卡)插槽
   * RK3399:
     * CPU: 双Cortex-A72大核(up to 2.0GHz)+四Cortex-A53小核结构(up to 1.5GHz),
     * GPU: Mali-T864 GPU(4核 900MHz), 支持OpenGL ES1.1/2.0/3.0/3.1, OpenCL, DX11, 支持AFBC（帧缓冲压缩）
     * VPU: 支持4K VP9 and 4K 10bits H265/H264 视频解码，高达60fps, 双VOP显示等视频编解码功能
-  * ![NanoPC-T4-Box](/articlehome-assistant-wifi/NanoPC-T4-Box.jpg)
+  * ![NanoPC-T4-Box](/article/home-assistant-wifi/NanoPC-T4-Box.jpg)
 * NanoPi R4S: RK3399, 4GB LPDDR4, 2xUSB3
-  * ![Nanopi-R4S](/articlehome-assistant-wifi/Nanopi-R4S.jpg)
+  * ![Nanopi-R4S](/article/home-assistant-wifi/Nanopi-R4S.jpg)
 * HK1 Box: CPU Amlogic S905X3(4核A55 up tp 1.91 GHz), GPU G31 MP2（650 MHz，6内核）, 内存2G/4GB（DDR4，3200 MHz）, 闪存16G/32G eMMC, Wifi/Bluetooth 4.0, 1xUsb3.0, 1xUsb2.0, microSD(TF卡)插槽, SPDIF光纤音频接口, H.265硬解(8K支持)
-  * ![HK1-Box](/articlehome-assistant-wifi/HK1-Box.jpg)
+  * ![HK1-Box](/article/home-assistant-wifi/HK1-Box.jpg)
 * Rock5 Model B RK3588 16GB RAM 最新到的板子
   * Quad-core ARM Cortex-A76 MPCore processor and quad-core ARM Cortex-A55 MPCore processor
   * Embedded ARM Mali-G610 MP4 3D GPU
   * The build-in NPU supports INT4/INT8/INT16/FP16 hybrid operation and computing power is up to 6TOPs
-  * ![Rock5B](/articlehome-assistant-wifi/rock5b.jpg)
+  * ![Rock5B](/article/home-assistant-wifi/rock5b.jpg)
 
 其中性能以及功能最好的盒子是`NanoPC T4`,我当年买成￥900（全套：主板+散热片+RTC+金属外壳+红外遥控），没想到现在单板都上千了。但是价格太贵了。性价比不划算，而且这个板子我已经再用了。于是参考官网推荐的 [HomeAssistant Blue](https://www.home-assistant.io/blue/) , 我选择了HK1 Box。
 
