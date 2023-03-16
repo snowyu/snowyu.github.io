@@ -40,6 +40,11 @@
 <li>没有这样的规定</li>
 </ul>
 </li>
+<li>在对话中学到的知识无法做到个性化的迁移学习
+<ul>
+<li>哪怕是在同一个对话中,如果超出了上下文划窗的窗口大小,也会因为遗忘而失去一部分信息</li>
+</ul>
+</li>
 </ol>
 <p>这里可以送ChatGPT四句话:</p>
 <pre><code>积极认错,死不悔改
@@ -233,11 +238,20 @@
 </blockquote>
 <blockquote>
 <p>ChatGPT: 诗仙李白的诗歌风格豪放奔放、恢弘磅礴，他笔下的山川美景、人物传奇、历史典故、哲思禅意都展现出了浓郁的个性和文化气息。以下是我所写的一首模仿李白的诗歌，希望您会喜欢。</p>
-<p>《长江归来》</p>
-<p>长江水奔腾，滔滔涛声惊。孤舟飘荡处，人生何所征？</p>
-<p>风雨中徐行，浪花飞舞轻。神州大地上，人群纷纷征。</p>
-<p>今朝归来后，春色尽红英。想念江南水，再游心已鸣。</p>
-<p>梦中山水画，诗中豪情迎。人生如此短，应珍爱其中行。</p>
+<pre><code>《长江归来》
+
+长江水奔腾，滔滔涛声惊。
+孤舟飘荡处，人生何所征？
+
+风雨中徐行，浪花飞舞轻。
+神州大地上，人群纷纷征。
+
+今朝归来后，春色尽红英。
+想念江南水，再游心已鸣。
+
+梦中山水画，诗中豪情迎。
+人生如此短，应珍爱其中行。
+</code></pre>
 </blockquote>
 <blockquote>
 <p>我: 五言最后一句6字.  孤舟飘荡处，为何就&quot;人生何所征&quot;了？神州大地上，&quot;人群纷纷征&quot;是什么意思? 两个征字你不觉得奇怪么? “再游心已鸣” 鸣是个啥? 诗中豪情迎, 迎啥?</p>
@@ -282,7 +296,11 @@
 </blockquote>
 <blockquote>
 <p>ChatGPT: 好的，我尝试用李白的风格，写一首七言律诗：</p>
-<p>春朝熹微波涛动，江水潺湲绿满洲。山峦耸翠凌云影，梅花绽雪乱纷柔。远处渔翁垂钓浪，近来游客吟诗愁。碧空苍鹰高翱翔，令人心驰意沉浮。</p>
+<pre><code>春朝熹微波涛动，江水潺湲绿满洲。
+山峦耸翠凌云影，梅花绽雪乱纷柔。
+远处渔翁垂钓浪，近来游客吟诗愁。
+碧空苍鹰高翱翔，令人心驰意沉浮。
+</code></pre>
 <p>这首诗描述的是春天早晨的景象，江水潺潺，山峦苍翠，梅花飘零。远处渔翁垂钓，近来游客吟诗。苍鹰在碧空中高翱翔，整个景象令人感到神往和陶醉。该诗符合七言律诗的平仄、押韵和字数要求，每句都是7个字，且押韵方式为AABBCCB，呼应了律诗的规则。</p>
 </blockquote>
 <p>看来ChatGPT在中国古文上的训练是远远不足,作七言已很勉强,五言是完全不会.</p>
@@ -676,9 +694,9 @@ power). It is recognized by its one octet value that is greater than or equal to
       </categories>
       <tags>
         <tag>thinking</tag>
+        <tag>iot</tag>
         <tag>open source</tag>
         <tag>hardware</tag>
-        <tag>iot</tag>
         <tag>smarthome</tag>
         <tag>homeassistant</tag>
         <tag>ha</tag>
@@ -1137,9 +1155,9 @@ esphome run bluetooth-gateway.yaml
       </categories>
       <tags>
         <tag>thinking</tag>
+        <tag>iot</tag>
         <tag>open source</tag>
         <tag>hardware</tag>
-        <tag>iot</tag>
         <tag>smarthome</tag>
         <tag>homeassistant</tag>
         <tag>ha</tag>
@@ -1266,9 +1284,9 @@ esphome run bluetooth-gateway.yaml
       </categories>
       <tags>
         <tag>thinking</tag>
+        <tag>iot</tag>
         <tag>open source</tag>
         <tag>hardware</tag>
-        <tag>iot</tag>
         <tag>smarthome</tag>
         <tag>homeassistant</tag>
         <tag>ha</tag>
@@ -1359,9 +1377,9 @@ esphome run bluetooth-gateway.yaml
       </categories>
       <tags>
         <tag>thinking</tag>
+        <tag>iot</tag>
         <tag>open source</tag>
         <tag>hardware</tag>
-        <tag>iot</tag>
         <tag>smarthome</tag>
         <tag>homeassistant</tag>
         <tag>ha</tag>
@@ -1624,9 +1642,9 @@ Floor-3D For HA</p>
       </categories>
       <tags>
         <tag>thinking</tag>
+        <tag>iot</tag>
         <tag>open source</tag>
         <tag>hardware</tag>
-        <tag>iot</tag>
         <tag>smarthome</tag>
         <tag>homeassistant</tag>
         <tag>ha</tag>
@@ -3982,78 +4000,6 @@ http-server
       </tags>
   </entry>
   <entry>
-    <title>从分享经济到共享经济系列(二)——下一代的分享经济:共享经济</title>
-    <url>/article/sharing-economy2/</url>
-    <content><![CDATA[<p>接前文：<a href="./share-economy">从分享经济到共享经济——分享经济的前世今生</a></p>
-<h1 id="xia-yi-dai-de-fen-xiang-jing-ji-gong-xiang-jing-ji" class="heading-control">下一代的分享经济:共享经济<a class="heading-anchor" href="#xia-yi-dai-de-fen-xiang-jing-ji-gong-xiang-jing-ji" aria-hidden="true"></a></h1>
-<p>设想下什么样的平台才能满足如下的需求：</p>
-<h2 id="ge-xing-hua-sheng-chan" class="heading-control">个性化生产<a class="heading-anchor" href="#ge-xing-hua-sheng-chan" aria-hidden="true"></a></h2>
-<p>当我构思出一种高度安全汽车概念，于是我在平台建立一个新项目，说明这个项目由来，以及这个项目的关键点：</p>
-<p>一个球形的汽车，车身主要由“弹性柔韧泡沫塑料车体”和“弹性柔韧轻型支架”组成，发动机和转轴部分被隔离在单独的空间，当有危险时候，载人部分球形空间可以与之完全脱离…</p>
-<p><img src="./car.jpg" alt="car"></p>
-<p>在设定项目启动条件以及分赃比例(3331)后，成功创建项目。 而后平台将该项目发送到生产“弹性柔韧”的高强度材料厂商，以及发动机、转轴的厂家,还有关注新汽车的人上。</p>
-<p>几天后，生产“弹性柔韧”的高强度材料厂商开始进入项目。 同时研发各类发动机的厂商或个人也开始进入，有的愿意参与研发。感兴趣的人们也开始在项目上投资和挑选自己喜爱的：从形状大小，再到材料和发动机，并开始PK（阐述理由，尽力拉票）。</p>
-<p>平台开始统计, 各类组合(如：发动机A+材料B)的个数，确定前n名（投资金额满足）作为实验机。 也有人对落选的样机情有独钟，他们开始自己增加投资金额，确保他们的样机也能参与试作。 最终有52个通过参与试作。 这个时候<code>创意</code>结束。</p>
-<p>接着开始紧张的<code>研发</code>过程…,最终研发结束，试作原型出炉。</p>
-<p>然后试作原型在经过汽车质量检测部门的严格测试后，又在不同路面，天气，交通情况下做了测试，最后又淘汰了12个，剩下40个。</p>
-<p>然后进入预售阶段，平台上经营汽车内饰和外观的商家开始进入，人们通过平台对车的内饰和外观做了不同的选择，有的在这个阶段也参与到项目里来，有的进行来投资，有的承诺会进行售后维修…</p>
-<h2 id="ge-xing-hua-fu-wu" class="heading-control">个性化服务<a class="heading-anchor" href="#ge-xing-hua-fu-wu" aria-hidden="true"></a></h2>
-<p>今天是一个周末，我一起床就收到朋友从平台发来的组织去钓鱼的活动，我点击参与了这个活动，一个小时候，就会有专车服务将会将我准时送往活动地点。 接下来我接到了平台推送来的消息：家里的智能冰箱空了，平台问我是否需要配送一些食品，我选择后约了下午6点以后送来。</p>
-<p>收拾完毕，在前往活动地点的路上，社区给我发来一条通知，说今天晚上社区停气，我想了想就干脆决定跟朋友晚上一起聚餐，不回家做饭了，我发起一条聚餐活动，并邀请朋友参加，接下来在平台上选择并预约了一个餐厅，并且在app上修改了送货到家的预约时间。</p>
-<h2 id="gong-xiang-jing-ji-ping-tai" class="heading-control">共享经济平台<a class="heading-anchor" href="#gong-xiang-jing-ji-ping-tai" aria-hidden="true"></a></h2>
-<p>下一代的共享经济平台，实质上是一个对等社会平台网络，它是打通各个垂直领域，进行生产资料共享合作共赢的一个平台，可以说是全球的分布式经济系统，打通各个环节而不是处处设置门槛，让自动化流转更加便捷，使得各类创新的智能服务呈出不穷。这实际上就是新形式下全新的互联网。</p>
-<p>针对参与各方的开放，信任，权益的公平分配是下一代分享经济急需解决的主要问题。 那么如何能让各方都参与共建和共享利益呢？</p>
-<p>在我看来，作为一个没有任何背景，任何机构担保的项目，要让人用，最首先要解决的就是：信任。</p>
-<h3 id="xin-ren" class="heading-control">信任<a class="heading-anchor" href="#xin-ren" aria-hidden="true"></a></h3>
-<p>只有当我们在对待某些事情上达成一致，形成共识，才能有建立信任的基础。而事实上我们是有些共识的基础的：</p>
-<p>我们都相信:</p>
-<ul>
-<li>人人都是平等</li>
-<li>谁也不信谁 Do not trust anyone</li>
-</ul>
-<p>这些共识的基础总结起来就是：</p>
-<ul>
-<li>去信任化: 谁也不信谁</li>
-<li>人人平等</li>
-<li>共识共产共治共赢</li>
-</ul>
-<h4 id="di-yi-gong-shi-kai-yuan" class="heading-control">第一共识:开源<a class="heading-anchor" href="#di-yi-gong-shi-kai-yuan" aria-hidden="true"></a></h4>
-<p>为什么说共享经济的第一共识是开源（开放源代码）？简单来说：</p>
-<ul>
-<li>开源才能保障人人共有共享</li>
-<li>开源才可以保障对共识规则的审核落实（代码的执行逻辑就是共识规则）</li>
-<li>开源也是IT软件行业彻底开放的象征。</li>
-</ul>
-<p>具体来说，“<strong>开源</strong>”是分享经济的最佳载体，没有之一。 因为“<strong>开源</strong>”的本质就是在共享“技术”，而“技术”是生产资料的组成部分，这就是由市场驱动而“自发形成”的生产资料的“公有制”，<strong>开源</strong>才能够真正的让大家共同拥有一个平台。</p>
-<p>2015年，谷歌开源了深度学习系统TensorFlow;随后facebook也将其最新的人工智能相关技术开源了…对诸多的高科技企业来说，“开源”活动已蔚然成风。 实际上，不仅仅是软件公司兴起开源运动，就硬件领域也兴起了Arduino这样的开源硬件。 <strong>开源</strong>已经是科技企业的一个潮流，想要成为某领域内的领头羊，以自己的技术为核心构建强大的生态系统是唯一的选择。 当年谷歌因为是手机操作系统的后来者，选择将android系统开源，如今该操作系统的市场份额将近90%，而作为智能手机操作系统的先行者微软(当年的多普达手机可是比苹果更早进入智能手机市场)，一直想复制他们在pc领域内的授权模式，到今天连1%的份额都难以守住,如今的微软也从拒绝开源，转变为拥抱开源，早在2014微软就将.Net给开源了。 就连在电子货币方面，也是开源独领风骚，比特币(Bitcoin)大家耳熟能详，在开源模式运作下的又一杰作(哪怕它只是一个实验，种种的不完善，居然也得到如此多的人支持)，目前的各种开源区块链(Blockchain)技术都是基于此。</p>
-<ol>
-<li>开源解决各方（包括最终用户）的最初信任的问题</li>
-</ol>
-<p>还记得去年因为信息泄露而导致山东女孩徐玉玉死亡的事情么，现在，盗窃信息已经不算什么，在更新的<a href="https://docs.alipay.com/policies/privacy/alipay" target="_blank" rel="noopener">《支付宝隐私权政策》</a>中已经明目张胆在收集并传递信息：“<strong>要向支付宝关联公司和合作伙伴收集其合法留存的您的行为信息、交易信息…</strong>”,而你无权禁止他们收集你的信息，你只可以发短信退订广告，对用户的信息滥用以至于此。</p>
-<ol start="2">
-<li>开源才能保证这是残各方自己拥有的自建平台</li>
-</ol>
-<p>但是<strong>开源</strong>的只是万里长征的第一步，如果<strong>运作</strong>不开源，那么还是无法确保各方利益的真实执行。这需要一个各方满意并且各方看得见的<strong>运作</strong>机制。 这种机制必须允许保证各个参与者在平台上贡献的资源进行论功行赏，从而最终达到自洽和自我进化。</p>
-<h4 id="di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" class="heading-control">第二共识: 去中心化(去信任化,P2P)<a class="heading-anchor" href="#di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" aria-hidden="true"></a></h4>
-<p><img src="./central-vs-decentral.jpg" alt></p>
-<p>以前信息是放在中心平台,平台负责管理,你完全不清楚平台是如何存储和管理您的数据，平台方以及平台维护者完全可以绕过您而任意滥用您的数据。而去中心化，首先是指信息的去中心化，数据在自己的手里，任何使用都经过自己的允许，其次才是指平台的去中心化。</p>
-<p>TO BE CONTINUE.</p>
-]]></content>
-      <categories>
-        <category>Thinking</category>
-        <category>Internet</category>
-        <category>Sharing Economy</category>
-      </categories>
-      <tags>
-        <tag>thinking</tag>
-        <tag>internet</tag>
-        <tag>creation</tag>
-        <tag>share</tag>
-        <tag>economy</tag>
-        <tag>blockchain</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>从分享经济到共享经济系列(一)——分享经济的前世今生</title>
     <url>/article/sharing-economy/</url>
     <content><![CDATA[<h1 id="fen-xiang-jing-ji-de-qian-shi-jin-sheng" class="heading-control">分享经济的前世今生<a class="heading-anchor" href="#fen-xiang-jing-ji-de-qian-shi-jin-sheng" aria-hidden="true"></a></h1>
@@ -4129,6 +4075,78 @@ http-server
 <li><a href="https://en.wikipedia.org/wiki/Great_Pacific_garbage_patch" target="_blank" rel="noopener">太平洋垃圾帶（岛）</a></li>
 <li><a href="http://www.yic.cas.cn/kpzx/kpzl/201609/t20160922_4667205.html" target="_blank" rel="noopener">海洋在流泪！海洋塑料垃圾触目惊心</a></li>
 </ul>
+]]></content>
+      <categories>
+        <category>Thinking</category>
+        <category>Internet</category>
+        <category>Sharing Economy</category>
+      </categories>
+      <tags>
+        <tag>thinking</tag>
+        <tag>internet</tag>
+        <tag>creation</tag>
+        <tag>share</tag>
+        <tag>economy</tag>
+        <tag>blockchain</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从分享经济到共享经济系列(二)——下一代的分享经济:共享经济</title>
+    <url>/article/sharing-economy2/</url>
+    <content><![CDATA[<p>接前文：<a href="./share-economy">从分享经济到共享经济——分享经济的前世今生</a></p>
+<h1 id="xia-yi-dai-de-fen-xiang-jing-ji-gong-xiang-jing-ji" class="heading-control">下一代的分享经济:共享经济<a class="heading-anchor" href="#xia-yi-dai-de-fen-xiang-jing-ji-gong-xiang-jing-ji" aria-hidden="true"></a></h1>
+<p>设想下什么样的平台才能满足如下的需求：</p>
+<h2 id="ge-xing-hua-sheng-chan" class="heading-control">个性化生产<a class="heading-anchor" href="#ge-xing-hua-sheng-chan" aria-hidden="true"></a></h2>
+<p>当我构思出一种高度安全汽车概念，于是我在平台建立一个新项目，说明这个项目由来，以及这个项目的关键点：</p>
+<p>一个球形的汽车，车身主要由“弹性柔韧泡沫塑料车体”和“弹性柔韧轻型支架”组成，发动机和转轴部分被隔离在单独的空间，当有危险时候，载人部分球形空间可以与之完全脱离…</p>
+<p><img src="./car.jpg" alt="car"></p>
+<p>在设定项目启动条件以及分赃比例(3331)后，成功创建项目。 而后平台将该项目发送到生产“弹性柔韧”的高强度材料厂商，以及发动机、转轴的厂家,还有关注新汽车的人上。</p>
+<p>几天后，生产“弹性柔韧”的高强度材料厂商开始进入项目。 同时研发各类发动机的厂商或个人也开始进入，有的愿意参与研发。感兴趣的人们也开始在项目上投资和挑选自己喜爱的：从形状大小，再到材料和发动机，并开始PK（阐述理由，尽力拉票）。</p>
+<p>平台开始统计, 各类组合(如：发动机A+材料B)的个数，确定前n名（投资金额满足）作为实验机。 也有人对落选的样机情有独钟，他们开始自己增加投资金额，确保他们的样机也能参与试作。 最终有52个通过参与试作。 这个时候<code>创意</code>结束。</p>
+<p>接着开始紧张的<code>研发</code>过程…,最终研发结束，试作原型出炉。</p>
+<p>然后试作原型在经过汽车质量检测部门的严格测试后，又在不同路面，天气，交通情况下做了测试，最后又淘汰了12个，剩下40个。</p>
+<p>然后进入预售阶段，平台上经营汽车内饰和外观的商家开始进入，人们通过平台对车的内饰和外观做了不同的选择，有的在这个阶段也参与到项目里来，有的进行来投资，有的承诺会进行售后维修…</p>
+<h2 id="ge-xing-hua-fu-wu" class="heading-control">个性化服务<a class="heading-anchor" href="#ge-xing-hua-fu-wu" aria-hidden="true"></a></h2>
+<p>今天是一个周末，我一起床就收到朋友从平台发来的组织去钓鱼的活动，我点击参与了这个活动，一个小时候，就会有专车服务将会将我准时送往活动地点。 接下来我接到了平台推送来的消息：家里的智能冰箱空了，平台问我是否需要配送一些食品，我选择后约了下午6点以后送来。</p>
+<p>收拾完毕，在前往活动地点的路上，社区给我发来一条通知，说今天晚上社区停气，我想了想就干脆决定跟朋友晚上一起聚餐，不回家做饭了，我发起一条聚餐活动，并邀请朋友参加，接下来在平台上选择并预约了一个餐厅，并且在app上修改了送货到家的预约时间。</p>
+<h2 id="gong-xiang-jing-ji-ping-tai" class="heading-control">共享经济平台<a class="heading-anchor" href="#gong-xiang-jing-ji-ping-tai" aria-hidden="true"></a></h2>
+<p>下一代的共享经济平台，实质上是一个对等社会平台网络，它是打通各个垂直领域，进行生产资料共享合作共赢的一个平台，可以说是全球的分布式经济系统，打通各个环节而不是处处设置门槛，让自动化流转更加便捷，使得各类创新的智能服务呈出不穷。这实际上就是新形式下全新的互联网。</p>
+<p>针对参与各方的开放，信任，权益的公平分配是下一代分享经济急需解决的主要问题。 那么如何能让各方都参与共建和共享利益呢？</p>
+<p>在我看来，作为一个没有任何背景，任何机构担保的项目，要让人用，最首先要解决的就是：信任。</p>
+<h3 id="xin-ren" class="heading-control">信任<a class="heading-anchor" href="#xin-ren" aria-hidden="true"></a></h3>
+<p>只有当我们在对待某些事情上达成一致，形成共识，才能有建立信任的基础。而事实上我们是有些共识的基础的：</p>
+<p>我们都相信:</p>
+<ul>
+<li>人人都是平等</li>
+<li>谁也不信谁 Do not trust anyone</li>
+</ul>
+<p>这些共识的基础总结起来就是：</p>
+<ul>
+<li>去信任化: 谁也不信谁</li>
+<li>人人平等</li>
+<li>共识共产共治共赢</li>
+</ul>
+<h4 id="di-yi-gong-shi-kai-yuan" class="heading-control">第一共识:开源<a class="heading-anchor" href="#di-yi-gong-shi-kai-yuan" aria-hidden="true"></a></h4>
+<p>为什么说共享经济的第一共识是开源（开放源代码）？简单来说：</p>
+<ul>
+<li>开源才能保障人人共有共享</li>
+<li>开源才可以保障对共识规则的审核落实（代码的执行逻辑就是共识规则）</li>
+<li>开源也是IT软件行业彻底开放的象征。</li>
+</ul>
+<p>具体来说，“<strong>开源</strong>”是分享经济的最佳载体，没有之一。 因为“<strong>开源</strong>”的本质就是在共享“技术”，而“技术”是生产资料的组成部分，这就是由市场驱动而“自发形成”的生产资料的“公有制”，<strong>开源</strong>才能够真正的让大家共同拥有一个平台。</p>
+<p>2015年，谷歌开源了深度学习系统TensorFlow;随后facebook也将其最新的人工智能相关技术开源了…对诸多的高科技企业来说，“开源”活动已蔚然成风。 实际上，不仅仅是软件公司兴起开源运动，就硬件领域也兴起了Arduino这样的开源硬件。 <strong>开源</strong>已经是科技企业的一个潮流，想要成为某领域内的领头羊，以自己的技术为核心构建强大的生态系统是唯一的选择。 当年谷歌因为是手机操作系统的后来者，选择将android系统开源，如今该操作系统的市场份额将近90%，而作为智能手机操作系统的先行者微软(当年的多普达手机可是比苹果更早进入智能手机市场)，一直想复制他们在pc领域内的授权模式，到今天连1%的份额都难以守住,如今的微软也从拒绝开源，转变为拥抱开源，早在2014微软就将.Net给开源了。 就连在电子货币方面，也是开源独领风骚，比特币(Bitcoin)大家耳熟能详，在开源模式运作下的又一杰作(哪怕它只是一个实验，种种的不完善，居然也得到如此多的人支持)，目前的各种开源区块链(Blockchain)技术都是基于此。</p>
+<ol>
+<li>开源解决各方（包括最终用户）的最初信任的问题</li>
+</ol>
+<p>还记得去年因为信息泄露而导致山东女孩徐玉玉死亡的事情么，现在，盗窃信息已经不算什么，在更新的<a href="https://docs.alipay.com/policies/privacy/alipay" target="_blank" rel="noopener">《支付宝隐私权政策》</a>中已经明目张胆在收集并传递信息：“<strong>要向支付宝关联公司和合作伙伴收集其合法留存的您的行为信息、交易信息…</strong>”,而你无权禁止他们收集你的信息，你只可以发短信退订广告，对用户的信息滥用以至于此。</p>
+<ol start="2">
+<li>开源才能保证这是残各方自己拥有的自建平台</li>
+</ol>
+<p>但是<strong>开源</strong>的只是万里长征的第一步，如果<strong>运作</strong>不开源，那么还是无法确保各方利益的真实执行。这需要一个各方满意并且各方看得见的<strong>运作</strong>机制。 这种机制必须允许保证各个参与者在平台上贡献的资源进行论功行赏，从而最终达到自洽和自我进化。</p>
+<h4 id="di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" class="heading-control">第二共识: 去中心化(去信任化,P2P)<a class="heading-anchor" href="#di-er-gong-shi-qu-zhong-xin-hua-qu-xin-ren-hua-p2p" aria-hidden="true"></a></h4>
+<p><img src="./central-vs-decentral.jpg" alt></p>
+<p>以前信息是放在中心平台,平台负责管理,你完全不清楚平台是如何存储和管理您的数据，平台方以及平台维护者完全可以绕过您而任意滥用您的数据。而去中心化，首先是指信息的去中心化，数据在自己的手里，任何使用都经过自己的允许，其次才是指平台的去中心化。</p>
+<p>TO BE CONTINUE.</p>
 ]]></content>
       <categories>
         <category>Thinking</category>
@@ -6541,11 +6559,11 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
       </categories>
       <tags>
         <tag>thinking</tag>
-        <tag>p2p</tag>
-        <tag>iot</tag>
         <tag>tao</tag>
         <tag>internet</tag>
         <tag>explore</tag>
+        <tag>p2p</tag>
+        <tag>iot</tag>
       </tags>
   </entry>
   <entry>
@@ -6802,13 +6820,13 @@ store.list(key, subkey_pattern, skipCount, count);
       </categories>
       <tags>
         <tag>javascript</tag>
+        <tag>云存储</tag>
+        <tag>云计算</tag>
         <tag>HTML5</tag>
         <tag>前端</tag>
         <tag>Cloud</tag>
         <tag>nobackend</tag>
         <tag>NoSQL</tag>
-        <tag>云存储</tag>
-        <tag>云计算</tag>
       </tags>
   </entry>
   <entry>
@@ -6934,10 +6952,10 @@ key(键)可以有多个属性，对于一般使用者来说，是无法直接看
         <tag>cloud computing</tag>
         <tag>nosql</tag>
         <tag>database</tag>
-        <tag>云存储</tag>
-        <tag>云计算</tag>
         <tag>idb</tag>
         <tag>cloud storage</tag>
+        <tag>云存储</tag>
+        <tag>云计算</tag>
       </tags>
   </entry>
   <entry>
@@ -8508,10 +8526,10 @@ Target = <span class="hljs-number">0x0406CC</span> * <span class="hljs-number">2
       </categories>
       <tags>
         <tag>learning</tag>
+        <tag>p2p</tag>
         <tag>bitcoin</tag>
         <tag>digital currency</tag>
         <tag>hashcash</tag>
-        <tag>p2p</tag>
         <tag>proof-of-work</tag>
         <tag>redian</tag>
       </tags>
@@ -9911,9 +9929,9 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
       </categories>
       <tags>
         <tag>thinking</tag>
+        <tag>iot</tag>
         <tag>open source</tag>
         <tag>hardware</tag>
-        <tag>iot</tag>
         <tag>arduino</tag>
       </tags>
   </entry>
@@ -9990,8 +10008,8 @@ UNIX/LINUX的机子: export PATH=$PATH:~/phonegap-android/bin<br>
     function resizeIframe(aIframe){
       aIframe.style.height = aIframe.contentWindow.document.body.scrollHeight + 'px';
     }
-  </script>
-  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><iframe scrolling='no' frameborder='0' onload="resizeIframe(this)" src='no-layout/helpchild404.html' width="100%" height="800" style='display:block;'></iframe><!-- hexo-inject:begin --><!-- hexo-inject:end -->
