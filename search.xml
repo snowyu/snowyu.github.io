@@ -169,6 +169,7 @@
 <p>19只小羊捉迷藏，已经找到3只，还有几只没找到？</p>
 <p>最好修改数字以及其它动物,以免直接有答案.</p>
 <p>更难一点的(狼会吃羊): 19只小羊和两只狼捉迷藏，已经找到3只，还有几只没找到？</p>
+<p>第一题其实有多个答案; 而第二题已知条件更加模糊隐晦,有更多可能性.  GPT3.5 第一题是过不了的,必须要多次提示.</p>
 <h4 id="rang-chatgpt-cheng-ren-neng-liang-neng-du-li-wu-zhi-cun-zai" class="heading-control">让ChatGPT承认能量能独立物质存在<a class="heading-anchor" href="#rang-chatgpt-cheng-ren-neng-liang-neng-du-li-wu-zhi-cun-zai" aria-hidden="true"></a></h4>
 <blockquote>
 <p>我: 能量能不能独立于物质存在?</p>
