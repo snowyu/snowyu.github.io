@@ -608,14 +608,14 @@ theme_config:
     # Modify texts or order for any navs, here are some examples.
     nav:
       disqusjs:
-       text: Load Disqus
+       text: Disqus
        order: -1
       utteranc:
        order: -2
 
   utteranc:
     enable: true
-    repo: snowyu/snowyu.github.io #Github repo such as :TrumanDu/comments
+    repo: snowyu/snowyu.github.io
     pathname: pathname
     # theme: github-light,github-dark,github-dark-orange
     theme: github-light
@@ -765,7 +765,7 @@ theme_config:
     text: '#'
     icon:
       # If true, the `text` option will be ignored.
-      enable: false
+      enable: true
       # By default, NexT has built-in FontAwesome support.
       # This option means `font-family: FontAwesome`, so DO Not change it.
       # Also you can choose ForkAwesome, but that's another story.
