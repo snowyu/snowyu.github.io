@@ -191,7 +191,10 @@ class C extends B {
 从本质上来说获得父类方法都必须通过原型链(`Object.getPrototypeOf`/`Reflect.getPrototypeOf`)获得;而从具体形式来看,大概有以下几种实现办法:
 
 1. 以高阶函数方式实现
-2.
+2. 以对象方式实现
+3. 以代理方式实现
+
+因为代理方案能够以简单的方式实现多层继承以及支持动态继承特性,所以最后选择了代理方案.
 
 ### 以高阶函数方式实现
 
@@ -220,6 +223,7 @@ class A extends Root {
     getSuper(this)('hi', n)
     getSuper(this)("hi")(n) //or this
     getSuper(this, 'hi')(n) //or this
+  }
 }
 ```
 
@@ -244,6 +248,7 @@ class A extends Root {
   hi(n) {
     console.log('hi from A')
     getSuper(this).hi(n)
+  }
 }
 ```
 
@@ -273,6 +278,7 @@ class A extends Root {
   hi(n) {
     console.log('hi from A')
     getSuper(this).hi(n)
+  }
 }
 ```
 
