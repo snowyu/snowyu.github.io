@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://riceball.me/article/js-getSuper/</loc>
+        <lastmod>2023-05-12T00:24:43.562Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://riceball.me/article/chatgpt/</loc>
-        <lastmod>2023-03-25T00:02:25.262Z</lastmod>
+        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

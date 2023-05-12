@@ -8,15 +8,29 @@
     </url>
 
     <url>
+        <loc>https://riceball.me/categories/JavaScript/Tech/</loc>
+        <lastmod>2023-05-12T00:24:43.562Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/categories/JavaScript/</loc>
+        <lastmod>2023-05-12T00:24:43.562Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://riceball.me/categories/AI/GPT/</loc>
-        <lastmod>2023-03-25T00:02:25.262Z</lastmod>
+        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://riceball.me/categories/AI/</loc>
-        <lastmod>2023-03-25T00:02:25.262Z</lastmod>
+        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -128,13 +142,6 @@
 
     <url>
         <loc>https://riceball.me/categories/JavaScript/Framework/</loc>
-        <lastmod>2019-11-25T21:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/categories/JavaScript/</loc>
         <lastmod>2019-11-25T21:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

@@ -1,6 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Javascript之奇技淫巧 - 如何模拟实现 `super` 访问父类方法的功能</title>
+    <url>/article/js-getSuper/</url>
+    <content><![CDATA[<p>与小学三年级的ChatGPT一起学JS编程</p>
+<p>心智为9岁的ChatGPT大约相当于我们小学3年级的学生,所以让我们与小学3年级的ChatGPT一起来深入学习编程吧.</p>
+<p>下面是对ChatGPT的第一次提问:</p>
+<p>你知道吗?编写一个js函数模拟实现 <code>super</code> 访问父类方法的功能有几种方法?</p>
+<p>要求:该函数的调用方式要从语法上尽可能的接近原生<code>super</code>的调用方式,实现尽量简洁明了.<br>
+约定该函数名以及函数签名(返回值根据具体实现方式而定)为:  <code>getSuper(instance: Object)</code><br>
+每一种方法都必须用该函数签名来实现,并具体说明,哪一种方法从语法上最接近原生<code>super</code>.</p>
+<h2 id="chatgpt-de-di-yi-ci-hui-da" class="heading-control">ChatGPT的第一次回答<a class="heading-anchor" href="#chatgpt-de-di-yi-ci-hui-da" aria-hidden="true"></a></h2>
+<p>实现 <code>super</code> 访问父类方法的功能有以下几种方法:</p>
+<ol>
+<li>
+<p>使用 <code>Object.getPrototypeOf</code> 和 <code>Object.getOwnPropertyDescriptor</code> 方法来获取父类的属性描述符，从而获取父类方法，并使用 <code>Function.prototype.call</code> 方法来调用该方法:</p>
+<pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSuper</span>(<span class="hljs-params">instance</span>) </span>{
+  <span class="hljs-keyword">const</span> proto = <span class="hljs-built_in">Object</span>.getPrototypeOf(instance);
+  <span class="hljs-keyword">const</span> descriptor = <span class="hljs-built_in">Object</span>.getOwnPropertyDescriptor(proto, <span class="hljs-built_in">arguments</span>.callee.caller.name);
+  <span class="hljs-keyword">if</span> (descriptor) {
+    <span class="hljs-keyword">const</span> superFunc = descriptor.value;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>) </span>{
+      <span class="hljs-keyword">return</span> superFunc.call(instance, ...args);
+    };
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>使用原型链<br>
+<code>Object.getPrototypeOf()</code> 和 <code>Reflect.getPrototypeOf()</code> 都可以获取原型对象，但是 <code>Reflect.getPrototypeOf()</code> 可以在 Proxy 对象上获取正确的原型对象，因此使用 <code>Reflect.getPrototypeOf()</code> 可以增强代码的兼容性。具体实现代码如下：</p>
+<pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSuper</span>(<span class="hljs-params">instance</span>) </span>{
+  <span class="hljs-keyword">const</span> prototype = <span class="hljs-built_in">Reflect</span>.getPrototypeOf(instance);
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">methodName, ...args</span>) </span>{
+    <span class="hljs-keyword">const</span> parentPrototype = <span class="hljs-built_in">Reflect</span>.getPrototypeOf(prototype);
+    <span class="hljs-keyword">const</span> parentMethod = parentPrototype[methodName];
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> parentMethod === <span class="hljs-string">'function'</span>) {
+      <span class="hljs-keyword">return</span> parentMethod.call(instance, ...args);
+    }
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>使用 ES6 的 <code>Proxy</code> 对象来代理子类实例的属性访问和方法调用。当子类实例的属性或方法不存在时，通过代理对象访问父类实例的属性或方法:</p>
+<pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSuper</span>(<span class="hljs-params">instance</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(instance, {
+    <span class="hljs-keyword">get</span>(target, prop) {
+      <span class="hljs-keyword">if</span> (prop <span class="hljs-keyword">in</span> target) {
+        <span class="hljs-keyword">return</span> target[prop];
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (prop <span class="hljs-keyword">in</span> <span class="hljs-built_in">Object</span>.getPrototypeOf(target)) {
+        <span class="hljs-keyword">const</span> superProp = <span class="hljs-built_in">Object</span>.getOwnPropertyDescriptor(<span class="hljs-built_in">Object</span>.getPrototypeOf(target), prop);
+        <span class="hljs-keyword">if</span> (superProp.hasOwnProperty(<span class="hljs-string">'value'</span>)) {
+          <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> superProp.value.call(target, ...args);
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-keyword">return</span> superProp.get.call(target);
+        }
+      }
+    }
+  });
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">this</span>.parentProperty = <span class="hljs-string">'parent property'</span>;
+  }
+  parentMethod() {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'parent method'</span>;
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>();
+    <span class="hljs-keyword">this</span>.childProperty = <span class="hljs-string">'child property'</span>;
+  }
+  childMethod() {
+    <span class="hljs-keyword">const</span> superMethod = getSuper(<span class="hljs-keyword">this</span>).parentMethod;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`child method calling parent method: <span class="hljs-subst">${superMethod()}</span>`</span>;
+  }
+}
+
+<span class="hljs-keyword">const</span> childInstance = <span class="hljs-keyword">new</span> Child();
+<span class="hljs-built_in">console</span>.log(childInstance.childMethod()); <span class="hljs-comment">// Output: "child method calling parent method: parent method"</span>
+</code></pre>
+</li>
+</ol>
+<p>样例类:</p>
+<pre><code class="javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Root</span> </span>{
+  <span class="hljs-keyword">constructor</span>(name) {
+    <span class="hljs-keyword">this</span>.name = name;
+  }
+  hi(n) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`hi <span class="hljs-subst">${n}</span> <span class="hljs-subst">${<span class="hljs-keyword">this</span>.name}</span> from Root`</span>);
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Root</span> </span>{
+  hi() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`hi from A`</span>)
+    <span class="hljs-keyword">super</span>.hi(<span class="hljs-string">"here"</span>) <span class="hljs-comment">//replace this</span>
+}
+
+<span class="hljs-keyword">let</span> a = <span class="hljs-keyword">new</span> A(<span class="hljs-string">'Mike'</span>)
+a.hi(<span class="hljs-string">'here'</span>) <span class="hljs-comment">// print 'hi here from A' and 'hi Mike from Root'</span>
+</code></pre>
+<h2 id="yin-dao-ti-wen-1" class="heading-control">引导提问1<a class="heading-anchor" href="#yin-dao-ti-wen-1" aria-hidden="true"></a></h2>
+<p>你之前的回答中各个方法中都存在一点问题,思考下.</p>
+<h3 id="qing-shuo-chu-fang-fa-yi-zhong-de-wen-ti-he-que-xian" class="heading-control">请说出方法一中的问题和缺陷<a class="heading-anchor" href="#qing-shuo-chu-fang-fa-yi-zhong-de-wen-ti-he-que-xian" aria-hidden="true"></a></h3>
+<blockquote>
+<p>首先，该函数只能在函数内部被调用，即在子类方法中使用 <code>getSuper(this)(...args)</code> 调用父类方法。如果在函数外部调用该函数，则无法获取到正确的调用者函数名。</p>
+<p>其次，该函数只能用于访问父类方法，而不能用于访问父类属性。如果父类属性与子类属性同名，则无法通过该函数访问父类属性。</p>
+<p>最后，该函数使用了 <code>arguments.callee.caller</code>，这是一个非标准的特性，在严格模式下可能会被禁用。</p>
+</blockquote>
+<p>补充:函数表达式也不存在<code>arguments</code>, 而且目前JS几乎都是在严格模式下,所以该方案基本无用.</p>
+<h3 id="na-mo-fang-fa-er-zhong-de-wen-ti-he-que-xian" class="heading-control">那么方法二中的问题和缺陷<a class="heading-anchor" href="#na-mo-fang-fa-er-zhong-de-wen-ti-he-que-xian" aria-hidden="true"></a></h3>
+<blockquote>
+<p>该实现方式可以实现模拟 <code>super</code> 访问父类方法的功能，但是有一些问题和限制。</p>
+<p>首先，该实现方式使用了 <code>Reflect.getPrototypeOf</code> 方法获取实例的原型对象。这种方式可以正确地获取实例的原型对象，但在一些特殊情况下可能会出现问题，比如当实例的原型链中存在 Proxy 对象时。</p>
+<p>其次，该实现方式只能在子类方法内部调用 <code>getSuper</code> 函数，且需要手动传入父类方法名。这样就需要手动维护父类方法名，容易出现错误。</p>
+<p>最后，该实现方式没有考虑多层继承的情况。如果子类的父类也继承自其他类，则可能无法正确地访问到最终的父类方法。</p>
+</blockquote>
+<h3 id="na-mo-fang-fa-san-ni" class="heading-control">那么方法三呢<a class="heading-anchor" href="#na-mo-fang-fa-san-ni" aria-hidden="true"></a></h3>
+<blockquote>
+<p>该实现方式可以实现模拟 <code>super</code> 访问父类方法的功能，但是也有一些问题和限制。</p>
+<p>首先，该实现方式使用了 Proxy 对象来代理实例对象，以拦截属性的访问。这种方式可能会带来性能上的损失，特别是在大规模的应用中。</p>
+<p>其次，该实现方式只能用于访问父类属性或方法，而不能用于访问父类的私有属性或方法。</p>
+<p>最后，该实现方式可能会存在多层继承的情况。如果子类的父类也继承自其他类，则可能无法正确地访问到最终的父类方法。</p>
+</blockquote>
+<p>补充: 当子类重载了该方法,那么该实现无法访问到父类方法,需要修改,总体来说ChatGPT想得过于复杂</p>
+<h3 id="zui-hou-shi-mo-shi-duo-ceng-ji-cheng-de-qing-kuang" class="heading-control">最后,什么是多层继承的情况<a class="heading-anchor" href="#zui-hou-shi-mo-shi-duo-ceng-ji-cheng-de-qing-kuang" aria-hidden="true"></a></h3>
+<p>多层继承是指一个子类从另一个子类继承，而这个子类又从其它父类继承。举例说明:</p>
+<pre><code class="javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+  m() {<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A'</span>)}
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>{
+  m() {<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'B'</span>); getSuper(<span class="hljs-keyword">this</span>).m()}
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">B</span> </span>{
+  m() {<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'C'</span>); getSuper(<span class="hljs-keyword">this</span>).m()}
+}
+</code></pre>
+<p>显然,在深入JS中,ChatGPT的智商明显不够用了,原因在于JS的本质是函数式编程,面向对象的类概念是通过原型链模拟出来的,而原型链本身如果理解不清与面向对象的概念搅在一块,那么就会非常容易混淆.</p>
+<h2 id="yin-dao-ti-wen-2" class="heading-control">引导提问2<a class="heading-anchor" href="#yin-dao-ti-wen-2" aria-hidden="true"></a></h2>
+<p>要准确回答这个问题,首先,我们要先猜测分析原生<code>super</code>是怎样访问父类方法的,实现了怎样的功能?<br>
+你可以通过构造不同的例子来测试它的功能极限.再根据它的功能来开发函数模拟实现 <code>super</code>.</p>
+<h2 id="zong-jie" class="heading-control">总结<a class="heading-anchor" href="#zong-jie" aria-hidden="true"></a></h2>
+<p>显然,在深入JS中,ChatGPT的智商明显不够用了,原因在于JS的本质是函数式编程,面向对象的类概念是通过原型链模拟出来的,而原型链本身如果理解不清与面向对象的概念搅在一块,那么就会非常容易混淆.抛开已被废弃掉的非严格模式下的<code>arguments.callee.caller</code>方案,它的可用的两个方案都没能实现对多层继承的支持(在多层继承中会引发无限循环).</p>
+<p>从本质上来说获得父类方法都必须通过原型链(<code>Object.getPrototypeOf</code>/<code>Reflect.getPrototypeOf</code>)获得;而从具体形式来看,大概有以下几种实现办法:</p>
+<ol>
+<li>以高阶函数方式实现</li>
+<li>以对象方式实现</li>
+<li>以代理方式实现</li>
+</ol>
+<p>因为代理方案能够以简单的方式实现多层继承以及支持动态继承特性,所以最后选择了代理方案.</p>
+<h3 id="yi-gao-jie-han-shu-fang-shi-shi-xian" class="heading-control">以高阶函数方式实现<a class="heading-anchor" href="#yi-gao-jie-han-shu-fang-shi-shi-xian" aria-hidden="true"></a></h3>
+<p>这种实现方式与原生<code>getSuper</code>关键字调用方式不太一样.</p>
+<pre><code class="javascript"><span class="hljs-comment">// getSuper(this)('hi', n)</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSuper</span>(<span class="hljs-params">instance</span>) </span>{
+  <span class="hljs-keyword">const</span> proto = <span class="hljs-built_in">Object</span>.getPrototypeOf(instance);
+  <span class="hljs-keyword">const</span> parentProto = <span class="hljs-built_in">Object</span>.getPrototypeOf(proto);
+  <span class="hljs-comment">// 这里稍微变化即可实现其它调用形式,如: `getSuper(this)("hi")(n)`</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">methodName, ...args</span>) </span>{
+    <span class="hljs-keyword">const</span> parentMethod = parentProto[methodName]
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> parentMethod === <span class="hljs-string">'function'</span>) {
+      <span class="hljs-keyword">return</span> parentMethod.call(instance, ...args);
+    }
+  };
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Root</span> </span>{
+  hi(n) {<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hi from Root'</span>)}
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Root</span> </span>{
+  hi(n) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hi from A'</span>)
+    getSuper(<span class="hljs-keyword">this</span>)(<span class="hljs-string">'hi'</span>, n)
+    getSuper(<span class="hljs-keyword">this</span>)(<span class="hljs-string">"hi"</span>)(n) <span class="hljs-comment">//or this</span>
+    getSuper(<span class="hljs-keyword">this</span>, <span class="hljs-string">'hi'</span>)(n) <span class="hljs-comment">//or this</span>
+  }
+}
+</code></pre>
+<p>注意:</p>
+<ul>
+<li>在多层继承的场景下会出错,引发无限循环</li>
+</ul>
+<h3 id="yi-dui-xiang-fang-shi-shi-xian" class="heading-control">以对象方式实现<a class="heading-anchor" href="#yi-dui-xiang-fang-shi-shi-xian" aria-hidden="true"></a></h3>
+<p>比较接近原生<code>getSuper</code>关键字调用方式.</p>
+<pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSuper</span>(<span class="hljs-params">instance</span>) </span>{
+  <span class="hljs-keyword">const</span> proto = <span class="hljs-built_in">Object</span>.getPrototypeOf(instance);
+  <span class="hljs-keyword">const</span> parentProto = <span class="hljs-built_in">Object</span>.getPrototypeOf(proto);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.getOwnPropertyNames(parentProto)
+    .filter(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-keyword">typeof</span> parentProto[n] === <span class="hljs-string">'function'</span>)
+    .map( <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> parentProto[n].bind(instance);
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Root</span> </span>{
+  hi(n) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hi from A'</span>)
+    getSuper(<span class="hljs-keyword">this</span>).hi(n)
+  }
+}
+</code></pre>
+<p>注意:</p>
+<ul>
+<li>在多层继承的场景下会出错,引发无限循环</li>
+<li>该实现无法用于动态继承的场景.</li>
+</ul>
+<h3 id="yi-dai-li-fang-shi-shi-xian" class="heading-control">以代理方式实现<a class="heading-anchor" href="#yi-dai-li-fang-shi-shi-xian" aria-hidden="true"></a></h3>
+<p>比较接近原生<code>getSuper</code>关键字调用方式. 并且能支持多层继承以及可以用于动态继承的场景.因此这也是最终选择的方案.</p>
+<p>不妨想想这里是如何通过<code>getPrototypeOf()</code>来支持多层继承的?</p>
+<p>完整的实际实现请自行阅读: <a href="https://github.com/snowyu/inherits-ex.js" target="_blank" rel="noopener">inherits-ex 动态继承库</a>中的相关代码: <a href="https://github.com/snowyu/inherits-ex.js/blob/v2/src/getSuper.js" target="_blank" rel="noopener">https://github.com/snowyu/inherits-ex.js/blob/v2/src/getSuper.js</a></p>
+<pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSuper</span>(<span class="hljs-params">instance</span>) </span>{
+    <span class="hljs-keyword">const</span> proto = <span class="hljs-built_in">Object</span>.getPrototypeOf(<span class="hljs-built_in">Object</span>.getPrototypeOf(instance));
+    <span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(instance, {
+      <span class="hljs-keyword">get</span>(_, prop) {<span class="hljs-keyword">return</span> proto[prop]},
+      getPrototypeOf() {<span class="hljs-keyword">return</span> proto},
+    });
+    <span class="hljs-keyword">return</span> proxy;
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Root</span> </span>{
+  hi(n) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hi from A'</span>)
+    getSuper(<span class="hljs-keyword">this</span>).hi(n)
+  }
+}
+</code></pre>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>Tech</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>tech</tag>
+        <tag>nodejs</tag>
+        <tag>function</tag>
+        <tag>super</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我看 ChatGPT：人类在作死还是在创造生命</title>
     <url>/article/chatgpt/</url>
     <content><![CDATA[<h2 id="wo-kan-chatgpt-ren-lei-zai-zuo-si-huan-shi-zai-chuang-zao-sheng-ming" class="heading-control">我看 ChatGPT：人类在作死还是在创造&quot;生命&quot;<a class="heading-anchor" href="#wo-kan-chatgpt-ren-lei-zai-zuo-si-huan-shi-zai-chuang-zao-sheng-ming" aria-hidden="true"></a></h2>
@@ -88,7 +327,6 @@
 <li>OpenAI也许面临资本限制，需要从研究转为盈利。因此，他们可能会更加关注如何开发更好的商业应用，而不是单纯地追求技术突破。</li>
 </ol>
 <p>最后，从技术角度考虑，如果我们想要实现对人工智能的有效控制、可解释性以及审核性，我们需要将神经网络、自然语言处理和知识库三个方面结合起来，而不是仅仅使用单一的神经网络。否则，如果仅仅依赖于单一的神经网络技术，就像是在制造一颗缺乏解释和控制的电子大脑，这对于人工智能的发展和应用都是不利的。只有当我们将多个技术结合起来，才能够真正掌握和管理人工智能的发展。</p>
-<p><strong>注意</strong>：我没有付费去使用GPT4，这只是我从朋友那里了解到的信息。</p>
 <h4 id="wei-lai" class="heading-control">未来<a class="heading-anchor" href="#wei-lai" aria-hidden="true"></a></h4>
 <p>不过,以如此海量的语料库+人训练出来的,终归还是模仿的是人,人的心智,最终它会成为什么样子,还是得看它学的是什么,谁训练的. 当然,面对一个几乎学习了所有的知识语言模型,的确亚历山大.</p>
 <p>感觉通用神经网络的雏形(电子脑)在慢慢成型.</p>
@@ -566,7 +804,7 @@ power). It is recognized by its one octet value that is greater than or equal to
 <p>我: 正确翻译OpenPGP的Literal Data Packet ,要求雅,准,达</p>
 </blockquote>
 <blockquote>
-<p>ChatGPT: 缩的数据，而“Data Packet”则指的是OpenPGP中的一种数据包类型。该翻译通顺、准确、简洁明了，同时保留了原始英文的一些关键词，易于理解。</p>
+<p>ChatGPT: Literal Data Packet可以翻译为“OpenPGP文字数据包”。其中，“Literal”表示明文或非压缩的数据，而“Data Packet”则指的是OpenPGP中的一种数据包类型。该翻译通顺、准确、简洁明了，同时保留了原始英文的一些关键词，易于理解。</p>
 </blockquote>
 <blockquote>
 <p>我: 那么,图像和音频数据也是文字么?</p>
@@ -580,7 +818,6 @@ power). It is recognized by its one octet value that is greater than or equal to
 <blockquote>
 <p>ChatGPT: 确实，根据上述讨论，将OpenPGP的Literal Data Packet简单翻译成“文字数据包”并不准确和完整。更好的翻译可能是“明文数据包”或“字面数据包”，这可以更好地反映该数据包类型的含义和用途，而不仅仅局限于文本数据。</p>
 </blockquote>
-<p>变笨: 怀疑ChatGPT Mar 14 Version 对 Free Subscriber 使用的GPT3.5语言模型进行了降级(怀疑降到了GPT3).</p>
 ]]></content>
       <categories>
         <category>AI</category>
