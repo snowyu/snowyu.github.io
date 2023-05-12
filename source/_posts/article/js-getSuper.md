@@ -13,18 +13,19 @@ tags:
   - super
 ---
 
+与小学三年级的ChatGPT一起学JS编程
 
 心智为9岁的ChatGPT大约相当于我们小学3年级的学生,所以让我们与小学3年级的ChatGPT一起来深入学习编程吧.
 
 下面是对ChatGPT的第一次提问:
 
-# 提问
+你知道吗?编写一个js函数模拟实现 `super` 访问父类方法的功能有几种方法?
 
-编写一个js函数模拟实现 `super` 访问父类方法的功能有几种方法? 哪一种方法从语法上最接近原生`super`?
+要求:该函数的调用方式要从语法上尽可能的接近原生`super`的调用方式,实现尽量简洁明了.
+约定该函数名以及函数签名(返回值根据具体实现方式而定)为:  `getSuper(instance: Object)`
+每一种方法都必须用该函数签名来实现,并具体说明,哪一种方法从语法上最接近原生`super`.
 
-**要求**如下:函数的调用方式要从语法上尽可能的接近原生`super`的调用方式,实现尽量简洁明了.其中约定实现的函数名及函数签名为(返回值根据具体实现方式而定):  `getSuper(instance: Object)`
-
-# ChatGPT 的回答
+## ChatGPT的第一次回答
 
 实现 `super` 访问父类方法的功能有以下几种方法:
 
@@ -127,9 +128,7 @@ a.hi('here') // print 'hi here from A' and 'hi Mike from Root'
 
 ## 引导提问1
 
-你之前的回答中各个方法中都存在一点问题,思考下,这些方案中的问题在哪里?
-
-Ok, 现在到了和ChatGPT一起思考的时间...
+你之前的回答中各个方法中都存在一点问题,思考下.
 
 ### 请说出方法一中的问题和缺陷
 
@@ -163,7 +162,7 @@ Ok, 现在到了和ChatGPT一起思考的时间...
 >
 > 最后，该实现方式可能会存在多层继承的情况。如果子类的父类也继承自其他类，则可能无法正确地访问到最终的父类方法。
 
-补充: 当子类重载了该方法,那么该实现无法访问到父类方法,需要修改,总体来说ChatGPT想得过于复杂,另外没有实现对多层继承的支持(会引发无限循环).
+补充: 当子类重载了该方法,那么该实现无法访问到父类方法,需要修改,总体来说ChatGPT想得过于复杂
 
 ### 最后,什么是多层继承的情况
 
@@ -174,7 +173,6 @@ class A {
   m() {console.log('A')}
 }
 class B extends A {
-  // 如果不能用于多层继承,那么这里执行getSuper将出错,会引发无限循环
   m() {console.log('B'); getSuper(this).m()}
 }
 class C extends B {
@@ -182,7 +180,12 @@ class C extends B {
 }
 ```
 
+显然,在深入JS中,ChatGPT的智商明显不够用了,原因在于JS的本质是函数式编程,面向对象的类概念是通过原型链模拟出来的,而原型链本身如果理解不清与面向对象的概念搅在一块,那么就会非常容易混淆.
 
+## 引导提问2
+
+要准确回答这个问题,首先,我们要先猜测分析原生`super`是怎样访问父类方法的,实现了怎样的功能?
+你可以通过构造不同的例子来测试它的功能极限.再根据它的功能来开发函数模拟实现 `super`.
 
 ## 总结
 
@@ -263,7 +266,7 @@ class A extends Root {
 
 不妨想想这里是如何通过`getPrototypeOf()`来支持多层继承的?
 
-更完整的实现请自行阅读: inherits-ex动态继承库中的相关代码: https://github.com/snowyu/inherits-ex.js/blob/v2/src/getSuper.js
+完整的实际实现请自行阅读: [inherits-ex 动态继承库](https://github.com/snowyu/inherits-ex.js)中的相关代码: https://github.com/snowyu/inherits-ex.js/blob/v2/src/getSuper.js
 
 ```javascript
 function getSuper(instance) {
