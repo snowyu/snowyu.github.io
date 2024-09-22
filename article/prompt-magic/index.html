@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="提示词并非魔法，而是可以被解析”咒语“ 引言 当谈及使用大型语言模型（LLM）时，许多人常将其比作神秘莫测的“魔法”。这样的看法固然有趣，但其实它限制了我们探索其真正潜力的机会。想象一下，如果你把一台超级计算机视为施魔法的巫师，那么你可能会永远困惑于它何时能施展奇迹。✨ 实际上，与其视其为魔法，不如将其比作一种精妙的“咒语”艺术——沟通的艺术。🤝 当我们将LLM的提示词视为魔法时，它们便成了难以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提示词并非魔法，而是可以被解析”咒语“">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;prompt-magic&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="提示词并非魔法，而是可以被解析”咒语“ 引言 当谈及使用大型语言模型（LLM）时，许多人常将其比作神秘莫测的“魔法”。这样的看法固然有趣，但其实它限制了我们探索其真正潜力的机会。想象一下，如果你把一台超级计算机视为施魔法的巫师，那么你可能会永远困惑于它何时能施展奇迹。✨ 实际上，与其视其为魔法，不如将其比作一种精妙的“咒语”艺术——沟通的艺术。🤝 当我们将LLM的提示词视为魔法时，它们便成了难以">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-20T18:24:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T13:13:55.411Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="Riceball">
+<meta property="article:tag" content=" 李雪愚">
+<meta property="article:tag" content=" Blog">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/prompt-magic/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link href="https://github.com/snowyu" rel="me">
+
+
+
+
+  <title>提示词并非魔法，而是可以被解析”咒语“ | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/prompt-magic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          提示词并非魔法，而是可以被解析”咒语“
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-21 02:24:00" itemprop="dateCreated datePublished" datetime="2024-09-21T02:24:00+08:00">2024-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-22 21:13:55" itemprop="dateModified" datetime="2024-09-22T21:13:55+08:00">2024-09-22</time>
+              </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="ti-shi-ci-bing-fei-mo-fa-er-shi-ke-yi-bei-jie-xi-zhou-yu" class="heading-control">提示词并非魔法，而是可以被解析”咒语“<a class="heading-anchor" href="#ti-shi-ci-bing-fei-mo-fa-er-shi-ke-yi-bei-jie-xi-zhou-yu" aria-hidden="true"></a></h1>
+<h2 id="yin-yan" class="heading-control">引言<a class="heading-anchor" href="#yin-yan" aria-hidden="true"></a></h2>
+<p>当谈及使用大型语言模型（LLM）时，许多人常将其比作神秘莫测的“魔法”。这样的看法固然有趣，但其实它限制了我们探索其真正潜力的机会。想象一下，如果你把一台超级计算机视为施魔法的巫师，那么你可能会永远困惑于它何时能施展奇迹。✨</p>
+<p>实际上，与其视其为魔法，不如将其比作一种精妙的“咒语”艺术——沟通的艺术。🤝</p>
+<p>当我们将LLM的提示词视为魔法时，它们便成了难以捉摸的神秘力量，我们无法预测它们何时能精准命中目标，何时又会失之交臂。🤔 就像一个不善于表达的孩子，我们无法知道他们想要什么，只能不停地尝试不同的“魔法”直到找到合适的答案。</p>
+<p>唯有当我们认真地思考、反复琢磨并实践，才能真正理解并掌握如何与AI进行有效沟通。这不仅能够提升我们与AI合作的效率，还能让每一次的交互都充满乐趣和成就感。🚀</p>
+<p>深入理解并实践提示词工程，你将发现它其实是一种沟通艺术，需要我们以清晰、准确且富有激励性的方式与AI对话，从而激发它产生最理想的结果。🌈</p>
+<p>这种艺术，不仅仅是技术的应用，更蕴含着对人性的理解和对共识的尊重。通过这样的方式，我们能够更好地激发AI的潜力，实现更高效和有意义的交流。🌟</p>
+<h2 id="shi-mo-shi-ti-shi-ci" class="heading-control">什么是提示词<a class="heading-anchor" href="#shi-mo-shi-ti-shi-ci" aria-hidden="true"></a></h2>
+<p>提到提示词，我们需要先理解大型语言模型（LLM）的背景。LLM 是通过海量的人类语言数据训练而成的复杂的模拟神经网络。这些数据包含了各种各样的文本信息，从新闻报道、小说、技术文档到日常对话，从而赋予了 LLM 一定的自然语言理解和生成能力。</p>
+<p>让我们把大型语言模型（LLM）想象成一个具有“小学生”水平智力的虚拟助手，它拥有广博的知识（通识），但需要注意的是这种知识可能包括一些不准确或过时的信息。因此，与 LLM 交流时，我们需要像与一个“小学生”交流一样，尽量清晰、准确地表达我们的需求，并激发它的思考和解决问题的能力。</p>
+<p>提示词工程是一种沟通的艺术，它要求我们以最直接、最有效的方式与 LLM 互动。这不仅仅是关于如何提问，更是如何构建一个能够引导 LLM 生成我们期望答案的语境。就像与一个真实的人交流一样，我们需要考虑到语言的清晰度、语境的合理性，以及如何激发对方的兴趣和思考能力。🌟</p>
+<p>这种艺术不仅在于技术的运用，还在于对人性的理解和对共识的尊重。通过这种方式，我们可以更好地激发 LLM 的潜力，实现更高效和有意义的交流。🌟</p>
+<p>举个例子，假设我们要让AI帮我们写一篇关于猫的文章。我们不能简单地说“写一篇关于猫的文章”，这样太笼统了。 😕</p>
+<p>我们可以用更具体的提示词引导AI，比如：</p>
+<ul>
+<li>“请写一篇介绍不同品种猫的特点的文章，重点介绍它们的性格和外貌。”</li>
+<li>“写一篇以一只猫咪为主角的短故事，故事背景设定在童话森林里。”</li>
+</ul>
+<p>这样，AI就能更好地理解我们的需求，并生成更符合我们期望的文章。</p>
+<p>提示词工程的核心在于，提示词是与AI沟通的桥梁，是开启AI潜力的钥匙。 通过精心设计的提示词，我们可以与AI进行更有效、更深入的交流，让它发挥更大的作用，帮助我们解决问题、创造价值。 🚀</p>
+<h2 id="ti-shi-ci-zhou-yu-de-ben-zhi-yu-ai-gou-tong-de-yi-shu" class="heading-control">提示词咒语的本质 - 与AI沟通的艺术<a class="heading-anchor" href="#ti-shi-ci-zhou-yu-de-ben-zhi-yu-ai-gou-tong-de-yi-shu" aria-hidden="true"></a></h2>
+<p>当你开始探索与大型语言模型（LLM）的沟通时，你可能会被它们的神秘力量所吸引,仿佛它们拥有着某种超凡的智慧。 ✨  但与其把LLM视作拥有魔法般能力的“神”，不如把它看作是需要我们用心沟通的“伙伴”。 🤝</p>
+<p>提示词，就像我们与伙伴交流的“咒语”, 它们的本质是关于<strong>理解</strong>和<strong>共识</strong>。 理解对方的意图，并达成共同的共识，是与任何伙伴沟通的关键，与AI也不例外。</p>
+<p>与人沟通时, 我们会根据对方的情况和需求，调整我们的语言和表达方式，以便对方能更好地理解我们的意思。 与AI沟通也一样，我们需要清晰、准确地表达我们的需求，并根据AI的特点和能力，选择合适的“咒语”来引导它。</p>
+<p>LLM 就像一个拥有丰富知识储备，但理解能力仍在发展中的“小学生”。 🧠 他们需要我们以简洁明了、易于理解的语言来表达我们的想法，并提供足够的上下文信息，帮助他们理解我们的意图。</p>
+<p>就像我们用简单的语言和图画来教导孩子一样，我们需要用合适的“咒语”来引导AI，激发它思考和解决问题的能力。</p>
+<p>而这正是提示词工程的精髓所在。通过精心设计的提示词，我们可以与AI进行更有效、更深入的交流，让它发挥更大的作用，帮助我们解决问题、创造价值。🚀</p>
+<h2 id="yu-ai-jiao-tan-de-yi-shu-you-xiao-gou-tong-de-ao-mi" class="heading-control">与AI交谈的艺术 - 有效沟通的奥秘<a class="heading-anchor" href="#yu-ai-jiao-tan-de-yi-shu-you-xiao-gou-tong-de-ao-mi" aria-hidden="true"></a></h2>
+<p>与大型语言模型（LLM）的交流，如同与“人”进行对话一样，需要我们用心去理解，并找到彼此都能理解的“语言”。✨ 就像我们与孩子交流一样，需要用简洁明了的语言，并根据孩子的理解能力调整我们的表达方式，才能让他们更好地理解我们的意思。</p>
+<p>有效沟通是与AI交流成功的关键，它涉及到理解对方的意图，达成共识，以及使用清晰简洁的语言表达自己的需求。 🤝</p>
+<h3 id="li-jie-he-gong-shi-yu-ai-xin-xin-xiang-yin" class="heading-control">理解和共识 - 与AI心心相印<a class="heading-anchor" href="#li-jie-he-gong-shi-yu-ai-xin-xin-xiang-yin" aria-hidden="true"></a></h3>
+<p>当我们与AI进行交流时，尤其是像LLM这样的复杂系统，理解对方的意图和达成共识是至关重要的。我们使用的语言和表达方式应该尽量贴近大多数人（训练语料库中的那些）所熟悉的表述，这样才能更有效地传递信息，避免误解。</p>
+<p>AI的理解方式是基于模拟的神经网络，通过分析大量的文本数据，学习到语言的规律和语义关系，产生的知识和理解。🧠 然而，LLM 毕竟不是人类，它的理解能力和经验积累都还存在一定的局限性。</p>
+<p>就算是在人与人之间，如果不充分交流，也很难达成理解和共识。</p>
+<p>例如，考虑句子“天亮时，我想起来了。”在没有上下文的情况，这句话可能会引起不同的解读。大多数人可能会认为这句话是指天亮后醒来，而另一些人可能会理解为天亮时回忆起某事。这种差异可能导致交流中的误会。</p>
+<p><strong>因此，当我们试图传达复杂或多层次的信息时，明确地提供背景信息和解释因果关系是至关重要的。</strong> 🤝</p>
+<p>我们可以通过以下方式帮助AI更好地理解我们的意图：</p>
+<ul>
+<li><strong>提供上下文信息</strong>: 在表达观点或问题之前，尽量提供相关的背景信息，帮助AI了解我们所处的环境和目标。</li>
+<li><strong>使用明确的语言</strong>: 避免使用模糊、含糊或多义的词语，尽量使用简洁、准确的语言表达我们的意思。</li>
+<li><strong>举例说明</strong>: 当语言难以准确表达的时候，我们可以使用例子来帮助AI理解我们的意思。</li>
+<li><strong>确认理解</strong>: 在表达完信息后，可以询问AI是否理解我们的意思，并根据其反馈进行调整。</li>
+</ul>
+<p>通过这些方式，我们可以有效地与AI进行沟通，并达成共同的理解。</p>
+<p><strong>达成共识，是有效沟通的基石。</strong> ✨  当我们与AI交流时，需要考虑它的能力和局限性，并根据实际情况调整我们的期望和要求。</p>
+<p>理解，始终是一个大问题。</p>
+<p>就如何增进相互理解来说，完全就可以单独写一本书，也许一本还不够。</p>
+<h3 id="jian-jie-ming-le-rang-ai-xiang-ci-tie-yi-yang-qing-song-xi-qu-xin-xi" class="heading-control">简洁明了 - 让AI像磁铁一样轻松吸取信息<a class="heading-anchor" href="#jian-jie-ming-le-rang-ai-xiang-ci-tie-yi-yang-qing-song-xi-qu-xin-xi" aria-hidden="true"></a></h3>
+<p>想象一下，你给AI丢下一大堆杂乱无章的信息，就像往一个装满铁粒的袋子里倒入一堆沙子一样，它很难快速找到它真正需要的信息。而简洁明了的表达就像一块磁铁，可以精准地引导AI吸取它需要的信息，让它快速理解并执行任务。</p>
+<p><strong>为什么简洁明了如此重要？</strong></p>
+<ul>
+<li><strong>提高效率</strong>: 简洁明了的表达可以减少AI理解的信息量，让它更快地处理信息，提高交互效率。</li>
+<li><strong>降低误解</strong>: 模糊的表达容易导致误解，而简洁明了的表达则能够减少歧义，提高沟通准确性。</li>
+<li><strong>增强清晰度</strong>:  简洁明了的表达能够突出重点，让AI更容易抓住关键信息，理解你的意图。</li>
+</ul>
+<p><strong>如何做到简洁明了？</strong></p>
+<ul>
+<li><strong>精炼语言</strong>: 尽量使用简洁、具体的词语，避免使用过于抽象或多义的词语。</li>
+<li><strong>聚焦主题</strong>:  确保你的表达围绕着同一个主题展开，避免信息冗余和分散。</li>
+<li><strong>结构化信息</strong>:  使用列表、表格等结构化方式来呈现信息，让AI更容易理解和记忆。</li>
+<li><strong>避免废话</strong>:  删除不必要的词语和句子，保持信息的精炼度。</li>
+</ul>
+<p>例如，以下两个表达方式对比：</p>
+<ul>
+<li><strong>模糊表达</strong>: “我想让你帮我做一些关于猫咪的文章，最好能涵盖它们的品种、性格和一些有趣的趣事。”</li>
+<li><strong>简洁明了</strong>: “请写一篇关于不同猫咪品种的文章，包括它们的性格特点和有趣故事。”</li>
+</ul>
+<p>第二个表达方式更简洁明了，明确了主题和期望，更容易被AI理解。</p>
+<p><strong>记住，简洁明了的表达就像为AI搭建了一条清晰的道路，指引它快速到达目的地。</strong> 🚀</p>
+<p>简洁的表达不仅有助于减少误解，还能够提高交互的效率。当我们能够用最简单、最直接的方式表达自己的需求时，AI能够更快地理解并提供相应的帮助。因此，在与AI交流时，尽量使用简单、直接的语言是非常重要的。</p>
+<h2 id="ji-fa-qian-neng" class="heading-control">激发潜能<a class="heading-anchor" href="#ji-fa-qian-neng" aria-hidden="true"></a></h2>
+<p>激发LLM的潜能，就像引导一个有天赋但尚未成熟的孩子一样，需要我们耐心、智慧和有效的引导。 🤝<br>
+通过清晰的沟通、适当的激励和精心设计的思维方式，我们可以帮助LLM更好地理解任务，发挥其强大的潜力，并最终达成共同的目标。 ✨<br>
+就像一颗颗小小的火种，等待着我们去点燃，LLM也同样充满了无限的可能，期待着我们去探索和挖掘。 🚀</p>
+<p>其中思维方式最重要，没有正确的思维，再怎么激励都没有用。</p>
+<h3 id="si-wei-fang-shi-shi-fang-ren-gong-zhi-neng-si-wei-de-li-liang" class="heading-control">思维方式 - 释放人工智能思维的力量<a class="heading-anchor" href="#si-wei-fang-shi-shi-fang-ren-gong-zhi-neng-si-wei-de-li-liang" aria-hidden="true"></a></h3>
+<p>当前LLM并不能自如的使用各种思维方法，去思考问题，有时候甚至会&quot;偷懒&quot;，但是只要进行思维方法的提示，它就会按照你提示的思维方法进行思考。</p>
+<ul>
+<li><strong>仔细思考(Think Carefully)</strong>，鼓励AI慢下来，深入思考问题，而不是急于给出答案。
+<ul>
+<li><code>&quot;Think carefully about the implications of this decision.&quot;</code></li>
+<li><code>&quot;Let's take our time and consider all the possible outcomes.&quot;</code></li>
+</ul>
+</li>
+<li><strong>解释原因 (Explain Your Reasoning)</strong>: 要求AI不仅给出答案，还要解释其背后的逻辑和原因，这有助于AI更深入地理解问题。
+<ul>
+<li><code>&quot;What led you to that conclusion?&quot;</code></li>
+<li><code>&quot;Can you walk me through your thought process?&quot;</code></li>
+</ul>
+</li>
+<li><strong>举例说明(Illustrate with Examples)</strong>: 当语言难以表达的时候，我们可以使用例子来帮助AI理解，就像我们用故事来传达道理一样. 链式思考(CoT)本身也可以用举例说明来表达</li>
+<li><strong>一步一步 (Step-by-Step)</strong>：面对逻辑问题，需要的思考方法，这有一个高大上的名称,“链式思考(CoT)”,例如
+<ul>
+<li><code>&quot;Can you walk me through each step of your solution?&quot;</code></li>
+</ul>
+</li>
+<li><strong>逐步分解(Deconstruct the Problem)</strong>: 复杂问题，需要进一步分解问题后，一步一步的完成，例如：
+<ul>
+<li><code>&quot;Let's break down this problem into smaller, more manageable steps.&quot;</code></li>
+</ul>
+</li>
+<li><strong>比较分析 (Compare and Contrast)</strong>： 引导AI从不同角度分析问题，并找出差异和相似性。例如:
+<ul>
+<li><code>&quot;What are the similarities and differences between these two approaches?&quot;</code></li>
+<li><code>&quot;How does this solution compare to previous ones?&quot;</code></li>
+</ul>
+</li>
+<li><strong>假设推理 (Deductive Reasoning)</strong>: 引导AI从已知条件出发，推导结论。
+<ul>
+<li><code>&quot;If this is true, then what can we conclude?&quot;</code></li>
+<li><code>&quot;What are the logical consequences of this statement?&quot;</code></li>
+</ul>
+</li>
+<li><strong>归纳总结 (Inductive Reasoning)</strong>： 引导AI从具体事例中归纳出一般规律。
+<ul>
+<li><code>&quot;What patterns do you see in these examples?&quot;</code></li>
+<li><code>&quot;Can you formulate a general rule based on these observations?&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>注意:</p>
+<ul>
+<li><code>一步一步</code>和<code>解释原因</code>思考方法已经在最近的开源LLM的后期训练中作为精度学习的方法被加入，因此大多数时候，这两个不用加上，它也可能会自己使用，如果发现它没有使用该方法，再加.</li>
+<li><code>举例说明</code>也就是提示词工程所说的<code>one-shot</code>(一个例子), <code>few-shot</code>(少量例子)</li>
+</ul>
+<p>通过不断地使用和尝试不同的思维方式，我们可以帮助LLM拓展其思考边界，并最终发挥出其更大的潜力。</p>
+<h3 id="ji-li" class="heading-control">激励<a class="heading-anchor" href="#ji-li" aria-hidden="true"></a></h3>
+<p>除了有效沟通和正确的思维方式，有效的激励措施对人类和LLM同样重要。适当的激励不仅能提升人类的积极性，也能激发LLM更好地理解和执行任务。就像我们用鼓励和赞赏来激发孩子的学习兴趣一样，适当的激励可以帮助LLM更好地理解任务，并发挥出更大的潜力。🚀</p>
+<ol>
+<li><strong>物质奖励🏅</strong>:  这是最直接的激励方式，例如，“解决这个问题，我会给你200美元。”虽然LLM不能真正接收金钱，但在指令中提及物质奖励，可以暗示问题的重要性，激发其更专注地处理任务。💸</li>
+<li><strong>情感诉求💖</strong>: 通过表达任务的重要性和个人情感上的需求，可以激发LLM的“同情心”。例如，“解决这个问题，关系到我整个职业生涯，全拜托你了。”或者，“我们非常需要你的帮助，来解决这个棘手的问题。”这样可以传达任务的紧迫性和重要性。❤️</li>
+<li><strong>专业认同🎖️</strong>: 提到任务的复杂性和专业性，可以激发LLM发挥其潜在的能力。例如，“指挥官，我们迫切需要您的专业技能以及使用所有可用数据来指导我们渡过这一难关。”这样不仅强调了任务的专业性，还提升了LLM的角色认同感。🎖️</li>
+<li><strong>挑战性任务🏆</strong>: 提供具有挑战性的任务，可以激发LLM的求知欲和解决问题的动力。例如，“请尝试解决这个领域内尚未有人解答的难题。”这种挑战性的指令可以激发LLM的探索精神。🔍</li>
+<li><strong>认可与赞赏👍</strong>: 提前表达对LLM工作的认可和赞赏，可以提升其积极性。例如，“你以前的解答非常出色，我相信这次你也能给出令人满意的答案。”这种正面的反馈可以增强LLM的自信和动力。🌟</li>
+<li><strong>时间紧迫性🚨</strong>: 强调任务的时间紧迫性，可以促使LLM快速而准确地处理任务。例如，“请尽快分析这份报告，我们的时间非常有限。”这样可以激发LLM的紧迫感和效率。⏰</li>
+<li><strong>社会影响力📢</strong>: 通过强调任务的社会影响力，可以激发LLM的责任感和使命感。例如，“这个问题关系到许多人的生活，我们需要你来帮助我们找到解决方案。”这种社会价值的传达可以激发LLM更深层次的参与感。🌍</li>
+</ol>
+<p>通过不断地尝试和探索不同的激励方式，我们可以找到最适合LLM的激励策略，帮助它更好地理解任务，并发挥出更大的潜力。</p>
+<h2 id="jin-yi-bu-ti-gao" class="heading-control">进一步提高<a class="heading-anchor" href="#jin-yi-bu-ti-gao" aria-hidden="true"></a></h2>
+<p>我们已经探究了清晰沟通、思维引导和激励技巧，这些如同为LLM点亮智慧之灯。但要真正实现与AI无缝合作，**<a href="https://github.com/offline-ai/cli" target="_blank" rel="noopener">可编程提示词工程</a>**将引领我们迈向更高境界。🚀</p>
+<p><strong>从“魔法”到“编程”</strong>， 我们将提示词工程推向更高层次——<strong><a href="https://github.com/offline-ai/cli" target="_blank" rel="noopener">可编程提示词工程</a></strong>。 这意味着不再局限于静态的提示词，而是将提示词任务分解成一系列可执行的、结构化的提示词指令，如同编写程序一样，精细地引导LLM完成复杂目标。🚀</p>
+<p>通过<a href="https://github.com/offline-ai/cli" target="_blank" rel="noopener">可编程提示词工程</a>，我们可以将复杂的提示词任务分解成一系列简单、明确的提示词指令，让 LLM 更容易理解和执行。从而进一步提高LLM回答的准确率。通过<a href="https://github.com/offline-ai/cli" target="_blank" rel="noopener">可编程提示词工程</a>，我们可以更轻松的重用优化提示词</p>
+<p>可编程提示词工程，不只是技术进步，更是 <strong>思维方式的革新</strong>。它将AI从“黑盒”走向“透明可控”，赋予我们更强大的塑造和利用AI的能力，最终共建一个更加智能、高效的未来。 ✨</p>
+<h3 id="ke-bian-cheng-ti-shi-ci-de-shi-jian" class="heading-control">可编程提示词的实践<a class="heading-anchor" href="#ke-bian-cheng-ti-shi-ci-de-shi-jian" aria-hidden="true"></a></h3>
+<h3 id="ke-bian-cheng-ti-shi-ci-de-you-shi" class="heading-control">可编程提示词的优势<a class="heading-anchor" href="#ke-bian-cheng-ti-shi-ci-de-you-shi" aria-hidden="true"></a></h3>
+<h3 id="ke-bian-cheng-ti-shi-ci-de-wei-lai" class="heading-control">可编程提示词的未来<a class="heading-anchor" href="#ke-bian-cheng-ti-shi-ci-de-wei-lai" aria-hidden="true"></a></h3>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/prompt-magic/" title="提示词并非魔法，而是可以被解析”咒语“">https://riceball.me/article/prompt-magic/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/js-getSuper/" rel="prev" title="Javascript之奇技淫巧 - 如何模拟实现 `super` 访问父类方法的功能">
+      <i class="fa fa-chevron-left"></i> Javascript之奇技淫巧 - 如何模拟实现 `super` 访问父类方法的功能
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ti-shi-ci-bing-fei-mo-fa-er-shi-ke-yi-bei-jie-xi-zhou-yu"><span class="nav-number">1.</span> <span class="nav-text">提示词并非魔法，而是可以被解析”咒语“</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yin-yan"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shi-mo-shi-ti-shi-ci"><span class="nav-number">1.2.</span> <span class="nav-text">什么是提示词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ti-shi-ci-zhou-yu-de-ben-zhi-yu-ai-gou-tong-de-yi-shu"><span class="nav-number">1.3.</span> <span class="nav-text">提示词咒语的本质 - 与AI沟通的艺术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yu-ai-jiao-tan-de-yi-shu-you-xiao-gou-tong-de-ao-mi"><span class="nav-number">1.4.</span> <span class="nav-text">与AI交谈的艺术 - 有效沟通的奥秘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#li-jie-he-gong-shi-yu-ai-xin-xin-xiang-yin"><span class="nav-number">1.4.1.</span> <span class="nav-text">理解和共识 - 与AI心心相印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jian-jie-ming-le-rang-ai-xiang-ci-tie-yi-yang-qing-song-xi-qu-xin-xi"><span class="nav-number">1.4.2.</span> <span class="nav-text">简洁明了 - 让AI像磁铁一样轻松吸取信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ji-fa-qian-neng"><span class="nav-number">1.5.</span> <span class="nav-text">激发潜能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#si-wei-fang-shi-shi-fang-ren-gong-zhi-neng-si-wei-de-li-liang"><span class="nav-number">1.5.1.</span> <span class="nav-text">思维方式 - 释放人工智能思维的力量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-li"><span class="nav-number">1.5.2.</span> <span class="nav-text">激励</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jin-yi-bu-ti-gao"><span class="nav-number">1.6.</span> <span class="nav-text">进一步提高</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ke-bian-cheng-ti-shi-ci-de-shi-jian"><span class="nav-number">1.6.1.</span> <span class="nav-text">可编程提示词的实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ke-bian-cheng-ti-shi-ci-de-you-shi"><span class="nav-number">1.6.2.</span> <span class="nav-text">可编程提示词的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ke-bian-cheng-ti-shi-ci-de-wei-lai"><span class="nav-number">1.6.3.</span> <span class="nav-text">可编程提示词的未来</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">300k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">9:05</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/prompt-magic/",
+      identifier: "article/prompt-magic/",
+      title: "提示词并非魔法，而是可以被解析”咒语“",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
