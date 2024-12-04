@@ -1,3 +1,20 @@
+---
+author: riceball
+date: 2024-09-22 16:00:06+08:00
+updated: 2024-09-28 12:00:00+08:00
+title: 提示词并非魔法，而是可以被解析”咒语“
+categories:
+  - AI
+  - Prompt
+tags:
+  - learning
+  - ai
+  - prompt
+  - gpt
+  - chatgpt
+  - deep learning
+---
+
 # 提示词并非魔法，而是可以被解析”咒语“
 
 ## 引言
