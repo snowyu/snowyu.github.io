@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>article/prompt-magic</title>
+    <title>提示词并非魔法，而是可以被解析”咒语“</title>
     <url>/article/prompt-magic/</url>
     <content><![CDATA[<h1 id="ti-shi-ci-bing-fei-mo-fa-er-shi-ke-yi-bei-jie-xi-zhou-yu" class="heading-control">提示词并非魔法，而是可以被解析”咒语“<a class="heading-anchor" href="#ti-shi-ci-bing-fei-mo-fa-er-shi-ke-yi-bei-jie-xi-zhou-yu" aria-hidden="true"></a></h1>
 <h2 id="yin-yan" class="heading-control">引言<a class="heading-anchor" href="#yin-yan" aria-hidden="true"></a></h2>
@@ -127,6 +127,18 @@
 <h3 id="ke-bian-cheng-ti-shi-ci-de-you-shi" class="heading-control">可编程提示词的优势<a class="heading-anchor" href="#ke-bian-cheng-ti-shi-ci-de-you-shi" aria-hidden="true"></a></h3>
 <h3 id="ke-bian-cheng-ti-shi-ci-de-wei-lai" class="heading-control">可编程提示词的未来<a class="heading-anchor" href="#ke-bian-cheng-ti-shi-ci-de-wei-lai" aria-hidden="true"></a></h3>
 ]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Prompt</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>ai</tag>
+        <tag>gpt</tag>
+        <tag>chatgpt</tag>
+        <tag>deep learning</tag>
+        <tag>prompt</tag>
+      </tags>
   </entry>
   <entry>
     <title>Javascript之奇技淫巧 - 如何模拟实现 `super` 访问父类方法的功能</title>

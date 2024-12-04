@@ -3,6 +3,48 @@
 
 
     <url>
+        <loc>https://riceball.me/tags/prompt/</loc>
+        <lastmod>2024-09-27T20:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/tags/deep-learning/</loc>
+        <lastmod>2024-09-27T20:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/tags/chatgpt/</loc>
+        <lastmod>2024-09-27T20:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/tags/gpt/</loc>
+        <lastmod>2024-09-27T20:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/tags/ai/</loc>
+        <lastmod>2024-09-27T20:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/tags/learning/</loc>
+        <lastmod>2024-09-27T20:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://riceball.me/tags/super/</loc>
         <lastmod>2023-05-12T00:24:43.562Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -33,41 +75,6 @@
     <url>
         <loc>https://riceball.me/tags/javascript/</loc>
         <lastmod>2023-05-12T00:24:43.562Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/tags/deep-learning/</loc>
-        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/tags/chatgpt/</loc>
-        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/tags/gpt/</loc>
-        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/tags/ai/</loc>
-        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/tags/learning/</loc>
-        <lastmod>2023-05-12T00:19:14.945Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
