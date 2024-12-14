@@ -1,9 +1,18 @@
 ---
-id: l1u6m3ugxxfnbkqjuz9a90x
+author: riceball
 title: PPE 可编程提示词工程引擎开发摘要(10-11月小结)
-desc: ''
-updated: 1734182540071
-created: 1733654415046
+date: 2024-12-08 18:40:00+08:00
+updated: 2024-12-14 21:22:00+08:00
+categories:
+  - AI
+  - Prompt
+tags:
+  - learning
+  - ai
+  - prompt
+  - gpt
+  - chatgpt
+  - deep learning
 ---
 
 ## 2024-10月
