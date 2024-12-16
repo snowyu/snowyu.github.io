@@ -1,8 +1,7 @@
 ---
 author: riceball
 title: PPE 可编程提示词工程引擎开发摘要
-date: 2024-12-08 18:40:00+08:00
-updated: 2024-12-14 21:22:00+08:00
+date: 2024-12-16 12:00:00+08:00
 categories:
   - AI
   - Prompt
