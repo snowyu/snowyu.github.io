@@ -1,6 +1,6 @@
 ---
 author: riceball
-title: PPE 可编程提示词工程引擎开发摘要
+title: PPE 可编程提示词工程引擎草案开发摘要
 date: 2024-12-16 12:00:00+08:00
 categories:
   - AI
