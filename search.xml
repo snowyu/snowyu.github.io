@@ -360,27 +360,6 @@
 <li><code>$break</code> 指令用于在循环体中提前结束循环。</li>
 <li><code>$continue</code> 指令用于在循环体中跳过当前循环，直接进入下一次循环。</li>
 </ul>
-<h4 id="while-zhi-ling" class="heading-control"><code>$while</code> 指令<a class="heading-anchor" href="#while-zhi-ling" aria-hidden="true"></a></h4>
-<p><code>$while</code> 指令用于执行一段代码块，只要给定的条件为真就会一直循环执行。下面是一个简单的示例：</p>
-<details>
-<summary>示例(点击展开详情)</summary>
-<pre><code class="yaml"><span class="hljs-bullet">-</span> <span class="hljs-string">$set:</span>
-    <span class="hljs-attr">i:</span> <span class="hljs-number">5</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">$while:</span> <span class="hljs-string">"i &gt;= 0"</span>
-  <span class="hljs-attr">do:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-string">$set:</span>
-        <span class="hljs-attr">i:</span> <span class="hljs-string">?=i-1</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-string">$if:</span> <span class="hljs-string">"i == 2"</span>
-      <span class="hljs-attr">then:</span> <span class="hljs-string">$break</span>
-</code></pre>
-</details>
-<p>说明</p>
-<ul>
-<li>条件表达式 (<code>&quot;i &gt;= 0&quot;</code>): 这是循环的条件。只有当这个条件为真的时候，循环体内的代码才会被执行。</li>
-<li>循环体 (<code>do:</code>): 这部分包含了在每次循环时需要执行的操作。</li>
-<li><code>$break</code> 指令用于在循环体中提前结束循环。</li>
-<li><code>$continue</code> 指令用于在循环体中跳过当前循环，直接进入下一次循环。</li>
-</ul>
 <h4 id="for-zhi-ling" class="heading-control"><code>$for</code> 指令<a class="heading-anchor" href="#for-zhi-ling" aria-hidden="true"></a></h4>
 <p><code>$for</code> 指令用于迭代一个列表，并执行一段代码块。下面是一个简单的示例：</p>
 <details>
