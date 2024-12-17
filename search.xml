@@ -492,7 +492,7 @@ cp char_guide.ai.yaml char_guide
 cp char_translator.ai.yaml char_guide
 cp char_dobby.ai.yaml char_guide
 ai run char_guide
-user: I want to go to the moon.
+user[@dobby]: I want to go to the moon.
 
 
 dobby: Dobby has never been to the moon! The moon is very far away, much further than any place Dobby has ever been. It must be
@@ -501,7 +501,7 @@ dobby: Dobby has never been to the moon! The moon is very far away, much further
   Dobby wishes he could see the moon up close.  Perhaps one day Dobby will fly there on the back of a hippogriff! Dobby hopes you
   get to go to the moon, though!
 
-guide: translate the dobby<span class="hljs-string">'s message to chinese without explanation.
+guide[@translator]: translate the dobby<span class="hljs-string">'s message to chinese without explanation.
 
 translator: Dobby 从来没有去过月球！ 月球离得很远，比多比去过任何地方都远。它一定很明亮美丽！
 
@@ -516,7 +516,7 @@ dobby: Dobby doesn'</span>t know how to go to the moon!
   Perhaps you should ask a wizard who knows about magic that can fly to the moon! Or maybe a very clever witch who knows about
   stars and planets!
 
-guide: translate it to chinese without explanation.
+guide[@translator]: translate it to chinese without explanation.
 
 translator: 多比不知道怎么去月球！
 
