@@ -446,10 +446,21 @@ condition 将 作为<code>COND__</code> 传入执行部分.</p>
 <p>角色群聊功能以结构化自然语言的方式进一步完善了PPE的对话系统，同时使得多个智能体之间能够方便地进行协作和交流，从而更高效地完成复杂的任务。</p>
 <p>角色群聊支持公开对话、私聊对话和多角色对话，使得对话更加灵活和有针对性。</p>
 <ul>
-<li>公开对话: <code>user[@dobby]: ...</code> 表示 <code>user</code> 角色对 <code>dobby</code> 角色公开说的话， <code>dobby</code> 必须回应。</li>
-<li>私聊对话: <code>user[@dobby(私)]: ...</code> 参数 <code>PM</code>|<code>DM</code>|<code>私</code> 均表示 <code>user</code> 角色对 <code>dobby</code> 角色私聊说的话，其他角色看不见。</li>
-<li>多角色对话: 如果要把消息同时发送给多个角色，角色之间用逗号分隔，例如 <code>user[@dobby(PM), @other]</code>。</li>
+<li>指定对话角色有两种方式：
+<ol>
+<li>在角色紧跟的方括号中指定角色名，指定的多个对话角色之间用逗号<code>,</code>分隔。例如 <code>user[@dobby]: &quot;...&quot;</code></li>
+<li>或者在消息内容的最前面指定角色，同样要加上前缀<code>@</code>字符，多个角色之间用逗号<code>,</code>分隔。</li>
+</ol>
+</li>
+<li>公开对话: <code>user[@dobby]: ...</code> 或 <code>user: &quot;@dobby, ...&quot;</code> 表示 <code>user</code> 角色对 <code>dobby</code> 角色公开说的话， <code>dobby</code> 角色必须回应。</li>
+<li>私聊对话: <code>user[@dobby(私)]: &quot;...&quot;</code> 或 <code>user: &quot;@dobby(私),...&quot;</code> 参数 <code>PM</code>|<code>DM</code>|<code>私</code> 均表示 <code>user</code> 角色对 <code>dobby</code> 角色私聊说的话，其他角色看不见。
+<ul>
+<li><strong>注意</strong>： 消息中只要任意一个角色带上了私聊参数，那么该消息就是是私聊，其他角色看不见。</li>
 </ul>
+</li>
+<li>多角色对话: 如果要把消息同时发送给多个角色，角色之间用逗号分隔，例如 <code>user[@dobby(PM), @other]: &quot;...&quot;</code>, <code>user: &quot;@dobby(PM), @other ...&quot;</code>。</li>
+</ul>
+<p>在消息内容中使用 <code>@role</code> 的方式，使得结构化消息更加接近自然语言。</p>
 <p>设想有如下三个智能体脚本，一个是主控指导(guide), 一个是简单的翻译(translator)，一个是dobby。将这三个文件放在char_guide目录下。</p>
 <p>主控指导(guide)的脚本如下(<code>char_guide.ai.yaml</code>)：</p>
 <pre><code class="yaml"><span class="hljs-meta">---</span>
@@ -464,7 +475,7 @@ condition 将 作为<code>COND__</code> 传入执行部分.</p>
     <span class="hljs-attr">dobby:</span> <span class="hljs-string">char_dobby</span>
 <span class="hljs-meta">---</span>
 <span class="hljs-string">---</span> <span class="hljs-comment"># 新对话开始</span>
-<span class="hljs-string">user[@dobby]:</span> <span class="hljs-string">"I want to go to the moon."</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">"@dobby, I want to go to the moon."</span>
 <span class="hljs-string">guide[@translator]:</span> <span class="hljs-string">"translate the dobby's message to chinese without explanation."</span>
 <span class="hljs-attr">user:</span> <span class="hljs-string">How</span> <span class="hljs-string">to</span> <span class="hljs-string">go</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">moon?</span>
 <span class="hljs-attr">dobby:</span> <span class="hljs-string">"[[AI]]"</span>
