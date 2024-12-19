@@ -498,9 +498,15 @@ $match(condition[, allMatches=false]):
 
 角色群聊支持公开对话、私聊对话和多角色对话，使得对话更加灵活和有针对性。
 
-* 公开对话: `user[@dobby]: ...` 表示 `user` 角色对 `dobby` 角色公开说的话， `dobby` 必须回应。
-* 私聊对话: `user[@dobby(私)]: ...` 参数 `PM`|`DM`|`私` 均表示 `user` 角色对 `dobby` 角色私聊说的话，其他角色看不见。
-* 多角色对话: 如果要把消息同时发送给多个角色，角色之间用逗号分隔，例如 `user[@dobby(PM), @other]`。
+* 指定对话角色有两种方式：
+  1. 在角色紧跟的方括号中指定角色名，指定的多个对话角色之间用逗号`,`分隔。例如 `user[@dobby]: "..."`
+  2. 或者在消息内容的最前面指定角色，同样要加上前缀`@`字符，多个角色之间用逗号`,`分隔。
+* 公开对话: `user[@dobby]: ...` 或 `user: "@dobby, ..."` 表示 `user` 角色对 `dobby` 角色公开说的话， `dobby` 角色必须回应。
+* 私聊对话: `user[@dobby(私)]: "..."` 或 `user: "@dobby(私),..."` 参数 `PM`|`DM`|`私` 均表示 `user` 角色对 `dobby` 角色私聊说的话，其他角色看不见。
+  * **注意**： 消息中只要任意一个角色带上了私聊参数，那么该消息就是是私聊，其他角色看不见。
+* 多角色对话: 如果要把消息同时发送给多个角色，角色之间用逗号分隔，例如 `user[@dobby(PM), @other]: "..."`, `user: "@dobby(PM), @other ..."`。
+
+在消息内容中使用 `@role` 的方式，使得结构化消息更加接近自然语言。
 
 设想有如下三个智能体脚本，一个是主控指导(guide), 一个是简单的翻译(translator)，一个是dobby。将这三个文件放在char_guide目录下。
 
@@ -519,7 +525,7 @@ character:
     dobby: char_dobby
 ---
 --- # 新对话开始
-user[@dobby]: "I want to go to the moon."
+user: "@dobby, I want to go to the moon."
 guide[@translator]: "translate the dobby's message to chinese without explanation."
 user: How to go to the moon?
 dobby: "[[AI]]"
