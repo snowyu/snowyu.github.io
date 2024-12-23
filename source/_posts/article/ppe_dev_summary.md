@@ -530,7 +530,7 @@ guide[@translator]: "translate the dobby's message to chinese without explanatio
 user: How to go to the moon?
 dobby: "[[AI]]"
 guide[@translator]: "translate it to chinese without explanation."
-$echo: "" # 避免再次输出[[AI]]作为结果
+$echo: "" # 避免再次输出上一次的结果
 ```
 
 * 调用方脚本必须是角色`char`类型
