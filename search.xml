@@ -93,7 +93,7 @@
 <span class="hljs-string">-&gt;</span> <span class="hljs-string">translator(target_lang="葡萄牙语")</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">$print</span>
 </code></pre>
 <h3 id="zai-yi-lai-de-js-jiao-ben-zhong-tiao-yong-wai-bu-ti-shi-ci" class="heading-control">在依赖的js脚本中调用外部提示词<a class="heading-anchor" href="#zai-yi-lai-de-js-jiao-ben-zhong-tiao-yong-wai-bu-ti-shi-ci" aria-hidden="true"></a></h3>
-<p>那么，反过来，如果在依赖的js脚本调用外部提示词呢?</p>
+<p>那么，反过来，如何在依赖的js脚本调用外部提示词呢?</p>
 <pre><code class="js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callPPEScriptDemo</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.$exec({<span class="hljs-attr">id</span>: <span class="hljs-string">'calculator'</span>, <span class="hljs-attr">args</span>:{ <span class="hljs-attr">content</span>: <span class="hljs-string">"6+3"</span> }})
 }
