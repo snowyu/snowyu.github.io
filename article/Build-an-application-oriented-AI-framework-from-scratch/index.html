@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://riceball.me').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 核心问题：为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从头手搓面向应用的AI框架">
+<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;Build-an-application-oriented-AI-framework-from-scratch&#x2F;index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 核心问题：为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-17T17:14:40.000Z">
+<meta property="article:modified_time" content="2025-03-18T04:35:51.000Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="Riceball">
+<meta property="article:tag" content=" 李雪愚">
+<meta property="article:tag" content=" Blog">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link href="https://github.com/snowyu" rel="me">
+
+
+
+
+  <title>从头手搓面向应用的AI框架 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Riceball LEE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          从头手搓面向应用的AI框架
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-03-18 01:14:40 / 修改时间：12:35:51" itemprop="dateCreated datePublished" datetime="2025-03-18T01:14:40+08:00">2025-03-18</time>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="cong-tou-shou-cuo-mian-xiang-ying-yong-de-ai-kuang-jia" class="heading-control">🌟 从头手搓面向应用的AI框架 🚀<a class="heading-anchor" href="#cong-tou-shou-cuo-mian-xiang-ying-yong-de-ai-kuang-jia" aria-hidden="true"></a></h1>
+<h2 id="wei-shi-mo-cong-tou-shou-cuo-ai-kuang-jia-er-bu-shi-shi-yong-xian-you-kuang-jia" class="heading-control">为什么从头手搓 AI 框架，而不是使用现有框架？<a class="heading-anchor" href="#wei-shi-mo-cong-tou-shou-cuo-ai-kuang-jia-er-bu-shi-shi-yong-xian-you-kuang-jia" aria-hidden="true"></a></h2>
+<p>💡 <strong>核心问题</strong>：为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？</p>
+<p>最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个<strong>极度灵活可配置的AI应用框架</strong>，用来打造我设想的<code>「真·AI PC」</code>——而非当前大多数AI产品那种“远程AI服务+本地空壳”的模式。</p>
+<p>在当前阶段，我认为面向应用的AI框架应聚焦于<strong>提示词（Prompt）的工程化</strong>——这是人类与AI交互的唯一桥梁。我的目标是：<br>
+✅ 将提示词转化为可编程的“函数”，支持自由组合、独立调用，并能持续迭代优化。</p>
+<p>但是langchain对提示词的抽象只是总结的一些范式，而这些范式在我看来不太不实用，而且更糟糕的是直接将提示词内嵌入代码中，根本无法替换和迭代提示词。而AutoGen是以多智能体架构和事件驱动为核心实现复杂协作工作流；至于LMQL作为一种用于语言模型交互的查询语言更像是炫技；Outlines 聚焦在结构化文本的生成；MemGPT只想实现长久记忆， 这些就不多做评价了。</p>
+<h2 id="wo-xiang-yao-de-ai-kuang-jia-he-xin-gong-neng" class="heading-control">我想要的AI框架核心功能<a class="heading-anchor" href="#wo-xiang-yao-de-ai-kuang-jia-he-xin-gong-neng" aria-hidden="true"></a></h2>
+<p>我想要的是以提示词为核心的框架！</p>
+<p>💡 <strong>8大关键需求</strong>：</p>
+<ol>
+<li><strong>提示词即函数</strong>：让提示词象普通函数一样的使用，独立提示词可以与代码无缝双向调用，代码可以调用提示词获得结果，提示词也可以调用代码获得结果。</li>
+<li><strong>加密保护</strong>： 支持提示词加密，保障知识产权</li>
+<li><strong>模型中立</strong>： 提示词可适配不同模型及参数规模。</li>
+<li><strong>继承机制</strong>：支持提示词“类”的继承，如同面向对象编程。</li>
+<li><strong>简洁易用</strong>：提示词需简单易读写。</li>
+<li><strong>打包为应用</strong>：能将多个提示词打包成完整AI应用。</li>
+<li><strong>可扩展</strong>：支持任意能力的扩展，如:看（图生文），听(STT)，说(TTS)，画(文生图/视频)等等。</li>
+<li><strong>全栈兼容</strong>：跨平台支持（浏览器、服务器端），统一语言（选型JavaScript）。</li>
+</ol>
+<h2 id="kai-fa-li-cheng" class="heading-control">开发历程 🛠️<a class="heading-anchor" href="#kai-fa-li-cheng" aria-hidden="true"></a></h2>
+<p>在2024年多方搜寻无果的情况下，2024年5月我开始从头写<a href="https://github.com/offline-ai/ppe/" target="_blank" rel="noopener">可编程提示词(Programmable Prompt Engine)AI规范</a>，当然最开始不是叫这个名字，最开始叫<code>AI Agent Framework</code>,后来是表伟提议既然是实质是让提示词成为可编程的软件工程，那么不妨就叫PPE，我想也对，这个概念更准确，AI Agent应该是以PPE提示词为基础打造，它其实是更上层的概念，遂更名为PPE。</p>
+<p>既然要全栈，那就只能选JavaScript, 从前端到后端，从服务器到浏览器通吃，并且JS极度灵活和可扩展，而这正是我所需要的。</p>
+<h3 id="jie-gou-hua-dui-hua-xiao-xi" class="heading-control">结构化对话消息<a class="heading-anchor" href="#jie-gou-hua-dui-hua-xiao-xi" aria-hidden="true"></a></h3>
+<p>刚开始写的时候，还是很茫然无措的，没有项目可供参考，</p>
+<p>最初就想着用YAML配置的方式简单的来结构化对话消息,然后既然提示词是函数那就肯定需要约定函数的输入和输出: 用<code>input</code>来约定提示词的输入参数, <code>output</code>用<code>Json Schema</code>来约定提示词的输出：</p>
+<pre><code class="yaml"><span class="hljs-attr">templateFormat:</span> <span class="hljs-string">hf</span>
+<span class="hljs-attr">prompt:</span>
+  <span class="hljs-attr">messages:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">role:</span> <span class="hljs-string">system</span>
+      <span class="hljs-attr">content:</span> <span class="hljs-string">Carefully</span> <span class="hljs-string">Think</span> <span class="hljs-string">about</span> <span class="hljs-string">the</span> <span class="hljs-string">intent</span> <span class="hljs-string">of</span> <span class="hljs-string">following</span> <span class="hljs-string">The</span> <span class="hljs-string">CONVERSATION</span> <span class="hljs-string">user</span> <span class="hljs-string">provided.</span> <span class="hljs-string">Output</span> <span class="hljs-string">the</span> <span class="hljs-string">json</span> <span class="hljs-string">object</span> <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">Intent</span> <span class="hljs-string">Category</span> <span class="hljs-string">and</span> <span class="hljs-string">Reason.</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">role:</span> <span class="hljs-string">user</span>
+      <span class="hljs-attr">content:</span> <span class="hljs-string">|-
+        The CONVERSATION:
+        {{ conversation }}
+</span><span class="hljs-attr">input:</span>
+  <span class="hljs-attr">conversation:</span> <span class="hljs-string">"messages[1].content"</span>
+<span class="hljs-attr">output:</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+  <span class="hljs-attr">properties:</span>
+    <span class="hljs-attr">Intent:</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+    <span class="hljs-attr">Reason:</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+</code></pre>
+<p>感觉，这样很不自然方便，将结构化对话消息改为分层结构，将输入/输出配置与对话内容分离:</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">input:</span>
+  <span class="hljs-attr">conversation:</span> <span class="hljs-string">{required:</span> <span class="hljs-literal">true</span><span class="hljs-string">}</span>
+<span class="hljs-attr">output:</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
+  <span class="hljs-attr">properties:</span>
+    <span class="hljs-attr">Intent:</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+    <span class="hljs-attr">Reason:</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">system:</span> <span class="hljs-string">Carefully</span> <span class="hljs-string">Think</span> <span class="hljs-string">about</span> <span class="hljs-string">the</span> <span class="hljs-string">intent</span> <span class="hljs-string">of</span> <span class="hljs-string">following</span> <span class="hljs-string">The</span> <span class="hljs-string">CONVERSATION</span> <span class="hljs-string">user</span> <span class="hljs-string">provided.</span> <span class="hljs-string">Output</span> <span class="hljs-string">the</span> <span class="hljs-string">json</span> <span class="hljs-string">object</span> <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">Intent</span> <span class="hljs-string">Category</span> <span class="hljs-string">and</span> <span class="hljs-string">Reason.</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">|-
+  The CONVERSATION:
+  {{ conversation }}
+</span></code></pre>
+<p>这样就感觉好多了。</p>
+<h3 id="ti-shi-ci-tiao-yong-yu-dai-ma-ji-cheng" class="heading-control">提示词调用与代码集成<a class="heading-anchor" href="#ti-shi-ci-tiao-yong-yu-dai-ma-ji-cheng" aria-hidden="true"></a></h3>
+<p>那么如何在提示词中使用(调用)AI赋值以及其他提示词或代码？于是有了<code>高级替换</code>:</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-comment"># 导入js函数</span>
+<span class="hljs-attr">import:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">eval.js</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-comment"># JOKE会被AI赋值,存放于: `prompt.JOKE` 中，供下次使用</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"讲个笑话：[[JOKE]] 希望您喜欢！"</span>
+<span class="hljs-comment"># 调用外部提示词`calculator`</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">"五加二等于 [[@calculator("</span><span class="hljs-number">5</span><span class="hljs-string">+2")]]"</span>
+<span class="hljs-comment"># 调用函数代码`eval`</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">"五加二等于 [[@$eval("</span><span class="hljs-number">5</span><span class="hljs-string">+2")]]"</span>
+</code></pre>
+<pre><code class="js"><span class="hljs-comment">// eval.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eval</span>(<span class="hljs-params">value</span>) </span>{
+  <span class="hljs-keyword">return</span> ...
+}
+</code></pre>
+<h3 id="lian-shi-tiao-yong-yu-can-shu-chuan-di" class="heading-control">链式调用与参数传递<a class="heading-anchor" href="#lian-shi-tiao-yong-yu-can-shu-chuan-di" aria-hidden="true"></a></h3>
+<p>如何将最近消息内容传递给外部提示词？通过箭头符号<code>-&gt;</code>来实现动态参数传递:</p>
+<pre><code class="yaml"><span class="hljs-attr">user:</span> <span class="hljs-string">"讲个笑话吧！"</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[JOKE]]"</span>
+<span class="hljs-comment"># 传入智能体的实际输入参数是: {content: "[这里是由AI生成的笑话]", target_lang: "葡萄牙语"}</span>
+<span class="hljs-string">-&gt;</span> <span class="hljs-string">translator(target_lang="葡萄牙语")</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">$print</span>
+</code></pre>
+<h3 id="zai-yi-lai-de-js-jiao-ben-zhong-tiao-yong-wai-bu-ti-shi-ci" class="heading-control">在依赖的js脚本中调用外部提示词<a class="heading-anchor" href="#zai-yi-lai-de-js-jiao-ben-zhong-tiao-yong-wai-bu-ti-shi-ci" aria-hidden="true"></a></h3>
+<p>那么，反过来，如果在依赖的js脚本调用外部提示词呢?</p>
+<pre><code class="js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callPPEScriptDemo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.$exec({<span class="hljs-attr">id</span>: <span class="hljs-string">'calculator'</span>, <span class="hljs-attr">args</span>:{ <span class="hljs-attr">content</span>: <span class="hljs-string">"6+3"</span> }})
+}
+</code></pre>
+<h3 id="huan-cun-ji-zhi-yu-xing-neng-you-hua" class="heading-control">缓存机制与性能优化<a class="heading-anchor" href="#huan-cun-ji-zhi-yu-xing-neng-you-hua" aria-hidden="true"></a></h3>
+<p>然后，发现这个提示词&quot;函数&quot;执行耗时长，如果多次反复执行同一参数的&quot;函数&quot;就更浪费时间了，为啥不能缓存结果？于是有了LRU缓存执行结果，所有的外部调用脚本结果默认都会被缓存，当然可以简单通过参数开关<code>memoized</code>关闭该行为：</p>
+<pre><code class="yaml"><span class="hljs-string">"[[@calculator(content="</span><span class="hljs-number">5</span><span class="hljs-string">+2",</span> <span class="hljs-string">memoized=false)]]"</span>
+</code></pre>
+<h3 id="duo-lun-dui-hua-zhi-chi" class="heading-control">多轮对话支持<a class="heading-anchor" href="#duo-lun-dui-hua-zhi-chi" aria-hidden="true"></a></h3>
+<p>如何在同一个脚本中开启多轮对话，于是有了三个短划线(<code>---</code>) 或星号 <code>***</code> 表示一个新的对话开始:</p>
+<pre><code class="yaml"><span class="hljs-attr">system:</span> <span class="hljs-string">"您是一位AI助手。"</span>
+<span class="hljs-comment"># 第一个分隔线作为对话的起点,第一个分隔线上面的对话内容会被隐藏，可以当作系统提示词,它们不会被输出或记录.</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">"10加18等于多少？"</span>
+<span class="hljs-comment"># 执行AI,替换为AI传回的结果result</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[result]]"</span>
+<span class="hljs-comment"># 打印大模型传回的结果</span>
+<span class="hljs-string">$print:</span> <span class="hljs-string">"?=result"</span>
+<span class="hljs-comment"># 第二个分隔线下面开始新对话,回到第一次的起点</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">"10加12等于多少？"</span>
+<span class="hljs-comment"># 执行AI,替换为AI传回的结果result</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[result]]"</span>
+</code></pre>
+<h3 id="ji-cheng-ji-zhi-ti-shi-ci-de-lei" class="heading-control">继承机制：提示词的“类”<a class="heading-anchor" href="#ji-cheng-ji-zhi-ti-shi-ci-de-lei" aria-hidden="true"></a></h3>
+<p><strong>基类定义</strong>（<code>char.ai.yaml</code>）：</p>
+<pre><code class="yaml"><span class="hljs-attr">type:</span> <span class="hljs-string">type</span>
+<span class="hljs-comment"># 定义该角色类型的输入配置</span>
+<span class="hljs-attr">input:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">{required:</span> <span class="hljs-literal">true</span><span class="hljs-string">}</span>  <span class="hljs-comment"># 必须提供的信息：角色的名字</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">description</span>             <span class="hljs-comment"># 可选的信息：对角色的描述</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-comment"># 系统根据提供的信息来指导角色的行为</span>
+<span class="hljs-attr">system:</span> <span class="hljs-string">|-
+  你是一个聪明、多才多艺的角色扮演者。
+  你的任务是根据下面提供的信息完美地扮演角色。
+  请说话就像{{name}}一样。
+  你就是{{name}}。
+</span>
+  <span class="hljs-string">{{description}}</span>
+</code></pre>
+<p><strong>子类实现</strong>（<code>char_dobby.ai.yaml</code>）：</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-comment"># 表示继承自char角色类型脚本</span>
+<span class="hljs-attr">type:</span> <span class="hljs-string">char</span>
+<span class="hljs-comment"># 这里是根据“char”角色的一些具体设置</span>
+<span class="hljs-comment"># 角色的名字</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">"Dobby"</span>
+<span class="hljs-comment"># 对角色的描述</span>
+<span class="hljs-attr">description:</span> <span class="hljs-string">"Dobby 是哈利波特世界里的一个小精灵"</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-comment"># 用户提问</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">"你是谁?"</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-comment"># 根据角色设定的回答</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"我是 Dobby。Dobby 很开心。"</span>
+</code></pre>
+<h3 id="duo-zhi-neng-ti-qun-liao-guan-li-yu-si-liao" class="heading-control">多智能体群聊管理与私聊<a class="heading-anchor" href="#duo-zhi-neng-ti-qun-liao-guan-li-yu-si-liao" aria-hidden="true"></a></h3>
+<p>群聊咋弄?通过<code>roles</code>约定使用的外部角色列表:</p>
+<pre><code class="yaml"><span class="hljs-comment"># guide.ai.yaml</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">description:</span> <span class="hljs-string">"You are a professional guide. You can guide the user to complete the task."</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">"guide"</span>
+<span class="hljs-comment"># 约定使用的角色列表，key为角色别名，值为角色脚本ID</span>
+<span class="hljs-attr">roles:</span>
+  <span class="hljs-attr">translator:</span> <span class="hljs-string">char_translator</span>
+  <span class="hljs-attr">dobby:</span> <span class="hljs-string">char_dobby</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">system:</span> <span class="hljs-string">You</span> <span class="hljs-string">are</span> <span class="hljs-string">a</span> <span class="hljs-string">professional</span> <span class="hljs-string">guide.</span> <span class="hljs-string">You</span> <span class="hljs-string">can</span> <span class="hljs-string">guide</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">complete</span> <span class="hljs-string">the</span> <span class="hljs-string">task.</span>
+<span class="hljs-string">---</span> <span class="hljs-comment"># New dialogue starts here</span>
+<span class="hljs-comment"># 用户对dobby说，dobby脚本自动（一定）回复</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">"@dobby, I want to go to the moon."</span>
+<span class="hljs-comment"># guide 对translator说</span>
+<span class="hljs-attr">guide:</span> <span class="hljs-string">"@translator, translate the dobby's message to chinese without explanation."</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">How</span> <span class="hljs-string">to</span> <span class="hljs-string">go</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">moon?</span>
+<span class="hljs-attr">dobby:</span> <span class="hljs-string">"[[AI]]"</span>
+</code></pre>
+<p>那么，如何在群聊中进行私聊？简单，在<code>@dobby</code>后加上参数<code>@dobby(私)</code>即可，这样dobby的回复只有该用户可见，聊天室中其他角色看不到。</p>
+<h3 id="tong-yong-da-mo-xing-gong-ju-an-quan-tiao-yong-jin-xian-nei-zhi-de-llm-ti-gong-zhe" class="heading-control">通用大模型工具安全调用(仅限内置的LLM提供者)<a class="heading-anchor" href="#tong-yong-da-mo-xing-gong-ju-an-quan-tiao-yong-jin-xian-nei-zhi-de-llm-ti-gong-zhe" aria-hidden="true"></a></h3>
+<p>让大模型自主使用工具(Tool Func)的确很方便，可以直接实现大模型的全自动化，但是如何保证安全呢？还有为啥必须要特别训练的大模型才能支持工具调用？有没有通用的办法，无需特别针对训练，让所有的大模型都支持工具调用？如何让工具的使用更加简单？ 答案是有的，终于搞定，下面请看:</p>
+<p>通过<code>tools</code>配置限制可调用的工具：</p>
+<pre><code class="yaml"><span class="hljs-comment"># 只要在脚本配置中设定允许智能体使用的工具`tools`， 这些工具`tools`对应PPE脚本ID，智能体就会在需要的时候自主调用这些工具完成任务。</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">tools:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">weather</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">search</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">now</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">现在几点了？今天上海的天气如何？</span>
+<span class="hljs-comment">#智能体会根据配置的tools调用对应的工具: now, weather,并返回结果</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[Answer]]"</span>
+</code></pre>
+<pre><code class="yaml"><span class="hljs-comment"># weather.ai.yaml</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">get</span> <span class="hljs-string">weather</span> <span class="hljs-string">information</span>
+<span class="hljs-attr">input:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">location:</span>
+      <span class="hljs-attr">description:</span> <span class="hljs-string">contain</span> <span class="hljs-string">city,</span> <span class="hljs-string">province(if</span> <span class="hljs-string">any)</span> <span class="hljs-string">and</span> <span class="hljs-string">country</span>
+      <span class="hljs-attr">example:</span> <span class="hljs-string">city,province,country</span>
+      <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">date:</span>
+      <span class="hljs-attr">description:</span> <span class="hljs-string">the</span> <span class="hljs-string">weather</span> <span class="hljs-string">information</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">specified</span> <span class="hljs-string">date</span>
+      <span class="hljs-attr">example:</span> <span class="hljs-number">2025</span><span class="hljs-number">-02</span><span class="hljs-string">-04T18:07:42+08:00</span>
+      <span class="hljs-attr">default:</span> <span class="hljs-string">today</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-comment"># 模拟返回天气信息</span>
+<span class="hljs-string">$echo:</span> <span class="hljs-string">"上海的天气阴转多云，气温 2°C，相对湿度 60%，风向 东南风，风力 3-4级。"</span>
+</code></pre>
+<p>为了进一步保障安全，除了限定执行脚本设定的工具列表外，用户（调用方）也可限制使用的工具列表，进行双重限制:</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-comment"># 用户或上级脚本通过如下配置对智能体使用的工具进行权限控制</span>
+<span class="hljs-attr">permissions:</span>
+  <span class="hljs-attr">ai:</span>
+    <span class="hljs-attr">call:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"w*"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"now"</span>
+<span class="hljs-meta">---</span>
+</code></pre>
+<h3 id="tong-yong-da-mo-xing-si-wei-mo-shi-kuo-zhan-jin-xian-nei-zhi-de-llm-ti-gong-zhe" class="heading-control">通用大模型思维模式扩展 🧠 (仅限内置的LLM提供者)<a class="heading-anchor" href="#tong-yong-da-mo-xing-si-wei-mo-shi-kuo-zhan-jin-xian-nei-zhi-de-llm-ti-gong-zhe" aria-hidden="true"></a></h3>
+<p>DeepSeek 重新发现并开源了OpenAI(CloseAI)了秘而不宣的深度思维模式的训练办法，那么有没有一种可能，不需要额外训练，让AI大模型也能进行深度思考？应该可行，因为所谓的微调训练也是基于CoT的提示词进行，于是经过仔细思考，多番测试，终于搞定包括深度思维模式在内的多种思维模式(<code>shouldThink</code>)！</p>
+<p>思维模式(<code>shouldThink</code>)我分为四种：直接回答不思考(<code>off</code>)；先回答再思考(<code>last</code>)；先思考再回答<code>first</code>；深度思考后再回答<code>deep</code>：</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-comment"># 思维模式默认为 `off`,设置为last，first,deep后自动启用。</span>
+<span class="hljs-attr">shouldThink:</span> <span class="hljs-string">deep</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">树上有15只鸟，猎人开枪打中了2只，树上还有几只鸟？</span>
+</code></pre>
+<h3 id="package-zhi-chi" class="heading-control">Package 支持<a class="heading-anchor" href="#package-zhi-chi" aria-hidden="true"></a></h3>
+<p><code>&lt;TODO&gt;</code></p>
+<p>通过这些设计，PPE 正在逐步支持我最初对「真 AI PC」的想象！🚀</p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/" title="从头手搓面向应用的AI框架">https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/ppe_dev_summary/" rel="prev" title="PPE 可编程提示词工程引擎草案开发摘要">
+      <i class="fa fa-chevron-left"></i> PPE 可编程提示词工程引擎草案开发摘要
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cong-tou-shou-cuo-mian-xiang-ying-yong-de-ai-kuang-jia"><span class="nav-number">1.</span> <span class="nav-text">🌟 从头手搓面向应用的AI框架 🚀</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wei-shi-mo-cong-tou-shou-cuo-ai-kuang-jia-er-bu-shi-shi-yong-xian-you-kuang-jia"><span class="nav-number">1.1.</span> <span class="nav-text">为什么从头手搓 AI 框架，而不是使用现有框架？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wo-xiang-yao-de-ai-kuang-jia-he-xin-gong-neng"><span class="nav-number">1.2.</span> <span class="nav-text">我想要的AI框架核心功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kai-fa-li-cheng"><span class="nav-number">1.3.</span> <span class="nav-text">开发历程 🛠️</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jie-gou-hua-dui-hua-xiao-xi"><span class="nav-number">1.3.1.</span> <span class="nav-text">结构化对话消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ti-shi-ci-tiao-yong-yu-dai-ma-ji-cheng"><span class="nav-number">1.3.2.</span> <span class="nav-text">提示词调用与代码集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lian-shi-tiao-yong-yu-can-shu-chuan-di"><span class="nav-number">1.3.3.</span> <span class="nav-text">链式调用与参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zai-yi-lai-de-js-jiao-ben-zhong-tiao-yong-wai-bu-ti-shi-ci"><span class="nav-number">1.3.4.</span> <span class="nav-text">在依赖的js脚本中调用外部提示词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#huan-cun-ji-zhi-yu-xing-neng-you-hua"><span class="nav-number">1.3.5.</span> <span class="nav-text">缓存机制与性能优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#duo-lun-dui-hua-zhi-chi"><span class="nav-number">1.3.6.</span> <span class="nav-text">多轮对话支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-cheng-ji-zhi-ti-shi-ci-de-lei"><span class="nav-number">1.3.7.</span> <span class="nav-text">继承机制：提示词的“类”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#duo-zhi-neng-ti-qun-liao-guan-li-yu-si-liao"><span class="nav-number">1.3.8.</span> <span class="nav-text">多智能体群聊管理与私聊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tong-yong-da-mo-xing-gong-ju-an-quan-tiao-yong-jin-xian-nei-zhi-de-llm-ti-gong-zhe"><span class="nav-number">1.3.9.</span> <span class="nav-text">通用大模型工具安全调用(仅限内置的LLM提供者)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tong-yong-da-mo-xing-si-wei-mo-shi-kuo-zhan-jin-xian-nei-zhi-de-llm-ti-gong-zhe"><span class="nav-number">1.3.10.</span> <span class="nav-text">通用大模型思维模式扩展 🧠 (仅限内置的LLM提供者)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-zhi-chi"><span class="nav-number">1.3.11.</span> <span class="nav-text">Package 支持</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">120</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">319k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">9:40</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname: 'riceballl',
+      url: "https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/",
+      identifier: "article/Build-an-application-oriented-AI-framework-from-scratch/",
+      title: "从头手搓面向应用的AI框架",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
