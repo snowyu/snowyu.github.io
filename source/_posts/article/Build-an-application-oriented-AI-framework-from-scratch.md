@@ -129,7 +129,7 @@ assistant: "[[JOKE]]"
 
 ### 在依赖的js脚本中调用外部提示词
 
-那么，反过来，如果在依赖的js脚本调用外部提示词呢?
+那么，反过来，如何在依赖的js脚本调用外部提示词呢?
 
 ```js
 export async function callPPEScriptDemo() {
