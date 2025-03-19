@@ -120,6 +120,36 @@
 <p>然后，发现这个提示词&quot;函数&quot;执行耗时长，如果多次反复执行同一参数的&quot;函数&quot;就更浪费时间了，为啥不能缓存结果？于是有了LRU缓存执行结果，所有的外部调用脚本结果默认都会被缓存，当然可以简单通过参数开关<code>memoized</code>关闭该行为：</p>
 <pre><code class="yaml"><span class="hljs-string">"[[@calculator(content="</span><span class="hljs-number">5</span><span class="hljs-string">+2",</span> <span class="hljs-string">memoized=false)]]"</span>
 </code></pre>
+<h3 id="da-mo-xing-de-jie-gou-hua-shu-chu" class="heading-control">大模型的结构化输出<a class="heading-anchor" href="#da-mo-xing-de-jie-gou-hua-shu-chu" aria-hidden="true"></a></h3>
+<p>大模型必须对输出进行结构化（约定输出），程序代码函数才能处理。通常我们约定的是大模型结构化输出JSON对象。</p>
+<p>我在实践中发现，对于推理任务，在不约束大模型输出类型的情况下，输出质量更好，而对于不需要推理的分类任务，则恰恰相反。关于这个，有人已经做了更详细的比较: <a href="https://arxiv.org/html/2408.02442v1" target="_blank" rel="noopener">Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models</a></p>
+<p>另外，对大模型进行约定输出格式的文本格式也会影响输出质量，也就是告诉它如何输出的方式。用自然语言表达形式，好于直接给定json.</p>
+<p>我测试下来，对于目前大多数 LLM 模型来讲 <code>自然语言 &gt; YAML &gt; XML &gt; JSON</code>，当然具体还要看个别模型是否对某个格式又做了针对性的学习。</p>
+<p>因此，我设计了多种结构化响应输出格式类型，用来自动将输出内容和格式告诉给大模型，以及将大模型的输出自动转换。</p>
+<ul>
+<li>多种结构化响应输出格式类型(<code>response_format.type</code>)支持:
+<ul>
+<li>JSON 格式</li>
+<li>YAML 格式</li>
+<li>自然语言对象(NOBJ) 格式</li>
+<li>用JSON Schema格式设置好<code>output</code>.PPE就会自动解析AI生成的对应格式的内容为<code>Object</code>供代码使用.</li>
+</ul>
+</li>
+</ul>
+<p>约定PPE脚本输出内容始终用<code>JSON Schema</code>表示，而选择告知大模型的方式则在<code>parameters.response_format.type</code>中控制。这样，最终给到代码这边的结果始终是转换后的<code>JSON</code>对象。如果转换失败，会触发异常错误，通过设置<code>forceJson</code>为<code>false</code>禁止触发异常，这时当无法转换，就会返回文本内容。</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">output:</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">"object"</span>
+  <span class="hljs-attr">properties:</span>
+    <span class="hljs-attr">target_text:</span>
+      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+<span class="hljs-attr">parameters:</span>
+  <span class="hljs-comment"># 使用后面的参数,将设置强制json输出格式,确保大模型总是输出正确的json格式.</span>
+  <span class="hljs-attr">response_format:</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">"json"</span>
+<span class="hljs-comment"># forceJson: false</span>
+<span class="hljs-meta">---</span>
+</code></pre>
 <h3 id="duo-lun-dui-hua-zhi-chi" class="heading-control">多轮对话支持<a class="heading-anchor" href="#duo-lun-dui-hua-zhi-chi" aria-hidden="true"></a></h3>
 <p>如何在同一个脚本中开启多轮对话，于是有了三个短划线(<code>---</code>) 或星号 <code>***</code> 表示一个新的对话开始:</p>
 <pre><code class="yaml"><span class="hljs-attr">system:</span> <span class="hljs-string">"您是一位AI助手。"</span>
@@ -168,36 +198,6 @@
 <span class="hljs-meta">---</span>
 <span class="hljs-comment"># 根据角色设定的回答</span>
 <span class="hljs-attr">assistant:</span> <span class="hljs-string">"我是 Dobby。Dobby 很开心。"</span>
-</code></pre>
-<h3 id="da-mo-xing-de-jie-gou-hua-shu-chu" class="heading-control">大模型的结构化输出\<a class="heading-anchor" href="#da-mo-xing-de-jie-gou-hua-shu-chu" aria-hidden="true"></a></h3>
-<p>大模型必须对输出进行结构化（约定输出），程序代码函数才能处理。通常我们约定的是大模型结构化输出JSON对象。</p>
-<p>我在实践中发现，对于推理任务，在不约束大模型输出类型的情况下，输出质量更好，而对于不需要推理的分类任务，则恰恰相反。关于这个，有人已经做了更详细的比较: <a href="https://arxiv.org/html/2408.02442v1" target="_blank" rel="noopener">Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models</a></p>
-<p>另外，对大模型进行约定输出格式的文本格式也会影响输出质量，也就是告诉它如何输出的方式。用自然语言表达形式，好于直接给定json.</p>
-<p>我测试下来，对于目前大多数 LLM 模型来讲 <code>自然语言 &gt; YAML &gt; XML &gt; JSON</code>，当然具体还要看个别模型是否对某个格式又做了针对性的学习。</p>
-<p>因此，我设计了多种结构化响应输出格式类型，用来自动将输出内容和格式告诉给大模型，以及将大模型的输出自动转换。</p>
-<ul>
-<li>多种结构化响应输出格式类型(<code>response_format.type</code>)支持:
-<ul>
-<li>JSON 格式</li>
-<li>YAML 格式</li>
-<li>自然语言对象(NOBJ) 格式</li>
-<li>用JSON Schema格式设置好<code>output</code>.PPE就会自动解析AI生成的对应格式的内容为<code>Object</code>供代码使用.</li>
-</ul>
-</li>
-</ul>
-<p>约定PPE脚本输出内容始终用<code>JSON Schema</code>表示，而选择告知大模型的方式则在<code>parameters.response_format.type</code>中控制。这样，最终给到代码这边的结果始终是转换后的<code>JSON</code>对象。如果转换失败，会触发异常错误，通过设置<code>forceJson</code>为<code>false</code>禁止触发异常，这时当无法转换，就会返回文本内容。</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">output:</span>
-  <span class="hljs-attr">type:</span> <span class="hljs-string">"object"</span>
-  <span class="hljs-attr">properties:</span>
-    <span class="hljs-attr">target_text:</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
-<span class="hljs-attr">parameters:</span>
-  <span class="hljs-comment"># 使用后面的参数,将设置强制json输出格式,确保大模型总是输出正确的json格式.</span>
-  <span class="hljs-attr">response_format:</span>
-    <span class="hljs-attr">type:</span> <span class="hljs-string">"json"</span>
-<span class="hljs-comment"># forceJson: false</span>
-<span class="hljs-meta">---</span>
 </code></pre>
 <h3 id="duo-zhi-neng-ti-qun-liao-guan-li-yu-si-liao" class="heading-control">多智能体群聊管理与私聊<a class="heading-anchor" href="#duo-zhi-neng-ti-qun-liao-guan-li-yu-si-liao" aria-hidden="true"></a></h3>
 <p>群聊咋弄?通过<code>roles</code>约定使用的外部角色列表:</p>
