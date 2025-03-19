@@ -46,12 +46,12 @@
   };
 </script>
 
-  <meta name="description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 核心问题：为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用">
+  <meta name="description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用来打造我设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从头手搓面向应用的AI框架">
 <meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;Build-an-application-oriented-AI-framework-from-scratch&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
-<meta property="og:description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 核心问题：为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用">
+<meta property="og:description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用来打造我设">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-17T17:14:40.000Z">
 <meta property="article:modified_time" content="2025-03-18T04:35:51.000Z">
@@ -129,9 +129,9 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -311,14 +311,13 @@
       
         <h1 id="cong-tou-shou-cuo-mian-xiang-ying-yong-de-ai-kuang-jia" class="heading-control">🌟 从头手搓面向应用的AI框架 🚀<a class="heading-anchor" href="#cong-tou-shou-cuo-mian-xiang-ying-yong-de-ai-kuang-jia" aria-hidden="true"></a></h1>
 <h2 id="wei-shi-mo-cong-tou-shou-cuo-ai-kuang-jia-er-bu-shi-shi-yong-xian-you-kuang-jia" class="heading-control">为什么从头手搓 AI 框架，而不是使用现有框架？<a class="heading-anchor" href="#wei-shi-mo-cong-tou-shou-cuo-ai-kuang-jia-er-bu-shi-shi-yong-xian-you-kuang-jia" aria-hidden="true"></a></h2>
-<p>💡 <strong>核心问题</strong>：为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？</p>
+<p>💡 为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？</p>
 <p>最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个<strong>极度灵活可配置的AI应用框架</strong>，用来打造我设想的<code>「真·AI PC」</code>——而非当前大多数AI产品那种“远程AI服务+本地空壳”的模式。</p>
-<p>在当前阶段，我认为面向应用的AI框架应聚焦于<strong>提示词（Prompt）的工程化</strong>——这是人类与AI交互的唯一桥梁。我的目标是：<br>
-✅ 将提示词转化为可编程的“函数”，支持自由组合、独立调用，并能持续迭代优化。</p>
+<p>在当前阶段，我认为面向应用的AI框架应聚焦于<strong>提示词（Prompt）的工程化</strong>——这是人类与AI交互的唯一桥梁。我的核心目标是：<br>
+✅ 将提示词转化为可编程的“函数”或“类”，支持自由组合、独立调用，并能持续迭代优化。</p>
 <p>但是langchain对提示词的抽象只是总结的一些范式，而这些范式在我看来不太不实用，而且更糟糕的是直接将提示词内嵌入代码中，根本无法替换和迭代提示词。而AutoGen是以多智能体架构和事件驱动为核心实现复杂协作工作流；至于LMQL作为一种用于语言模型交互的查询语言更像是炫技；Outlines 聚焦在结构化文本的生成；MemGPT只想实现长久记忆， 这些就不多做评价了。</p>
 <h2 id="wo-xiang-yao-de-ai-kuang-jia-he-xin-gong-neng" class="heading-control">我想要的AI框架核心功能<a class="heading-anchor" href="#wo-xiang-yao-de-ai-kuang-jia-he-xin-gong-neng" aria-hidden="true"></a></h2>
-<p>我想要的是以提示词为核心的框架！</p>
-<p>💡 <strong>8大关键需求</strong>：</p>
+<p>我想要的是以提示词为核心的框架：</p>
 <ol>
 <li><strong>提示词即函数</strong>：让提示词象普通函数一样的使用，独立提示词可以与代码无缝双向调用，代码可以调用提示词获得结果，提示词也可以调用代码获得结果。</li>
 <li><strong>加密保护</strong>： 支持提示词加密，保障知识产权</li>
@@ -806,7 +805,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">9:43</span>
+    <span title="站点阅读时长">9:42</span>
 </div>
 
         
