@@ -231,6 +231,43 @@ user: "你是谁?"
 assistant: "我是 Dobby。Dobby 很开心。"
 ```
 
+### 大模型的结构化输出\
+
+大模型必须对输出进行结构化（约定输出），程序代码函数才能处理。通常我们约定的是大模型结构化输出JSON对象。
+
+我在实践中发现，对于推理任务，在不约束大模型输出类型的情况下，输出质量更好，而对于不需要推理的分类任务，则恰恰相反。关于这个，有人已经做了更详细的比较: [Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models](https://arxiv.org/html/2408.02442v1)
+
+另外，对大模型进行约定输出格式的文本格式也会影响输出质量，也就是告诉它如何输出的方式。用自然语言表达形式，好于直接给定json.
+
+我测试下来，对于目前大多数 LLM 模型来讲 `自然语言 > YAML > XML > JSON`，当然具体还要看个别模型是否对某个格式又做了针对性的学习。
+
+因此，我设计了多种结构化响应输出格式类型，用来自动将输出内容和格式告诉给大模型，以及将大模型的输出自动转换。
+
+* 多种结构化响应输出格式类型(`response_format.type`)支持:
+  * JSON 格式
+  * YAML 格式
+  * 自然语言对象(NOBJ) 格式
+  * 用JSON Schema格式设置好`output`.PPE就会自动解析AI生成的对应格式的内容为`Object`供代码使用.
+
+约定PPE脚本输出内容始终用`JSON Schema`表示，而选择告知大模型的方式则在`parameters.response_format.type`中控制。这样，最终给到代码这边的结果始终是转换后的`JSON`对象。
+如果转换失败，会触发异常错误，通过设置`forceJson`为`false`禁止触发异常，这时当无法转换，就会返回文本内容。
+
+
+```yaml
+---
+output:
+  type: "object"
+  properties:
+    target_text:
+      type: "string"
+parameters:
+  # 使用后面的参数,将设置强制json输出格式,确保大模型总是输出正确的json格式.
+  response_format:
+    type: "json"
+# forceJson: false
+---
+```
+
 ### 多智能体群聊管理与私聊
 
 群聊咋弄?通过`roles`约定使用的外部角色列表:
@@ -336,6 +373,7 @@ user: 树上有15只鸟，猎人开枪打中了2只，树上还有几只鸟？
    1. 系统模板反注入
    2. 提示词保护
 3. 自动适配硬件: 自动检测内存和GPU，并默认使用最佳计算层，自动分配gpu-layers以及上下文窗口大小, 以便从硬件中获得最佳性能，无需手动配置任何内容。
+4. 为指定的单词提升/降低权重，类似在stable-diffusion中（暂未实现）
 
 通过这些设计，PPE 正在逐步支持我最初对「真 AI PC」的想象！🚀
 
