@@ -137,6 +137,32 @@ export async function callPPEScriptDemo() {
 }
 ```
 
+### 内置函数指令与逻辑控制
+
+有些时候，我需要在提示词中根据不同条件来产生不同的提示词，甚至需要多条件匹配，于是开始内置相应的函数指令: `$if`, `$match`, ...
+
+```yaml
+---
+input:
+  - file
+---
+- $if: "this.file"
+  then:
+    - ...
+```
+
+并发测试服务提供商的不同模型:
+
+```yaml
+$match(true, allMatches=true, parallel=true):
+  :true:
+    - $AI(pushMessage=false, model="openai://Qwen/Qwen2.5-Coder-7B-Instruct", apiUrl="https://api.siliconflow.cn/", apiKey="...")
+  :true:
+    - $AI(pushMessage=false, model="openai://THUDM/glm-4-9b-chat", apiUrl="https://api.siliconflow.cn/", apiKey="...")
+```
+
+随后，完善了循环控制函数指令: `$for`, `$while`
+
 ### 缓存机制与性能优化
 
 然后，发现这个提示词"函数"执行耗时长，如果多次反复执行同一参数的"函数"就更浪费时间了，为啥不能缓存结果？于是有了LRU缓存执行结果，所有的外部调用脚本结果默认都会被缓存，当然可以简单通过参数开关`memoized`关闭该行为：
