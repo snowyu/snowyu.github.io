@@ -47,7 +47,7 @@
     <span class="hljs-attr">Reason:</span>
       <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
 </code></pre>
-<p>感觉，这样很不自然方便，将结构化对话消息改为分层结构，将输入/输出配置与对话内容分离:</p>
+<p>感觉，这样很不自然方便，于是将结构化对话消息的输入/输出配置与对话内容分离:</p>
 <pre><code class="yaml"><span class="hljs-meta">---</span>
 <span class="hljs-attr">input:</span>
   <span class="hljs-attr">conversation:</span> <span class="hljs-string">{required:</span> <span class="hljs-literal">true</span><span class="hljs-string">}</span>
