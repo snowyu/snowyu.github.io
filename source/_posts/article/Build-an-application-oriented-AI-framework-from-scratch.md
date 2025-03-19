@@ -36,7 +36,7 @@ updated: 2025-03-18 20:35:51+08:00
 
 ## 开发历程 🛠️
 
-在2024年多方搜寻无果的情况下，2024年5月我开始从头写[可编程提示词(Programmable Prompt Engine)AI规范](https://github.com/offline-ai/ppe/)，当然最开始不是叫这个名字，最开始叫`AI Agent Framework`,后来是表伟提议既然是实质是让提示词成为可编程的软件工程，那么不妨就叫PPE，我想也对，这个概念更准确，AI Agent应该是以PPE提示词为基础打造，它其实是更上层的概念，遂更名为PPE。
+在2024年多方搜寻无果的情况下，2024年5月我开始从头写[可编程提示词(Programmable Prompt Engine)AI规范](https://github.com/offline-ai/ppe/)，当然最开始不是叫这个名字，最开始叫`AI Agent Framework`,后来是表伟提议既然实质是让提示词成为可编程的软件工程，那么不妨就叫PPE，我想也对，这个概念更准确，AI Agent应该是以PPE提示词为基础打造，它其实是更上层的概念，遂更名为PPE。
 
 既然要全栈，那就只能选JavaScript, 从前端到后端，从服务器到浏览器通吃，并且JS极度灵活和可扩展，而这正是我所需要的。
 
@@ -120,7 +120,6 @@ export function eval(value) {
 user: 你喜欢什么水果?
 assistant: "我超喜欢[[FRUIT:|苹果|香蕉|橙子]]"
 ```
-
 
 ### 链式调用与参数传递
 
