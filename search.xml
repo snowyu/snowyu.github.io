@@ -240,7 +240,19 @@
 <span class="hljs-attr">user:</span> <span class="hljs-string">树上有15只鸟，猎人开枪打中了2只，树上还有几只鸟？</span>
 </code></pre>
 <h3 id="package-zhi-chi" class="heading-control">Package 支持<a class="heading-anchor" href="#package-zhi-chi" aria-hidden="true"></a></h3>
-<p><code>&lt;TODO&gt;</code></p>
+<p>目的：需要将相关的提示词和代码脚本、知识库放到一个文件包中，组成智能体，方便管理。</p>
+<h3 id="nei-jian-llm-ti-gong-zhe" class="heading-control">内建LLM提供者<a class="heading-anchor" href="#nei-jian-llm-ti-gong-zhe" aria-hidden="true"></a></h3>
+<p>当前，外置的llama-cpp server已经满足不了我的需求:</p>
+<ol>
+<li>动态加载切换LLM大模型</li>
+<li>提示词安全控制
+<ol>
+<li>系统模板反注入</li>
+<li>提示词保护</li>
+</ol>
+</li>
+<li>自动适配硬件: 自动检测内存和GPU，并默认使用最佳计算层，自动分配gpu-layers以及上下文窗口大小, 以便从硬件中获得最佳性能，无需手动配置任何内容。</li>
+</ol>
 <p>通过这些设计，PPE 正在逐步支持我最初对「真 AI PC」的想象！🚀</p>
 <p>尽管还处于WIP阶段，不过 PPE 已经实现了我设想的大部分功能。</p>
 ]]></content>
