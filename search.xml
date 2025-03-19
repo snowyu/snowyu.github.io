@@ -84,6 +84,10 @@
   <span class="hljs-keyword">return</span> ...
 }
 </code></pre>
+<p>甚至支持了让AI只能在我给的列表中选择:</p>
+<pre><code class="yaml"><span class="hljs-attr">user:</span> <span class="hljs-string">你喜欢什么水果?</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"我超喜欢[[FRUIT:|苹果|香蕉|橙子]]"</span>
+</code></pre>
 <h3 id="lian-shi-tiao-yong-yu-can-shu-chuan-di" class="heading-control">链式调用与参数传递<a class="heading-anchor" href="#lian-shi-tiao-yong-yu-can-shu-chuan-di" aria-hidden="true"></a></h3>
 <p>如何将最近消息内容传递给外部提示词？通过箭头符号<code>-&gt;</code>来实现动态参数传递:</p>
 <pre><code class="yaml"><span class="hljs-attr">user:</span> <span class="hljs-string">"讲个笑话吧！"</span>
