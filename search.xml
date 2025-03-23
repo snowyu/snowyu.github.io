@@ -65,6 +65,19 @@
   {{ conversation }}
 </span></code></pre>
 <p>这样就感觉好多了。</p>
+<h3 id="an-xu-ge-shi-hua-xiao-xi" class="heading-control">按需格式化消息<a class="heading-anchor" href="#an-xu-ge-shi-hua-xiao-xi" aria-hidden="true"></a></h3>
+<p>在使用过程中，我发现我大多数时候都需要延迟对消息进行格式化，太早格式化消息会因为消息被提前固化，而导致消息中不是我期望的参数值。因此，加入了按需格式化消息功能，并设置为默认。该功能可以通过设置参数<code>formatStringStrategy</code>进行改变:</p>
+<ul>
+<li><code>Raw</code>: 不做任何的格式化</li>
+<li><code>Deferred</code>: 按需格式化，默认策略</li>
+<li><code>Immediate</code>: 立即格式化</li>
+</ul>
+<p>例外，当执行<code>$set</code>, <code>$get</code>, <code>$ret</code>，<code>$echo</code>操作时会立即对消息进行格式化。</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-comment"># 修改本脚本的默认消息格式化策略：</span>
+<span class="hljs-attr">formatStringStrategy:</span> <span class="hljs-string">Immediate</span>
+<span class="hljs-meta">---</span>
+</code></pre>
 <h3 id="ti-shi-ci-tiao-yong-yu-dai-ma-ji-cheng" class="heading-control">提示词调用与代码集成<a class="heading-anchor" href="#ti-shi-ci-tiao-yong-yu-dai-ma-ji-cheng" aria-hidden="true"></a></h3>
 <p>那么如何在提示词中使用(调用)AI赋值以及其他提示词或代码？于是有了<code>高级替换</code>:</p>
 <pre><code class="yaml"><span class="hljs-meta">---</span>
