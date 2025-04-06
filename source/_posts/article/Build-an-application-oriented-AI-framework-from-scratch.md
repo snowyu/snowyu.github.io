@@ -4,7 +4,7 @@ id: w9r7bw8pvqdj4kyyx372iob
 title: 从头手搓面向应用的AI框架
 desc: ''
 date: 2025-03-18 9:14:40+08:00
-updated: 2025-03-18 20:35:51+08:00
+updated: 2025-04-06 08:43:02+08:00
 ---
 
 # 🌟 从头手搓面向应用的AI框架 🚀
@@ -317,7 +317,51 @@ dobby: "[[AI]]"
 
 那么，如何在群聊中进行私聊？简单，在`@dobby`后加上参数`@dobby(私)`即可，这样dobby的回复只有该用户可见，聊天室中其他角色看不到。
 
-### 通用大模型工具安全调用(仅限内置的LLM提供者)
+### 内建本地LLM提供商
+
+当前，外置的llama-cpp server已经满足不了我的需求:
+
+1. 无法动态加载切换LLM大模型
+2. 无法对提示词进行安全控制
+   1. 系统模板反注入
+   2. 提示词保护
+3. 无法自动适配硬件: 自动检测内存和GPU，并默认使用最佳计算层，自动分配gpu-layers以及上下文窗口大小, 以便从硬件中获得最佳性能，无需手动配置任何内容。
+4. 无法为指定的单词提升/降低权重，类似在stable-diffusion中（暂未实现）
+
+因此开发实现了内置的本地LLM提供商.
+
+* 支持多LLM服务提供商：
+  * （**推荐**）**内置本地LLM提供商（llama.cpp）**作为默认选项，以保护知识的安全性和隐私。
+    * 首先下载GGUF模型文件：`ai brain download hf://bartowski/Qwen_QwQ-32B-GGUF -q q4_0`
+    * 使用默认的大脑模型文件运行：`ai run example.ai.yaml`
+    * 使用指定的模型文件运行：`ai run example.ai.yaml -P local://bartowski-qwq-32b.Q4_0.gguf`
+  * 兼容OpenAI的服务提供商：
+    * OpenAI: `ai run example.ai.yaml -P openai://chatgpt-4o-latest --apiKey “sk-XXX”`
+    * DeepSeek: `ai run example.ai.yaml -P openai://deepseek-chat -u https://api.deepseek.com/ --apiKey “sk-XXX”`
+    * Siliconflow: `ai run example.ai.yaml -P openai://Qwen/Qwen2.5-Coder-7B-Instruct -u https://api.siliconflow.cn/ --apiKey “sk-XXX”`
+    * Anthropic(Claude): `ai run example.ai.yaml -P openai://claude-3-7-sonnet-latest -u https://api.anthropic.com/v1/ --apiKey “sk-XXX”`
+  * [llama-cpp服务器(llama-server)提供商](https://github.com/ggml-org/llama.cpp/tree/master/examples/server)：`ai run example.ai.yaml -P llamacpp`
+    * llama-cpp服务器不支持指定模型名称，它是在启动llama-server时通过 model 参数指定的。
+  * 您可以在PPE脚本中指定或任意切换*LLM模型或提供商*:
+
+  ```yaml
+  ---
+  parameters:
+    model: openai://deepseek-chat
+    apiUrl: https://api.deepseek.com/
+    apiKey: "sk-XXX"
+  ---
+  system: You are a helpful assistant.
+  user: "tell me a joke"
+  --- # first dialog begin
+  assistant: "[[AI]]"
+  --- # reset to first
+  assistant: "[[AI:model='openai://claude-3-7-sonnet-latest',apiUrl='https://api.anthropic.com/v1/',apiKey='sk-XXX']]"
+  --- # reset to first
+  assistant: "[[AI:model='local://bartowski-qwq-32b.Q4_0.gguf']]"
+  ```
+
+### 通用大模型工具安全调用(仅限内置的LLM提供商)
 
 让大模型自主使用工具(Tool Func)的确很方便，可以直接实现大模型的全自动化，但是如何保证安全呢？还有为啥必须要特别训练的大模型才能支持工具调用？
 有没有通用的办法，无需特别针对训练，让所有的大模型都支持工具调用？如何让工具的使用更加简单？ 答案是有的，终于搞定，下面请看:
@@ -368,7 +412,7 @@ permissions:
 ---
 ```
 
-### 通用大模型思维模式扩展 🧠 (仅限内置的LLM提供者)
+### 通用大模型思维模式扩展 🧠 (仅限内置的LLM提供商)
 
 DeepSeek 重新发现并开源了OpenAI(CloseAI)了秘而不宣的深度思维模式的训练办法，那么有没有一种可能，不需要额外训练，让AI大模型也能进行深度思考？
 应该可行，因为所谓的微调训练也是基于CoT的提示词进行，于是经过仔细思考，多番测试，终于搞定包括深度思维模式在内的多种思维模式(`shouldThink`)！
@@ -386,17 +430,6 @@ user: 树上有15只鸟，猎人开枪打中了2只，树上还有几只鸟？
 ### Package 支持
 
 目的：需要将相关的提示词和代码脚本、知识库放到一个文件包中，组成智能体，方便管理。
-
-### 内建LLM提供者
-
-当前，外置的llama-cpp server已经满足不了我的需求:
-
-1. 动态加载切换LLM大模型
-2. 提示词安全控制
-   1. 系统模板反注入
-   2. 提示词保护
-3. 自动适配硬件: 自动检测内存和GPU，并默认使用最佳计算层，自动分配gpu-layers以及上下文窗口大小, 以便从硬件中获得最佳性能，无需手动配置任何内容。
-4. 为指定的单词提升/降低权重，类似在stable-diffusion中（暂未实现）
 
 通过这些设计，PPE 正在逐步支持我最初对「真 AI PC」的想象！🚀
 
