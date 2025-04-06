@@ -307,7 +307,118 @@
   <entry>
     <title>PPE 可编程提示词工程引擎草案开发摘要</title>
     <url>/article/ppe_dev_summary/</url>
-    <content><![CDATA[<h2 id="202410-yue" class="heading-control">2024-10月<a class="heading-anchor" href="#202410-yue" aria-hidden="true"></a></h2>
+    <content><![CDATA[<h2 id="2025-nian-13-yue" class="heading-control">2025年1-3月<a class="heading-anchor" href="#2025-nian-13-yue" aria-hidden="true"></a></h2>
+<h3 id="nei-jian-llm-ti-gong-shang" class="heading-control">内建LLM提供商<a class="heading-anchor" href="#nei-jian-llm-ti-gong-shang" aria-hidden="true"></a></h3>
+<p>当前，外置的llama-cpp server已经满足不了我的需求:</p>
+<ol>
+<li>无法动态加载切换LLM大模型</li>
+<li>无法对提示词进行安全控制
+<ol>
+<li>系统模板反注入</li>
+<li>提示词保护</li>
+</ol>
+</li>
+<li>无法自动适配硬件: 自动检测内存和GPU，并默认使用最佳计算层，自动分配gpu-layers以及上下文窗口大小, 以便从硬件中获得最佳性能，无需手动配置任何内容。</li>
+<li>无法为指定的单词提升/降低权重，类似在stable-diffusion中（暂未实现）</li>
+</ol>
+<p>因此开发实现了内置的本地LLM提供商.</p>
+<ul>
+<li>
+<p>支持多LLM服务提供商：</p>
+<ul>
+<li>（<strong>推荐</strong>）**内置本地LLM提供商（llama.cpp）**作为默认选项，以保护知识的安全性和隐私。
+<ul>
+<li>首先下载GGUF模型文件：<code>ai brain download hf://bartowski/Qwen_QwQ-32B-GGUF -q q4_0</code></li>
+<li>使用默认的大脑模型文件运行：<code>ai run example.ai.yaml</code></li>
+<li>使用指定的模型文件运行：<code>ai run example.ai.yaml -P local://bartowski-qwq-32b.Q4_0.gguf</code></li>
+</ul>
+</li>
+<li>兼容OpenAI的服务提供商：
+<ul>
+<li>OpenAI: <code>ai run example.ai.yaml -P openai://chatgpt-4o-latest --apiKey “sk-XXX”</code></li>
+<li>DeepSeek: <code>ai run example.ai.yaml -P openai://deepseek-chat -u https://api.deepseek.com/ --apiKey “sk-XXX”</code></li>
+<li>Siliconflow: <code>ai run example.ai.yaml -P openai://Qwen/Qwen2.5-Coder-7B-Instruct -u https://api.siliconflow.cn/ --apiKey “sk-XXX”</code></li>
+<li>Anthropic(Claude): <code>ai run example.ai.yaml -P openai://claude-3-7-sonnet-latest -u https://api.anthropic.com/v1/ --apiKey “sk-XXX”</code></li>
+</ul>
+</li>
+<li><a href="https://github.com/ggml-org/llama.cpp/tree/master/examples/server" target="_blank" rel="noopener">llama-cpp服务器(llama-server)提供商</a>：<code>ai run example.ai.yaml -P llamacpp</code>
+<ul>
+<li>llama-cpp服务器不支持指定模型名称，它是在启动llama-server时通过 model 参数指定的。</li>
+</ul>
+</li>
+<li>您可以在PPE脚本中指定或任意切换<em>LLM模型或提供商</em>:</li>
+</ul>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">parameters:</span>
+  <span class="hljs-attr">model:</span> <span class="hljs-string">openai://deepseek-chat</span>
+  <span class="hljs-attr">apiUrl:</span> <span class="hljs-string">https://api.deepseek.com/</span>
+  <span class="hljs-attr">apiKey:</span> <span class="hljs-string">"sk-XXX"</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">system:</span> <span class="hljs-string">You</span> <span class="hljs-string">are</span> <span class="hljs-string">a</span> <span class="hljs-string">helpful</span> <span class="hljs-string">assistant.</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">"tell me a joke"</span>
+<span class="hljs-string">---</span> <span class="hljs-comment"># first dialog begin</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[AI]]"</span>
+<span class="hljs-string">---</span> <span class="hljs-comment"># reset to first</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[AI:model='openai://claude-3-7-sonnet-latest',apiUrl='https://api.anthropic.com/v1/',apiKey='sk-XXX']]"</span>
+<span class="hljs-string">---</span> <span class="hljs-comment"># reset to first</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[AI:model='local://bartowski-qwq-32b.Q4_0.gguf']]"</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="tong-yong-da-mo-xing-tool-gong-ju-an-quan-tiao-yong-jin-xian-nei-zhi-de-llm-ti-gong-shang" class="heading-control">通用大模型Tool(工具)安全调用(仅限内置的LLM提供商)<a class="heading-anchor" href="#tong-yong-da-mo-xing-tool-gong-ju-an-quan-tiao-yong-jin-xian-nei-zhi-de-llm-ti-gong-shang" aria-hidden="true"></a></h3>
+<p>让大模型自主使用工具(Tool Func)的确很方便，可以直接实现大模型的全自动化，但是如何保证安全呢？还有为啥必须要特别训练的大模型才能支持工具调用？有没有通用的办法，无需特别针对训练，让所有的大模型都支持工具调用？如何让工具的使用更加简单？ 答案是有的，终于搞定，下面请看:</p>
+<p>通过<code>tools</code>配置限制可调用的工具：</p>
+<pre><code class="yaml"><span class="hljs-comment"># 只要在脚本配置中设定允许智能体使用的工具`tools`， 这些工具`tools`对应PPE脚本ID，智能体就会在需要的时候自主调用这些工具完成任务。</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">tools:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">weather</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">search</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">now</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">现在几点了？今天上海的天气如何？</span>
+<span class="hljs-comment">#智能体会根据配置的tools调用对应的工具: now, weather,并返回结果</span>
+<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[Answer]]"</span>
+</code></pre>
+<pre><code class="yaml"><span class="hljs-comment"># weather.ai.yaml</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">get</span> <span class="hljs-string">weather</span> <span class="hljs-string">information</span>
+<span class="hljs-attr">input:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">location:</span>
+      <span class="hljs-attr">description:</span> <span class="hljs-string">contain</span> <span class="hljs-string">city,</span> <span class="hljs-string">province(if</span> <span class="hljs-string">any)</span> <span class="hljs-string">and</span> <span class="hljs-string">country</span>
+      <span class="hljs-attr">example:</span> <span class="hljs-string">city,province,country</span>
+      <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">date:</span>
+      <span class="hljs-attr">description:</span> <span class="hljs-string">the</span> <span class="hljs-string">weather</span> <span class="hljs-string">information</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">specified</span> <span class="hljs-string">date</span>
+      <span class="hljs-attr">example:</span> <span class="hljs-number">2025</span><span class="hljs-number">-02</span><span class="hljs-string">-04T18:07:42+08:00</span>
+      <span class="hljs-attr">default:</span> <span class="hljs-string">today</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-comment"># 模拟返回天气信息</span>
+<span class="hljs-string">$echo:</span> <span class="hljs-string">"上海的天气阴转多云，气温 2°C，相对湿度 60%，风向 东南风，风力 3-4级。"</span>
+</code></pre>
+<p>为了进一步保障安全，除了限定执行脚本设定的工具列表外，用户（调用方）也可限制使用的工具列表，进行双重限制:</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-comment"># 用户或上级脚本通过如下配置对智能体使用的工具进行权限控制</span>
+<span class="hljs-attr">permissions:</span>
+  <span class="hljs-attr">ai:</span>
+    <span class="hljs-attr">call:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"w*"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"now"</span>
+<span class="hljs-meta">---</span>
+</code></pre>
+<h3 id="tong-yong-da-mo-xing-si-wei-mo-shi-kuo-zhan-jin-xian-nei-zhi-de-llm-ti-gong-shang" class="heading-control">通用大模型思维模式扩展 🧠 (仅限内置的LLM提供商)<a class="heading-anchor" href="#tong-yong-da-mo-xing-si-wei-mo-shi-kuo-zhan-jin-xian-nei-zhi-de-llm-ti-gong-shang" aria-hidden="true"></a></h3>
+<p>DeepSeek 重新发现并开源了OpenAI(CloseAI)了秘而不宣的深度思维模式的训练办法，那么有没有一种可能，不需要额外训练，让AI大模型也能进行深度思考？应该可行，因为所谓的微调训练也是基于CoT的提示词进行，于是经过仔细思考，多番测试，终于搞定包括深度思维模式在内的多种思维模式(<code>shouldThink</code>)！</p>
+<p>思维模式(<code>shouldThink</code>)我分为四种：直接回答不思考(<code>off</code>)；先回答再思考(<code>last</code>)；先思考再回答<code>first</code>；深度思考后再回答<code>deep</code>：</p>
+<pre><code class="yaml"><span class="hljs-meta">---</span>
+<span class="hljs-comment"># 思维模式默认为 `off`,设置为last，first,deep后自动启用。</span>
+<span class="hljs-attr">shouldThink:</span> <span class="hljs-string">deep</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">树上有15只鸟，猎人开枪打中了2只，树上还有几只鸟？</span>
+</code></pre>
+<h3 id="package-zhi-chi" class="heading-control">Package 支持<a class="heading-anchor" href="#package-zhi-chi" aria-hidden="true"></a></h3>
+<p>目的：需要将相关的提示词和代码脚本、知识库放到一个文件包中，组成智能体，方便管理。</p>
+<hr>
+<p>Old Histories:</p>
+<h2 id="202410-yue" class="heading-control">2024-10月<a class="heading-anchor" href="#202410-yue" aria-hidden="true"></a></h2>
 <h3 id="yu-yi-fen-ge-wen-ti" class="heading-control">语义分割问题<a class="heading-anchor" href="#yu-yi-fen-ge-wen-ti" aria-hidden="true"></a></h3>
 <p>目前，langchain 和 llamaindex 都缺乏基于语义分割的分片机制，这会导致文本重叠和信息冗余。</p>
 <h4 id="jie-jue-fang-an" class="heading-control">解决方案<a class="heading-anchor" href="#jie-jue-fang-an" aria-hidden="true"></a></h4>

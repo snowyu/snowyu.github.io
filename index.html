@@ -70,10 +70,10 @@
     isPost: false
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -404,14 +404,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>14k</span>
+              <span>16k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>25 分钟</span>
+              <span>30 分钟</span>
             </span>
 
         </div>
@@ -423,11 +423,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="202410-yue" class="heading-control">2024-10月<a class="heading-anchor" href="#202410-yue" aria-hidden="true"></a></h2>
-<h3 id="yu-yi-fen-ge-wen-ti" class="heading-control">语义分割问题<a class="heading-anchor" href="#yu-yi-fen-ge-wen-ti" aria-hidden="true"></a></h3>
-<p>目前，langchain 和 llamaindex 都缺乏基于语义分割的分片机制，这会导致文本重叠和信息冗余。</p>
-<h4 id="jie-jue-fang-an" class="heading-control">解决方案<a class="heading-anchor" href="#jie-jue-fang-an" aria-hidden="true"></a></h4>
-<p>我计划采用基于语义分割的分片方法，将文本分割成语义完整且独立的块。</p>
+          <h2 id="2025-nian-13-yue" class="heading-control">2025年1-3月<a class="heading-anchor" href="#2025-nian-13-yue" aria-hidden="true"></a></h2>
+<h3 id="nei-jian-llm-ti-gong-shang" class="heading-control">内建LLM提供商<a class="heading-anchor" href="#nei-jian-llm-ti-gong-shang" aria-hidden="true"></a></h3>
+<p>当前，外置的llama-cpp server已经满足不了我的需求:</p>
+<ol>
+<li>无法动态加载切换LLM大模型</li>
+<li>无法对提示词进行安全控制
+<ol>
+<li>系统模板反注入</li>
+<li>提示词保护</li>
+</ol>
+</li>
+<li>无法自动适配硬件: 自动检测内存和GPU，并默认使用最佳计算层，自动分配gpu-layers以及上下文窗口大小, 以便从硬件中获得最佳性能，无需手动配置任何内容。</li>
+<li>无法为指定的单词提升/降低权重，类似在stable-diffusion中（暂未实现）</li>
+</ol>
+<p>因此开发实现了内置的本地LLM提供商.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/article/ppe_dev_summary/#more" rel="contents">
@@ -1543,13 +1553,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">321k</span>
+    <span title="站点总字数">323k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">9:43</span>
+    <span title="站点阅读时长">9:48</span>
 </div>
 
         
