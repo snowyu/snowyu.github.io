@@ -5,6 +5,14 @@ title: 从头手搓面向应用的AI框架
 desc: ''
 date: 2025-03-18 9:14:40+08:00
 updated: 2025-04-06 08:43:02+08:00
+categories:
+  - AI
+tags:
+  - learning
+  - ai
+  - deep learning
+  - framework
+  - AI language
 ---
 
 # 🌟 从头手搓面向应用的AI框架 🚀
