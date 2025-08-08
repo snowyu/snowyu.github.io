@@ -281,6 +281,44 @@
       </tags>
   </entry>
   <entry>
+    <title>AI：我那知识渊博，却又满嘴“Bullshit”的架构顾问</title>
+    <url>/article/ai-architect-paradox/</url>
+    <content><![CDATA[<h2 id="ai-wo-na-zhi-shi-yuan-bo-que-you-man-zui-bullshit-de-jia-gou-gu-wen" class="heading-control">AI：我那知识渊博，却又满嘴“Bullshit”的架构顾问<a class="heading-anchor" href="#ai-wo-na-zhi-shi-yuan-bo-que-you-man-zui-bullshit-de-jia-gou-gu-wen" aria-hidden="true"></a></h2>
+<p>现在人人都在吹 AI 怎么提高生产力，怎么“咣咣咣”写代码。但我想从另一个角度聊聊，一个可能有点反直觉的观点：<strong>AI 反而让我们在做架构决策时，变得更“慢”了。</strong></p>
+<p>就拿我手头正在搞的这个 AI IDE 的 MVP 来说，它是个基于插件的桌面应用。本来嘛，一个 MVP，快速迭代是第一要务。结果你猜怎么着？我的架构来来回回改了三版。</p>
+<ol>
+<li>
+<p>**最初阶段：**图个快，直接从一个现成的 React Demo 上手，想着先把功能抽出来再说。简单、直接、粗暴。</p>
+</li>
+<li>
+<p><strong>AI介入与“深刻的翻车”：<strong>我问了问 AI，想看看有没有更适合桌面应用的方案。它“热情”地给我推荐了 Quasar 2 (基于 Vue3)。说到这个 Quasar，我就更有话聊了。其实我选它是有“私心”的，因为我以前用 Quasar 1 (Vue 2) 写过一个对话式 UI (CUI) 的核心组件 <code>QInputEx</code>，这个组件的核心就是</strong>动态性</strong>，比如动态生成和监听事件名。我想着这次正好让 AI 帮我移植到 Quasar 2 (Vue 3) 上，多完美的 AI 应用场景。</p>
+</li>
+</ol>
+<p>结果呢？AI 给我生成了一堆代码“缝合怪”，乍一看像模像样，但根本跑不起来。更要命的在后头。等我亲手把组件移植成功后，才发现一个致命问题：<strong>我组件的核心优势没了。</strong></p>
+<p>Vue 3 为了极致的性能，牺牲了 Vue 2 的部分动态性。比如事件名这类东西，现在需要事先在 <code>emits</code> 选项里静态声明。我那个依赖动态事件的 <code>QInputEx</code>，就算代码层面兼容了，灵魂也丢了。</p>
+<p><strong>而这一点，AI 从头到尾，一个字都没提。</strong> 它根本不理解 Vue 3 和 Vue 2 之间存在着“性能 vs 动态性”的哲学取舍。它只会顺着你的话说：“好的，主人，这就为您移植。”当然，大多数情况下这是必要的，一个天天跟你对着干的 AI，想想都觉得可怕。但这也暴露了它“Bullshit”的本质：<strong>一个毫无主见、只会迎合的“好好先生”，给不了你真正的洞见。</strong></p>
+<ol start="3">
+<li>**掉进 Piral 微前端的兔子洞：**正是这次失败，让我开始严肃思考“插件化”这个核心命题。于是我又去请教 AI。好家伙，它给我罗列了一堆方案，其中 Piral 这个陌生的名字引起了我的注意。</li>
+</ol>
+<p>站在 Piral 的角度思考，它对我这个“AI IDE”项目确实有巨大的吸引力。它的核心理念就是 <strong>“App Shell + Pilets”</strong>。我的 IDE 主窗口就是那个 App Shell。而每一个功能，比如编辑器，一个特定的 Linter、一个 Git 可视化工具、甚至一个数据库客户端，都可以做成一个独立的 “Pilet” (微前端插件)。</p>
+<p>这些 Pilets 本质上是独立的 npm 包，可以由不同团队（甚至社区）独立开发、测试和发布，然后在运行时被我的 App Shell 动态加载。这不就是 VS Code 插件生态的翻版吗？听起来简直是为我量身定做的完美方案。</p>
+<p><strong>但魔鬼就在这里。</strong> AI 呈现给你的，是这条路尽头的“罗马”，却对路上的“坑”一笔带过。选择 Piral 意味着什么？</p>
+<ul>
+<li><strong>陡峭的学习曲线：</strong> 我得从头学习它的概念、CLI 工具链和开发模式。</li>
+<li><strong>全新的复杂性：</strong> 状态管理怎么办？多个 Pilet 之间如何优雅地通信，而不是搞成一团乱麻的回调地狱？这又把我带回了“UI状态管理器”选型的难题。</li>
+<li><strong>设计系统成了刚需：</strong> 为了保证所有独立开发的 Pilet 在 UI 上保持一致，我不能再随便选个组件库就完事了。像 <a href="https://tailwindcss.com/" target="_blank" rel="noopener">Tailwind CSS</a> + <a href="https://ui.shadcn.com/" target="_blank" rel="noopener">shadcn-ui</a> 这种基于原子类和预制 Recipe 的方案，突然就从“看起来很潮”变成了“维持项目理智的救命稻草”。因为只有这样，才能把设计规范分发给所有插件开发者。而我也不得不去探索 <code>Tailwind CSS</code> 背后的技术特征，发现，的确我对CSS的理解有点过时了，不过也明白了，为啥能用AI写界面，最后总结一篇<a href="./css-frameworks.md">前端 CSS 框架发展变迁</a>，受益良多，但是在架构上也在耗费了太多时间。</li>
+</ul>
+<p>看到了吗？AI 给我画了一个大饼，这个饼让我看到了更专业的可能性，但也逼着我不得不去研究烙饼的全套工艺，从和面、发面一直到控温。</p>
+<p><strong>所以，结论还是要自己下，决策还是要自己做。</strong></p>
+<p>AI 极大地拓宽了我的信息面，让我知道了 Piral、Tailwind 这些可能原本不会接触到的东西。但它也把我的决策过程从一个“两点之间线段最短”的问题，变成了一个“在N维空间中寻找最优解”的难题。</p>
+<p>它让我变得更“慢”，但这种“慢”，是把原本可能在项目后期集中爆发的架构问题，提前到了项目初期进行思考和验证。这笔时间投入，长期来看，可能血赚不亏。只是这个过程，确实挺折磨人的。</p>
+]]></content>
+      <tags>
+        <tag>architecture</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从头手搓面向应用的AI框架</title>
     <url>/article/Build-an-application-oriented-AI-framework-from-scratch/</url>
     <content><![CDATA[<h1 id="cong-tou-shou-cuo-mian-xiang-ying-yong-de-ai-kuang-jia" class="heading-control">🌟 从头手搓面向应用的AI框架 🚀<a class="heading-anchor" href="#cong-tou-shou-cuo-mian-xiang-ying-yong-de-ai-kuang-jia" aria-hidden="true"></a></h1>
