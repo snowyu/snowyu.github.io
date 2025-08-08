@@ -1,6 +1,6 @@
 ---
 author: riceball
-date: 2025-08-08 14:57:30+08:00
+date: 2025-08-08 19:39:30+08:00
 title: AI：我那知识渊博，却又满嘴“Bullshit”的架构顾问
 tags:
   - architecture
