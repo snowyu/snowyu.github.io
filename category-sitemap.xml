@@ -8,6 +8,20 @@
     </url>
 
     <url>
+        <loc>https://riceball.me/categories/Thinking/Programming/</loc>
+        <lastmod>2025-12-11T02:30:14.975Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://riceball.me/categories/Thinking/</loc>
+        <lastmod>2025-12-11T02:30:14.975Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://riceball.me/categories/Framework/Frontend/CSS/</loc>
         <lastmod>2025-08-08T09:56:13.684Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -86,13 +100,6 @@
 
     <url>
         <loc>https://riceball.me/categories/Thinking/Knowledge/</loc>
-        <lastmod>2020-07-11T13:55:56.304Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/categories/Thinking/</loc>
         <lastmod>2020-07-11T13:55:56.304Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -304,13 +311,6 @@
     <url>
         <loc>https://riceball.me/categories/P2P/</loc>
         <lastmod>2019-11-22T06:56:43.529Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://riceball.me/categories/Thinking/Programming/</loc>
-        <lastmod>2016-09-03T19:30:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
