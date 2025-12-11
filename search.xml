@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CPP STL DLL Problem</title>
+    <title>你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛</title>
     <url>/article/cpp.stl-dll-problem/</url>
     <content><![CDATA[<h1 id="ni-kan-dao-de-stdstring-bu-shi-tong-yi-ge-stdstring-cstl-kua-bian-yi-qi-jian-rong-xing-zhi-tong" class="heading-control">你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛<a class="heading-anchor" href="#ni-kan-dao-de-stdstring-bu-shi-tong-yi-ge-stdstring-cstl-kua-bian-yi-qi-jian-rong-xing-zhi-tong" aria-hidden="true"></a></h1>
 <p>说实话，最近被 C++ 的 STL 跨编译器兼容性搞得有点头大。本来在琢磨一件挺酷的事儿：能不能把 LLVM 字节码当作运行时跨平台的手段？比如把带 STL 类型的 C++ 代码编译成 LLVM IR，到哪儿都能跑，岂不美哉？</p>

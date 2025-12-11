@@ -48,7 +48,7 @@
 
   <meta name="description" content="你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛 说实话，最近被 C++ 的 STL 跨编译器兼容性搞得有点头大。本来在琢磨一件挺酷的事儿：能不能把 LLVM 字节码当作运行时跨平台的手段？比如把带 STL 类型的 C++ 代码编译成 LLVM IR，到哪儿都能跑，岂不美哉？ 结果一上手就发现，理想很丰满，现实很骨感。先不说 32&#x2F;64 位、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CPP STL DLL Problem">
+<meta property="og:title" content="你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛">
 <meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;cpp.stl-dll-problem&#x2F;index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛 说实话，最近被 C++ 的 STL 跨编译器兼容性搞得有点头大。本来在琢磨一件挺酷的事儿：能不能把 LLVM 字节码当作运行时跨平台的手段？比如把带 STL 类型的 C++ 代码编译成 LLVM IR，到哪儿都能跑，岂不美哉？ 结果一上手就发现，理想很丰满，现实很骨感。先不说 32&#x2F;64 位、">
@@ -73,17 +73,17 @@
     isPost: true
   };
 </script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
 
 
 
-  <title>CPP STL DLL Problem | Riceball LEE</title>
+  <title>你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛 | Riceball LEE</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
     <script>
@@ -264,7 +264,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          CPP STL DLL Problem
+          你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛
         </h2>
 
         <div class="post-meta">
@@ -372,7 +372,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/cpp.stl-dll-problem/" title="CPP STL DLL Problem">https://riceball.me/article/cpp.stl-dll-problem/</a>
+    <a href="/https:/riceball.me/article/cpp.stl-dll-problem/" title="你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛">https://riceball.me/article/cpp.stl-dll-problem/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -646,7 +646,7 @@ NexT.utils.loadComments(() => {
       shortname: 'riceballl',
       url: "https://riceball.me/article/cpp.stl-dll-problem/",
       identifier: "article/cpp.stl-dll-problem/",
-      title: "CPP STL DLL Problem",
+      title: "你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛",
     });
   }, window.DisqusJS);
 });

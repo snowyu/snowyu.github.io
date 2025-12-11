@@ -17,7 +17,7 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>CPP STL DLL Problem</title>
+    <title>你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛</title>
     <link href="https://riceball.me/article/cpp.stl-dll-problem/"/>
     <id>https://riceball.me/article/cpp.stl-dll-problem/</id>
     <published>2025-12-10T18:15:51.000Z</published>
