@@ -1,7 +1,7 @@
 ---
 author: riceball
 id: j0njfl52nddeqmlkcpsbky3
-title: CPP STL DLL Problem
+title: 你看到的std::string，不是同一个std::string —— C++ STL跨编译器兼容性之痛
 desc: ''
 date: 2025-12-11 10:15:51+08:00
 updated: 1765420214975
