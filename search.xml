@@ -1,6 +1,2024 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Cordis 的坑与账</title>
+    <url>/article/cordis-pros-cons/</url>
+    <content><![CDATA[<h1 id="cordis-de-keng-yu-zhang" class="heading-control">Cordis 的坑与账<a class="heading-anchor" href="#cordis-de-keng-yu-zhang" aria-hidden="true"></a></h1>
+<blockquote>
+<p>坑是陷人的地方，账是未来要承担的后果。</p>
+<p>读不完的话：第 2 节讲它真正做了什么（其实只有一个栈），第 4 节讲它哪里长错了，第 8 节讲你该不该用。</p>
+</blockquote>
+<hr>
+<h2 id="0-liang-ge-zhu-jiao" class="heading-control">0. 两个主角<a class="heading-anchor" href="#0-liang-ge-zhu-jiao" aria-hidden="true"></a></h2>
+<h3 id="bei-ping-gu-de-cordis" class="heading-control">被评估的：Cordis<a class="heading-anchor" href="#bei-ping-gu-de-cordis" aria-hidden="true"></a></h3>
+<p>Koishi 聊天机器人框架的内核，后来 DeepSeek 的 DSH（DeepSeek Harness，Agent 运行时）拿它当底座。</p>
+<p>类型上是<strong>插件元框架</strong>：本身不含任何业务能力，只管插件怎么装进一个长期运行的进程、怎么互相依赖、怎么卸载。Koishi 社区插件 4000+（论文口径，Koishi 官方没有给出精确统计）。</p>
+<p>DSH 这一侧没有精确数字：<strong>官方没有插件中心</strong>。官方 FAQ 原话是&quot;There is no central registry. The one official discovery mechanism is the GitHub topic <code>dsh-plugin</code>&quot;。按这个 topic 计的仓库数在 1.7 万量级（2026-10 的第三方统计，各家口径从几千到 17,894 不等，且 topic 数 ≠ 可安装插件数）。所以<strong>不能拿&quot;DSH 有几千个插件&quot;当论据</strong>——那个数字既没有官方背书，也不是插件数。</p>
+<p>还有一处容易忽略：<strong>DSH 不是依赖 cordis 这个 npm 包，而是把源码整包复制进自己的 <code>vendor/</code> 目录，改名 <code>@deepseek-ai/cordis</code></strong>。vendored 的版本是 <strong>4.0.0-rc.7</strong>，落后于上游当前的 <strong>4.0.0-rc.10</strong>（2026-09-08）。你读到的文档、看到的 API，可能和你 <code>npm i cordis</code> 装到的不是同一个。</p>
+<blockquote>
+<p><strong>本文凡涉及机制与行为，一律以仓库源码为准；论文、文档与源码冲突时服从源码。</strong> 而且&quot;源码&quot;有两个——上游 <code>cordiverse/cordis</code> 和 DSH <code>vendor/cordis</code>，两者不等价，见下。第 3 节会说明为什么这条规则在这里格外必要。</p>
+</blockquote>
+<h3 id="dsh-gai-le-shi-mo-yi-fen-bu-duan-de-bu-ding-qing-dan" class="heading-control">DSH 改了什么：一份不短的补丁清单<a class="heading-anchor" href="#dsh-gai-le-shi-mo-yi-fen-bu-duan-de-bu-ding-qing-dan" aria-hidden="true"></a></h3>
+<p>vendor 化的动机官方写得很明白：harness 要<strong>完全拥有自己的框架层</strong>——可审计（auditable）、可打补丁（patchable）、版本可固定（pinned）。改名是为了不抢占上游的 npm 包名。</p>
+<p>改动记在 <code>vendor/README.md</code> 的本地修改日志里，共十八条。与本文主题相关的三条：</p>
+<p><strong>① <code>cordis/src/fiber.ts</code> 生命周期加固——堵了三个&quot;可重入回收&quot;漏洞。</strong> 这是唯一动了行为的一条：</p>
+<ul>
+<li>effect 的 owner-list 包装<strong>在 setup 执行之前</strong>就注册好，所以&quot;从 setup 内部发起的卸载&quot;会等 setup 和全部已收集的清理跑完</li>
+<li>setup 同步失败时移除包装、回滚已收集的清理</li>
+<li>异步清理在静止前<strong>一直对 owner 可见</strong>；内部 effect 组合会加入一个已在运行的清理；<strong>重复调用公开 disposer 仍保持上游的一次性语义</strong></li>
+<li><strong>owner 处于 UNLOADING 时拒绝新建 effect</strong>（PENDING 与 LOADING 仍允许）——防止清理阶段新注册的东西逃出这次卸载的快照</li>
+<li>子 fiber 在发布前先拿到父级 disposer；清理通知按观察者逐个隔离错误，一个回调报错不会饿死其他回调</li>
+</ul>
+<p><strong>② <code>Fiber.update()</code> 改为返回内部 <code>update</code> waterfall 的结果</strong>，让 Loader 能 await 重启流程，同时保留同步的配置校验与失败语义。</p>
+<p><strong>③ JSDoc 补写</strong>（<code>disposal semantics</code>、<code>waterfall veto</code>、<code>bail conditions</code>）——官方注明&quot;comment-only; no code changes&quot;，动机是站点 API 参考生成器遇到未文档化成员会直接报错。</p>
+<p><strong>这三条说明两件事。</strong> 一是 DeepSeek <strong>不是照搬</strong>，确实在卸载边界上下了功夫——而这块恰恰是&quot;可逆 effect&quot;最容易出错的地方。二是<strong>这些加固在 <code>vendor/</code> 里，不在上游</strong>：上游 rc.7→rc.10 自己也在修同类问题（rc.10 的 changelog 里有 “core: reject repeated <code>next()</code> calls from a waterfall listener”、“core: do not leave fiber failures unhandled”）。所以判断&quot;某个坑还在不在&quot;，要先问一句：<strong>你读的是哪一份代码</strong>。本文默认以上游为准，凡是 DSH 额外修掉的，单独标出。</p>
+<ul>
+<li>仓库：<a href="https://github.com/cordiverse/cordis" target="_blank" rel="noopener">https://github.com/cordiverse/cordis</a></li>
+<li>DSH 仓库与 vendor 目录：<a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">https://github.com/deepseek-ai/deepseek-harness</a></li>
+<li>官方文档：<a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer</a></li>
+<li>上手教程：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial</a></li>
+</ul>
+<h3 id="yong-lai-zuo-can-zhao-de-toolfunc-xi-lie" class="heading-control">用来做参照的：tool-func 系列<a class="heading-anchor" href="#yong-lai-zuo-can-zhao-de-toolfunc-xi-lie" aria-hidden="true"></a></h3>
+<p>isdk 的一组小库，从下往上是一条链：</p>
+<ul>
+<li><a href="https://github.com/isdk/tool-func.js" target="_blank" rel="noopener"><code>tool-func</code></a>：函数注册表，让函数能自描述、被别人发现</li>
+<li><a href="https://github.com/isdk/tool-rpc.js" target="_blank" rel="noopener"><code>tool-rpc</code></a>：把注册的函数暴露到网络上，本地/远程对调用方透明</li>
+<li><a href="https://github.com/isdk/tool-event.js" target="_blank" rel="noopener"><code>tool-event</code></a>：把实时事件也当作&quot;一个工具&quot;，复用 RPC 的生态</li>
+</ul>
+<p>第 4 节会拿它当尺子：<strong>同一个需求，另一种长法是什么样子。</strong></p>
+<h2 id="1-ta-jie-jue-shi-mo-wen-ti" class="heading-control">1. 它解决什么问题<a class="heading-anchor" href="#1-ta-jie-jue-shi-mo-wen-ti" aria-hidden="true"></a></h2>
+<p><strong>一个 bot 进程要 7×24 运行，插件要能不重启进程地装卸和升级。</strong></p>
+<p>这句话听起来平平无奇，把它变成画面：</p>
+<blockquote>
+<p>你的机器人已经连续跑了半年，群里几千人在用。现在你要给&quot;天气查询&quot;插件修一个 bug。重启意味着全体下线半分钟。你要的是：改完代码、保存、这个插件自己卸掉旧版本、装上新版本，群里的对话一次都没断。</p>
+</blockquote>
+<p>要做到这件事，必须解决四个问题：</p>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>需要什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插件能装进进程</td>
+<td>一个注册表，按名字找到插件</td>
+</tr>
+<tr>
+<td>插件能卸载且不留垃圾</td>
+<td>卸载时清理它注册过的所有东西：定时器、监听器、临时文件</td>
+</tr>
+<tr>
+<td>清理不能乱序</td>
+<td>后创建的先释放</td>
+</tr>
+<tr>
+<td>插件之间有依赖</td>
+<td>依赖失效时下游跟着拆，依赖回来时跟着装回去</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这四条是主干。</strong> 主干之外 Cordis 还提供了：五种事件分发方法、配置系统、声明合并式的服务查找。那些是否必要、代价是什么，第 4 节和第 5 节逐项说明。</p>
+<p>时间线在第 0 节已经给全了，这里只留结论：<strong>代码跑了六年，理论才补上来。</strong> 这个顺序在第 3.5 节要反复用。</p>
+<h2 id="2-he-xin-ji-zhi-yi-ge-zhan" class="heading-control">2. 核心机制：一个栈<a class="heading-anchor" href="#2-he-xin-ji-zhi-yi-ge-zhan" aria-hidden="true"></a></h2>
+<p>第 1 节里第 2、3 条需求（能清理、不乱序），实现出来就是一个<strong>函数栈</strong>。</p>
+<h3 id="21-bu-yong-kuang-jia-shi-hui-zen-mo-xie" class="heading-control">2.1 不用框架时会怎么写<a class="heading-anchor" href="#21-bu-yong-kuang-jia-shi-hui-zen-mo-xie" aria-hidden="true"></a></h3>
+<p>插件启动做了三件事：</p>
+<pre><code class="typescript"><span class="hljs-keyword">const</span> pool = openPool()                              <span class="hljs-comment">// 1. 开一个数据库连接池</span>
+<span class="hljs-keyword">const</span> timer = setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.query(), <span class="hljs-number">1000</span>)  <span class="hljs-comment">// 2. 每秒用连接池查一次</span>
+ctx.on(<span class="hljs-string">'message'</span>, handler)                           <span class="hljs-comment">// 3. 挂一个消息监听器</span>
+</code></pre>
+<p>卸载时你得手动写三行，而且顺序不能错：</p>
+<pre><code class="typescript">ctx.off(<span class="hljs-string">'message'</span>, handler)   <span class="hljs-comment">// 先摘监听器</span>
+clearInterval(timer)          <span class="hljs-comment">// 再停定时器</span>
+pool.close()                  <span class="hljs-comment">// 最后关连接池</span>
+</code></pre>
+<p><strong>为什么必须是这个顺序？</strong> 假设你先关连接池、后停定时器——在&quot;池已关、定时器还在&quot;的那几毫秒里，定时器可能又触发一次 <code>pool.query()</code>，拿一个已关闭的连接池查数据，必然报错。反过来，先停定时器再关池，怎么都不会错。</p>
+<h3 id="22-cordis-de-fang-an" class="heading-control">2.2 Cordis 的方案<a class="heading-anchor" href="#22-cordis-de-fang-an" aria-hidden="true"></a></h3>
+<p>它做的全部事情，是把这个顺序交给一个栈。</p>
+<p>先把签名写对——<strong>真实的 <code>ctx.effect()</code> 不是 <code>effect(acquire, release)</code> 两个参数</strong>，上游 <code>fiber.ts</code> 里的重载是：</p>
+<pre><code class="typescript">effect(execute: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> SyncEffect, label?: <span class="hljs-built_in">string</span>): Disposable
+effect(execute: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Effect,     label?: <span class="hljs-built_in">string</span>): AsyncDisposable
+</code></pre>
+<p><strong>只有一个回调</strong>。它立即执行，回调返回（或 <code>yield</code>）的那个函数就是 disposer，被收进当前 fiber 的 disposables。第二个参数 <code>label</code> 只用于诊断输出（默认 <code>'anonymous'</code>），不影响行为。</p>
+<p>所以栈的形状是：</p>
+<pre><code class="typescript"><span class="hljs-comment">// 注册时：execute 立即执行，它返回的 disposer 入栈</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">effect</span>(<span class="hljs-params">execute: () =&gt; Disposable, label = 'anonymous'</span>) </span>{
+  <span class="hljs-keyword">const</span> disposables: Disposable[] = []
+  <span class="hljs-comment">// execute() 的返回值 / 每次 yield 的值 → disposables.push(...)</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {                            <span class="hljs-comment">// 这就是被挂到 fiber 上的 dispose</span>
+    <span class="hljs-keyword">let</span> task!: <span class="hljs-built_in">void</span> | <span class="hljs-built_in">Promise</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> dispose of disposables.splice(<span class="hljs-number">0</span>).reverse()) {   <span class="hljs-comment">// 逆序</span>
+      <span class="hljs-keyword">if</span> (task) task = task.then(dispose)   <span class="hljs-comment">// 遇到异步就串成链</span>
+      <span class="hljs-keyword">else</span> { <span class="hljs-keyword">const</span> r = dispose(); <span class="hljs-keyword">if</span> (isObject(r) &amp;&amp; <span class="hljs-string">'then'</span> <span class="hljs-keyword">in</span> r) task = r }
+    }
+    <span class="hljs-keyword">return</span> task
+  }
+}
+</code></pre>
+<p>用真实的写法重写刚才那三件事：</p>
+<pre><code class="typescript"><span class="hljs-comment">// 1. 连接池：获取写在函数体里，关闭作为返回值交回框架</span>
+ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> pool = openPool()
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close()
+})
+
+<span class="hljs-comment">// 2. 定时器：同理</span>
+ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> timer = setInterval(<span class="hljs-comment">/* ... */</span>, <span class="hljs-number">1000</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> clearInterval(timer)
+})
+
+<span class="hljs-comment">// 3. 监听器：不用包，ctx.on 本身就是一个 effect</span>
+ctx.on(<span class="hljs-string">'message'</span>, handler)
+</code></pre>
+<p>注意第 1 条里的 <code>pool</code> 是 effect 内部的局部变量——<strong>业务代码要用它，就得把它挪到外面去</strong>（坑三会讲这件事）。</p>
+<p><strong><code>ctx.on()</code> 已经是 effect，再拿 <code>ctx.effect</code> 包一层是多余的。</strong> 官方原话：“Because ctx.on() is an effect, the listener disappears with the plugin — no manual removeListener bookkeeping, ever.” 同理，<code>ctx.plugin()</code>、服务注册、<code>ctx.tools.register()</code> 也都自带 disposer。</p>
+<p>卸载时一行 <code>dispose()</code>，栈自己从顶往下弹。<strong>你不再需要记住顺序。</strong></p>
+<h3 id="23-wei-shi-mo-fan-zhuo-lai-zong-shi-dui-de" class="heading-control">2.3 为什么&quot;反着来&quot;总是对的<a class="heading-anchor" href="#23-wei-shi-mo-fan-zhuo-lai-zong-shi-dui-de" aria-hidden="true"></a></h3>
+<p>规律是：<strong>后创建的东西往往依赖先创建的东西。</strong></p>
+<p>这个&quot;往往&quot;为什么可靠到不需要分析依赖？因为<strong>变量作用域</strong>已经替你保证了：定时器回调里引用了 <code>pool</code> 这个变量，那么 <code>openPool()</code> 那一行就必然写在 <code>setInterval</code> 前面——&quot;先定义后使用&quot;和&quot;依赖在前、依赖者在后&quot;是同一个顺序。</p>
+<p>LIFO（后进先出）把注册顺序一反转，恰好反转了依赖顺序。<strong>它不是猜对了依赖，它是复用了语言几十年的&quot;先定义后使用&quot;规则。</strong></p>
+<p>准确的说法是：<strong>LIFO 不分析依赖，它只是沿用注册顺序的逆序。</strong> 刻意违反时不成立：</p>
+<pre><code class="typescript"><span class="hljs-keyword">let</span> pool: Pool
+ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {                                        <span class="hljs-comment">// 先注册定时器</span>
+  <span class="hljs-keyword">const</span> t = setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.query(), <span class="hljs-number">1000</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> clearInterval(t)
+})
+ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { pool = openPool(); <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close() })  <span class="hljs-comment">// 后才拿到池</span>
+<span class="hljs-comment">// 卸载时 LIFO：先关池、后停定时器 —— 顺序错了，且没有任何报错</span>
+</code></pre>
+<p>这段代码能通过编译（<code>let</code> 的声明被提升了）。机制的全部实现是一个数组加一次 <code>reverse()</code>。</p>
+<p><strong>这个 <code>effect</code> 业界早有现成的名字</strong>：Haskell 的 <code>bracket</code>、Effect-TS 的 <code>acquireRelease</code>，中文就是&quot;成对的资源获取与释放&quot;。C++ 的 RAII 也算近亲，但它绑在词法作用域退出（离开大括号就析构），而 Cordis 这个不绑作用域、绑运行时——所以更准确的名字是<strong>运行时可组合的 acquireRelease</strong>。</p>
+<p>注意：<strong>Cordis 的这一版把 acquire 和 release 合进了同一个回调</strong>——&quot;获取&quot;写在函数体里，&quot;释放&quot;作为返回值返回。Effect-TS 的 <code>acquireRelease</code> 是两个参数、<code>bracket</code> 是三个，Cordis 是一个。这不是优劣，是选择：一个回调换来的是可以 <code>yield</code> 多次（生成器形式），以及 <code>label</code> 可诊断；代价是<strong>资源本体要自己保存</strong>——见坑三。</p>
+<p><strong>所以 Cordis 在这里的真实增量只有一步</strong>：把&quot;谁后获取谁先释放&quot;从写在代码里的语法结构（<code>try/finally</code>），变成运行时可组合的数据结构（栈）。互不相识的插件各自往栈里压一对&quot;资源 + 清理函数&quot;，卸载时统一弹出。只有这一步有价值。</p>
+<p><code>ctx.effect()</code> 的签名也验证了这条规则的必要性：论文里的抽象形态是 <code>effect(e)</code>（e 是一个返回逆的回调），文档里也是单回调；而不少二手文章（包括本文初稿）写成了 <code>effect(acquire, release)</code> 两参数。<strong>这一处写错，坑三的整个论证都会跟着偏。</strong> 这类地方一律查 <code>fiber.ts</code>。</p>
+<h3 id="24-cha-jian-yu-cha-jian-zhi-jian-ye-shi-zhe-ge-shun-xu" class="heading-control">2.4 插件与插件之间，也是这个顺序<a class="heading-anchor" href="#24-cha-jian-yu-cha-jian-zhi-jian-ye-shi-zhe-ge-shun-xu" aria-hidden="true"></a></h3>
+<p>A 插件提供数据库服务，B 插件依赖它、起定时器用它的池。</p>
+<ul>
+<li>加载时：B 等 A 就绪才开始（Cordis 里这个状态叫 <strong>PENDING</strong>）</li>
+<li>卸载时：A 要下线，B 先被拆</li>
+</ul>
+<p><strong>激活 A→B，拆解 B→A</strong>，和 2.3 是同一个顺序。函数粒度用栈，插件粒度用依赖图；两处都不做分析，都依赖顺序本身。</p>
+<p>热重载也同样朴素：配置变了 → 旧插件清理 → 新插件带新配置初始化。</p>
+<h3 id="25-wu-tiao-bian-jie" class="heading-control">2.5 五条边界<a class="heading-anchor" href="#25-wu-tiao-bian-jie" aria-hidden="true"></a></h3>
+<p>机制能管到哪儿，全部写在这五条里。<strong>管住的东西自动正确，没管住的东西彻底没人管，没有中间地带。</strong></p>
+<p><strong>边界一：栈只管通过 effect 注册的东西。</strong><br>
+裸的 <code>setInterval</code>、裸的 <code>openPool()</code>，框架看不见也不清理——卸载后定时器继续每秒触发，查一个再没人用的连接池，<strong>没有报错，静默泄漏</strong>。Cordis 为此提供了包装过的定时器方法；第三方资源必须你自己套一层 <code>ctx.effect</code>。</p>
+<p>（注意：定时器不在 core 里，在 <code>@cordisjs/plugin-timer</code> 这个独立包，通过 <code>ctx.mixin()</code> 把方法挂到 Context 原型上，所以能直接 <code>ctx.timeout()</code> / <code>ctx.interval()</code> 而不用 <code>ctx.timer.xxx</code>。旧名 <code>ctx.setTimeout</code> / <code>ctx.setInterval</code> 现在是<strong>已弃用的别名</strong>——这几个方法内部都走 <code>ctx.effect()</code> 注册 <code>clearTimeout</code>/<code>clearInterval</code>。）</p>
+<p><strong>边界二：顺序只沿用注册先后。</strong><br>
+2.3 的反例已经演示了：倒序注册，LIFO 安静地给出错误顺序。</p>
+<p><strong>边界三：&quot;可逆&quot;只对成对的注册类操作成立。</strong><br>
+<code>on/off</code>、<code>open/close</code>、<code>register/unregister</code> 是真互逆；消息已发出、数据已写库，不可撤销——清理函数顶多补偿。框架保证清理的<strong>时机和顺序</strong>，不保证时间倒流。</p>
+<p><strong>边界四：异步清理不保证按逆序完成。</strong><br>
+这一条官方明文写了，原话是 “disposer invocation <strong>starts</strong> in reverse registration order, but multiple async disposers run concurrently and have <strong>no serial completion guarantee</strong>”。</p>
+<p>差别在于：<strong>启动是严格逆序的，完成不是。</strong> 真正的实现（上游 <code>fiber.ts</code>）是 <code>disposables.splice(0).reverse()</code> 逐个调用，遇到返回 Promise 的就用 <code>task = task.then(dispose)</code> 串成一条链——所以它其实做了串行化，只是这条链只对&quot;同一个 <code>ctx.effect()</code> 内部收集的多个 disposer&quot;成立；不同 effect 之间的清理仍由 <code>Promise.all</code> 并发跑。于是卸载期间存在一个<strong>半卸载窗口</strong>：服务已注销、定时器还在跑。</p>
+<p>官方给的应对是<strong>合并</strong>：如果卸载必须先停轮询、再关连接、最后释放文件，这三步不要拆成三个独立 disposer，写进同一条清理链。</p>
+<p><strong>边界五（DSH 特有，上游没有）：UNLOADING 期间不许再注册。</strong><br>
+DSH 的 vendor 补丁加了一条：owner 处于 <code>UNLOADING</code> 时<strong>拒绝新建 effect</strong>（<code>PENDING</code>、<code>LOADING</code> 仍允许）。这条补的是一个真实漏洞——清理函数里如果又去注册新东西，那东西会逃出这次卸载的快照，变成谁也不管的孤儿。上游没有这条。</p>
+<h3 id="26-cordis-yi-jing-zuo-dao-de-ji-jian-shi" class="heading-control">2.6 Cordis 已经做到的几件事<a class="heading-anchor" href="#26-cordis-yi-jing-zuo-dao-de-ji-jian-shi" aria-hidden="true"></a></h3>
+<p>以下四件是它真实的加固：</p>
+<ul>
+<li><strong>部分回滚是有的。</strong> <code>ctx.effect()</code> 接受生成器形式：<code>fiber.ts</code> 里 <code>Symbol.iterator in effect</code> 的分支会 <code>while(true) { iter.next(); safeCollect(result.value) }</code>，把每步 <code>yield</code> 的逆操作<strong>立即</strong>收集。所以加载中途失败时，只撤销已经执行的部分。DSH 的 vendor 补丁进一步保证：setup 同步失败时移除包装、回滚已收集的清理。</li>
+<li><strong>disposer 是一次性的。</strong> 这一点有官方背书，但说法要改：DSH 的 vendor 修改日志写的是&quot;repeated public disposer calls retain their <strong>upstream single-shot result</strong>&quot;——即重复调用不会执行两次，但公开材料里查不到名为 <code>armed</code> 的标志（那是第三方博客的转述，不是 API 合同）。实现上是 <code>splice(0).reverse()</code> 清空 + <code>_disposables.delete()</code> 摘除，一次性由此得到。</li>
+<li><strong>终态一致性有形式化保证。</strong> 论文给了 confluence（汇合性，Theorem 80）：无论以什么顺序加载或卸载，最终静止状态等价于按最终配置一次性从零装配。</li>
+<li><strong>服务不是全局单例。</strong> <code>ctx.isolate(name, label?)</code> 给指定服务名建一个独立解析域——源码就是 <code>Object.create</code> 一层 shadow 加上新 label。相同 label 归同一作用域，不同 label 才隔离。</li>
+</ul>
+<p>confluence 保证的是&quot;最终一致&quot;，不保证&quot;过程中一致&quot;。半卸载窗口依然存在，卸载也没有跨插件的事务语义——A 拆完、B 重装失败，没有补偿协议。这一点连 DSH 自己都认：它的 vendor 日志里对 loader 的措辞是&quot;eager, non-transactional implementation and <strong>do not restore previous plugins or options</strong>&quot;，并且明说配置改动失败会&quot;leave a partially applied tree&quot;。</p>
+<h2 id="3-zao-ci-lun-wen-li-de-gu-zuo-gao-shen-gong-cheng-li-de-xue-sheng-qi" class="heading-control">3. 造词：论文里的故作高深，工程里的学生气<a class="heading-anchor" href="#3-zao-ci-lun-wen-li-de-gu-zuo-gao-shen-gong-cheng-li-de-xue-sheng-qi" aria-hidden="true"></a></h2>
+<p>第 2 节的机制都很朴素。看 Cordis 给它们起的名字：</p>
+<table>
+<thead>
+<tr>
+<th>实际机制</th>
+<th>Cordis 的叫法</th>
+<th>这个词原本属于哪里</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按相反顺序清理</td>
+<td>逆序回放（reverse replay）</td>
+<td>事件溯源、日志重放</td>
+</tr>
+<tr>
+<td>执行清理函数</td>
+<td>回滚（rollback）</td>
+<td>数据库事务</td>
+</tr>
+<tr>
+<td>作用域嵌套</td>
+<td>空间维可组合性</td>
+<td>物理学</td>
+</tr>
+<tr>
+<td>相反顺序的装卸</td>
+<td>时间维可组合性</td>
+<td>物理学</td>
+</tr>
+</tbody>
+</table>
+<p><strong>滥造词的判别式：一个词的字面含义指向这套机制不具备的性质，读者按字面理解必然产生错误预期。</strong></p>
+<ul>
+<li>按&quot;回滚&quot;的字面义，你以为有版本记录、能回到之前的状态——没有，就是调用一个清理函数。</li>
+<li>按&quot;回放&quot;的字面义，你以为存了操作日志能重放——没有，就是栈的 <code>pop()</code>。</li>
+</ul>
+<p>这些词不是同一个毛病，它们来自两种完全不同的动机。</p>
+<h3 id="31-lun-wen-li-de-wei-le-xian-de-gao-shen" class="heading-control">3.1 论文里的：为了显得高深<a class="heading-anchor" href="#31-lun-wen-li-de-wei-le-xian-de-gao-shen" aria-hidden="true"></a></h3>
+<p>最典型的是那篇论文《A Programming Paradigm for Spatiotemporal Composability》（<a href="https://arxiv.org/abs/2608.25512" target="_blank" rel="noopener">arXiv:2608.25512</a>，<a href="http://cs.PL" target="_blank" rel="noopener">cs.PL</a>，v1 提交于 2026-08-26，预印本且在持续修订。逐项还原：</p>
+<ul>
+<li><strong>时间维可组合性</strong> = 析构顺序：C++ 的 RAII、Haskell 的 <code>bracket</code>、Effect-TS 的 <code>acquireRelease</code>，都是现成的</li>
+<li><strong>空间维可组合性</strong> = <strong>作用域 + 依赖的响应式解析</strong>。论文摘要对 spatial 的定义是&quot;declare and <strong>reactively manage</strong> inter-component dependencies&quot;：不只是 ctx 嵌套和原型链 shadow，还包括依赖声明（coeffect 规约）、依赖到位才激活、依赖消失自动停用、依赖被替换则级联重载。<strong>把它还原成单纯的&quot;作用域&quot;会低估对手</strong>——依赖图与级联重连确实是 Cordis 比作用域多做的部分（见 2.4），批评要对着完整的东西发。</li>
+<li>形式化骨架：论文把&quot;每次变更携带一个逆&quot;记为对一个上下文的变换（第三方转述常写成 <code>Γ→Γ×(Γ→Γ)</code> 这类记法，我未能在论文原文中逐字核对，<strong>此处按转述处理</strong>）；落到代码就是 <code>ctx.effect(execute)</code> 那个单回调签名和它收集的 disposer 链</li>
+</ul>
+<p>把&quot;卸载时按逆序调用清理函数&quot;写成一套演算，把&quot;作用域 + 依赖解析&quot;写成&quot;空间维&quot;，这不是为了说清楚，是为了<strong>让它看起来不像已经存在的东西</strong>。新造的术语天然不可比对：读者没法拿&quot;时空可组合性&quot;去搜，也就没法发现它其实就是作用域、析构顺序和依赖图。</p>
+<p>问题在于这组词进了论文，<strong>没有一个人回头补一句&quot;这就是作用域加析构顺序加依赖图&quot;</strong>。</p>
+<p><strong>一句话说清它的真实贡献</strong>：把学术里已有的 effect / coeffect 两个<strong>编译期</strong>概念，搬到<strong>运行时</strong>当机制用——<code>ctx.effect</code> 是 reversible effect，<code>ctx.set</code> + <code>inject</code> 是 reactive coeffect。这是有分量的工程组合，也是论文摘要自己承认的说法（“lifting classical effect and coeffect concepts to runtime mechanisms”）。但搬过去不等于发明，&quot;范式&quot;和&quot;时空&quot;这两个名字夸大了它。</p>
+<h3 id="32-gong-cheng-li-de-xue-dao-na-yong-dao-na" class="heading-control">3.2 工程里的：学到哪用到哪<a class="heading-anchor" href="#32-gong-cheng-li-de-xue-dao-na-yong-dao-na" aria-hidden="true"></a></h3>
+<p>另一批词没有那么强的野心，它们只是<strong>学生气</strong>——作者刚学会什么，就用什么来命名眼前的东西：</p>
+<ul>
+<li>刚读完数据库事务 → 清理函数叫&quot;回滚&quot;</li>
+<li>刚看完事件溯源 → 栈的弹出叫&quot;回放&quot;</li>
+</ul>
+<p>这不是欺骗，是词汇量跟不上表达欲的正常阶段：手里只有这几把锤子，看什么都像钉子。人人都经历过。</p>
+<h3 id="33-zhe-liang-nian-de-xin-ci-yong-han-hu-huan-diao-jing-que" class="heading-control">3.3 这两年的新词：用含糊换掉精确<a class="heading-anchor" href="#33-zhe-liang-nian-de-xin-ci-yong-han-hu-huan-diao-jing-que" aria-hidden="true"></a></h3>
+<p>这股风气现在更盛，AI 领域按周产词。举三个例子：</p>
+<p><strong>harness</strong>——原意是马具、线束、安全带。现在指&quot;Agent 的运行时外壳&quot;。字面义完全不指向实际含义，第一次见只能靠猜。DSH 里的 H 就是它。</p>
+<p><strong>MCP</strong>（Model Context Protocol）——“工具要能被发现、被调用&quot;这件事，<strong>OpenAPI 加一个发现端点早就够了</strong>。三条常见辩护（省上下文、管凭证、把多个调用串成一个任务）分别对应文档裁剪、网关、服务端多包一层，没有一条要求一个新协议。它真正原创的两样东西反而正在被自己删掉：规范 2026-07-28 版同时**弃用（deprecate）**了 Sampling（服务端请求客户端跑一次 LLM）和 Roots（SEP-2577；官方弃用注册表注明最早 2027-07-28 之后才移除，<strong>弃用 ≠ 删除</strong>）。同一版官方博客的原话是 “With the 2026-07-28 release, a remote MCP server is now <strong>no different from any other HTTP workload</strong>”——远程 MCP 服务器变得和任何其他 HTTP 工作负载没有区别，这等于承认它不再是一个&quot;特殊的协议端点”。</p>
+<p>而它把工具返回结果文本化这一条改不掉了：规范对结构化结果的要求是 “For backwards compatibility, a tool that returns structured content <strong>SHOULD</strong> also return the serialized JSON in a TextContent block”——是 SHOULD（向后兼容建议）不是 MUST，但多数实现照做，于是<strong>同一份数据发两遍</strong>。<strong>底层丢掉结构，上层就得一路补上</strong>，和 4.3 里 Cordis 的 <code>emit</code> 是同一个病。它剩下的价值是生态（写一次到处能用），那和 npm 是同一类，不是协议的功劳。</p>
+<p><strong>上下文工程</strong>（context engineering）——毛病不在&quot;工程&quot;两个字。&quot;工程&quot;用得其所：把 prompt 从一次性的字符串，变成可复用、可组装、可版本管理的输入构造流程，确实是在做工程。</p>
+<p>毛病在<strong>用一个含糊的词换掉一个精确的词</strong>：</p>
+<ul>
+<li><code>prompt</code> 在 IT 里此前没有别的意思，一说就知道是喂给 LLM 的那段输入，不会歧义。所以&quot;提示词工程&quot;四个字已经说清楚了：对喂给 LLM 的输入做工程管理。</li>
+<li><code>context</code> 不一样。进程上下文、React Context、HTTP context、Cordis 自己的 Context——它在 IT 里早就被用烂了，每个领域一个意思。</li>
+</ul>
+<p>于是这次造词的净效果是：<strong>凭空多了一个同义词，同时把一个精确的词换成了一个含糊的词。</strong> 两边都亏。</p>
+<p>能被一个旧词说清楚的，就是滥造词。“上下文工程&quot;还原成&quot;提示词工程”，四个字就说完了。MCP 还原成 OpenAPI 加发现端点——它自己也在往那边走。</p>
+<h3 id="34-xing-shi-hua-ben-shen-mei-you-cuo" class="heading-control">3.4 形式化本身没有错<a class="heading-anchor" href="#34-xing-shi-hua-ben-shen-mei-you-cuo" aria-hidden="true"></a></h3>
+<p>形式化有正当价值——一条规则管住全部行为、可机器检查。给已完成的工程补写形式化说明，业界常见。</p>
+<p>Cordis 的真实贡献是把 acquire/release 与运行时插件装卸、依赖重连<strong>组合</strong>了起来——有分量的工程组合。但组合不是发明，&quot;范式&quot;和&quot;时空&quot;这两个名字夸大了它。</p>
+<h3 id="35-shui-fen-zai-na-lun-wen-yu-dai-ma-dui-bu-shang-de-di-fang" class="heading-control">3.5 水分在哪：论文与代码对不上的地方<a class="heading-anchor" href="#35-shui-fen-zai-na-lun-wen-yu-dai-ma-dui-bu-shang-de-di-fang" aria-hidden="true"></a></h3>
+<p>上面几节只是&quot;名字起得大&quot;。这一节是更硬的判断依据：<strong>论文与仓库 README 自己声明，理论是事后补写的。</strong></p>
+<ul>
+<li>论文仓库 README 写着 “This is a preprint <strong>under active revision</strong>”，并邀请读者邮件提交修正（shigma@cordis.io）。</li>
+<li>时间顺序摆在那里：Koishi 2020-01 → cordis 仓库 2022-05 → DSH 2026-08-13 → 论文 2026-08-26。<strong>代码跑了六年，理论写了十三天之后才挂上去。</strong></li>
+<li>论文给的是&quot;证明一个已存在系统应该具有的性质&quot;，不是&quot;先有理论再长出系统&quot;。这个方向本身不丢人，但它决定了论文的用处：它是一份<strong>事后说明书</strong>，不是一份<strong>设计依据</strong>。</li>
+</ul>
+<p>于是可以给出一条务实的读法，也是本文采用的做法：</p>
+<blockquote>
+<p><strong>论文用来查它声称保证什么；代码用来查这些保证是否真的成立。两者冲突，以代码为准。</strong></p>
+</blockquote>
+<p>已经发现的冲突/落差有三处，都值得记下来：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>论文/文档侧</th>
+<th>代码侧</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>effect</code> 签名</td>
+<td>多篇二手解读写成 <code>effect(acquire, release)</code> 两个参数</td>
+<td>源码是 <code>effect(execute, label?)</code>——<strong>一个回调</strong>，撤销函数由回调返回或 <code>yield</code></td>
+</tr>
+<tr>
+<td><code>waterfall</code> 是否等异步</td>
+<td>部分文档表述含糊</td>
+<td>源码 <code>waterfall</code> 非 <code>async</code>，返回 <code>next()</code> 的结果，<strong>调用方自己 await</strong></td>
+</tr>
+<tr>
+<td>派发模式数量</td>
+<td>primer/教程列五种，framework/events 页只列四种（无 <code>parallel</code>）</td>
+<td>源码五个方法都在</td>
+</tr>
+</tbody>
+</table>
+<p>第二条尤其值得警惕：<code>isBailed(Promise)</code> 恒为真，<code>waterfall</code> 监听器里少写一个 <code>await next()</code>，就会把一个未落定的 Promise 当成&quot;真值&quot;传下去，而<strong>没有任何报错</strong>。这正好是第 5 节要讲的&quot;坑&quot;的典型形态——不是机制错了，是契约没写进类型。</p>
+<p>论文里唯一经得起对照、也确实有价值的是 <strong>Theorem 80（Confluence）</strong>：无论以什么顺序装卸，系统静止在一个规范状态。这条在第 2.6 节已经用过，也是本文唯一按论文原文采信的实质性结论。</p>
+<p><strong>对读者的建议</strong>：读这篇论文时，把它当成&quot;一份写给审稿人的、关于一个已上线系统的理想化描述&quot;，而不是&quot;一份可以用来预测系统行为的规格&quot;。它证明的是<strong>在没有 bug、没有异步竞态、没有第三方插件违规的理想模型下</strong>系统应该怎样；而真实行为在源码里。</p>
+<h2 id="4-jia-dong-xi-de-liang-zhong-jia-fa" class="heading-control">4. 加东西的两种加法<a class="heading-anchor" href="#4-jia-dong-xi-de-liang-zhong-jia-fa" aria-hidden="true"></a></h2>
+<p>第 2 节把 Cordis 的核心还原成了一个栈。但 Cordis 对外提供的远不止一个栈——五个事件方法、一套配置系统、一套服务查找机制。</p>
+<p>于是有一个绕不开的问题：<strong>这些东西该不该有？</strong></p>
+<p>直觉的回答是&quot;太多了&quot;。但这个回答没有区分力，因为有的多是必要的，有的多不是。区分的办法是看它们怎么长出来的。</p>
+<p>软件里加东西只有两种加法：</p>
+<ul>
+<li><strong>收窄</strong>：在已有的东西上加一条限制，得到它的一个特例。就像&quot;正方形&quot;是&quot;矩形&quot;加一条限制（四边相等）——<strong>正方形是矩形的一种</strong>，矩形还在，你随时可以直接用矩形。</li>
+<li><strong>铺开</strong>：把各种用法并列，每项一个名字。就像一把水果刀，按切的对象（水果）不一样，分成苹果刀、梨刀、桃子刀，做成了三把刀——一把刀本来够用，被拆成了三把。</li>
+</ul>
+<p><strong>只有第一种多了&quot;一层&quot;(继承)。第二种只是把同一个东西的几种用法提前固化成了几个名字。</strong></p>
+<h3 id="41-xian-kan-shou-zhai-de-yang-zi" class="heading-control">4.1 先看收窄的样子<a class="heading-anchor" href="#41-xian-kan-shou-zhai-de-yang-zi" aria-hidden="true"></a></h3>
+<p>第 0 节介绍过的 tool-func 系列，就是一条靠收窄长出来的链，每层是下层的一个特例。从下往上：</p>
+<pre><code class="typescript"><span class="hljs-comment">// ① ToolFunc：自描述、自管理的函数工具集</span>
+<span class="hljs-keyword">new</span> ToolFunc({ name: <span class="hljs-string">'ping'</span>, func: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">'pong'</span> }).register()
+
+<span class="hljs-comment">// ② ServerTools：单个可远程调用的函数</span>
+<span class="hljs-keyword">new</span> ServerTools({ name: <span class="hljs-string">'ping'</span>, func: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">'pong'</span> }).register()
+
+<span class="hljs-comment">// ③ RpcMethodsServerTool：把相关方法组织成一个服务对象</span>
+<span class="hljs-keyword">const</span> users = <span class="hljs-keyword">new</span> RpcMethodsServerTool({ name: <span class="hljs-string">'users'</span> })
+users.$createUser = <span class="hljs-keyword">async</span> ({ name }) =&gt; { <span class="hljs-comment">/* ... */</span> }   <span class="hljs-comment">// $ 前缀 = 自动注册为 RPC 方法</span>
+<span class="hljs-comment">// 客户端调用时传 act: '$createUser'</span>
+
+<span class="hljs-comment">// ④ ResServerTools：映射标准 REST 动词</span>
+<span class="hljs-keyword">class</span> Users <span class="hljs-keyword">extends</span> ResServerTools {
+  <span class="hljs-keyword">async</span> <span class="hljs-keyword">get</span>({ id })   { <span class="hljs-comment">/* ... */</span> }
+  <span class="hljs-keyword">async</span> list()        { <span class="hljs-comment">/* ... */</span> }
+  <span class="hljs-keyword">async</span> post({ val }) { <span class="hljs-comment">/* ... */</span> }
+}
+<span class="hljs-comment">// GET  /users/:id → get({ id })</span>
+<span class="hljs-comment">// GET  /users     → list()</span>
+<span class="hljs-comment">// POST /users     → post({ val })</span>
+
+<span class="hljs-comment">// ⑤ tool-event：把实时事件当作"另一种工具"</span>
+<span class="hljs-keyword">await</span> eventClient.subscribe(<span class="hljs-string">'server-time'</span>)   <span class="hljs-comment">// 订阅本身就是一次 RPC 调用</span>
+EventServer.setPubSubTransport(<span class="hljs-keyword">new</span> SseServerPubSubTransport())  <span class="hljs-comment">// 唯一的全新抽象</span>
+</code></pre>
+<p>每往上一层，就多一层限制：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>新增限制</th>
+<th>丢掉的自由度</th>
+<th>换来什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ToolFunc</td>
+<td>要有名字、进注册表</td>
+<td>匿名函数、临时闭包</td>
+<td>可被发现、可被别人调用</td>
+</tr>
+<tr>
+<td>ServerTools</td>
+<td>要能跨网络</td>
+<td>闭包、外部变量、<code>this</code></td>
+<td>远端能调</td>
+</tr>
+<tr>
+<td>RpcMethodsServerTool</td>
+<td>方法要 <code>$</code> 前缀、扁平</td>
+<td>任意嵌套的 API 形状</td>
+<td>一组相关操作有组织</td>
+</tr>
+<tr>
+<td>ResServerTools</td>
+<td>预置 <code>get</code>/<code>list</code>/<code>post</code>/<code>put</code>/<code>delete</code> 五个方法 + <code>id</code> 路由</td>
+<td>任意方法名（<code>$</code> 前缀仍可挂自定义方法，不是被限制死）</td>
+<td>CRUD 一行路由都不用写</td>
+</tr>
+<tr>
+<td>tool-event</td>
+<td>从本地事件总线，到远程事件，控制面必须走 RPC、要 transport</td>
+<td>裸事件总线</td>
+<td>复用整个 RPC 生态：发现、代理、传输</td>
+</tr>
+</tbody>
+</table>
+<p>三个特征让这条链成立：</p>
+<ol>
+<li><strong>上层是下层的一种</strong>：每层都是下面那层加限制得到的特例，是一条线，不是一堆</li>
+<li><strong>选择发生在声明处</strong>：定义这个 tool 时选一次，且<strong>按对象</strong>——<code>/users</code> 用 <code>ResServerTools</code>，<code>/ping</code> 用 <code>ServerTools</code>，同一个进程里混着用</li>
+<li><strong>可绕过</strong>：你不用 REST 语义，就根本不 <code>import</code> 它，下面那层永远对你开着</li>
+</ol>
+<p><code>tool-event</code> 是这条链上最克制的一环。Pub/Sub 本身是个完整范式（订阅、广播、双工、断线重连），它没有发明新模型，而是把控制面（<code>subscribe</code>/<code>unsubscribe</code>/<code>publish</code>）映射回标准 RPC 调用，复用 <code>tool-rpc</code> 已有的发现、代理、传输生态；<strong>唯一的新抽象</strong>是数据面的一个可插拔 transport。</p>
+<p>新增的概念数是 <strong>1</strong>。</p>
+<h3 id="42-zai-kan-cordis-de-wu-ge-shi-jian-fang-fa" class="heading-control">4.2 再看 Cordis 的五个事件方法<a class="heading-anchor" href="#42-zai-kan-cordis-de-wu-ge-shi-jian-fang-fa" aria-hidden="true"></a></h3>
+<p>Cordis 的事件系统有两头。一头是<strong>注册监听</strong>：</p>
+<pre><code class="typescript">ctx.on(<span class="hljs-string">'message'</span>, handler)   <span class="hljs-comment">// "有人发消息时叫我"</span>
+</code></pre>
+<p>另一头是<strong>派发</strong>（也就是触发这个事件）：</p>
+<pre><code class="typescript">ctx.emit(<span class="hljs-string">'message'</span>, session)   <span class="hljs-comment">// "现在有人发消息了，都起来干活"</span>
+</code></pre>
+<p>派发这一头有五个方法：</p>
+<pre><code class="typescript">ctx.emit(name, ...args)       <span class="hljs-comment">// 广播。返回值既不 await 也不收集</span>
+<span class="hljs-keyword">await</span> ctx.parallel(...)       <span class="hljs-comment">// 并发执行，等全部完成</span>
+<span class="hljs-keyword">await</span> ctx.serial(...)         <span class="hljs-comment">// 串行执行，第一个非空返回值即停</span>
+ctx.bail(...)                 <span class="hljs-comment">// serial 的同步版本</span>
+<span class="hljs-keyword">await</span> ctx.waterfall(...)      <span class="hljs-comment">// 环绕中间件，可包装、可短路</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>等异步?</th>
+<th>监听器的返回值给你吗?</th>
+<th>顺序</th>
+<th>短路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>emit</td>
+<td>否</td>
+<td><strong>不给</strong></td>
+<td>注册序</td>
+<td>否</td>
+</tr>
+<tr>
+<td>parallel</td>
+<td>是</td>
+<td>不给（只留错误）</td>
+<td>并发</td>
+<td>否</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>是</td>
+<td>给</td>
+<td>注册序</td>
+<td>是</td>
+</tr>
+<tr>
+<td>bail</td>
+<td>否</td>
+<td>给</td>
+<td>注册序</td>
+<td>是</td>
+</tr>
+<tr>
+<td>waterfall</td>
+<td><strong>否</strong>（见下）</td>
+<td>给</td>
+<td>注册序</td>
+<td>是（不调 <code>next</code>）</td>
+</tr>
+</tbody>
+</table>
+<p>（表格依据：<code>packages/core/src/events.ts</code> 源码；文档侧见 <a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer" target="_blank" rel="noopener">Cordis Primer · Dispatch Modes</a> 与<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events" target="_blank" rel="noopener">教程第 4 章 Events</a>）</p>
+<p><strong><code>waterfall</code> 那一行是本次核实改掉的一处</strong>：官方 primer 的 Awaited 列标的是 <strong>No</strong>，源码也证实 <code>waterfall</code> 不是 <code>async</code>，它把 <code>next()</code> 的结果直接 <code>return</code> 出去——监听器若是 async，返回的就是个 Promise，<strong>由调用方自己 await</strong>，框架不替你等。文档侧三份材料本身也不完全一致（primer 与教程列五种模式，framework/events 页只列四种、没有 <code>parallel</code>）。这类冲突一律以源码为准。</p>
+<p>五个方法的源码，全部列在这里，因为它们值得逐行看：</p>
+<pre><code class="typescript">emit(...args) {                                    <span class="hljs-comment">// 同步循环，无 try/catch</span>
+  <span class="hljs-keyword">const</span> [thisArg, callbacks] = <span class="hljs-keyword">this</span>._resolve(<span class="hljs-string">'emit'</span>, args)
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> callback of callbacks) Reflect.apply(callback, thisArg, args)
+}
+
+<span class="hljs-keyword">async</span> parallel(...args) {
+  <span class="hljs-keyword">const</span> results = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.allSettled(callbacks.map(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> Reflect.apply(cb, thisArg, args)))
+  <span class="hljs-keyword">const</span> errors = results.filter(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> r.status === <span class="hljs-string">'rejected'</span>)
+  <span class="hljs-keyword">if</span> (errors.length) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AggregateError(errors.map(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.reason))   <span class="hljs-comment">// 值全丢，只留错误</span>
+}
+
+<span class="hljs-keyword">async</span> serial(...args) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> callback of callbacks) {
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> Reflect.apply(callback, thisArg, args)
+    <span class="hljs-keyword">if</span> (isBailed(result)) <span class="hljs-keyword">return</span> result            <span class="hljs-comment">// 第一个真值胜出并短路</span>
+  }
+}
+
+bail(...args) {                                    <span class="hljs-comment">// serial 的同步版</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> callback of callbacks) {
+    <span class="hljs-keyword">const</span> result = Reflect.apply(callback, thisArg, args)
+    <span class="hljs-keyword">if</span> (isBailed(result)) <span class="hljs-keyword">return</span> result
+  }
+}
+
+waterfall(...args) {                               <span class="hljs-comment">// 非 async</span>
+  <span class="hljs-keyword">const</span> inner = args.pop()                         <span class="hljs-comment">// 最后一个参数是最内层默认行为</span>
+  <span class="hljs-keyword">const</span> next = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> callback = callbacks.shift()
+    <span class="hljs-keyword">return</span> callback ? Reflect.apply(callback, thisArg, args) : inner(...args)
+  }
+  args.push(next)
+  <span class="hljs-keyword">return</span> next()
+}
+</code></pre>
+<p><code>isBailed</code> 的定义是 <code>v !== null &amp;&amp; v !== false &amp;&amp; v !== undefined</code>——这就是&quot;返回值算不算数&quot;的全部判据。</p>
+<p>把它们按&quot;是不是对方的限制版本&quot;排一下：</p>
+<pre><code>waterfall        ← 限制最多（环绕包装）
+  ↑
+serial ──── bail ← bail 就是 serial 去掉 await
+  ↑
+emit             ← 限制最少（什么都不收集）
+
+parallel（并发，与上面不可比）
+</code></pre>
+<ul>
+<li><code>emit</code> ⊂ <code>serial</code>（serial = emit + 收集返回值 + 短路）</li>
+<li><code>serial</code> ⊂ <code>waterfall</code>（waterfall 里写 <code>if (own) return; return next()</code> 就精确等于 serial）</li>
+<li><code>bail</code> = <code>serial</code> <strong>去掉 await</strong>，是反向限制</li>
+<li><code>parallel</code> 与其余<strong>不可比</strong>——真并发是正交的</li>
+</ul>
+<p>（这里按源码补一句限定：<code>waterfall</code> 是&quot;可表达 serial&quot;，不是&quot;包含 serial&quot;。<code>serial</code> 会逐个 <code>await</code>；<code>waterfall</code> 里要自己 <code>await next()</code>。少写那个 <code>await</code>，拿到的就是 Promise 而不是值，而 <code>isBailed(Promise)</code> 恒为真——一个未 await 的 Promise 会被当成&quot;真值&quot;继续往下传。）</p>
+<p><strong><code>emit → serial → waterfall</code> 这一段确实是收窄，但整体不是</strong>：<code>bail</code> 是 <code>serial</code> 去掉一条限制，<code>parallel</code> 根本不在这条线上。</p>
+<p>五个方法的共同点是另一件事——<strong>它们是同一个&quot;派发&quot;能力被切成的五种用法</strong>，不是五种东西。这是铺开。</p>
+<p>这张菜单上有两处说不通的地方，说明它不是推导出来的：</p>
+<ul>
+<li><code>serial</code> 和 <code>bail</code> <strong>只差一个 await</strong>，却占了两个方法名（源码里就是同一段循环加不加 <code>await</code> 的差别）</li>
+<li><code>parallel</code> 用了 <code>Promise.allSettled</code> 却把值全丢了，只留错误（源码里 <code>results</code> 只被用于 filter rejected）——<strong>并发又想拿返回值，在这个框架里没有出路</strong>。这一条此前是推断，现已由源码坐实。</li>
+</ul>
+<h3 id="43-emit-ji-shi-di-ji-you-shi-wu-ge-fang-fa-zhi-yi" class="heading-control">4.3 <code>emit</code> 既是地基，又是五个方法之一<a class="heading-anchor" href="#43-emit-ji-shi-di-ji-you-shi-wu-ge-fang-fa-zhi-yi" aria-hidden="true"></a></h3>
+<p>Cordis 事件系统<strong>最底下那个方法是 <code>ctx.emit</code></strong>。它本该是中性的——一个纯粹的&quot;把事件交给监听器&quot;的动作，不带任何用法倾向。</p>
+<p>但 <code>emit</code> 不是中性的，它自己就是五种用法里的一种：<strong>广播，返回值一律丢弃</strong>。官方文档的原话是 returned promises and values are <strong>not awaited or collected</strong>（既不等待，也不收集）。</p>
+<p>拿&quot;监听器的返回值你拿得到吗&quot;给五个方法排序：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>监听器的返回值，你拿得到吗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emit</code></td>
+<td>拿不到（连等都不等）</td>
+</tr>
+<tr>
+<td><code>parallel</code></td>
+<td>只告诉你有没有出错</td>
+</tr>
+<tr>
+<td><code>serial</code> / <code>bail</code></td>
+<td>拿到第一个非空的结果，后面的监听器不再执行</td>
+</tr>
+<tr>
+<td><code>waterfall</code></td>
+<td>全部拿到，还能一层层改掉</td>
+</tr>
+</tbody>
+</table>
+<p><code>emit</code> 排在最后一名。</p>
+<p>现在反过来设想：假如 <code>emit</code> 改成&quot;把每个监听器的返回值收成一个数组返回&quot;（<a href="https://github.com/snowyu/events-ex.js" target="_blank" rel="noopener">events-ex</a> 就是这么做的：“The emit return the result of listeners’s callback function”），会怎么样？</p>
+<pre><code class="typescript"><span class="hljs-keyword">const</span> isBailed = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">false</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// Cordis 自己的定义</span>
+
+<span class="hljs-comment">// 想要 serial 的效果？一行就能写出来</span>
+<span class="hljs-keyword">const</span> serial = <span class="hljs-function">(<span class="hljs-params">n, ...a</span>) =&gt;</span> ee.emit(n, ...a).find(isBailed)
+</code></pre>
+<p><code>serial</code> 和 <code>bail</code> 会立刻退化成&quot;你那一行代码怎么写&quot;的事——想加就加，想改就改，想扔就扔，每个项目还能按自己的习惯定制。</p>
+<p>（<strong>能退化的只有这两个。</strong> <code>waterfall</code> 的环绕语义需要 <code>next()</code> continuation，返回值数组表达不了；<code>parallel</code> 的真并发是正交维度，也表达不了。所以&quot;五个里最核心的两个会消失&quot;成立，&quot;五个全部会消失&quot;不成立。）</p>
+<p>但 Cordis 的 <code>emit</code> 不给。地基省掉的这一点，上面就得长出五个方法来补上。</p>
+<p>对照 4.1 那条链就能看清差别：<code>ToolFunc</code> 不预设这个工具跑在本地还是远端，所以 <code>tool-rpc</code> 能从它上面长出来。假如 <code>ToolFunc</code> 从一开始就写死&quot;只能在本地调用&quot;，<code>tool-rpc</code> 根本不可能存在——<strong>Cordis 的 <code>emit</code> 就是这个处境。</strong></p>
+<p>由此得到一条可以用来审查任何 API 的判据：</p>
+<blockquote>
+<p><strong>最底下那层，不能是它自己某个用法。</strong> 是，就说明上面只能顺着这个用法长，长不出别的东西。</p>
+</blockquote>
+<ul>
+<li><code>ToolFunc</code> 不是 <code>ServerTools</code> 的某种用法 → 中立 ✓</li>
+<li>events-ex 的 <code>emit</code>（返回全部返回值）不是任何派发策略的某种用法 → 中立 ✓</li>
+<li>Cordis 的 <code>emit</code> = 五个方法之一 → <strong>地基上刻了用法</strong> ✗</li>
+</ul>
+<p>同一个病在别处也犯过：MCP 把工具返回结果文本化，见 3.4。</p>
+<h3 id="44-api-yi-dan-gong-kai-fa-bu-jiu-shou-bu-hui-lai" class="heading-control">4.4 API 一旦公开发布，就收不回来<a class="heading-anchor" href="#44-api-yi-dan-gong-kai-fa-bu-jiu-shou-bu-hui-lai" aria-hidden="true"></a></h3>
+<p>把五个方法降级成 helper，能不能绕开这个问题？</p>
+<p>加容易，收难。这不是审美判断，是有名字的规律——<strong>Hyrum’s Law</strong>（Hyrum Wright，Google，<a href="https://www.hyrumslaw.com/" target="_blank" rel="noopener">hyrumslaw.com</a>）：</p>
+<blockquote>
+<p>当一个 API 有了足够多的使用者，<strong>你在契约里承诺什么已经不重要了</strong>：你系统的<strong>所有可观测行为</strong>都会被某个人依赖。</p>
+</blockquote>
+<p>文档契约是你<strong>希望自己有的</strong>契约；<strong>被观测到的行为才是你真正拥有的</strong>契约。返回的列表碰巧是插入序？有人断言了这个顺序。错误信息里某个词？有人 grep 它来决定是否重试。</p>
+<p><strong>所以收回的成本不是线性的——每个方法都在积累看不见的依赖。</strong> 五种模式被大量插件使用（Koishi 侧 4000+ 是论文口径），任何收敛动作的成本都随依赖者数量上升，且<strong>没有公开材料表明官方有过收敛计划</strong>——这一条靠&quot;使用规模&quot;论证就够了，不需要替它假设一个动机。</p>
+<p>配套的两条原则，一起构成完整的立场：</p>
+<ul>
+<li><strong>Rule of Least Power</strong>（W3C TAG Finding，2006-02-23；Editors 为 Tim Berners-Lee 与 Noah Mendelsohn，<a href="https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html" target="_blank" rel="noopener">原文</a>）：<em>Powerful languages inhibit information reuse… the less powerful the language, the more you can do with the data.</em> 底层原语越弱，能被越多场景复用。</li>
+<li><strong>Mechanism, not Policy</strong>（X Window 设计原则，见《Unix 编程艺术》第 1 章）：<em>policy tends to have a short lifetime, mechanism a long one.</em> 策略短命，机制长命。把策略焊进长命的层里，等于把短命的东西放进了不该放的地方。</li>
+</ul>
+<p><strong>这套论证的结论恰恰就是&quot;少即是美&quot;——只是&quot;少&quot;的度量单位是单个单元的职责，不是单元的数量。</strong></p>
+<p>4.1 那条链有三个包、五个类，总数并不少，可没人抱怨它臃肿，因为<strong>每个单元内部都少</strong>：<code>tool-func</code> 只管注册表，<code>tool-rpc</code> 只管传输，<code>tool-event</code> 只管事件；往下看每个类也是一样，<code>ToolFunc</code> 只管自描述，<code>ServerTools</code> 只管远程调用，<code>ResServerTools</code> 只管五个 REST 动词。数量在往上加，每个单元的职责没有变胖——<strong>这就是&quot;少即是美&quot;，而且是它唯一成立的形式。</strong></p>
+<p>Cordis 的问题同样不在&quot;五个方法&quot;这个数量上，而在<strong>每个方法都不是最简的形态，且无法绕过</strong>：<code>emit</code> 身上刻着一种具体用法，<code>serial</code> 与 <code>bail</code> 只差一个 <code>await</code> 却占着两个名字，<code>parallel</code> 想拿返回值没有出路。判据仍是三条：<strong>是不是收窄、是不是在声明处选、能不能绕过</strong>。Cordis 违反的是第一条（是铺开）和第三条（<code>emit</code> 不给返回值，绕过去也重建不了）。</p>
+<h2 id="5-keng" class="heading-control">5. 坑<a class="heading-anchor" href="#5-keng" aria-hidden="true"></a></h2>
+<p>先分清两个词：</p>
+<ul>
+<li><strong>坑：误导或静默失效。</strong> 按常理预期写代码，结果不对，过程中没有报错。</li>
+<li><strong>成本：交换。</strong> 得到什么、付出什么；有的当场付清，有的长期承担。</li>
+</ul>
+<p>第 3 节的滥造词是坑（词面误导）。下面五条也是坑。</p>
+<p>有一类东西常被算成坑，其实不是：<strong>每个插件都要写的固定格式</strong>（插件名、<code>apply</code> 入口、工具的说明和参数表）。它不会误导你，也不静默失效，你写的时候就知道自己在写什么。它是<strong>成本</strong>——用&quot;框架替你管理装卸&quot;换来的。第 7 节单独算这笔账。</p>
+<h3 id="keng-yi-mei-you-gu-zhang-ge-li" class="heading-control">坑一：没有故障隔离<a class="heading-anchor" href="#keng-yi-mei-you-gu-zhang-ge-li" aria-hidden="true"></a></h3>
+<p>所有插件跑在同一个 Node.js 进程里，共享内存和事件循环：一个插件死循环，整个进程卡死；一个插件泄漏，整个进程内存增长；不能单独部署、单独伸缩。</p>
+<p><strong>它隔离的只有生命周期</strong>——整体装上、整体拆下、拆下时清理干净。</p>
+<p>定位：不是微服务（无独立进程和故障域），不是浏览器扩展（无沙箱），最接近<strong>操作系统的可加载内核模块</strong>——可以动态装卸，但装载后与内核共享地址空间和特权级，模块里的 bug 同样能让整个系统崩溃。</p>
+<p>DSH 官方自己把这条写进了对照表：插件的&quot;Sandboxed by default&quot;一栏是 <strong>No — runs as trusted code</strong>（相比之下 MCP server 是外部进程，有 stdio/http 边界）。</p>
+<h3 id="keng-er-lan-jie-shi-fou-sheng-xiao-qu-jue-yu-bie-ren-na-yi-hang-pai-fa-dai-ma" class="heading-control">坑二：拦截是否生效，取决于别人那一行派发代码<a class="heading-anchor" href="#keng-er-lan-jie-shi-fou-sheng-xiao-qu-jue-yu-bie-ren-na-yi-hang-pai-fa-dai-ma" aria-hidden="true"></a></h3>
+<p>这是 4.3 那个结构问题的具体后果。</p>
+<p><strong>事件怎么被派发，由派发那一行的代码决定，与你怎么写监听器无关。</strong></p>
+<p>写 <code>ctx.on('message', listener)</code> 时，你无法声明&quot;我这个监听器要拦截消息&quot;。你的返回值被如何对待，取决于<strong>别人</strong>在派发这个事件时调用了五个方法里的哪一个——<code>emit</code> 丢弃、<code>parallel</code> 只留错误、<code>serial</code>/<code>bail</code> 取第一个真值、<code>waterfall</code> 全部收集。</p>
+<p><strong>完整看一次失效。</strong> 黑名单插件，想拦截被禁用户的消息：</p>
+<pre><code class="typescript"><span class="hljs-comment">// 插件 A：黑名单</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: Context</span>) </span>{
+  ctx.on(<span class="hljs-string">'message'</span>, <span class="hljs-function">(<span class="hljs-params">session</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (banned.has(session.userId)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>     <span class="hljs-comment">// 意图：返回 true 表示"拦截"</span>
+    }
+  })
+}
+</code></pre>
+<p>而框架内部分发这个事件用的是 <code>emit</code>：</p>
+<pre><code class="typescript">ctx.emit(<span class="hljs-string">'message'</span>, session)   <span class="hljs-comment">// emit：逐个调用监听器，返回值全部丢弃</span>
+</code></pre>
+<p>接下来逐步发生什么：</p>
+<ol>
+<li>被禁用户发了一条消息</li>
+<li>框架调用 <code>emit</code> → 你的监听器被调用，执行到 <code>return true</code></li>
+<li><strong>这个 <code>true</code> 在这里被丢弃</strong>——<code>emit</code> 的语义就是广播，不消费返回值</li>
+<li>下一个监听器（比如自动回复插件）照常被调用、照常运行</li>
+<li>bot 回复了被禁用户</li>
+</ol>
+<p><strong>全程没有任何报错。</strong> TypeScript 编译通过（回调多返回一个值，类型上合法）；运行通过（监听器确实执行了）；单测甚至通过（&quot;监听器被调用&quot;这个断言是真的）。只有端到端行为不对：黑名单没生效。</p>
+<p>失效发生在第 3 步——返回值被丢弃的那一刻，那里没有一行日志、一个警告。</p>
+<p>要真正拦截，派发处必须换成 <code>bail</code>：</p>
+<pre><code class="typescript">ctx.bail(<span class="hljs-string">'message'</span>, session)   <span class="hljs-comment">// 监听器返回真值时，后续监听器不再调用</span>
+</code></pre>
+<p><strong>病灶到这里才暴露</strong>：你写了 <code>return true</code>，但决定这个返回值命运的是框架或另一个插件在别处选了五个方法中的哪一个。读你自己的插件代码看不出来，要去翻派发处的源码。</p>
+<blockquote>
+<p><strong>选择权和后果被拆在两个地方，而承受后果的一方看不见那个决定。</strong></p>
+</blockquote>
+<p>DSH 已经部分修复了这个问题：官方 primer 写明&quot;dispatch mode is <strong>part of the event’s public contract</strong>&quot;，新事件用 <code>@mode</code> 标签标注，生成的目录会<strong>比对声明与派发点</strong>。</p>
+<p>但它是<strong>工具层契约，不是类型层契约</strong>：<code>interface Events</code> 的声明合并里只有监听器签名，没有 mode。写错 mode 不会被 <code>tsc</code> 拦住，只在生成的目录对不上时被发现。</p>
+<p>而底层的结构问题没变：地基 <code>emit</code> 依然丢弃返回值，所以&quot;绕过去自己实现&quot;这条路仍然不通。</p>
+<p><strong>还有一个具体伤害</strong>：<code>emit</code> 不 <code>await</code>。异步监听器如果 reject，<strong>这个 rejection 没有任何人接收</strong>——同步抛错至少会传播并中断后续，异步的会变成 unhandled rejection。</p>
+<h3 id="keng-san-guan-chuan-cha-jian-cun-huo-qi-de-zi-yuan-yao-zi-ji-bao-yi-ceng" class="heading-control">坑三：贯穿插件存活期的资源，要自己包一层<a class="heading-anchor" href="#keng-san-guan-chuan-cha-jian-cun-huo-qi-de-zi-yuan-yao-zi-ji-bao-yi-ceng" aria-hidden="true"></a></h3>
+<p>先看签名（这次是源码里的）：<code>effect(execute, label?)</code> <strong>只有一个回调</strong>，它返回的是 disposer，不是资源。所以资源本体要自己保存——这就是摩擦的源头。</p>
+<p>按源码把两类情况分开看，会发现<strong>只有一类是真问题</strong>：</p>
+<ul>
+<li><strong>acquire 是异步的：不成问题。</strong> 有 <code>effect(execute: () =&gt; Effect, label?): AsyncDisposable</code> 这个重载，<code>_execute</code> 里有 Promise 分支，fiber 用 inertia 等它落地。所以 <code>ctx.effect(async () =&gt; { const p = await openPool(); await p.connect(); return () =&gt; p.close() })</code> 可以直接写。（不像 React 的 <code>useEffect</code> 那样禁止 async——那是 React 的选择，不是这类机制的必然。）</li>
+<li><strong>没有本体：这才是真问题。</strong> <code>setup()</code> 做的事是把服务注册进注册表等着被查，dispose 撤销的是一段注册，不是关一个返回值。此外还有第三类：<strong>获取本体与持有本体要分两步</strong>（先 <code>openPool()</code> 拿到池，业务代码要用它，disposer 也要引用它）。</li>
+</ul>
+<p>后两类在插件整个存活期都要在，于是只能靠闭包传递：</p>
+<pre><code class="typescript"><span class="hljs-keyword">let</span> pool: Pool
+ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { pool = openPool(); <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close() })
+<span class="hljs-comment">// pool 的声明、effect 的注册、使用 pool 的业务代码，位置互相牵制；资源一多，交错成网</span>
+</code></pre>
+<p>&quot;没有本体&quot;这一类有现成答案——<strong>生成器形式</strong>：</p>
+<pre><code class="typescript">ctx.effect(<span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{
+  store.set(id, provider)        <span class="hljs-comment">// 获取：写注册表</span>
+  <span class="hljs-keyword">yield</span> () =&gt; store.delete(id)   <span class="hljs-comment">// 释放：yield 给运行时，立即被收集</span>
+}, <span class="hljs-string">'web.registerProvider()'</span>)
+</code></pre>
+<p>DSH 自己的 <code>registerSearchProvider</code> 就是这么写的。<code>fiber.ts</code> 里的 <code>Symbol.iterator</code> 分支把生成器<strong>立即驱动到底</strong>，每个 <code>yield</code> 值随即 <code>safeCollect</code>。所以&quot;有获取无本体&quot;不是签名缺陷，而是生成器形式的用途。</p>
+<p>剩下的是封装问题。成熟的解法是加一层，把跨存活期的状态圈进一个有 setup/dispose 的单元：</p>
+<pre><code class="typescript"><span class="hljs-keyword">const</span> db = <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">let</span> pool: Pool
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">async</span> setup(<span class="hljs-params"></span>)       { pool = openPool(<span class="hljs-params"></span>); <span class="hljs-keyword">await</span> pool.connect(<span class="hljs-params"></span>) },
+    dispose(<span class="hljs-params"></span>)           { pool.close(<span class="hljs-params"></span>) },
+    query(<span class="hljs-params">sql: <span class="hljs-built_in">string</span></span>)  { <span class="hljs-keyword">return</span> pool.query(<span class="hljs-params">sql</span>) },
+  }
+}</span>)<span class="hljs-params">()</span>
+<span class="hljs-params">ctx</span>.<span class="hljs-params">effect</span>(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; db.setup(<span class="hljs-params"></span>).then(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; (<span class="hljs-params"></span>) =&gt; db.dispose(<span class="hljs-params"></span>)</span>)</span>)
+// 业务代码只面对 <span class="hljs-params">db</span>.<span class="hljs-params">query</span><span class="hljs-params">()</span>，交错消失
+</span></code></pre>
+<p>资源种类多就提基类，各生态都收敛到这个形态（Koishi 的 <code>Service</code>、RxJS 的 <code>Disposable</code>、Effect-TS 的 <code>Scope</code>）。</p>
+<p>所以这个坑没那么严重：它不是&quot;签名装不下&quot;，而是&quot;单回调签名不替你保管本体&quot;——</p>
+<ul>
+<li><strong>难写是签名选择的代价</strong>：把 acquire/release 合进一个回调，换来了可 <code>yield</code> 多次和可诊断 label，代价是本体要自己保存</li>
+<li><strong>好写是封装层面的可得</strong>：IIFE 或基类，一次封装全队复用</li>
+</ul>
+<p>还有第三条路：把生命周期单元切得更细——每个资源自己就是一个带 setup/dispose 的条目，依赖交给依赖图，封装摩擦在更细的粒度上自然消失。代价记在账单二。</p>
+<blockquote>
+<p>按论文或文档层面的理解（<code>effect</code> 装 acquire + release）去推导，会得出&quot;异步资源装不下&quot;这个错误结论；读 <code>fiber.ts</code> 才知道异步那一路早就有了。</p>
+</blockquote>
+<h3 id="keng-si-mei-you-yuan-cheng-fang-an" class="heading-control">坑四：没有远程方案<a class="heading-anchor" href="#keng-si-mei-you-yuan-cheng-fang-an" aria-hidden="true"></a></h3>
+<p><code>ctx.database</code> 永远是进程内对象，没有传输层抽象。不能把服务透明地换成远程实现，也不能同一服务有时本地跑、有时独立部署。</p>
+<p>对照 <code>tool-rpc</code>：它用&quot;注册表同名代理&quot;做到本地/远程透明——业务代码不改，注册时决定这个 tool 跑在本地还是远端。需要这种弹性的场景，Cordis 只覆盖本地一半。</p>
+<h3 id="keng-wu-cha-jian-yi-ci-de-qi-yi" class="heading-control">坑五：&quot;插件&quot;一词的歧义<a class="heading-anchor" href="#keng-wu-cha-jian-yi-ci-de-qi-yi" aria-hidden="true"></a></h3>
+<p>Cordis/Koishi 的&quot;插件&quot;是<strong>后端服务单元</strong>，不是浏览器扩展、VS Code 扩展那种带界面的东西。</p>
+<p>判别式不在界面，在<strong>运行时可加载、向宿主暴露标准接口、可独立分发</strong>。但日常语境里&quot;插件&quot;强烈暗示前者——<strong>每次有新成员加入、或和别的团队协作</strong>，都要先确认对方说的是哪一种，这个成本反复发生。给自己的项目立个命名约定（后端的叫 Service / ServicePlugin）能省下这笔成本。</p>
+<h2 id="6-liang-dian" class="heading-control">6. 亮点<a class="heading-anchor" href="#6-liang-dian" aria-hidden="true"></a></h2>
+<p>一句话：<strong>一个 effect 原语，加一条&quot;全部副作用 API 都走它&quot;的规范。</strong></p>
+<p>原语本身第 2 节讲过了，规范才是它真正值钱的地方。</p>
+<p>框架里每一个会产生副作用的 API——注册命令、添加监听、挂载服务、起定时器——不管名字叫什么，内部实现都是同一件事：执行获取、把返回值和清理函数成对入栈。类比文件操作：<code>read</code>、<code>write</code>、<code>append</code> 表面上是三个功能，本质都是&quot;打开-使用-关闭&quot;。</p>
+<h3 id="61-zhe-tiao-gui-fan-wei-shi-mo-bu-shi-ke-xuan-xiang" class="heading-control">6.1 这条规范为什么不是可选项<a class="heading-anchor" href="#61-zhe-tiao-gui-fan-wei-shi-mo-bu-shi-ke-xuan-xiang" aria-hidden="true"></a></h3>
+<p>第 2 节的五条边界划出了机制的管辖范围：<strong>管住的东西自动正确，没管住的东西彻底没人管，没有中间地带。</strong> 裸写的资源静默泄漏，倒序注册静默错序——框架不清理，也不报错。</p>
+<p>所以&quot;全部副作用 API 无一例外走原语&quot;不是风格偏好，是机制能工作的前提。</p>
+<h3 id="62-hui-bao-zai-na" class="heading-control">6.2 回报在哪<a class="heading-anchor" href="#62-hui-bao-zai-na" aria-hidden="true"></a></h3>
+<p><strong>只要原语正确（清理必执行、LIFO），全部 API 的卸载行为自动正确。</strong></p>
+<p>查问题只需要查一个原语；新增 API 只要走了原语，自动继承正确性。C++ 的 RAII 也是如此——机制一行讲得完，价值在于整个类型系统无一例外地执行它。</p>
+<p>亮点不等于不可替代——这条规范谁都能抄走，抄走的代价在第 8 节算。</p>
+<h2 id="7-cheng-ben-mei-ge-cha-jian-yao-xie-de-gu-ding-ge-shi" class="heading-control">7. 成本：每个插件要写的固定格式<a class="heading-anchor" href="#7-cheng-ben-mei-ge-cha-jian-yao-xie-de-gu-ding-ge-shi" aria-hidden="true"></a></h2>
+<p>第 5 节把&quot;坑&quot;和&quot;成本&quot;分开了：坑是误导，成本是交换。现在算第一笔成本，也是唯一一笔<strong>写第一行代码时就能看清</strong>的。</p>
+<p>工具要让别人调用，就必须描述自己。这不是 Cordis 的特殊要求——任何提供发现和校验的注册表，都要求三样东西：<strong>名字、说明、参数形状</strong>。OpenAI 的 function calling、MCP、JSON Schema 表单，最后都收敛到这三样。</p>
+<p><strong>调用方看不见的工具，无法被调用。</strong></p>
+<p>同一件事的两种写法。<code>ToolFunc</code>：</p>
+<pre><code class="typescript"><span class="hljs-keyword">new</span> ToolFunc({
+  name: <span class="hljs-string">'get_weather'</span>,
+  func: <span class="hljs-keyword">async</span> ({ city }) =&gt; {
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`https://api.weather.com/<span class="hljs-subst">${city}</span>`</span>)
+    <span class="hljs-keyword">return</span> res.json()
+  },
+  params: { city: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'string'</span> } },   <span class="hljs-comment">// 可选</span>
+  result: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'object'</span> },             <span class="hljs-comment">// 可选</span>
+}).register()
+</code></pre>
+<p>写成 DSH 插件（<strong>按官方当前形态</strong>，不是我编的写法）：</p>
+<pre><code class="typescript"><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { Context } <span class="hljs-keyword">from</span> <span class="hljs-string">'@deepseek-ai/cordis'</span>
+<span class="hljs-keyword">import</span> { defineTool } <span class="hljs-keyword">from</span> <span class="hljs-string">'@deepseek-ai/dsh-tools'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> name = <span class="hljs-string">'weather'</span>            <span class="hljs-comment">// ① 插件身份（用于诊断）</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> inject = [<span class="hljs-string">'tools'</span>]          <span class="hljs-comment">// ② 依赖声明（框架据此决定加载顺序）</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: Context</span>) </span>{    <span class="hljs-comment">// ③ 唯一入口</span>
+  ctx.tools.register(defineTool({
+    name: <span class="hljs-string">'get_weather'</span>,                 <span class="hljs-comment">// ④ 工具名</span>
+    description: <span class="hljs-string">'查询城市天气'</span>,          <span class="hljs-comment">// ⑤ 说明</span>
+    parameters: {                        <span class="hljs-comment">// ⑥ 参数形状</span>
+      city: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'string'</span>, required: <span class="hljs-literal">true</span>, description: <span class="hljs-string">'城市名'</span> },
+    },
+    <span class="hljs-keyword">async</span> execute({ city }) {            <span class="hljs-comment">// ⑦ 业务</span>
+      <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`https://api.weather.com/<span class="hljs-subst">${city}</span>`</span>)
+      <span class="hljs-keyword">return</span> res.json()
+    },
+  }))
+}
+</code></pre>
+<p>十九行，业务两行。多出来的每一行，各自服务于哪个调用方：</p>
+<table>
+<thead>
+<tr>
+<th>行</th>
+<th>内容</th>
+<th>服务的调用方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>插件名</td>
+<td>框架：诊断、日志归因、按名定位</td>
+</tr>
+<tr>
+<td>②</td>
+<td><code>inject</code> 依赖声明</td>
+<td>框架：等依赖就绪才执行 apply——<strong>加载顺序由它决定，不由文件顺序决定</strong></td>
+</tr>
+<tr>
+<td>③</td>
+<td>apply 入口</td>
+<td>框架：整体装上、整体拆下</td>
+</tr>
+<tr>
+<td>④</td>
+<td>工具名</td>
+<td>代码、LLM：在工具列表里发现它</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>说明文字</td>
+<td>LLM：判断何时调用——没有这行，工具对 LLM 不存在</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td>参数形状</td>
+<td>LLM：正确传参；框架：校验</td>
+</tr>
+<tr>
+<td>⑦</td>
+<td><code>execute</code></td>
+<td>业务本身</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>inject</code> 这一行容易被当成元数据漏掉</strong>，它不是：它是第 2.4 节那套依赖机制在插件上的落点——声明了 <code>['tools']</code>，框架就保证 <code>apply</code> 跑起来时 <code>ctx.tools</code> 一定在；不声明就访问，Proxy 会直接抛 <code>INACTIVE_ACCESS</code>。它同时也是一份<strong>可审查的能力清单</strong>：静态声明了，编排者才能在插件运行前审一遍它到底要了什么。所以这一档的成本比看上去更高，换来的东西也更多。</p>
+<p><strong>所以差异只在调用：调用方是谁，决定描述写到哪一档。</strong></p>
+<ul>
+<li>代码按名调用：<code>name</code> + <code>func</code> 就够——<code>ToolFunc</code> 的最小形态</li>
+<li>LLM 或人调用：再加说明和参数形状——<code>ToolFunc</code> 写上 <code>params</code> / <code>result</code> 即可</li>
+<li>框架装卸：再加入口结构（name / inject / apply）——只有 DSH 这一档提供</li>
+</ul>
+<p><strong>进程是否长期运行，决定第三档是否必要</strong>：一个插件、重启无所谓时，装卸能力没有意义；五十个插件 7×24 运行时，重启一次等于全体下线一次，装卸变成必需。</p>
+<p>选择因此还原为两个问题：<strong>调用方是谁、进程要不要长期跑。</strong> 这里没有对错，只有匹配。</p>
+<h2 id="8-zhang-liang-zhang-zhang-dan" class="heading-control">8. 账：两张账单<a class="heading-anchor" href="#8-zhang-liang-zhang-zhang-dan" aria-hidden="true"></a></h2>
+<p>成本是当场付清的，写的时候就知道。账不一样——它要在真实环境用下去才开始显现，而且<strong>利滚利</strong>。</p>
+<h3 id="81-zhang-dan-yi-yong-cordis" class="heading-control">8.1 账单一：用 Cordis<a class="heading-anchor" href="#81-zhang-dan-yi-yong-cordis" aria-hidden="true"></a></h3>
+<table>
+<thead>
+<tr>
+<th>账目</th>
+<th>何时发生</th>
+<th>代价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 无法收回</td>
+<td>想改五种事件模式 / Schema / 声明合并中任何一个</td>
+<td>永久——插件越多越收不回（Hyrum’s Law，见 4.4）。<strong>注</strong>：这一条按&quot;使用规模&quot;论证即可，不必假设官方有过收敛计划——没有公开材料表明 4.0 想收敛</td>
+</tr>
+<tr>
+<td>rc 迁移</td>
+<td>上游当前 4.0.0-rc.10（2026-09-08），API 未冻结；仓库 README 明写&quot;may change without notice&quot;</td>
+<td>每次 rc 更新，全量回归；且 rc 之间就有不兼容变更（如 rc.10 把 <code>EntryTree.write()</code> 换成 <code>commit(change)</code>）</td>
+</tr>
+<tr>
+<td><strong>版本被 vendored 锁定</strong></td>
+<td>走 DSH 时</td>
+<td>DSH vendor 的是 <strong>4.0.0-rc.7</strong>，落后上游三个 rc。上游修掉的 bug（如 waterfall 重复 <code>next()</code> 的守卫、fiber 失败未处理）在 DSH 里不一定有，反之 DSH 的加固上游也没有——<strong>两条线各自漂移</strong>，读文档对不上代码时要先确认自己看的是哪一份</td>
+</tr>
+<tr>
+<td>单进程故障</td>
+<td>任一插件死循环或泄漏</td>
+<td>全进程停机；用重启兜底，则放弃&quot;不重启&quot;的卖点</td>
+</tr>
+<tr>
+<td>拆分重构</td>
+<td>哪天要把某个服务挪出进程</td>
+<td>重写所有 <code>ctx.database</code> 直连调用，随插件数线性增长</td>
+</tr>
+<tr>
+<td>术语误解</td>
+<td>每个新成员入职</td>
+<td>每人一次&quot;回滚不是回滚&quot;的澄清，此后沟通中反复发生</td>
+</tr>
+<tr>
+<td>工具描述</td>
+<td>每写一个新插件</td>
+<td>DSH 十九行起步，约十七行是描述与入口（第 7 节）；按调用方可减</td>
+</tr>
+<tr>
+<td>资源封装</td>
+<td>每个&quot;无本体&quot;或&quot;获取/交出分两步&quot;的资源</td>
+<td>一次 IIFE 或基类封装；&quot;无本体&quot;那类用生成器形式即可（坑三）</td>
+</tr>
+<tr>
+<td>异步清理</td>
+<td>每个有异步 disposer 的插件</td>
+<td>半卸载窗口存在，需手动合并清理链（边界四）</td>
+</tr>
+<tr>
+<td><code>waterfall</code> 的 await</td>
+<td>每个写环绕中间件的插件</td>
+<td>少写 <code>await next()</code>，<code>isBailed(Promise)</code> 恒真，把未落定的 Promise 当真值传下去，<strong>不报错</strong>（3.5 / 4.2）</td>
+</tr>
+<tr>
+<td>退出成本</td>
+<td>决定离开那天</td>
+<td>与停留时长成正比，所有写过 <code>ctx.*</code> 的代码都要重写</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-zhang-dan-er-zi-ji-zu-he" class="heading-control">8.2 账单二：自己组合<a class="heading-anchor" href="#82-zhang-dan-er-zi-ji-zu-he" aria-hidden="true"></a></h3>
+<p>思路接近 Unix 哲学：组件小、职责单一，通过组合完成系统。</p>
+<p><strong>用什么：</strong></p>
+<ul>
+<li><code>tool-func</code>（<a href="https://github.com/isdk/tool-func.js" target="_blank" rel="noopener">isdk/tool-func.js</a>）：注册表与生命周期</li>
+<li><code>tool-rpc</code>（<a href="https://github.com/isdk/tool-rpc.js" target="_blank" rel="noopener">isdk/tool-rpc.js</a>）：本地/远程透明，注册表同名代理，业务代码不改</li>
+<li><code>tool-event</code>（<a href="https://github.com/isdk/tool-event.js" target="_blank" rel="noopener">isdk/tool-event.js</a>）：事件与控制面映射回 RPC，唯一新抽象是可插拔 transport</li>
+<li><code>events-ex</code>（<a href="https://github.com/snowyu/events-ex.js" target="_blank" rel="noopener">snowyu/events-ex.js</a>）：事件，控制流在监听器手里（<code>emit</code> 返回监听器结果）</li>
+<li><code>custom-ability</code>（<a href="https://github.com/snowyu/custom-ability.js" target="_blank" rel="noopener">snowyu/custom-ability.js</a>）：能力注入，可摘除</li>
+<li>自己写约 200 行：effect 栈 + 依赖传播 + JSON Schema 配置层</li>
+</ul>
+<p><strong>缺什么：</strong></p>
+<table>
+<thead>
+<tr>
+<th>账目</th>
+<th>何时发生</th>
+<th>代价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>维护</td>
+<td>永久</td>
+<td>约 300 行 + 6 个包；维护者是你</td>
+</tr>
+<tr>
+<td>装卸记录</td>
+<td>从第一次装卸开始</td>
+<td>每次卸载后检查残留（见下）</td>
+</tr>
+<tr>
+<td>纪律</td>
+<td>每次新增会副作用的 API</td>
+<td>没有框架强制，靠 review 和守卫测试；漏一次就是一个泄漏</td>
+</tr>
+<tr>
+<td>能力缺口</td>
+<td>需要嵌套作用域（会话级批量清理）</td>
+<td>context 树已替换为扁平注册表，要自己实现</td>
+</tr>
+<tr>
+<td>粒度代价</td>
+<td>设计阶段</td>
+<td>原本内聚的东西拆成多个条目，互相调用要走注册表——拆对了是解耦，拆错了要合回去</td>
+</tr>
+<tr>
+<td>Koishi 插件适配</td>
+<td>想用 Koishi 插件时</td>
+<td>每个要用的插件都是一次独立适配</td>
+</tr>
+</tbody>
+</table>
+<p><strong>下面三笔，是&quot;自己组合&quot;最容易低估的部分：</strong></p>
+<p><strong>① 规范的覆盖。</strong> 第 6 节那条&quot;凡会副作用的 API 都走原语&quot;，在 Cordis 里覆盖的是整个框架的 API 面——几百个公开 API 内部都走 effect，插件作者随便调哪个，副作用都自动进栈。</p>
+<p>这是个<strong>代码事实，只能读框架源码验证</strong>。4000+ 插件证明的是生态规模，证明不了它——插件多说明 API 被大量使用，不说明每个 API 内部都走了原语。</p>
+<p>自建体系的规范只覆盖三百行，写下来就覆盖到了。这条差别的实质是：<strong>规范的成本随 API 面增长</strong>。你的代码长到那个规模之前，这条差别不存在；长到之后，规范要跟着覆盖每一个新 API。</p>
+<p><strong>② 装卸记录，且要按正确的变量度量。</strong> &quot;三年不重启&quot;经常被当作可靠证据，但它<strong>混合了两个变量</strong>：</p>
+<ul>
+<li>运行时长检验<strong>进程稳定性</strong>（低负载空转跑三年，门槛很低）</li>
+<li>装卸次数检验的才是 <strong>effect 机制</strong>——每次卸载是一次栈弹出，有没有残留只在卸载后可见；插件从不卸载的进程，机制的执行记录为零</li>
+</ul>
+<p>而且&quot;三年不重启&quot;本身有两种相反解读：升级都走了装卸循环所以不用重启（机制被反复检验），或者根本没有装卸需求（机制从未被检验）。没有装卸次数的数据，这两种情况区分不开。</p>
+<blockquote>
+<p><strong>考察记录的正确问题是&quot;装卸了多少次、每次卸载后有没有残留&quot;，不是&quot;跑了多久&quot;。</strong></p>
+</blockquote>
+<p><strong>③ 嵌套作用域。</strong> Cordis 的 context 是嵌套树，子作用域销毁时级联清理。<code>tool-func</code> 路线把它替换为扁平注册表——适配小体系的选择；将来需要&quot;一个会话一个作用域、会话结束批量清理&quot;，要自己实现。</p>
+<p><strong>关于 Koishi 插件适配</strong>，还有一笔反向的账：Koishi 插件的全部耦合面是 <code>apply(ctx, config)</code> 里那个 ctx——实现一个替身 ctx，提供 <code>command</code> / <code>on</code> / <code>model</code> 这些高频接口，头部插件零改动就能跑。适配把&quot;生态不兼容&quot;从架构问题变成了工程量问题。</p>
+<p>但你实现的 ctx 表面越全，你的体系就越在向 Cordis 的一个子集收敛。① 那条&quot;规范的成本随 API 面增长&quot;会换个形式重新出现——<strong>你不是在用 Cordis，你是在维护一个 Cordis 兼容层。</strong></p>
+<p>渐进地做：先适配三件套，跑通最流行的十几个，长尾按需补。</p>
+<p><strong>合起来说</strong>：机制可以替换（几十行），规范必须自己覆盖（随 API 面增长），记录必须用装卸次数积累（不是运行时长）。</p>
+<h2 id="9-pan-duan-qing-dan" class="heading-control">9. 判断清单<a class="heading-anchor" href="#9-pan-duan-qing-dan" aria-hidden="true"></a></h2>
+<p><strong>用它</strong>（三条要同时成立，其中第一条是可判定的门槛）：</p>
+<ol>
+<li><strong>生态复用量够大</strong>——你预期要直接用的现成插件（Koishi 的或 DSH 的）有个二三十个往上。少于这个数，&quot;现成生态&quot;这条理由就不成立：DSH 官方没有插件中心，discovery 只能靠 GitHub topic 搜，插件质量与兼容性没有背书，你自己适配的成本会超过自己写的成本。</li>
+<li>进程长期跑不重启，可清理的副作用是刚需。</li>
+<li>单体，无跨进程诉求（或者你接受未来拆分时重写直连调用）。</li>
+</ol>
+<p><strong>别用</strong>：要故障隔离或独立部署；插件少、进程不需要长期运行，第 7 节第一档的描述就够；要本地/远程透明；在意分层纪律或在自建体系。</p>
+<p><strong>中间路线</strong>：借它的<strong>不变量</strong>（凡获取必回收、依赖变更必传播、校验先于销毁），不借它的 API，保留 adapter 路线，需要时把 Koishi 插件适配进来。</p>
+<p><strong>无论选哪条，先做一件事</strong>：确认你要读的是哪份代码——上游 <code>cordiverse/cordis</code>（当前 4.0.0-rc.10）还是 DSH 的 <code>vendor/cordis</code>（pin 在 rc.7）。两者不等价，文档站的描述对的是 DSH 里那份。</p>
+<hr>
+<h2 id="shou-wei-fang-fa-bi-jie-lun-zhong-yao" class="heading-control">收尾：方法比结论重要<a class="heading-anchor" href="#shou-wei-fang-fa-bi-jie-lun-zhong-yao" aria-hidden="true"></a></h2>
+<p>遇到任何框架，按顺序做五件事：</p>
+<ol>
+<li><strong>先找到代码，再找论文和文档。</strong> 有仓库就先读源码入口（这里是 <code>packages/core/src/</code> 九个文件），论文和文档站留到第二步。冲突时以代码为准——尤其当论文晚于代码出现时，它是事后说明书，不是规格。</li>
+<li><strong>把名词逐个还原成机制。</strong> &quot;逆序回放&quot;还原成 <code>pop()</code>，&quot;时空可组合性&quot;还原成作用域、析构顺序和依赖图，&quot;上下文工程&quot;还原成提示词工程，MCP 还原成 OpenAPI 加发现端点。</li>
+<li><strong>分清坑和成本。</strong> 坑是误导（按常理写却静默失效），成本是交换（得到什么、付出什么）。</li>
+<li><strong>看它是怎么长出来的。</strong> 是收窄，还是铺开？选择发生在声明处还是派发处？最底下那层是不是它自己的某个用法？</li>
+<li><strong>最后算账，再决定。</strong></li>
+</ol>
+<p>而第 4 节给出的是可以拿走、用在别处的那条判据：</p>
+<blockquote>
+<p><strong>最底下那层，不能是它自己某个用法。</strong><br>
+<strong>能用一个原语表达出来的东西，写成 helper 是可撤销的，挂在核心对象上不可撤销。</strong></p>
+</blockquote>
+<p>再补两条这次核实顺带得到的：</p>
+<blockquote>
+<p><strong>论文晚于代码出现时，论文是说明书，不是规格。</strong> 用它查&quot;它声称保证什么&quot;，用代码查&quot;是否真的成立&quot;。<br>
+<strong>契约没写进类型，就等于没有契约。</strong> <code>emit</code> 丢弃返回值、派发模式影响拦截、<code>waterfall</code> 要自己 <code>await</code>——三条都是类型层看不见、运行层不报错的坑。用 <code>interface Events</code> 的声明合并只能约束监听器签名，约束不了 mode。</p>
+</blockquote>
+<p>坑是文档、API 语义和原语边界里留下的；账是在真实使用中承担的。看清机制再做选择，仅此而已。</p>
+<hr>
+<h2 id="can-kao-lian-jie" class="heading-control">参考链接<a class="heading-anchor" href="#can-kao-lian-jie" aria-hidden="true"></a></h2>
+<p><strong>源码（本文的判据来源，优先于文档与论文）</strong></p>
+<ul>
+<li>cordis 核心源码目录：<code>packages/core/src/</code>（context.ts / events.ts / fiber.ts / registry.ts / service.ts / reflect.ts / utils.ts / logger.ts / index.ts）</li>
+<li>events.ts（五个派发方法的实现）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/events.ts" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/blob/main/packages/core/src/events.ts</a></li>
+<li>fiber.ts（<code>effect()</code> 生成器分支、disposer 链、状态机六态）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/fiber.ts" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/blob/main/packages/core/src/fiber.ts</a></li>
+<li>context.ts（<code>isolate()</code>）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/context.ts" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/blob/main/packages/core/src/context.ts</a></li>
+<li><code>@cordisjs/plugin-timer</code>（<code>ctx.timeout</code> / <code>ctx.interval</code>，旧名已弃用）：<a href="https://github.com/cordiverse/cordis/tree/main/packages/timer" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/tree/main/packages/timer</a></li>
+</ul>
+<p><strong>Cordis 与 DSH</strong></p>
+<ul>
+<li>Cordis 仓库：<a href="https://github.com/cordiverse/cordis" target="_blank" rel="noopener">https://github.com/cordiverse/cordis</a></li>
+<li>论文《A Programming Paradigm for Spatiotemporal Composability》（arXiv:2608.25512，<a href="http://cs.PL" target="_blank" rel="noopener">cs.PL</a>，v1 于 2026-08-26，预印本持续修订中）：<a href="https://arxiv.org/abs/2608.25512" target="_blank" rel="noopener">https://arxiv.org/abs/2608.25512</a></li>
+<li>论文仓库：<a href="https://github.com/cordiverse/paper" target="_blank" rel="noopener">https://github.com/cordiverse/paper</a></li>
+<li>DSH 仓库：<a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">https://github.com/deepseek-ai/deepseek-harness</a></li>
+<li>DSH vendor 目录说明（vendored 版本与本地修改清单）：<code>vendor/README.md</code>（仓库内）</li>
+<li>Cordis Primer：<a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer</a></li>
+<li>Cordis 教程：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial</a></li>
+<li>教程第 4 章 · Events：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events</a></li>
+<li>插件与生命周期（disposer 顺序、fiber.dispose 语义）：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/</a></li>
+<li>事件系统：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/events" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/events</a></li>
+<li>服务与依赖（isolate）：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/service" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/service</a></li>
+<li>写一个插件（官方 name / inject / apply + defineTool 形态）：<a href="https://deepseek-plugin.org/learn/write-a-plugin" target="_blank" rel="noopener">https://deepseek-plugin.org/learn/write-a-plugin</a></li>
+<li>插件对照表与 FAQ（无中心 registry、插件默认不沙箱化）：<a href="https://deepseekai.works/plugins" target="_blank" rel="noopener">https://deepseekai.works/plugins</a></li>
+<li>Koishi：<a href="https://github.com/koishijs/koishi" target="_blank" rel="noopener">https://github.com/koishijs/koishi</a></li>
+</ul>
+<p><strong>tool-func 系列与对照物</strong></p>
+<ul>
+<li>tool-func.js：<a href="https://github.com/isdk/tool-func.js" target="_blank" rel="noopener">https://github.com/isdk/tool-func.js</a></li>
+<li>tool-rpc.js：<a href="https://github.com/isdk/tool-rpc.js" target="_blank" rel="noopener">https://github.com/isdk/tool-rpc.js</a></li>
+<li>tool-event.js：<a href="https://github.com/isdk/tool-event.js" target="_blank" rel="noopener">https://github.com/isdk/tool-event.js</a></li>
+<li>events-ex.js：<a href="https://github.com/snowyu/events-ex.js" target="_blank" rel="noopener">https://github.com/snowyu/events-ex.js</a></li>
+<li>custom-ability.js：<a href="https://github.com/snowyu/custom-ability.js" target="_blank" rel="noopener">https://github.com/snowyu/custom-ability.js</a></li>
+</ul>
+<p><strong>MCP（第 3.3 节）</strong></p>
+<ul>
+<li>规范 · Tools：<a href="https://modelcontextprotocol.io/specification/draft/server/tools" target="_blank" rel="noopener">https://modelcontextprotocol.io/specification/draft/server/tools</a></li>
+<li>2026-07-28 规范修订说明：<a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/" target="_blank" rel="noopener">https://blog.modelcontextprotocol.io/posts/2026-07-28/</a></li>
+<li>2026-07-28 变更日志（Roots/Sampling/Logging 弃用）：<a href="https://modelcontextprotocol.io/specification/2026-07-28/changelog" target="_blank" rel="noopener">https://modelcontextprotocol.io/specification/2026-07-28/changelog</a></li>
+</ul>
+<p><strong>被引用的原则</strong></p>
+<ul>
+<li>Hyrum’s Law：<a href="https://www.hyrumslaw.com/" target="_blank" rel="noopener">https://www.hyrumslaw.com/</a></li>
+<li>The Rule of Least Power（W3C TAG）：<a href="https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html" target="_blank" rel="noopener">https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html</a></li>
+<li>《The Art of Unix Programming》第 1 章（mechanism, not policy）：<a href="https://book.huihoo.com/the-art-of-unix-programming/ch01s04.html" target="_blank" rel="noopener">https://book.huihoo.com/the-art-of-unix-programming/ch01s04.html</a></li>
+</ul>
+<hr>
+<h1 id="fa-dao-dsh-cang-ku" class="heading-control">发到 DSH 仓库<a class="heading-anchor" href="#fa-dao-dsh-cang-ku" aria-hidden="true"></a></h1>
+<p>可以，而且方向是对的：<strong>发到你自己的博客时，它可以是一篇完整的“Cordis 的坑与账”；发到 DSH 仓库讨论区时，它不能还是这篇，而要改造成一篇“DSH 底层分层建议 / RFC 讨论帖”。</strong></p>
+<p>核心差异是：</p>
+<ul>
+<li><strong>博客版</strong>：面向普通读者，需要解释 Cordis 是什么、Koishi 是什么、论文是什么、DSH 是什么、为什么坑、为什么账。</li>
+<li><strong>DSH 社区版</strong>：读者已经知道 DSH / Cordis / vendor / plugin / harness，不需要背景科普；他们真正关心的是：
+<ul>
+<li>DSH 能不能更稳定；</li>
+<li>插件能不能更可移植；</li>
+<li>底层能不能可审计、可替换、可测试；</li>
+<li>第三方 runtime / tool 生态能不能接入；</li>
+<li>官方 vendor 的 Cordis 能不能不要变成唯一不可拆的底座。</li>
+</ul>
+</li>
+</ul>
+<p>所以你在 DSH 社区上想讨论的建议，不是“Cordis 不好”，而是：</p>
+<blockquote>
+<p><strong>DSH 应该把 Cordis 从“唯一内核”降级为“一种可替换实现”，并把真正需要长期稳定的能力拆成清晰分层。</strong></p>
+</blockquote>
+<p>这个表达比“希望他们对底层合理分层，让更多人都能用，类似 tool-func 的架构”更适合 GitHub 社区。</p>
+<hr>
+<h1 id="1-zai-dsh-she-qu-shang-zhen-zheng-zhi-de-tao-lun-de-jian-yi-shi-shi-mo" class="heading-control">1. 在 DSH 社区上，真正值得讨论的建议是什么<a class="heading-anchor" href="#1-zai-dsh-she-qu-shang-zhen-zheng-zhi-de-tao-lun-de-jian-yi-shi-shi-mo" aria-hidden="true"></a></h1>
+<p>你可以围绕下面这条主线提建议：</p>
+<blockquote>
+<p>DSH 现在把 vendored Cordis 作为插件运行时底座。这个选择有合理性：可审计、可补丁、版本可固定。但如果 DSH 想让更多插件、更多 runtime、更多工具生态接入，应该把“DSH 插件契约”和“Cordis 具体 API”解耦。建议引入一层 DSH runtime capability layer：生命周期、事件、服务、工具、配置、传输各自有稳定接口；Cordis 只是其中一种实现。</p>
+</blockquote>
+<p>换句话说，你不是要求他们“换掉 Cordis”，而是要求他们：</p>
+<blockquote>
+<p><strong>把 Cordis 变成 adapter，而不是把 DSH 变成 Cordis 的方言。</strong></p>
+</blockquote>
+<p>这是 DSH 社区更容易接受的版本。</p>
+<hr>
+<h1 id="2-ni-zhen-zheng-xiang-ti-de-jian-yi-ke-yi-chai-cheng-6-tiao" class="heading-control">2. 你真正想提的建议，可以拆成 6 条<a class="heading-anchor" href="#2-ni-zhen-zheng-xiang-ti-de-jian-yi-ke-yi-chai-cheng-6-tiao" aria-hidden="true"></a></h1>
+<p>下面这些可以直接作为 DSH Discussion 的议题。</p>
+<hr>
+<h2 id="jian-yi-yi-ba-cha-jian-qi-yue-cong-cordis-api-zhong-chou-xiang-chu-lai" class="heading-control">建议一：把插件契约从 Cordis API 中抽象出来<a class="heading-anchor" href="#jian-yi-yi-ba-cha-jian-qi-yue-cong-cordis-api-zhong-chou-xiang-chu-lai" aria-hidden="true"></a></h2>
+<p>现在 DSH 插件很可能直接写：</p>
+<pre><code class="ts"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: Context</span>) </span>{
+  ctx.tools.register(...)
+  ctx.on(...)
+  ctx.effect(...)
+}
+</code></pre>
+<p>这里的问题是：<code>ctx</code> 不只是“插件入口”，它同时混着：</p>
+<ul>
+<li>生命周期；</li>
+<li>事件系统；</li>
+<li>服务查找；</li>
+<li>工具注册；</li>
+<li>配置系统；</li>
+<li>effect 栈；</li>
+<li>isolate / scope；</li>
+<li>DSH vendor 补丁语义。</li>
+</ul>
+<p>插件作者一旦写 <code>ctx.*</code>，就和 Cordis 细节绑死了。</p>
+<h3 id="jian-yi" class="heading-control">建议<a class="heading-anchor" href="#jian-yi" aria-hidden="true"></a></h3>
+<p>DSH 可以定义一组更稳定的接口，例如：</p>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> DSHPluginContext {
+  lifecycle: Lifecycle
+  events: EventBus
+  services: ServiceRegistry
+  tools: ToolRegistry
+  config: ConfigStore
+}
+</code></pre>
+<p>插件不直接依赖 Cordis 的 <code>Context</code>，而是依赖 DSH 自己的 runtime contract。</p>
+<p>Cordis 可以作为默认实现：</p>
+<pre><code class="ts"><span class="hljs-keyword">const</span> ctx = createCordisContext(...)
+</code></pre>
+<p>但未来也可以有：</p>
+<pre><code class="ts"><span class="hljs-keyword">const</span> ctx = createToolFuncContext(...)
+<span class="hljs-keyword">const</span> ctx = createMinimalRuntimeContext(...)
+<span class="hljs-keyword">const</span> ctx = createRemoteRuntimeContext(...)
+</code></pre>
+<h3 id="wei-shi-mo-dsh-she-qu-hui-guan-xin" class="heading-control">为什么 DSH 社区会关心<a class="heading-anchor" href="#wei-shi-mo-dsh-she-qu-hui-guan-xin" aria-hidden="true"></a></h3>
+<p>因为 DSH 官方已经明确要把 harness 框架层做成：</p>
+<ul>
+<li>auditable；</li>
+<li>patchable；</li>
+<li>pinned；</li>
+<li>controlled。</li>
+</ul>
+<p>那么更进一步的问题是：</p>
+<blockquote>
+<p>如果框架层要完全拥有，是否应该由 DSH 定义自己的稳定契约，而不是让所有插件直接依赖 vendored Cordis 的 API 细节？</p>
+</blockquote>
+<p>这是顺着官方动机往下提，不是反对官方。</p>
+<hr>
+<h2 id="jian-yi-er-ba-shi-jian-pai-fa-mo-shi-fang-jin-lei-xing-qi-yue-er-bu-zhi-shi-wen-dang-yue-ding" class="heading-control">建议二：把事件派发模式放进类型契约，而不只是文档约定<a class="heading-anchor" href="#jian-yi-er-ba-shi-jian-pai-fa-mo-shi-fang-jin-lei-xing-qi-yue-er-bu-zhi-shi-wen-dang-yue-ding" aria-hidden="true"></a></h2>
+<p>你博客里最有价值的一条判断是：</p>
+<blockquote>
+<p>插件监听器能不能拦截，取决于派发处用的是 <code>emit</code>、<code>serial</code>、<code>bail</code>、<code>waterfall</code>。</p>
+</blockquote>
+<p>这在 DSH 社区里是一个很好的工程问题。</p>
+<p>当前问题可以这样描述：</p>
+<pre><code class="ts">ctx.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-literal">true</span>)
+ctx.emit(<span class="hljs-string">'message'</span>, session)
+</code></pre>
+<p>监听器返回 <code>true</code>，但 <code>emit</code> 不收集返回值，于是拦截不生效。类型系统不报错，框架也不警告。</p>
+<h3 id="jian-yi" class="heading-control">建议<a class="heading-anchor" href="#jian-yi" aria-hidden="true"></a></h3>
+<p>DSH 可以把事件模式变成类型层或代码生成层契约。</p>
+<p>例如：</p>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> DSHEvents {
+  message: {
+    mode: <span class="hljs-string">'emit'</span> | <span class="hljs-string">'serial'</span> | <span class="hljs-string">'bail'</span> | <span class="hljs-string">'waterfall'</span>
+    payload: Message
+    returns?: unknown
+  }
+}
+</code></pre>
+<p>或者更保守一点：</p>
+<pre><code class="ts">defineEvent(<span class="hljs-string">'message'</span>, {
+  mode: <span class="hljs-string">'bail'</span>,
+  payload: messageSchema,
+  returns: booleanSchema
+})
+</code></pre>
+<p>然后类型检查或 codegen 能发现：</p>
+<ul>
+<li>这个事件是 <code>emit</code>，监听器返回值不会被消费；</li>
+<li>这个事件是 <code>bail</code>，监听器返回值会被用于短路；</li>
+<li>这个事件是 <code>waterfall</code>，监听器必须处理 <code>next()</code>；</li>
+<li>如果监听器返回 <code>true</code> 但事件是 <code>emit</code>，可以警告。</li>
+</ul>
+<h3 id="wei-shi-mo-zhe-tiao-shi-he-dsh" class="heading-control">为什么这条适合 DSH<a class="heading-anchor" href="#wei-shi-mo-zhe-tiao-shi-he-dsh" aria-hidden="true"></a></h3>
+<p>DSH 已经有“事件模式是公共契约”的意识，官方 primer 里也提到 dispatch mode 是 event public contract。但如果你认为它目前主要是文档/工具层契约，而不是类型层契约，那么可以提：</p>
+<blockquote>
+<p>建议把 <code>@mode</code> 从文档标记提升到类型契约，至少提供 lint / codegen / 类型包装。</p>
+</blockquote>
+<p>这是具体、可落地、不攻击性的建议。</p>
+<hr>
+<h2 id="jian-yi-san-bu-yao-ba-emit-zuo-wei-wei-yi-di-ceng-shi-jian-yu-yi" class="heading-control">建议三：不要把 <code>emit</code> 作为唯一底层事件语义<a class="heading-anchor" href="#jian-yi-san-bu-yao-ba-emit-zuo-wei-wei-yi-di-ceng-shi-jian-yu-yi" aria-hidden="true"></a></h2>
+<p>你博客里的核心 API 判据是：</p>
+<blockquote>
+<p>最底下那层，不能是它自己某个用法。</p>
+</blockquote>
+<p>这个判断很适合发到 DSH。</p>
+<p>可以这样表述：</p>
+<blockquote>
+<p>DSH 事件系统如果希望支持多种插件场景，底层原语不应该预设“广播并丢弃返回值”这一种策略。<br>
+<code>emit</code> 可以是默认便捷方法，但不应该是唯一底层语义。底层最好有一个更中性的 dispatch primitive，上层再派生出 <code>emit</code>、<code>serial</code>、<code>bail</code>、<code>waterfall</code>。</p>
+</blockquote>
+<h3 id="jian-yi" class="heading-control">建议<a class="heading-anchor" href="#jian-yi" aria-hidden="true"></a></h3>
+<p>可以定义一个中性原语：</p>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> EventBus {
+  dispatch&lt;T&gt;(event: EventDescriptor&lt;T&gt;, payload: T): <span class="hljs-built_in">Promise</span>&lt;unknown[]&gt; | unknown[]
+}
+</code></pre>
+<p>然后：</p>
+<pre><code class="ts">emit(event, payload) {
+  dispatch(event, payload) <span class="hljs-comment">// ignore result</span>
+}
+
+serial(event, payload) {
+  <span class="hljs-keyword">return</span> dispatch(event, payload).find(isBailed)
+}
+
+waterfall(event, payload, inner) {
+  <span class="hljs-comment">// composed dispatch</span>
+}
+</code></pre>
+<p>这样事件策略不是焊死在底层，而是上层 helper。</p>
+<h3 id="dui-dsh-she-qu-de-shuo-fa" class="heading-control">对 DSH 社区的说法<a class="heading-anchor" href="#dui-dsh-she-qu-de-shuo-fa" aria-hidden="true"></a></h3>
+<p>不要说：</p>
+<blockquote>
+<p>Cordis 的 <code>emit</code> 是错的。</p>
+</blockquote>
+<p>要说：</p>
+<blockquote>
+<p>如果 DSH 希望事件系统可移植、可测试、可适配其他 event bus，底层最好保持策略中立。</p>
+</blockquote>
+<p>这就更像 RFC。</p>
+<hr>
+<h2 id="jian-yi-si-ba-effect-sheng-ming-zhou-qi-zuo-cheng-ke-ti-huan-jie-kou-er-bu-shi-cha-jian-bi-xu-li-jie-cordis-yu-yi" class="heading-control">建议四：把 effect 生命周期做成可替换接口，而不是插件必须理解 Cordis 语义<a class="heading-anchor" href="#jian-yi-si-ba-effect-sheng-ming-zhou-qi-zuo-cheng-ke-ti-huan-jie-kou-er-bu-shi-cha-jian-bi-xu-li-jie-cordis-yu-yi" aria-hidden="true"></a></h2>
+<p>你博客里关于 effect 的分析很细，但发到 DSH 时不要展开成“Cordis effect 签名有多容易误解”，而要转成：</p>
+<blockquote>
+<p>DSH 插件需要生命周期管理，但插件不应该被迫理解 Cordis 内部 effect 栈、fiber 状态、UNLOADING 补丁、异步 disposer 链。</p>
+</blockquote>
+<h3 id="jian-yi" class="heading-control">建议<a class="heading-anchor" href="#jian-yi" aria-hidden="true"></a></h3>
+<p>DSH 定义稳定生命周期接口：</p>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> Lifecycle {
+  onDispose(fn: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span> | <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;): Disposable
+  begin(): <span class="hljs-built_in">void</span>
+  end(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;
+}
+</code></pre>
+<p>Cordis adapter 内部可以用：</p>
+<pre><code class="ts">ctx.effect(...)
+</code></pre>
+<p>但插件只看到：</p>
+<pre><code class="ts">ctx.lifecycle.onDispose(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close())
+</code></pre>
+<p>或者更高层：</p>
+<pre><code class="ts">ctx.manage({
+  setup: <span class="hljs-keyword">async</span> () =&gt; openPool(),
+  dispose: <span class="hljs-function"><span class="hljs-params">pool</span> =&gt;</span> pool.close()
+})
+</code></pre>
+<h3 id="wei-shi-mo-zhe-dui-dsh-you-jia-zhi" class="heading-control">为什么这对 DSH 有价值<a class="heading-anchor" href="#wei-shi-mo-zhe-dui-dsh-you-jia-zhi" aria-hidden="true"></a></h3>
+<p>DSH 已经给 vendor Cordis 加了生命周期加固，比如：</p>
+<ul>
+<li>setup 前注册 owner-list；</li>
+<li>setup 失败回滚；</li>
+<li>UNLOADING 拒绝新建 effect；</li>
+<li>disposer 一次性语义；</li>
+<li>清理通知隔离错误。</li>
+</ul>
+<p>这说明官方已经承认生命周期边界很重要。</p>
+<p>那么下一步自然就是：</p>
+<blockquote>
+<p>既然 DSH 已经修改了 Cordis 生命周期语义，是否应该把这套语义抽象成 DSH 自己的 runtime contract，而不是让插件作者直接依赖 vendored Cordis 的内部行为？</p>
+</blockquote>
+<p>这个建议顺着官方工作往下推，更容易被接受。</p>
+<hr>
+<h2 id="jian-yi-wu-ba-gong-ju-zhu-ce-fu-wu-zhu-ce-shi-jian-yuan-cheng-chuan-shu-chai-cheng-bu-tong-ceng" class="heading-control">建议五：把工具注册、服务注册、事件、远程传输拆成不同层<a class="heading-anchor" href="#jian-yi-wu-ba-gong-ju-zhu-ce-fu-wu-zhu-ce-shi-jian-yuan-cheng-chuan-shu-chai-cheng-bu-tong-ceng" aria-hidden="true"></a></h2>
+<p>你提到“类似 tool-func 的架构”，这个方向很好。</p>
+<p>tool-func 系列的优点是：</p>
+<ul>
+<li><code>tool-func</code>：函数注册表；</li>
+<li><code>tool-rpc</code>：把注册表暴露到网络；</li>
+<li><code>tool-event</code>：把事件也当成工具；</li>
+<li><code>events-ex</code>：事件返回值可被控制；</li>
+<li><code>custom-ability</code>：能力注入可摘除。</li>
+</ul>
+<p>DSH 可以借鉴的不是“用 tool-func 替换 Cordis”，而是这种分层：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>职责</th>
+<th>DSH 对应问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td>名字、版本、来源</td>
+<td>插件身份、工具身份</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>参数、返回值、说明</td>
+<td>LLM 工具调用、校验</td>
+</tr>
+<tr>
+<td>Lifecycle</td>
+<td>setup / dispose / rollback</td>
+<td>插件装卸</td>
+</tr>
+<tr>
+<td>Capability</td>
+<td>需要哪些能力</td>
+<td><code>inject</code></td>
+</tr>
+<tr>
+<td>Registry</td>
+<td>按名字发现</td>
+<td>插件中心 / 本地注册</td>
+</tr>
+<tr>
+<td>Dispatch</td>
+<td>事件如何派发</td>
+<td><code>emit</code> / <code>serial</code> / <code>waterfall</code></td>
+</tr>
+<tr>
+<td>Service</td>
+<td>服务如何查找</td>
+<td><code>ctx.database</code> / provider</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>本地还是远程</td>
+<td>远程工具、远程事件</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>配置如何校验和热更新</td>
+<td>插件配置</td>
+</tr>
+<tr>
+<td>Adapter</td>
+<td>底层 runtime 是什么</td>
+<td>Cordis / tool-func / 自研</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jian-yi" class="heading-control">建议<a class="heading-anchor" href="#jian-yi" aria-hidden="true"></a></h3>
+<p>DSH 可以定义：</p>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> DSHToolRegistry {
+  register(tool: ToolDescriptor): Disposable
+  list(): ToolDescriptor[]
+  call(name: <span class="hljs-built_in">string</span>, args: unknown): <span class="hljs-built_in">Promise</span>&lt;unknown&gt;
+}
+</code></pre>
+<p>然后：</p>
+<ul>
+<li>本地工具：Cordis adapter；</li>
+<li>远程工具：RPC adapter；</li>
+<li>事件工具：event adapter；</li>
+<li>测试工具：in-memory adapter。</li>
+</ul>
+<p>这样“让更多人都能用”就不只是口号，而是：</p>
+<blockquote>
+<p>第三方 harness、第三方 agent runtime、第三方工具库，只要实现这些接口，就能接入 DSH 插件生态。</p>
+</blockquote>
+<hr>
+<h2 id="jian-yi-liu-rang-dsh-zhi-chi-wu-cordis-mo-shi-huo-zui-xiao-runtime-mo-shi" class="heading-control">建议六：让 DSH 支持“无 Cordis 模式”或“最小 runtime 模式”<a class="heading-anchor" href="#jian-yi-liu-rang-dsh-zhi-chi-wu-cordis-mo-shi-huo-zui-xiao-runtime-mo-shi" aria-hidden="true"></a></h2>
+<p>这是最有战略意义的一条。</p>
+<p>DSH 当前可能默认：</p>
+<blockquote>
+<p>DSH plugin = Cordis plugin + DSH tools + DSH harness semantics。</p>
+</blockquote>
+<p>这会导致一个问题：</p>
+<blockquote>
+<p>如果用户只想用 DSH 的 tools / events / RPC / agent harness，但不想引入 Cordis 的全部语义，怎么办？</p>
+</blockquote>
+<h3 id="jian-yi" class="heading-control">建议<a class="heading-anchor" href="#jian-yi" aria-hidden="true"></a></h3>
+<p>提供几种 runtime profile：</p>
+<pre><code class="ts">createDSH({
+  runtime: <span class="hljs-string">'cordis'</span>
+})
+
+createDSH({
+  runtime: <span class="hljs-string">'minimal'</span>
+})
+
+createDSH({
+  runtime: <span class="hljs-string">'custom'</span>,
+  adapter: myRuntimeAdapter
+})
+</code></pre>
+<p>或者：</p>
+<pre><code class="ts">createDSH({
+  lifecycle: cordisLifecycle,
+  events: eventsExBus,
+  services: simpleRegistry,
+  tools: dshTools,
+  transport: rpcTransport
+})
+</code></pre>
+<h3 id="dui-dsh-she-qu-de-jia-zhi" class="heading-control">对 DSH 社区的价值<a class="heading-anchor" href="#dui-dsh-she-qu-de-jia-zhi" aria-hidden="true"></a></h3>
+<p>这可以带来：</p>
+<ul>
+<li>更容易测试；</li>
+<li>更容易替换底层；</li>
+<li>更容易接入 tool-func / tool-rpc / tool-event；</li>
+<li>更容易做远程服务；</li>
+<li>更容易做多进程部署；</li>
+<li>更容易给插件作者提供清晰心智模型；</li>
+<li>更容易避免 DSH vendor Cordis 和上游 Cordis 版本漂移带来的文档/行为不一致。</li>
+</ul>
+<hr>
+<h1 id="3-fa-dao-dsh-she-qu-shi-ying-gai-shan-diao-shi-mo" class="heading-control">3. 发到 DSH 社区时，应该删掉什么<a class="heading-anchor" href="#3-fa-dao-dsh-she-qu-shi-ying-gai-shan-diao-shi-mo" aria-hidden="true"></a></h1>
+<p>如果你把博客原稿直接发到 DSH，会被认为太长、太泛、太像评测 Cordis。建议删掉或大幅压缩这些部分。</p>
+<h2 id="31-shan-diao-cordis-bei-jing-jie-shao" class="heading-control">3.1 删掉 Cordis 背景介绍<a class="heading-anchor" href="#31-shan-diao-cordis-bei-jing-jie-shao" aria-hidden="true"></a></h2>
+<p>不需要介绍：</p>
+<ul>
+<li>Koishi 是什么；</li>
+<li>Cordis 怎么装插件；</li>
+<li>插件 4000+；</li>
+<li>DSH 插件 topic 统计；</li>
+<li>论文是什么；</li>
+<li>arXiv 页数；</li>
+<li>时间线；</li>
+<li>“代码跑了六年，理论才补上来”。</li>
+</ul>
+<p>DSH 社区读者已经知道 DSH 和 Cordis，至少不需要从零开始。</p>
+<p>可以只保留一句：</p>
+<blockquote>
+<p>DSH 当前把 vendored Cordis 作为插件运行时底座。</p>
+</blockquote>
+<h2 id="32-shan-diao-lun-wen-shu-yu-pi-ping" class="heading-control">3.2 删掉论文术语批评<a class="heading-anchor" href="#32-shan-diao-lun-wen-shu-yu-pi-ping" aria-hidden="true"></a></h2>
+<p>博客里关于“时空可组合性”“逆序回放”“回滚”“学生气”“故作高深”的部分，不适合 DSH 社区。</p>
+<p>原因：</p>
+<ul>
+<li>DSH 社区更关心工程行为；</li>
+<li>术语批评容易变成论文/命名之争；</li>
+<li>会分散“底层分层”这个核心诉求。</li>
+</ul>
+<p>如果一定要提，只保留一句：</p>
+<blockquote>
+<p>论文术语可以帮助理解，但 DSH 插件契约应该以类型和源码行为为准。</p>
+</blockquote>
+<h2 id="33-shan-diao-mcp-da-duan-pi-ping" class="heading-control">3.3 删掉 MCP 大段批评<a class="heading-anchor" href="#33-shan-diao-mcp-da-duan-pi-ping" aria-hidden="true"></a></h2>
+<p>MCP 部分在博客里有用，但在 DSH 社区里可能偏题。</p>
+<p>除非你是在提议 DSH 兼容 MCP，否则不要大段展开。</p>
+<p>可以压缩成：</p>
+<blockquote>
+<p>DSH 工具层可以考虑兼容 MCP / OpenAPI / tool-func 生态，但不需要重新发明协议。</p>
+</blockquote>
+<h2 id="34-shan-diao-keng-he-zhang-de-qiang-qing-xu-biao-ti" class="heading-control">3.4 删掉“坑”和“账”的强情绪标题<a class="heading-anchor" href="#34-shan-diao-keng-he-zhang-de-qiang-qing-xu-biao-ti" aria-hidden="true"></a></h2>
+<p>DSH 社区更适合：</p>
+<ul>
+<li>Problem</li>
+<li>Proposal</li>
+<li>Tradeoffs</li>
+<li>Alternatives</li>
+<li>Migration path</li>
+<li>Open questions</li>
+</ul>
+<p>而不是：</p>
+<ul>
+<li>坑</li>
+<li>账</li>
+<li>水分</li>
+<li>滥造词</li>
+<li>永久成本</li>
+</ul>
+<p>可以保留事实，但换词。</p>
+<hr>
+<h1 id="4-ying-gai-bao-liu-shi-mo" class="heading-control">4. 应该保留什么<a class="heading-anchor" href="#4-ying-gai-bao-liu-shi-mo" aria-hidden="true"></a></h1>
+<p>博客里真正适合发到 DSH 的是这些技术判断：</p>
+<h2 id="41-shi-jian-mo-shi-jue-ding-lan-jie-shi-fou-sheng-xiao" class="heading-control">4.1 事件模式决定拦截是否生效<a class="heading-anchor" href="#41-shi-jian-mo-shi-jue-ding-lan-jie-shi-fou-sheng-xiao" aria-hidden="true"></a></h2>
+<p>这是核心。</p>
+<h2 id="42-emit-bu-shou-ji-fan-hui-zhi-dao-zhi-di-ceng-yu-yi-bu-zhong-li" class="heading-control">4.2 <code>emit</code> 不收集返回值，导致底层语义不中立<a class="heading-anchor" href="#42-emit-bu-shou-ji-fan-hui-zhi-dao-zhi-di-ceng-yu-yi-bu-zhong-li" aria-hidden="true"></a></h2>
+<p>这是核心。</p>
+<h2 id="43-waterfall-de-await-next-qi-yue-mei-you-jin-ru-lei-xing" class="heading-control">4.3 <code>waterfall</code> 的 <code>await next()</code> 契约没有进入类型<a class="heading-anchor" href="#43-waterfall-de-await-next-qi-yue-mei-you-jin-ru-lei-xing" aria-hidden="true"></a></h2>
+<p>这也是具体坑。</p>
+<h2 id="44-dsh-vendor-cordis-he-shang-you-cordis-bu-deng-jia" class="heading-control">4.4 DSH vendor Cordis 和上游 Cordis 不等价<a class="heading-anchor" href="#44-dsh-vendor-cordis-he-shang-you-cordis-bu-deng-jia" aria-hidden="true"></a></h2>
+<p>这是 DSH 社区特别关心的。</p>
+<h2 id="45-dsh-yi-jing-patch-le-sheng-ming-zhou-qi-shuo-ming-sheng-ming-zhou-qi-bian-jie-hen-zhong-yao" class="heading-control">4.5 DSH 已经 patch 了生命周期，说明生命周期边界很重要<a class="heading-anchor" href="#45-dsh-yi-jing-patch-le-sheng-ming-zhou-qi-shuo-ming-sheng-ming-zhou-qi-bian-jie-hen-zhong-yao" aria-hidden="true"></a></h2>
+<p>这是顺着官方工作提建议的好切入点。</p>
+<h2 id="46-dan-jin-cheng-gu-zhang-yu-he-yuan-cheng-tou-ming-que-shi" class="heading-control">4.6 单进程故障域和远程透明缺失<a class="heading-anchor" href="#46-dan-jin-cheng-gu-zhang-yu-he-yuan-cheng-tou-ming-que-shi" aria-hidden="true"></a></h2>
+<p>可以提，但不要变成“DSH 必须微服务化”。</p>
+<p>更稳的说法：</p>
+<blockquote>
+<p>如果 DSH 想支持远程工具、远程事件、多进程 harness，需要引入 transport 层，而不是把服务永远绑定为进程内对象。</p>
+</blockquote>
+<hr>
+<h1 id="5-dsh-she-qu-tie-de-yu-qi-ce-lve" class="heading-control">5. DSH 社区帖的语气策略<a class="heading-anchor" href="#5-dsh-she-qu-tie-de-yu-qi-ce-lve" aria-hidden="true"></a></h1>
+<p>GitHub 讨论区里，最有效的语气不是“你们错了”，而是：</p>
+<blockquote>
+<p>我理解你们为什么这么做。但如果目标是 X，那么当前结构会造成 Y。我建议尝试 Z。这不要求重写全部，可以渐进。</p>
+</blockquote>
+<p>你可以用这个结构：</p>
+<ol>
+<li><strong>承认官方动机</strong>：vendor Cordis 是为了可审计、可补丁、版本固定。</li>
+<li><strong>指出当前问题</strong>：插件契约和 Cordis 细节耦合，导致分层不清。</li>
+<li><strong>提出目标</strong>：让更多 runtime / tool / event 生态接入。</li>
+<li><strong>给出方案</strong>：DSH runtime capability layer。</li>
+<li><strong>给出最小落地</strong>：先定义接口，不替换实现。</li>
+<li><strong>给出例子</strong>：Cordis adapter、tool-func adapter、minimal adapter。</li>
+<li><strong>提出开放问题</strong>：需要讨论哪些地方。</li>
+</ol>
+<p>这样不像攻击，更像贡献 RFC。</p>
+<hr>
+<h1 id="6-yi-ge-shi-he-fa-dao-dsh-cang-ku-tao-lun-qu-de-biao-ti" class="heading-control">6. 一个适合发到 DSH 仓库讨论区的标题<a class="heading-anchor" href="#6-yi-ge-shi-he-fa-dao-dsh-cang-ku-tao-lun-qu-de-biao-ti" aria-hidden="true"></a></h1>
+<p>可以用这些标题：</p>
+<h2 id="biao-ti-yi-pian-fen-ceng" class="heading-control">标题一：偏分层<a class="heading-anchor" href="#biao-ti-yi-pian-fen-ceng" aria-hidden="true"></a></h2>
+<blockquote>
+<p>RFC: Separate DSH plugin contract from vendored Cordis APIs</p>
+</blockquote>
+<h2 id="biao-ti-er-pian-ke-ti-huan" class="heading-control">标题二：偏可替换<a class="heading-anchor" href="#biao-ti-er-pian-ke-ti-huan" aria-hidden="true"></a></h2>
+<blockquote>
+<p>Proposal: Make Cordis one runtime adapter, not the only DSH runtime contract</p>
+</blockquote>
+<h2 id="biao-ti-san-pian-shi-jian-qi-yue" class="heading-control">标题三：偏事件契约<a class="heading-anchor" href="#biao-ti-san-pian-shi-jian-qi-yue" aria-hidden="true"></a></h2>
+<blockquote>
+<p>Discussion: Should DSH event dispatch mode become part of the type contract?</p>
+</blockquote>
+<h2 id="biao-ti-si-pian-sheng-tai-jie-ru" class="heading-control">标题四：偏生态接入<a class="heading-anchor" href="#biao-ti-si-pian-sheng-tai-jie-ru" aria-hidden="true"></a></h2>
+<blockquote>
+<p>Proposal: Define DSH runtime capability interfaces so third-party runtimes can plug in</p>
+</blockquote>
+<h2 id="biao-ti-wu-pian-zhong-wen-she-qu" class="heading-control">标题五：偏中文社区<a class="heading-anchor" href="#biao-ti-wu-pian-zhong-wen-she-qu" aria-hidden="true"></a></h2>
+<blockquote>
+<p>建议：把 DSH 插件契约从 Cordis API 解耦，让底层 runtime 可替换</p>
+</blockquote>
+<p>如果是 GitHub 英文区，建议用英文标题：</p>
+<blockquote>
+<p><strong>RFC: Introduce a runtime capability layer so Cordis becomes one implementation, not the plugin contract</strong></p>
+</blockquote>
+<p>这个标题比较稳。</p>
+<hr>
+<h1 id="7-ke-zhi-jie-fa-bu-de-dsh-discussion-cao-gao" class="heading-control">7. 可直接发布的 DSH Discussion 草稿<a class="heading-anchor" href="#7-ke-zhi-jie-fa-bu-de-dsh-discussion-cao-gao" aria-hidden="true"></a></h1>
+<p>下面是一个可以直接整理成 GitHub Discussion 的版本。你可以按需要删减。</p>
+<hr>
+<h2 id="title" class="heading-control">Title<a class="heading-anchor" href="#title" aria-hidden="true"></a></h2>
+<p><strong>RFC: Introduce a runtime capability layer so Cordis becomes one implementation, not the plugin contract</strong></p>
+<h2 id="tl-dr" class="heading-control">TL;DR<a class="heading-anchor" href="#tl-dr" aria-hidden="true"></a></h2>
+<p>DSH currently uses vendored Cordis as the plugin runtime base. That makes sense for auditability, patchability, and version pinning.</p>
+<p>However, if DSH wants more third-party runtimes, tool libraries, event systems, RPC transports, and non-Cordis plugin authors to adopt it, the plugin contract should be separated from Cordis-specific APIs.</p>
+<p>I propose introducing a DSH runtime capability layer:</p>
+<ul>
+<li>lifecycle</li>
+<li>event contract</li>
+<li>service registry</li>
+<li>tool registry</li>
+<li>config store</li>
+<li>transport adapter</li>
+</ul>
+<p>Cordis should remain the default implementation, but it should not be the only contract that plugin authors must understand.</p>
+<hr>
+<h2 id="background" class="heading-control">Background<a class="heading-anchor" href="#background" aria-hidden="true"></a></h2>
+<p>DSH vendors Cordis for good reasons:</p>
+<ul>
+<li>the harness can own its framework layer;</li>
+<li>lifecycle bugs can be patched locally;</li>
+<li>versions can be pinned;</li>
+<li>behavior can be audited.</li>
+</ul>
+<p>The vendor notes also show that DSH has already hardened Cordis lifecycle behavior, for example around setup, disposal, reentrant cleanup, and <code>UNLOADING</code>.</p>
+<p>This suggests DSH already recognizes that lifecycle semantics are important.</p>
+<p>The next question is whether those semantics should be exposed through a DSH-owned runtime contract, rather than through vendored Cordis APIs directly.</p>
+<hr>
+<h2 id="problem" class="heading-control">Problem<a class="heading-anchor" href="#problem" aria-hidden="true"></a></h2>
+<p>Today, a DSH plugin often directly depends on Cordis-style <code>ctx</code> APIs:</p>
+<pre><code class="ts"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: Context</span>) </span>{
+  ctx.on(...)
+  ctx.effect(...)
+  ctx.tools.register(...)
+}
+</code></pre>
+<p>This couples plugin code to Cordis-specific behavior:</p>
+<ul>
+<li>how effects are collected;</li>
+<li>how disposables are ordered;</li>
+<li>how services are looked up;</li>
+<li>how events are dispatched;</li>
+<li>how <code>inject</code> interacts with Cordis dependency resolution;</li>
+<li>how DSH vendor patches change lifecycle behavior.</li>
+</ul>
+<p>This creates several practical issues.</p>
+<h3 id="1-event-dispatch-semantics-are-easy-to-misunderstand" class="heading-control">1. Event dispatch semantics are easy to misunderstand<a class="heading-anchor" href="#1-event-dispatch-semantics-are-easy-to-misunderstand" aria-hidden="true"></a></h3>
+<p>A plugin may write:</p>
+<pre><code class="ts">ctx.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-params">session</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (banned.has(session.userId)) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+})
+</code></pre>
+<p>But if the event is dispatched with:</p>
+<pre><code class="ts">ctx.emit(<span class="hljs-string">'message'</span>, session)
+</code></pre>
+<p>the return value is ignored.</p>
+<p>The plugin does not know whether its return value will be:</p>
+<ul>
+<li>ignored;</li>
+<li>collected;</li>
+<li>used to short-circuit;</li>
+<li>used as the next argument in a waterfall.</li>
+</ul>
+<p>The decision is made at the dispatch site, not at the listener site.</p>
+<p>This is not only a documentation issue. It is a contract issue.</p>
+<h3 id="2-emit-is-both-a-convenience-api-and-a-policy" class="heading-control">2. <code>emit</code> is both a convenience API and a policy<a class="heading-anchor" href="#2-emit-is-both-a-convenience-api-and-a-policy" aria-hidden="true"></a></h3>
+<p>If the lowest-level event primitive already means “broadcast and discard return values”, then higher-level patterns such as <code>serial</code>, <code>bail</code>, and <code>waterfall</code> become hard to compose from a neutral primitive.</p>
+<p>A more composable design would keep the lowest primitive neutral:</p>
+<pre><code class="ts">dispatch(event, payload): unknown[]
+</code></pre>
+<p>and derive <code>emit</code>, <code>serial</code>, <code>bail</code>, and <code>waterfall</code> from it.</p>
+<h3 id="3-plugin-authors-must-understand-cordis-lifecycle-details" class="heading-control">3. Plugin authors must understand Cordis lifecycle details<a class="heading-anchor" href="#3-plugin-authors-must-understand-cordis-lifecycle-details" aria-hidden="true"></a></h3>
+<p>DSH has already added lifecycle hardening in the vendored Cordis code. That is valuable.</p>
+<p>But if plugin authors must understand:</p>
+<ul>
+<li>fiber states;</li>
+<li>effect ownership;</li>
+<li>disposer chains;</li>
+<li>generator effects;</li>
+<li><code>UNLOADING</code> behavior;</li>
+<li>async disposer concurrency;</li>
+</ul>
+<p>then the DSH plugin contract becomes hard to port.</p>
+<h3 id="4-vendor-drift-becomes-harder-to-reason-about" class="heading-control">4. Vendor drift becomes harder to reason about<a class="heading-anchor" href="#4-vendor-drift-becomes-harder-to-reason-about" aria-hidden="true"></a></h3>
+<p>DSH vendor Cordis and upstream Cordis are not identical.</p>
+<p>DSH vendor has local patches. Upstream also evolves independently.</p>
+<p>This is acceptable if the DSH plugin contract is stable. It becomes harder if every plugin directly depends on Cordis-specific behavior.</p>
+<hr>
+<h2 id="proposal" class="heading-control">Proposal<a class="heading-anchor" href="#proposal" aria-hidden="true"></a></h2>
+<p>Introduce a DSH runtime capability layer.</p>
+<p>Instead of making plugins depend directly on Cordis <code>Context</code>, define DSH-owned interfaces:</p>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> DSHPluginContext {
+  lifecycle: Lifecycle
+  events: EventBus
+  services: ServiceRegistry
+  tools: ToolRegistry
+  config: ConfigStore
+}
+</code></pre>
+<p>Cordis remains the default implementation:</p>
+<pre><code class="ts">createCordisContext()
+</code></pre>
+<p>But other implementations become possible:</p>
+<pre><code class="ts">createMinimalContext()
+createToolFuncContext()
+createRemoteContext()
+createTestContext()
+</code></pre>
+<p>The plugin contract becomes:</p>
+<pre><code class="ts"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: DSHPluginContext</span>) </span>{
+  ctx.lifecycle.onDispose(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close())
+  ctx.events.on(<span class="hljs-string">'message'</span>, handler)
+  ctx.tools.register(tool)
+}
+</code></pre>
+<hr>
+<h2 id="suggested-interfaces" class="heading-control">Suggested interfaces<a class="heading-anchor" href="#suggested-interfaces" aria-hidden="true"></a></h2>
+<h3 id="lifecycle" class="heading-control">Lifecycle<a class="heading-anchor" href="#lifecycle" aria-hidden="true"></a></h3>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> Lifecycle {
+  onDispose(fn: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span> | <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;): Disposable
+  begin(): <span class="hljs-built_in">void</span> | <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;
+  end(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;
+}
+</code></pre>
+<p>This can be implemented with Cordis <code>ctx.effect()</code> internally.</p>
+<h3 id="event-contract" class="heading-control">Event contract<a class="heading-anchor" href="#event-contract" aria-hidden="true"></a></h3>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> EventDescriptor {
+  name: <span class="hljs-built_in">string</span>
+  mode: <span class="hljs-string">'emit'</span> | <span class="hljs-string">'serial'</span> | <span class="hljs-string">'bail'</span> | <span class="hljs-string">'waterfall'</span> | <span class="hljs-string">'parallel'</span>
+  payloadSchema?: JSONSchema
+  resultSchema?: JSONSchema
+}
+</code></pre>
+<p>Then the event API can validate:</p>
+<ul>
+<li>whether a listener return value is meaningful;</li>
+<li>whether <code>waterfall</code> listeners handle <code>next()</code>;</li>
+<li>whether a listener returning a boolean is intended to short-circuit;</li>
+<li>whether an event is dispatched with the declared mode.</li>
+</ul>
+<p>This can be enforced through:</p>
+<ul>
+<li>TypeScript types;</li>
+<li>codegen;</li>
+<li>lint;</li>
+<li>runtime validation in tests.</li>
+</ul>
+<h3 id="tool-registry" class="heading-control">Tool registry<a class="heading-anchor" href="#tool-registry" aria-hidden="true"></a></h3>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> ToolRegistry {
+  register(tool: ToolDescriptor): Disposable
+  list(): ToolDescriptor[]
+  call(name: <span class="hljs-built_in">string</span>, args: unknown): <span class="hljs-built_in">Promise</span>&lt;unknown&gt;
+}
+</code></pre>
+<p>This allows local tools, MCP tools, RPC tools, and test tools to share one contract.</p>
+<h3 id="service-registry" class="heading-control">Service registry<a class="heading-anchor" href="#service-registry" aria-hidden="true"></a></h3>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> ServiceRegistry {
+  <span class="hljs-keyword">get</span>&lt;T&gt;(name: <span class="hljs-built_in">string</span>): T | <span class="hljs-literal">undefined</span>
+  <span class="hljs-keyword">set</span>&lt;T&gt;(name: <span class="hljs-built_in">string</span>, value: T): Disposable
+  isolate(name: <span class="hljs-built_in">string</span>, label?: <span class="hljs-built_in">string</span>): ServiceRegistry
+}
+</code></pre>
+<p>Cordis can implement this, but a simpler implementation can also exist.</p>
+<h3 id="transport" class="heading-control">Transport<a class="heading-anchor" href="#transport" aria-hidden="true"></a></h3>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> Transport {
+  call(name: <span class="hljs-built_in">string</span>, args: unknown): <span class="hljs-built_in">Promise</span>&lt;unknown&gt;
+  subscribe(event: <span class="hljs-built_in">string</span>, handler: <span class="hljs-function">(<span class="hljs-params">payload: unknown</span>) =&gt;</span> <span class="hljs-built_in">void</span>): Disposable
+}
+</code></pre>
+<p>This opens the door to remote services, remote tools, and remote events.</p>
+<hr>
+<h2 id="why-this-helps-dsh" class="heading-control">Why this helps DSH<a class="heading-anchor" href="#why-this-helps-dsh" aria-hidden="true"></a></h2>
+<h3 id="1-it-makes-the-harness-more-auditable" class="heading-control">1. It makes the harness more auditable<a class="heading-anchor" href="#1-it-makes-the-harness-more-auditable" aria-hidden="true"></a></h3>
+<p>DSH can define its own stable contract instead of inheriting every Cordis detail.</p>
+<h3 id="2-it-reduces-vendor-drift-risk" class="heading-control">2. It reduces vendor drift risk<a class="heading-anchor" href="#2-it-reduces-vendor-drift-risk" aria-hidden="true"></a></h3>
+<p>If DSH vendor Cordis changes, plugin authors only need to care about DSH runtime behavior, not Cordis internals.</p>
+<h3 id="3-it-makes-plugins-more-portable" class="heading-control">3. It makes plugins more portable<a class="heading-anchor" href="#3-it-makes-plugins-more-portable" aria-hidden="true"></a></h3>
+<p>A plugin written against DSH runtime interfaces can run on:</p>
+<ul>
+<li>Cordis;</li>
+<li>a minimal runtime;</li>
+<li>a tool-func-like runtime;</li>
+<li>a test runtime;</li>
+<li>a remote runtime.</li>
+</ul>
+<h3 id="4-it-makes-third-party-ecosystems-easier-to-connect" class="heading-control">4. It makes third-party ecosystems easier to connect<a class="heading-anchor" href="#4-it-makes-third-party-ecosystems-easier-to-connect" aria-hidden="true"></a></h3>
+<p>Libraries like:</p>
+<ul>
+<li><code>tool-func</code></li>
+<li><code>tool-rpc</code></li>
+<li><code>tool-event</code></li>
+<li><code>events-ex</code></li>
+<li>MCP clients</li>
+<li>OpenAPI clients</li>
+</ul>
+<p>can become adapters instead of competing frameworks.</p>
+<h3 id="5-it-improves-event-semantics" class="heading-control">5. It improves event semantics<a class="heading-anchor" href="#5-it-improves-event-semantics" aria-hidden="true"></a></h3>
+<p>If event mode is part of the contract, plugins can understand whether their return value will be used.</p>
+<hr>
+<h2 id="minimal-implementation-path" class="heading-control">Minimal implementation path<a class="heading-anchor" href="#minimal-implementation-path" aria-hidden="true"></a></h2>
+<p>This does not require replacing Cordis.</p>
+<p>A safe path:</p>
+<ol>
+<li>Keep vendored Cordis as the default runtime.</li>
+<li>Add DSH runtime interfaces.</li>
+<li>Implement those interfaces with Cordis internally.</li>
+<li>Add a new plugin API that uses DSH interfaces.</li>
+<li>Keep the old Cordis-style API as compatibility.</li>
+<li>Add tests that verify Cordis adapter and minimal adapter behave equivalently.</li>
+<li>Add an example with <code>tool-func</code> / <code>tool-rpc</code> / <code>tool-event</code>.</li>
+</ol>
+<hr>
+<h2 id="open-questions" class="heading-control">Open questions<a class="heading-anchor" href="#open-questions" aria-hidden="true"></a></h2>
+<ol>
+<li>Should DSH event mode become part of the type contract?</li>
+<li>Should <code>emit</code> remain the default primitive, or should a neutral <code>dispatch</code> primitive be introduced?</li>
+<li>Should plugin authors be encouraged to use <code>ctx.lifecycle</code>, <code>ctx.events</code>, <code>ctx.tools</code> instead of raw Cordis <code>ctx.effect</code>?</li>
+<li>Should DSH define a <code>ServiceRegistry</code> interface separate from Cordis service lookup?</li>
+<li>Should DSH support non-Cordis runtimes officially, or only through unofficial adapters?</li>
+<li>How much of the existing Cordis-style <code>ctx</code> API should remain as compatibility?</li>
+</ol>
+<hr>
+<h2 id="example-plugin-contract-without-direct-cordis-dependency" class="heading-control">Example: plugin contract without direct Cordis dependency<a class="heading-anchor" href="#example-plugin-contract-without-direct-cordis-dependency" aria-hidden="true"></a></h2>
+<pre><code class="ts"><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { DSHPluginContext } <span class="hljs-keyword">from</span> <span class="hljs-string">'@deepseek-ai/dsh-runtime'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> name = <span class="hljs-string">'weather'</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> inject = [<span class="hljs-string">'tools'</span>, <span class="hljs-string">'events'</span>]
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: DSHPluginContext</span>) </span>{
+  <span class="hljs-keyword">const</span> pool = openPool()
+
+  ctx.lifecycle.onDispose(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close())
+
+  ctx.events.on(<span class="hljs-string">'message'</span>, <span class="hljs-keyword">async</span> session =&gt; {
+    <span class="hljs-keyword">if</span> (banned.has(session.userId)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    }
+  }, {
+    event: <span class="hljs-string">'message'</span>,
+    mode: <span class="hljs-string">'bail'</span>
+  })
+
+  ctx.tools.register({
+    name: <span class="hljs-string">'get_weather'</span>,
+    description: <span class="hljs-string">'Query city weather'</span>,
+    parameters: {
+      city: {
+        <span class="hljs-keyword">type</span>: <span class="hljs-string">'string'</span>,
+        required: <span class="hljs-literal">true</span>
+      }
+    },
+    <span class="hljs-keyword">async</span> execute({ city }) {
+      <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`https://api.weather.com/<span class="hljs-subst">${city}</span>`</span>)
+      <span class="hljs-keyword">return</span> res.json()
+    }
+  })
+}
+</code></pre>
+<p>The plugin does not need to know whether the underlying runtime is Cordis, tool-func, or a test harness.</p>
+<hr>
+<h1 id="8-ru-guo-ni-xiang-geng-duan-yi-dian-ke-yi-fa-zhe-ge-ban-ben" class="heading-control">8. 如果你想更短一点，可以发这个版本<a class="heading-anchor" href="#8-ru-guo-ni-xiang-geng-duan-yi-dian-ke-yi-fa-zhe-ge-ban-ben" aria-hidden="true"></a></h1>
+<p>GitHub 讨论区有时候短一点更好。</p>
+<hr>
+<h2 id="title" class="heading-control">Title<a class="heading-anchor" href="#title" aria-hidden="true"></a></h2>
+<p><strong>Proposal: Separate DSH plugin contract from vendored Cordis APIs</strong></p>
+<h2 id="body" class="heading-control">Body<a class="heading-anchor" href="#body" aria-hidden="true"></a></h2>
+<p>DSH vendoring Cordis makes sense: it gives the harness a pinned, auditable, patchable runtime layer.</p>
+<p>But if DSH wants more third-party runtimes and tool ecosystems to adopt it, the plugin contract should not be Cordis-specific.</p>
+<p>I’d like to discuss whether DSH should introduce a runtime capability layer:</p>
+<pre><code class="ts"><span class="hljs-keyword">interface</span> DSHPluginContext {
+  lifecycle: Lifecycle
+  events: EventBus
+  services: ServiceRegistry
+  tools: ToolRegistry
+  config: ConfigStore
+}
+</code></pre>
+<p>Cordis can remain the default implementation.</p>
+<p>The benefit is that plugins become easier to test, easier to port, and easier to connect to other ecosystems such as:</p>
+<ul>
+<li><code>tool-func</code></li>
+<li><code>tool-rpc</code></li>
+<li><code>tool-event</code></li>
+<li>MCP</li>
+<li>OpenAPI/RPC transports</li>
+<li>minimal test runtimes</li>
+</ul>
+<p>A concrete concern: event dispatch mode affects whether a listener return value is used. A listener returning <code>true</code> may be ignored if the event is dispatched with <code>emit</code>. This should ideally be part of the event contract, not only documentation.</p>
+<p>I’m not suggesting replacing Cordis. I’m suggesting making Cordis one implementation behind a DSH-owned runtime contract.</p>
+<p>Would this align with DSH’s long-term direction?</p>
+<hr>
+<h1 id="9-ni-ke-yi-ba-bo-ke-li-de-na-xie-nei-rong-zhuan-cheng-dsh-yi-ti" class="heading-control">9. 你可以把博客里的哪些内容转成 DSH 议题<a class="heading-anchor" href="#9-ni-ke-yi-ba-bo-ke-li-de-na-xie-nei-rong-zhuan-cheng-dsh-yi-ti" aria-hidden="true"></a></h1>
+<p>下面是映射关系。</p>
+<table>
+<thead>
+<tr>
+<th>博客内容</th>
+<th>DSH 社区可转成什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cordis 核心是一个 effect 栈</td>
+<td>建议 DSH 定义稳定 lifecycle interface</td>
+</tr>
+<tr>
+<td><code>effect(execute)</code> 单回调容易误解</td>
+<td>建议 DSH 提供 <code>manage/setup/dispose</code> 高层 API</td>
+</tr>
+<tr>
+<td>异步清理半卸载窗口</td>
+<td>建议 DSH 定义 disposer completion contract</td>
+</tr>
+<tr>
+<td>UNLOADING 拒绝新建 effect</td>
+<td>建议 DSH 把该语义写入 runtime contract</td>
+</tr>
+<tr>
+<td><code>emit</code> 丢弃返回值</td>
+<td>建议事件模式进入类型契约</td>
+</tr>
+<tr>
+<td><code>serial</code> / <code>bail</code> 只差 await</td>
+<td>建议事件模式由 descriptor 声明，而不是方法名硬编码</td>
+</tr>
+<tr>
+<td><code>waterfall</code> 要自己 <code>await next()</code></td>
+<td>建议类型或 lint 检查 waterfall listener</td>
+</tr>
+<tr>
+<td>DSH vendor 和上游不等价</td>
+<td>建议 DSH 明确 runtime compatibility matrix</td>
+</tr>
+<tr>
+<td>没有远程方案</td>
+<td>建议引入 transport interface</td>
+</tr>
+<tr>
+<td>工具描述重复</td>
+<td>建议 DSH tool descriptor 与 MCP/OpenAPI/JSON Schema 对齐</td>
+</tr>
+<tr>
+<td>插件入口结构是成本</td>
+<td>建议 DSH 提供 minimal plugin contract</td>
+</tr>
+<tr>
+<td>单进程故障域</td>
+<td>建议 DSH 支持远程 service/tool/event adapter</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="10-zai-dsh-she-qu-li-bu-yao-ba-zhong-dian-fang-zai-cordis-de-keng" class="heading-control">10. 在 DSH 社区里，不要把重点放在“Cordis 的坑”<a class="heading-anchor" href="#10-zai-dsh-she-qu-li-bu-yao-ba-zhong-dian-fang-zai-cordis-de-keng" aria-hidden="true"></a></h1>
+<p>虽然你博客标题叫“Cordis 的坑与账”，但 DSH 社区帖最好不要这样开头：</p>
+<blockquote>
+<p>Cordis 有几个坑。</p>
+</blockquote>
+<p>因为 DSH 已经选择并 vendor 了 Cordis。这样容易被理解为：</p>
+<blockquote>
+<p>你是在批评 DSH 的技术选型。</p>
+</blockquote>
+<p>更好的开头是：</p>
+<blockquote>
+<p>DSH 选择 vendored Cordis 是合理的。但如果 DSH 想让插件契约长期稳定，建议把 Cordis 从“唯一内核”变成“默认 adapter”。</p>
+</blockquote>
+<p>这样你的批评对象不是 Cordis，也不是 DSH 选型，而是：</p>
+<blockquote>
+<p>当前分层边界还不够清晰。</p>
+</blockquote>
+<p>这更容易进入建设性讨论。</p>
+<hr>
+<h1 id="11-guan-yu-lei-si-toolfunc-de-jia-gou-ni-ke-yi-zhe-yang-biao-da" class="heading-control">11. 关于“类似 tool-func 的架构”，你可以这样表达<a class="heading-anchor" href="#11-guan-yu-lei-si-toolfunc-de-jia-gou-ni-ke-yi-zhe-yang-biao-da" aria-hidden="true"></a></h1>
+<p>不要直接说：</p>
+<blockquote>
+<p>建议 DSH 改用 tool-func。</p>
+</blockquote>
+<p>这会让官方觉得你在推荐另一个库。</p>
+<p>更好的说法是：</p>
+<blockquote>
+<p>tool-func 系列的分层方式值得参考：每一层是下一层加限制，而不是把多种用法并列成多种 API。<br>
+DSH 可以借鉴这种收窄式分层，把插件身份、工具 schema、生命周期、事件、服务、传输拆成不同层。</p>
+</blockquote>
+<p>然后给一个对照表：</p>
+<table>
+<thead>
+<tr>
+<th>tool-func 系列</th>
+<th>DSH 可对应能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ToolFunc</td>
+<td>工具/函数注册表</td>
+</tr>
+<tr>
+<td>ServerTools</td>
+<td>可远程调用的工具</td>
+</tr>
+<tr>
+<td>RpcMethodsServerTool</td>
+<td>一组相关方法</td>
+</tr>
+<tr>
+<td>ResServerTools</td>
+<td>REST 风格资源</td>
+</tr>
+<tr>
+<td>tool-event</td>
+<td>事件作为工具</td>
+</tr>
+<tr>
+<td>transport</td>
+<td>本地/远程/SSE/WebSocket 传输</td>
+</tr>
+</tbody>
+</table>
+<p>然后说：</p>
+<blockquote>
+<p>DSH 不需要使用这些库，但可以借鉴这种“每层是下层特例、选择发生在声明处、可绕过”的结构。</p>
+</blockquote>
+<p>这样更稳。</p>
+<hr>
+<h1 id="12-ni-ke-neng-yu-dao-de-fan-bo-yi-ji-zen-mo-hui-ying" class="heading-control">12. 你可能遇到的反驳，以及怎么回应<a class="heading-anchor" href="#12-ni-ke-neng-yu-dao-de-fan-bo-yi-ji-zen-mo-hui-ying" aria-hidden="true"></a></h1>
+<h2 id="fan-bo-yi-dsh-yi-jing-vendor-cordis-suo-yi-bu-xu-yao-fen-ceng" class="heading-control">反驳一：DSH 已经 vendor Cordis，所以不需要分层<a class="heading-anchor" href="#fan-bo-yi-dsh-yi-jing-vendor-cordis-suo-yi-bu-xu-yao-fen-ceng" aria-hidden="true"></a></h2>
+<p>回应：</p>
+<blockquote>
+<p>Vendor 解决的是版本和可审计问题。分层解决的是插件契约稳定性、可测试性、可替换性。两者不冲突。</p>
+</blockquote>
+<h2 id="fan-bo-er-cordis-yi-jing-shi-dsh-de-he-xin-chou-xiang-hui-po-huai-yi-zhi-xing" class="heading-control">反驳二：Cordis 已经是 DSH 的核心，抽象会破坏一致性<a class="heading-anchor" href="#fan-bo-er-cordis-yi-jing-shi-dsh-de-he-xin-chou-xiang-hui-po-huai-yi-zhi-xing" aria-hidden="true"></a></h2>
+<p>回应：</p>
+<blockquote>
+<p>抽象不是为了破坏一致性，而是为了让一致性有明确边界。当前 <code>ctx</code> 同时承载太多语义，插件作者很难知道哪些是 DSH 契约，哪些是 Cordis 细节。</p>
+</blockquote>
+<h2 id="fan-bo-san-shi-jian-mo-shi-yi-jing-you-wen-dang-mode" class="heading-control">反驳三：事件模式已经有文档/<code>@mode</code><a class="heading-anchor" href="#fan-bo-san-shi-jian-mo-shi-yi-jing-you-wen-dang-mode" aria-hidden="true"></a></h2>
+<p>回应：</p>
+<blockquote>
+<p>文档和 <code>@mode</code> 有帮助，但如果它没有进入类型或 lint，插件作者仍然可能误解。对拦截语义这种高风险行为，类型层约束会更可靠。</p>
+</blockquote>
+<h2 id="fan-bo-si-xian-zai-zhong-xie-cha-jian-qi-yue-cheng-ben-tai-da" class="heading-control">反驳四：现在重写插件契约成本太大<a class="heading-anchor" href="#fan-bo-si-xian-zai-zhong-xie-cha-jian-qi-yue-cheng-ben-tai-da" aria-hidden="true"></a></h2>
+<p>回应：</p>
+<blockquote>
+<p>不需要重写。可以先加 DSH runtime interface，再让 Cordis adapter 实现它。旧 API 保留兼容。</p>
+</blockquote>
+<h2 id="fan-bo-wu-di-san-fang-runtime-jie-ru-bu-shi-dsh-de-mu-biao" class="heading-control">反驳五：第三方 runtime 接入不是 DSH 的目标<a class="heading-anchor" href="#fan-bo-wu-di-san-fang-runtime-jie-ru-bu-shi-dsh-de-mu-biao" aria-hidden="true"></a></h2>
+<p>回应：</p>
+<blockquote>
+<p>如果 DSH 的目标只是内部 harness，那当前结构可以。如果 DSH 希望成为更通用的 agent runtime / plugin harness，第三方接入能力会很重要。</p>
+</blockquote>
+<hr>
+<h1 id="13-wo-jian-yi-ni-zui-zhong-fa-dao-dsh-de-tie-zi-jie-gou" class="heading-control">13. 我建议你最终发到 DSH 的帖子结构<a class="heading-anchor" href="#13-wo-jian-yi-ni-zui-zhong-fa-dao-dsh-de-tie-zi-jie-gou" aria-hidden="true"></a></h1>
+<p>建议用这个结构：</p>
+<pre><code class="md"><span class="hljs-section">## TL;DR</span>
+
+DSH 应该把 vendored Cordis 从“唯一插件内核”降级为“默认 runtime adapter”。
+插件契约应该由 DSH 自己定义：lifecycle / events / services / tools / config / transport。
+
+<span class="hljs-section">## Why</span>
+<span class="hljs-bullet">
+- </span>DSH vendor Cordis 的动机合理：可审计、可补丁、版本固定。
+<span class="hljs-bullet">- </span>但插件直接依赖 Cordis <span class="hljs-code">`ctx`</span> 细节，会导致契约不清。
+<span class="hljs-bullet">- </span>事件模式、生命周期、服务查找、工具注册、远程传输混在一起。
+<span class="hljs-bullet">- </span>DSH vendor 和上游 Cordis 行为不等价，插件作者需要知道更多边界。
+
+<span class="hljs-section">## Proposal</span>
+
+Define DSH runtime capability layer.
+
+<span class="hljs-code">```ts
+interface DSHPluginContext {
+  lifecycle: Lifecycle
+  events: EventBus
+  services: ServiceRegistry
+  tools: ToolRegistry
+  config: ConfigStore
+}
+</span></code></pre>
+<p>Cordis remains default implementation.</p>
+<h2 id="concrete-concerns" class="heading-control">Concrete concerns<a class="heading-anchor" href="#concrete-concerns" aria-hidden="true"></a></h2>
+<ol>
+<li>Event dispatch mode should be part of contract.</li>
+<li><code>emit</code> should not be the only neutral primitive.</li>
+<li>Lifecycle should expose <code>onDispose/manage</code>, not force plugin authors to understand Cordis fiber details.</li>
+<li>Tool registry should align with MCP/OpenAPI/JSON Schema.</li>
+<li>Transport should allow local/remote service and event adapters.</li>
+</ol>
+<h2 id="minimal-path" class="heading-control">Minimal path<a class="heading-anchor" href="#minimal-path" aria-hidden="true"></a></h2>
+<ol>
+<li>Add interfaces.</li>
+<li>Implement Cordis adapter.</li>
+<li>Keep old API compatible.</li>
+<li>Add test runtime.</li>
+<li>Add example adapter for tool-func/tool-rpc/tool-event.</li>
+</ol>
+<h2 id="open-questions" class="heading-control">Open questions<a class="heading-anchor" href="#open-questions" aria-hidden="true"></a></h2>
+<ul>
+<li>Should event mode be typed?</li>
+<li>Should <code>emit</code> remain default?</li>
+<li>Should DSH officially support non-Cordis runtimes?</li>
+<li>How much compatibility should remain?</li>
+</ul>
+<pre><code>
+这个版本比博客原稿更适合 DSH。
+
+---
+
+# 14. 你这篇博客和 DSH 帖的关系
+
+可以这样处理：
+
+- 博客保留完整版：Cordis 机制、论文、坑、账、tool-func 对照。
+- DSH 帖只发建议版：分层、契约、可替换、事件模式、生命周期。
+- 在 DSH 帖末尾放一句：
+
+&gt; I wrote a longer analysis on my blog, but for DSH the actionable proposal is the runtime capability layer.
+
+或者中文：
+
+&gt; 更完整的分析见博客，但发到 DSH 社区的核心建议是：把 Cordis 变成 adapter，而不是插件契约本身。
+
+这样两边都成立。
+
+---
+
+# 15. 最终建议：你在 DSH 社区要讨论的不是“Cordis 坑”，而是“DSH 的边界应该画在哪里”
+
+你可以把整件事压缩成一句话：
+
+&gt; **DSH 需要决定：Cordis 是 DSH 的运行时内核，还是 DSH 的一个 runtime adapter？**
+
+如果它是内核，插件作者就必须理解 Cordis 细节，DSH 生态会被 vendored Cordis 行为绑定。
+
+如果它是 adapter，DSH 就可以定义自己的插件契约，让更多 runtime、工具库、事件库、RPC 库接入。
+
+你真正想提的建议就是：
+
+&gt; **DSH 应该成为插件契约的所有者，Cordis 只是默认实现。**
+
+这比“希望底层合理分层，让更多人都能用”更准确，也更容易在 DSH 社区形成讨论。
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>逃离STL方言，又入WIT迷宫：C++与WASM互操作的另一面</title>
     <url>/article/wasm.wsi/</url>
     <content><![CDATA[<h1 id="tao-li-stl-fang-yan-you-ru-wit-mi-gongcyu-wasm-hu-cao-zuo-de-ling-yi-mian" class="heading-control">逃离STL方言，又入WIT迷宫：C++与WASM互操作的另一面<a class="heading-anchor" href="#tao-li-stl-fang-yan-you-ru-wit-mi-gongcyu-wasm-hu-cao-zuo-de-ling-yi-mian" aria-hidden="true"></a></h1>
