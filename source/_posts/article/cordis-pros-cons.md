@@ -3,7 +3,7 @@ author: riceball
 id: ku3j619yd215nv6lcalfvr3
 title: Cordis 的坑与账
 desc: 一个栈、几个造出来的词、两种加东西的加法，以及用它的长期账单
-date: 2026-10-17 19:20:07+08:00
+date: 2026-10-06 15:44:07+08:00
 updated: 1791429073218
 created: 1791272696443
 ---
