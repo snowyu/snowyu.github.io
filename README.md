@@ -2,6 +2,7 @@
 
 见 [dev.md](dev.md)：Node 22（`engines.node >= 20.19`）、Hexo 8.1.2、NexT 7.8.0，
 `npm install` → `npm test` → `npm run server` → `./deploy.sh`。
+待办见 [TODO.md](TODO.md)。
 
 ## Interactive Markdown Supports
 

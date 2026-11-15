@@ -39,6 +39,9 @@
   `post-sitemap.xml` 等子 sitemap 和 `sitemap.xsl`。
 - **Markdown 渲染由 `hexo-next-imarkdown` 提供**（它注册 renderer；Hexo 5+ 自带渲染器
   不含 Markdown），删掉它会导致全站空白。
+- **`source/_data/next.yml`（910 行）实测不生效**：NexT 在 `generateBefore` 合并主题
+  配置，那时 Hexo 还没处理 `source/_data`，所以走的是 `_config.yml` 的 `theme_config:`
+  分支。改 next.yml 不会有任何效果，见 `TODO.md` 第 5 节（含探针证据）。
 - `package.json` 必须保留 `"hexo": {"version": "x.y.z"}` 对象：hexo-cli 靠它识别站点
   目录，缺了就只打印 usage 且不报错。
 
