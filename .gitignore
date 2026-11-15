@@ -5,3 +5,5 @@ db.json
 node_modules/
 public/
 .deploy*/
+# 上游 npm 包的本地参考副本（npm 有发布，不入库）
+/packages/hexo-next-imarkdown/
