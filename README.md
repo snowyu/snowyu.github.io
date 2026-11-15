@@ -1,3 +1,8 @@
+## 构建 / Build
+
+见 [dev.md](dev.md)：Node 22（`engines.node >= 18`）、`npm install`、`npm test`、
+`npm run server`、`./deploy.sh`。
+
 ## Interactive Markdown Supports
 
 required:
