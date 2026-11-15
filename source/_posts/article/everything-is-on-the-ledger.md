@@ -2,13 +2,25 @@
 author: riceball
 date: 2026-11-15 17:00:00+08:00
 title: 一切皆入账 —— 对等协作的身份、声誉与分配原理
-category :
+category:
   - Thinking
-  - Cloud Computing
+  - Internet & Society
+  - P2P
+  - Collaboration Systems
 tags:
-  - cloud computing
-  - diy
-  - zfs
+  - Peer Production
+  - Commons
+  - Reputation
+  - Digital Identity
+  - Mechanism Design
+  - Web3
+  - Open Source
+  - Fork
+  - Sybil Attack
+  - Proof of Personhood
+  - Transaction Costs
+  - Ostrom
+  - Coase
 ---
 
 # 一切皆入账 —— 对等协作的身份、声誉与分配原理
@@ -249,5 +261,3 @@ tags:
 | 人格证明与声誉可转让性之辩 | Vitalik Buterin（Soulbound / 二次方资助） |
 | 黑市价格作为分配诊断信号 | 经济学中的黑市汇率分析法 |
 从现象到机制，从机制到条件，从条件到结构，从结构到声誉，从声誉到身份，从身份到分配——这条链就是大规模协作原理的完整展开。本文连同它引用的一切案例，接受它自己提出的那套检验标准：**入账，可验证，随时可被更好的版本所分叉。**
-
-
