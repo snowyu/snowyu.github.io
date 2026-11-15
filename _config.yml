@@ -101,6 +101,8 @@ search:
 
 sitemap:
     path: sitemap.xml
+    tags: true
+    categories: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
