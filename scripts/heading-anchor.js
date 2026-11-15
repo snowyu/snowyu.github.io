@@ -59,7 +59,12 @@ hexo.extend.filter.register('after_post_render', data => {
   return data;
 });
 
+// NOTE: the stylesheet deliberately lives in styles/, not next to this file.
+// Hexo's script loader walks `scripts/` recursively and evals every file it
+// finds as JavaScript (hexo/dist/hexo/load_plugins.js -> loadScripts calls
+// ctx.loadPlugin() on each entry, no extension filter), so a .styl sitting in
+// scripts/ dies with "SyntaxError: Unexpected token '.'".
 hexo.extend.filter.register('theme_inject', injects => {
   if (!anchorConfig().enable) return;
-  injects.style.push(path.join(__dirname, 'heading-anchor.styl'));
+  injects.style.push(path.join(__dirname, '..', 'styles', 'heading-anchor.styl'));
 });

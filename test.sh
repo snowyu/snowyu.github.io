@@ -23,7 +23,17 @@ hexo_ver=$(node -p "require('./package.json').hexo.version")
 
 npx hexo version 2>/dev/null | grep -q "^hexo: $hexo_ver$" || fail "installed hexo does not match package.json (expected $hexo_ver)"
 npx hexo clean
-npx hexo generate
+build_log=$(mktemp)
+trap 'rm -f "$build_log"' EXIT
+npx hexo generate 2>&1 | tee "$build_log" || fail "hexo generate exited non-zero"
+
+# Hexo's script loader (hexo/dist/hexo/load_plugins.js -> loadScripts) walks
+# `scripts/` recursively and evals EVERY file as JS -- no extension filter.
+# Any non-JS asset parked in scripts/ therefore logs "Script load failed".
+if grep -q 'load failed' "$build_log"; then
+  fail "hexo reported load failure(s): $(grep 'load failed' "$build_log" | tr '\n' ' | ')"
+fi
+echo "  ok  no script/plugin load failures"
 
 count=$(find public -type f | wc -l | tr -d ' ')
 [ "$count" -ge 300 ] || fail "expected >= 300 generated files, got $count"
@@ -60,8 +70,9 @@ post=$(find public/article -name index.html | head -1)
 grep -q '</article>' "$post" || fail "article page $post has no rendered <article> body"
 echo "  ok  $post  $(wc -c < "$post") bytes"
 
-# Heading anchors: scripts/heading-anchor.js replaces the unpublished
-# hexo-theme-next-anchor npm package.
+# Heading anchors: scripts/heading-anchor.js + styles/heading-anchor.styl
+# replace the unpublished hexo-theme-next-anchor npm package. The .styl lives
+# outside scripts/ on purpose (see the load-failure check above).
 grep -q 'class="heading-anchor"' "$post" || fail "no heading anchors in $post (check next.yml anchor.enable)"
 grep -q 'heading-anchor' public/css/main.css || fail ".heading-anchor rules missing from public/css/main.css"
 echo "  ok  heading anchors  $(grep -o 'class="heading-anchor"' "$post" | wc -l) link(s), styled in main.css"

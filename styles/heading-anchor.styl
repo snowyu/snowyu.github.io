@@ -1,6 +1,7 @@
 // Vendored from https://github.com/theme-next/hexo-theme-next-anchor (unpublished
 // from npm on 2022-09-13). Injected by scripts/heading-anchor.js via NexT's
 // `theme_inject` style point; reads the `anchor:` block of source/_data/next.yml.
+// Must stay out of scripts/: Hexo evals every file under scripts/ as JavaScript.
 icon_enable = hexo-config('anchor.icon.enable');
 anchor_position = hexo-config('anchor.position');
 margin = unquote(hexo-config('anchor.margin'));

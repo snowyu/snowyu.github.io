@@ -10,6 +10,7 @@
   4. 文章页里有标题锚点（`.heading-anchor`），且 `css/main.css` 里有对应样式
   5. 主题版本 = `THEME_VERSION`（默认 7.8.0）
   6. 安装的 Hexo 与 `package.json` 里 `hexo.version` 一致
+  7. generate 输出里没有 `load failed`（脚本/插件加载失败）
 - 本地预览: `npm run server`
 - 部署: `./deploy.sh`（= `npm run build && npm run deploy`，hexo-deployer-git 推到 master）
 
@@ -29,8 +30,14 @@
 - `hexo-theme-next-anchor@1.0.3` 已于 2022-09-13 从 npm 下架（`ENOVERSIONS`），
   而且 Hexo 7+ 的插件加载器直接跳过 `hexo-theme-*` 包名 —— 站点 `_config.yml` 里的
   `theme_config.anchor.enable: true` 其实一直是死的。现已由
-  `scripts/heading-anchor.js` + `scripts/heading-anchor.styl` 取代（不依赖 cheerio，
+  `scripts/heading-anchor.js` + `styles/heading-anchor.styl` 取代（不依赖 cheerio，
   用正则处理 `<hN id=...>`）。
+- **`scripts/` 里只能放 JS**：Hexo 的脚本加载器（`hexo/dist/hexo/load_plugins.js`
+  的 `loadScripts`）递归遍历 `scripts/`，对**每个**文件调 `ctx.loadPlugin()`
+  当 JS 执行（不看扩展名）。曾经把 `heading-anchor.styl` 放在 `scripts/` 里，
+  `hexo server/g` 会报 `ERROR Script load failed: scripts/heading-anchor.styl`
+  （`SyntaxError: Unexpected token '.'`）。样式已移到 `styles/`，`test.sh` 加了
+  「generate 输出里不得出现 `load failed`」的断言防回退。
 - `hexo-inject`（已停止维护）已移除：注入点是 NexT 自带的
   （`themes/next/scripts/events/lib/injects.js` + `source/_data/*.swig`）。
 - `hexo-generator-seo-friendly-sitemap`（0.0.25/0.2.1）会带进硬 pin 的
