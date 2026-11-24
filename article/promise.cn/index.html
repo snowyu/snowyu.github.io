@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,49 +15,23 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="Promise Promise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises. 简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。  promise只有三种状态，未完">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异步编程与 Promise">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;promise.cn&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/promise.cn/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Promise Promise是简化异步编程的重要概念。这篇文章介绍得不错：Simplifying Async with Promises. 简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。  promise只有三种状态，未完">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2015-12-06T00:44:06.000Z">
 <meta property="article:modified_time" content="2016-03-21T20:00:14.000Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="programming">
 <meta property="article:tag" content="asynchronous">
+<meta property="article:tag" content="programming">
 <meta property="article:tag" content="promise">
 <meta name="twitter:card" content="summary">
 
@@ -68,14 +42,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -131,28 +106,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -160,15 +122,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -179,11 +163,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -201,29 +180,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -242,14 +226,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/promise.cn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,9 +245,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           异步编程与 Promise
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -288,21 +271,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Learning</span>
-                  </a>
+                  <a href="/categories/Learning/" itemprop="url" rel="index"><span itemprop="name">Learning</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Learning/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
+                  <a href="/categories/Learning/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Learning/Programming/Asynchronous/" itemprop="url" rel="index">
-                    <span itemprop="name">Asynchronous</span>
-                  </a>
+                  <a href="/categories/Learning/Programming/Asynchronous/" itemprop="url" rel="index"><span itemprop="name">Asynchronous</span></a>
                 </span>
             </span>
 
@@ -311,7 +288,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -319,7 +296,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>3.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -339,7 +316,7 @@
 
       
         <h1 id="promise" class="heading-control">Promise<a class="heading-anchor" href="#promise" aria-hidden="true"></a></h1>
-<p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises" target="_blank" rel="noopener">Simplifying Async with Promises</a>.</p>
+<p>Promise是简化异步编程的重要概念。这篇文章介绍得不错：<a href="http://know.cujojs.com/tutorials/async/simplifying-async-with-promises">Simplifying Async with Promises</a>.</p>
 <p>简单的说，Promise（又名 Future, Delayed value, Deferred value）代表一个尚不可用的值。因为产生这个值的计算过程尚未完成。一个 Promise 是最终的成功结果或失败原因的占位符。</p>
 <ul>
 <li>promise只有三种状态，未完成，完成(fulfilled)和失败(rejected)。</li>
@@ -352,139 +329,39 @@
 <ul>
 <li>对应promise的两种状态fulfilled, rejected的回调函数。回调函数的传递参数分别是resolve(value),reject(value) 函数。</li>
 </ul>
-<pre><code class="js">.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>)</span>{
-        <span class="hljs-comment">//当promise状态变成fulfilled时，调用此函数</span>
-    },<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reject</span>)</span>{
-        <span class="hljs-comment">//当promise状态变成rejected时，调用此函数</span>
-    });
-</code></pre>
-<pre><code class="coffee">.<span class="hljs-keyword">then</span> (<span class="hljs-function"><span class="hljs-params">(resolve)</span>-&gt;</span>), <span class="hljs-function">(<span class="hljs-params">(reject)</span>-&gt;</span>))
-</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">resolve</span>)&#123;</span><br><span class="line">        <span class="comment">//当promise状态变成fulfilled时，调用此函数</span></span><br><span class="line">    &#125;,<span class="keyword">function</span>(<span class="params">reject</span>)&#123;</span><br><span class="line">        <span class="comment">//当promise状态变成rejected时，调用此函数</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.<span class="keyword">then</span> (<span class="function"><span class="params">(resolve)</span>-&gt;</span>), <span class="function">(<span class="params">(reject)</span>-&gt;</span>))</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<p>Promise API 标准存在多个提案，目前看来，<a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+</a> 已经正在成为事实上的标准。</p>
-<p>Bluebird 号称速度是所有 Promise 库里最快的 <a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+</a> 实现，里面做了许多的扩展。 想知道内部实现，可以阅读这个<a href="https://github.com/ysmood/yaku" target="_blank" rel="noopener">yaku</a>简单的实现（coffee-script)。</p>
+<p>Promise API 标准存在多个提案，目前看来，<a href="https://promisesaplus.com/">Promises/A+</a> 已经正在成为事实上的标准。</p>
+<p>Bluebird 号称速度是所有 Promise 库里最快的 <a href="https://promisesaplus.com/">Promises/A+</a> 实现，里面做了许多的扩展。 想知道内部实现，可以阅读这个<a href="https://github.com/ysmood/yaku">yaku</a>简单的实现（coffee-script)。</p>
 <h3 id="promise-any-and-promise-some" class="heading-control">Promise.any and Promise.some<a class="heading-anchor" href="#promise-any-and-promise-some" aria-hidden="true"></a></h3>
-<p>并行的 <a href="http://bluebirdjs.com/docs/api/promise.any.html" target="_blank" rel="noopener">Promise.any</a> 和 <a href="http://bluebirdjs.com/docs/api/promise.some.html" target="_blank" rel="noopener">Promise.some</a></p>
+<p>并行的 <a href="http://bluebirdjs.com/docs/api/promise.any.html">Promise.any</a> 和 <a href="http://bluebirdjs.com/docs/api/promise.some.html">Promise.some</a></p>
 <ul>
 <li><code>some</code>是其中一些promise成功返回，可以指定个数。返回结果为一个数组.</li>
 <li><code>any</code> 是任意一个promise成功返回，是some个数固定为1的结果，另外它的返回结果是一个单值，不是数组。</li>
 </ul>
 <p>注意：它们是向<strong>所有</strong>的promises同时发起执行请求(并行)，但是只取最先返回结果的。不是顺序执行，直到得到成功结果的个数，就不继续了。</p>
-<pre><code class="coffee">Promise = <span class="hljs-built_in">require</span> <span class="hljs-string">'bluebird'</span>
-
-readFile = Promise.promisify (aPath, done) -&gt;
-  <span class="hljs-built_in">console</span>.log <span class="hljs-string">'readFile'</span>, aPath
-  <span class="hljs-keyword">if</span> aPath != <span class="hljs-string">'c'</span> <span class="hljs-keyword">and</span> aPath != <span class="hljs-string">'e'</span>  <span class="hljs-keyword">then</span> done(<span class="hljs-keyword">new</span> Error(<span class="hljs-string">'no such file:'</span>+aPath)) <span class="hljs-keyword">else</span> done(<span class="hljs-literal">null</span>, aPath+<span class="hljs-string">'ok'</span>)
-
-files = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>]
-
-Promise.any files.map (file)-&gt;readFile(file)
-.<span class="hljs-keyword">then</span> (content)-&gt; <span class="hljs-built_in">console</span>.log <span class="hljs-string">'content='</span>,content
-
-</code></pre>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span> = <span class="built_in">require</span> <span class="string">&#x27;bluebird&#x27;</span></span><br><span class="line"></span><br><span class="line">readFile = <span class="built_in">Promise</span>.promisify (aPath, done) -&gt;</span><br><span class="line">  console.log <span class="string">&#x27;readFile&#x27;</span>, aPath</span><br><span class="line">  <span class="keyword">if</span> aPath != <span class="string">&#x27;c&#x27;</span> <span class="keyword">and</span> aPath != <span class="string">&#x27;e&#x27;</span>  <span class="keyword">then</span> done(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;no such file:&#x27;</span>+aPath)) <span class="keyword">else</span> done(<span class="literal">null</span>, aPath+<span class="string">&#x27;ok&#x27;</span>)</span><br><span class="line"></span><br><span class="line">files = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.any files.map (file)-&gt;readFile(file)</span><br><span class="line">.<span class="keyword">then</span> (content)-&gt; console.log <span class="string">&#x27;content=&#x27;</span>,content</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>显示结果如下:</p>
-<pre><code class="bash">readFile a
-readFile b
-readFile c
-readFile d
-readFile e
-content= x ok
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">readFile a</span><br><span class="line">readFile b</span><br><span class="line">readFile c</span><br><span class="line">readFile d</span><br><span class="line">readFile e</span><br><span class="line">content= x ok</span><br></pre></td></tr></table></figure>
 <p>注：这个 <code>x</code> 表示可能是 ‘c’或者’e’。</p>
 <h3 id="shun-xu-zhi-hang-de-some-he-any" class="heading-control">顺序执行的 <code>some</code> 和 <code>any</code><a class="heading-anchor" href="#shun-xu-zhi-hang-de-some-he-any" aria-hidden="true"></a></h3>
 <p>但是，在某些特定场合，我们并不希望并发执行读文件操作，而是有次序的执行。那么如何做到顺序执行（sequence）？</p>
-<p>这个时候，可以用<code>reduce</code>(<a href="http://bluebirdjs.com/docs/api/promise.reduce.html" target="_blank" rel="noopener">promise.reduce</a>)实现：</p>
-<pre><code class="coffee">Promise.reduce files, <span class="hljs-function"><span class="hljs-params">(content, file)</span>-&gt;</span>
-  content = readFile(file).caught(<span class="hljs-function">-&gt;</span>) <span class="hljs-keyword">unless</span> content
-  <span class="hljs-keyword">return</span> content
-, <span class="hljs-literal">null</span>
-.<span class="hljs-keyword">then</span> (content)-&gt;<span class="hljs-built_in">console</span>.log <span class="hljs-string">'content='</span>, content
-</code></pre>
+<p>这个时候，可以用<code>reduce</code>(<a href="http://bluebirdjs.com/docs/api/promise.reduce.html">promise.reduce</a>)实现：</p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.reduce files, <span class="function"><span class="params">(content, file)</span>-&gt;</span></span><br><span class="line">  content = readFile(file).caught(<span class="function">-&gt;</span>) <span class="keyword">unless</span> content</span><br><span class="line">  <span class="keyword">return</span> content</span><br><span class="line">, <span class="literal">null</span></span><br><span class="line">.<span class="keyword">then</span> (content)-&gt;console.log <span class="string">&#x27;content=&#x27;</span>, content</span><br></pre></td></tr></table></figure>
 <p>显示结果如下:</p>
-<pre><code class="bash">readFile a
-readFile b
-readFile c
-content= c ok
-</code></pre>
-<p>更多的细节参见我写的<a href="https://github.com/snowyu/promise-sequence.js" target="_blank" rel="noopener">promise-sequence</a>。<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">readFile a</span><br><span class="line">readFile b</span><br><span class="line">readFile c</span><br><span class="line">content= c ok</span><br></pre></td></tr></table></figure>
+<p>更多的细节参见我写的<a href="https://github.com/snowyu/promise-sequence.js">promise-sequence</a>。<br>
 a simple functional abstraction for sequentially:</p>
 <p>下面这是map-reduce的思路用在数组的所有元素求和上,不过够绕脑袋瓜的：</p>
-<pre><code class="coffee">Array::sum = <span class="hljs-function">-&gt;</span> @reduce (<span class="hljs-function"><span class="hljs-params">(a,b)</span>-&gt;</span>a+b), <span class="hljs-number">0</span>
-[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].sum()
-<span class="hljs-comment"># 6</span>
-</code></pre>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Array::sum = <span class="function">-&gt;</span> @reduce (<span class="function"><span class="params">(a,b)</span>-&gt;</span>a+b), <span class="number">0</span></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].sum()</span><br><span class="line"><span class="comment"># 6</span></span><br></pre></td></tr></table></figure>
 <p>这是顺序执行的coffee-script 核心代码：</p>
-<pre><code class="coffee"><span class="hljs-function"><span class="hljs-title">seqAny</span> = <span class="hljs-params">(aList, fn)</span>-&gt;</span>
-<span class="hljs-function">  <span class="hljs-title">_genReduceFn</span> = <span class="hljs-params">(fn)</span>-&gt;</span>
-    (previous, item)-&gt;
-      previous = fn(item).<span class="hljs-keyword">catch</span>(<span class="hljs-function">-&gt;</span>) <span class="hljs-keyword">unless</span> previous
-      previous
-
-  Promise.reduce aList, _genReduceFn(fn), <span class="hljs-literal">null</span>
-
-seqAny(files, readFile).<span class="hljs-keyword">then</span> (result)-&gt;<span class="hljs-built_in">console</span>.log <span class="hljs-string">'seqAny='</span>, result
-<span class="hljs-function">
-<span class="hljs-title">seqSome</span> = <span class="hljs-params">(aList, total, fn)</span>-&gt;</span>
-<span class="hljs-function">  <span class="hljs-title">_genReduceFn</span> = <span class="hljs-params">(fn)</span>-&gt;</span>
-    (previous, item)-&gt;
-      previous = previous.filter Boolean
-      <span class="hljs-keyword">if</span> previous.length &lt; total
-        previous = Promise.all previous.concat [fn(item).<span class="hljs-keyword">catch</span>(<span class="hljs-function">-&gt;</span>)]
-      previous
-  Promise.reduce aList, _genReduceFn(fn), []
-
-seqSome(files, <span class="hljs-number">2</span>, readFile).<span class="hljs-keyword">then</span> (result)-&gt;<span class="hljs-built_in">console</span>.log <span class="hljs-string">'seqSome='</span>, result
-<span class="hljs-function">
-<span class="hljs-title">sequence</span> = <span class="hljs-params">(aList, fn)</span>-&gt;</span> <span class="hljs-comment"># execution all via sequence</span>
-  <span class="hljs-comment"># Promise.all 将执行所有的Promise,即使其中一个有错误，后面也会接着执行，如果有错误则报错。</span>
-<span class="hljs-function">  <span class="hljs-title">sequentially</span> = <span class="hljs-params">(fn)</span>-&gt;</span>
-    (previous, item)-&gt;
-      Promise.all previous.concat [fn(item)]
-
-  Promise.reduce aList, sequentially(fn), []
-
-sequence files, <span class="hljs-function"><span class="hljs-params">(i)</span>-&gt;</span>readFile(i).<span class="hljs-keyword">catch</span>(<span class="hljs-function">-&gt;</span>)
-.<span class="hljs-keyword">then</span> (result)-&gt;<span class="hljs-built_in">console</span>.log result
-
-</code></pre>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">seqAny</span> = <span class="params">(aList, fn)</span>-&gt;</span></span><br><span class="line"><span class="function">  <span class="title">_genReduceFn</span> = <span class="params">(fn)</span>-&gt;</span></span><br><span class="line">    (previous, item)-&gt;</span><br><span class="line">      previous = fn(item).<span class="keyword">catch</span>(<span class="function">-&gt;</span>) <span class="keyword">unless</span> previous</span><br><span class="line">      previous</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Promise</span>.reduce aList, _genReduceFn(fn), <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">seqAny(files, readFile).<span class="keyword">then</span> (result)-&gt;console.log <span class="string">&#x27;seqAny=&#x27;</span>, result</span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">seqSome</span> = <span class="params">(aList, total, fn)</span>-&gt;</span></span><br><span class="line"><span class="function">  <span class="title">_genReduceFn</span> = <span class="params">(fn)</span>-&gt;</span></span><br><span class="line">    (previous, item)-&gt;</span><br><span class="line">      previous = previous.filter <span class="built_in">Boolean</span></span><br><span class="line">      <span class="keyword">if</span> previous.length &lt; total</span><br><span class="line">        previous = <span class="built_in">Promise</span>.all previous.concat [fn(item).<span class="keyword">catch</span>(<span class="function">-&gt;</span>)]</span><br><span class="line">      previous</span><br><span class="line">  <span class="built_in">Promise</span>.reduce aList, _genReduceFn(fn), []</span><br><span class="line"></span><br><span class="line">seqSome(files, <span class="number">2</span>, readFile).<span class="keyword">then</span> (result)-&gt;console.log <span class="string">&#x27;seqSome=&#x27;</span>, result</span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">sequence</span> = <span class="params">(aList, fn)</span>-&gt;</span> <span class="comment"># execution all via sequence</span></span><br><span class="line">  <span class="comment"># Promise.all 将执行所有的Promise,即使其中一个有错误，后面也会接着执行，如果有错误则报错。</span></span><br><span class="line"><span class="function">  <span class="title">sequentially</span> = <span class="params">(fn)</span>-&gt;</span></span><br><span class="line">    (previous, item)-&gt;</span><br><span class="line">      <span class="built_in">Promise</span>.all previous.concat [fn(item)]</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Promise</span>.reduce aList, sequentially(fn), []</span><br><span class="line"></span><br><span class="line">sequence files, <span class="function"><span class="params">(i)</span>-&gt;</span>readFile(i).<span class="keyword">catch</span>(<span class="function">-&gt;</span>)</span><br><span class="line">.<span class="keyword">then</span> (result)-&gt;console.log result</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>这是直接构造函数执行链的思路:</p>
-<pre><code class="coffee"><span class="hljs-function"><span class="hljs-title">waterfall</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
-  current = Promise.cast()
-  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
-    current = current.<span class="hljs-keyword">then</span>(task)
-  current
-
-waterfall 返回所有函数的结果作为数组:
-
-<span class="hljs-function"><span class="hljs-title">waterfall</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
-  current = Promise.cast()
-  result = []
-  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
-    result.push current = current.<span class="hljs-keyword">then</span>(task)
-  Promise.all result
-
-sequence 与waterfall不同之处在于不传递结果到下一个函数:
-
-<span class="hljs-function"><span class="hljs-title">sequence</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
-  current = Promise.cast()
-  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
-    current = current.thenReturn().<span class="hljs-keyword">then</span>(task)
-  current.thenReturn()
-
-汇集结果到数组。
-<span class="hljs-function">
-<span class="hljs-title">sequence</span> = <span class="hljs-params">(tasks)</span>-&gt;</span>
-  current = Promise.cast()
-  result = []
-  <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> tasks
-    result.push current = current.thenReturn().<span class="hljs-keyword">then</span>(task)
-  Promise.all result
-
-
-</code></pre>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">waterfall</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = <span class="built_in">Promise</span>.cast()</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    current = current.<span class="keyword">then</span>(task)</span><br><span class="line">  current</span><br><span class="line"></span><br><span class="line">waterfall 返回所有函数的结果作为数组:</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">waterfall</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = <span class="built_in">Promise</span>.cast()</span><br><span class="line">  result = []</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    result.push current = current.<span class="keyword">then</span>(task)</span><br><span class="line">  <span class="built_in">Promise</span>.all result</span><br><span class="line"></span><br><span class="line">sequence 与waterfall不同之处在于不传递结果到下一个函数:</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sequence</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = <span class="built_in">Promise</span>.cast()</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    current = current.thenReturn().<span class="keyword">then</span>(task)</span><br><span class="line">  current.thenReturn()</span><br><span class="line"></span><br><span class="line">汇集结果到数组。</span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">sequence</span> = <span class="params">(tasks)</span>-&gt;</span></span><br><span class="line">  current = <span class="built_in">Promise</span>.cast()</span><br><span class="line">  result = []</span><br><span class="line">  <span class="keyword">for</span> task <span class="keyword">in</span> tasks</span><br><span class="line">    result.push current = current.thenReturn().<span class="keyword">then</span>(task)</span><br><span class="line">  <span class="built_in">Promise</span>.all result</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -515,7 +392,7 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/promise.cn/" title="异步编程与 Promise">https://riceball.me/article/promise.cn/</a>
+    <a href="https://riceball.me/article/promise.cn/" title="异步编程与 Promise">https://riceball.me/article/promise.cn/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -553,7 +430,6 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
   
   
 
-  </div>
 
 
           </div>
@@ -575,7 +451,7 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -587,7 +463,7 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -630,7 +506,7 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promise-any-and-promise-some"><span class="nav-number">1.0.1.</span> <span class="nav-text">Promise.any and Promise.some</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shun-xu-zhi-hang-de-some-he-any"><span class="nav-number">1.0.2.</span> <span class="nav-text">顺序执行的 some 和 any</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promise-any-and-promise-some"><span class="nav-number">1.1.</span> <span class="nav-text">Promise.any and Promise.some</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shun-xu-zhi-hang-de-some-he-any"><span class="nav-number">1.2.</span> <span class="nav-text">顺序执行的 some 和 any</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -646,20 +522,20 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -689,6 +565,8 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -702,14 +580,16 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -783,15 +663,15 @@ sequence 与waterfall不同之处在于不传递结果到下一个函数:
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/promise.cn/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/promise.cn/",
       identifier: "article/promise.cn/",
-      title: "异步编程与 Promise",
+      title     : "异步编程与 Promise",
     });
   }, window.DisqusJS);
 });
@@ -811,7 +691,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,52 +15,26 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用来打造我设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从头手搓面向应用的AI框架">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;Build-an-application-oriented-AI-framework-from-scratch&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="🌟 从头手搓面向应用的AI框架 🚀 为什么从头手搓 AI 框架，而不是使用现有框架？ 💡 为啥我要从头手搓AI框架，而不是直接使用类似 langchain、AutoGen、LMQL 等现成框架呢？ 最初我也尝试了多个框架（包括LangChain、AutoGen、LMQL、Outlines、MemGPT等），但它们都无法完全满足我的需求。我想要的是一个极度灵活可配置的AI应用框架，用来打造我设">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-17T17:14:40.000Z">
 <meta property="article:modified_time" content="2025-04-05T16:43:02.000Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="learning">
+<meta property="article:tag" content="AI language">
 <meta property="article:tag" content="ai">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="framework">
-<meta property="article:tag" content="AI language">
+<meta property="article:tag" content="learning">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/">
@@ -70,14 +44,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -133,28 +108,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -162,15 +124,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -181,11 +165,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -203,29 +182,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -244,14 +228,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -264,9 +247,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           从头手搓面向应用的AI框架
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -290,9 +273,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AI/" itemprop="url" rel="index">
-                    <span itemprop="name">AI</span>
-                  </a>
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
                 </span>
             </span>
 
@@ -301,7 +282,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -309,14 +290,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.3k</span>
+              <span>9.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>15 分钟</span>
+              <span>17 分钟</span>
             </span>
 
         </div>
@@ -348,47 +329,14 @@
 <li><strong>全栈兼容</strong>：跨平台支持（浏览器、服务器端），尽量统一语言减少维护成本（选型JavaScript）。</li>
 </ol>
 <h2 id="kai-fa-li-cheng" class="heading-control">开发历程 🛠️<a class="heading-anchor" href="#kai-fa-li-cheng" aria-hidden="true"></a></h2>
-<p>在2024年多方搜寻无果的情况下，2024年5月我开始从头写<a href="https://github.com/offline-ai/ppe/" target="_blank" rel="noopener">可编程提示词(Programmable Prompt Engine)AI规范</a>，当然最开始不是叫这个名字，最开始叫<code>AI Agent Framework</code>,后来是表伟提议既然实质是让提示词成为可编程的软件工程，那么不妨就叫PPE，我想也对，这个概念更准确，AI Agent应该是以PPE提示词为基础打造，它其实是更上层的概念，遂更名为PPE。</p>
+<p>在2024年多方搜寻无果的情况下，2024年5月我开始从头写<a href="https://github.com/offline-ai/ppe/">可编程提示词(Programmable Prompt Engine)AI规范</a>，当然最开始不是叫这个名字，最开始叫<code>AI Agent Framework</code>,后来是表伟提议既然实质是让提示词成为可编程的软件工程，那么不妨就叫PPE，我想也对，这个概念更准确，AI Agent应该是以PPE提示词为基础打造，它其实是更上层的概念，遂更名为PPE。</p>
 <p>既然要全栈，那就只能选JavaScript, 从前端到后端，从服务器到浏览器通吃，并且JS极度灵活和可扩展，而这正是我所需要的。</p>
 <h3 id="jie-gou-hua-dui-hua-xiao-xi" class="heading-control">结构化对话消息<a class="heading-anchor" href="#jie-gou-hua-dui-hua-xiao-xi" aria-hidden="true"></a></h3>
 <p>刚开始写的时候，还是很茫然无措的，没有项目可供参考，</p>
 <p>最初就想着用YAML配置的方式简单的来结构化对话消息,然后既然提示词是函数那就肯定需要约定函数的输入和输出: 用<code>input</code>来约定提示词的输入参数, <code>output</code>用<code>Json Schema</code>来约定提示词的输出：</p>
-<pre><code class="yaml"><span class="hljs-attr">templateFormat:</span> <span class="hljs-string">hf</span>
-<span class="hljs-attr">prompt:</span>
-  <span class="hljs-attr">messages:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-attr">role:</span> <span class="hljs-string">system</span>
-      <span class="hljs-attr">content:</span> <span class="hljs-string">Carefully</span> <span class="hljs-string">Think</span> <span class="hljs-string">about</span> <span class="hljs-string">the</span> <span class="hljs-string">intent</span> <span class="hljs-string">of</span> <span class="hljs-string">following</span> <span class="hljs-string">The</span> <span class="hljs-string">CONVERSATION</span> <span class="hljs-string">user</span> <span class="hljs-string">provided.</span> <span class="hljs-string">Output</span> <span class="hljs-string">the</span> <span class="hljs-string">json</span> <span class="hljs-string">object</span> <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">Intent</span> <span class="hljs-string">Category</span> <span class="hljs-string">and</span> <span class="hljs-string">Reason.</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-attr">role:</span> <span class="hljs-string">user</span>
-      <span class="hljs-attr">content:</span> <span class="hljs-string">|-
-        The CONVERSATION:
-        {{ conversation }}
-</span><span class="hljs-attr">input:</span>
-  <span class="hljs-attr">conversation:</span> <span class="hljs-string">"messages[1].content"</span>
-<span class="hljs-attr">output:</span>
-  <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
-  <span class="hljs-attr">properties:</span>
-    <span class="hljs-attr">Intent:</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
-    <span class="hljs-attr">Reason:</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">templateFormat:</span> <span class="string">hf</span></span><br><span class="line"><span class="attr">prompt:</span></span><br><span class="line">  <span class="attr">messages:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">role:</span> <span class="string">system</span></span><br><span class="line">      <span class="attr">content:</span> <span class="string">Carefully</span> <span class="string">Think</span> <span class="string">about</span> <span class="string">the</span> <span class="string">intent</span> <span class="string">of</span> <span class="string">following</span> <span class="string">The</span> <span class="string">CONVERSATION</span> <span class="string">user</span> <span class="string">provided.</span> <span class="string">Output</span> <span class="string">the</span> <span class="string">json</span> <span class="string">object</span> <span class="string">with</span> <span class="string">the</span> <span class="string">Intent</span> <span class="string">Category</span> <span class="string">and</span> <span class="string">Reason.</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">role:</span> <span class="string">user</span></span><br><span class="line">      <span class="attr">content:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">        The CONVERSATION:</span></span><br><span class="line"><span class="string">        &#123;&#123; conversation &#125;&#125;</span></span><br><span class="line"><span class="string"></span><span class="attr">input:</span></span><br><span class="line">  <span class="attr">conversation:</span> <span class="string">&quot;messages[1].content&quot;</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">object</span></span><br><span class="line">  <span class="attr">properties:</span></span><br><span class="line">    <span class="attr">Intent:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">    <span class="attr">Reason:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">&quot;string&quot;</span></span><br></pre></td></tr></table></figure>
 <p>感觉，这样很不自然方便，于是将结构化对话消息的输入/输出配置与对话内容分离:</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">input:</span>
-  <span class="hljs-attr">conversation:</span> <span class="hljs-string">{required:</span> <span class="hljs-literal">true</span><span class="hljs-string">}</span>
-<span class="hljs-attr">output:</span>
-  <span class="hljs-attr">type:</span> <span class="hljs-string">object</span>
-  <span class="hljs-attr">properties:</span>
-    <span class="hljs-attr">Intent:</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
-    <span class="hljs-attr">Reason:</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">system:</span> <span class="hljs-string">Carefully</span> <span class="hljs-string">Think</span> <span class="hljs-string">about</span> <span class="hljs-string">the</span> <span class="hljs-string">intent</span> <span class="hljs-string">of</span> <span class="hljs-string">following</span> <span class="hljs-string">The</span> <span class="hljs-string">CONVERSATION</span> <span class="hljs-string">user</span> <span class="hljs-string">provided.</span> <span class="hljs-string">Output</span> <span class="hljs-string">the</span> <span class="hljs-string">json</span> <span class="hljs-string">object</span> <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">Intent</span> <span class="hljs-string">Category</span> <span class="hljs-string">and</span> <span class="hljs-string">Reason.</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">|-
-  The CONVERSATION:
-  {{ conversation }}
-</span></code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">input:</span></span><br><span class="line">  <span class="attr">conversation:</span> &#123;<span class="attr">required:</span> <span class="literal">true</span>&#125;</span><br><span class="line"><span class="attr">output:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">object</span></span><br><span class="line">  <span class="attr">properties:</span></span><br><span class="line">    <span class="attr">Intent:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">    <span class="attr">Reason:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">system:</span> <span class="string">Carefully</span> <span class="string">Think</span> <span class="string">about</span> <span class="string">the</span> <span class="string">intent</span> <span class="string">of</span> <span class="string">following</span> <span class="string">The</span> <span class="string">CONVERSATION</span> <span class="string">user</span> <span class="string">provided.</span> <span class="string">Output</span> <span class="string">the</span> <span class="string">json</span> <span class="string">object</span> <span class="string">with</span> <span class="string">the</span> <span class="string">Intent</span> <span class="string">Category</span> <span class="string">and</span> <span class="string">Reason.</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">  The CONVERSATION:</span></span><br><span class="line"><span class="string">  &#123;&#123; conversation &#125;&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这样就感觉好多了。</p>
 <h3 id="an-xu-ge-shi-hua-xiao-xi" class="heading-control">按需格式化消息<a class="heading-anchor" href="#an-xu-ge-shi-hua-xiao-xi" aria-hidden="true"></a></h3>
 <p>在使用过程中，我发现我大多数时候都需要延迟对消息进行格式化，太早格式化消息会因为消息被提前固化，而导致消息中不是我期望的参数值。因此，加入了按需格式化消息功能，并设置为默认。该功能可以通过设置参数<code>formatStringStrategy</code>进行改变:</p>
@@ -398,72 +346,31 @@
 <li><code>Immediate</code>: 立即格式化</li>
 </ul>
 <p>例外，当执行<code>$set</code>, <code>$get</code>, <code>$ret</code>，<code>$echo</code>操作时会立即对消息进行格式化。</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-comment"># 修改本脚本的默认消息格式化策略：</span>
-<span class="hljs-attr">formatStringStrategy:</span> <span class="hljs-string">Immediate</span>
-<span class="hljs-meta">---</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 修改本脚本的默认消息格式化策略：</span></span><br><span class="line"><span class="attr">formatStringStrategy:</span> <span class="string">Immediate</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 <h3 id="ti-shi-ci-tiao-yong-yu-dai-ma-ji-cheng" class="heading-control">提示词调用与代码集成<a class="heading-anchor" href="#ti-shi-ci-tiao-yong-yu-dai-ma-ji-cheng" aria-hidden="true"></a></h3>
 <p>那么如何在提示词中使用(调用)AI赋值以及其他提示词或代码？于是有了<code>高级替换</code>:</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-comment"># 导入js函数</span>
-<span class="hljs-attr">import:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">eval.js</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-comment"># JOKE会被AI赋值,存放于: `prompt.JOKE` 中，供下次使用</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"讲个笑话：[[JOKE]] 希望您喜欢！"</span>
-<span class="hljs-comment"># 调用外部提示词`calculator`</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">"五加二等于 [[@calculator("</span><span class="hljs-number">5</span><span class="hljs-string">+2")]]"</span>
-<span class="hljs-comment"># 调用函数代码`eval`</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">"五加二等于 [[@$eval("</span><span class="hljs-number">5</span><span class="hljs-string">+2")]]"</span>
-</code></pre>
-<pre><code class="js"><span class="hljs-comment">// eval.js</span>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eval</span>(<span class="hljs-params">value</span>) </span>{
-  <span class="hljs-keyword">return</span> ...
-}
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 导入js函数</span></span><br><span class="line"><span class="attr">import:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">eval.js</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># JOKE会被AI赋值,存放于: `prompt.JOKE` 中，供下次使用</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;讲个笑话：[[JOKE]] 希望您喜欢！&quot;</span></span><br><span class="line"><span class="comment"># 调用外部提示词`calculator`</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">&quot;五加二等于 [[@calculator(&quot;</span><span class="number">5</span><span class="string">+2&quot;)]]&quot;</span></span><br><span class="line"><span class="comment"># 调用函数代码`eval`</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">&quot;五加二等于 [[@$eval(&quot;</span><span class="number">5</span><span class="string">+2&quot;)]]&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eval.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">eval</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>甚至支持了让AI只能在我给的列表中选择:</p>
-<pre><code class="yaml"><span class="hljs-attr">user:</span> <span class="hljs-string">你喜欢什么水果?</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"我超喜欢[[FRUIT:|苹果|香蕉|橙子]]"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user:</span> <span class="string">你喜欢什么水果?</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;我超喜欢[[FRUIT:|苹果|香蕉|橙子]]&quot;</span></span><br></pre></td></tr></table></figure>
 <h3 id="lian-shi-tiao-yong-yu-can-shu-chuan-di" class="heading-control">链式调用与参数传递<a class="heading-anchor" href="#lian-shi-tiao-yong-yu-can-shu-chuan-di" aria-hidden="true"></a></h3>
 <p>如何将最近消息内容传递给外部提示词？通过箭头符号<code>-&gt;</code>来实现动态参数传递:</p>
-<pre><code class="yaml"><span class="hljs-attr">user:</span> <span class="hljs-string">"讲个笑话吧！"</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[JOKE]]"</span>
-<span class="hljs-comment"># 传入智能体的实际输入参数是: {content: "[这里是由AI生成的笑话]", target_lang: "葡萄牙语"}</span>
-<span class="hljs-string">-&gt;</span> <span class="hljs-string">translator(target_lang="葡萄牙语")</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">$print</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user:</span> <span class="string">&quot;讲个笑话吧！&quot;</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;[[JOKE]]&quot;</span></span><br><span class="line"><span class="comment"># 传入智能体的实际输入参数是: &#123;content: &quot;[这里是由AI生成的笑话]&quot;, target_lang: &quot;葡萄牙语&quot;&#125;</span></span><br><span class="line"><span class="string">-&gt;</span> <span class="string">translator(target_lang=&quot;葡萄牙语&quot;)</span> <span class="string">-&gt;</span> <span class="string">$print</span></span><br></pre></td></tr></table></figure>
 <h3 id="zai-yi-lai-de-js-jiao-ben-zhong-tiao-yong-wai-bu-ti-shi-ci" class="heading-control">在依赖的js脚本中调用外部提示词<a class="heading-anchor" href="#zai-yi-lai-de-js-jiao-ben-zhong-tiao-yong-wai-bu-ti-shi-ci" aria-hidden="true"></a></h3>
 <p>那么，反过来，如何在依赖的js脚本调用外部提示词呢?</p>
-<pre><code class="js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callPPEScriptDemo</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.$exec({<span class="hljs-attr">id</span>: <span class="hljs-string">'calculator'</span>, <span class="hljs-attr">args</span>:{ <span class="hljs-attr">content</span>: <span class="hljs-string">"6+3"</span> }})
-}
-</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">callPPEScriptDemo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> <span class="variable language_">this</span>.$exec(&#123;<span class="attr">id</span>: <span class="string">&#x27;calculator&#x27;</span>, <span class="attr">args</span>:&#123; <span class="attr">content</span>: <span class="string">&quot;6+3&quot;</span> &#125;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="nei-zhi-han-shu-zhi-ling-yu-luo-ji-kong-zhi" class="heading-control">内置函数指令与逻辑控制<a class="heading-anchor" href="#nei-zhi-han-shu-zhi-ling-yu-luo-ji-kong-zhi" aria-hidden="true"></a></h3>
 <p>有些时候，我需要在提示词中根据不同条件来产生不同的提示词，甚至需要多条件匹配，于是开始内置相应的函数指令: <code>$if</code>, <code>$match</code>, …</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">input:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">file</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">$if:</span> <span class="hljs-string">"this.file"</span>
-  <span class="hljs-attr">then:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-string">...</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">input:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">file</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">$if:</span> <span class="string">&quot;this.file&quot;</span></span><br><span class="line">  <span class="attr">then:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">...</span></span><br></pre></td></tr></table></figure>
 <p>并发测试服务提供商的不同模型:</p>
-<pre><code class="yaml"><span class="hljs-string">$match(true,</span> <span class="hljs-string">allMatches=true,</span> <span class="hljs-string">parallel=true):</span>
-  <span class="hljs-string">:true:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-string">$AI(pushMessage=false,</span> <span class="hljs-string">model="openai://Qwen/Qwen2.5-Coder-7B-Instruct",</span> <span class="hljs-string">apiUrl="https://api.siliconflow.cn/",</span> <span class="hljs-string">apiKey="...")</span>
-  <span class="hljs-string">:true:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-string">$AI(pushMessage=false,</span> <span class="hljs-string">model="openai://THUDM/glm-4-9b-chat",</span> <span class="hljs-string">apiUrl="https://api.siliconflow.cn/",</span> <span class="hljs-string">apiKey="...")</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$match(true,</span> <span class="string">allMatches=true,</span> <span class="string">parallel=true):</span></span><br><span class="line">  <span class="string">:true:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">$AI(pushMessage=false,</span> <span class="string">model=&quot;openai://Qwen/Qwen2.5-Coder-7B-Instruct&quot;,</span> <span class="string">apiUrl=&quot;https://api.siliconflow.cn/&quot;,</span> <span class="string">apiKey=&quot;...&quot;)</span></span><br><span class="line">  <span class="string">:true:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">$AI(pushMessage=false,</span> <span class="string">model=&quot;openai://THUDM/glm-4-9b-chat&quot;,</span> <span class="string">apiUrl=&quot;https://api.siliconflow.cn/&quot;,</span> <span class="string">apiKey=&quot;...&quot;)</span></span><br></pre></td></tr></table></figure>
 <p>随后，完善了循环控制函数指令: <code>$for</code>, <code>$while</code></p>
 <h3 id="huan-cun-ji-zhi-yu-xing-neng-you-hua" class="heading-control">缓存机制与性能优化<a class="heading-anchor" href="#huan-cun-ji-zhi-yu-xing-neng-you-hua" aria-hidden="true"></a></h3>
 <p>然后，发现这个提示词&quot;函数&quot;执行耗时长，如果多次反复执行同一参数的&quot;函数&quot;就更浪费时间了，为啥不能缓存结果？于是有了LRU缓存执行结果，所有的外部调用脚本结果默认都会被缓存，当然可以简单通过参数开关<code>memoized</code>关闭该行为：</p>
-<pre><code class="yaml"><span class="hljs-string">"[[@calculator(content="</span><span class="hljs-number">5</span><span class="hljs-string">+2",</span> <span class="hljs-string">memoized=false)]]"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[[@calculator(content=&quot;</span><span class="number">5</span><span class="string">+2&quot;,</span> <span class="string">memoized=false)]]&quot;</span></span><br></pre></td></tr></table></figure>
 <h3 id="da-mo-xing-de-jie-gou-hua-shu-chu" class="heading-control">大模型的结构化输出<a class="heading-anchor" href="#da-mo-xing-de-jie-gou-hua-shu-chu" aria-hidden="true"></a></h3>
 <p>大模型必须对输出进行结构化（约定输出），程序代码函数才能处理。通常我们约定的是大模型结构化输出JSON对象。</p>
-<p>我在实践中发现，对于推理任务，在不约束大模型输出类型的情况下，输出质量更好，而对于不需要推理的分类任务，则恰恰相反。关于这个，有人已经做了更详细的比较: <a href="https://arxiv.org/html/2408.02442v1" target="_blank" rel="noopener">Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models</a></p>
+<p>我在实践中发现，对于推理任务，在不约束大模型输出类型的情况下，输出质量更好，而对于不需要推理的分类任务，则恰恰相反。关于这个，有人已经做了更详细的比较: <a href="https://arxiv.org/html/2408.02442v1">Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models</a></p>
 <p>另外，对大模型进行约定输出格式的文本格式也会影响输出质量，也就是告诉它如何输出的方式。用自然语言表达形式，好于直接给定json.</p>
 <p>我测试下来，对于目前大多数 LLM 模型来讲 <code>自然语言 &gt; YAML &gt; XML &gt; JSON</code>，当然具体还要看个别模型是否对某个格式又做了针对性的学习。</p>
 <p>因此，我设计了多种结构化响应输出格式类型，用来自动将输出内容和格式告诉给大模型，以及将大模型的输出自动转换。</p>
@@ -478,88 +385,18 @@
 </li>
 </ul>
 <p>约定PPE脚本输出内容始终用<code>JSON Schema</code>表示，而选择告知大模型的方式则在<code>parameters.response_format.type</code>中控制。这样，最终给到代码这边的结果始终是转换后的<code>JSON</code>对象。如果转换失败，会触发异常错误，通过设置<code>forceJson</code>为<code>false</code>禁止触发异常，这时当无法转换，就会返回文本内容。</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">output:</span>
-  <span class="hljs-attr">type:</span> <span class="hljs-string">"object"</span>
-  <span class="hljs-attr">properties:</span>
-    <span class="hljs-attr">target_text:</span>
-      <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
-<span class="hljs-attr">parameters:</span>
-  <span class="hljs-comment"># 使用后面的参数,将设置强制json输出格式,确保大模型总是输出正确的json格式.</span>
-  <span class="hljs-attr">response_format:</span>
-    <span class="hljs-attr">type:</span> <span class="hljs-string">"json"</span>
-<span class="hljs-comment"># forceJson: false</span>
-<span class="hljs-meta">---</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&quot;object&quot;</span></span><br><span class="line">  <span class="attr">properties:</span></span><br><span class="line">    <span class="attr">target_text:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line"><span class="attr">parameters:</span></span><br><span class="line">  <span class="comment"># 使用后面的参数,将设置强制json输出格式,确保大模型总是输出正确的json格式.</span></span><br><span class="line">  <span class="attr">response_format:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">&quot;json&quot;</span></span><br><span class="line"><span class="comment"># forceJson: false</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 <h3 id="duo-lun-dui-hua-zhi-chi" class="heading-control">多轮对话支持<a class="heading-anchor" href="#duo-lun-dui-hua-zhi-chi" aria-hidden="true"></a></h3>
 <p>如何在同一个脚本中开启多轮对话，于是有了三个短划线(<code>---</code>) 或星号 <code>***</code> 表示一个新的对话开始:</p>
-<pre><code class="yaml"><span class="hljs-attr">system:</span> <span class="hljs-string">"您是一位AI助手。"</span>
-<span class="hljs-comment"># 第一个分隔线作为对话的起点,第一个分隔线上面的对话内容会被隐藏，可以当作系统提示词,它们不会被输出或记录.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">"10加18等于多少？"</span>
-<span class="hljs-comment"># 执行AI,替换为AI传回的结果result</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[result]]"</span>
-<span class="hljs-comment"># 打印大模型传回的结果</span>
-<span class="hljs-string">$print:</span> <span class="hljs-string">"?=result"</span>
-<span class="hljs-comment"># 第二个分隔线下面开始新对话,回到第一次的起点</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">"10加12等于多少？"</span>
-<span class="hljs-comment"># 执行AI,替换为AI传回的结果result</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[result]]"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">system:</span> <span class="string">&quot;您是一位AI助手。&quot;</span></span><br><span class="line"><span class="comment"># 第一个分隔线作为对话的起点,第一个分隔线上面的对话内容会被隐藏，可以当作系统提示词,它们不会被输出或记录.</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="string">&quot;10加18等于多少？&quot;</span></span><br><span class="line"><span class="comment"># 执行AI,替换为AI传回的结果result</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;[[result]]&quot;</span></span><br><span class="line"><span class="comment"># 打印大模型传回的结果</span></span><br><span class="line"><span class="string">$print:</span> <span class="string">&quot;?=result&quot;</span></span><br><span class="line"><span class="comment"># 第二个分隔线下面开始新对话,回到第一次的起点</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">&quot;10加12等于多少？&quot;</span></span><br><span class="line"><span class="comment"># 执行AI,替换为AI传回的结果result</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;[[result]]&quot;</span></span><br></pre></td></tr></table></figure>
 <h3 id="ji-cheng-ji-zhi-ti-shi-ci-de-lei" class="heading-control">继承机制：提示词的“类”<a class="heading-anchor" href="#ji-cheng-ji-zhi-ti-shi-ci-de-lei" aria-hidden="true"></a></h3>
 <p><strong>基类定义</strong>（<code>char.ai.yaml</code>）：</p>
-<pre><code class="yaml"><span class="hljs-attr">type:</span> <span class="hljs-string">type</span>
-<span class="hljs-comment"># 定义该角色类型的输入配置</span>
-<span class="hljs-attr">input:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">{required:</span> <span class="hljs-literal">true</span><span class="hljs-string">}</span>  <span class="hljs-comment"># 必须提供的信息：角色的名字</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">description</span>             <span class="hljs-comment"># 可选的信息：对角色的描述</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-comment"># 系统根据提供的信息来指导角色的行为</span>
-<span class="hljs-attr">system:</span> <span class="hljs-string">|-
-  你是一个聪明、多才多艺的角色扮演者。
-  你的任务是根据下面提供的信息完美地扮演角色。
-  请说话就像{{name}}一样。
-  你就是{{name}}。
-</span>
-  <span class="hljs-string">{{description}}</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">type:</span> <span class="string">type</span></span><br><span class="line"><span class="comment"># 定义该角色类型的输入配置</span></span><br><span class="line"><span class="attr">input:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> &#123;<span class="attr">required:</span> <span class="literal">true</span>&#125;  <span class="comment"># 必须提供的信息：角色的名字</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">description</span>             <span class="comment"># 可选的信息：对角色的描述</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 系统根据提供的信息来指导角色的行为</span></span><br><span class="line"><span class="attr">system:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">  你是一个聪明、多才多艺的角色扮演者。</span></span><br><span class="line"><span class="string">  你的任务是根据下面提供的信息完美地扮演角色。</span></span><br><span class="line"><span class="string">  请说话就像&#123;&#123;name&#125;&#125;一样。</span></span><br><span class="line"><span class="string">  你就是&#123;&#123;name&#125;&#125;。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">  &#123;&#123;<span class="string">description</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>子类实现</strong>（<code>char_dobby.ai.yaml</code>）：</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-comment"># 表示继承自char角色类型脚本</span>
-<span class="hljs-attr">type:</span> <span class="hljs-string">char</span>
-<span class="hljs-comment"># 这里是根据“char”角色的一些具体设置</span>
-<span class="hljs-comment"># 角色的名字</span>
-<span class="hljs-attr">name:</span> <span class="hljs-string">"Dobby"</span>
-<span class="hljs-comment"># 对角色的描述</span>
-<span class="hljs-attr">description:</span> <span class="hljs-string">"Dobby 是哈利波特世界里的一个小精灵"</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-comment"># 用户提问</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">"你是谁?"</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-comment"># 根据角色设定的回答</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"我是 Dobby。Dobby 很开心。"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 表示继承自char角色类型脚本</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">char</span></span><br><span class="line"><span class="comment"># 这里是根据“char”角色的一些具体设置</span></span><br><span class="line"><span class="comment"># 角色的名字</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">&quot;Dobby&quot;</span></span><br><span class="line"><span class="comment"># 对角色的描述</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&quot;Dobby 是哈利波特世界里的一个小精灵&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 用户提问</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">&quot;你是谁?&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 根据角色设定的回答</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;我是 Dobby。Dobby 很开心。&quot;</span></span><br></pre></td></tr></table></figure>
 <h3 id="duo-zhi-neng-ti-qun-liao-guan-li-yu-si-liao" class="heading-control">多智能体群聊管理与私聊<a class="heading-anchor" href="#duo-zhi-neng-ti-qun-liao-guan-li-yu-si-liao" aria-hidden="true"></a></h3>
 <p>群聊咋弄?通过<code>roles</code>约定使用的外部角色列表:</p>
-<pre><code class="yaml"><span class="hljs-comment"># guide.ai.yaml</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">description:</span> <span class="hljs-string">"You are a professional guide. You can guide the user to complete the task."</span>
-<span class="hljs-attr">name:</span> <span class="hljs-string">"guide"</span>
-<span class="hljs-comment"># 约定使用的角色列表，key为角色别名，值为角色脚本ID</span>
-<span class="hljs-attr">roles:</span>
-  <span class="hljs-attr">translator:</span> <span class="hljs-string">char_translator</span>
-  <span class="hljs-attr">dobby:</span> <span class="hljs-string">char_dobby</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">system:</span> <span class="hljs-string">You</span> <span class="hljs-string">are</span> <span class="hljs-string">a</span> <span class="hljs-string">professional</span> <span class="hljs-string">guide.</span> <span class="hljs-string">You</span> <span class="hljs-string">can</span> <span class="hljs-string">guide</span> <span class="hljs-string">the</span> <span class="hljs-string">user</span> <span class="hljs-string">to</span> <span class="hljs-string">complete</span> <span class="hljs-string">the</span> <span class="hljs-string">task.</span>
-<span class="hljs-string">---</span> <span class="hljs-comment"># New dialogue starts here</span>
-<span class="hljs-comment"># 用户对dobby说，dobby脚本自动（一定）回复</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">"@dobby, I want to go to the moon."</span>
-<span class="hljs-comment"># guide 对translator说</span>
-<span class="hljs-attr">guide:</span> <span class="hljs-string">"@translator, translate the dobby's message to chinese without explanation."</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">How</span> <span class="hljs-string">to</span> <span class="hljs-string">go</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">moon?</span>
-<span class="hljs-attr">dobby:</span> <span class="hljs-string">"[[AI]]"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># guide.ai.yaml</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&quot;You are a professional guide. You can guide the user to complete the task.&quot;</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">&quot;guide&quot;</span></span><br><span class="line"><span class="comment"># 约定使用的角色列表，key为角色别名，值为角色脚本ID</span></span><br><span class="line"><span class="attr">roles:</span></span><br><span class="line">  <span class="attr">translator:</span> <span class="string">char_translator</span></span><br><span class="line">  <span class="attr">dobby:</span> <span class="string">char_dobby</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">system:</span> <span class="string">You</span> <span class="string">are</span> <span class="string">a</span> <span class="string">professional</span> <span class="string">guide.</span> <span class="string">You</span> <span class="string">can</span> <span class="string">guide</span> <span class="string">the</span> <span class="string">user</span> <span class="string">to</span> <span class="string">complete</span> <span class="string">the</span> <span class="string">task.</span></span><br><span class="line"><span class="string">---</span> <span class="comment"># New dialogue starts here</span></span><br><span class="line"><span class="comment"># 用户对dobby说，dobby脚本自动（一定）回复</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">&quot;@dobby, I want to go to the moon.&quot;</span></span><br><span class="line"><span class="comment"># guide 对translator说</span></span><br><span class="line"><span class="attr">guide:</span> <span class="string">&quot;@translator, translate the dobby&#x27;s message to chinese without explanation.&quot;</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">How</span> <span class="string">to</span> <span class="string">go</span> <span class="string">to</span> <span class="string">the</span> <span class="string">moon?</span></span><br><span class="line"><span class="attr">dobby:</span> <span class="string">&quot;[[AI]]&quot;</span></span><br></pre></td></tr></table></figure>
 <p>那么，如何在群聊中进行私聊？简单，在<code>@dobby</code>后加上参数<code>@dobby(私)</code>即可，这样dobby的回复只有该用户可见，聊天室中其他角色看不到。</p>
 <h3 id="nei-jian-ben-di-llm-ti-gong-shang" class="heading-control">内建本地LLM提供商<a class="heading-anchor" href="#nei-jian-ben-di-llm-ti-gong-shang" aria-hidden="true"></a></h3>
 <p>当前，外置的llama-cpp server已经满足不了我的需求:</p>
@@ -594,79 +431,27 @@
 <li>Anthropic(Claude): <code>ai run example.ai.yaml -P openai://claude-3-7-sonnet-latest -u https://api.anthropic.com/v1/ --apiKey “sk-XXX”</code></li>
 </ul>
 </li>
-<li><a href="https://github.com/ggml-org/llama.cpp/tree/master/examples/server" target="_blank" rel="noopener">llama-cpp服务器(llama-server)提供商</a>：<code>ai run example.ai.yaml -P llamacpp</code>
+<li><a href="https://github.com/ggml-org/llama.cpp/tree/master/examples/server">llama-cpp服务器(llama-server)提供商</a>：<code>ai run example.ai.yaml -P llamacpp</code>
 <ul>
 <li>llama-cpp服务器不支持指定模型名称，它是在启动llama-server时通过 model 参数指定的。</li>
 </ul>
 </li>
 <li>您可以在PPE脚本中指定或任意切换<em>LLM模型或提供商</em>:</li>
 </ul>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">parameters:</span>
-  <span class="hljs-attr">model:</span> <span class="hljs-string">openai://deepseek-chat</span>
-  <span class="hljs-attr">apiUrl:</span> <span class="hljs-string">https://api.deepseek.com/</span>
-  <span class="hljs-attr">apiKey:</span> <span class="hljs-string">"sk-XXX"</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">system:</span> <span class="hljs-string">You</span> <span class="hljs-string">are</span> <span class="hljs-string">a</span> <span class="hljs-string">helpful</span> <span class="hljs-string">assistant.</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">"tell me a joke"</span>
-<span class="hljs-string">---</span> <span class="hljs-comment"># first dialog begin</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[AI]]"</span>
-<span class="hljs-string">---</span> <span class="hljs-comment"># reset to first</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[AI:model='openai://claude-3-7-sonnet-latest',apiUrl='https://api.anthropic.com/v1/',apiKey='sk-XXX']]"</span>
-<span class="hljs-string">---</span> <span class="hljs-comment"># reset to first</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[AI:model='local://bartowski-qwq-32b.Q4_0.gguf']]"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">parameters:</span></span><br><span class="line">  <span class="attr">model:</span> <span class="string">openai://deepseek-chat</span></span><br><span class="line">  <span class="attr">apiUrl:</span> <span class="string">https://api.deepseek.com/</span></span><br><span class="line">  <span class="attr">apiKey:</span> <span class="string">&quot;sk-XXX&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">system:</span> <span class="string">You</span> <span class="string">are</span> <span class="string">a</span> <span class="string">helpful</span> <span class="string">assistant.</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">&quot;tell me a joke&quot;</span></span><br><span class="line"><span class="string">---</span> <span class="comment"># first dialog begin</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;[[AI]]&quot;</span></span><br><span class="line"><span class="string">---</span> <span class="comment"># reset to first</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;[[AI:model=&#x27;openai://claude-3-7-sonnet-latest&#x27;,apiUrl=&#x27;https://api.anthropic.com/v1/&#x27;,apiKey=&#x27;sk-XXX&#x27;]]&quot;</span></span><br><span class="line"><span class="string">---</span> <span class="comment"># reset to first</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;[[AI:model=&#x27;local://bartowski-qwq-32b.Q4_0.gguf&#x27;]]&quot;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="tong-yong-da-mo-xing-gong-ju-an-quan-tiao-yong-jin-xian-nei-zhi-de-llm-ti-gong-shang" class="heading-control">通用大模型工具安全调用(仅限内置的LLM提供商)<a class="heading-anchor" href="#tong-yong-da-mo-xing-gong-ju-an-quan-tiao-yong-jin-xian-nei-zhi-de-llm-ti-gong-shang" aria-hidden="true"></a></h3>
 <p>让大模型自主使用工具(Tool Func)的确很方便，可以直接实现大模型的全自动化，但是如何保证安全呢？还有为啥必须要特别训练的大模型才能支持工具调用？有没有通用的办法，无需特别针对训练，让所有的大模型都支持工具调用？如何让工具的使用更加简单？ 答案是有的，终于搞定，下面请看:</p>
 <p>通过<code>tools</code>配置限制可调用的工具：</p>
-<pre><code class="yaml"><span class="hljs-comment"># 只要在脚本配置中设定允许智能体使用的工具`tools`， 这些工具`tools`对应PPE脚本ID，智能体就会在需要的时候自主调用这些工具完成任务。</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">tools:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">weather</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">search</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">now</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">现在几点了？今天上海的天气如何？</span>
-<span class="hljs-comment">#智能体会根据配置的tools调用对应的工具: now, weather,并返回结果</span>
-<span class="hljs-attr">assistant:</span> <span class="hljs-string">"[[Answer]]"</span>
-</code></pre>
-<pre><code class="yaml"><span class="hljs-comment"># weather.ai.yaml</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">title:</span> <span class="hljs-string">get</span> <span class="hljs-string">weather</span> <span class="hljs-string">information</span>
-<span class="hljs-attr">input:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">location:</span>
-      <span class="hljs-attr">description:</span> <span class="hljs-string">contain</span> <span class="hljs-string">city,</span> <span class="hljs-string">province(if</span> <span class="hljs-string">any)</span> <span class="hljs-string">and</span> <span class="hljs-string">country</span>
-      <span class="hljs-attr">example:</span> <span class="hljs-string">city,province,country</span>
-      <span class="hljs-attr">required:</span> <span class="hljs-literal">true</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">date:</span>
-      <span class="hljs-attr">description:</span> <span class="hljs-string">the</span> <span class="hljs-string">weather</span> <span class="hljs-string">information</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">specified</span> <span class="hljs-string">date</span>
-      <span class="hljs-attr">example:</span> <span class="hljs-number">2025</span><span class="hljs-number">-02</span><span class="hljs-string">-04T18:07:42+08:00</span>
-      <span class="hljs-attr">default:</span> <span class="hljs-string">today</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-comment"># 模拟返回天气信息</span>
-<span class="hljs-string">$echo:</span> <span class="hljs-string">"上海的天气阴转多云，气温 2°C，相对湿度 60%，风向 东南风，风力 3-4级。"</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只要在脚本配置中设定允许智能体使用的工具`tools`， 这些工具`tools`对应PPE脚本ID，智能体就会在需要的时候自主调用这些工具完成任务。</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">tools:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">weather</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">search</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">now</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">现在几点了？今天上海的天气如何？</span></span><br><span class="line"><span class="comment">#智能体会根据配置的tools调用对应的工具: now, weather,并返回结果</span></span><br><span class="line"><span class="attr">assistant:</span> <span class="string">&quot;[[Answer]]&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># weather.ai.yaml</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">get</span> <span class="string">weather</span> <span class="string">information</span></span><br><span class="line"><span class="attr">input:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">location:</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">contain</span> <span class="string">city,</span> <span class="string">province(if</span> <span class="string">any)</span> <span class="string">and</span> <span class="string">country</span></span><br><span class="line">      <span class="attr">example:</span> <span class="string">city,province,country</span></span><br><span class="line">      <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">date:</span></span><br><span class="line">      <span class="attr">description:</span> <span class="string">the</span> <span class="string">weather</span> <span class="string">information</span> <span class="string">of</span> <span class="string">the</span> <span class="string">specified</span> <span class="string">date</span></span><br><span class="line">      <span class="attr">example:</span> <span class="number">2025-02-04T18:07:42+08:00</span></span><br><span class="line">      <span class="attr">default:</span> <span class="string">today</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 模拟返回天气信息</span></span><br><span class="line"><span class="string">$echo:</span> <span class="string">&quot;上海的天气阴转多云，气温 2°C，相对湿度 60%，风向 东南风，风力 3-4级。&quot;</span></span><br></pre></td></tr></table></figure>
 <p>为了进一步保障安全，除了限定执行脚本设定的工具列表外，用户（调用方）也可限制使用的工具列表，进行双重限制:</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-comment"># 用户或上级脚本通过如下配置对智能体使用的工具进行权限控制</span>
-<span class="hljs-attr">permissions:</span>
-  <span class="hljs-attr">ai:</span>
-    <span class="hljs-attr">call:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">"w*"</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">"now"</span>
-<span class="hljs-meta">---</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 用户或上级脚本通过如下配置对智能体使用的工具进行权限控制</span></span><br><span class="line"><span class="attr">permissions:</span></span><br><span class="line">  <span class="attr">ai:</span></span><br><span class="line">    <span class="attr">call:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;w*&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;now&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 <h3 id="tong-yong-da-mo-xing-si-wei-mo-shi-kuo-zhan-jin-xian-nei-zhi-de-llm-ti-gong-shang" class="heading-control">通用大模型思维模式扩展 🧠 (仅限内置的LLM提供商)<a class="heading-anchor" href="#tong-yong-da-mo-xing-si-wei-mo-shi-kuo-zhan-jin-xian-nei-zhi-de-llm-ti-gong-shang" aria-hidden="true"></a></h3>
 <p>DeepSeek 重新发现并开源了OpenAI(CloseAI)了秘而不宣的深度思维模式的训练办法，那么有没有一种可能，不需要额外训练，让AI大模型也能进行深度思考？应该可行，因为所谓的微调训练也是基于CoT的提示词进行，于是经过仔细思考，多番测试，终于搞定包括深度思维模式在内的多种思维模式(<code>shouldThink</code>)！</p>
 <p>思维模式(<code>shouldThink</code>)我分为四种：直接回答不思考(<code>off</code>)；先回答再思考(<code>last</code>)；先思考再回答<code>first</code>；深度思考后再回答<code>deep</code>：</p>
-<pre><code class="yaml"><span class="hljs-meta">---</span>
-<span class="hljs-comment"># 思维模式默认为 `off`,设置为last，first,deep后自动启用。</span>
-<span class="hljs-attr">shouldThink:</span> <span class="hljs-string">deep</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">user:</span> <span class="hljs-string">树上有15只鸟，猎人开枪打中了2只，树上还有几只鸟？</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 思维模式默认为 `off`,设置为last，first,deep后自动启用。</span></span><br><span class="line"><span class="attr">shouldThink:</span> <span class="string">deep</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">user:</span> <span class="string">树上有15只鸟，猎人开枪打中了2只，树上还有几只鸟？</span></span><br></pre></td></tr></table></figure>
 <h3 id="package-zhi-chi" class="heading-control">Package 支持<a class="heading-anchor" href="#package-zhi-chi" aria-hidden="true"></a></h3>
 <p>目的：需要将相关的提示词和代码脚本、知识库放到一个文件包中，组成智能体，方便管理。</p>
 <p>通过这些设计，PPE 正在逐步支持我最初对「真 AI PC」的想象！🚀</p>
@@ -701,7 +486,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/" title="从头手搓面向应用的AI框架">https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/</a>
+    <a href="https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/" title="从头手搓面向应用的AI框架">https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -741,7 +526,6 @@
   
   
 
-  </div>
 
 
           </div>
@@ -763,7 +547,7 @@
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -775,7 +559,7 @@
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -834,20 +618,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -877,6 +661,8 @@
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -890,14 +676,16 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -971,15 +759,15 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/Build-an-application-oriented-AI-framework-from-scratch/",
       identifier: "article/Build-an-application-oriented-AI-framework-from-scratch/",
-      title: "从头手搓面向应用的AI框架",
+      title     : "从头手搓面向应用的AI框架",
     });
   }, window.DisqusJS);
 });
@@ -999,7 +787,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

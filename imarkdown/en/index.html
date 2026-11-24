@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,52 +15,26 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="Introduction Interactive Markdown is a tool for making reactive&#x2F;interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The l">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Interactive Markdown">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;en&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/imarkdown/en/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Introduction Interactive Markdown is a tool for making reactive&#x2F;interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The l">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-11-23T14:22:00.000Z">
 <meta property="article:modified_time" content="2019-12-07T01:35:00.000Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="interactive">
-<meta property="article:tag" content="reactive">
 <meta property="article:tag" content="document">
+<meta property="article:tag" content="interactive">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="markdown">
+<meta property="article:tag" content="reactive">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/imarkdown/en/">
@@ -70,15 +44,16 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: false
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 <link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -86,7 +61,7 @@
 
 
   <title>Interactive Markdown | Riceball LEE
-  </title>
+</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
     <script>
@@ -135,28 +110,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -164,15 +126,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -183,11 +167,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -205,29 +184,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -248,18 +232,17 @@
   
   
 
-          <div class="content">
+          <div class="content page posts-expand">
             
 
-  <div class="posts-expand">
     
     
     
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">Interactive Markdown
-</h2>
+<h1 class="post-title" itemprop="name headline">Interactive Markdown
+</h1>
 
 <div class="post-meta">
   
@@ -282,7 +265,7 @@
 <p><a href="http://riceball.me/imarkdown/en">Interactive Markdown</a> is a tool for making reactive/interactive documents — using a plain text markdown source, with a special notation for adding interactive controls and variables. The logic is determined by the content of the code blocks, which is actually executed on-the-fly to update the variables.</p>
 <p>More detail see 💁🏻‍♂️ <a href="http://riceball.me/imarkdown/en/reference.html">Interactive Markdown Reference Manual</a> for a complete reference of the elements and their configuration.</p>
 <p>Status: Alpha Test</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>An Example Interactive document looks like this:</p>
 <h3 id="st-ives-example" class="heading-control">St.Ives Example<a class="heading-anchor" href="#st-ives-example" aria-hidden="true"></a></h3>
 <p>An old riddle.</p>
@@ -315,36 +298,7 @@ else
 </code></pre>
 <hr>
 <p>The sample raw Interactive Markdown file is:</p>
-<pre><code class="md">An old riddle.
-
-<span class="hljs-quote">&gt; As [I]{travelers: we or I} [was]{verb} going to *St Ives*</span>
-<span class="hljs-quote">&gt; I met a man with [7 wives]{wives: 1..10}</span>
-<span class="hljs-quote">&gt; Every wife had [7 sacks]{sacks: 1..10}</span>
-<span class="hljs-quote">&gt; Every sack had [7 cats]{cats: 1..10}</span>
-<span class="hljs-quote">&gt; Every cat had [7 kits]{kits: 1..10}</span>
-<span class="hljs-quote">&gt; Kits, cats, sacks, wives</span>
-<span class="hljs-quote">&gt; How many were going to St Ives?</span>
-
-<span class="hljs-code">    total_sacks = @wives * @sacks</span>
-<span class="hljs-code">    total_cats  = total_sacks * @cats</span>
-<span class="hljs-code">    total_kits  = total_cats * @kits</span>
-<span class="hljs-code">    man         = 1</span>
-
-<span class="hljs-code">    if @travelers</span>
-<span class="hljs-code">        narrator = 2</span>
-<span class="hljs-code">        @verb = 'were'</span>
-<span class="hljs-code">    else</span>
-<span class="hljs-code">        narrator = 1</span>
-<span class="hljs-code">        @verb = 'was'</span>
-
-The first guess is often [2753]{first_guess}…
-
-<span class="hljs-code">    @first_guess = man + @wives + total_cats + total_kits + narrator</span>
-
-…but the correct answer is <span class="hljs-strong">**[1]{answer}**</span>.
-
-<span class="hljs-code">    @answer = narrator</span>
-</code></pre>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">An old riddle.</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; As [I]&#123;travelers: we or I&#125; [was]&#123;verb&#125; going to <span class="emphasis">*St Ives*</span></span></span><br><span class="line"><span class="quote">&gt; I met a man with [7 wives]&#123;wives: 1..10&#125;</span></span><br><span class="line"><span class="quote">&gt; Every wife had [7 sacks]&#123;sacks: 1..10&#125;</span></span><br><span class="line"><span class="quote">&gt; Every sack had [7 cats]&#123;cats: 1..10&#125;</span></span><br><span class="line"><span class="quote">&gt; Every cat had [7 kits]&#123;kits: 1..10&#125;</span></span><br><span class="line"><span class="quote">&gt; Kits, cats, sacks, wives</span></span><br><span class="line"><span class="quote">&gt; How many were going to St Ives?</span></span><br><span class="line"></span><br><span class="line"><span class="code">    total_sacks = @wives * @sacks</span></span><br><span class="line"><span class="code">    total_cats  = total_sacks * @cats</span></span><br><span class="line"><span class="code">    total_kits  = total_cats * @kits</span></span><br><span class="line"><span class="code">    man         = 1</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    if @travelers</span></span><br><span class="line"><span class="code">        narrator = 2</span></span><br><span class="line"><span class="code">        @verb = &#x27;were&#x27;</span></span><br><span class="line"><span class="code">    else</span></span><br><span class="line"><span class="code">        narrator = 1</span></span><br><span class="line"><span class="code">        @verb = &#x27;was&#x27;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">The first guess is often [2753]&#123;first<span class="emphasis">_guess&#125;…</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">    @first_</span>guess = man + @wives + total<span class="emphasis">_cats + total_</span>kits + narrator</span><br><span class="line"></span><br><span class="line">…but the correct answer is <span class="strong">**[1]&#123;answer&#125;**</span>.</span><br><span class="line"></span><br><span class="line"><span class="code">    @answer = narrator</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>[I]{travelers: We or I}</code> is a toggle switch between <code>We</code> or <code>I</code>
 <ul>
@@ -361,28 +315,7 @@ The first guess is often [2753]{first_guess}…
 <h3 id="a-more-complex-example" class="heading-control">A More Complex Example<a class="heading-anchor" href="#a-more-complex-example" aria-hidden="true"></a></h3>
 <p><strong>Parameters</strong>：<span class="AMElement" data-embed="false" data-config="rx:10..">X Coor:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">Y Coor:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">Width:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">Height:50</span></p>
 <p>Following will show howto draw a rect with Raphael animation library, Click the <code>play</code> button to begin:</p>
-<pre><code class="output"># demo how to draw a rect.
-paper = @canvas
-
-|
-~~~
-tooltip: set the canvas size:200X100 ::: Init
-type:paper.setSize(200,100)\n
-tooltip: clear canvas
-type:paper.clear()\n
-tooltip: init x/y coor, width/height parameters coming from document
-type:@rx ||=10\n
-type:@ry ||=18\n
-type:@rw ||=100\n
-type:@rh ||=50\n
-tooltip: drawing rect nowing ::: Draw rect
-type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
-tooltip: fill red for the rect
-type:rect.attr('fill', 'red')
-moveTo: 8:13
-tooltip: you can try it by youself now
-</code></pre>
-<hr>
+<h2 id="less-than-code-1-greater-than" class="heading-control"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># demo how to draw a rect.</span><br><span class="line">paper = @canvas</span><br><span class="line"></span><br><span class="line">|</span><br><span class="line">~~~</span><br><span class="line">tooltip: set the canvas size:200X100 ::: Init</span><br><span class="line">type:paper.setSize(200,100)\n</span><br><span class="line">tooltip: clear canvas</span><br><span class="line">type:paper.clear()\n</span><br><span class="line">tooltip: init x/y coor, width/height parameters coming from document</span><br><span class="line">type:@rx ||=10\n</span><br><span class="line">type:@ry ||=18\n</span><br><span class="line">type:@rw ||=100\n</span><br><span class="line">type:@rh ||=50\n</span><br><span class="line">tooltip: drawing rect nowing ::: Draw rect</span><br><span class="line">type:rect = paper.rect(@rx, @ry, @rw, @rh)\n</span><br><span class="line">tooltip: fill red for the rect</span><br><span class="line">type:rect.attr(&#x27;fill&#x27;, &#x27;red&#x27;)</span><br><span class="line">moveTo: 8:13</span><br><span class="line">tooltip: you can try it by youself now</span><br></pre></td></tr></table></figure><a class="heading-anchor" href="#less-than-code-1-greater-than" aria-hidden="true"></a></h2>
 <h2 id="notation" class="heading-control">Notation<a class="heading-anchor" href="#notation" aria-hidden="true"></a></h2>
 <p>The notation for specifying elements is similar to the regular Markdown syntax<br>
 for links and images, generally following this format:</p>
@@ -391,12 +324,12 @@ for links and images, generally following this format:</p>
 complete reference of the elements and their configuration.</p>
 <h2 id="authors" class="heading-control">Authors<a class="heading-anchor" href="#authors" aria-hidden="true"></a></h2>
 <ul>
-<li><a href="http://alecperkins.net" target="_blank" rel="noopener">Alec Perkins</a></li>
-<li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu" target="_blank" rel="noopener">https://github.com/snowyu</a></li>
+<li><a href="http://alecperkins.net">Alec Perkins</a></li>
+<li><a href="https://riceball.me">Riceball LEE</a> <a href="https://github.com/snowyu">https://github.com/snowyu</a></li>
 </ul>
 <h2 id="credits" class="heading-control">Credits<a class="heading-anchor" href="#credits" aria-hidden="true"></a></h2>
-<p>Thanks to <a href="https://github.com/joyrexus" target="_blank" rel="noopener">J Voight</a>, <a href="http://alexcabrera.me/" target="_blank" rel="noopener">Alex Cabrera</a>, <a href="http://johndebs.com/" target="_blank" rel="noopener">John Debs</a>, and <a href="http://supriyosinha.com" target="_blank" rel="noopener">Supriyo Sinha</a> for help with the notation.</p>
-<p>The concept and controls are heavily influenced by <a href="http://worrydream.com" target="_blank" rel="noopener">Bret Victor’s</a> <a href="http://worrydream.com/Tangle" target="_blank" rel="noopener">Tangle</a> library for creating reactive documents.</p>
+<p>Thanks to <a href="https://github.com/joyrexus">J Voight</a>, <a href="http://alexcabrera.me/">Alex Cabrera</a>, <a href="http://johndebs.com/">John Debs</a>, and <a href="http://supriyosinha.com">Supriyo Sinha</a> for help with the notation.</p>
+<p>The concept and controls are heavily influenced by <a href="http://worrydream.com">Bret Victor’s</a> <a href="http://worrydream.com/Tangle">Tangle</a> library for creating reactive documents.</p>
 <h2 id="license" class="heading-control">License<a class="heading-anchor" href="#license" aria-hidden="true"></a></h2>
 <p>MIT</p>
 
@@ -416,7 +349,6 @@ complete reference of the elements and their configuration.</p>
     
     
     
-  </div>
 
 
           </div>
@@ -438,7 +370,7 @@ complete reference of the elements and their configuration.</p>
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -450,7 +382,7 @@ complete reference of the elements and their configuration.</p>
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -493,7 +425,7 @@ complete reference of the elements and their configuration.</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">A More Complex Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#notation"><span class="nav-number">2.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#authors"><span class="nav-number">3.</span> <span class="nav-text">Authors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#credits"><span class="nav-number">4.</span> <span class="nav-text">Credits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#license"><span class="nav-number">5.</span> <span class="nav-text">License</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#st-ives-example"><span class="nav-number">1.1.</span> <span class="nav-text">St.Ives Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-complex-example"><span class="nav-number">1.2.</span> <span class="nav-text">A More Complex Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less-than-code-1-greater-than"><span class="nav-number">2.</span> <span class="nav-text">1234567891011121314151617181920# demo how to draw a rect.paper &#x3D; @canvas|~~~tooltip: set the canvas size:200X100 ::: Inittype:paper.setSize(200,100)\ntooltip: clear canvastype:paper.clear()\ntooltip: init x&#x2F;y coor, width&#x2F;height parameters coming from documenttype:@rx ||&#x3D;10\ntype:@ry ||&#x3D;18\ntype:@rw ||&#x3D;100\ntype:@rh ||&#x3D;50\ntooltip: drawing rect nowing ::: Draw recttype:rect &#x3D; paper.rect(@rx, @ry, @rw, @rh)\ntooltip: fill red for the recttype:rect.attr(&#39;fill&#39;, &#39;red&#39;)moveTo: 8:13tooltip: you can try it by youself now</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#notation"><span class="nav-number">3.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#authors"><span class="nav-number">4.</span> <span class="nav-text">Authors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#credits"><span class="nav-number">5.</span> <span class="nav-text">Credits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#license"><span class="nav-number">6.</span> <span class="nav-text">License</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -509,20 +441,20 @@ complete reference of the elements and their configuration.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -552,6 +484,8 @@ complete reference of the elements and their configuration.</p>
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -565,14 +499,16 @@ complete reference of the elements and their configuration.</p>
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -649,15 +585,15 @@ window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"In
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/imarkdown/en/index.html",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/imarkdown/en/index.html",
       identifier: "imarkdown/en/index.html",
-      title: "Interactive Markdown",
+      title     : "Interactive Markdown",
     });
   }, window.DisqusJS);
 });
@@ -677,7 +613,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

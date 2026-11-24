@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,50 +15,24 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenPGP 密钥(GnuPG软件)安全随笔">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;gpg&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/gpg/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="GnuPG软件（简称GPG） – OpenPGP 历史介绍 History PGP (Pretty Good Privacy) 最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。 OpenPGP">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-11-26T17:27:00.000Z">
 <meta property="article:modified_time" content="2019-11-26T17:27:00.000Z">
 <meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="gpg">
 <meta property="article:tag" content="openpgp">
 <meta property="article:tag" content="pgp">
-<meta property="article:tag" content="gpg">
 <meta property="article:tag" content="public key">
 <meta name="twitter:card" content="summary">
 
@@ -69,14 +43,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -132,28 +107,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -161,15 +123,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -180,11 +164,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -202,29 +181,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -243,14 +227,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/gpg/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -263,9 +246,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           OpenPGP 密钥(GnuPG软件)安全随笔
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -282,15 +265,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/" itemprop="url" rel="index">
-                    <span itemprop="name">Security</span>
-                  </a>
+                  <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/PGP/" itemprop="url" rel="index">
-                    <span itemprop="name">PGP</span>
-                  </a>
+                  <a href="/categories/Security/PGP/" itemprop="url" rel="index"><span itemprop="name">PGP</span></a>
                 </span>
             </span>
 
@@ -299,7 +278,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -314,7 +293,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>21 分钟</span>
+              <span>22 分钟</span>
             </span>
 
         </div>
@@ -331,12 +310,12 @@
 <h2 id="pgp-pretty-good-privacy" class="heading-control">PGP (Pretty Good Privacy)<a class="heading-anchor" href="#pgp-pretty-good-privacy" aria-hidden="true"></a></h2>
 <p>最早是由PGP Inc.公司拥有原始的PGP加密软件的版权，后来它被赛门铁克公司（Symantec Corp.）收购。后续由赛门铁克公司继续开发维护PGP品牌。</p>
 <h2 id="openpgp" class="heading-control">OpenPGP<a class="heading-anchor" href="#openpgp" aria-hidden="true"></a></h2>
-<p>Zimmerman(最早的PGP开发人员)于1997年向IETF（互联网工程任务组）提交了<a href="https://tools.ietf.org/html/rfc4880" target="_blank" rel="noopener">开源PGP（OpenPGP）标准提案</a>。如今，OpenPGP成为了PGP的标准规范，是供公众使用的开源代码，并且该术语可用于描述支持OpenPGP系统的任何程序。</p>
+<p>Zimmerman(最早的PGP开发人员)于1997年向IETF（互联网工程任务组）提交了<a href="https://tools.ietf.org/html/rfc4880">开源PGP（OpenPGP）标准提案</a>。如今，OpenPGP成为了PGP的标准规范，是供公众使用的开源代码，并且该术语可用于描述支持OpenPGP系统的任何程序。</p>
 <h2 id="gpg-gnu-privacy-guard" class="heading-control">GPG (GNU Privacy Guard)<a class="heading-anchor" href="#gpg-gnu-privacy-guard" aria-hidden="true"></a></h2>
 <p>GnuPGP由Werner Koch开发的开源加密工具软件，并于1999年发布，以替代现有的Symantec加密工具软件套件。 它可以免费下载，并且基于IETF建立的OpenPGP标准，因此可以与Symantec的PGP工具和支持OpenPGP标准的软件互操作。GPG可以打开和解密任何PGP和OpenPGP标准的文件。</p>
 <h2 id="keys" class="heading-control">Keys<a class="heading-anchor" href="#keys" aria-hidden="true"></a></h2>
 <p>在公开密钥算法中，一个Key(密钥)包括两个部分：公钥和私钥。公钥类似于印鉴，而私钥类似于印章。</p>
-<h2 id="subkeys" class="heading-control"><a href="https://wiki.debian.org/Subkeys" target="_blank" rel="noopener">Subkeys</a><a class="heading-anchor" href="#subkeys" aria-hidden="true"></a></h2>
+<h2 id="subkeys" class="heading-control"><a href="https://wiki.debian.org/Subkeys">Subkeys</a><a class="heading-anchor" href="#subkeys" aria-hidden="true"></a></h2>
 <p>在OpenPGP标准中你的钥匙包括一个主钥(master key)和若干子钥(subkeys)。在OpenPGP标准中主钥，子钥(Subkey)是必需理解，非常关键的概念，可以极大的提升安全性。</p>
 <ul>
 <li>主钥的主要作用是用于签发和吊销其它密钥、签名或用户Id，从安全角度考虑，主钥的私钥应该完全保持离线。</li>
@@ -360,14 +339,14 @@
 <li>某些算法不能同时支持加密和签名，例如: DSA 主密钥只能签名，因此它需要另一个密钥来加密，通常DSA与ElGamal算法成对使用。Some algorithms do not support both encrypting and signing. For example, a DSA primary key requires another key for encryption, typically paired with ElGamal.</li>
 </ul>
 <h3 id="binding-signatures" class="heading-control">Binding Signatures<a class="heading-anchor" href="#binding-signatures" aria-hidden="true"></a></h3>
-<p>There are special signature subtypes to bind subkeys to primary keys (and vice verse), listed in <a href="http://tools.ietf.org/html/rfc4880#section-5.2.1" target="_blank" rel="noopener">RFC 4880, OpenPGP, 5.2.1 Signature Types</a>:</p>
+<p>There are special signature subtypes to bind subkeys to primary keys (and vice verse), listed in <a href="http://tools.ietf.org/html/rfc4880#section-5.2.1">RFC 4880, OpenPGP, 5.2.1 Signature Types</a>:</p>
 <p>0x18: Subkey Binding Signature</p>
 <p>This signature is a statement by the top-level signing key that indicates that it owns the subkey. This signature is calculated directly on the primary key and subkey, and not on any User ID or other packets. A signature that binds a signing subkey MUST have an Embedded Signature subpacket in this binding signature that contains a 0x19 signature made by the signing subkey on the primary key and subkey.</p>
 <p>0x19: Primary Key Binding Signature</p>
 <p>This signature is a statement by a signing subkey, indicating that it is owned by the primary key and subkey. This signature is calculated the same way as a 0x18 signature: directly on the primary key and subkey, and not on any User ID or other packets.</p>
 <p>OpenPGP 更进一步的支持 <code>subkeys</code>, 它像普通的钥匙,但 subkeys 是和一个 master 钥匙绑定的，子钥 可以用于签名或加密。子钥可以独立于主钥匙进行撤销和存放。</p>
 <p>换句话说，子钥像单独的钥匙对，但是自动与您的主钥匙关联。</p>
-<p>GnuPG 实际上用一个签名(signing-only)钥匙作为主钥匙。然后自动创建了一个用于加密的子钥。 Without a subkey for encryption, you can’t have encrypted e-mails with GnuPG at all. Debian requires you to have the encryption subkey so that certain kinds of things can be e-mailed to you safely, such as the initial password for your <a href="http://debian.org" target="_blank" rel="noopener">debian.org</a> shell account.</p>
+<p>GnuPG 实际上用一个签名(signing-only)钥匙作为主钥匙。然后自动创建了一个用于加密的子钥。 Without a subkey for encryption, you can’t have encrypted e-mails with GnuPG at all. Debian requires you to have the encryption subkey so that certain kinds of things can be e-mailed to you safely, such as the initial password for your <a href="http://debian.org">debian.org</a> shell account.</p>
 <p>主钥仅当在以下情况下才被使用：</p>
 <ul>
 <li>when you sign someone else’s key or revoke an existing signature,</li>
@@ -379,183 +358,45 @@
 <li>when you revoke or generate a revocation certificate for the complete key.</li>
 </ul>
 <p>看 openpgpjs 的代码，好像可以独立使用subkey,但是必须存在 master key的公钥。</p>
-<pre><code class="bash">gpg --<span class="hljs-built_in">help</span>
-gpg --gen-key
-gpg --expert --gen-key <span class="hljs-comment"># 可以打开ECC等其它加密算法的支持, or --full-gen-key</span>
-
-　　gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
-　　This is free software: you are free to change and redistribute it.
-　　There is NO WARRANTY, to the extent permitted by law.
-　　请选择您要使用的密钥种类：
-　　　(1) RSA and RSA (default)
-　　　(2) DSA and Elgamal
-　　　(3) DSA (仅用于签名)　
-　　　(4) RSA (仅用于签名)
-　　您的选择？
-
-<span class="hljs-comment"># 生成一张"撤销证书"，以备以后密钥作废时，可以请求外部的公钥服务器撤销你的公钥。</span>
-gpg --gen-revoke [用户ID]
-
-gpg --list-keys --list-options show-keyring
-
-/home/XXX/.gnupg/pubring.kbx
----------------------------------
-pub   rsa4096 2016-10-05 [SC]
-      72ECF46A56B4AD39C907BBB71646B01B86E50310
-uid           [ unknown] Yarn Packaging &lt;yarn@dan.cx&gt;
-sub   rsa4096 2016-10-05 [E]
-sub   rsa4096 2016-10-05 [S] [expires: 2017-10-05]
-sub   rsa4096 2016-10-30 [S]
-
-pub   rsa4096 2017-04-17 [SC]
-      EAD16A2C6AE2C4C70344D76855C2BF1FD36EBB60
-uid           [ultimate] Riceball LEE &lt;snowyu.lee@gmail.com&gt;
-sub   rsa4096 2017-04-17 [E]
-
-<span class="hljs-comment"># 输出密钥,armor参数可以将其转换为ASCII码显示。</span>
-gpg --armor --output public-key.txt --<span class="hljs-built_in">export</span> [用户ID]
-gpg --armor --output private-key.txt --<span class="hljs-built_in">export</span>-secret-keys
-<span class="hljs-comment"># 上传公钥 公钥服务器是网络上专门储存用户公钥的服务器</span>
-gpg --send-keys [用户ID]
-
-<span class="hljs-comment"># 除了生成自己的密钥，还需要将他人的公钥或者你的其他密钥输入系统。这时可以使用import参数。</span>
-gpg --import [密钥文件]
-
-<span class="hljs-comment"># 为了获得他人的公钥，可以让对方直接发给你，或者到公钥服务器上寻找。</span>
-gpg --search-keys [用户ID]
-
-<span class="hljs-comment"># encrypt参数用于加密。</span>
-gpg --recipient [用户ID] --output demo.en.txt --encrypt demo.txt
-
-<span class="hljs-comment"># 解密 GPG允许省略decrypt参数。</span>
-gpg --decrypt demo.en.txt --output demo.de.txt
-
-<span class="hljs-comment"># 对文件签名 当前目录下生成demo.txt.gpg文件 -a 将为ascii armored 输出 demo.txt.asc</span>
-<span class="hljs-comment"># -o demo.txt.sig 自定义输出文件名</span>
-gpg --detach-sig demo.txt
-<span class="hljs-comment"># 生成ASCII码的签名文件</span>
-gpg --clearsign demo.txt
-
-<span class="hljs-comment">#  验证签名</span>
-gpg --verify demo.txt.asc demo.txt
-
-
-<span class="hljs-comment"># 增加 subkey 启用 ECC 支持</span>
-
-gpg --expert --edit-key YOURMASTERKEYID
-gpg&gt; addkey
-  Please select what kind of key you want:
-    (3) DSA (sign only)
-    (4) RSA (sign only)
-    (5) Elgamal (encrypt only)
-    (6) RSA (encrypt only)
-    (7) DSA (<span class="hljs-built_in">set</span> your own capabilities)
-    (8) RSA (<span class="hljs-built_in">set</span> your own capabilities)
-    (10) ECC (sign only)
-    (11) ECC (<span class="hljs-built_in">set</span> your own capabilities)
-    (12) ECC (encrypt only)
-    (13) Existing key
-  Your selection? 10
-  Please select <span class="hljs-built_in">which</span> elliptic curve you want:
-    (1) Curve 25519
-    (3) NIST P-256
-    (4) NIST P-384
-    (5) NIST P-521
-    (6) Brainpool P-256
-    (7) Brainpool P-384
-    (8) Brainpool P-512
-    (9) secp256k1
-  Your selection? 9
-gpg&gt; save
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">gpg --<span class="built_in">help</span></span><br><span class="line">gpg --gen-key</span><br><span class="line">gpg --expert --gen-key <span class="comment"># 可以打开ECC等其它加密算法的支持, or --full-gen-key</span></span><br><span class="line"></span><br><span class="line">　　gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.</span><br><span class="line">　　This is free software: you are free to change and redistribute it.</span><br><span class="line">　　There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line">　　请选择您要使用的密钥种类：</span><br><span class="line">　　　(1) RSA and RSA (default)</span><br><span class="line">　　　(2) DSA and Elgamal</span><br><span class="line">　　　(3) DSA (仅用于签名)　</span><br><span class="line">　　　(4) RSA (仅用于签名)</span><br><span class="line">　　您的选择？</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成一张&quot;撤销证书&quot;，以备以后密钥作废时，可以请求外部的公钥服务器撤销你的公钥。</span></span><br><span class="line">gpg --gen-revoke [用户ID]</span><br><span class="line"></span><br><span class="line">gpg --list-keys --list-options show-keyring</span><br><span class="line"></span><br><span class="line">/home/XXX/.gnupg/pubring.kbx</span><br><span class="line">---------------------------------</span><br><span class="line">pub   rsa4096 2016-10-05 [SC]</span><br><span class="line">      72ECF46A56B4AD39C907BBB71646B01B86E50310</span><br><span class="line">uid           [ unknown] Yarn Packaging &lt;yarn@dan.cx&gt;</span><br><span class="line">sub   rsa4096 2016-10-05 [E]</span><br><span class="line">sub   rsa4096 2016-10-05 [S] [expires: 2017-10-05]</span><br><span class="line">sub   rsa4096 2016-10-30 [S]</span><br><span class="line"></span><br><span class="line">pub   rsa4096 2017-04-17 [SC]</span><br><span class="line">      EAD16A2C6AE2C4C70344D76855C2BF1FD36EBB60</span><br><span class="line">uid           [ultimate] Riceball LEE &lt;snowyu.lee@gmail.com&gt;</span><br><span class="line">sub   rsa4096 2017-04-17 [E]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出密钥,armor参数可以将其转换为ASCII码显示。</span></span><br><span class="line">gpg --armor --output public-key.txt --<span class="built_in">export</span> [用户ID]</span><br><span class="line">gpg --armor --output private-key.txt --export-secret-keys</span><br><span class="line"><span class="comment"># 上传公钥 公钥服务器是网络上专门储存用户公钥的服务器</span></span><br><span class="line">gpg --send-keys [用户ID]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 除了生成自己的密钥，还需要将他人的公钥或者你的其他密钥输入系统。这时可以使用import参数。</span></span><br><span class="line">gpg --import [密钥文件]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了获得他人的公钥，可以让对方直接发给你，或者到公钥服务器上寻找。</span></span><br><span class="line">gpg --search-keys [用户ID]</span><br><span class="line"></span><br><span class="line"><span class="comment"># encrypt参数用于加密。</span></span><br><span class="line">gpg --recipient [用户ID] --output demo.en.txt --encrypt demo.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密 GPG允许省略decrypt参数。</span></span><br><span class="line">gpg --decrypt demo.en.txt --output demo.de.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对文件签名 当前目录下生成demo.txt.gpg文件 -a 将为ascii armored 输出 demo.txt.asc</span></span><br><span class="line"><span class="comment"># -o demo.txt.sig 自定义输出文件名</span></span><br><span class="line">gpg --detach-sig demo.txt</span><br><span class="line"><span class="comment"># 生成ASCII码的签名文件</span></span><br><span class="line">gpg --clearsign demo.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#  验证签名</span></span><br><span class="line">gpg --verify demo.txt.asc demo.txt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加 subkey 启用 ECC 支持</span></span><br><span class="line"></span><br><span class="line">gpg --expert --edit-key YOURMASTERKEYID</span><br><span class="line">gpg&gt; addkey</span><br><span class="line">  Please <span class="keyword">select</span> what kind of key you want:</span><br><span class="line">    (3) DSA (sign only)</span><br><span class="line">    (4) RSA (sign only)</span><br><span class="line">    (5) Elgamal (encrypt only)</span><br><span class="line">    (6) RSA (encrypt only)</span><br><span class="line">    (7) DSA (<span class="built_in">set</span> your own capabilities)</span><br><span class="line">    (8) RSA (<span class="built_in">set</span> your own capabilities)</span><br><span class="line">    (10) ECC (sign only)</span><br><span class="line">    (11) ECC (<span class="built_in">set</span> your own capabilities)</span><br><span class="line">    (12) ECC (encrypt only)</span><br><span class="line">    (13) Existing key</span><br><span class="line">  Your selection? 10</span><br><span class="line">  Please <span class="keyword">select</span> <span class="built_in">which</span> elliptic curve you want:</span><br><span class="line">    (1) Curve 25519</span><br><span class="line">    (3) NIST P-256</span><br><span class="line">    (4) NIST P-384</span><br><span class="line">    (5) NIST P-521</span><br><span class="line">    (6) Brainpool P-256</span><br><span class="line">    (7) Brainpool P-384</span><br><span class="line">    (8) Brainpool P-512</span><br><span class="line">    (9) secp256k1</span><br><span class="line">  Your selection? 9</span><br><span class="line">gpg&gt; save</span><br></pre></td></tr></table></figure>
 <h3 id="dao-chu-mi-yue" class="heading-control">导出密钥<a class="heading-anchor" href="#dao-chu-mi-yue" aria-hidden="true"></a></h3>
 <p>应用签名等需要。</p>
 <p><code>openpgp2ssh</code> 测试成功，其余失败,搞定。</p>
-<pre><code class="bash">sudo apt install monkeysphere
-<span class="hljs-comment"># 弄之前先解密需要导出的密钥</span>
-<span class="hljs-comment"># 10F15E84852CB868 是subkey的id,可以用 gpg --list-keys 看到</span>
-gpg --<span class="hljs-built_in">export</span>-secret-subkeys youmasterid@gmail.com | openpgp2ssh 10F15E84852CB868 &gt; id_rsa
-openssl rsa -<span class="hljs-keyword">in</span> id_rsa -outform pem &gt; key.pem
-<span class="hljs-comment"># 将子密钥转为 pkcs8 格式。</span>
-openssl pkcs8 -topk8 -outform DER -<span class="hljs-keyword">in</span> key.pem -inform PEM -out key.pk8 -nocrypt
-<span class="hljs-comment"># 产生请求签名的证书文件,发给签名方签名形成签名证书。</span>
-openssl req -new -key key.pem -out request.pem
-<span class="hljs-comment"># 签名方进行签名，产生签名证书。</span>
-<span class="hljs-comment"># 这样一来变成了自签名的，而不是主钥签名的。如果要主钥签名，首先得导出主钥。</span>
-openssl x509 -req -days 9999 -<span class="hljs-keyword">in</span> request.pem -signkey key.pem -out certificate.pem
-<span class="hljs-comment"># 使用 Android 提供的 SignApk.jar 进行 apk签名</span>
-java -jar SignApk.jar certificate.pem key.pk8 Application.apk Application_signed.apk
-<span class="hljs-comment"># 可以用这个脚本转到keytool去用java的 jarsigner, -p keystore-password</span>
-keytool-importkeypair -k ~/.android/debug.keystore -p android -pk8 key.pk8 -cert certificate.pem -<span class="hljs-built_in">alias</span> platform
-<span class="hljs-comment"># 使用 java自带的签名工具进行签名</span>
-jarsigner -verbose -keystore ~/.android/debug.keystore Application_unsign.apk platform
-</code></pre>
-<p><a href="https://github.com/getfatday/keytool-importkeypair" target="_blank" rel="noopener">https://github.com/getfatday/keytool-importkeypair</a></p>
-<pre><code class="bash"><span class="hljs-comment"># keytool-importkeypair</span>
-<span class="hljs-comment"># 将pkcs8 转回 pem 格式</span>
-openssl pkcs8 -inform DER -nocrypt -<span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${pk8}</span>"</span> -out <span class="hljs-string">"<span class="hljs-variable">${key}</span>"</span>
-<span class="hljs-comment"># 将密钥绑定签名证书，使用 keystore的密码加密</span>
-openssl pkcs12 -<span class="hljs-built_in">export</span> -<span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${cert}</span>"</span> -inkey <span class="hljs-string">"<span class="hljs-variable">${key}</span>"</span> -out <span class="hljs-string">"<span class="hljs-variable">${p12}</span>"</span> -password pass:<span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span> -name <span class="hljs-string">"<span class="hljs-variable">${alias}</span>"</span>
-<span class="hljs-comment"># 导入keystore</span>
-keytool -importkeystore -deststorepass <span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span> -destkeystore <span class="hljs-string">"<span class="hljs-variable">${keystore}</span>"</span> -srckeystore <span class="hljs-string">"<span class="hljs-variable">${p12}</span>"</span> -srcstoretype PKCS12 -srcstorepass <span class="hljs-string">"<span class="hljs-variable">${passphrase}</span>"</span>
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install monkeysphere</span><br><span class="line"><span class="comment"># 弄之前先解密需要导出的密钥</span></span><br><span class="line"><span class="comment"># 10F15E84852CB868 是subkey的id,可以用 gpg --list-keys 看到</span></span><br><span class="line">gpg --export-secret-subkeys youmasterid@gmail.com | openpgp2ssh 10F15E84852CB868 &gt; id_rsa</span><br><span class="line">openssl rsa -<span class="keyword">in</span> id_rsa -outform pem &gt; key.pem</span><br><span class="line"><span class="comment"># 将子密钥转为 pkcs8 格式。</span></span><br><span class="line">openssl pkcs8 -topk8 -outform DER -<span class="keyword">in</span> key.pem -inform PEM -out key.pk8 -nocrypt</span><br><span class="line"><span class="comment"># 产生请求签名的证书文件,发给签名方签名形成签名证书。</span></span><br><span class="line">openssl req -new -key key.pem -out request.pem</span><br><span class="line"><span class="comment"># 签名方进行签名，产生签名证书。</span></span><br><span class="line"><span class="comment"># 这样一来变成了自签名的，而不是主钥签名的。如果要主钥签名，首先得导出主钥。</span></span><br><span class="line">openssl x509 -req -days 9999 -<span class="keyword">in</span> request.pem -signkey key.pem -out certificate.pem</span><br><span class="line"><span class="comment"># 使用 Android 提供的 SignApk.jar 进行 apk签名</span></span><br><span class="line">java -jar SignApk.jar certificate.pem key.pk8 Application.apk Application_signed.apk</span><br><span class="line"><span class="comment"># 可以用这个脚本转到keytool去用java的 jarsigner, -p keystore-password</span></span><br><span class="line">keytool-importkeypair -k ~/.android/debug.keystore -p android -pk8 key.pk8 -cert certificate.pem -<span class="built_in">alias</span> platform</span><br><span class="line"><span class="comment"># 使用 java自带的签名工具进行签名</span></span><br><span class="line">jarsigner -verbose -keystore ~/.android/debug.keystore Application_unsign.apk platform</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/getfatday/keytool-importkeypair">https://github.com/getfatday/keytool-importkeypair</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># keytool-importkeypair</span></span><br><span class="line"><span class="comment"># 将pkcs8 转回 pem 格式</span></span><br><span class="line">openssl pkcs8 -inform DER -nocrypt -<span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;pk8&#125;</span>&quot;</span> -out <span class="string">&quot;<span class="variable">$&#123;key&#125;</span>&quot;</span></span><br><span class="line"><span class="comment"># 将密钥绑定签名证书，使用 keystore的密码加密</span></span><br><span class="line">openssl pkcs12 -<span class="built_in">export</span> -<span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;cert&#125;</span>&quot;</span> -inkey <span class="string">&quot;<span class="variable">$&#123;key&#125;</span>&quot;</span> -out <span class="string">&quot;<span class="variable">$&#123;p12&#125;</span>&quot;</span> -password pass:<span class="string">&quot;<span class="variable">$&#123;passphrase&#125;</span>&quot;</span> -name <span class="string">&quot;<span class="variable">$&#123;alias&#125;</span>&quot;</span></span><br><span class="line"><span class="comment"># 导入keystore</span></span><br><span class="line">keytool -importkeystore -deststorepass <span class="string">&quot;<span class="variable">$&#123;passphrase&#125;</span>&quot;</span> -destkeystore <span class="string">&quot;<span class="variable">$&#123;keystore&#125;</span>&quot;</span> -srckeystore <span class="string">&quot;<span class="variable">$&#123;p12&#125;</span>&quot;</span> -srcstoretype PKCS12 -srcstorepass <span class="string">&quot;<span class="variable">$&#123;passphrase&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
 <hr>
 <p>以下为测试失败的一些方法：</p>
 <p>It’s separate key storage: <code>gpg</code> has <code>~/.gnupg/pubring.gpg</code>, <code>gpgsm</code> has <code>~/.gnupg/pubring.kbx</code><br>
 So keys added with gpgsm aren’t usable with gpg; gpg doesn’t read ~/.gnupg/pubring.kbx.</p>
-<pre><code class="bash">gpg -o secret-key.p12 --<span class="hljs-built_in">export</span> [key id] --<span class="hljs-built_in">export</span>-format pkcs12 --cert
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg -o secret-key.p12 --<span class="built_in">export</span> [key <span class="built_in">id</span>] --export-format pkcs12 --cert</span><br></pre></td></tr></table></figure>
 <p><code>pkcs12</code> Only binary blocks are output; the default file extension is .p12; a signed key must be paired; and input must match exactly one key. In this case, --cert is required.</p>
 <p><code>--cert</code> This option is the X.509 issuer long name or the 32-bit or 64-bit key ID, if the signing key is available.</p>
 <p>And there is an option concerning the charset of the exported key, which often is a problem with (especially older) windows programs:</p>
 <p><code>--p12-charset</code> name gpgsm uses the UTF-8 encoding when encoding passphrases for PKCS#12 files. This option may be used to force the passphrase to be encoded in the specified encoding name. This is useful if the application used to import the key uses a different encoding and thus will not be able to import a file generated by gpgsm. Commonly used values for name are Latin1 and CP850. Note that gpgsm itself automagically imports any file with a passphrase encoded to the most commonly used encodings.</p>
 <p>It contains keys and certificates. Then you can split them with openSSL and transform it in .pem at the same time</p>
-<pre><code class="bash">openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -out gpg-certs.pem -clcerts -nokeys -passin <span class="hljs-string">'pass:P@s5w0rD'</span>
-openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -out gpg-key.pem -nocerts -nodes
-
-openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -nocerts -out gpg-key.pem
-openssl pkcs12 -<span class="hljs-keyword">in</span> secret-key.p12 -nokeys -out gpg-certs.pem
-</code></pre>
-<p>还发现一个工具可以： openpgp2ssh <a href="http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html" target="_blank" rel="noopener">http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -<span class="keyword">in</span> secret-key.p12 -out gpg-certs.pem -clcerts -nokeys -passin <span class="string">&#x27;pass:P@s5w0rD&#x27;</span></span><br><span class="line">openssl pkcs12 -<span class="keyword">in</span> secret-key.p12 -out gpg-key.pem -nocerts -nodes</span><br><span class="line"></span><br><span class="line">openssl pkcs12 -<span class="keyword">in</span> secret-key.p12 -nocerts -out gpg-key.pem</span><br><span class="line">openssl pkcs12 -<span class="keyword">in</span> secret-key.p12 -nokeys -out gpg-certs.pem</span><br></pre></td></tr></table></figure>
+<p>还发现一个工具可以： openpgp2ssh <a href="http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html">http://manpages.ubuntu.com/manpages/natty/man1/openpgp2ssh.1.html</a></p>
 <p>但是只支持rsa以及没有密码的key.</p>
 <p><code>gpg --edit-key $KEYID</code> 然后用 <code>passwd</code> 子命令移除密码。然后</p>
 <p><code>gpg --export-secret-key $KEYID | openpgp2ssh $KEYID &gt; id_rsa</code></p>
 <p>然后可以建立 Certificate Signing Request (CSR):</p>
 <p>openssl req -new -key id_rsa -out id_rsa.csr</p>
 <p>id_rsa.csr’s content should look like:</p>
-<pre><code>-----BEGIN CERTIFICATE REQUEST-----
-MIIC9jCCAd4CAQAwgZkxCzAJBgNVBAYTAkRFMRMwEQYDVQQIEwpTb21lLVN0YXRl[...]
------END CERTIFICATE REQUEST-----
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE REQUEST-----</span><br><span class="line">MIIC9jCCAd4CAQAwgZkxCzAJBgNVBAYTAkRFMRMwEQYDVQQIEwpTb21lLVN0YXRl[...]</span><br><span class="line">-----END CERTIFICATE REQUEST-----</span><br></pre></td></tr></table></figure>
 <p>然后发给CA，CA签名后发给你证书文件:</p>
-<pre><code>-----BEGIN CERTIFICATE-----
-MIIFRjCCAy6gAwIBAgIDCuP8MA0GCSqGSIb3DQEBBQUAMHkxEDAOBgNVBAoTB1Jv[...]
------END CERTIFICATE-----
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIFRjCCAy6gAwIBAgIDCuP8MA0GCSqGSIb3DQEBBQUAMHkxEDAOBgNVBAoTB1Jv[...]</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure>
 <p>你把<code>id_rsa</code>和证书合并在一起：</p>
-<pre><code>-----BEGIN CERTIFICATE-----
-MIIFRjCCAy6gAwIBAgIDCuP8MA0GCSqGSIb3DQEBBQUAMHkxEDAOBgNVBAoTB1Jv[...]
------END CERTIFICATE-----
------BEGIN RSA PRIVATE KEY-----
-MIIEowIBAAKCAQEA0s2wNIWuUzuBYU9U0cK/mGa4LMtsWTEZEFTQhHj2eg4ZHmdt[...]
------END RSA PRIVATE KEY-----
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIFRjCCAy6gAwIBAgIDCuP8MA0GCSqGSIb3DQEBBQUAMHkxEDAOBgNVBAoTB1Jv[...]</span><br><span class="line">-----END CERTIFICATE-----</span><br><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEowIBAAKCAQEA0s2wNIWuUzuBYU9U0cK/mGa4LMtsWTEZEFTQhHj2eg4ZHmdt[...]</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 <p>最后创建a PKCS#12 container:</p>
 <p>openssl pkcs12 -export -in email@address.pem -out email@address.pem.p12</p>
-<p><a href="http://wiki.cacert.org/ConvertingPgpKeyToCertificate" target="_blank" rel="noopener">Creating a new X.509 certificate from your PGP key pair</a></p>
-<pre><code class="bash"><span class="hljs-comment"># 失败，没有 p12-export参数了！！！</span>
-/usr/lib/gnupg/gpg-protect-tool --p12-export -P &lt;passphrase&gt; ~/.gnupg/private-keys-v1.d/[keygrip] &gt;foo.p12
-</code></pre>
+<p><a href="http://wiki.cacert.org/ConvertingPgpKeyToCertificate">Creating a new X.509 certificate from your PGP key pair</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 失败，没有 p12-export参数了！！！</span></span><br><span class="line">/usr/lib/gnupg/gpg-protect-tool --p12-export -P &lt;passphrase&gt; ~/.gnupg/private-keys-v1.d/[keygrip] &gt;foo.p12</span><br></pre></td></tr></table></figure>
 <p><code>[keygrip]</code> is the hash of the key.  you can find it by:</p>
-<pre><code class="bash">gpg --with-keygrip --list-key
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --with-keygrip --list-key</span><br></pre></td></tr></table></figure>
 <p>prepend the above line by space to avoid login the passphrase in history.</p>
 <p>then (as per this guide, in fact)</p>
-<pre><code>openssl pkcs12 -in foo.p12 -nocerts -out foo.pem
-chmod 0600 foo.pem
-mv foo.pem ~/.ssh/id_rsa
-ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -in foo.p12 -nocerts -out foo.pem</span><br><span class="line">chmod 0600 foo.pem</span><br><span class="line">mv foo.pem ~/.ssh/id_rsa</span><br><span class="line">ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
 <h2 id="pgp-xin-ren-fang-shi" class="heading-control">PGP 信任方式<a class="heading-anchor" href="#pgp-xin-ren-fang-shi" aria-hidden="true"></a></h2>
 <p>PGP（Pretty Good Privacy）最初是用传统公钥密码学加密email信息的，之后又被用于加密本地文件。</p>
 <p>注意：PGP和WoT(Web of Trust)不是同一样事务，PGP采用了WoT的方式。</p>
@@ -586,42 +427,7 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
 <p>然而以上的有效性和可信度定义得十分模糊，PGP就想办法使其更具实际指导意义。PGP赋予用户自行调节标准的能力，它定义了两个参数：COMPLETES_NEEDED（完全需要数量）和MARGINALS_NEEDED（边际需要数量）。前者定义为使公钥证书完全有效时所需的完全可信签名的数量，后者定义为使公钥部分有效时所需的边际签名的数量。这两个参数都是需要用户根据自身情况定的。</p>
 <p>三、信任评估算法</p>
 <p>当PGP评估一个公钥证书的可信度时，它需要运用如下算法，即信任评估算法（用伪代码表示）：</p>
-<pre><code>1. For each signature do
-
-// scan signatures
-
-2. if signature is completely valid then
-
-3. if key trust ∈{undefined,unknown,untrusted} then
-
-4. ignore signature
-
-5. if key trust is marginal then
-
-6. accumulate marginals_counter
-
-7. if key trust is complete then
-
-8. accumulate completes_counter
-
-9. else
-
-10. ignore signature
-
-// decision
-
-11. if (marginals_counter&gt;0) or (completes_counter&gt;0) then
-
-12. if (marginals_counter&gt;=MARGINALS_NEEDED) or
-
-13.(completes_counter&gt;=COMPLETES_NEEDED) then
-
-14. mark key validity as 'complete'
-
-15. else
-
-16. mark key validity as 'marginal'
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1. For each signature do</span><br><span class="line"></span><br><span class="line">// scan signatures</span><br><span class="line"></span><br><span class="line">2. if signature is completely valid then</span><br><span class="line"></span><br><span class="line">3. if key trust ∈&#123;undefined,unknown,untrusted&#125; then</span><br><span class="line"></span><br><span class="line">4. ignore signature</span><br><span class="line"></span><br><span class="line">5. if key trust is marginal then</span><br><span class="line"></span><br><span class="line">6. accumulate marginals_counter</span><br><span class="line"></span><br><span class="line">7. if key trust is complete then</span><br><span class="line"></span><br><span class="line">8. accumulate completes_counter</span><br><span class="line"></span><br><span class="line">9. else</span><br><span class="line"></span><br><span class="line">10. ignore signature</span><br><span class="line"></span><br><span class="line">// decision</span><br><span class="line"></span><br><span class="line">11. if (marginals_counter&gt;0) or (completes_counter&gt;0) then</span><br><span class="line"></span><br><span class="line">12. if (marginals_counter&gt;=MARGINALS_NEEDED) or</span><br><span class="line"></span><br><span class="line">13.(completes_counter&gt;=COMPLETES_NEEDED) then</span><br><span class="line"></span><br><span class="line">14. mark key validity as &#x27;complete&#x27;</span><br><span class="line"></span><br><span class="line">15. else</span><br><span class="line"></span><br><span class="line">16. mark key validity as &#x27;marginal&#x27;</span><br></pre></td></tr></table></figure>
 <p>其中：</p>
 <ul>
 <li>line 6: marginals_counter  计算该公钥证书的边际信任签名个数；</li>
@@ -634,16 +440,12 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
 <p>在PGP中，信任是不可以传递的。即在下图的介绍人（证书）链中，Carol不能假设Eric 的证书是有效的，除非通过介绍人的介绍。</p>
 <pre><code>Carol --&gt; Alice --&gt; Bob --&gt; Eric
 </code></pre>
-<pre><code class="mermaid">graph LR
-  Carol --&gt; Alice
-  Alice --&gt; Bob
-  Bob --&gt; Eric
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">  Carol --&gt; Alice</span><br><span class="line">  Alice --&gt; Bob</span><br><span class="line">  Bob --&gt; Eric</span><br></pre></td></tr></table></figure>
 <p>在PGP中的CERT_DEPTH参数尽管定义了证书链长度的最大值，但是也不能用其确定出证书的有效性。</p>
 <p>也就是说，这些链的作用仅在于寻求用户之间的直接信任关系，帮助减少关系网的冗余度，使关系网更加清晰。</p>
 <p>信赖网路机制比S/MIME方案的集中管理的公钥基础设施有优势，但是没有被网络普通大众普遍采用，一般只在Unix-like的爱好者、开源软体界、和对隐私特别注意而且有电脑知识的人群之间使用。如何使一般用户容易并且乐意使用、接收证书然后手动的验证它们的有效性，这些潜在的推广阻碍目前还没有满意的解决方案。</p>
 <h2 id="key-server" class="heading-control">Key Server<a class="heading-anchor" href="#key-server" aria-hidden="true"></a></h2>
-<p><a href="https://roll.urown.net/server/pgp-keyserver.html" target="_blank" rel="noopener">https://roll.urown.net/server/pgp-keyserver.html</a></p>
+<p><a href="https://roll.urown.net/server/pgp-keyserver.html">https://roll.urown.net/server/pgp-keyserver.html</a></p>
 <h2 id="references" class="heading-control">References<a class="heading-anchor" href="#references" aria-hidden="true"></a></h2>
 
     </div>
@@ -675,7 +477,7 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/gpg/" title="OpenPGP 密钥(GnuPG软件)安全随笔">https://riceball.me/article/gpg/</a>
+    <a href="https://riceball.me/article/gpg/" title="OpenPGP 密钥(GnuPG软件)安全随笔">https://riceball.me/article/gpg/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -714,7 +516,6 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
   
   
 
-  </div>
 
 
           </div>
@@ -736,7 +537,7 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -748,7 +549,7 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -807,20 +608,20 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -850,6 +651,8 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -863,14 +666,16 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -944,15 +749,15 @@ ssh-keygen -y -f ~/.ssh/id_rsa &gt; ~/.ssh/id_rsa.pub
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/gpg/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/gpg/",
       identifier: "article/gpg/",
-      title: "OpenPGP 密钥(GnuPG软件)安全随笔",
+      title     : "OpenPGP 密钥(GnuPG软件)安全随笔",
     });
   }, window.DisqusJS);
 });
@@ -972,7 +777,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

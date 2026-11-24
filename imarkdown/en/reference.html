@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,52 +15,26 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="Notation The notation for specifying elements is similar to the regular Markdown syntax for links and images, generally following this format: [text content]{variable_name: configuration} The text rep">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Interactive Markdown Reference Manual">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;en&#x2F;reference.html">
+<meta property="og:url" content="https://riceball.me/imarkdown/en/reference.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Notation The notation for specifying elements is similar to the regular Markdown syntax for links and images, generally following this format: [text content]{variable_name: configuration} The text rep">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-06T12:02:00.000Z">
 <meta property="article:modified_time" content="2019-12-06T12:02:00.000Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="interactive">
-<meta property="article:tag" content="reactive">
 <meta property="article:tag" content="document">
+<meta property="article:tag" content="interactive">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="markdown">
+<meta property="article:tag" content="reactive">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/imarkdown/en/reference">
@@ -70,15 +44,16 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: false
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 <link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -86,7 +61,7 @@
 
 
   <title>Interactive Markdown Reference Manual | Riceball LEE
-  </title>
+</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
     <script>
@@ -135,28 +110,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -164,15 +126,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -183,11 +167,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -205,29 +184,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -248,18 +232,17 @@
   
   
 
-          <div class="content">
+          <div class="content page posts-expand">
             
 
-  <div class="posts-expand">
     
     
     
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">Interactive Markdown Reference Manual
-</h2>
+<h1 class="post-title" itemprop="name headline">Interactive Markdown Reference Manual
+</h1>
 
 <div class="post-meta">
   
@@ -310,7 +293,7 @@ have a step value. The text is parsed, and the first number in the text becomes<
 the output value. The remaining text is added to the template, allowing for<br>
 units and other descriptive text to be included in the control.</p>
 <p>A range MUST be specified, but MAY be infinite in both directions. The range’s<br>
-interval is specified using the <a href="http://coffeescript.org/#loops" target="_blank" rel="noopener">CoffeeScript-style range<br>
+interval is specified using the <a href="http://coffeescript.org/#loops">CoffeeScript-style range<br>
 dots</a>, where <code>..</code> is inclusive and <code>...</code><br>
 excludes the end. ie, <code>1..4</code> covers the interval <code>1 &lt;= n &lt;= 4</code>, while <code>1...4</code><br>
 covers <code>1 &lt;= n &lt; 4</code>. The range MUST be ascending (to preserve consistency in<br>
@@ -323,7 +306,7 @@ be included in the element’s presentation.</p>
 <p>Specifying a display precision MAY be done using the default number value in<br>
 the text. <code>200.</code> formats to <code>0</code> decimal places. <code>200.000</code> formats to <code>3</code><br>
 decimals. If not specified, the value is unformatted.</p>
-<p>Numbers MAY use the constants in <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noopener"><code>Math</code></a><br>
+<p>Numbers MAY use the constants in <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math"><code>Math</code></a><br>
 and combine them with a coefficient, eg <code>2pi</code> or <code>0.5pi</code>, which is treated as<br>
 <code>n * Math.PI</code>. This can be done in the range min or max, or in the step. The<br>
 constants MUST be one of <code>e</code>, <code>pi</code>, <code>ln2</code>, <code>ln10</code>, <code>log2e</code>, <code>log10e</code>, <code>sqrt1_2</code>,<br>
@@ -476,72 +459,18 @@ function defined in an <em>ActiveCodeBlock</em>.</p>
 | interval              | <code>[1983,2013]</code>                     |<br>
 | step                  | <code>1</code>                               |</p>
 <h2 id="codeblockelement" class="heading-control">CodeBlockElement<a class="heading-anchor" href="#codeblockelement" aria-hidden="true"></a></h2>
-<p>The interactive code block also follows the Markdown specification. It can be indented by 4 spaces or three “`” symbols (without language instructions) around it. The code language is <a href="https://coffeescript.org/v1/" target="_blank" rel="noopener">CoffeeScript@v1</a></p>
-<pre><code class="markdown">
-<span class="hljs-section"># Indented by 4 spaces</span>
-
-<span class="hljs-code">    # initilizate the my_var variable， || means only init when no default value.</span>
-<span class="hljs-code">    @my_var ||= 123</span>
-<span class="hljs-code">    # set my_func function.</span>
-<span class="hljs-code">    @my_func = (x) =&gt; sin(x + @my_var)</span>
-
-<span class="hljs-section"># Three "`" symbols (without language instructions) around it</span>
-
-<span class="hljs-code">```
-# initilizate the my_var variable， || means only init when no default value.
-@my_var ||= 123
-# set my_func function.
-@my_func = (x) =&gt; sin(x + @my_var)
-```</span>
-</code></pre>
+<p>The interactive code block also follows the Markdown specification. It can be indented by 4 spaces or three “`” symbols (without language instructions) around it. The code language is <a href="https://coffeescript.org/v1/">CoffeeScript@v1</a></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="section"># Indented by 4 spaces</span></span><br><span class="line"></span><br><span class="line"><span class="code">    # initilizate the my_var variable， || means only init when no default value.</span></span><br><span class="line"><span class="code">    @my_var ||= 123</span></span><br><span class="line"><span class="code">    # set my_func function.</span></span><br><span class="line"><span class="code">    @my_func = (x) =&gt; sin(x + @my_var)</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="section"># Three &quot;`&quot; symbols (without language instructions) around it</span></span><br><span class="line"></span><br><span class="line"><span class="code">```</span></span><br><span class="line"><span class="code"># initilizate the my_var variable， || means only init when no default value.</span></span><br><span class="line"><span class="code">@my_var ||= 123</span></span><br><span class="line"><span class="code"># set my_func function.</span></span><br><span class="line"><span class="code">@my_func = (x) =&gt; sin(x + @my_var)</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>Three “`” symbols (with language instructions) around it will dispay the code block only.</p>
-<pre><code class="markdown"><span class="hljs-code">```coffee
-## This code will not be executed, just display it.
-@my_var ||= 123
-@my_func = (x) =&gt; sin(x + @my_var)
-```</span>
-</code></pre>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```coffee</span></span><br><span class="line"><span class="code">## This code will not be executed, just display it.</span></span><br><span class="line"><span class="code">@my_var ||= 123</span></span><br><span class="line"><span class="code">@my_func = (x) =&gt; sin(x + @my_var)</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>The Simple Code Block has not any output. You can do some logical work in it.</p>
 <p>You should use the <code>output</code> as the language if you wanna with output on it. If you want to specify a language, you should put it in front of <code>playable</code> and separate it with a “:” sign, for example, <code>output:playable</code>.</p>
-<pre><code class="md"><span class="hljs-code">```output
-# the code block with output
-@sayln 'hi world'
-```</span>
-
-<span class="hljs-code">```</span>coffee/output:playable
-<span class="hljs-section"># the code block with output and specified language(NOT IMPL YET, All are coffeescript)</span>
-@sayln 'hi world'
-<span class="hljs-code">```
-</span></code></pre>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```output</span></span><br><span class="line"><span class="code"># the code block with output</span></span><br><span class="line"><span class="code">@sayln &#x27;hi world&#x27;</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="code">```coffee/output:playable</span></span><br><span class="line"><span class="code"># the code block with output and specified language(NOT IMPL YET, All are coffeescript)</span></span><br><span class="line"><span class="code">@sayln &#x27;hi world&#x27;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>The CodeBlock with output has a <code>@output</code> variable(it’s the binding <code>div</code> element for this block),  a <code>@say()</code> and <code>@sayln()</code> method to print text.</p>
 <h3 id="play-movie-for-codeblock" class="heading-control">Play Movie for CodeBlock<a class="heading-anchor" href="#play-movie-for-codeblock" aria-hidden="true"></a></h3>
 <p><strong>WARNING：UNSTABLE IT WILL BE CHANGED</strong></p>
 <p>The input of the code block can be played like a movie. You can enable it through three(<code>~~~</code>) or more than three tilde symbols <code>~</code> in a single line on the code block. Above the line is the common source code. The “|” above the code indicates the cursor position after the presentation is completed, and the lower part is the control input movie code.</p>
-<pre><code class="md">
-<span class="hljs-code">```</span>output:playable
-
-<span class="hljs-section"># demo how to draw a rect.</span>
-paper = @canvas
-
-|
-~~~
-tooltip: set the canvas size:200X100 ::: Init
-type:paper.setSize(200,100)\n
-tooltip: clear canvas
-type:paper.clear()\n
-tooltip: init x/y coor, width/height parameters coming from document
-type:@rx ||=10\n
-type:@ry ||=18\n
-type:@rw ||=100\n
-type:@rh ||=50\n
-tooltip: drawing rect nowing ::: Draw rect
-type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
-tooltip: fill red for the rect
-type:rect.attr('fill', 'red')
-moveTo: 8:13
-tooltip: you can try it by youself now
-<span class="hljs-code">```
-</span></code></pre>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="code">```output:playable</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code"># demo how to draw a rect.</span></span><br><span class="line"><span class="code">paper = @canvas</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">|</span></span><br><span class="line"><span class="code">~~~</span></span><br><span class="line"><span class="code">tooltip: set the canvas size:200X100 ::: Init</span></span><br><span class="line"><span class="code">type:paper.setSize(200,100)\n</span></span><br><span class="line"><span class="code">tooltip: clear canvas</span></span><br><span class="line"><span class="code">type:paper.clear()\n</span></span><br><span class="line"><span class="code">tooltip: init x/y coor, width/height parameters coming from document</span></span><br><span class="line"><span class="code">type:@rx ||=10\n</span></span><br><span class="line"><span class="code">type:@ry ||=18\n</span></span><br><span class="line"><span class="code">type:@rw ||=100\n</span></span><br><span class="line"><span class="code">type:@rh ||=50\n</span></span><br><span class="line"><span class="code">tooltip: drawing rect nowing ::: Draw rect</span></span><br><span class="line"><span class="code">type:rect = paper.rect(@rx, @ry, @rw, @rh)\n</span></span><br><span class="line"><span class="code">tooltip: fill red for the rect</span></span><br><span class="line"><span class="code">type:rect.attr(&#x27;fill&#x27;, &#x27;red&#x27;)</span></span><br><span class="line"><span class="code">moveTo: 8:13</span></span><br><span class="line"><span class="code">tooltip: you can try it by youself now</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>tooltip</code> : show a tooltip
 <ul>
@@ -553,36 +482,11 @@ tooltip: you can try it by youself now
 </ul>
 <h3 id="codeblock-examples" class="heading-control">CodeBlock Examples<a class="heading-anchor" href="#codeblock-examples" aria-hidden="true"></a></h3>
 <h4 id="examples-interactive-code-block-without-output" class="heading-control">Examples: interactive code block without output<a class="heading-anchor" href="#examples-interactive-code-block-without-output" aria-hidden="true"></a></h4>
-<pre><code># this is an interactive code block without output
-a = 12 + 3
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># this is an interactive code block without output</span><br><span class="line">a = 12 + 3</span><br></pre></td></tr></table></figure>
 <h4 id="examples-interactive-code-block-with-output" class="heading-control">Examples: interactive code block with output<a class="heading-anchor" href="#examples-interactive-code-block-with-output" aria-hidden="true"></a></h4>
-<pre><code># this is an interactive code block with output
-@sayln 'hi world'
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># this is an interactive code block with output</span><br><span class="line">@sayln &#x27;hi world&#x27;</span><br></pre></td></tr></table></figure>
 <h4 id="examples-play-movie-for-codeblock" class="heading-control">Examples: Play Movie for CodeBlock<a class="heading-anchor" href="#examples-play-movie-for-codeblock" aria-hidden="true"></a></h4>
-<pre><code class="output:playable">
-# demo how to draw a rect.
-paper = @canvas
-
-|
-~~~
-tooltip: set the canvas size:200X100 ::: Init
-type:paper.setSize(200,100)\n
-tooltip: clear canvas
-type:paper.clear()\n
-tooltip: init x/y coor, width/height parameters coming from document
-type:@rx ||=10\n
-type:@ry ||=18\n
-type:@rw ||=100\n
-type:@rh ||=50\n
-tooltip: drawing rect nowing ::: Draw rect
-type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
-tooltip: fill red for the rect
-type:rect.attr('fill', 'red')
-moveTo: 8:13
-tooltip: you can try it by youself now
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># demo how to draw a rect.</span><br><span class="line">paper = @canvas</span><br><span class="line"></span><br><span class="line">|</span><br><span class="line">~~~</span><br><span class="line">tooltip: set the canvas size:200X100 ::: Init</span><br><span class="line">type:paper.setSize(200,100)\n</span><br><span class="line">tooltip: clear canvas</span><br><span class="line">type:paper.clear()\n</span><br><span class="line">tooltip: init x/y coor, width/height parameters coming from document</span><br><span class="line">type:@rx ||=10\n</span><br><span class="line">type:@ry ||=18\n</span><br><span class="line">type:@rw ||=100\n</span><br><span class="line">type:@rh ||=50\n</span><br><span class="line">tooltip: drawing rect nowing ::: Draw rect</span><br><span class="line">type:rect = paper.rect(@rx, @ry, @rw, @rh)\n</span><br><span class="line">tooltip: fill red for the rect</span><br><span class="line">type:rect.attr(&#x27;fill&#x27;, &#x27;red&#x27;)</span><br><span class="line">moveTo: 8:13</span><br><span class="line">tooltip: you can try it by youself now</span><br></pre></td></tr></table></figure>
 
       </div>
       
@@ -601,7 +505,6 @@ tooltip: you can try it by youself now
     
     
     
-  </div>
 
 
           </div>
@@ -623,7 +526,7 @@ tooltip: you can try it by youself now
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -635,7 +538,7 @@ tooltip: you can try it by youself now
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -694,20 +597,20 @@ tooltip: you can try it by youself now
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -737,6 +640,8 @@ tooltip: you can try it by youself now
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -750,14 +655,16 @@ tooltip: you can try it by youself now
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -834,15 +741,15 @@ window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"In
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/imarkdown/en/reference.html",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/imarkdown/en/reference.html",
       identifier: "imarkdown/en/reference.html",
-      title: "Interactive Markdown Reference Manual",
+      title     : "Interactive Markdown Reference Manual",
     });
   }, window.DisqusJS);
 });
@@ -862,7 +769,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

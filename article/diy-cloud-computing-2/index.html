@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,41 +15,15 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。 NAS提供给我们的功能有： 文件共享服">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DIY与云计算（二）之 DIY自己的开源NAS">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;diy-cloud-computing-2&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/diy-cloud-computing-2/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="对于云计算存储而言，家用NAS存储是云计算存储的一个子集，它不用考虑迁移，LB，远程mount，存储集群的管理等等。相对与公共服务的云计算，家庭NAS就相当于家庭的数据中心了。家庭的各种数据能安全存放在NAS中。利用NAS家庭的其它电脑能方便的对它进行访问使用，以及在后面以极低的功耗默默下载，就算不在家，也能远程管理家里的下载，看到任何资源就能随时下载管理。 NAS提供给我们的功能有： 文件共享服">
 <meta property="og:locale" content="zh_CN">
@@ -68,14 +42,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -131,28 +106,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -160,15 +122,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -179,11 +163,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -201,29 +180,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -242,14 +226,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/diy-cloud-computing-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,9 +245,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           DIY与云计算（二）之 DIY自己的开源NAS
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -288,15 +271,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">Thinking</span>
-                  </a>
+                  <a href="/categories/Thinking/" itemprop="url" rel="index"><span itemprop="name">Thinking</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/Cloud-Computing/" itemprop="url" rel="index">
-                    <span itemprop="name">Cloud Computing</span>
-                  </a>
+                  <a href="/categories/Thinking/Cloud-Computing/" itemprop="url" rel="index"><span itemprop="name">Cloud Computing</span></a>
                 </span>
             </span>
 
@@ -305,7 +284,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -471,14 +450,14 @@ NAS提供给我们的功能有：</p>
 <p>如果只把它作为文件存储系统，那么因为ZFS的缘故，IllumOS(开源Solaris) 操作系统无疑是非常合适的，但是以这样的CPU性能来说，只作为文件存储系统，未免太浪费了。Linux社区的BTRFS文件系统进展缓慢（尤其是在软Raid功能上），而ZFS是由Sun开发的新型文件系统, 应用于Solaris上，后来被移植到FreeBSD和NetBSD系统上。</p>
 <p>基于Solaris内核的NAS系统:</p>
 <ul>
-<li>OpenIndiana: <a href="http://openindiana.org/" target="_blank" rel="noopener">http://openindiana.org/</a></li>
+<li>OpenIndiana: <a href="http://openindiana.org/">http://openindiana.org/</a></li>
 <li>Nexentastor: 闭源，免费版最大支持16TB.</li>
 </ul>
 <p>Linux Soft Raid:</p>
 <ul>
-<li><a href="https://btrfs.wiki.kernel.org/index.php/Main_Page" target="_blank" rel="noopener">BTRFS</a></li>
-<li><a href="https://www.openfiler.com/community/openfiler-community" target="_blank" rel="noopener">OpenFiler</a></li>
-<li><a href="http://zfsonlinux.org" target="_blank" rel="noopener">Native ZFS on Linux</a></li>
+<li><a href="https://btrfs.wiki.kernel.org/index.php/Main_Page">BTRFS</a></li>
+<li><a href="https://www.openfiler.com/community/openfiler-community">OpenFiler</a></li>
+<li><a href="http://zfsonlinux.org">Native ZFS on Linux</a></li>
 </ul>
 <p>正巧最近看到国外社区已经有人在Native ZFS on Linux上做了几个月的小白鼠，还算稳定，而更凑巧的是，这家伙也是选的AsRock E350M1主板，So，我最后还是选择了Linux，这样可以1机两用：NAS 和 媒体中心。</p>
 <p>操作系统: 为了能压榨出硬件的最后一点性能，我选用 Linux 的 Gentoo 发行版, Gentoo 可以使得我自己配置调整编译内核。</p>
@@ -505,7 +484,7 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
 </ul>
 <ul>
 <li>可惜是基于Broadwell, 还是得等明年(2017年)的Skylake 。</li>
-<li><a href="https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver" target="_blank" rel="noopener">https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver</a></li>
+<li><a href="https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver">https://tinkertry.com/how-to-boot-win10-from-samsung-950-pro-nvme-on-superserver</a></li>
 </ul>
 </li>
 <li>三星 32G DDR4 2133 RDIMM 服务器内存: ￥1060</li>
@@ -540,7 +519,7 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/diy-cloud-computing-2/" title="DIY与云计算（二）之 DIY自己的开源NAS">https://riceball.me/article/diy-cloud-computing-2/</a>
+    <a href="https://riceball.me/article/diy-cloud-computing-2/" title="DIY与云计算（二）之 DIY自己的开源NAS">https://riceball.me/article/diy-cloud-computing-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -578,7 +557,6 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
   
   
 
-  </div>
 
 
           </div>
@@ -600,7 +578,7 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -612,7 +590,7 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -655,7 +633,7 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#diy-nas"><span class="nav-number">1.</span> <span class="nav-text">DIY NAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wo-cai-gou-de-ying-jian-qing-dan"><span class="nav-number">2.</span> <span class="nav-text">我采购的硬件清单：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-xiang"><span class="nav-number">2.1.</span> <span class="nav-text">机箱：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zhu-ban"><span class="nav-number">2.2.</span> <span class="nav-text">主板：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dian-yuan"><span class="nav-number">2.3.</span> <span class="nav-text">电源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ruan-jian-xi-tong"><span class="nav-number">3.</span> <span class="nav-text">软件系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#geng-xin-20160612"><span class="nav-number"></span> <span class="nav-text">更新(2016-06-12)</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#diy-nas"><span class="nav-number">1.</span> <span class="nav-text">DIY NAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wo-cai-gou-de-ying-jian-qing-dan"><span class="nav-number">2.</span> <span class="nav-text">我采购的硬件清单：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ji-xiang"><span class="nav-number">2.1.</span> <span class="nav-text">机箱：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zhu-ban"><span class="nav-number">2.2.</span> <span class="nav-text">主板：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dian-yuan"><span class="nav-number">2.3.</span> <span class="nav-text">电源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ruan-jian-xi-tong"><span class="nav-number">3.</span> <span class="nav-text">软件系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#geng-xin-20160612"><span class="nav-number">4.</span> <span class="nav-text">更新(2016-06-12)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -671,20 +649,20 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -714,6 +692,8 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -727,14 +707,16 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -808,15 +790,15 @@ NAS机箱也多起来。超微甚至出了带机箱的准系统，但性价比�
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/diy-cloud-computing-2/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/diy-cloud-computing-2/",
       identifier: "article/diy-cloud-computing-2/",
-      title: "DIY与云计算（二）之 DIY自己的开源NAS",
+      title     : "DIY与云计算（二）之 DIY自己的开源NAS",
     });
   }, window.DisqusJS);
 });
@@ -836,7 +818,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

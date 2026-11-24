@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一切皆入账 —— 对等协作的身份、声誉与分配原理 ——从大规模协作的原理，到身份、声誉与分配的最终形态（含案例与谱系）  引言 维基百科、Linux、开源大模型社区相继证明：陌生人可以大规模协作，并生产出世界级成果。一个根本问题随之浮现——这为什么是可能的？ 《维基经济学》给出了口号式的回答：开放、对等、共享、全球运作。但这四条法则是机制描述，不是原理。本文的任务是把原理推到底：从经济条件、任务结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一切皆入账 —— 对等协作的身份、声誉与分配原理">
+<meta property="og:url" content="https://riceball.me/article/everything-is-on-the-ledger/index.html">
+<meta property="og:site_name" content="Riceball LEE">
+<meta property="og:description" content="一切皆入账 —— 对等协作的身份、声誉与分配原理 ——从大规模协作的原理，到身份、声誉与分配的最终形态（含案例与谱系）  引言 维基百科、Linux、开源大模型社区相继证明：陌生人可以大规模协作，并生产出世界级成果。一个根本问题随之浮现——这为什么是可能的？ 《维基经济学》给出了口号式的回答：开放、对等、共享、全球运作。但这四条法则是机制描述，不是原理。本文的任务是把原理推到底：从经济条件、任务结">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-15T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-15T09:48:43.954Z">
+<meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="Coase">
+<meta property="article:tag" content="Commons">
+<meta property="article:tag" content="Digital Identity">
+<meta property="article:tag" content="Fork">
+<meta property="article:tag" content="Mechanism Design">
+<meta property="article:tag" content="Open Source">
+<meta property="article:tag" content="Ostrom">
+<meta property="article:tag" content="Peer Production">
+<meta property="article:tag" content="Proof of Personhood">
+<meta property="article:tag" content="Reputation">
+<meta property="article:tag" content="Sybil Attack">
+<meta property="article:tag" content="Transaction Costs">
+<meta property="article:tag" content="Web3">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://riceball.me/article/everything-is-on-the-ledger/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
+
+<link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
+<link href="https://github.com/snowyu" rel="me">
+
+
+
+
+  <title>一切皆入账 —— 对等协作的身份、声誉与分配原理 | Riceball LEE</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75922641-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?83c12d4163f9258ceafd22c997abddc2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/snowyu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riceball.me/article/everything-is-on-the-ledger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+      <meta itemprop="name" content="Riceball LEE">
+      <meta itemprop="description" content="Go with wind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riceball LEE">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一切皆入账 —— 对等协作的身份、声誉与分配原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-11-15 09:00:00 / 修改时间：17:48:43" itemprop="dateCreated datePublished" datetime="2026-11-15T09:00:00+08:00">2026-11-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/" itemprop="url" rel="index"><span itemprop="name">Thinking</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Internet-Society/" itemprop="url" rel="index"><span itemprop="name">Internet & Society</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Internet-Society/P2P/" itemprop="url" rel="index"><span itemprop="name">P2P</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/Internet-Society/P2P/Collaboration-Systems/" itemprop="url" rel="index"><span itemprop="name">Collaboration Systems</span></a>
+                </span>
+            </span>
+
+          
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-copyright"></i>
+    </span>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+  </span>
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="yi-qie-jie-ru-zhang-dui-deng-xie-zuo-de-shen-fen-sheng-yu-yu-fen-pei-yuan-li" class="heading-control">一切皆入账 —— 对等协作的身份、声誉与分配原理<a class="heading-anchor" href="#yi-qie-jie-ru-zhang-dui-deng-xie-zuo-de-shen-fen-sheng-yu-yu-fen-pei-yuan-li" aria-hidden="true"></a></h1>
+<h3 id="cong-da-gui-mo-xie-zuo-de-yuan-li-dao-shen-fen-sheng-yu-yu-fen-pei-de-zui-zhong-xing-tai-han-an-li-yu-pu-xi" class="heading-control">——从大规模协作的原理，到身份、声誉与分配的最终形态（含案例与谱系）<a class="heading-anchor" href="#cong-da-gui-mo-xie-zuo-de-yuan-li-dao-shen-fen-sheng-yu-yu-fen-pei-de-zui-zhong-xing-tai-han-an-li-yu-pu-xi" aria-hidden="true"></a></h3>
+<hr>
+<h2 id="yin-yan" class="heading-control">引言<a class="heading-anchor" href="#yin-yan" aria-hidden="true"></a></h2>
+<h2 id="wei-ji-bai-ke-linux-kai-yuan-da-mo-xing-she-qu-xiang-ji-zheng-ming-mo-sheng-ren-ke-yi-da-gui-mo-xie-zuo-bing-sheng-chan-chu-shi-jie-ji-cheng-guo-yi-ge-gen-ben-wen-ti-sui-zhi-fu-xian-zhe-wei-shi-mo-shi-ke-neng-de-wei-ji-jing-ji-xue-gei-chu-le-kou-hao-shi-de-hui-da-kai-fang-dui-deng-gong-xiang-quan-qiu-yun-zuo-dan-zhe-si-tiao-fa-ze-shi-ji-zhi-miao-shu-bu-shi-yuan-li-ben-wen-de-ren-wu-shi-ba-yuan-li-tui-dao-di-cong-jing-ji-tiao-jian-ren-wu-jie-gou-ren-xing-dong-ji-zhi-li-gui-ze-dao-sheng-yu-de-zi-chan-shu-xing-shen-fen-de-zhang-ben-xing-tai-zui-hou-la-dao-na-ge-zui-rong-yi-bei-hu-shi-que-gou-cheng-zui-zhong-fang-xian-de-huan-jie-fen-pei-mei-yi-zhang-de-li-lun-ming-ti-du-pei-you-yi-ge-huo-duo-ge-zhen-shi-an-li-zuo-zheng-ta-men-you-de-yan-zheng-le-ming-ti-you-de-yi-shi-gu-de-fang-shi-yan-zheng-le-ming-ti" class="heading-control">维基百科、Linux、开源大模型社区相继证明：陌生人可以大规模协作，并生产出世界级成果。一个根本问题随之浮现——<strong>这为什么是可能的？</strong><br>
+《维基经济学》给出了口号式的回答：开放、对等、共享、全球运作。但这四条法则是机制描述，不是原理。本文的任务是把原理推到底：从经济条件、任务结构、人性动机、治理规则，到声誉的资产属性、身份的账本形态，最后落到那个最容易被忽视、却构成最终防线的环节——<strong>分配</strong>。每一章的理论命题，都配有一个或多个真实案例作证——它们有的验证了命题，有的以尸骨的方式验证了命题。<a class="heading-anchor" href="#wei-ji-bai-ke-linux-kai-yuan-da-mo-xing-she-qu-xiang-ji-zheng-ming-mo-sheng-ren-ke-yi-da-gui-mo-xie-zuo-bing-sheng-chan-chu-shi-jie-ji-cheng-guo-yi-ge-gen-ben-wen-ti-sui-zhi-fu-xian-zhe-wei-shi-mo-shi-ke-neng-de-wei-ji-jing-ji-xue-gei-chu-le-kou-hao-shi-de-hui-da-kai-fang-dui-deng-gong-xiang-quan-qiu-yun-zuo-dan-zhe-si-tiao-fa-ze-shi-ji-zhi-miao-shu-bu-shi-yuan-li-ben-wen-de-ren-wu-shi-ba-yuan-li-tui-dao-di-cong-jing-ji-tiao-jian-ren-wu-jie-gou-ren-xing-dong-ji-zhi-li-gui-ze-dao-sheng-yu-de-zi-chan-shu-xing-shen-fen-de-zhang-ben-xing-tai-zui-hou-la-dao-na-ge-zui-rong-yi-bei-hu-shi-que-gou-cheng-zui-zhong-fang-xian-de-huan-jie-fen-pei-mei-yi-zhang-de-li-lun-ming-ti-du-pei-you-yi-ge-huo-duo-ge-zhen-shi-an-li-zuo-zheng-ta-men-you-de-yan-zheng-le-ming-ti-you-de-yi-shi-gu-de-fang-shi-yan-zheng-le-ming-ti" aria-hidden="true"></a></h2>
+<h2 id="di-yi-zhang-qian-shi-dui-deng-sheng-chan-de-pu-xi" class="heading-control">第一章 前史：对等生产的谱系<a class="heading-anchor" href="#di-yi-zhang-qian-shi-dui-deng-sheng-chan-de-pu-xi" aria-hidden="true"></a></h2>
+<p>对等生产常被当作互联网时代的新发明。错。它是旧协作模式在交易成本坍缩之后的重新展开——理解这条谱系，才能看清它的每个“新”机制都是某个更老机制的工程化。<br>
+<strong>信任的验证化比区块链早了三百五十年。<strong>1663 年，皇家学会定格言 <em>Nullius in verba</em>（不随人言）——知识的生产开始依赖“可验证的程序”而非“权威的担保”，这是同行评审的诞生，也是“无信任的信任”的前身。只是当时的验证成本极高：必须见面、必须演示。此后三百年的技术史，就是一部</strong>验证成本的坍缩史</strong>。<br>
+**理论等待了基础设施六十一年。**1937 年，科斯在《企业的性质》中提出交易成本决定组织边界——但陌生人协作的成本依然高企，理论无处施展。直到互联网把搜寻、匹配、协调成本压到近零，“第三种生产方式”才从思想实验变成经济现实。<br>
+**“公地必然悲剧”被一位政治学家证伪了。**1968 年哈丁发表《公地悲剧》，断言无主的公共资源必然耗竭。1990 年，奥斯特罗姆用瑞士高山牧场、西班牙灌溉渠、日本村有林、缅因龙虾场的大量案例证明：<strong>一群人可以在既无国家也无市场的条件下自治公地</strong>——她因此获得 2009 年诺贝尔经济学奖。这为对等社区的自治理提供了学理地基。<br>
+**倾倒代码不等于对等生产。**1998 年网景开放源码，是“开源”命名（Christine Peterson 造词，OSI 同年成立）的标志性事件——但第一年外部贡献寥寥，代码堆积如山、无人能建。社区不是代码的副产品，要单独建造：Mozilla 直到 2003 年基金会化、2004 年 Firefox 发布才算真正长成。这个教训此后被反复验证。</p>
+<h3 id="da-shi-nian-biao" class="heading-control">大事年表<a class="heading-anchor" href="#da-shi-nian-biao" aria-hidden="true"></a></h3>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>事件</th>
+<th>它证明了什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1663</td>
+<td>皇家学会格言 <em>Nullius in verba</em></td>
+<td>信任的验证化，比区块链早三个半世纪</td>
+</tr>
+<tr>
+<td>1937</td>
+<td>科斯《企业的性质》</td>
+<td>组织边界由交易成本决定</td>
+</tr>
+<tr>
+<td>1968</td>
+<td>哈丁《公地悲剧》</td>
+<td>&quot;公地必然悲剧&quot;的悲观前提</td>
+</tr>
+<tr>
+<td>1969</td>
+<td>ARPANET 首份 RFC</td>
+<td>治理即公开评论：协议由&quot;请求评论&quot;产生</td>
+</tr>
+<tr>
+<td>1979</td>
+<td>克努特为 TeX 漏洞签发赏金支票</td>
+<td>声誉作为货币——领奖者裱起支票而不兑现</td>
+</tr>
+<tr>
+<td>1979</td>
+<td>Usenet 诞生（1994 年绿卡垃圾邮件）</td>
+<td>分布式协作兴起；声誉军备竞赛同时开始</td>
+</tr>
+<tr>
+<td>1983–89</td>
+<td>GNU 宣言、FSF、GPL</td>
+<td>对等生产取得法律形态</td>
+</tr>
+<tr>
+<td>1990</td>
+<td>奥斯特罗姆《公地治理》</td>
+<td>公地可以自治</td>
+</tr>
+<tr>
+<td>1991</td>
+<td>Linux 0.01 发布</td>
+<td>对等生产第一次成规模</td>
+</tr>
+<tr>
+<td>1998</td>
+<td>网景开源；OSI 成立</td>
+<td>教训：倾倒代码 ≠ 对等生产</td>
+</tr>
+<tr>
+<td>2000–01</td>
+<td>Nupedia 失败 → 维基百科上线</td>
+<td>五前提的教科书对照实验（见第二章）</td>
+</tr>
+<tr>
+<td>2005</td>
+<td>Seigenthaler 事件</td>
+<td>匿名基座的代价与声誉门槛（第五章）</td>
+</tr>
+<tr>
+<td>2007</td>
+<td>Essjay 事件</td>
+<td>声誉的链下攻击面（第四章）</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>比特币白皮书</td>
+<td>信任的工程化</td>
+</tr>
+<tr>
+<td>2009–10</td>
+<td>MariaDB、LibreOffice 分叉</td>
+<td>分叉带走人，公司留下空壳（第四章）</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>Heartbleed</td>
+<td>价值流与贡献流脱钩的标本（第八章）</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>left-pad；The DAO 分叉</td>
+<td>命名空间即账本；代码可复制、共识不可</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>SushiSwap；Steem→Hive</td>
+<td>流动性吸血；收购与分叉的攻防</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>Log4Shell；明尼苏达大学恶意补丁</td>
+<td>无偿维护者；负声誉的连坐边界</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Reddit API 抗议；Worldcoin</td>
+<td>退出权的建筑学；身份绑定的工程与代价</td>
+</tr>
+<tr>
+<td>2023–</td>
+<td>开源大模型生态</td>
+<td>五个前提的当代重演</td>
+</tr>
+</tbody>
+</table>
+<h2 id="zhe-tiao-pu-xi-de-gui-lv-ke-yi-yi-ju-hua-shuo-jin-mei-yi-dai-ji-chu-she-shi-du-xiao-mie-yi-ceng-xin-ren-zhong-jie-qi-kan-xiao-mie-le-quan-wei-kai-yuan-xiao-mie-le-gu-yong-qu-kuai-lian-shi-tu-xiao-mie-ji-gou-er-mei-yi-ci-xiao-mie-du-ba-shang-yi-dai-xue-guo-de-ke-zhong-xin-kao-yi-bian-hui-dao-qi-dian-wei-ji-bai-ke-bu-shi-yuan-li-shi-xian-xiang-wei-ji-jing-ji-xue-zhen-zheng-de-gong-xian-shi-cong-xian-xiang-zhong-ti-lian-ji-zhi-dang-xie-zuo-cheng-ben-zu-gou-di-shi-sheng-chan-de-zu-zhi-fang-shi-hui-cong-ke-ceng-zhi-zhuan-xiang-dui-deng-wang-luo-an-li-bu-shi-zhong-dian-an-li-bei-hou-de-cheng-li-tiao-jian-cai-shi" class="heading-control">这条谱系的规律可以一句话说尽：<strong>每一代基础设施都消灭一层信任中介——期刊消灭了权威，开源消灭了雇佣，区块链试图消灭机构。而每一次消灭，都把上一代学过的课重新考一遍。</strong><br>
+回到起点：维基百科不是原理，是现象。《维基经济学》真正的贡献，是从现象中提炼机制：**当协作成本足够低时，生产的组织方式会从科层制转向对等网络。**案例不是重点，案例背后的成立条件才是。<a class="heading-anchor" href="#zhe-tiao-pu-xi-de-gui-lv-ke-yi-yi-ju-hua-shuo-jin-mei-yi-dai-ji-chu-she-shi-du-xiao-mie-yi-ceng-xin-ren-zhong-jie-qi-kan-xiao-mie-le-quan-wei-kai-yuan-xiao-mie-le-gu-yong-qu-kuai-lian-shi-tu-xiao-mie-ji-gou-er-mei-yi-ci-xiao-mie-du-ba-shang-yi-dai-xue-guo-de-ke-zhong-xin-kao-yi-bian-hui-dao-qi-dian-wei-ji-bai-ke-bu-shi-yuan-li-shi-xian-xiang-wei-ji-jing-ji-xue-zhen-zheng-de-gong-xian-shi-cong-xian-xiang-zhong-ti-lian-ji-zhi-dang-xie-zuo-cheng-ben-zu-gou-di-shi-sheng-chan-de-zu-zhi-fang-shi-hui-cong-ke-ceng-zhi-zhuan-xiang-dui-deng-wang-luo-an-li-bu-shi-zhong-dian-an-li-bei-hou-de-cheng-li-tiao-jian-cai-shi" aria-hidden="true"></a></h2>
+<h2 id="di-er-zhang-da-gui-mo-xie-zuo-de-wu-ge-qian-ti" class="heading-control">第二章 大规模协作的五个前提<a class="heading-anchor" href="#di-er-zhang-da-gui-mo-xie-zuo-de-wu-ge-qian-ti" aria-hidden="true"></a></h2>
+<p>缺任何一条，协作都会塌回市场或科层的老路：</p>
+<ol>
+<li>**经济学前提：交易成本阈值的突破。**当用权威组织生产的成本高于对等网络的协调成本时，科层制失去存在理由。</li>
+<li>**任务结构前提：模块化、颗粒度、低集成成本。**任务可拆成独立小块；小块小到允许低投入参与——一次条目编辑、一行代码、一个标签；合并贡献并保证质量的成本近零。</li>
+<li>**人性前提：多样化的动机与自选择。**人从开放任务池中自己挑选想做的模块，因此动机池必须多样——金钱只是一小部分，兴趣、声誉、学习、意义感都是有效货币。</li>
+<li>**治理前提：公地可以自治。**维基百科的编辑守则与回滚机制、开源社区的代码评审，是奥斯特罗姆原则的数字翻译。</li>
+<li>**技术延伸：信任的工程化。**区块链把“要不要相信某个人”替换为“可以验证的账本”。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────────────────────────┐</span><br><span class="line">│ ⑤ 信任的工程化（加密账本）            │  ← 能不能互信</span><br><span class="line">├──────────────────────────────────────┤</span><br><span class="line">│ ④ 公地自治（奥斯特罗姆）              │  ← 能不能持续</span><br><span class="line">├──────────────────────────────────────┤</span><br><span class="line">│ ③ 动机多样 + 自选择                   │  ← 愿不愿意来</span><br><span class="line">├──────────────────────────────────────┤</span><br><span class="line">│ ② 模块化 · 颗粒度 · 低集成成本        │  ← 能不能拆</span><br><span class="line">├──────────────────────────────────────┤</span><br><span class="line">│ ① 交易成本坍缩（科斯）                │  ← 值不值得</span><br><span class="line">└──────────────────────────────────────┘</span><br><span class="line">        缺任何一层，塌回市场或科层</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>案例 · Nupedia 对比 维基百科（2000–2001）</strong><br>
+同一个使命、同一批人、两个结局。2000 年上线的 Nupedia 采用七道专家评审流程，第一年审定条目二十余篇；2001 年 1 月改用维基协议，首月条目破千，第一年过万。差别的不是人的能力与热情，而是任务结构——颗粒度与集成成本。这是五个前提最干净的对照实验：只改变了第 ② 条，产出改变了一千倍。四分之一个世纪后，剧本在开源大模型上重演：LLaMA 权重流出后数周内，社区产出数百个微调模型；从 GLM、Qwen 到 Mistral，开源权重让小团队也能做出半年前只有大厂能做的系统。模块化（LoRA 适配器）、低门槛（消费级显卡）、快合并（Hugging Face 一键托管）——五个前提一个不缺，连同老问题（命名空间的权力、价值的归属）也一并复现。一句话：**技术解决能不能沟通，任务结构解决能不能拆解，经济学解决值不值得这样组织，治理解决能不能持续，动机解决愿不愿意来。**大多数众包项目的失败，在于只做了第一层——建了个平台——没想清楚其余四层。</p>
+</blockquote>
+<hr>
+<h2 id="di-san-zhang-ping-quan-de-zhen-zheng-han-yi" class="heading-control">第三章 平权的真正含义<a class="heading-anchor" href="#di-san-zhang-ping-quan-de-zhen-zheng-han-yi" aria-hidden="true"></a></h2>
+<p>平权最常被误解为“人人一样”。<strong>这不是平权，这是大锅饭。</strong><br>
+如果所有人拥有平等的参与资格、信息可见性和规则适用，产出呈幂律分布是<strong>必然的</strong>——人的时间、才华、投入意愿本就分布不均。少数人贡献多，说明系统在忠实映射真实的贡献差异，这正是平权在正常运作。反过来，强行拉平产出才惩罚贡献者、驱动优秀者退出——这是公共品博弈最经典的结论。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">产出量</span><br><span class="line">  █</span><br><span class="line">  █</span><br><span class="line">  █▁</span><br><span class="line">  ██▁</span><br><span class="line">  ██▁▁</span><br><span class="line">  ████▁▁▁</span><br><span class="line">  █████████▁▁▁▁▁▁▁▁▁▁▁▁▁▁</span><br><span class="line">  └──────────────────────────→  贡献者（按产出排序）</span><br><span class="line">   头部 1%          │         长尾 99%</span><br><span class="line">  （核心维护者）               （一次性编辑者）</span><br></pre></td></tr></table></figure>
+<p><em>把右侧拉平到左侧的高度，是大锅饭；把头部焊死让长尾上不去，是科层化。两个系统都是病，病灶相反。</em>现实中的数字精确地长成了这条曲线：英文维基百科每月活跃编辑数以万计，在任管理员约六百人，且可经仲裁委员会与社区表决罢免；Linux 内核每个版本周期约四千余名开发者、来自五百余家机构提交，变更经由两百名上下的子系统维护者层层签名汇入主线，由一个人签名发布。平权与大锅饭的分界线，在三个硬标准：<strong>入口开放</strong>——新人带着贡献直接进入，无需批准；<strong>权威可逆</strong>——失当者的权力可被收回；<strong>退出自由</strong>——社区败坏时可用脚投票。</p>
+<blockquote>
+<p><strong>案例 · Apache 之道（1999– ）</strong><br>
+Apache 基金会把本章的定义直接写成了章程：“你做得越多，你被允许做的就越多”，且<strong>功绩归属于个人，不归属于雇主</strong>——提交权跟着人走，换公司不换身份。这是对大锅饭与资本俘获的双重免疫：贡献决定权力（反平均主义），权力不属于出资方（反收购）。<br>
+<strong>案例 · Guido 卸任“终身仁慈独裁者”（2018）</strong><br>
+Python 之父 Guido van Rossum 在一场语法之争（PEP 572）的争吵后宣布卸任 BDFL，社区以章程与理事会选举接续治理。权威可逆不只适用于失德者，也适用于不愿再扛的人——创始人的权威在制度上可交接，系统才算成年。<br>
+<strong>平权 = 规则平等 + 流动自由，产出自然呈幂律；大锅饭 = 强行拉平产出，惩罚优秀者。</strong><br>
+唯一需要警惕的是幂律的<strong>固化</strong>：先发者用积累的影响力修改规则、抬高门槛、封闭退出，把“靠贡献挣来的权力”变成“靠规则保住的权力”——那一刻，对等网络退化为披着平权外衣的新科层。</p>
+</blockquote>
+<hr>
+<h2 id="di-si-zhang-sheng-yu-shuang-xiang-ke-xie-dai-de-zi-chan" class="heading-control">第四章 声誉：双向可携带的资产<a class="heading-anchor" href="#di-si-zhang-sheng-yu-shuang-xiang-ke-xie-dai-de-zi-chan" aria-hidden="true"></a></h2>
+<p>**其一，正声誉必须可携带，分叉才是可信的。**分叉带走的不是代码，而是人。人们敢跟随分叉，是因为自己的历史贡献到新社区依然作数。链条是：声誉可携带 → 退出可信 → 权力始终处于竞争之下。这套机制的雏形早于区块链二十年：1991 年的 PGP 信任之网让密钥持有者互相签名背书——<strong>你的身份，就是别人愿意为你签的那条边</strong>。Linux 内核的补丁至今仍经由子系统维护者的层层签名汇入 Torvalds 的签名发布：从任何一次发布都能回溯出一条完整的信任路径。</p>
+<blockquote>
+<p><strong>案例 · 分叉三部曲（2009–2010）</strong><br>
+甲骨文收购 Sun 之后：MySQL 创始人带走核心开发者分叉出 MariaDB；OpenOffice 的外部贡献者几乎整体出走，创立 LibreOffice，甲骨文后来把 OpenOffice 捐给了 Apache 基金会；Hudson 社区因商标问题整体改名 Jenkins。三案同构：<strong>公司留住了代码、商标与公司名，社区带走了人——数年后的活跃度证明了谁带走了价值。</strong><br>
+<strong>其二，负声誉同样是资产，而且是防背叛的核心机制。<strong>声誉一旦全局记账，背叛就变成永久污染所有未来协作的可能——一次性囚徒困境变成无限重复博弈，你的整个协作生涯就是那个“无限期”。<br>
+<strong>案例 · Essjay 事件（2007）</strong><br>
+维基百科管理员 Essjay 以“神学教授”的虚构身份接受《纽约客》采访、在编辑争议中援引自己的“学术资历”，后被查出实为一名 24 岁的青年。他此前的一切维基工作都真实有效——造假的不是账内记录，而是</strong>账外自述</strong>。教训：链上声誉系统只验证密钥连续性，无法验证链下声称；声誉的攻击面在账外。这正是后来人格证明要补的洞。<br>
+<strong>案例 · 明尼苏达大学恶意补丁（2021）</strong><br>
+一组研究人员以“研究”之名向内核提交故意引入漏洞的补丁，被识破后，内核社区一度封禁了该校<strong>全部</strong>邮箱域名的提交，后经谈判有条件解封。负声誉要全局记账没错，但<strong>惩罚必须精确到行为者</strong>——连坐整个域名，惩罚本身就成为不公。负声誉的可携带性以不伤及无辜为边界。<br>
+**其三，声誉的交易本身也是声誉信息。**信贷市场的常识：借钱不影响信用，<strong>藏着的借钱才毁信用</strong>。公开的声誉借贷是披露而非腐化——腐化赖以生存的是不透明。一旦交易、出借、代持、委托都被记账，声誉不再是一个分数，而是一张完整的关系网。<br>
+<strong>案例 · SushiSwap 吸血鬼攻击（2020）</strong><br>
+SushiSwap 逐行复制 Uniswap 的开源代码，用代币激励吸走其流动性——数日内近十亿美元级的 TVL 完成迁移，<strong>代码一动不动地留在了原处</strong>。随后 SushiSwap 匿名创始人 Chef Nomi 挪用约 1300 万美元开发资金（ Exit Scam 未遂），社区哗然，他被迫交出钥匙并归还资金，此后该身份在 DeFi 世界信用破产。一次分叉验证了两件事：分叉真正转移的是流动性（=人），而单点持有的钥匙必须改成多签。</p>
+</blockquote>
+<hr>
+<h2 id="di-wu-zhang-shen-fen-yi-ge-zhang-ben-bian-ji-shen-fen" class="heading-control">第五章 身份：一个账本，边即身份<a class="heading-anchor" href="#di-wu-zhang-shen-fen-yi-ge-zhang-ben-bian-ji-shen-fen" aria-hidden="true"></a></h2>
+<p>根深蒂固的误解是以为匿名意味着“不入账”。<br>
+**错。不存在不入账的账本。匿名行为同样有名字——一个一次性密钥、一个地址、一份时间戳——同样记录在案。**匿名不是账本之外，而是账本上的一种连边方式。正确的本体论是：<strong>只有一本普适的账，一切行为皆入账。设计者能选的不是“记不记”，而是这个名字与什么相连——即图上边的拓扑。</strong></p>
+<ul>
+<li>**匿名：边为零。**名字与名字之间不连，每次行动用新密钥。</li>
+<li>**化名：边为一，只连自身历史。**你不需要知道对方是谁，只需要确认：做这件事的钥匙，就是做成过过去那些事的钥匙。</li>
+<li>**身份绑定：连边到一个法律主体。**用于必须抵抗女巫攻击的场合。零知识证明在此框架中的位置：**让你能证明某条连边的事实，而不暴露这条连边本身。**匿名、化名、实名不再是三个互斥的注册选项，而是同一条记录上按需开关的披露维度。</li>
+</ul>
+<blockquote>
+<p><strong>案例 · Seigenthaler 事件（2005）</strong><br>
+一位匿名编辑在约翰·塞根塔勒（美国资深记者）的条目中插入暗示其涉及肯尼迪遇刺的虚假内容，存在了四个多月才被发现。维基百科的反应值得注意：<strong>不是取消匿名，而是抬高门槛</strong>——新页面创建需要注册、有争议条目的改动需经有声誉的编辑复核。给塔基加闸门，而不是拆除塔基。这正是分层的自我修复：匿名层受损的代价，用中间层的声誉门槛来偿付。<br>
+<strong>案例 · 中本聪与 The DAO 分叉（2009 / 2016）</strong><br>
+中本聪是“边为零与边为一”的同时示范：对外，无人能把他和任何其他密钥相连；对内，创世区块的签名连续可验。他消失后比特币照常运行——证明这个系统的信任从不系于肉身。2016 年 The DAO 遭重入攻击，360 万 ETH 被盗；以太坊社区表决硬分叉回滚，拒绝回滚的少数派留在原链成为 Ethereum Classic。这是一场干净的对照实验：<strong>两条链代码起初完全相同，分化的是开发者、生态与共识——代码可以被复制，“社区是谁”不能。</strong></p>
+</blockquote>
+<hr>
+<h2 id="di-liu-zhang-hei-shi-bu-jin-zhi-zhi-ding-jia" class="heading-control">第六章 黑市：不禁止，只定价<a class="heading-anchor" href="#di-liu-zhang-hei-shi-bu-jin-zhi-zhi-ding-jia" aria-hidden="true"></a></h2>
+<p>身份系统必然面对养号与卖号。必须先承认：<strong>私下交易无法在账本外被禁止</strong>。真正的解法是通过机制让交易无利可图——四道防线，各堵一个环节：<br>
+**第一道，抬高“养”的成本（供给端）。**人格证明封顶供给——化名号一人可开一万个，绑定号一人只有一个；时间锁掐死“快速养大快速卖出”的现金流；按域拆分让跨域作恶无法摊薄成本；评价权重差异化让水军互刷近乎无效。<br>
+**第二道，压低“卖”的价值（交易端）。**买号者买到的是密钥，买不到“历史行为是密钥持有者亲手做的”这个事实——分值跟着密钥走，历史的证明力跟着时段走；行为指纹（活跃时段、写作风格、交互对象）使易手可检测；负声誉跟随密钥。<br>
+**第三道，锁定“持有”的收益（卖方动机）。**如果声誉是持续收入流——质押收益、治理分红、内容分成——持有才占优。当持有声誉等于持有年金，卖号的动机就被釜底抽薪。<br>
+**第四道，封死“买”的用途（需求端）。**高风险场景需动态质押，作恶时罚没；人格证明兜底的场景，买来的化名号根本进不去；卖号行为一旦识别，记入买卖双方账本。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      黑市仪表盘：与其封禁，不如读数</span><br><span class="line">信号                诊断                 动作</span><br><span class="line">─────────────────────────────────────────────────</span><br><span class="line">养号成本上涨    防线起效 / 系统升值      无</span><br><span class="line">卖号价格下跌    持有收益占优            无</span><br><span class="line">卖号价格上涨    声誉增值快于变现通道    开放白市</span><br><span class="line">租人溢价出现    分配失灵的早期警报      审查分成与通道</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>案例 · IRA 收购 Reddit 老号（2016–2018）</strong><br>
+俄罗斯互联网研究局为实施舆论引导，批量收购有 karma 积累的存量账号——买账号买的不是“号”，是<strong>历史的皮肤</strong>：让新内容穿着别人的旧身份出场。2018 年 Reddit 封禁了 944 个关联账号。需求端最危险的买家，从来是买“干净历史”来作恶的人。<br>
+<strong>案例 · 刷单炒信与“入刑第一案”（2017）</strong><br>
+中文世界的刷单产业是黑市定价的完整标本：评价权即流量分配，流量即收入，于是虚假评价实质是对诚实卖家的课税。2017 年杭州宣判全国首例“刷单入刑”案，平台组织者获刑五年九个月；2019 年施行的《电子商务法》明文禁止虚构交易、编造评价。法律路径把黑市定义为犯罪（压缩需求端），但根治仍在于分配——评价带来的收益归谁。堵与疏，两条腿。<br>
+<strong>案例 · left-pad（2016）</strong><br>
+因商标纠纷，一位开发者从 npm 撤下自己的全部 273 个包，其中 11 行的 left-pad 让数千个项目的构建当场瘫痪——Babel、React 皆在其中。代码可以瞬间复制，真正稀缺的是<strong>名字</strong>：中心化注册表的命名空间本身就是一张身份账本，而它的管理员是单点。npm 随后收回了该包。数年后开源模型生态重演了同一结构：权重随便下载，Hugging Face 上的模型名才是入口。<br>
+**私下交易不会被消灭，只会被定价。机制设计的全部工作，就是把价格压到低于所有参与者的理性底线。**黑市是白市失灵的影子，白市越健全，影子越淡。</p>
+</blockquote>
+<hr>
+<h2 id="di-qi-zhang-shen-fen-bang-ding-bu-ke-zhuan-rang-de-shi-ze-ren" class="heading-control">第七章 身份绑定：不可转让的是责任<a class="heading-anchor" href="#di-qi-zhang-shen-fen-bang-ding-bu-ke-zhuan-rang-de-shi-ze-ren" aria-hidden="true"></a></h2>
+<p>化名号的黑市可以靠持有收益枯萎，绑定号的难度来自<strong>绑定所携带的不可转让的法律责任</strong>：买号者用绑定号作恶，责任落在卖家头上；绑定的号能解锁的质押额度、治理权重、分成越高，卖号的机会成本越大。供给被物理封顶——养号产业从“批量生产”退化为“腐蚀发证机构”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">        ╱╲</span><br><span class="line">       ╱  ╲      塔尖：治理投票 · 法律担保 · 大额质押</span><br><span class="line">      ╱ 绑定╲               —— 责任不可转让</span><br><span class="line">     ╱──────╲</span><br><span class="line">    ╱ 化名   ╲    塔腰：贡献声誉 · 专业评审</span><br><span class="line">   ╱  持续层  ╲             —— 声誉随密钥历史累积</span><br><span class="line">  ╱───────────╲</span><br><span class="line"> ╱    匿名层    ╲  塔基：发言 · 吹哨 · 探索</span><br><span class="line">╱_______________╲          —— 系统的安全阀</span><br></pre></td></tr></table></figure>
+<p>代价必须诚实面对：<strong>绑定的价值越高，发证环节越是最终攻击面。</strong></p>
+<blockquote>
+<p><strong>案例 · Worldcoin（2023– ）</strong><br>
+Worldcoin 用虹膜扫描制造“一人一证”：Orb 设备验证虹膜并签发人格凭证，上线后迅速积累数百万量级验证用户。它同时示范了身份绑定的工程化与其代价——肯尼亚暂停、西班牙临时禁令，虹膜数据与代币激励争议不断，而<strong>发证依赖 Orb 运营商网络</strong>这件事，恰是“发证环节即最终攻击面”的活体展示。<br>
+<strong>案例 · Gitcoin Passport 与二次方资助（2021– ）</strong><br>
+二次方资助是“平权与幂律”的治理实验：按出资额的平方根分配影响力，让小额多数人的集体偏好可以压过大额出资者。它的前提是女巫防线——Passport 用多源凭证为“这是一个人”定价。防线一旦被穿透，资助池就会被马甲切走；于是每一轮资助同时是一场身份攻防战。另一侧的读数来自传统平台：Meta 在财报中自估虚假账号约占月活的 4–5%——女巫攻击不是假设风险，是持续状态。因此发证机制必须<strong>分布式、可挑战、可撤销</strong>；高风险行为的责任必须显式落在身份主体上；而塔基的匿名层一个都不能少——连它都被绑定之日，就是真正的贡献者先于黑市离开之时。</p>
+</blockquote>
+<hr>
+<h2 id="di-ba-zhang-fen-pei-hei-shi-shi-zhen-duan-yi-fen-pei-shi-zui-hou-fang-xian" class="heading-control">第八章 分配：黑市是诊断仪，分配是最后防线<a class="heading-anchor" href="#di-ba-zhang-fen-pei-hei-shi-shi-zhen-duan-yi-fen-pei-shi-zui-hou-fang-xian" aria-hidden="true"></a></h2>
+<p>防御机制再完备，仍会漏出一种形态：<strong>租人</strong>。而租人的出现，恰是分配问题的价格信号：</p>
+<blockquote>
+<p><strong>买家愿意支付的租金 &gt; 本人正当持有这份身份所能赚到的收益</strong><br>
+价差只能来自两处失败——<strong>供给端低估了贡献</strong>（正当回报太低，出租一单胜过敬业一年），<strong>需求端堵死了上升</strong>（马太效应冻结通道，租一个现成的成了唯一捷径）。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">      贡献 ──▶ 公共品（价值 V）</span><br><span class="line">                  │</span><br><span class="line">          ┌───────┴────────┐</span><br><span class="line">          ▼                ▼</span><br><span class="line">     平台捕获 β·V      回流贡献者 α·V</span><br><span class="line">   黑市价差（卖号/租人溢价）≈ (β − α)·V 的贴现</span><br><span class="line">OpenSSL：α ≈ 0，V ≈ 全网的 HTTPS     —— 白市失灵的极端</span><br><span class="line">Reddit 2023：β ≈ 1，且无 fork 权    —— 抗议是唯一筹码</span><br><span class="line">LibreOffice：β 可被 fork 掉         —— 社区拿回了 V</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>案例 · 无偿的支柱：OpenSSL 与 log4j（2014 / 2021）</strong><br>
+Heartbleed 爆发时，支撑全球大部分 HTTPS 的 OpenSSL 据其维护者回忆多年间年均捐款约 2000 美元；七年后的 Log4Shell 是同一剧本——log4j 的核心维护者是一名用业余时间维护的志愿者，而依赖它的系统以十亿计。价值流与贡献流完全脱钩，白市失灵至此。Linux 基金会事后的核心基础设施计划是补课，不是解决。<br>
+<strong>案例 · 退出权的建筑学：Reddit 对比 LibreOffice（2023 / 2010）</strong><br>
+2023 年 Reddit 大幅上调 API 价格，Apollo 等第三方客户端测算年成本约两千万美元，超过八千个子版块一度转为私有抗议；CEO 称版主为“世袭贵族”，Reddit 随后直接撤换了拒不复工的版主团队——高声誉贡献者的集体退出，被平台的命名空间所有权压平。对比 2010 年的 LibreOffice：甲骨文留住了代码与商标，留不住人。<strong>两组案例的唯一差别是退出权的建筑学——代码可 fork 的地方，贡献者赢了；命名空间被平台私有的地方，贡献者输了。<strong>同期 Stack Overflow 修改数据政策、限制导出以便向 AI 公司收费（2024 年与 Google 达成首个授权协议），触发版主罢工——贡献以自由许可涌入，衍生价值却归平台定价。<br>
+<strong>案例 · 代笔产业 Wiki-PR（2013）</strong><br>
+维基百科的“租人”形态叫代笔：Wiki-PR 为企业客户代写条目、维护正面形象，被查出操控数千个马甲、涉上万条目，维基媒体基金会发出史上第一封律师函，并引入付费编辑披露规则。有需求（企业要声誉），有供给（声誉靠人工累积），白市不允许——黑市必然出现。<br>
+<strong>案例 · Steem 之战与 Hive 分叉（2020）——全章合演</strong><br>
+孙宇晨收购 Steemit 公司及其囤积的约两成供给代币，社区先以软分叉冻结这笔“承诺用于开发”的筹码；随后数家交易所</strong>用客户存币</strong>参与投票，助其夺取见证人席位——代持投票：用别人的资产投自己的票，一条未经声明的边。社区最终分叉出 Hive，向全体用户空投，唯独排除参与攻击的关联账户；币安创始人随后承认“被误导”并撤回支持。收购可以买到代码、买到代币、买到公司的名字；买不到维护者的忠诚与社区的未来贡献——而后者才是链的市值来源。<strong>分配的最后防线，这一次是由分叉执行的。</strong><br>
+修复分配的三个方向：<strong>持续分成</strong>（而非一次性激励）；<strong>治理权重流动</strong>（衰减、挑战、任期，保住后来者的上升通道）；<strong>价值归属透明</strong>——系统从某个身份的行为中赚到的每一笔，按可验证规则分成给这个身份。“系统欠每个密钥多少”，本身就该是一条公开的边。</p>
+</blockquote>
+<hr>
+<h2 id="di-jiu-zhang-zhong-dian-quan-bu-ming-ti-de-shou-long" class="heading-control">第九章 终点：全部命题的收拢<a class="heading-anchor" href="#di-jiu-zhang-zhong-dian-quan-bu-ming-ti-de-shou-long" aria-hidden="true"></a></h2>
+<p><strong>第一句，关于账本：</strong></p>
+<blockquote>
+<p>一切皆入账，账上唯连边。设计工作的全部内容，是决定哪些边可连、哪些边可证、哪些边必须断开。<br>
+<strong>第二句，关于平权：</strong><br>
+平权 = 规则平等 + 流动自由，产出自然呈幂律；拉平产出是大锅饭，幂律固化才是背叛。<br>
+<strong>第三句，关于黑市：</strong><br>
+私下交易不会被消灭，只会被定价。防御机制解决攻击的成本，分配机制解决攻击的需求——<strong>身份系统的最后防线不在密码学里，在分配里。</strong><br>
+<strong>第四句，关于身份：</strong><br>
+化名号的黑市可以枯萎（持有收益碾压卖价），绑定号的黑市可以吓退（责任不可转让）——而无论哪一种身份，它都必须能从自己创造的价值里拿到属于自己的那一份。<strong>拿得到，身份就守得住；拿不到，再严密的绑定也会被人自己租出去。</strong><br>
+五种失败模式与五条防线，一一对应：<br>
+| 失败模式 | 防线 | 案例尸骨 |<br>
+|—|---|—|<br>
+| 封闭入口 → 特权 | 入口开放 | 网景开源第一年的失败 |<br>
+| 拉平产出 → 大锅饭 | 规则平等 + 流动自由 | Apache 之道的反面教材 |<br>
+| 声誉锁死 → 伪分叉 | 声誉双向可携带 | Reddit 版主无处可退 |<br>
+| 未经声明的连边 → 女巫攻击 | 一个账本，边即身份，密钥授权 | 交易所代投；IRA 买号 |<br>
+| 分配缺口 → 租人与卖号 | 持续分成 + 通道流动 + 归属透明 | OpenSSL、log4j、Wiki-PR |<br>
+账本本身无所谓隐私或公开，真正的边界在于：**边的存在与边的披露，必须由密钥持有者自己授权。**这就是“无信任的信任”的最终形态——连“你是谁”都不再需要向任何人声明，只需要在需要时，向账本证明一条边；而支撑这条边不被人亲手出卖的，是它持续生产的价值中属于它的那一份。</p>
+</blockquote>
+<hr>
+<h2 id="fu-lu-a-an-li-zong-biao" class="heading-control">附录 A · 案例总表<a class="heading-anchor" href="#fu-lu-a-an-li-zong-biao" aria-hidden="true"></a></h2>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>年份</th>
+<th>所属命题</th>
+<th>一句话教训</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nupedia vs. 维基百科</td>
+<td>2000–01</td>
+<td>五前提</td>
+<td>同样的人，不同的颗粒度，一千倍产出</td>
+</tr>
+<tr>
+<td>Apache 之道</td>
+<td>1999–</td>
+<td>平权 / 幂律</td>
+<td>功绩归个人不归雇主：免疫大锅饭与收购</td>
+</tr>
+<tr>
+<td>Guido 卸任 BDFL</td>
+<td>2018</td>
+<td>权威可逆</td>
+<td>创始人权威在制度上可交接</td>
+</tr>
+<tr>
+<td>MariaDB / LibreOffice</td>
+<td>2009–10</td>
+<td>声誉可携带</td>
+<td>公司留住代码与商标，社区带走人</td>
+</tr>
+<tr>
+<td>Essjay</td>
+<td>2007</td>
+<td>声誉造假</td>
+<td>攻击面在账外：链下自述无法被链验证</td>
+</tr>
+<tr>
+<td>UMN 恶意补丁</td>
+<td>2021</td>
+<td>负声誉</td>
+<td>惩罚须精确到行为者，连坐即不公</td>
+</tr>
+<tr>
+<td>SushiSwap</td>
+<td>2020</td>
+<td>分叉与信任</td>
+<td>分叉带走流动性（人）；单点钥匙必须多签</td>
+</tr>
+<tr>
+<td>Seigenthaler</td>
+<td>2005</td>
+<td>匿名基座</td>
+<td>系统反应是加门槛，不是取消匿名</td>
+</tr>
+<tr>
+<td>The DAO 分叉</td>
+<td>2016</td>
+<td>边即身份</td>
+<td>代码可复制，共识与开发者不可</td>
+</tr>
+<tr>
+<td>left-pad</td>
+<td>2016</td>
+<td>命名空间</td>
+<td>中心化注册表的名字是账本，也是单点</td>
+</tr>
+<tr>
+<td>IRA 买号</td>
+<td>2016–18</td>
+<td>黑市需求端</td>
+<td>买的不是号，是历史的皮肤</td>
+</tr>
+<tr>
+<td>刷单入刑</td>
+<td>2017</td>
+<td>黑市与法律</td>
+<td>评价权即收入分配器；法律压缩需求端</td>
+</tr>
+<tr>
+<td>Worldcoin</td>
+<td>2023–</td>
+<td>身份绑定</td>
+<td>发证环节即最终攻击面</td>
+</tr>
+<tr>
+<td>Gitcoin Passport</td>
+<td>2021–</td>
+<td>女巫防线</td>
+<td>二次方资助的前提是身份防线</td>
+</tr>
+<tr>
+<td>OpenSSL / log4j</td>
+<td>2014 / 2021</td>
+<td>分配</td>
+<td>价值流与贡献流脱钩的标本</td>
+</tr>
+<tr>
+<td>Reddit API 抗议</td>
+<td>2023</td>
+<td>退出权</td>
+<td>无 fork 权的地方，贡献者输</td>
+</tr>
+<tr>
+<td>Steem → Hive</td>
+<td>2020</td>
+<td>全章合演</td>
+<td>收购买不到忠诚；代投即未经声明的边</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fu-lu-b-li-lun-pu-xi" class="heading-control">附录 B · 理论谱系<a class="heading-anchor" href="#fu-lu-b-li-lun-pu-xi" aria-hidden="true"></a></h2>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>思想来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易成本与企业边界</td>
+<td>科斯《企业的性质》（1937）</td>
+</tr>
+<tr>
+<td>对等生产作为第三种生产方式</td>
+<td>本科勒《科斯的企鹅》《网络的财富》</td>
+</tr>
+<tr>
+<td>公地自治的设计原则</td>
+<td>奥斯特罗姆《公地治理》（1990）</td>
+</tr>
+<tr>
+<td>大规模协作的商业化表述及其批评</td>
+<td>泰普斯科特 &amp; 威廉姆斯《维基经济学》；鲍文斯（P2P Foundation）</td>
+</tr>
+<tr>
+<td>信任的工程化</td>
+<td>中本聪（2008）；PGP 信任之网（1991）</td>
+</tr>
+<tr>
+<td>人格证明与声誉可转让性之辩</td>
+<td>Vitalik Buterin（Soulbound / 二次方资助）</td>
+</tr>
+<tr>
+<td>黑市价格作为分配诊断信号</td>
+<td>经济学中的黑市汇率分析法</td>
+</tr>
+</tbody>
+</table>
+<p>从现象到机制，从机制到条件，从条件到结构，从结构到声誉，从声誉到身份，从身份到分配——这条链就是大规模协作原理的完整展开。本文连同它引用的一切案例，接受它自己提出的那套检验标准：<strong>入账，可验证，随时可被更好的版本所分叉。</strong></p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div
+      class="social-share"
+      
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
+      
+      
+        data-wechat-qrcode-title="微信"
+      
+      
+        data-wechat-qrcode-helper="分享到微信"
+      
+    >
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>riceball
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://riceball.me/article/everything-is-on-the-ledger/" title="一切皆入账 —— 对等协作的身份、声誉与分配原理">https://riceball.me/article/everything-is-on-the-ledger/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Peer-Production/" rel="tag"><i class="fa fa-tag"></i> Peer Production</a>
+              <a href="/tags/Commons/" rel="tag"><i class="fa fa-tag"></i> Commons</a>
+              <a href="/tags/Reputation/" rel="tag"><i class="fa fa-tag"></i> Reputation</a>
+              <a href="/tags/Digital-Identity/" rel="tag"><i class="fa fa-tag"></i> Digital Identity</a>
+              <a href="/tags/Mechanism-Design/" rel="tag"><i class="fa fa-tag"></i> Mechanism Design</a>
+              <a href="/tags/Web3/" rel="tag"><i class="fa fa-tag"></i> Web3</a>
+              <a href="/tags/Open-Source/" rel="tag"><i class="fa fa-tag"></i> Open Source</a>
+              <a href="/tags/Fork/" rel="tag"><i class="fa fa-tag"></i> Fork</a>
+              <a href="/tags/Sybil-Attack/" rel="tag"><i class="fa fa-tag"></i> Sybil Attack</a>
+              <a href="/tags/Proof-of-Personhood/" rel="tag"><i class="fa fa-tag"></i> Proof of Personhood</a>
+              <a href="/tags/Transaction-Costs/" rel="tag"><i class="fa fa-tag"></i> Transaction Costs</a>
+              <a href="/tags/Ostrom/" rel="tag"><i class="fa fa-tag"></i> Ostrom</a>
+              <a href="/tags/Coase/" rel="tag"><i class="fa fa-tag"></i> Coase</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/cordis-pros-cons/" rel="prev" title="Cordis 的坑与账">
+      <i class="fa fa-chevron-left"></i> Cordis 的坑与账
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/looped_transformer_research/" rel="next" title="Looped Transformer Research">
+      Looped Transformer Research <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utteranc">utteranc</a></li>
+            <li class="tab"><a href="#comment-disqusjs">Disqus</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane utteranc" id="comment-utteranc">
+              
+  
+  <div class="comments">
+  <script src="https://utteranc.es/client.js" repo="snowyu/snowyu.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+  
+  
+            </div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#yi-qie-jie-ru-zhang-dui-deng-xie-zuo-de-shen-fen-sheng-yu-yu-fen-pei-yuan-li"><span class="nav-number">1.</span> <span class="nav-text">一切皆入账 —— 对等协作的身份、声誉与分配原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cong-da-gui-mo-xie-zuo-de-yuan-li-dao-shen-fen-sheng-yu-yu-fen-pei-de-zui-zhong-xing-tai-han-an-li-yu-pu-xi"><span class="nav-number">1.1.</span> <span class="nav-text">——从大规模协作的原理，到身份、声誉与分配的最终形态（含案例与谱系）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yin-yan"><span class="nav-number">1.2.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wei-ji-bai-ke-linux-kai-yuan-da-mo-xing-she-qu-xiang-ji-zheng-ming-mo-sheng-ren-ke-yi-da-gui-mo-xie-zuo-bing-sheng-chan-chu-shi-jie-ji-cheng-guo-yi-ge-gen-ben-wen-ti-sui-zhi-fu-xian-zhe-wei-shi-mo-shi-ke-neng-de-wei-ji-jing-ji-xue-gei-chu-le-kou-hao-shi-de-hui-da-kai-fang-dui-deng-gong-xiang-quan-qiu-yun-zuo-dan-zhe-si-tiao-fa-ze-shi-ji-zhi-miao-shu-bu-shi-yuan-li-ben-wen-de-ren-wu-shi-ba-yuan-li-tui-dao-di-cong-jing-ji-tiao-jian-ren-wu-jie-gou-ren-xing-dong-ji-zhi-li-gui-ze-dao-sheng-yu-de-zi-chan-shu-xing-shen-fen-de-zhang-ben-xing-tai-zui-hou-la-dao-na-ge-zui-rong-yi-bei-hu-shi-que-gou-cheng-zui-zhong-fang-xian-de-huan-jie-fen-pei-mei-yi-zhang-de-li-lun-ming-ti-du-pei-you-yi-ge-huo-duo-ge-zhen-shi-an-li-zuo-zheng-ta-men-you-de-yan-zheng-le-ming-ti-you-de-yi-shi-gu-de-fang-shi-yan-zheng-le-ming-ti"><span class="nav-number">1.3.</span> <span class="nav-text">维基百科、Linux、开源大模型社区相继证明：陌生人可以大规模协作，并生产出世界级成果。一个根本问题随之浮现——这为什么是可能的？
+《维基经济学》给出了口号式的回答：开放、对等、共享、全球运作。但这四条法则是机制描述，不是原理。本文的任务是把原理推到底：从经济条件、任务结构、人性动机、治理规则，到声誉的资产属性、身份的账本形态，最后落到那个最容易被忽视、却构成最终防线的环节——分配。每一章的理论命题，都配有一个或多个真实案例作证——它们有的验证了命题，有的以尸骨的方式验证了命题。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-yi-zhang-qian-shi-dui-deng-sheng-chan-de-pu-xi"><span class="nav-number">1.4.</span> <span class="nav-text">第一章 前史：对等生产的谱系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#da-shi-nian-biao"><span class="nav-number">1.4.1.</span> <span class="nav-text">大事年表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zhe-tiao-pu-xi-de-gui-lv-ke-yi-yi-ju-hua-shuo-jin-mei-yi-dai-ji-chu-she-shi-du-xiao-mie-yi-ceng-xin-ren-zhong-jie-qi-kan-xiao-mie-le-quan-wei-kai-yuan-xiao-mie-le-gu-yong-qu-kuai-lian-shi-tu-xiao-mie-ji-gou-er-mei-yi-ci-xiao-mie-du-ba-shang-yi-dai-xue-guo-de-ke-zhong-xin-kao-yi-bian-hui-dao-qi-dian-wei-ji-bai-ke-bu-shi-yuan-li-shi-xian-xiang-wei-ji-jing-ji-xue-zhen-zheng-de-gong-xian-shi-cong-xian-xiang-zhong-ti-lian-ji-zhi-dang-xie-zuo-cheng-ben-zu-gou-di-shi-sheng-chan-de-zu-zhi-fang-shi-hui-cong-ke-ceng-zhi-zhuan-xiang-dui-deng-wang-luo-an-li-bu-shi-zhong-dian-an-li-bei-hou-de-cheng-li-tiao-jian-cai-shi"><span class="nav-number">1.5.</span> <span class="nav-text">这条谱系的规律可以一句话说尽：每一代基础设施都消灭一层信任中介——期刊消灭了权威，开源消灭了雇佣，区块链试图消灭机构。而每一次消灭，都把上一代学过的课重新考一遍。
+回到起点：维基百科不是原理，是现象。《维基经济学》真正的贡献，是从现象中提炼机制：**当协作成本足够低时，生产的组织方式会从科层制转向对等网络。**案例不是重点，案例背后的成立条件才是。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-er-zhang-da-gui-mo-xie-zuo-de-wu-ge-qian-ti"><span class="nav-number">1.6.</span> <span class="nav-text">第二章 大规模协作的五个前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-san-zhang-ping-quan-de-zhen-zheng-han-yi"><span class="nav-number">1.7.</span> <span class="nav-text">第三章 平权的真正含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-si-zhang-sheng-yu-shuang-xiang-ke-xie-dai-de-zi-chan"><span class="nav-number">1.8.</span> <span class="nav-text">第四章 声誉：双向可携带的资产</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-wu-zhang-shen-fen-yi-ge-zhang-ben-bian-ji-shen-fen"><span class="nav-number">1.9.</span> <span class="nav-text">第五章 身份：一个账本，边即身份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-liu-zhang-hei-shi-bu-jin-zhi-zhi-ding-jia"><span class="nav-number">1.10.</span> <span class="nav-text">第六章 黑市：不禁止，只定价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-qi-zhang-shen-fen-bang-ding-bu-ke-zhuan-rang-de-shi-ze-ren"><span class="nav-number">1.11.</span> <span class="nav-text">第七章 身份绑定：不可转让的是责任</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-ba-zhang-fen-pei-hei-shi-shi-zhen-duan-yi-fen-pei-shi-zui-hou-fang-xian"><span class="nav-number">1.12.</span> <span class="nav-text">第八章 分配：黑市是诊断仪，分配是最后防线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di-jiu-zhang-zhong-dian-quan-bu-ming-ti-de-shou-long"><span class="nav-number">1.13.</span> <span class="nav-text">第九章 终点：全部命题的收拢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fu-lu-a-an-li-zong-biao"><span class="nav-number">1.14.</span> <span class="nav-text">附录 A · 案例总表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fu-lu-b-li-lun-pu-xi"><span class="nav-number">1.15.</span> <span class="nav-text">附录 B · 理论谱系</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riceball LEE"
+      src="https://www.gravatar.com/avatar/f7b81e783188e376c9f046ae1285d47f">
+  <p class="site-author-name" itemprop="name">Riceball LEE</p>
+  <div class="site-description" itemprop="description">Go with wind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">140</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href='https://riceball.me'>Riceball LEE</a></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">431k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">13:04</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/everything-is-on-the-ledger/",
+      identifier: "article/everything-is-on-the-ledger/",
+      title     : "一切皆入账 —— 对等协作的身份、声誉与分配原理",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+
+
+<script >
+if (document.querySelectorAll('pre code.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+</body>
+</html>

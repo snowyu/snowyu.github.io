@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,55 +15,29 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="什么是无后端构建开发 无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和伸缩性。 这个趋势意味着互联网数据正在由人读(human-readable)时代向机读(comp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无后端构建的无痛HTML应用开发[2013趋势]">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;nobackend&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/nobackend/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="什么是无后端构建开发 无后端构建是希望通过云服务将后端从前端开发中彻底解耦。和云存储不同之处在于它不仅仅是数据存储，它还是一套解决方案，它通过将后端任务从前端代码中剥离出来的一套SDK，让前端开发者把全部注意力放在前端交互用户体验。而让后端开发者聚焦后端任务的解耦，统一后端数据，并使得后端更具有灵活性和伸缩性。 这个趋势意味着互联网数据正在由人读(human-readable)时代向机读(comp">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2013-07-13T07:06:01.000Z">
 <meta property="article:modified_time" content="2019-11-22T06:56:43.533Z">
 <meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="Cloud">
+<meta property="article:tag" content="HTML5">
+<meta property="article:tag" content="NoSQL">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="nobackend">
 <meta property="article:tag" content="云存储">
 <meta property="article:tag" content="云计算">
-<meta property="article:tag" content="HTML5">
 <meta property="article:tag" content="前端">
-<meta property="article:tag" content="Cloud">
-<meta property="article:tag" content="nobackend">
-<meta property="article:tag" content="NoSQL">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/article/nobackend/">
@@ -73,14 +47,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -136,28 +111,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -165,15 +127,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -184,11 +168,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -206,29 +185,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -247,14 +231,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/nobackend/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -267,9 +250,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           无后端构建的无痛HTML应用开发[2013趋势]
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -293,15 +276,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">Thinking</span>
-                  </a>
+                  <a href="/categories/Thinking/" itemprop="url" rel="index"><span itemprop="name">Thinking</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/Architecture/" itemprop="url" rel="index">
-                    <span itemprop="name">Architecture</span>
-                  </a>
+                  <a href="/categories/Thinking/Architecture/" itemprop="url" rel="index"><span itemprop="name">Architecture</span></a>
                 </span>
             </span>
 
@@ -310,7 +289,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -318,7 +297,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -345,58 +324,21 @@
 <p>让我们具体来看一个例子。</p>
 <h2 id="li-zi" class="heading-control">例子<a class="heading-anchor" href="#li-zi" aria-hidden="true"></a></h2>
 <p>首先，我们从帐号管理开发谈起，在传统开发中，我们需要定义帐号的表结构，进行数据库服务器配置，然后运行数据库服务，创建数据库和数据表，并初始化数据。那么在“无后端构建”的开发中，上述操作包括登录，都没有必要再去做这些繁琐的操作了，你只需要再云服务后台添加一个数据库设置好访问权限，然后在前端应用中，直接引用SDK，写代码即可，剩下的事情则交给云服务去做就好了，梦幻般的代码如下：</p>
-<pre><code class="js"><span class="hljs-keyword">var</span> mydb = <span class="hljs-keyword">new</span> iDB(<span class="hljs-string">"https://idb.isdk.org/mydb"</span>);
-<span class="hljs-keyword">var</span> account = myDb.account;
-
-<span class="hljs-comment">//注册一个新用户</span>
-account.signUp(<span class="hljs-string">'mike@example.com'</span>, <span class="hljs-string">'secret'</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">"Mike John"</span>, <span class="hljs-attr">birthday</span>: <span class="hljs-string">'1988-01-01'</span>});
-
-<span class="hljs-comment">//登录</span>
-account.signIn(<span class="hljs-string">'mike@example.com'</span>, <span class="hljs-string">'secret'</span>);
-<span class="hljs-comment">//使用第三方登录(Oaccount)</span>
-account.signIn(using: <span class="hljs-string">'google'</span>);
-
-<span class="hljs-comment">//改变密码</span>
-account.changePassword(<span class="hljs-string">'currentPassword'</span>, <span class="hljs-string">'newPassword'</span>);
-account.change(<span class="hljs-string">'password'</span>, <span class="hljs-string">'newPassword'</span>, {<span class="hljs-attr">secret</span>: <span class="hljs-string">'currentPassword'</span>});
-
-<span class="hljs-comment">//改变Profile的信息</span>
-account.change(<span class="hljs-string">'nickname'</span>, <span class="hljs-string">'newNickname'</span>, {<span class="hljs-attr">secret</span>: <span class="hljs-string">'currentPassword'</span>});
-
-<span class="hljs-comment">//获取profile</span>
-account.get();
-account.get(<span class="hljs-string">'name'</span>);
-
-<span class="hljs-comment">//彻底销毁自己的帐号</span>
-account.destroy({<span class="hljs-attr">secret</span>: <span class="hljs-string">'currentPassword'</span>});
-
-<span class="hljs-comment">//注销</span>
-account.signOut();
-
-<span class="hljs-comment">//忘记密码了，发送重置密码链接到指定邮箱</span>
-account.resetPassword(<span class="hljs-string">'mike@example.com'</span>);
-</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mydb = <span class="keyword">new</span> <span class="title function_">iDB</span>(<span class="string">&quot;https://idb.isdk.org/mydb&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> account = myDb.<span class="property">account</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注册一个新用户</span></span><br><span class="line">account.<span class="title function_">signUp</span>(<span class="string">&#x27;mike@example.com&#x27;</span>, <span class="string">&#x27;secret&#x27;</span>, &#123;<span class="attr">name</span>: <span class="string">&quot;Mike John&quot;</span>, <span class="attr">birthday</span>: <span class="string">&#x27;1988-01-01&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//登录</span></span><br><span class="line">account.<span class="title function_">signIn</span>(<span class="string">&#x27;mike@example.com&#x27;</span>, <span class="string">&#x27;secret&#x27;</span>);</span><br><span class="line"><span class="comment">//使用第三方登录(Oaccount)</span></span><br><span class="line">account.<span class="title function_">signIn</span>(<span class="attr">using</span>: <span class="string">&#x27;google&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变密码</span></span><br><span class="line">account.<span class="title function_">changePassword</span>(<span class="string">&#x27;currentPassword&#x27;</span>, <span class="string">&#x27;newPassword&#x27;</span>);</span><br><span class="line">account.<span class="title function_">change</span>(<span class="string">&#x27;password&#x27;</span>, <span class="string">&#x27;newPassword&#x27;</span>, &#123;<span class="attr">secret</span>: <span class="string">&#x27;currentPassword&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变Profile的信息</span></span><br><span class="line">account.<span class="title function_">change</span>(<span class="string">&#x27;nickname&#x27;</span>, <span class="string">&#x27;newNickname&#x27;</span>, &#123;<span class="attr">secret</span>: <span class="string">&#x27;currentPassword&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取profile</span></span><br><span class="line">account.<span class="title function_">get</span>();</span><br><span class="line">account.<span class="title function_">get</span>(<span class="string">&#x27;name&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//彻底销毁自己的帐号</span></span><br><span class="line">account.<span class="title function_">destroy</span>(&#123;<span class="attr">secret</span>: <span class="string">&#x27;currentPassword&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//注销</span></span><br><span class="line">account.<span class="title function_">signOut</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//忘记密码了，发送重置密码链接到指定邮箱</span></span><br><span class="line">account.<span class="title function_">resetPassword</span>(<span class="string">&#x27;mike@example.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
 <p>数据存储也是类似，事实上account的存储就是来自store。</p>
-<pre><code class="js"><span class="hljs-keyword">var</span> store = mydb.store;
-store.add(key, value);
-store.update(key, value);
-store.delete(key);
-store.get(key);
-store.listAll(key);
-store.list(key, subkey_pattern, skipCount, count);
-</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> store = mydb.<span class="property">store</span>;</span><br><span class="line">store.<span class="title function_">add</span>(key, value);</span><br><span class="line">store.<span class="title function_">update</span>(key, value);</span><br><span class="line">store.<span class="title function_">delete</span>(key);</span><br><span class="line">store.<span class="title function_">get</span>(key);</span><br><span class="line">store.<span class="title function_">listAll</span>(key);</span><br><span class="line">store.<span class="title function_">list</span>(key, subkey_pattern, skipCount, count);</span><br></pre></td></tr></table></figure>
 <p>无后端的开发模式，实质是基于云存储之上的云服务模式。因此它不仅仅适用于HTML5应用，其它任何计算机语言都可以用它作为开发模式的。我们通过进一步的抽象后端开发，剥离出了帐号和存储任务，慢慢的还会有消息(通知)，在线支付/交易，评论，聊天等等各种各样的通用的操作(任务)会以更加简易方便的形式被剥离出来。</p>
 <p>提了这么多，那么这到底是梦幻呢，还是现在就能在互联网上可以玩到的技术呢？毋庸置疑，这目前不仅能在互联网上玩到，而且BitTorrent, Codecademy等已经在产品中使用Firebase提供的无后端云存储服务，下面列举一些无后端云存储服务提供者和开源项目。</p>
 <h1 id="wu-hou-duan-yun-cun-chu-fu-wu-ti-gong-zhe-yu-kai-yuan-xiang-mu" class="heading-control">无后端云存储服务提供者与开源项目<a class="heading-anchor" href="#wu-hou-duan-yun-cun-chu-fu-wu-ti-gong-zhe-yu-kai-yuan-xiang-mu" aria-hidden="true"></a></h1>
 <ul>
-<li>[<a href="http://sockethub.org/" target="_blank" rel="noopener">Sockethub</a>]开源，数据后端为Redis, 将消息抽象出来的形成API，与应用交换.</li>
-<li>[<a href="http://hood.ie/" target="_blank" rel="noopener">Hoodie</a>] 开源，数据后端用CouchDB, API与设想的很接近。</li>
-<li>[<a href="http://remotestorage.io/" target="_blank" rel="noopener">remoteStorage</a>] 开源</li>
-<li>[<a href="https://www.firebase.com/" target="_blank" rel="noopener">Firebase</a>]      已经商业化</li>
-<li>[<a href="http://singly.com/" target="_blank" rel="noopener">Singly</a>] 目前专注于针对认证、社交圈、文件分享集成以及API使用分析。</li>
-<li>[<a href="http://deployd.com/" target="_blank" rel="noopener">deployd</a>] 开源，数据后端用MongoDB, API 难用</li>
-<li>[<a href="https://parse.com/" target="_blank" rel="noopener">Parse</a>] 商业化</li>
-<li>[<a href="http://www.kinvey.com/" target="_blank" rel="noopener">Kinvey</a>]</li>
+<li>[<a href="http://sockethub.org/">Sockethub</a>]开源，数据后端为Redis, 将消息抽象出来的形成API，与应用交换.</li>
+<li>[<a href="http://hood.ie/">Hoodie</a>] 开源，数据后端用CouchDB, API与设想的很接近。</li>
+<li>[<a href="http://remotestorage.io/">remoteStorage</a>] 开源</li>
+<li>[<a href="https://www.firebase.com/">Firebase</a>]      已经商业化</li>
+<li>[<a href="http://singly.com/">Singly</a>] 目前专注于针对认证、社交圈、文件分享集成以及API使用分析。</li>
+<li>[<a href="http://deployd.com/">deployd</a>] 开源，数据后端用MongoDB, API 难用</li>
+<li>[<a href="https://parse.com/">Parse</a>] 商业化</li>
+<li>[<a href="http://www.kinvey.com/">Kinvey</a>]</li>
 </ul>
 <h1 id="wen-ti" class="heading-control">问题<a class="heading-anchor" href="#wen-ti" aria-hidden="true"></a></h1>
 <p>优势我们大家都看到了，无论从开发的角度来说，还是说从数据复用的角度来说，这样的模式都堪称完美。当然目前从开发的角度来说还是没有完全做到前端无痛开发来着，这主要集中在权限配置上比较复杂。</p>
@@ -438,7 +380,7 @@ store.list(key, subkey_pattern, skipCount, count);
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/nobackend/" title="无后端构建的无痛HTML应用开发[2013趋势]">https://riceball.me/article/nobackend/</a>
+    <a href="https://riceball.me/article/nobackend/" title="无后端构建的无痛HTML应用开发[2013趋势]">https://riceball.me/article/nobackend/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -450,9 +392,9 @@ store.list(key, subkey_pattern, skipCount, count);
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
               <a href="/tags/%E4%BA%91%E5%AD%98%E5%82%A8/" rel="tag"><i class="fa fa-tag"></i> 云存储</a>
               <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 云计算</a>
+              <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
               <a href="/tags/HTML5/" rel="tag"><i class="fa fa-tag"></i> HTML5</a>
               <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
               <a href="/tags/Cloud/" rel="tag"><i class="fa fa-tag"></i> Cloud</a>
@@ -481,7 +423,6 @@ store.list(key, subkey_pattern, skipCount, count);
   
   
 
-  </div>
 
 
           </div>
@@ -503,7 +444,7 @@ store.list(key, subkey_pattern, skipCount, count);
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -515,7 +456,7 @@ store.list(key, subkey_pattern, skipCount, count);
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -574,20 +515,20 @@ store.list(key, subkey_pattern, skipCount, count);
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -617,6 +558,8 @@ store.list(key, subkey_pattern, skipCount, count);
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -630,14 +573,16 @@ store.list(key, subkey_pattern, skipCount, count);
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -711,15 +656,15 @@ store.list(key, subkey_pattern, skipCount, count);
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/nobackend/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/nobackend/",
       identifier: "article/nobackend/",
-      title: "无后端构建的无痛HTML应用开发[2013趋势]",
+      title     : "无后端构建的无痛HTML应用开发[2013趋势]",
     });
   }, window.DisqusJS);
 });
@@ -739,7 +684,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

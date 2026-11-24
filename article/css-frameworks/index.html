@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,49 +15,23 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="CSS 框架进化史：从“统一制服”到“乐高无限”，我的样式我做主！ 嘿，朋友！你有没有想过，我们每天看到的网页样式，背后其实藏着一部精彩的“进化史”？这不仅仅是代码变来变去，更是一场前端开发者追求**“干活快、看着爽、改得动”**的奋斗故事。 今天，我们就来聊聊 CSS 框架这趟神奇的旅程，看看它是如何从“发统一制服”的管家，一步步变成提供无限可能的“乐高超级工厂”的。 第一站：石器时代救星 (2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端 CSS 框架发展变迁">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;css-frameworks&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/css-frameworks/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="CSS 框架进化史：从“统一制服”到“乐高无限”，我的样式我做主！ 嘿，朋友！你有没有想过，我们每天看到的网页样式，背后其实藏着一部精彩的“进化史”？这不仅仅是代码变来变去，更是一场前端开发者追求**“干活快、看着爽、改得动”**的奋斗故事。 今天，我们就来聊聊 CSS 框架这趟神奇的旅程，看看它是如何从“发统一制服”的管家，一步步变成提供无限可能的“乐高超级工厂”的。 第一站：石器时代救星 (2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-07T22:57:30.000Z">
 <meta property="article:modified_time" content="2025-08-08T09:56:13.684Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="framework">
 <meta property="article:tag" content="css">
+<meta property="article:tag" content="framework">
 <meta property="article:tag" content="frontend">
 <meta name="twitter:card" content="summary">
 
@@ -68,14 +42,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -131,28 +106,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -160,15 +122,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -179,11 +163,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -201,29 +180,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -242,14 +226,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/css-frameworks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,9 +245,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           前端 CSS 框架发展变迁
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -282,21 +265,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Framework/" itemprop="url" rel="index">
-                    <span itemprop="name">Framework</span>
-                  </a>
+                  <a href="/categories/Framework/" itemprop="url" rel="index"><span itemprop="name">Framework</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Framework/Frontend/" itemprop="url" rel="index">
-                    <span itemprop="name">Frontend</span>
-                  </a>
+                  <a href="/categories/Framework/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Framework/Frontend/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
+                  <a href="/categories/Framework/Frontend/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
                 </span>
             </span>
 
@@ -305,7 +282,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -339,7 +316,7 @@
 <p>想象一下，在很久很久以前，做网页布局就像在玩“叠叠乐”，你小心翼翼地用 <code>float</code> 堆砌模块，一不小心，整个页面就“哗啦”一下全塌了。更别提还有个叫 IE6 的“大魔王”，总让你的网页在不同电脑上看起来完全不一样。</p>
 <p>那时候，大家最大的愿望就是：<strong>让布局整齐划一，别再出岔子了！</strong></p>
 <ul>
-<li><strong>救星登场：</strong> 这时候，像 <strong><a href="https://960.gs/" target="_blank" rel="noopener">960 Grid System</a></strong> 这样的“排版神器”出现了。它就像一张隐形的稿纸，把网页宽度固定在 960 像素，然后划上 12 或 16 道线。你只要告诉它“这个模块占 4 格宽”，它就乖乖地待在那儿，稳如泰山。</li>
+<li><strong>救星登场：</strong> 这时候，像 <strong><a href="https://960.gs/">960 Grid System</a></strong> 这样的“排版神器”出现了。它就像一张隐形的稿纸，把网页宽度固定在 960 像素，然后划上 12 或 16 道线。你只要告诉它“这个模块占 4 格宽”，它就乖乖地待在那儿，稳如泰山。</li>
 <li><strong>感觉如何？</strong> 简直是解放！虽然所有网页都差不多宽，有点像穿上了“统一校服”，但至少整洁、不出错。开发者们终于可以从无休止的兼容性搏斗中抬起头，喘口气了。</li>
 </ul>
 <details><summary>摘要</summary>
@@ -347,13 +324,13 @@
 <li>核心矛盾：混乱 vs. 秩序（float 布局、IE6/7/8 兼容地狱）</li>
 <li>代表
 <ul>
-<li><a href="https://960.gs/" target="_blank" rel="noopener">960 Grid System</a>
+<li><a href="https://960.gs/">960 Grid System</a>
 <ul>
 <li>优点：固定宽度＋12/16 栅格，简单、稳定、可预期</li>
 <li>不足：只解决布局；固定宽度对移动端不友好</li>
 </ul>
 </li>
-<li><a href="https://github.com/joshuaclayton/blueprint-css" target="_blank" rel="noopener">Blueprint CSS</a>
+<li><a href="https://github.com/joshuaclayton/blueprint-css">Blueprint CSS</a>
 <ul>
 <li>优点：在网格之外补了基础排版、表单、打印样式</li>
 <li>不足：定制性一般，仍是固定布局思路</li>
@@ -366,7 +343,7 @@
 </details>
 <h2 id="di-er-zhan-bootstrap-wang-zhao-20112016-yi-jian-sheng-cheng-yao-sha-you-sha" class="heading-control"><strong>第二站：Bootstrap 王朝 (2011-2016) - “一键生成，要啥有啥！”</strong><a class="heading-anchor" href="#di-er-zhan-bootstrap-wang-zhao-20112016-yi-jian-sheng-cheng-yao-sha-you-sha" aria-hidden="true"></a></h2>
 <p>随着智能手机的普及，问题又来了：怎么让一个网站在电脑、平板、手机上都好看？这叫“响应式设计”，在当时可是个大难题。</p>
-<p>这时，一个叫 <strong><a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap</a></strong> 的“超级英雄”从天而降，它带来的不仅仅是排版，而是一个**“UI 全家桶”**。</p>
+<p>这时，一个叫 <strong><a href="https://getbootstrap.com/">Bootstrap</a></strong> 的“超级英雄”从天而降，它带来的不仅仅是排版，而是一个**“UI 全家桶”**。</p>
 <ul>
 <li><strong>它有多牛？</strong>
 <ul>
@@ -382,19 +359,19 @@
 <li>核心矛盾：重复造轮子 vs. 快速复用（响应式设计兴起）</li>
 <li>代表
 <ul>
-<li><a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap</a>
+<li><a href="https://getbootstrap.com/">Bootstrap</a>
 <ul>
 <li>优点：移动优先栅格、海量组件、文档好、生态强</li>
 <li>不足：“Bootstrap 味儿”浓；覆盖样式成本高；与现代组件化（React/Vue）存在隔阂</li>
 </ul>
 </li>
-<li><a href="https://get.foundation/" target="_blank" rel="noopener">Foundation</a>（Zurb）
+<li><a href="https://get.foundation/">Foundation</a>（Zurb）
 <ul>
 <li>优点：更灵活、专业，定制空间更大</li>
 <li>不足：生态不如 Bootstrap，学习曲线更陡</li>
 </ul>
 </li>
-<li><a href="https://semantic-ui.com/" target="_blank" rel="noopener">Semantic UI</a>（可选了解）
+<li><a href="https://semantic-ui.com/">Semantic UI</a>（可选了解）
 <ul>
 <li>优点：类名语义化，读起来像英文</li>
 <li>不足：体量偏大、升级维护成本高</li>
@@ -412,9 +389,9 @@
 <ul>
 <li><strong>各种新玩法涌现：</strong>
 <ul>
-<li>有人用 <strong><a href="https://sass-lang.com/" target="_blank" rel="noopener">Sass</a></strong>、<strong><a href="https://getbem.com/" target="_blank" rel="noopener">BEM</a></strong> 这样的“管理工具”，给自己写的样式规定好纪律，避免“打架”。</li>
-<li>有人更激进，搞出了 <strong><a href="https://en.wikipedia.org/wiki/CSS-in-JS" target="_blank" rel="noopener">CSS-in-JS</a></strong>，把样式直接写进 JavaScript 里，彻底和“样式冲突”说拜拜。</li>
-<li><strong>一个重要的“隐藏技能”被点亮了：</strong> 浏览器原生支持了 <strong><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties" target="_blank" rel="noopener">CSS Variables</a></strong>（CSS 变量）。这可是个大招！它让 CSS 的值（比如颜色）可以被 JavaScript 轻松改变。这就像给网页的“皮肤”安装了一个“一键换色”开关，为后面的大变革埋下了伏笔。</li>
+<li>有人用 <strong><a href="https://sass-lang.com/">Sass</a></strong>、<strong><a href="https://getbem.com/">BEM</a></strong> 这样的“管理工具”，给自己写的样式规定好纪律，避免“打架”。</li>
+<li>有人更激进，搞出了 <strong><a href="https://en.wikipedia.org/wiki/CSS-in-JS">CSS-in-JS</a></strong>，把样式直接写进 JavaScript 里，彻底和“样式冲突”说拜拜。</li>
+<li><strong>一个重要的“隐藏技能”被点亮了：</strong> 浏览器原生支持了 <strong><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties">CSS Variables</a></strong>（CSS 变量）。这可是个大招！它让 CSS 的值（比如颜色）可以被 JavaScript 轻松改变。这就像给网页的“皮肤”安装了一个“一键换色”开关，为后面的大变革埋下了伏笔。</li>
 </ul>
 </li>
 </ul>
@@ -423,25 +400,25 @@
 <li>核心矛盾：全局污染/命名冲突 vs. 组件隔离/按需加载</li>
 <li>代表理念与工具
 <ul>
-<li><a href="https://sass-lang.com/" target="_blank" rel="noopener">Sass</a>/<a href="https://lesscss.org/" target="_blank" rel="noopener">Less</a> + <a href="https://getbem.com/" target="_blank" rel="noopener">BEM</a>
+<li><a href="https://sass-lang.com/">Sass</a>/<a href="https://lesscss.org/">Less</a> + <a href="https://getbem.com/">BEM</a>
 <ul>
 <li>优点：变量/嵌套/混入带来“可编程的 CSS”；BEM 减少命名冲突</li>
 <li>不足：变量是编译期的，运行时不可改；仍需全局治理</li>
 </ul>
 </li>
-<li><a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener">CSS Modules</a>
+<li><a href="https://github.com/css-modules/css-modules">CSS Modules</a>
 <ul>
 <li>优点：天然作用域隔离，避免全局污染</li>
 <li>不足：样式复用与跨组件协同需要约定</li>
 </ul>
 </li>
-<li><a href="https://en.wikipedia.org/wiki/CSS-in-JS" target="_blank" rel="noopener">CSS-in-JS</a>（<a href="https://www.styled-components.com/" target="_blank" rel="noopener">styled-components</a>, <a href="https://emotion.sh/docs/introduction" target="_blank" rel="noopener">Emotion</a>…）
+<li><a href="https://en.wikipedia.org/wiki/CSS-in-JS">CSS-in-JS</a>（<a href="https://www.styled-components.com/">styled-components</a>, <a href="https://emotion.sh/docs/introduction">Emotion</a>…）
 <ul>
 <li>优点：与组件强绑定；可用 props 写动态样式；作用域安全</li>
 <li>不足：通常有运行时开销；较重的构建依赖</li>
 </ul>
 </li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties" target="_blank" rel="noopener">CSS 自定义属性（CSS Variables）</a>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties">CSS 自定义属性（CSS Variables）</a>
 <ul>
 <li>何时能用：2016–2017 年在现代浏览器普及（IE 不支持）</li>
 <li>价值：运行时变量，可被 JS 高效读写；把“静态样式”与“动态主题/个性化”优雅地接起来</li>
@@ -453,7 +430,7 @@
 </ul>
 </details>
 <h2 id="di-si-zhan-le-gao-shi-dai-lai-lin-2017-zhi-jin-ni-de-shi-jie-ni-lai-pin" class="heading-control"><strong>第四站：乐高时代来临 (2017-至今) - “你的世界，你来拼！”</strong><a class="heading-anchor" href="#di-si-zhan-le-gao-shi-dai-lai-lin-2017-zhi-jin-ni-de-shi-jie-ni-lai-pin" aria-hidden="true"></a></h2>
-<p>终于，我们来到了现在这个最激动人心的时代。一个叫 <strong><a href="https://tailwindcss.com/" target="_blank" rel="noopener">Tailwind CSS</a></strong> 的框架带来了颠覆性的想法：<strong>“我不再给你做好的‘成品’，我给你一整套无限可能的‘乐高积木’！”</strong></p>
+<p>终于，我们来到了现在这个最激动人心的时代。一个叫 <strong><a href="https://tailwindcss.com/">Tailwind CSS</a></strong> 的框架带来了颠覆性的想法：<strong>“我不再给你做好的‘成品’，我给你一整套无限可能的‘乐高积木’！”</strong></p>
 <ul>
 <li><strong>这是什么意思？</strong>
 <ul>
@@ -510,13 +487,13 @@
 <p>当“乐高积木”（原子化 CSS）解决了外观问题后，大家发现还有个“内涵”问题：组件的行为逻辑（比如下拉菜单怎么开关，弹出框怎么管）写起来也挺复杂的。</p>
 <p>于是，更聪明的玩法出现了：<strong>强强联合！</strong></p>
 <ol>
-<li><strong>“灵魂”专家 - Headless UI (如 <a href="https://www.radix-ui.com/" target="_blank" rel="noopener">Radix UI</a>)：</strong> 这些库是“行为大师”，它们帮你处理好组件所有的复杂逻辑和交互，但完全没有样式，就像一个功能强大但没穿衣服的“机器人骨架”。</li>
-<li><strong>“造型”大师 - 原子化 CSS (如 <a href="https://tailwindcss.com/" target="_blank" rel="noopener">Tailwind</a>)：</strong> 这就是我们前面说的“乐高积木”，专门负责给“机器人骨架”穿上漂亮、定制化的外衣。</li>
-<li><strong>“智能建筑师” - AI (如 <a href="https://v0.dev/" target="_blank" rel="noopener">v0.dev</a>)：</strong> 这是最新的酷玩意儿！你只要用大白话告诉 AI：“我想要一个带图片的卡片，下面有标题和‘购买’按钮。” AI 就会自动调用“灵魂专家”和“造型大师”，瞬间给你拼出一个完美的、可以直接用的组件代码！</li>
+<li><strong>“灵魂”专家 - Headless UI (如 <a href="https://www.radix-ui.com/">Radix UI</a>)：</strong> 这些库是“行为大师”，它们帮你处理好组件所有的复杂逻辑和交互，但完全没有样式，就像一个功能强大但没穿衣服的“机器人骨架”。</li>
+<li><strong>“造型”大师 - 原子化 CSS (如 <a href="https://tailwindcss.com/">Tailwind</a>)：</strong> 这就是我们前面说的“乐高积木”，专门负责给“机器人骨架”穿上漂亮、定制化的外衣。</li>
+<li><strong>“智能建筑师” - AI (如 <a href="https://v0.dev/">v0.dev</a>)：</strong> 这是最新的酷玩意儿！你只要用大白话告诉 AI：“我想要一个带图片的卡片，下面有标题和‘购买’按钮。” AI 就会自动调用“灵魂专家”和“造型大师”，瞬间给你拼出一个完美的、可以直接用的组件代码！</li>
 </ol>
 <ul>
 <li><strong>现在的最佳实践：</strong><br>
-一个团队先用 <strong><a href="https://www.radix-ui.com/" target="_blank" rel="noopener">Radix UI</a></strong> 搭好“骨架”，再用 <strong><a href="https://tailwindcss.com/" target="_blank" rel="noopener">Tailwind CSS</a></strong> 精心“打扮”，遇到重复工作就让 <strong>AI</strong> 来“代工”。分工明确，效率和自由度都拉满了！</li>
+一个团队先用 <strong><a href="https://www.radix-ui.com/">Radix UI</a></strong> 搭好“骨架”，再用 <strong><a href="https://tailwindcss.com/">Tailwind CSS</a></strong> 精心“打扮”，遇到重复工作就让 <strong>AI</strong> 来“代工”。分工明确，效率和自由度都拉满了！</li>
 </ul>
 <details><summary>摘要</summary>
 <ul>
@@ -525,18 +502,18 @@
 <ul>
 <li>Headless UI 库：
 <ul>
-<li><a href="https://www.radix-ui.com/" target="_blank" rel="noopener">Radix UI</a></li>
-<li><a href="https://headlessui.com/" target="_blank" rel="noopener">Headless UI</a></li>
-<li><a href="https://ariakit.org/" target="_blank" rel="noopener">Ariakit</a></li>
-<li><a href="https://react-spectrum.adobe.com/react-aria/index.html" target="_blank" rel="noopener">React Aria</a></li>
-<li><a href="https://ark-ui.com/" target="_blank" rel="noopener">Ark UI</a>…</li>
+<li><a href="https://www.radix-ui.com/">Radix UI</a></li>
+<li><a href="https://headlessui.com/">Headless UI</a></li>
+<li><a href="https://ariakit.org/">Ariakit</a></li>
+<li><a href="https://react-spectrum.adobe.com/react-aria/index.html">React Aria</a></li>
+<li><a href="https://ark-ui.com/">Ark UI</a>…</li>
 <li>优点：只管交互逻辑与可访问性（ARIA/焦点管理），不带样式</li>
 <li>不足：需要你自己写样式（这正好和原子化天作之合）</li>
 </ul>
 </li>
-<li><a href="https://ui.shadcn.com/" target="_blank" rel="noopener">shadcn/ui</a>（组合式最佳实践）
+<li><a href="https://ui.shadcn.com/">shadcn/ui</a>（组合式最佳实践）
 <ul>
-<li>特点：不是“安装即用”的库，而是把 <a href="https://www.radix-ui.com/" target="_blank" rel="noopener">Radix</a> + Tailwind<a href="https://tailwindcss.com/" target="_blank" rel="noopener">tailwind-css</a> 的源码直接拷到你项目里；你拥有全部代码，想改就改</li>
+<li>特点：不是“安装即用”的库，而是把 <a href="https://www.radix-ui.com/">Radix</a> + Tailwind<a href="https://tailwindcss.com/">tailwind-css</a> 的源码直接拷到你项目里；你拥有全部代码，想改就改</li>
 <li>价值：完美结合“Headless 逻辑 + 原子化样式 + 代码所有权”</li>
 </ul>
 </li>
@@ -574,12 +551,12 @@
 </li>
 <li>可用工具
 <ul>
-<li><a href="https://v0.dev/" target="_blank" rel="noopener">v0.dev</a></li>
-<li><a href="https://cursor.com/" target="_blank" rel="noopener">Cursor</a>/<a href="https://windsurf.com/" target="_blank" rel="noopener">Windsurf</a></li>
-<li><a href="https://www.anthropic.com/news/build-artifacts" target="_blank" rel="noopener">Claude Artifacts</a>、</li>
-<li><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener">Copilot</a>/<a href="https://github.com/Exafunction/codeium/" target="_blank" rel="noopener">Codeium</a></li>
-<li><a href="https://github.com/dequelabs/axe-core" target="_blank" rel="noopener">axe-core</a> + LLM</li>
-<li><a href="https://tokens.studio/" target="_blank" rel="noopener">Token Studio</a>/<a href="https://styledictionary.com/" target="_blank" rel="noopener">Style Dictionary</a></li>
+<li><a href="https://v0.dev/">v0.dev</a></li>
+<li><a href="https://cursor.com/">Cursor</a>/<a href="https://windsurf.com/">Windsurf</a></li>
+<li><a href="https://www.anthropic.com/news/build-artifacts">Claude Artifacts</a>、</li>
+<li><a href="https://copilot.microsoft.com/">Copilot</a>/<a href="https://github.com/Exafunction/codeium/">Codeium</a></li>
+<li><a href="https://github.com/dequelabs/axe-core">axe-core</a> + LLM</li>
+<li><a href="https://tokens.studio/">Token Studio</a>/<a href="https://styledictionary.com/">Style Dictionary</a></li>
 </ul>
 </li>
 </ul>
@@ -627,7 +604,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/css-frameworks/" title="前端 CSS 框架发展变迁">https://riceball.me/article/css-frameworks/</a>
+    <a href="https://riceball.me/article/css-frameworks/" title="前端 CSS 框架发展变迁">https://riceball.me/article/css-frameworks/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -665,7 +642,6 @@
   
   
 
-  </div>
 
 
           </div>
@@ -687,7 +663,7 @@
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -699,7 +675,7 @@
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -758,20 +734,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -801,6 +777,8 @@
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -814,14 +792,16 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -895,15 +875,15 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/css-frameworks/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/css-frameworks/",
       identifier: "article/css-frameworks/",
-      title: "前端 CSS 框架发展变迁",
+      title     : "前端 CSS 框架发展变迁",
     });
   }, window.DisqusJS);
 });
@@ -923,7 +903,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

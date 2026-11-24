@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,52 +15,26 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="MQTT 服务 - IoT界的消息订阅发布 关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，相当于你帮他们植入了常驻设备的推送后门。 只有自驾了。我选择了MQTT。 MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。用在手机设备最好不过。 MQTT 协议">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MQTT 服务 - IoT界的消息订阅发布服务">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;mqtt&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/mqtt/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="MQTT 服务 - IoT界的消息订阅发布 关于消息推送服务PaaS云，这才发现国内几乎所有的消息推送服务都是基于广告，对用户画像，打标签，针对用户推送，没有纯粹的基于订阅发布消息推送服务，难怪免费居多，相当于你帮他们植入了常驻设备的推送后门。 只有自驾了。我选择了MQTT。 MQTT本是用于物联网设备的消息推送协议，具有体积小，协议简单，通信高效省电的特点。用在手机设备最好不过。 MQTT 协议">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-03-21T03:35:00.000Z">
 <meta property="article:modified_time" content="2019-11-22T06:56:43.533Z">
 <meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="message">
 <meta property="article:tag" content="mqtt">
 <meta property="article:tag" content="network">
 <meta property="article:tag" content="pubsub">
 <meta property="article:tag" content="push">
-<meta property="article:tag" content="message">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/article/mqtt/">
@@ -70,14 +44,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -133,28 +108,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -162,15 +124,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -181,11 +165,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -203,29 +182,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -244,14 +228,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/mqtt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -264,9 +247,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           MQTT 服务 - IoT界的消息订阅发布服务
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -290,21 +273,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">Thinking</span>
-                  </a>
+                  <a href="/categories/Thinking/" itemprop="url" rel="index"><span itemprop="name">Thinking</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/Architecture/" itemprop="url" rel="index">
-                    <span itemprop="name">Architecture</span>
-                  </a>
+                  <a href="/categories/Thinking/Architecture/" itemprop="url" rel="index"><span itemprop="name">Architecture</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/Architecture/MQTT/" itemprop="url" rel="index">
-                    <span itemprop="name">MQTT</span>
-                  </a>
+                  <a href="/categories/Thinking/Architecture/MQTT/" itemprop="url" rel="index"><span itemprop="name">MQTT</span></a>
                 </span>
             </span>
 
@@ -313,7 +290,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -321,14 +298,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.5k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>17 分钟</span>
+              <span>20 分钟</span>
             </span>
 
         </div>
@@ -349,13 +326,7 @@
 MQTT是发布订阅(Publish/Subscribe)模式的消息协议，与HTTP协议请求响应(Request/Response)模式是不同的。</p>
 <h3 id="xiao-xi-yu-zhu-ti-topic" class="heading-control">消息与主题 Topic<a class="heading-anchor" href="#xiao-xi-yu-zhu-ti-topic" aria-hidden="true"></a></h3>
 <p>MQTT发布者与订阅者之间通过”主题”(Topic)进行消息推送，主题(Topic)格式类似URL或文件路径，通过&quot;/&quot;分隔层级，例如:</p>
-<pre><code>sensor/1/temperature
-chat/room/subject
-presence/user/feng
-sensor/1/#
-sensor/+/temperature
-uber/drivers/joe/inbox
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sensor/1/temperature</span><br><span class="line">chat/room/subject</span><br><span class="line">presence/user/feng</span><br><span class="line">sensor/1/#</span><br><span class="line">sensor/+/temperature</span><br><span class="line">uber/drivers/joe/inbox</span><br></pre></td></tr></table></figure>
 <p>MQTT主题(Topic)支持’+’, ‘#’的通配符，’+’通配一个层级，’#’通配多个层级(必须在末尾)。<br>
 MQTT消息发布者(Publisher)只能向特定’名称主题’(不支持通配符)发布消息，订阅者(Subscriber)<br>
 通过订阅’过滤主题’(支持通配符)来匹配消息。</p>
@@ -379,12 +350,7 @@ MQTT消息发布者(Publisher)只能向特定’名称主题’(不支持通配�
 <h4 id="gong-xiang-ding-yue-shared-subscription" class="heading-control">共享订阅(Shared Subscription)<a class="heading-anchor" href="#gong-xiang-ding-yue-shared-subscription" aria-hidden="true"></a></h4>
 <p>共享订阅是非标准MQTT约定，不过大多数开源MQTT服务器已经实现。共享订阅(Shared Subscription)支持在多订阅者间采用分组负载平衡方式派发消息:<br>
 也就是订阅相同共享订阅(Shared Subscription)的客户根据负载平衡方式只有1人收到。这个场景可以用于：集群执行分布式任务（1个人接了活，其他人就不要接了）。</p>
-<pre><code>                            ---------
-                            |       | --Msg1--&gt; Subscriber1
-Publisher--Msg1,Msg2,Msg3--&gt;|  EMQ  | --Msg2--&gt; Subscriber2
-                            |       | --Msg3--&gt; Subscriber3
-                            ---------
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">                            ---------</span><br><span class="line">                            |       | --Msg1--&gt; Subscriber1</span><br><span class="line">Publisher--Msg1,Msg2,Msg3--&gt;|  EMQ  | --Msg2--&gt; Subscriber2</span><br><span class="line">                            |       | --Msg3--&gt; Subscriber3</span><br><span class="line">                            ---------</span><br></pre></td></tr></table></figure>
 <p>共享订阅支持两种使用方式:</p>
 <table>
 <thead>
@@ -407,9 +373,7 @@ Publisher--Msg1,Msg2,Msg3--&gt;|  EMQ  | --Msg2--&gt; Subscriber2
 <h4 id="ben-di-ding-yue-local-subscription" class="heading-control">本地订阅(Local Subscription)<a class="heading-anchor" href="#ben-di-ding-yue-local-subscription" aria-hidden="true"></a></h4>
 <p>本地订阅也是非标准MQTT约定。</p>
 <p>本地订阅(Local Subscription)只在本节点创建订阅与路由表，不会在集群节点间广播全局路由，非常适合物联网数据采集应用:</p>
-<pre><code class="bash">mosquitto_sub -t <span class="hljs-string">'$local/topic'</span>
-mosquitto_pub -t <span class="hljs-string">'topic'</span>
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mosquitto_sub -t <span class="string">&#x27;$local/topic&#x27;</span></span><br><span class="line">mosquitto_pub -t <span class="string">&#x27;topic&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>使用方式: 订阅者在主题(Topic)前增加’$local/’前缀。</p>
 <h3 id="mqtt-hui-hua-clean-session" class="heading-control">MQTT会话(Clean Session)<a class="heading-anchor" href="#mqtt-hui-hua-clean-session" aria-hidden="true"></a></h3>
 <p>MQTT支持Session(会话)，当MQTT客户端向服务器发起CONNECT请求时，可以通过’Clean Session’标志设置会话。</p>
@@ -427,14 +391,14 @@ mosquitto_pub -t <span class="hljs-string">'topic'</span>
 </ul>
 <h2 id="open-source-mqtt-server" class="heading-control">Open Source MQTT Server<a class="heading-anchor" href="#open-source-mqtt-server" aria-hidden="true"></a></h2>
 <ul>
-<li><a href="https://vernemq.com" target="_blank" rel="noopener">VerneMQ</a> Erlang</li>
-<li><a href="http://emqtt.com" target="_blank" rel="noopener">EMQ</a> Erlang
+<li><a href="https://vernemq.com">VerneMQ</a> Erlang</li>
+<li><a href="http://emqtt.com">EMQ</a> Erlang
 <ul>
-<li>文档：<a href="http://emqtt.com/docs/v2/getstarted.html" target="_blank" rel="noopener">http://emqtt.com/docs/v2/getstarted.html</a></li>
+<li>文档：<a href="http://emqtt.com/docs/v2/getstarted.html">http://emqtt.com/docs/v2/getstarted.html</a></li>
 </ul>
 </li>
-<li><a href="https://github.com/mcollina/mosca" target="_blank" rel="noopener">Mosca</a> NodeJS</li>
-<li><a href="https://github.com/eclipse/mosquitto" target="_blank" rel="noopener">Mosquitto</a> C</li>
+<li><a href="https://github.com/mcollina/mosca">Mosca</a> NodeJS</li>
+<li><a href="https://github.com/eclipse/mosquitto">Mosquitto</a> C</li>
 </ul>
 <h3 id="emq" class="heading-control">EMQ<a class="heading-anchor" href="#emq" aria-hidden="true"></a></h3>
 <p>支持MQTT 3.1.1协议。<br>
@@ -445,293 +409,42 @@ EMQ 2.0消息服务器默认占用的TCP端口包括:</p>
 <li>8083  MQTT(WebSocket), HTTP API端口</li>
 <li>18083 Dashboard管理控制台端口</li>
 </ul>
-<p><a href="https://github.com/emqtt/emq-docker" target="_blank" rel="noopener">https://github.com/emqtt/emq-docker</a><br>
-<a href="https://github.com/eclipse/paho.mqtt.android" target="_blank" rel="noopener">https://github.com/eclipse/paho.mqtt.android</a></p>
+<p><a href="https://github.com/emqtt/emq-docker">https://github.com/emqtt/emq-docker</a><br>
+<a href="https://github.com/eclipse/paho.mqtt.android">https://github.com/eclipse/paho.mqtt.android</a></p>
 <ul>
 <li>用户登陆绑定</li>
 <li>用户权限绑定，只能订阅或者发送本组织下的</li>
 </ul>
 <h2 id="ke-hu-duan" class="heading-control">客户端<a class="heading-anchor" href="#ke-hu-duan" aria-hidden="true"></a></h2>
 <h3 id="android" class="heading-control">Android<a class="heading-anchor" href="#android" aria-hidden="true"></a></h3>
-<p><a href="http://www.eclipse.org/paho/clients/android/" target="_blank" rel="noopener">Eclipse Paho Android Service</a></p>
+<p><a href="http://www.eclipse.org/paho/clients/android/">Eclipse Paho Android Service</a></p>
 <h4 id="install" class="heading-control">Install<a class="heading-anchor" href="#install" aria-hidden="true"></a></h4>
-<pre><code class="java">repositories {
-    maven {
-        url <span class="hljs-string">"https://repo.eclipse.org/content/repositories/paho-releases/"</span>
-    }
-}
-
-
-dependencies {
-    compile <span class="hljs-string">'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'</span>
-    compile <span class="hljs-string">'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'</span>
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">        url <span class="string">&quot;https://repo.eclipse.org/content/repositories/paho-releases/&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile <span class="string">&#x27;org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0&#x27;</span></span><br><span class="line">    compile <span class="string">&#x27;org.eclipse.paho:org.eclipse.paho.android.service:1.1.1&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>The Paho Android Service needs the following permissions to work:</p>
-<pre><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.WAKE_LOCK"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.INTERNET"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span>
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WAKE_LOCK&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_STATE&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="usage" class="heading-control">Usage<a class="heading-anchor" href="#usage" aria-hidden="true"></a></h4>
-<pre><code class="java">Log.i(LOGTAG, <span class="hljs-string">"MQTT Start"</span>);
-
-<span class="hljs-comment">//如果是走 "ssl://192.168.0.13:8883"</span>
-<span class="hljs-keyword">final</span> MqttAndroidClient mqttAndroidClient = <span class="hljs-keyword">new</span> MqttAndroidClient(
-  getApplicationContext(), <span class="hljs-string">"tcp://192.168.0.13:1883"</span>, clientId);
-
-
-<span class="hljs-comment">//设置回调，在这里接收订阅的消息</span>
-mqttAndroidClient.setCallback(<span class="hljs-keyword">new</span> MqttCallbackExtended() {
-  <span class="hljs-meta">@Override</span>
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectComplete</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> reconnect, String serverURI)</span> </span>{
-
-      <span class="hljs-keyword">if</span> (reconnect) {
-          Log.i(LOGTAG, <span class="hljs-string">"Reconnected to : "</span> + serverURI);
-          <span class="hljs-comment">// if Clean Session is true, we need to re-subscribe</span>
-          <span class="hljs-comment">// subscribe('SampleTopic');</span>
-      } <span class="hljs-keyword">else</span> {
-          Log.i(LOGTAG, <span class="hljs-string">"Connected to: "</span> + serverURI);
-      }
-  }
-
-  <span class="hljs-meta">@Override</span>
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectionLost</span><span class="hljs-params">(Throwable cause)</span> </span>{
-      Log.i(LOGTAG, <span class="hljs-string">"The Connection was lost."</span>);
-  }
-
-  <span class="hljs-meta">@Override</span>
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">messageArrived</span><span class="hljs-params">(String topic, MqttMessage message)</span> <span class="hljs-keyword">throws</span> Exception </span>{
-      Log.i(LOGTAG, <span class="hljs-string">"Incoming message: "</span> + <span class="hljs-keyword">new</span> String(message.getPayload()));
-  }
-
-  <span class="hljs-meta">@Override</span>
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deliveryComplete</span><span class="hljs-params">(IMqttDeliveryToken token)</span> </span>{
-  }
-});
-
-MqttConnectOptions mqttConnectOptions = <span class="hljs-keyword">new</span> MqttConnectOptions();
-mqttConnectOptions.setAutomaticReconnect(<span class="hljs-keyword">true</span>);
-mqttConnectOptions.setCleanSession(<span class="hljs-keyword">false</span>);
-mqttConnectOptions.setUserName(<span class="hljs-string">"USERNAME"</span>);
-mqttConnectOptions.setPassword(<span class="hljs-string">"PASSWORD"</span>.toCharArray());
-<span class="hljs-keyword">try</span> {
-  <span class="hljs-comment">//第二个参数是可选的object,可以传递给回调函数</span>
-  client.connect(mqttConnectOptions, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken mqttToken)</span> </span>{
-      Log.i(LOGTAG, <span class="hljs-string">"Client connected"</span>);
-      Log.i(LOGTAG, <span class="hljs-string">"Topics="</span>+mqttToken.getTopics());
-      subscribe(<span class="hljs-string">'sampleTopic'</span>);
-    }
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken arg0, Throwable arg1)</span> </span>{
-      <span class="hljs-comment">// TODO Auto-generated method stub</span>
-      Log.i(LOGTAG, <span class="hljs-string">"Client connection failed: "</span>+arg1.getMessage());
-    }
-  });
-}
-
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subscribe</span><span class="hljs-params">(String topic)</span></span>{
-  <span class="hljs-keyword">try</span> {
-    mqttAndroidClient.subscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
-      <span class="hljs-meta">@Override</span>
-      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
-          Log.i(LOGTAG, <span class="hljs-string">"Subscribed!"</span>);
-      }
-
-      <span class="hljs-meta">@Override</span>
-      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken, Throwable exception)</span> </span>{
-          Log.i(LOGTAG, <span class="hljs-string">"Failed to subscribe"</span>);
-      }
-    });
-
-    <span class="hljs-comment">// THIS DOES NOT WORK!</span>
-    mqttAndroidClient.subscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span> IMqttMessageListener() {
-      <span class="hljs-meta">@Override</span>
-      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">messageArrived</span><span class="hljs-params">(String topic, MqttMessage message)</span> <span class="hljs-keyword">throws</span> Exception </span>{
-          <span class="hljs-comment">// message Arrived!</span>
-          System.out.println(<span class="hljs-string">"InMessage: "</span> + topic + <span class="hljs-string">" : "</span> + <span class="hljs-keyword">new</span> String(message.getPayload()));
-      }
-    });
-
-  } <span class="hljs-keyword">catch</span> (MqttException ex){
-    System.err.println(<span class="hljs-string">"Exception whilst subscribing"</span>);
-    ex.printStackTrace();
-  }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unsubscribe</span><span class="hljs-params">(String topic)</span></span>{
-  <span class="hljs-keyword">try</span> {
-    mqttAndroidClient.unsubscribe(topic, <span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> IMqttActionListener() {
-      <span class="hljs-meta">@Override</span>
-      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
-          Log.i(LOGTAG, <span class="hljs-string">"unsubscribed!"</span>);
-      }
-
-      <span class="hljs-meta">@Override</span>
-      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken, Throwable exception)</span> </span>{
-          Log.i(LOGTAG, <span class="hljs-string">"Failed to unsubscribed"</span>);
-      }
-    });
-
-  } <span class="hljs-keyword">catch</span> (MqttException ex){
-    System.err.println(<span class="hljs-string">"Exception whilst subscribing"</span>);
-    ex.printStackTrace();
-  }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">publishMessage</span><span class="hljs-params">(String topic, String msg)</span></span>{
-  <span class="hljs-keyword">try</span> {
-    MqttMessage message = <span class="hljs-keyword">new</span> MqttMessage();
-    message.setQos(<span class="hljs-number">0</span>);
-    message.setRetained(<span class="hljs-keyword">false</span>);
-    message.setPayload(msg.getBytes());
-    mqttAndroidClient.publish(topic, message);
-    Log.i(LOGTAG, <span class="hljs-string">"Message Published"</span>);
-    <span class="hljs-keyword">if</span>(!mqttAndroidClient.isConnected()){
-      Log.i(LOGTAG, mqttAndroidClient.getBufferedMessageCount() + <span class="hljs-string">" messages in buffer."</span>);
-    }
-  } <span class="hljs-keyword">catch</span> (MqttPersistenceException e) {
-    <span class="hljs-comment">// TODO Auto-generated catch block</span>
-    e.printStackTrace();
-
-  } <span class="hljs-keyword">catch</span> (MqttException e) {
-    <span class="hljs-comment">// TODO Auto-generated catch block</span>
-    System.err.println(<span class="hljs-string">"Error Publishing: "</span> + e.getMessage());
-    e.printStackTrace();
-  }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">disconnect</span><span class="hljs-params">()</span></span>{
-  <span class="hljs-keyword">try</span> {
-      IMqttToken disconToken = client.disconnect();
-      disconToken.setActionCallback(<span class="hljs-keyword">new</span> IMqttActionListener() {
-          <span class="hljs-meta">@Override</span>
-          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSuccess</span><span class="hljs-params">(IMqttToken asyncActionToken)</span> </span>{
-              <span class="hljs-comment">// we are now successfully disconnected</span>
-          }
-
-          <span class="hljs-meta">@Override</span>
-          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(IMqttToken asyncActionToken,
-                                Throwable exception)</span> </span>{
-              <span class="hljs-comment">// something went wrong, but probably we are disconnected anyway</span>
-          }
-      });
-  } <span class="hljs-keyword">catch</span> (MqttException e) {
-      e.printStackTrace();
-  }
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line">Log.i(LOGTAG, <span class="string">&quot;MQTT Start&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果是走 &quot;ssl://192.168.0.13:8883&quot;</span></span><br><span class="line"><span class="keyword">final</span> <span class="type">MqttAndroidClient</span> <span class="variable">mqttAndroidClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MqttAndroidClient</span>(</span><br><span class="line">  getApplicationContext(), <span class="string">&quot;tcp://192.168.0.13:1883&quot;</span>, clientId);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置回调，在这里接收订阅的消息</span></span><br><span class="line">mqttAndroidClient.setCallback(<span class="keyword">new</span> <span class="title class_">MqttCallbackExtended</span>() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">connectComplete</span><span class="params">(<span class="type">boolean</span> reconnect, String serverURI)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (reconnect) &#123;</span><br><span class="line">          Log.i(LOGTAG, <span class="string">&quot;Reconnected to : &quot;</span> + serverURI);</span><br><span class="line">          <span class="comment">// if Clean Session is true, we need to re-subscribe</span></span><br><span class="line">          <span class="comment">// subscribe(&#x27;SampleTopic&#x27;);</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          Log.i(LOGTAG, <span class="string">&quot;Connected to: &quot;</span> + serverURI);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">connectionLost</span><span class="params">(Throwable cause)</span> &#123;</span><br><span class="line">      Log.i(LOGTAG, <span class="string">&quot;The Connection was lost.&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">messageArrived</span><span class="params">(String topic, MqttMessage message)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">      Log.i(LOGTAG, <span class="string">&quot;Incoming message: &quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(message.getPayload()));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">deliveryComplete</span><span class="params">(IMqttDeliveryToken token)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="type">MqttConnectOptions</span> <span class="variable">mqttConnectOptions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MqttConnectOptions</span>();</span><br><span class="line">mqttConnectOptions.setAutomaticReconnect(<span class="literal">true</span>);</span><br><span class="line">mqttConnectOptions.setCleanSession(<span class="literal">false</span>);</span><br><span class="line">mqttConnectOptions.setUserName(<span class="string">&quot;USERNAME&quot;</span>);</span><br><span class="line">mqttConnectOptions.setPassword(<span class="string">&quot;PASSWORD&quot;</span>.toCharArray());</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">//第二个参数是可选的object,可以传递给回调函数</span></span><br><span class="line">  client.connect(mqttConnectOptions, <span class="literal">null</span>, <span class="keyword">new</span> <span class="title class_">IMqttActionListener</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onSuccess</span><span class="params">(IMqttToken mqttToken)</span> &#123;</span><br><span class="line">      Log.i(LOGTAG, <span class="string">&quot;Client connected&quot;</span>);</span><br><span class="line">      Log.i(LOGTAG, <span class="string">&quot;Topics=&quot;</span>+mqttToken.getTopics());</span><br><span class="line">      subscribe(<span class="string">&#x27;sampleTopic&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onFailure</span><span class="params">(IMqttToken arg0, Throwable arg1)</span> &#123;</span><br><span class="line">      <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">      Log.i(LOGTAG, <span class="string">&quot;Client connection failed: &quot;</span>+arg1.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">subscribe</span><span class="params">(String topic)</span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    mqttAndroidClient.subscribe(topic, <span class="number">0</span>, <span class="literal">null</span>, <span class="keyword">new</span> <span class="title class_">IMqttActionListener</span>() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onSuccess</span><span class="params">(IMqttToken asyncActionToken)</span> &#123;</span><br><span class="line">          Log.i(LOGTAG, <span class="string">&quot;Subscribed!&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onFailure</span><span class="params">(IMqttToken asyncActionToken, Throwable exception)</span> &#123;</span><br><span class="line">          Log.i(LOGTAG, <span class="string">&quot;Failed to subscribe&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// THIS DOES NOT WORK!</span></span><br><span class="line">    mqttAndroidClient.subscribe(topic, <span class="number">0</span>, <span class="keyword">new</span> <span class="title class_">IMqttMessageListener</span>() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">messageArrived</span><span class="params">(String topic, MqttMessage message)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">          <span class="comment">// message Arrived!</span></span><br><span class="line">          System.out.println(<span class="string">&quot;InMessage: &quot;</span> + topic + <span class="string">&quot; : &quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(message.getPayload()));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">catch</span> (MqttException ex)&#123;</span><br><span class="line">    System.err.println(<span class="string">&quot;Exception whilst subscribing&quot;</span>);</span><br><span class="line">    ex.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">unsubscribe</span><span class="params">(String topic)</span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    mqttAndroidClient.unsubscribe(topic, <span class="number">0</span>, <span class="literal">null</span>, <span class="keyword">new</span> <span class="title class_">IMqttActionListener</span>() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onSuccess</span><span class="params">(IMqttToken asyncActionToken)</span> &#123;</span><br><span class="line">          Log.i(LOGTAG, <span class="string">&quot;unsubscribed!&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onFailure</span><span class="params">(IMqttToken asyncActionToken, Throwable exception)</span> &#123;</span><br><span class="line">          Log.i(LOGTAG, <span class="string">&quot;Failed to unsubscribed&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">catch</span> (MqttException ex)&#123;</span><br><span class="line">    System.err.println(<span class="string">&quot;Exception whilst subscribing&quot;</span>);</span><br><span class="line">    ex.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">publishMessage</span><span class="params">(String topic, String msg)</span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">MqttMessage</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MqttMessage</span>();</span><br><span class="line">    message.setQos(<span class="number">0</span>);</span><br><span class="line">    message.setRetained(<span class="literal">false</span>);</span><br><span class="line">    message.setPayload(msg.getBytes());</span><br><span class="line">    mqttAndroidClient.publish(topic, message);</span><br><span class="line">    Log.i(LOGTAG, <span class="string">&quot;Message Published&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(!mqttAndroidClient.isConnected())&#123;</span><br><span class="line">      Log.i(LOGTAG, mqttAndroidClient.getBufferedMessageCount() + <span class="string">&quot; messages in buffer.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (MqttPersistenceException e) &#123;</span><br><span class="line">    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">    e.printStackTrace();</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">catch</span> (MqttException e) &#123;</span><br><span class="line">    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">    System.err.println(<span class="string">&quot;Error Publishing: &quot;</span> + e.getMessage());</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">disconnect</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="type">IMqttToken</span> <span class="variable">disconToken</span> <span class="operator">=</span> client.disconnect();</span><br><span class="line">      disconToken.setActionCallback(<span class="keyword">new</span> <span class="title class_">IMqttActionListener</span>() &#123;</span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onSuccess</span><span class="params">(IMqttToken asyncActionToken)</span> &#123;</span><br><span class="line">              <span class="comment">// we are now successfully disconnected</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onFailure</span><span class="params">(IMqttToken asyncActionToken,</span></span><br><span class="line"><span class="params">                                Throwable exception)</span> &#123;</span><br><span class="line">              <span class="comment">// something went wrong, but probably we are disconnected anyway</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (MqttException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Demo:</p>
 <ul>
-<li><a href="https://github.com/eclipse/paho.mqtt.android/tree/develop/paho.mqtt.android.example" target="_blank" rel="noopener">简单DEMO</a></li>
-<li><a href="https://github.com/eclipse/paho.mqtt.android/tree/develop/org.eclipse.paho.android.sample" target="_blank" rel="noopener">复杂DEMO</a></li>
+<li><a href="https://github.com/eclipse/paho.mqtt.android/tree/develop/paho.mqtt.android.example">简单DEMO</a></li>
+<li><a href="https://github.com/eclipse/paho.mqtt.android/tree/develop/org.eclipse.paho.android.sample">复杂DEMO</a></li>
 </ul>
 <h4 id="ios" class="heading-control">IOS<a class="heading-anchor" href="#ios" aria-hidden="true"></a></h4>
-<p><a href="https://github.com/ckrey/MQTT-Client-Framework" target="_blank" rel="noopener">MQTT Client Framework</a></p>
-<pre><code class="objc"><span class="hljs-meta">#import <span class="hljs-meta-string">"MQTTClient.h"</span></span>
-
-MQTTSession *session = [[MQTTSession alloc] init];
-
-<span class="hljs-comment">//specifies the protocol to be used.</span>
-<span class="hljs-comment">//The value of the Protocol Level field for the version 3.1.1 of the protocol is 4.</span>
-<span class="hljs-comment">//The value for the version 3.1 is 3.</span>
-session.protocolLevel = <span class="hljs-number">4</span>;
-session.clientId = <span class="hljs-string">@"clientId"</span>;
-session.cleanSessionFlag = <span class="hljs-literal">NO</span>;
-session.userName = <span class="hljs-string">@"myname"</span>;
-session.password = <span class="hljs-string">@"secret"</span>;
-
-[session connectToHost:<span class="hljs-string">@"192.168.0.1"</span> port:<span class="hljs-number">1883</span> usingSSL:<span class="hljs-literal">NO</span>];
-</code></pre>
+<p><a href="https://github.com/ckrey/MQTT-Client-Framework">MQTT Client Framework</a></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&quot;MQTTClient.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">MQTTSession *session = [[MQTTSession alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">//specifies the protocol to be used.</span></span><br><span class="line"><span class="comment">//The value of the Protocol Level field for the version 3.1.1 of the protocol is 4.</span></span><br><span class="line"><span class="comment">//The value for the version 3.1 is 3.</span></span><br><span class="line">session.protocolLevel = <span class="number">4</span>;</span><br><span class="line">session.clientId = <span class="string">@&quot;clientId&quot;</span>;</span><br><span class="line">session.cleanSessionFlag = <span class="literal">NO</span>;</span><br><span class="line">session.userName = <span class="string">@&quot;myname&quot;</span>;</span><br><span class="line">session.password = <span class="string">@&quot;secret&quot;</span>;</span><br><span class="line"></span><br><span class="line">[session connectToHost:<span class="string">@&quot;192.168.0.1&quot;</span> port:<span class="number">1883</span> usingSSL:<span class="literal">NO</span>];</span><br></pre></td></tr></table></figure>
 <p>启用SSL use a custom security</p>
-<pre><code class="objc">NSString* certificate = [[NSBundle bundleForClass:[MQTTSession class]] pathForResource:@"certificate" ofType:@"cer"];
-session.securityPolicy = [MQTTSSLSecurityPolicy policyWithPinningMode:MQTTSSLPinningModeCertificate];
-session.securityPolicy.pinnedCertificates = @[ [NSData dataWithContentsOfFile:certificate] ];
-session.securityPolicy.allowInvalidCertificates = YES;
-[session connectToHost:@"192.168.0.1" port:8883 usingSSL:YES];
-
-//Use  client certificates:
-NSString *path = [[NSBundle bundleForClass:[MQTTClientTests class]] pathForResource:parameters[@„client"] ofType:@"p12"];
-
-session.certificates = [MQTTSession clientCertsFromP12:path passphrase:@„secret“];
-
-[session connectToHost:@"192.168.0.1" port:8883 usingSSL:YES];
-</code></pre>
-<pre><code class="objc">[session publishData:[<span class="hljs-string">@"Sample Data"</span> dataUsingEncoding:<span class="hljs-built_in">NSUTF8StringEncoding</span>]
-    topic:<span class="hljs-string">@"example/data"</span>
-    <span class="hljs-keyword">retain</span>:<span class="hljs-literal">NO</span>
-    qos:<span class="hljs-number">0</span>];
-[session subscribeToTopic:<span class="hljs-string">@"example/#"</span> atLevel:<span class="hljs-number">2</span>]; <span class="hljs-comment">//atLevel is QoS level</span>
-[session unsubscribeTopic:<span class="hljs-string">@"example/#"</span>];
-[session close];
-</code></pre>
-<p>Demo: <a href="https://github.com/ckrey/MQTTChat" target="_blank" rel="noopener">https://github.com/ckrey/MQTTChat</a></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span>* certificate = [[<span class="built_in">NSBundle</span> bundleForClass:[MQTTSession <span class="keyword">class</span>]] pathForResource:<span class="string">@&quot;certificate&quot;</span> ofType:<span class="string">@&quot;cer&quot;</span>];</span><br><span class="line">session.securityPolicy = [MQTTSSLSecurityPolicy policyWithPinningMode:MQTTSSLPinningModeCertificate];</span><br><span class="line">session.securityPolicy.pinnedCertificates = @[ [<span class="built_in">NSData</span> dataWithContentsOfFile:certificate] ];</span><br><span class="line">session.securityPolicy.allowInvalidCertificates = <span class="literal">YES</span>;</span><br><span class="line">[session connectToHost:<span class="string">@&quot;192.168.0.1&quot;</span> port:<span class="number">8883</span> usingSSL:<span class="literal">YES</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//Use  client certificates:</span></span><br><span class="line"><span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> bundleForClass:[MQTTClientTests <span class="keyword">class</span>]] pathForResource:parameters[@„client<span class="string">&quot;] ofType:@&quot;</span>p12<span class="string">&quot;];</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">session.certificates = [MQTTSession clientCertsFromP12:path passphrase:@„secret“];</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[session connectToHost:@&quot;</span><span class="number">192.168</span><span class="number">.0</span><span class="number">.1</span><span class="string">&quot; port:8883 usingSSL:YES];</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[session publishData:[<span class="string">@&quot;Sample Data&quot;</span> dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>]</span><br><span class="line">    topic:<span class="string">@&quot;example/data&quot;</span></span><br><span class="line">    <span class="keyword">retain</span>:<span class="literal">NO</span></span><br><span class="line">    qos:<span class="number">0</span>];</span><br><span class="line">[session subscribeToTopic:<span class="string">@&quot;example/#&quot;</span> atLevel:<span class="number">2</span>]; <span class="comment">//atLevel is QoS level</span></span><br><span class="line">[session unsubscribeTopic:<span class="string">@&quot;example/#&quot;</span>];</span><br><span class="line">[session close];</span><br></pre></td></tr></table></figure>
+<p>Demo: <a href="https://github.com/ckrey/MQTTChat">https://github.com/ckrey/MQTTChat</a></p>
 <h4 id="nodejs" class="heading-control">Nodejs<a class="heading-anchor" href="#nodejs" aria-hidden="true"></a></h4>
 <pre><code>npm install mqtt
 </code></pre>
-<p><a href="https://github.com/mqttjs/MQTT.js" target="_blank" rel="noopener">https://github.com/mqttjs/MQTT.js</a></p>
-<pre><code class="coffee">mqtt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mqtt'</span>)
-<span class="hljs-comment"># 如果是websocket,对于emqtt必须加 path: '/mqtt'</span>
-<span class="hljs-comment"># client  = mqtt.connect('ws://127.0.0.1:8083', path: '/mqtt', clientId: 'MQTTCLI1', clean:false,username:'',password:'')</span>
-
-client  = mqtt.connect(<span class="hljs-string">'mqtt://127.0.0.1'</span>, clientId: <span class="hljs-string">'MQTTCLI1'</span>, clean:<span class="hljs-literal">false</span>,username:<span class="hljs-string">''</span>,password:<span class="hljs-string">''</span>)
-
-client.<span class="hljs-literal">on</span> <span class="hljs-string">'connect'</span>, <span class="hljs-function">-&gt;</span>
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connect'</span>)
-  client.subscribe <span class="hljs-string">'presence'</span>, <span class="hljs-function"><span class="hljs-params">(err, granted)</span>-&gt;</span>
-    <span class="hljs-keyword">return</span> client.end() <span class="hljs-keyword">if</span> err
-    <span class="hljs-built_in">console</span>.log <span class="hljs-string">'subscribe ok'</span>, granted
-    <span class="hljs-comment"># client.publish 'presence', 'Hello mqtt', (err)-&gt;</span>
-    <span class="hljs-comment">#   console.log 'publish'</span>
-    <span class="hljs-comment">#   console.log 'pub', err if err</span>
-
-client.<span class="hljs-literal">on</span> <span class="hljs-string">'error'</span>, <span class="hljs-function"><span class="hljs-params">(error)</span>-&gt;</span>
-  <span class="hljs-built_in">console</span>.log error
-
-<span class="hljs-comment"># received messages:</span>
-client.<span class="hljs-literal">on</span> <span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-params">(topic, message)</span>-&gt;</span>
-  <span class="hljs-comment"># message is Buffer</span>
-  <span class="hljs-built_in">console</span>.log(topic, message.toString())
-  <span class="hljs-comment"># client.end()</span>
-</code></pre>
+<p><a href="https://github.com/mqttjs/MQTT.js">https://github.com/mqttjs/MQTT.js</a></p>
+<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mqtt = <span class="built_in">require</span>(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是websocket,对于emqtt必须加 path: &#x27;/mqtt&#x27;</span></span><br><span class="line"><span class="comment"># client  = mqtt.connect(&#x27;ws://127.0.0.1:8083&#x27;, path: &#x27;/mqtt&#x27;, clientId: &#x27;MQTTCLI1&#x27;, clean:false,username:&#x27;&#x27;,password:&#x27;&#x27;)</span></span><br><span class="line"></span><br><span class="line">client  = mqtt.connect(<span class="string">&#x27;mqtt://127.0.0.1&#x27;</span>, clientId: <span class="string">&#x27;MQTTCLI1&#x27;</span>, clean:<span class="literal">false</span>,username:<span class="string">&#x27;&#x27;</span>,password:<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">client.<span class="literal">on</span> <span class="string">&#x27;connect&#x27;</span>, <span class="function">-&gt;</span></span><br><span class="line">  console.log(<span class="string">&#x27;connect&#x27;</span>)</span><br><span class="line">  client.subscribe <span class="string">&#x27;presence&#x27;</span>, <span class="function"><span class="params">(err, granted)</span>-&gt;</span></span><br><span class="line">    <span class="keyword">return</span> client.end() <span class="keyword">if</span> err</span><br><span class="line">    console.log <span class="string">&#x27;subscribe ok&#x27;</span>, granted</span><br><span class="line">    <span class="comment"># client.publish &#x27;presence&#x27;, &#x27;Hello mqtt&#x27;, (err)-&gt;</span></span><br><span class="line">    <span class="comment">#   console.log &#x27;publish&#x27;</span></span><br><span class="line">    <span class="comment">#   console.log &#x27;pub&#x27;, err if err</span></span><br><span class="line"></span><br><span class="line">client.<span class="literal">on</span> <span class="string">&#x27;error&#x27;</span>, <span class="function"><span class="params">(error)</span>-&gt;</span></span><br><span class="line">  console.log error</span><br><span class="line"></span><br><span class="line"><span class="comment"># received messages:</span></span><br><span class="line">client.<span class="literal">on</span> <span class="string">&#x27;message&#x27;</span>, <span class="function"><span class="params">(topic, message)</span>-&gt;</span></span><br><span class="line">  <span class="comment"># message is Buffer</span></span><br><span class="line">  console.log(topic, message.toString())</span><br><span class="line">  <span class="comment"># client.end()</span></span><br></pre></td></tr></table></figure>
 <p>SSL:</p>
-<pre><code class="js"><span class="hljs-keyword">var</span> mqtt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mqtt'</span>)
-<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
-<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
-<span class="hljs-keyword">var</span> KEY = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/tls-key.pem'</span>))
-<span class="hljs-keyword">var</span> CERT = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/tls-cert.pem'</span>))
-<span class="hljs-keyword">var</span> TRUSTED_CA_LIST = fs.readFileSync(path.join(__dirname, <span class="hljs-string">'/crt.ca.cg.pem'</span>))
-
-<span class="hljs-keyword">var</span> PORT = <span class="hljs-number">8443</span>
-<span class="hljs-keyword">var</span> HOST = <span class="hljs-string">'stark'</span>
-
-<span class="hljs-keyword">var</span> options = {
-  <span class="hljs-attr">port</span>: PORT,
-  <span class="hljs-attr">host</span>: HOST,
-  <span class="hljs-attr">key</span>: KEY,
-  <span class="hljs-attr">cert</span>: CERT,
-  <span class="hljs-attr">rejectUnauthorized</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-comment">// The CA list will be used to determine if server is authorized</span>
-  <span class="hljs-attr">ca</span>: TRUSTED_CA_LIST
-}
-
-<span class="hljs-keyword">var</span> client = mqtt.connect(options)
-
-client.subscribe(<span class="hljs-string">'messages'</span>)
-client.publish(<span class="hljs-string">'messages'</span>, <span class="hljs-string">'Current time is: '</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>())
-client.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">topic, message</span>) </span>{
-  <span class="hljs-built_in">console</span>.log(message)
-})
-
-client.on(<span class="hljs-string">'connect'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Connected'</span>)
-})
-</code></pre>
-<p>Demo: <a href="https://github.com/mqttjs/MQTT.js/tree/master/examples" target="_blank" rel="noopener">https://github.com/mqttjs/MQTT.js/tree/master/examples</a><br>
-Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/Demo-mqtt-push" target="_blank" rel="noopener">https://github.com/Guou/Demo-mqtt-push</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = <span class="built_in">require</span>(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">KEY</span> = fs.<span class="title function_">readFileSync</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;/tls-key.pem&#x27;</span>))</span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">CERT</span> = fs.<span class="title function_">readFileSync</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;/tls-cert.pem&#x27;</span>))</span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">TRUSTED_CA_LIST</span> = fs.<span class="title function_">readFileSync</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;/crt.ca.cg.pem&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">PORT</span> = <span class="number">8443</span></span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">HOST</span> = <span class="string">&#x27;stark&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  <span class="attr">port</span>: <span class="variable constant_">PORT</span>,</span><br><span class="line">  <span class="attr">host</span>: <span class="variable constant_">HOST</span>,</span><br><span class="line">  <span class="attr">key</span>: <span class="variable constant_">KEY</span>,</span><br><span class="line">  <span class="attr">cert</span>: <span class="variable constant_">CERT</span>,</span><br><span class="line">  <span class="attr">rejectUnauthorized</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// The CA list will be used to determine if server is authorized</span></span><br><span class="line">  <span class="attr">ca</span>: <span class="variable constant_">TRUSTED_CA_LIST</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = mqtt.<span class="title function_">connect</span>(options)</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">subscribe</span>(<span class="string">&#x27;messages&#x27;</span>)</span><br><span class="line">client.<span class="title function_">publish</span>(<span class="string">&#x27;messages&#x27;</span>, <span class="string">&#x27;Current time is: &#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>())</span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, <span class="keyword">function</span> (<span class="params">topic, message</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(message)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Connected&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Demo: <a href="https://github.com/mqttjs/MQTT.js/tree/master/examples">https://github.com/mqttjs/MQTT.js/tree/master/examples</a><br>
+Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/Demo-mqtt-push">https://github.com/Guou/Demo-mqtt-push</a></p>
 
     </div>
 
@@ -762,7 +475,7 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/mqtt/" title="MQTT 服务 - IoT界的消息订阅发布服务">https://riceball.me/article/mqtt/</a>
+    <a href="https://riceball.me/article/mqtt/" title="MQTT 服务 - IoT界的消息订阅发布服务">https://riceball.me/article/mqtt/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -802,7 +515,6 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
   
   
 
-  </div>
 
 
           </div>
@@ -824,7 +536,7 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -836,7 +548,7 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -895,20 +607,20 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -938,6 +650,8 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -951,14 +665,16 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -1032,15 +748,15 @@ Using mqtt as iOS push mechanism without APNS: <a href="https://github.com/Guou/
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/mqtt/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/mqtt/",
       identifier: "article/mqtt/",
-      title: "MQTT 服务 - IoT界的消息订阅发布服务",
+      title     : "MQTT 服务 - IoT界的消息订阅发布服务",
     });
   }, window.DisqusJS);
 });
@@ -1060,7 +776,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

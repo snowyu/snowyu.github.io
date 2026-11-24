@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,56 +15,30 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="Ubuntu 16.10 Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell 我比较习惯 zsh, 下载安装zsh:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu Tips">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;ubuntu-tips&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/ubuntu-tips/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Ubuntu 16.10 Ubuntu 现在基本可以替代Windows做日常使用的主力——只要不玩游戏。不过对SSD还是要需要调教一二。使用 Linux 还有一个好处是可以自带策略路由，对于域名IP流量精确转发，变得so easy。 这里记录下 Ubuntu 16.10 以上版本的安装tips. Shell 我比较习惯 zsh, 下载安装zsh:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-02-26T03:35:00.000Z">
 <meta property="article:modified_time" content="2019-11-22T06:56:43.545Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="network">
-<meta property="article:tag" content="linux">
-<meta property="article:tag" content="ubuntu">
-<meta property="article:tag" content="dnsmasq">
-<meta property="article:tag" content="iptables">
-<meta property="article:tag" content="iproute2">
 <meta property="article:tag" content="dns">
+<meta property="article:tag" content="dnsmasq">
+<meta property="article:tag" content="iproute2">
 <meta property="article:tag" content="ipset">
+<meta property="article:tag" content="iptables">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="network">
 <meta property="article:tag" content="shadowsocks">
+<meta property="article:tag" content="ubuntu">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/article/ubuntu-tips/">
@@ -74,14 +48,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -137,28 +112,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -166,15 +128,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -185,11 +169,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -207,29 +186,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -248,14 +232,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/ubuntu-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -268,9 +251,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Ubuntu Tips
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -294,15 +277,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
-                  </a>
+                  <a href="/categories/Linux/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
                 </span>
             </span>
 
@@ -311,7 +290,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -319,7 +298,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6k</span>
+              <span>6.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -343,15 +322,9 @@
 <p>这里记录下 Ubuntu 16.10 以上版本的安装tips.</p>
 <h2 id="shell" class="heading-control">Shell<a class="heading-anchor" href="#shell" aria-hidden="true"></a></h2>
 <p>我比较习惯 zsh, 下载安装zsh:</p>
-<pre><code class="bash">$&gt; sudo apt install zsh
-$&gt; sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
-$&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"source <span class="hljs-variable">$HOME</span>/.profile"</span> &gt;&gt; ~/.zshrc
-$&gt; chsh /usr/bin/zsh
-$&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"export LC_ALL=en_US.UTF-8"</span>&gt;&gt; ~/.profile
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$&gt; <span class="built_in">sudo</span> apt install zsh</span><br><span class="line">$&gt; sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>&quot;</span></span><br><span class="line">$&gt; <span class="built_in">echo</span> <span class="string">&quot;source <span class="variable">$HOME</span>/.profile&quot;</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$&gt; chsh /usr/bin/zsh</span><br><span class="line">$&gt; <span class="built_in">echo</span> <span class="string">&quot;export LC_ALL=en_US.UTF-8&quot;</span>&gt;&gt; ~/.profile</span><br></pre></td></tr></table></figure>
 <p>然后修改.zshrc文件，添加你自己的pulgins：</p>
-<pre><code>plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(ubuntu git github git-flow cp systemd docker gem meteor rvm ruby perl python pip rsync sbt gradle nvm npm node coffee yarn go golang)</span><br></pre></td></tr></table></figure>
 <h2 id="ssd-ci-pan" class="heading-control">SSD 磁盘<a class="heading-anchor" href="#ssd-ci-pan" aria-hidden="true"></a></h2>
 <p>SSD磁盘的挂载和使用需要一些小技巧来延长SSD的使用寿命。</p>
 <h3 id="trim" class="heading-control">Trim<a class="heading-anchor" href="#trim" aria-hidden="true"></a></h3>
@@ -412,20 +385,7 @@ $&gt; <span class="hljs-built_in">echo</span> <span class="hljs-string">"export 
 </tbody>
 </table>
 <p>我自己用的是Ext4以及Btrfs(支持ssd参数优化)。另外如果是用笔记本的话，可以适当将写commit的时间延长（秒为单位）。添加<code>noatime</code>/<code>relatime</code>参数(在读取文件的时候禁止/减少写入)以便于提升SSD的读取性能（尽管Linux内核2.6.30以上为默认）。</p>
-<pre><code class="bash">✗ cat /etc/fstab
-<span class="hljs-comment"># /etc/fstab: static file system information.</span>
-<span class="hljs-comment">#</span>
-<span class="hljs-comment"># Use 'blkid' to print the universally unique identifier for a</span>
-<span class="hljs-comment"># device; this may be used with UUID= as a more robust way to name devices</span>
-<span class="hljs-comment"># that works even if disks are added and removed. See fstab(5).</span>
-<span class="hljs-comment">#</span>
-<span class="hljs-comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span>
-UUID=XXXX-XXX-XXXX-XXX /               ext4    defaults,noatime,discard,commit=300,errors=remount-ro 0       1
-UUID=XXXX-XXX-XXXX-XXX /home           btrfs   defaults,noatime,discard,commit=120,ssd 0       2
-UUID=XXXXXX            /dos            ntfs    defaults,noatime,nls=utf8,uid=1000,gid=1000,commit=120 0       2
-UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,<span class="hljs-built_in">umask</span>=0077      0       1
-UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">✗ <span class="built_in">cat</span> /etc/fstab</span><br><span class="line"><span class="comment"># /etc/fstab: static file system information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use &#x27;blkid&#x27; to print the universally unique identifier for a</span></span><br><span class="line"><span class="comment"># device; this may be used with UUID= as a more robust way to name devices</span></span><br><span class="line"><span class="comment"># that works even if disks are added and removed. See fstab(5).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX /               ext4    defaults,noatime,discard,commit=300,errors=remount-ro 0       1</span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX /home           btrfs   defaults,noatime,discard,commit=120,ssd 0       2</span><br><span class="line">UUID=XXXXXX            /dos            ntfs    defaults,noatime,nls=utf8,uid=1000,gid=1000,commit=120 0       2</span><br><span class="line">UUID=XXXX-XXXX         /boot/efi       vfat    defaults,noatime,<span class="built_in">umask</span>=0077      0       1</span><br><span class="line">UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0</span><br></pre></td></tr></table></figure>
 <p>注：</p>
 <ul>
 <li>查看磁盘分区的UUID,使用<code>blkid</code>指令。</li>
@@ -433,45 +393,20 @@ UUID=XXXX-XXX-XXXX-XXX none            swap    sw              0       0
 × <code>/boot/efi</code>几乎不会被写，别加discard,否则可能引发故障</li>
 </ul>
 <p>启用trim前，请务必检查自己的ssd（尤其是2010年前的）是否支持trim,否则可能会造成数据丢失，使用<code>lsblk</code>指令：</p>
-<pre><code class="bash"><span class="hljs-comment">#&gt; lsblk -D</span>
-NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO
-nvme0n1          512      512B       2T         0
-├─nvme0n1p1        0      512B       2T         0
-├─nvme0n1p2        0      512B       2T         0
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&gt; lsblk -D</span></span><br><span class="line">NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO</span><br><span class="line">nvme0n1          512      512B       2T         0</span><br><span class="line">├─nvme0n1p1        0      512B       2T         0</span><br><span class="line">├─nvme0n1p2        0      512B       2T         0</span><br></pre></td></tr></table></figure>
 <p>如果 <code>DISC-GRAN</code> 和 <code>DISC-MAX</code> 列的值<code>非0</code>就表示支持trim.</p>
 <h3 id="xian-zhi-jiao-huan-fen-qu" class="heading-control">限制交换分区<a class="heading-anchor" href="#xian-zhi-jiao-huan-fen-qu" aria-hidden="true"></a></h3>
 <p>Linux使用交换文件的趋向由一个数值(swappiness)来控制，设置数值越低，需要更多的系统负载来启用交换分区。该值在0-100之间，默认为60，对于桌面应用来说太高了，仅仅适用与服务器。而对于SSD就太糟糕了。</p>
 <p>查看当前的<code>swappiness</code>设置：</p>
-<pre><code class="bash">$&gt; cat /proc/sys/vm/swappiness
-60
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$&gt; <span class="built_in">cat</span> /proc/sys/vm/swappiness</span><br><span class="line">60</span><br></pre></td></tr></table></figure>
 <p>然后修改： /etc/sysctl.conf 文件，增加：</p>
-<pre><code># Sharply reduce the inclination to swap
-vm.swappiness=10
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Sharply reduce the inclination to swap</span><br><span class="line">vm.swappiness=10</span><br></pre></td></tr></table></figure>
 <h3 id="qi-yong-tmp-mu-lu-ram-pan" class="heading-control">启用/tmp目录RAM盘<a class="heading-anchor" href="#qi-yong-tmp-mu-lu-ram-pan" aria-hidden="true"></a></h3>
-<pre><code class="bash">sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount
-sudo systemctl <span class="hljs-built_in">enable</span> tmp.mount
-sudo systemctl start tmp.mount
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> /usr/share/systemd/tmp.mount /etc/systemd/system/tmp.mount</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> tmp.mount</span><br><span class="line"><span class="built_in">sudo</span> systemctl start tmp.mount</span><br></pre></td></tr></table></figure>
 <h2 id="dnsmasq" class="heading-control">dnsmasq<a class="heading-anchor" href="#dnsmasq" aria-hidden="true"></a></h2>
 <p>ubuntu自带，用于域名解析，并且是自动加在 /etc/resolve.conf中（127.0.1.1）是随NetworkManager启动的，dnsmasq的配置在 /etc/NetworkManager/dnsmasq.d/<br>
 需要加上对上游DNS服务器的查询，否则你可能会发现DOMAIN NOT FOUND：</p>
-<pre><code class="bash">$&gt;cat /etc/resolv.dnsmasq.conf
-<span class="hljs-comment"># Google's nameservers, for example</span>
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-
-$&gt;cat /etc/NetworkManager/dnsmasq.d/resolv.conf
-resolv-file=/etc/resolv.dnsmasq.conf
-
-<span class="hljs-comment">#启用 /etc/hosts</span>
-$&gt;cat /etc/NetworkManager/dnsmasq.d/host.conf
-addn-hosts=/etc/hosts
-
-$&gt;sudo systemctl restart NetworkManager
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$&gt;<span class="built_in">cat</span> /etc/resolv.dnsmasq.conf</span><br><span class="line"><span class="comment"># Google&#x27;s nameservers, for example</span></span><br><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 8.8.4.4</span><br><span class="line"></span><br><span class="line">$&gt;<span class="built_in">cat</span> /etc/NetworkManager/dnsmasq.d/resolv.conf</span><br><span class="line">resolv-file=/etc/resolv.dnsmasq.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#启用 /etc/hosts</span></span><br><span class="line">$&gt;<span class="built_in">cat</span> /etc/NetworkManager/dnsmasq.d/host.conf</span><br><span class="line">addn-hosts=/etc/hosts</span><br><span class="line"></span><br><span class="line">$&gt;<span class="built_in">sudo</span> systemctl restart NetworkManager</span><br></pre></td></tr></table></figure>
 <h2 id="ipset" class="heading-control">ipset<a class="heading-anchor" href="#ipset" aria-hidden="true"></a></h2>
 <p>ipset 配合 iptables 可实现基于域名的策略路由。</p>
 <p>ipset 可以将一组ip放入到一个集合中供iptables进行处理。这样可以很好的解决大量ip规则的匹配性能问题。</p>
@@ -480,119 +415,40 @@ $&gt;sudo systemctl restart NetworkManager
 <p>Dnsmasq 从 2.66 版本之后就支持将域名的查询结果放进 ipset 中，这样就可以对这些域名对应的 IP<br>
 使用 iptables 处理。</p>
 <p>只转发名单内的IP, 可以配合gfwlist对指定的域名IP做重定向处理</p>
-<p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases" target="_blank" rel="noopener">gfwlist_ipset.conf</a>文件，放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
+<p>下载: <a href="https://github.com/cokebar/gfwlist2dnsmasq/releases">gfwlist_ipset.conf</a>文件，放在: /etc/NetworkManager/dnsmasq.d/ 目录中即可。</p>
 <p>你需要修改文件中的域名服务器地址，最简单的方法是在代理服务器上自建一个域名服务器（用非标准端口）。</p>
-<pre><code class="yaml"><span class="hljs-comment">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器</span>
-<span class="hljs-string">server=/google.com/127.0.0.1#5353</span>
-<span class="hljs-comment">#将解析出来的IP保存到名为gfwlist的ipset表中</span>
-<span class="hljs-string">ipset=/google.com/gfwlist</span>
-</code></pre>
-<p>或者，你可以<a href="https://github.com/cokebar/gfwlist2dnsmasq" target="_blank" rel="noopener">下载执行这个脚本</a>自动抓取gfwlist转换为：dnsmasq_gfwlist_ipset.conf</p>
-<pre><code class="bash">$&gt; sudo bash gfwlist2dnsmasq.sh -d your-dns-server-ip -p your-dns-server-port -s gfwlist  -f /etc/NetworkManager/dnsmasq.d/gfwlist_ipset.conf
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用不受污染干扰的DNS解析该域名 可以将此IP改为自己使用的DNS服务器</span></span><br><span class="line"><span class="string">server=/google.com/127.0.0.1#5353</span></span><br><span class="line"><span class="comment">#将解析出来的IP保存到名为gfwlist的ipset表中</span></span><br><span class="line"><span class="string">ipset=/google.com/gfwlist</span></span><br></pre></td></tr></table></figure>
+<p>或者，你可以<a href="https://github.com/cokebar/gfwlist2dnsmasq">下载执行这个脚本</a>自动抓取gfwlist转换为：dnsmasq_gfwlist_ipset.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&gt; <span class="built_in">sudo</span> bash gfwlist2dnsmasq.sh -d your-dns-server-ip -p your-dns-server-port -s gfwlist  -f /etc/NetworkManager/dnsmasq.d/gfwlist_ipset.conf</span><br></pre></td></tr></table></figure>
 <p>然后创建<code>gfwlist</code>ipset规则集:</p>
-<pre><code class="bash">ipset -N gfwlist <span class="hljs-built_in">hash</span>:ip
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipset -N gfwlist <span class="built_in">hash</span>:ip</span><br></pre></td></tr></table></figure>
 <h3 id="bai-ming-dan-fang-shi" class="heading-control">白名单方式<a class="heading-anchor" href="#bai-ming-dan-fang-shi" aria-hidden="true"></a></h3>
 <p>收集国内IP，除了国内IP放行外，其它IP一律转发。</p>
 <ul>
 <li>获取国内 IP 列表</li>
 </ul>
 <p>接下来我们需要获取中国的 IP 列表。这里我们放在了 <code>~/chnroute/</code>目录下：</p>
-<pre><code class="bash">CHNROUTE_DIR=<span class="hljs-variable">$HOME</span>/chnroute
-mkdir <span class="hljs-variable">$CHNROUTE_DIR</span>
-curl <span class="hljs-string">'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest'</span> | grep ipv4 | grep CN | awk -F\| <span class="hljs-string">'{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }'</span> &gt; <span class="hljs-variable">$CHNROUTE_DIR</span>/chnroute.txt
-</code></pre>
-<p>这是来自 <a href="https://github.com/shadowsocks/ChinaDNS" target="_blank" rel="noopener">ChinaDNS</a> 的指令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CHNROUTE_DIR=<span class="variable">$HOME</span>/chnroute</span><br><span class="line"><span class="built_in">mkdir</span> <span class="variable">$CHNROUTE_DIR</span></span><br><span class="line">curl <span class="string">&#x27;http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest&#x27;</span> | grep ipv4 | grep CN | awk -F\| <span class="string">&#x27;&#123; printf(&quot;%s/%d\n&quot;, $4, 32-log($5)/log(2)) &#125;&#x27;</span> &gt; <span class="variable">$CHNROUTE_DIR</span>/chnroute.txt</span><br></pre></td></tr></table></figure>
+<p>这是来自 <a href="https://github.com/shadowsocks/ChinaDNS">ChinaDNS</a> 的指令。</p>
 <p>创建ipset并导入：</p>
-<pre><code class="bash"><span class="hljs-meta">#!/bin/bash
-</span>
-<span class="hljs-comment"># Setup the ipset</span>
-ipset -N chnroute <span class="hljs-built_in">hash</span>:net maxelem 65536
-
-<span class="hljs-keyword">for</span> ip <span class="hljs-keyword">in</span> $(cat <span class="hljs-string">'$HOME/chnroute/chnroute.txt'</span>); <span class="hljs-keyword">do</span>
-  ipset add chnroute <span class="hljs-variable">$ip</span>
-<span class="hljs-keyword">done</span>
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the ipset</span></span><br><span class="line">ipset -N chnroute <span class="built_in">hash</span>:net maxelem 65536</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> $(<span class="built_in">cat</span> <span class="string">&#x27;$HOME/chnroute/chnroute.txt&#x27;</span>); <span class="keyword">do</span></span><br><span class="line">  ipset add chnroute <span class="variable">$ip</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>注意：这里<code>ipset类型</code>必须是hash:net,而不是hash:ip。因为 chnroute.txt 是一个 IP 段列表，而中国持有的 IP 数量巨大，所以如果使用 hash:ip 来导入会内存溢出。</p>
 <h2 id="shadowsocks-libev" class="heading-control">shadowsocks-libev<a class="heading-anchor" href="#shadowsocks-libev" aria-hidden="true"></a></h2>
 <pre><code>apt install shadowsocks-libev
 </code></pre>
-<pre><code class="bash">$&gt; cat /etc/shadowsocks-libev/config.json
-{
-    <span class="hljs-string">"server"</span>:<span class="hljs-string">"[123.22.33.13]"</span>, <span class="hljs-comment"># your shadowsocks server ip</span>
-    <span class="hljs-string">"server_port"</span>:1293,
-    <span class="hljs-string">"local_port"</span>:1080,
-    <span class="hljs-string">"password"</span>:<span class="hljs-string">"12345"</span>,
-    <span class="hljs-string">"timeout"</span>:60,
-    <span class="hljs-string">"method"</span>:<span class="hljs-string">"aes-256-cfb"</span>
-}
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$&gt; <span class="built_in">cat</span> /etc/shadowsocks-libev/config.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;server&quot;</span>:<span class="string">&quot;[123.22.33.13]&quot;</span>, <span class="comment"># your shadowsocks server ip</span></span><br><span class="line">    <span class="string">&quot;server_port&quot;</span>:1293,</span><br><span class="line">    <span class="string">&quot;local_port&quot;</span>:1080,</span><br><span class="line">    <span class="string">&quot;password&quot;</span>:<span class="string">&quot;12345&quot;</span>,</span><br><span class="line">    <span class="string">&quot;timeout&quot;</span>:60,</span><br><span class="line">    <span class="string">&quot;method&quot;</span>:<span class="string">&quot;aes-256-cfb&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>启用 shadowsocks-libev.service 之前，需要做些修改，将服务改为透明转发<code>ss-redir</code>：</p>
-<pre><code class="bash">$&gt;cat /lib/systemd/system/shadowsocks-libev.service
-[Service]
-Type=simple
-EnvironmentFile=/etc/default/shadowsocks-libev
-User=root
-LimitNOFILE=32768
-<span class="hljs-comment"># modify ss-server to ss-redir</span>
-ExecStart=/usr/bin/ss-redir -a <span class="hljs-variable">$USER</span> -c <span class="hljs-variable">$CONFFILE</span> <span class="hljs-variable">$DAEMON_ARGS</span>
-
-$&gt;systemctl <span class="hljs-built_in">enable</span> shadowsocks-libev
-$&gt;systemctl daemon-reload
-$&gt;systemctl start shadowsocks-libev
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$&gt;<span class="built_in">cat</span> /lib/systemd/system/shadowsocks-libev.service</span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">EnvironmentFile=/etc/default/shadowsocks-libev</span><br><span class="line">User=root</span><br><span class="line">LimitNOFILE=32768</span><br><span class="line"><span class="comment"># modify ss-server to ss-redir</span></span><br><span class="line">ExecStart=/usr/bin/ss-redir -a <span class="variable">$USER</span> -c <span class="variable">$CONFFILE</span> <span class="variable">$DAEMON_ARGS</span></span><br><span class="line"></span><br><span class="line">$&gt;systemctl <span class="built_in">enable</span> shadowsocks-libev</span><br><span class="line">$&gt;systemctl daemon-reload</span><br><span class="line">$&gt;systemctl start shadowsocks-libev</span><br></pre></td></tr></table></figure>
 <h2 id="iptables" class="heading-control">iptables<a class="heading-anchor" href="#iptables" aria-hidden="true"></a></h2>
 <p>下面开始在iptables上做转发：</p>
 <p>首先为shadowsocks创建NAT表:</p>
-<pre><code class="bash"><span class="hljs-comment"># create a nat named SHADOWSOCKS:</span>
-iptables -t nat -N SHADOWSOCKS
-
-<span class="hljs-comment"># Ignore your shadowsocks server's addresses</span>
-<span class="hljs-comment"># It's very IMPORTANT, just be careful.</span>
-iptables -t nat -A SHADOWSOCKS -d [your-shadowsocks-server-ip] -j RETURN
-
-<span class="hljs-comment"># 忽略局域网：</span>
-<span class="hljs-comment"># Ignore LANs and any other addresses you'd like to bypass the proxy</span>
-<span class="hljs-comment"># See Wikipedia and RFC5735 for full list of reserved networks.</span>
-<span class="hljs-comment"># See ashi009/bestroutetb for a highly optimized CHN route list.</span>
-iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 169.254.0.0/16 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 172.16.0.0/12 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a nat named SHADOWSOCKS:</span></span><br><span class="line">iptables -t nat -N SHADOWSOCKS</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ignore your shadowsocks server&#x27;s addresses</span></span><br><span class="line"><span class="comment"># It&#x27;s very IMPORTANT, just be careful.</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d [your-shadowsocks-server-ip] -j RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略局域网：</span></span><br><span class="line"><span class="comment"># Ignore LANs and any other addresses you&#x27;d like to bypass the proxy</span></span><br><span class="line"><span class="comment"># See Wikipedia and RFC5735 for full list of reserved networks.</span></span><br><span class="line"><span class="comment"># See ashi009/bestroutetb for a highly optimized CHN route list.</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 169.254.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 172.16.0.0/12 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN</span><br><span class="line">iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN</span><br></pre></td></tr></table></figure>
 <h3 id="hei-ming-dan" class="heading-control">黑名单<a class="heading-anchor" href="#hei-ming-dan" aria-hidden="true"></a></h3>
-<pre><code class="bash"><span class="hljs-comment"># Anything matched gfwlist ipset should be redirected to shadowsocks's local port</span>
-iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080
-<span class="hljs-comment"># Apply the rules</span>
-iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Anything matched gfwlist ipset should be redirected to shadowsocks&#x27;s local port</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set gfwlist dst -j REDIRECT --to-ports 1080</span><br><span class="line"><span class="comment"># Apply the rules</span></span><br><span class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</span><br></pre></td></tr></table></figure>
 <h3 id="bai-ming-dan" class="heading-control">白名单<a class="heading-anchor" href="#bai-ming-dan" aria-hidden="true"></a></h3>
-<pre><code class="bash"><span class="hljs-comment"># Allow connection to chinese IPs</span>
-iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="hljs-built_in">set</span> --match-set chnroute dst -j RETURN
-
-<span class="hljs-comment"># Others Redirect to Shadowsocks</span>
-iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080
-
-<span class="hljs-comment"># Apply the rules</span>
-iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Allow connection to chinese IPs</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="built_in">set</span> --match-set chnroute dst -j RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment"># Others Redirect to Shadowsocks</span></span><br><span class="line">iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 1080</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply the rules</span></span><br><span class="line">iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS</span><br></pre></td></tr></table></figure>
 <h3 id="qing-chu-iptables-gui-ze" class="heading-control">清除iptables规则<a class="heading-anchor" href="#qing-chu-iptables-gui-ze" aria-hidden="true"></a></h3>
-<pre><code class="bash"><span class="hljs-meta">#!/bin/bash
-</span>
-iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS
-iptables -t nat -F SHADOWSOCKS
-iptables -t nat -X SHADOWSOCKS
-
-<span class="hljs-comment"># 如果是黑名单:</span>
-ipset destroy gfwlist
-<span class="hljs-comment"># 如果是白名单:</span>
-ipset destroy chnroute
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">iptables -t nat -D OUTPUT -p tcp -j SHADOWSOCKS</span><br><span class="line">iptables -t nat -F SHADOWSOCKS</span><br><span class="line">iptables -t nat -X SHADOWSOCKS</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是黑名单:</span></span><br><span class="line">ipset destroy gfwlist</span><br><span class="line"><span class="comment"># 如果是白名单:</span></span><br><span class="line">ipset destroy chnroute</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -623,7 +479,7 @@ ipset destroy chnroute
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/ubuntu-tips/" title="Ubuntu Tips">https://riceball.me/article/ubuntu-tips/</a>
+    <a href="https://riceball.me/article/ubuntu-tips/" title="Ubuntu Tips">https://riceball.me/article/ubuntu-tips/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -667,7 +523,6 @@ ipset destroy chnroute
   
   
 
-  </div>
 
 
           </div>
@@ -689,7 +544,7 @@ ipset destroy chnroute
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -701,7 +556,7 @@ ipset destroy chnroute
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -760,20 +615,20 @@ ipset destroy chnroute
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -803,6 +658,8 @@ ipset destroy chnroute
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -816,14 +673,16 @@ ipset destroy chnroute
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -897,15 +756,15 @@ ipset destroy chnroute
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/ubuntu-tips/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/ubuntu-tips/",
       identifier: "article/ubuntu-tips/",
-      title: "Ubuntu Tips",
+      title     : "Ubuntu Tips",
     });
   }, window.DisqusJS);
 });
@@ -925,7 +784,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

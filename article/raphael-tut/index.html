@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,53 +15,27 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。 创建图形对象 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。 矩形(Rect) 参数：x轴坐标:10，y轴坐标:18，宽度:100，高度:50">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raphael 矢量图形和动画javascript库">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;raphael-tut&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/raphael-tut/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="raphael 是一套创建的矢量图形和动画的javascript库，它使用SVG W3C推荐标准和VML作为创建图形的基础。 创建图形对象 raphael支持圆形，矩形，椭圆矢量图形对象的直接创建，下面以最简单的矩形绘制进行讲解。 矩形(Rect) 参数：x轴坐标:10，y轴坐标:18，宽度:100，高度:50">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-11-22T07:53:00.000Z">
 <meta property="article:modified_time" content="2019-11-26T05:00:00.000Z">
 <meta property="article:author" content="Riceball LEE">
+<meta property="article:tag" content="animation">
+<meta property="article:tag" content="graphic">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="raphael">
-<meta property="article:tag" content="graphic">
-<meta property="article:tag" content="animation">
-<meta property="article:tag" content="vector">
 <meta property="article:tag" content="tut">
+<meta property="article:tag" content="vector">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/article/raphael-tut/">
@@ -71,15 +45,16 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 <link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -135,28 +110,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -164,15 +126,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -183,11 +167,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -205,29 +184,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -246,14 +230,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/raphael-tut/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -266,9 +249,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Raphael 矢量图形和动画javascript库
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -292,15 +275,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Library/" itemprop="url" rel="index">
-                    <span itemprop="name">Library</span>
-                  </a>
+                  <a href="/categories/Library/" itemprop="url" rel="index"><span itemprop="name">Library</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Library/Graphic/" itemprop="url" rel="index">
-                    <span itemprop="name">Graphic</span>
-                  </a>
+                  <a href="/categories/Library/Graphic/" itemprop="url" rel="index"><span itemprop="name">Graphic</span></a>
                 </span>
             </span>
 
@@ -311,14 +290,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -336,28 +315,7 @@
 <h2 id="ju-xing-rect" class="heading-control">矩形(Rect)<a class="heading-anchor" href="#ju-xing-rect" aria-hidden="true"></a></h2>
 <p>参数：<span class="AMElement" data-embed="false" data-config="rx:10..">x轴坐标:10</span>，<span class="AMElement" data-embed="false" data-config="ry:10..">y轴坐标:18</span>，<span class="AMElement" data-embed="false" data-config="rw:1..">宽度:100</span>，<span class="AMElement" data-embed="false" data-config="rh:1..">高度:50</span></p>
 <p>下面演示在提供好的画布上用上述参数绘制一个矩形，点击下面的播放按钮进行演示：</p>
-<pre><code class="output"># 演示绘制矩形的过程
-paper = @canvas
-
-|
-~~~
-tooltip: 设置画布大小为200X100 ::: 初始化工作
-type:paper.setSize(200,100)\n
-tooltip: 清空画布
-type:paper.clear()\n
-tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量
-type:@rx ||=10\n
-type:@ry ||=18\n
-type:@rw ||=100\n
-type:@rh ||=50\n
-tooltip: 开始绘制矩形 ::: 绘制矩形
-type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
-tooltip: 为矩形填充红色
-type:rect.attr('fill', 'red')
-moveTo: 8:13
-tooltip: 现在你可以自己试一试了
-</code></pre>
-<hr>
+<h2 id="less-than-code-0-greater-than" class="heading-control"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 演示绘制矩形的过程</span><br><span class="line">paper = @canvas</span><br><span class="line"></span><br><span class="line">|</span><br><span class="line">~~~</span><br><span class="line">tooltip: 设置画布大小为200X100 ::: 初始化工作</span><br><span class="line">type:paper.setSize(200,100)\n</span><br><span class="line">tooltip: 清空画布</span><br><span class="line">type:paper.clear()\n</span><br><span class="line">tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量</span><br><span class="line">type:@rx ||=10\n</span><br><span class="line">type:@ry ||=18\n</span><br><span class="line">type:@rw ||=100\n</span><br><span class="line">type:@rh ||=50\n</span><br><span class="line">tooltip: 开始绘制矩形 ::: 绘制矩形</span><br><span class="line">type:rect = paper.rect(@rx, @ry, @rw, @rh)\n</span><br><span class="line">tooltip: 为矩形填充红色</span><br><span class="line">type:rect.attr(&#x27;fill&#x27;, &#x27;red&#x27;)</span><br><span class="line">moveTo: 8:13</span><br><span class="line">tooltip: 现在你可以自己试一试了</span><br></pre></td></tr></table></figure><a class="heading-anchor" href="#less-than-code-0-greater-than" aria-hidden="true"></a></h2>
 <p>看完演示，你可以这上面的代码中自己动手试一试了,比如: 圆，椭圆, 文字，图片等等。</p>
 <ul>
 <li>circle(x, y, r)</li>
@@ -368,11 +326,7 @@ tooltip: 现在你可以自己试一试了
 <p>所有这些绘制后都会返回一个图形对象，你可以对它进行各种操作，比如show/hide,改变属性attr。</p>
 <h2 id="path-lu-jing" class="heading-control">Path(路径)<a class="heading-anchor" href="#path-lu-jing" aria-hidden="true"></a></h2>
 <p>更复杂的对象也可以通过path来实现描述。路径是矢量绘图里最强大的工具，同时也比较复杂。</p>
-<pre><code class="output">paper = @canvas
-paper.setSize(200,100)
-paper.clear()
-paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'})
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">paper = @canvas</span><br><span class="line">paper.setSize(200,100)</span><br><span class="line">paper.clear()</span><br><span class="line">paper.path(&#x27;M100,0 L200,100 L10,100 Z&#x27;).attr(&#123;&#x27;fill&#x27;: &#x27;blue&#x27;, &#x27;stroke&#x27;: &#x27;black&#x27;&#125;)</span><br></pre></td></tr></table></figure>
 <p>路径的参数是一组字符串，由“命令字母+坐标数字”的组合构成。数字表示坐标点，字母负责表示如何连接这些坐标点。比如x的示例中，M表示起点，L表示直线连接，所以上述的path的信息可以这样解读：</p>
 <ul>
 <li>M100,0      -&gt;    以（100，0）坐标点为起点</li>
@@ -398,39 +352,7 @@ paper.path('M100,0 L200,100 L10,100 Z').attr({'fill': 'blue', 'stroke': 'black'}
 <li>透明度设为 0.3</li>
 </ul>
 <p>然后设定当对矩形点击的时候开始动画。</p>
-<pre><code class="output">paper = @canvas
-paper.setSize(300,160)
-paper.clear()
-@rx ||=0
-@ry ||=0
-@rw ||=100
-@rh ||=50
-# 获取结束时候的矩形参数
-@rex ||=100
-@rey ||=40
-@rew ||=100
-@reh ||=100
-
-rect = paper.rect(@rx, @ry, @rw, @rh).attr({'fill': 'red', 'opacity': 1})
-
-elAttrs = []
-elAttrs.push(_.clone(rect.attr()))
-
-elAttrs.push(
-    {
-      x: @rex, y: @rey, transform: &quot;r120&quot;
-      width: @rew, height: @reh
-      fill: 'yellow'
-      opacity: .3
-    }
-)
-
-reverse = 0
-rect.mousedown(  () -&gt;
-    rect.stop().animate(elAttrs[+(reverse = !reverse)], 1000)
-)
-
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">paper = @canvas</span><br><span class="line">paper.setSize(300,160)</span><br><span class="line">paper.clear()</span><br><span class="line">@rx ||=0</span><br><span class="line">@ry ||=0</span><br><span class="line">@rw ||=100</span><br><span class="line">@rh ||=50</span><br><span class="line"># 获取结束时候的矩形参数</span><br><span class="line">@rex ||=100</span><br><span class="line">@rey ||=40</span><br><span class="line">@rew ||=100</span><br><span class="line">@reh ||=100</span><br><span class="line"></span><br><span class="line">rect = paper.rect(@rx, @ry, @rw, @rh).attr(&#123;&#x27;fill&#x27;: &#x27;red&#x27;, &#x27;opacity&#x27;: 1&#125;)</span><br><span class="line"></span><br><span class="line">elAttrs = []</span><br><span class="line">elAttrs.push(_.clone(rect.attr()))</span><br><span class="line"></span><br><span class="line">elAttrs.push(</span><br><span class="line">    &#123;</span><br><span class="line">      x: @rex, y: @rey, transform: &quot;r120&quot;</span><br><span class="line">      width: @rew, height: @reh</span><br><span class="line">      fill: &#x27;yellow&#x27;</span><br><span class="line">      opacity: .3</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">reverse = 0</span><br><span class="line">rect.mousedown(  () -&gt;</span><br><span class="line">    rect.stop().animate(elAttrs[+(reverse = !reverse)], 1000)</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>现在你可以在矩形上点击看看动画效果。</p>
 
     </div>
@@ -462,7 +384,7 @@ rect.mousedown(  () -&gt;
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/raphael-tut/" title="Raphael 矢量图形和动画javascript库">https://riceball.me/article/raphael-tut/</a>
+    <a href="https://riceball.me/article/raphael-tut/" title="Raphael 矢量图形和动画javascript库">https://riceball.me/article/raphael-tut/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -474,8 +396,8 @@ rect.mousedown(  () -&gt;
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
               <a href="/tags/raphael/" rel="tag"><i class="fa fa-tag"></i> raphael</a>
+              <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
               <a href="/tags/graphic/" rel="tag"><i class="fa fa-tag"></i> graphic</a>
               <a href="/tags/animation/" rel="tag"><i class="fa fa-tag"></i> animation</a>
               <a href="/tags/vector/" rel="tag"><i class="fa fa-tag"></i> vector</a>
@@ -503,7 +425,6 @@ rect.mousedown(  () -&gt;
   
   
 
-  </div>
 
 
           </div>
@@ -525,7 +446,7 @@ rect.mousedown(  () -&gt;
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -537,7 +458,7 @@ rect.mousedown(  () -&gt;
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -580,7 +501,7 @@ rect.mousedown(  () -&gt;
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chuang-jian-tu-xing-dui-xiang"><span class="nav-number">1.</span> <span class="nav-text">创建图形对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ju-xing-rect"><span class="nav-number">1.1.</span> <span class="nav-text">矩形(Rect)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path-lu-jing"><span class="nav-number">1.2.</span> <span class="nav-text">Path(路径)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dong-hua"><span class="nav-number">1.3.</span> <span class="nav-text">动画</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chuang-jian-tu-xing-dui-xiang"><span class="nav-number">1.</span> <span class="nav-text">创建图形对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ju-xing-rect"><span class="nav-number">1.1.</span> <span class="nav-text">矩形(Rect)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less-than-code-0-greater-than"><span class="nav-number">1.2.</span> <span class="nav-text">1234567891011121314151617181920# 演示绘制矩形的过程paper &#x3D; @canvas|~~~tooltip: 设置画布大小为200X100 ::: 初始化工作type:paper.setSize(200,100)\ntooltip: 清空画布type:paper.clear()\ntooltip: 初始化来自文档的x,y座标，宽度和高度参数变量type:@rx ||&#x3D;10\ntype:@ry ||&#x3D;18\ntype:@rw ||&#x3D;100\ntype:@rh ||&#x3D;50\ntooltip: 开始绘制矩形 ::: 绘制矩形type:rect &#x3D; paper.rect(@rx, @ry, @rw, @rh)\ntooltip: 为矩形填充红色type:rect.attr(&#39;fill&#39;, &#39;red&#39;)moveTo: 8:13tooltip: 现在你可以自己试一试了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path-lu-jing"><span class="nav-number">1.3.</span> <span class="nav-text">Path(路径)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dong-hua"><span class="nav-number">1.4.</span> <span class="nav-text">动画</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -596,20 +517,20 @@ rect.mousedown(  () -&gt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -639,6 +560,8 @@ rect.mousedown(  () -&gt;
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -652,14 +575,16 @@ rect.mousedown(  () -&gt;
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -736,15 +661,15 @@ window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"Ra
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/raphael-tut/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/raphael-tut/",
       identifier: "article/raphael-tut/",
-      title: "Raphael 矢量图形和动画javascript库",
+      title     : "Raphael 矢量图形和动画javascript库",
     });
   }, window.DisqusJS);
 });
@@ -764,7 +689,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

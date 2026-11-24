@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,50 +15,22 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="Cordis 的坑与账  坑是陷人的地方，账是未来要承担的后果。 读不完的话：第 2 节讲它真正做了什么（其实只有一个栈），第 4 节讲它哪里长错了，第 8 节讲你该不该用。   0. 两个主角 被评估的：Cordis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cordis 的坑与账">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;cordis-pros-cons&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/cordis-pros-cons/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="Cordis 的坑与账  坑是陷人的地方，账是未来要承担的后果。 读不完的话：第 2 节讲它真正做了什么（其实只有一个栈），第 4 节讲它哪里长错了，第 8 节讲你该不该用。   0. 两个主角 被评估的：Cordis">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-10-05T23:44:07.000Z">
 <meta property="article:modified_time" content="2026-10-08T03:11:13.218Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="Riceball">
-<meta property="article:tag" content=" 李雪愚">
-<meta property="article:tag" content=" Blog">
+<meta property="article:tag" content="Riceball, 李雪愚, Blog">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/article/cordis-pros-cons/">
@@ -68,14 +40,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -131,28 +104,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -160,15 +120,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -179,11 +161,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -201,29 +178,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -242,14 +224,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/cordis-pros-cons/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,9 +243,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Cordis 的坑与账
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -288,7 +269,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -296,14 +277,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>31k</span>
+              <span>32k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>57 分钟</span>
+              <span>59 分钟</span>
             </span>
 
         </div>
@@ -345,17 +326,17 @@
 <p><strong>③ JSDoc 补写</strong>（<code>disposal semantics</code>、<code>waterfall veto</code>、<code>bail conditions</code>）——官方注明“comment-only; no code changes”，动机是站点 API 参考生成器遇到未文档化成员会直接报错。</p>
 <p><strong>这三条说明两件事。</strong> 一是 DeepSeek <strong>不是照搬</strong>，确实在卸载边界上下了功夫——而这块恰恰是“可逆 effect”最容易出错的地方。二是<strong>这些加固在 <code>vendor/</code> 里，不在上游</strong>：上游 rc.7→rc.10 自己也在修同类问题（rc.10 的 changelog 里有 “core: reject repeated <code>next()</code> calls from a waterfall listener”、“core: do not leave fiber failures unhandled”）。所以判断“某个坑还在不在”，要先问一句：<strong>你读的是哪一份代码</strong>。本文默认以上游为准，凡是 DSH 额外修掉的，单独标出。</p>
 <ul>
-<li>仓库：<a href="https://github.com/cordiverse/cordis" target="_blank" rel="noopener">https://github.com/cordiverse/cordis</a></li>
-<li>DSH 仓库与 vendor 目录：<a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">https://github.com/deepseek-ai/deepseek-harness</a></li>
-<li>官方文档：<a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer</a></li>
-<li>上手教程：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial</a></li>
+<li>仓库：<a href="https://github.com/cordiverse/cordis">https://github.com/cordiverse/cordis</a></li>
+<li>DSH 仓库与 vendor 目录：<a href="https://github.com/deepseek-ai/deepseek-harness">https://github.com/deepseek-ai/deepseek-harness</a></li>
+<li>官方文档：<a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer">https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer</a></li>
+<li>上手教程：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial</a></li>
 </ul>
 <h3 id="yong-lai-zuo-can-zhao-de-toolfunc-xi-lie" class="heading-control">用来做参照的：tool-func 系列<a class="heading-anchor" href="#yong-lai-zuo-can-zhao-de-toolfunc-xi-lie" aria-hidden="true"></a></h3>
 <p>isdk 的一组小库，从下往上是一条链：</p>
 <ul>
-<li><a href="https://github.com/isdk/tool-func.js" target="_blank" rel="noopener"><code>tool-func</code></a>：函数注册表，让函数能自描述、被别人发现</li>
-<li><a href="https://github.com/isdk/tool-rpc.js" target="_blank" rel="noopener"><code>tool-rpc</code></a>：把注册的函数暴露到网络上，本地/远程对调用方透明</li>
-<li><a href="https://github.com/isdk/tool-event.js" target="_blank" rel="noopener"><code>tool-event</code></a>：把实时事件也当作“一个工具”，复用 RPC 的生态</li>
+<li><a href="https://github.com/isdk/tool-func.js"><code>tool-func</code></a>：函数注册表，让函数能自描述、被别人发现</li>
+<li><a href="https://github.com/isdk/tool-rpc.js"><code>tool-rpc</code></a>：把注册的函数暴露到网络上，本地/远程对调用方透明</li>
+<li><a href="https://github.com/isdk/tool-event.js"><code>tool-event</code></a>：把实时事件也当作“一个工具”，复用 RPC 的生态</li>
 </ul>
 <p>第 4 节会拿它当尺子：<strong>同一个需求，另一种长法是什么样子。</strong></p>
 <h2 id="1-ta-jie-jue-shi-mo-wen-ti" class="heading-control">1. 它解决什么问题<a class="heading-anchor" href="#1-ta-jie-jue-shi-mo-wen-ti" aria-hidden="true"></a></h2>
@@ -396,54 +377,19 @@
 <p>第 1 节里第 2、3 条需求（能清理、不乱序），实现出来就是一个<strong>函数栈</strong>。</p>
 <h3 id="21-bu-yong-kuang-jia-shi-hui-zen-mo-xie" class="heading-control">2.1 不用框架时会怎么写<a class="heading-anchor" href="#21-bu-yong-kuang-jia-shi-hui-zen-mo-xie" aria-hidden="true"></a></h3>
 <p>插件启动做了三件事：</p>
-<pre><code class="typescript"><span class="hljs-keyword">const</span> pool = openPool()                              <span class="hljs-comment">// 1. 开一个数据库连接池</span>
-<span class="hljs-keyword">const</span> timer = setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.query(), <span class="hljs-number">1000</span>)  <span class="hljs-comment">// 2. 每秒用连接池查一次</span>
-ctx.on(<span class="hljs-string">'message'</span>, handler)                           <span class="hljs-comment">// 3. 挂一个消息监听器</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pool = <span class="title function_">openPool</span>()                              <span class="comment">// 1. 开一个数据库连接池</span></span><br><span class="line"><span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> pool.<span class="title function_">query</span>(), <span class="number">1000</span>)  <span class="comment">// 2. 每秒用连接池查一次</span></span><br><span class="line">ctx.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, handler)                           <span class="comment">// 3. 挂一个消息监听器</span></span><br></pre></td></tr></table></figure>
 <p>卸载时你得手动写三行，而且顺序不能错：</p>
-<pre><code class="typescript">ctx.off(<span class="hljs-string">'message'</span>, handler)   <span class="hljs-comment">// 先摘监听器</span>
-clearInterval(timer)          <span class="hljs-comment">// 再停定时器</span>
-pool.close()                  <span class="hljs-comment">// 最后关连接池</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">off</span>(<span class="string">&#x27;message&#x27;</span>, handler)   <span class="comment">// 先摘监听器</span></span><br><span class="line"><span class="built_in">clearInterval</span>(timer)          <span class="comment">// 再停定时器</span></span><br><span class="line">pool.<span class="title function_">close</span>()                  <span class="comment">// 最后关连接池</span></span><br></pre></td></tr></table></figure>
 <p><strong>为什么必须是这个顺序？</strong> 假设你先关连接池、后停定时器——在“池已关、定时器还在”的那几毫秒里，定时器可能又触发一次 <code>pool.query()</code>，拿一个已关闭的连接池查数据，必然报错。反过来，先停定时器再关池，怎么都不会错。</p>
 <h3 id="22-cordis-de-fang-an" class="heading-control">2.2 Cordis 的方案<a class="heading-anchor" href="#22-cordis-de-fang-an" aria-hidden="true"></a></h3>
 <p>它做的全部事情，是把这个顺序交给一个栈。</p>
 <p>先把签名写对——<strong>真实的 <code>ctx.effect()</code> 不是 <code>effect(acquire, release)</code> 两个参数</strong>，上游 <code>fiber.ts</code> 里的重载是：</p>
-<pre><code class="typescript">effect(execute: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> SyncEffect, label?: <span class="hljs-built_in">string</span>): Disposable
-effect(execute: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Effect,     label?: <span class="hljs-built_in">string</span>): AsyncDisposable
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">effect</span>(<span class="attr">execute</span>: <span class="function">() =&gt;</span> <span class="title class_">SyncEffect</span>, <span class="attr">label</span>?: <span class="built_in">string</span>): <span class="title class_">Disposable</span></span><br><span class="line"><span class="title function_">effect</span>(<span class="attr">execute</span>: <span class="function">() =&gt;</span> <span class="title class_">Effect</span>,     <span class="attr">label</span>?: <span class="built_in">string</span>): <span class="title class_">AsyncDisposable</span></span><br></pre></td></tr></table></figure>
 <p><strong>只有一个回调</strong>。它立即执行，回调返回（或 <code>yield</code>）的那个函数就是 disposer，被收进当前 fiber 的 disposables。第二个参数 <code>label</code> 只用于诊断输出（默认 <code>'anonymous'</code>），不影响行为。</p>
 <p>所以栈的形状是（以下是<strong>伪代码</strong>，用于展示栈的语义，不是逐字源码；真实返回的是带 <code>.dispose()</code> 的 <code>Disposable</code>/<code>AsyncDisposable</code> 对象）：</p>
-<pre><code class="typescript"><span class="hljs-comment">// 注册时：execute 立即执行，它返回的 disposer 入栈</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">effect</span>(<span class="hljs-params">execute: () =&gt; Disposable, label = 'anonymous'</span>) </span>{
-  <span class="hljs-keyword">const</span> disposables: Disposable[] = []
-  <span class="hljs-comment">// execute() 的返回值 / 每次 yield 的值 → disposables.push(...)</span>
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {                            <span class="hljs-comment">// 这就是被挂到 fiber 上的 dispose</span>
-    <span class="hljs-keyword">let</span> task!: <span class="hljs-built_in">void</span> | <span class="hljs-built_in">Promise</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> dispose of disposables.splice(<span class="hljs-number">0</span>).reverse()) {   <span class="hljs-comment">// 逆序</span>
-      <span class="hljs-keyword">if</span> (task) task = task.then(dispose)   <span class="hljs-comment">// 遇到异步就串成链</span>
-      <span class="hljs-keyword">else</span> { <span class="hljs-keyword">const</span> r = dispose(); <span class="hljs-keyword">if</span> (isObject(r) &amp;&amp; <span class="hljs-string">'then'</span> <span class="hljs-keyword">in</span> r) task = r }
-    }
-    <span class="hljs-keyword">return</span> task
-  }
-}
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册时：execute 立即执行，它返回的 disposer 入栈</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">effect</span>(<span class="params"><span class="attr">execute</span>: () =&gt; <span class="title class_">Disposable</span>, label = <span class="string">&#x27;anonymous&#x27;</span></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="attr">disposables</span>: <span class="title class_">Disposable</span>[] = []</span><br><span class="line">  <span class="comment">// execute() 的返回值 / 每次 yield 的值 → disposables.push(...)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;                            <span class="comment">// 这就是被挂到 fiber 上的 dispose</span></span><br><span class="line">    <span class="keyword">let</span> task!: <span class="built_in">void</span> | <span class="title class_">Promise</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> dispose <span class="keyword">of</span> disposables.<span class="title function_">splice</span>(<span class="number">0</span>).<span class="title function_">reverse</span>()) &#123;   <span class="comment">// 逆序</span></span><br><span class="line">      <span class="keyword">if</span> (task) task = task.<span class="title function_">then</span>(dispose)   <span class="comment">// 遇到异步就串成链</span></span><br><span class="line">      <span class="keyword">else</span> &#123; <span class="keyword">const</span> r = <span class="title function_">dispose</span>(); <span class="keyword">if</span> (<span class="title function_">isObject</span>(r) &amp;&amp; <span class="string">&#x27;then&#x27;</span> <span class="keyword">in</span> r) task = r &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> task</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>用真实的写法重写刚才那三件事：</p>
-<pre><code class="typescript"><span class="hljs-comment">// 1. 连接池：获取写在函数体里，关闭作为返回值交回框架</span>
-ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> pool = openPool()
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close()
-})
-
-<span class="hljs-comment">// 2. 定时器：同理</span>
-ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  <span class="hljs-keyword">const</span> timer = setInterval(<span class="hljs-comment">/* ... */</span>, <span class="hljs-number">1000</span>)
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> clearInterval(timer)
-})
-
-<span class="hljs-comment">// 3. 监听器：不用包，ctx.on 本身就是一个 effect</span>
-ctx.on(<span class="hljs-string">'message'</span>, handler)
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 连接池：获取写在函数体里，关闭作为返回值交回框架</span></span><br><span class="line">ctx.<span class="title function_">effect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> pool = <span class="title function_">openPool</span>()</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> pool.<span class="title function_">close</span>()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 定时器：同理</span></span><br><span class="line">ctx.<span class="title function_">effect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="comment">/* ... */</span>, <span class="number">1000</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(timer)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 监听器：不用包，ctx.on 本身就是一个 effect</span></span><br><span class="line">ctx.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, handler)</span><br></pre></td></tr></table></figure>
 <p>注意第 1 条里的 <code>pool</code> 是 effect 内部的局部变量——<strong>业务代码要用它，就得把它挪到外面去</strong>（坑三会讲这件事）。</p>
 <p><strong><code>ctx.on()</code> 已经是 effect，再拿 <code>ctx.effect</code> 包一层是多余的。</strong> 官方原话：“Because ctx.on() is an effect, the listener disappears with the plugin — no manual removeListener bookkeeping, ever.” 同理，<code>ctx.plugin()</code>、服务注册、<code>ctx.tools.register()</code> 也都自带 disposer。</p>
 <p>卸载时一行 <code>dispose()</code>，栈自己从顶往下弹。<strong>你不再需要记住顺序。</strong></p>
@@ -452,14 +398,7 @@ ctx.on(<span class="hljs-string">'message'</span>, handler)
 <p>这个“往往”为什么可靠到不需要分析依赖？因为<strong>变量作用域</strong>已经替你保证了：定时器回调里引用了 <code>pool</code> 这个变量，那么 <code>openPool()</code> 那一行就必然写在 <code>setInterval</code> 前面——“先定义后使用”和“依赖在前、依赖者在后”是同一个顺序。</p>
 <p>LIFO（后进先出）把注册顺序一反转，恰好反转了依赖顺序。<strong>它不是猜对了依赖，它是复用了语言几十年的“先定义后使用”规则。</strong></p>
 <p>准确的说法是：<strong>LIFO 不分析依赖，它只是沿用注册顺序的逆序。</strong> 刻意违反时不成立：</p>
-<pre><code class="typescript"><span class="hljs-keyword">let</span> pool: Pool
-ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {                                        <span class="hljs-comment">// 先注册定时器</span>
-  <span class="hljs-keyword">const</span> t = setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.query(), <span class="hljs-number">1000</span>)
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> clearInterval(t)
-})
-ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { pool = openPool(); <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close() })  <span class="hljs-comment">// 后才拿到池</span>
-<span class="hljs-comment">// 卸载时 LIFO：先关池、后停定时器 —— 顺序错了，且没有任何报错</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">pool</span>: <span class="title class_">Pool</span></span><br><span class="line">ctx.<span class="title function_">effect</span>(<span class="function">() =&gt;</span> &#123;                                        <span class="comment">// 先注册定时器</span></span><br><span class="line">  <span class="keyword">const</span> t = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> pool.<span class="title function_">query</span>(), <span class="number">1000</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(t)</span><br><span class="line">&#125;)</span><br><span class="line">ctx.<span class="title function_">effect</span>(<span class="function">() =&gt;</span> &#123; pool = <span class="title function_">openPool</span>(); <span class="keyword">return</span> <span class="function">() =&gt;</span> pool.<span class="title function_">close</span>() &#125;)  <span class="comment">// 后才拿到池</span></span><br><span class="line"><span class="comment">// 卸载时 LIFO：先关池、后停定时器 —— 顺序错了，且没有任何报错</span></span><br></pre></td></tr></table></figure>
 <p>这段代码能通过编译（<code>let</code> 的声明被提升了）。机制的全部实现是一个数组加一次 <code>reverse()</code>。</p>
 <p><strong>这个 <code>effect</code> 业界早有现成的名字</strong>：Haskell 的 <code>bracket</code>、Effect-TS 的 <code>acquireRelease</code>，中文就是“成对的资源获取与释放”。C++ 的 RAII 也算近亲，但它绑在词法作用域退出（离开大括号就析构），而 Cordis 这个不绑作用域、绑运行时——所以更准确的名字是<strong>运行时可组合的 acquireRelease</strong>。</p>
 <p>注意：<strong>Cordis 的这一版把 acquire 和 release 合进了同一个回调</strong>——“获取”写在函数体里，“释放”作为返回值返回。Effect-TS 的 <code>acquireRelease</code> 是两个参数、<code>bracket</code> 是三个，Cordis 是一个。这不是优劣，是选择：一个回调换来的是可以 <code>yield</code> 多次（生成器形式），以及 <code>label</code> 可诊断；代价是<strong>资源本体要自己保存</strong>——见坑三。</p>
@@ -547,7 +486,7 @@ DSH 的 vendor 补丁加了一条：owner 处于 <code>UNLOADING</code> 时<stro
 </ul>
 <p>这些词不是同一个毛病，它们来自两种完全不同的动机。</p>
 <h3 id="31-lun-wen-li-de-wei-le-xian-de-gao-shen" class="heading-control">3.1 论文里的：为了显得高深<a class="heading-anchor" href="#31-lun-wen-li-de-wei-le-xian-de-gao-shen" aria-hidden="true"></a></h3>
-<p>最典型的是那篇论文《A Programming Paradigm for Spatiotemporal Composability》（<a href="https://arxiv.org/abs/2608.25512" target="_blank" rel="noopener">arXiv:2608.25512</a>，<a href="http://cs.PL" target="_blank" rel="noopener">cs.PL</a>，v1 提交于 2026-08-26，预印本且在持续修订）。逐项还原：</p>
+<p>最典型的是那篇论文《A Programming Paradigm for Spatiotemporal Composability》（<a href="https://arxiv.org/abs/2608.25512">arXiv:2608.25512</a>，<a href="http://cs.PL">cs.PL</a>，v1 提交于 2026-08-26，预印本且在持续修订）。逐项还原：</p>
 <ul>
 <li><strong>时间维可组合性</strong> = 析构顺序：C++ 的 RAII、Haskell 的 <code>bracket</code>、Effect-TS 的 <code>acquireRelease</code>，都是现成的</li>
 <li><strong>空间维可组合性</strong> = <strong>作用域 + 依赖的响应式解析</strong>。论文摘要对 spatial 的定义是“declare and <strong>reactively manage</strong> inter-component dependencies”：不只是 ctx 嵌套和原型链 shadow，还包括依赖声明（coeffect 规约）、依赖到位才激活、依赖消失自动停用、依赖被替换则级联重载。把这个定义还原成单纯的“作用域嵌套”会遗漏依赖图与级联重连这部分——但反过来说，依赖声明与响应式重连在业界已有大量先例：Spring 的 <code>depends-on</code>、OSGi 的 Service Registry、React 的 <code>useEffect</code> 依赖数组，都是不同形态的同一件事。Cordis 的特定组合（依赖状态标记 + effect 栈 + Fiber 状态机）有工程价值，但它的新颖性在于组合方式，不在于发明了依赖管理。</li>
@@ -634,31 +573,7 @@ DSH 的 vendor 补丁加了一条：owner 处于 <code>UNLOADING</code> 时<stro
 <p><strong>只有第一种多了“一层”(继承)。第二种只是把同一个东西的几种用法提前固化成了几个名字。</strong></p>
 <h3 id="41-xian-kan-shou-zhai-de-yang-zi" class="heading-control">4.1 先看收窄的样子<a class="heading-anchor" href="#41-xian-kan-shou-zhai-de-yang-zi" aria-hidden="true"></a></h3>
 <p>第 0 节介绍过的 tool-func 系列，就是一条靠收窄长出来的链，每层是下层的一个特例。从下往上：</p>
-<pre><code class="typescript"><span class="hljs-comment">// ① ToolFunc：自描述、自管理的函数工具集</span>
-<span class="hljs-keyword">new</span> ToolFunc({ name: <span class="hljs-string">'ping'</span>, func: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">'pong'</span> }).register()
-
-<span class="hljs-comment">// ② ServerTools：单个可远程调用的函数</span>
-<span class="hljs-keyword">new</span> ServerTools({ name: <span class="hljs-string">'ping'</span>, func: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">'pong'</span> }).register()
-
-<span class="hljs-comment">// ③ RpcMethodsServerTool：把相关方法组织成一个服务对象</span>
-<span class="hljs-keyword">const</span> users = <span class="hljs-keyword">new</span> RpcMethodsServerTool({ name: <span class="hljs-string">'users'</span> })
-users.$createUser = <span class="hljs-keyword">async</span> ({ name }) =&gt; { <span class="hljs-comment">/* ... */</span> }   <span class="hljs-comment">// $ 前缀 = 自动注册为 RPC 方法</span>
-<span class="hljs-comment">// 客户端调用时传 act: '$createUser'</span>
-
-<span class="hljs-comment">// ④ ResServerTools：映射标准 REST 动词</span>
-<span class="hljs-keyword">class</span> Users <span class="hljs-keyword">extends</span> ResServerTools {
-  <span class="hljs-keyword">async</span> <span class="hljs-keyword">get</span>({ id })   { <span class="hljs-comment">/* ... */</span> }
-  <span class="hljs-keyword">async</span> list()        { <span class="hljs-comment">/* ... */</span> }
-  <span class="hljs-keyword">async</span> post({ val }) { <span class="hljs-comment">/* ... */</span> }
-}
-<span class="hljs-comment">// GET  /users/:id → get({ id })</span>
-<span class="hljs-comment">// GET  /users     → list()</span>
-<span class="hljs-comment">// POST /users     → post({ val })</span>
-
-<span class="hljs-comment">// ⑤ tool-event：把实时事件当作“另一种工具”</span>
-<span class="hljs-keyword">await</span> eventClient.subscribe(<span class="hljs-string">'server-time'</span>)   <span class="hljs-comment">// 订阅本身就是一次 RPC 调用</span>
-EventServer.setPubSubTransport(<span class="hljs-keyword">new</span> SseServerPubSubTransport())  <span class="hljs-comment">// 唯一的全新抽象</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ① ToolFunc：自描述、自管理的函数工具集</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">ToolFunc</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;ping&#x27;</span>, <span class="attr">func</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;pong&#x27;</span> &#125;).<span class="title function_">register</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// ② ServerTools：单个可远程调用的函数</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">ServerTools</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;ping&#x27;</span>, <span class="attr">func</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;pong&#x27;</span> &#125;).<span class="title function_">register</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// ③ RpcMethodsServerTool：把相关方法组织成一个服务对象</span></span><br><span class="line"><span class="keyword">const</span> users = <span class="keyword">new</span> <span class="title class_">RpcMethodsServerTool</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;users&#x27;</span> &#125;)</span><br><span class="line">users.<span class="property">$createUser</span> = <span class="title function_">async</span> (&#123; name &#125;) =&gt; &#123; <span class="comment">/* ... */</span> &#125;   <span class="comment">// $ 前缀 = 自动注册为 RPC 方法</span></span><br><span class="line"><span class="comment">// 客户端调用时传 act: &#x27;$createUser&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ④ ResServerTools：映射标准 REST 动词</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Users</span> <span class="keyword">extends</span> <span class="title class_ inherited__">ResServerTools</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">get</span>(<span class="params">&#123; id &#125;</span>)   &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">list</span>(<span class="params"></span>)        &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">post</span>(<span class="params">&#123; val &#125;</span>) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// GET  /users/:id → get(&#123; id &#125;)</span></span><br><span class="line"><span class="comment">// GET  /users     → list()</span></span><br><span class="line"><span class="comment">// POST /users     → post(&#123; val &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ⑤ tool-event：把实时事件当作“另一种工具”</span></span><br><span class="line"><span class="keyword">await</span> eventClient.<span class="title function_">subscribe</span>(<span class="string">&#x27;server-time&#x27;</span>)   <span class="comment">// 订阅本身就是一次 RPC 调用</span></span><br><span class="line"><span class="title class_">EventServer</span>.<span class="title function_">setPubSubTransport</span>(<span class="keyword">new</span> <span class="title class_">SseServerPubSubTransport</span>())  <span class="comment">// 唯一的全新抽象</span></span><br></pre></td></tr></table></figure>
 <p>每往上一层，就多一层限制：</p>
 <table>
 <thead>
@@ -712,18 +627,11 @@ EventServer.setPubSubTransport(<span class="hljs-keyword">new</span> SseServerPu
 <p>新增的概念数是 <strong>1</strong>。</p>
 <h3 id="42-zai-kan-cordis-de-wu-ge-shi-jian-fang-fa" class="heading-control">4.2 再看 Cordis 的五个事件方法<a class="heading-anchor" href="#42-zai-kan-cordis-de-wu-ge-shi-jian-fang-fa" aria-hidden="true"></a></h3>
 <p>Cordis 的事件系统有两头。一头是<strong>注册监听</strong>：</p>
-<pre><code class="typescript">ctx.on(<span class="hljs-string">'message'</span>, handler)   <span class="hljs-comment">// "有人发消息时叫我"</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, handler)   <span class="comment">// &quot;有人发消息时叫我&quot;</span></span><br></pre></td></tr></table></figure>
 <p>另一头是<strong>派发</strong>（也就是触发这个事件）：</p>
-<pre><code class="typescript">ctx.emit(<span class="hljs-string">'message'</span>, session)   <span class="hljs-comment">// "现在有人发消息了，都起来干活"</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">emit</span>(<span class="string">&#x27;message&#x27;</span>, session)   <span class="comment">// &quot;现在有人发消息了，都起来干活&quot;</span></span><br></pre></td></tr></table></figure>
 <p>派发这一头有五个方法：</p>
-<pre><code class="typescript">ctx.emit(name, ...args)       <span class="hljs-comment">// 广播。返回值既不 await 也不收集</span>
-<span class="hljs-keyword">await</span> ctx.parallel(...)       <span class="hljs-comment">// 并发执行，等全部完成</span>
-<span class="hljs-keyword">await</span> ctx.serial(...)         <span class="hljs-comment">// 串行执行，第一个非空返回值即停</span>
-ctx.bail(...)                 <span class="hljs-comment">// serial 的同步版本</span>
-<span class="hljs-keyword">await</span> ctx.waterfall(...)      <span class="hljs-comment">// 环绕中间件，可包装、可短路</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">emit</span>(name, ...args)       <span class="comment">// 广播。返回值既不 await 也不收集</span></span><br><span class="line"><span class="keyword">await</span> ctx.<span class="title function_">parallel</span>(...)       <span class="comment">// 并发执行，等全部完成</span></span><br><span class="line"><span class="keyword">await</span> ctx.<span class="title function_">serial</span>(...)         <span class="comment">// 串行执行，第一个非空返回值即停</span></span><br><span class="line">ctx.<span class="title function_">bail</span>(...)                 <span class="comment">// serial 的同步版本</span></span><br><span class="line"><span class="keyword">await</span> ctx.<span class="title function_">waterfall</span>(...)      <span class="comment">// 环绕中间件，可包装、可短路</span></span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -772,54 +680,13 @@ ctx.bail(...)                 <span class="hljs-comment">// serial 的同步版�
 </tr>
 </tbody>
 </table>
-<p>（表格依据：<code>packages/core/src/events.ts</code> 源码；文档侧见 <a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer" target="_blank" rel="noopener">Cordis Primer · Dispatch Modes</a> 与<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events" target="_blank" rel="noopener">教程第 4 章 Events</a>）</p>
+<p>（表格依据：<code>packages/core/src/events.ts</code> 源码；文档侧见 <a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer">Cordis Primer · Dispatch Modes</a> 与<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events">教程第 4 章 Events</a>）</p>
 <p><strong><code>waterfall</code> 那一行是本次核实改掉的一处</strong>：官方 primer 的 Awaited 列标的是 <strong>No</strong>，源码也证实 <code>waterfall</code> 不是 <code>async</code>，它把 <code>next()</code> 的结果直接 <code>return</code> 出去——监听器若是 async，返回的就是个 Promise，<strong>由调用方自己 await</strong>，框架不替你等。文档侧三份材料本身也不完全一致（primer 与教程列五种模式，framework/events 页只列四种、没有 <code>parallel</code>）。这类冲突一律以源码为准。</p>
 <p>五个方法的核心逻辑摘录（省略了 <code>_resolve</code> 的参数处理与 <code>thisArg</code> 来源，不是逐字源码）：</p>
-<pre><code class="typescript">emit(...args) {                                    <span class="hljs-comment">// 同步循环，无 try/catch</span>
-  <span class="hljs-keyword">const</span> [thisArg, callbacks] = <span class="hljs-keyword">this</span>._resolve(<span class="hljs-string">'emit'</span>, args)
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> callback of callbacks) Reflect.apply(callback, thisArg, args)
-}
-
-<span class="hljs-keyword">async</span> parallel(...args) {
-  <span class="hljs-keyword">const</span> results = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.allSettled(callbacks.map(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> Reflect.apply(cb, thisArg, args)))
-  <span class="hljs-keyword">const</span> errors = results.filter(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> r.status === <span class="hljs-string">'rejected'</span>)
-  <span class="hljs-keyword">if</span> (errors.length) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AggregateError(errors.map(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.reason))   <span class="hljs-comment">// 值全丢，只留错误</span>
-}
-
-<span class="hljs-keyword">async</span> serial(...args) {
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> callback of callbacks) {
-    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> Reflect.apply(callback, thisArg, args)
-    <span class="hljs-keyword">if</span> (isBailed(result)) <span class="hljs-keyword">return</span> result            <span class="hljs-comment">// 第一个真值胜出并短路</span>
-  }
-}
-
-bail(...args) {                                    <span class="hljs-comment">// serial 的同步版</span>
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> callback of callbacks) {
-    <span class="hljs-keyword">const</span> result = Reflect.apply(callback, thisArg, args)
-    <span class="hljs-keyword">if</span> (isBailed(result)) <span class="hljs-keyword">return</span> result
-  }
-}
-
-waterfall(...args) {                               <span class="hljs-comment">// 非 async</span>
-  <span class="hljs-keyword">const</span> inner = args.pop()                         <span class="hljs-comment">// 最后一个参数是最内层默认行为</span>
-  <span class="hljs-keyword">const</span> next = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> callback = callbacks.shift()
-    <span class="hljs-keyword">return</span> callback ? Reflect.apply(callback, thisArg, args) : inner(...args)
-  }
-  args.push(next)
-  <span class="hljs-keyword">return</span> next()
-}
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">emit</span>(<span class="params">...args</span>) &#123;                                    <span class="comment">// 同步循环，无 try/catch</span></span><br><span class="line">  <span class="keyword">const</span> [thisArg, callbacks] = <span class="variable language_">this</span>.<span class="title function_">_resolve</span>(<span class="string">&#x27;emit&#x27;</span>, args)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> callback <span class="keyword">of</span> callbacks) <span class="title class_">Reflect</span>.<span class="title function_">apply</span>(callback, thisArg, args)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="title function_">parallel</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> results = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">allSettled</span>(callbacks.<span class="title function_">map</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title class_">Reflect</span>.<span class="title function_">apply</span>(cb, thisArg, args)))</span><br><span class="line">  <span class="keyword">const</span> errors = results.<span class="title function_">filter</span>(<span class="function"><span class="params">r</span> =&gt;</span> r.<span class="property">status</span> === <span class="string">&#x27;rejected&#x27;</span>)</span><br><span class="line">  <span class="keyword">if</span> (errors.<span class="property">length</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">AggregateError</span>(errors.<span class="title function_">map</span>(<span class="function"><span class="params">e</span> =&gt;</span> e.<span class="property">reason</span>))   <span class="comment">// 值全丢，只留错误</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="title function_">serial</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> callback <span class="keyword">of</span> callbacks) &#123;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">await</span> <span class="title class_">Reflect</span>.<span class="title function_">apply</span>(callback, thisArg, args)</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isBailed</span>(result)) <span class="keyword">return</span> result            <span class="comment">// 第一个真值胜出并短路</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">bail</span>(<span class="params">...args</span>) &#123;                                    <span class="comment">// serial 的同步版</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> callback <span class="keyword">of</span> callbacks) &#123;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="title class_">Reflect</span>.<span class="title function_">apply</span>(callback, thisArg, args)</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isBailed</span>(result)) <span class="keyword">return</span> result</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">waterfall</span>(<span class="params">...args</span>) &#123;                               <span class="comment">// 非 async</span></span><br><span class="line">  <span class="keyword">const</span> inner = args.<span class="title function_">pop</span>()                         <span class="comment">// 最后一个参数是最内层默认行为</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">next</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> callback = callbacks.<span class="title function_">shift</span>()</span><br><span class="line">    <span class="keyword">return</span> callback ? <span class="title class_">Reflect</span>.<span class="title function_">apply</span>(callback, thisArg, args) : <span class="title function_">inner</span>(...args)</span><br><span class="line">  &#125;</span><br><span class="line">  args.<span class="title function_">push</span>(next)</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>isBailed</code> 的定义是 <code>v !== null &amp;&amp; v !== false &amp;&amp; v !== undefined</code>——这就是“返回值算不算数”的全部判据。</p>
 <p>把它们按“是不是对方的限制版本”排一下：</p>
-<pre><code>waterfall        ← 限制最多（环绕包装）
-  ↑
-serial ──── bail ← bail 就是 serial 去掉 await
-  ↑
-emit             ← 限制最少（什么都不收集）
-
-parallel（并发，与上面不可比）
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">waterfall        ← 限制最多（环绕包装）</span><br><span class="line">  ↑</span><br><span class="line">serial ──── bail ← bail 就是 serial 去掉 await</span><br><span class="line">  ↑</span><br><span class="line">emit             ← 限制最少（什么都不收集）</span><br><span class="line"></span><br><span class="line">parallel（并发，与上面不可比）</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>emit</code> ⊂ <code>serial</code>（serial = emit + 收集返回值 + 短路）</li>
 <li><code>serial</code> ⊂ <code>waterfall</code>（waterfall 里写 <code>if (own) return; return next()</code> 就精确等于 serial）</li>
@@ -865,20 +732,8 @@ parallel（并发，与上面不可比）
 </tbody>
 </table>
 <p><code>emit</code> 排在最后一名。</p>
-<p>现在反过来设想：假如 <code>emit</code> 改成“把每个监听器的返回值收成一个数组返回”（<a href="https://github.com/snowyu/events-ex.js" target="_blank" rel="noopener">events-ex</a> 就是这么做的：“The emit return the result of listeners’s callback function”），会怎么样？</p>
-<pre><code class="typescript"><span class="hljs-keyword">const</span> isBailed = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">false</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// Cordis 自己的定义</span>
-
-<span class="hljs-comment">// 同步场景下，serial 的效果可以很短地表达出来</span>
-<span class="hljs-keyword">const</span> serialSync = <span class="hljs-function">(<span class="hljs-params">n, ...a</span>) =&gt;</span> ee.emit(n, ...a).find(isBailed)
-
-<span class="hljs-comment">// 异步场景下需要逐个 await（因为 isBailed(Promise) 恒为真，不能直接 find）</span>
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">serialAsync</span>(<span class="hljs-params">name, ...args</span>) </span>{
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> r of ee.emit(name, ...args)) {
-    <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> r
-    <span class="hljs-keyword">if</span> (isBailed(v)) <span class="hljs-keyword">return</span> v
-  }
-}
-</code></pre>
+<p>现在反过来设想：假如 <code>emit</code> 改成“把每个监听器的返回值收成一个数组返回”（<a href="https://github.com/snowyu/events-ex.js">events-ex</a> 就是这么做的：“The emit return the result of listeners’s callback function”），会怎么样？</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">isBailed</span> = v =&gt; v !== <span class="literal">null</span> &amp;&amp; v !== <span class="literal">false</span> &amp;&amp; v !== <span class="literal">undefined</span>   <span class="comment">// Cordis 自己的定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 同步场景下，serial 的效果可以很短地表达出来</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">serialSync</span> = (<span class="params">n, ...a</span>) =&gt; ee.<span class="title function_">emit</span>(n, ...a).<span class="title function_">find</span>(isBailed)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步场景下需要逐个 await（因为 isBailed(Promise) 恒为真，不能直接 find）</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">serialAsync</span>(<span class="params">name, ...args</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> r <span class="keyword">of</span> ee.<span class="title function_">emit</span>(name, ...args)) &#123;</span><br><span class="line">    <span class="keyword">const</span> v = <span class="keyword">await</span> r</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isBailed</span>(v)) <span class="keyword">return</span> v</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>serial</code> 和 <code>bail</code> 会立刻退化成“几行 helper”的事——想加就加，想改就改，想扔就扔，每个项目还能按自己的习惯定制。比现在占着两个核心方法名要灵活得多。</p>
 <p>（<strong>能退化的只有这两个。</strong> <code>waterfall</code> 的环绕语义需要 <code>next()</code> continuation，返回值数组表达不了；<code>parallel</code> 的真并发是正交维度，也表达不了。所以“五个里最核心的两个会消失”成立，“五个全部会消失”不成立。）</p>
 <p>但 Cordis 的 <code>emit</code> 不给。地基省掉的这一点，上面就得长出五个方法来补上。</p>
@@ -895,7 +750,7 @@ parallel（并发，与上面不可比）
 <p>同一个病在别处也犯过：MCP 把工具返回结果文本化，见 3.3。</p>
 <h3 id="44-api-yi-dan-gong-kai-fa-bu-jiu-shou-bu-hui-lai" class="heading-control">4.4 API 一旦公开发布，就收不回来<a class="heading-anchor" href="#44-api-yi-dan-gong-kai-fa-bu-jiu-shou-bu-hui-lai" aria-hidden="true"></a></h3>
 <p>把五个方法降级成 helper，能不能绕开这个问题？</p>
-<p>加容易，收难。这不是审美判断，是有名字的规律——<strong>Hyrum’s Law</strong>（Hyrum Wright，Google，<a href="https://www.hyrumslaw.com/" target="_blank" rel="noopener">hyrumslaw.com</a>）：</p>
+<p>加容易，收难。这不是审美判断，是有名字的规律——<strong>Hyrum’s Law</strong>（Hyrum Wright，Google，<a href="https://www.hyrumslaw.com/">hyrumslaw.com</a>）：</p>
 <blockquote>
 <p>当一个 API 有了足够多的使用者，<strong>你在契约里承诺什么已经不重要了</strong>：你系统的<strong>所有可观测行为</strong>都会被某个人依赖。</p>
 </blockquote>
@@ -903,7 +758,7 @@ parallel（并发，与上面不可比）
 <p><strong>所以收回的成本不是线性的——每个方法都在积累看不见的依赖。</strong> 五种模式被大量插件使用（Koishi 侧 4000+ 是论文口径），任何收敛动作的成本都随依赖者数量上升，且<strong>没有公开材料表明官方有过收敛计划</strong>——这一条靠“使用规模”论证就够了，不需要替它假设一个动机。</p>
 <p>配套的两条原则，一起构成完整的立场：</p>
 <ul>
-<li><strong>Rule of Least Power</strong>（W3C TAG Finding，2006-02-23；Editors 为 Tim Berners-Lee 与 Noah Mendelsohn，<a href="https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html" target="_blank" rel="noopener">原文</a>）：<em>Powerful languages inhibit information reuse… the less powerful the language, the more you can do with the data.</em> 底层原语越弱，能被越多场景复用。</li>
+<li><strong>Rule of Least Power</strong>（W3C TAG Finding，2006-02-23；Editors 为 Tim Berners-Lee 与 Noah Mendelsohn，<a href="https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html">原文</a>）：<em>Powerful languages inhibit information reuse… the less powerful the language, the more you can do with the data.</em> 底层原语越弱，能被越多场景复用。</li>
 <li><strong>Mechanism, not Policy</strong>（X Window 设计原则，见《Unix 编程艺术》第 1 章）：<em>policy tends to have a short lifetime, mechanism a long one.</em> 策略短命，机制长命。把策略焊进长命的层里，等于把短命的东西放进了不该放的地方。</li>
 </ul>
 <p><strong>这套论证的结论恰恰就是“少即是美”——只是“少”的度量单位是单个单元的职责，不是单元的数量。</strong></p>
@@ -927,18 +782,9 @@ parallel（并发，与上面不可比）
 <p><strong>事件怎么被派发，由派发那一行的代码决定，与你怎么写监听器无关。</strong></p>
 <p>写 <code>ctx.on('message', listener)</code> 时，你无法声明“我这个监听器要拦截消息”。你的返回值被如何对待，取决于<strong>别人</strong>在派发这个事件时调用了五个方法里的哪一个——<code>emit</code> 丢弃、<code>parallel</code> 只留错误、<code>serial</code>/<code>bail</code> 取第一个真值、<code>waterfall</code> 全部收集。</p>
 <p><strong>完整看一次失效。</strong> 黑名单插件，想拦截被禁用户的消息：</p>
-<pre><code class="typescript"><span class="hljs-comment">// 插件 A：黑名单</span>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: Context</span>) </span>{
-  ctx.on(<span class="hljs-string">'message'</span>, <span class="hljs-function">(<span class="hljs-params">session</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (banned.has(session.userId)) {
-      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>     <span class="hljs-comment">// 意图：返回 true 表示“拦截”</span>
-    }
-  })
-}
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插件 A：黑名单</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params"><span class="attr">ctx</span>: <span class="title class_">Context</span></span>) &#123;</span><br><span class="line">  ctx.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">session</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (banned.<span class="title function_">has</span>(session.<span class="property">userId</span>)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>     <span class="comment">// 意图：返回 true 表示“拦截”</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>而框架内部分发这个事件用的是 <code>emit</code>：</p>
-<pre><code class="typescript">ctx.emit(<span class="hljs-string">'message'</span>, session)   <span class="hljs-comment">// emit：逐个调用监听器，返回值全部丢弃</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">emit</span>(<span class="string">&#x27;message&#x27;</span>, session)   <span class="comment">// emit：逐个调用监听器，返回值全部丢弃</span></span><br></pre></td></tr></table></figure>
 <p>接下来逐步发生什么：</p>
 <ol>
 <li>被禁用户发了一条消息</li>
@@ -950,8 +796,7 @@ parallel（并发，与上面不可比）
 <p><strong>全程没有任何报错。</strong> TypeScript 编译通过（回调多返回一个值，类型上合法）；运行通过（监听器确实执行了）；单测甚至通过（“监听器被调用”这个断言是真的）。只有端到端行为不对：黑名单没生效。</p>
 <p>失效发生在第 3 步——返回值被丢弃的那一刻，那里没有一行日志、一个警告。</p>
 <p>要真正拦截，派发处必须换成 <code>bail</code>：</p>
-<pre><code class="typescript">ctx.bail(<span class="hljs-string">'message'</span>, session)   <span class="hljs-comment">// 监听器返回真值时，后续监听器不再调用</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">bail</span>(<span class="string">&#x27;message&#x27;</span>, session)   <span class="comment">// 监听器返回真值时，后续监听器不再调用</span></span><br></pre></td></tr></table></figure>
 <p><strong>病灶到这里才暴露</strong>：你写了 <code>return true</code>，但决定这个返回值命运的是框架或另一个插件在别处选了五个方法中的哪一个。读你自己的插件代码看不出来，要去翻派发处的源码。</p>
 <blockquote>
 <p><strong>选择权和后果被拆在两个地方，而承受后果的一方看不见那个决定。</strong></p>
@@ -968,29 +813,12 @@ parallel（并发，与上面不可比）
 <li><strong>没有本体：这才是真问题。</strong> <code>setup()</code> 做的事是把服务注册进注册表等着被查，dispose 撤销的是一段注册，不是关一个返回值。此外还有第三类：<strong>获取本体与持有本体要分两步</strong>（先 <code>openPool()</code> 拿到池，业务代码要用它，disposer 也要引用它）。</li>
 </ul>
 <p>后两类在插件整个存活期都要在，于是只能靠闭包传递：</p>
-<pre><code class="typescript"><span class="hljs-keyword">let</span> pool: Pool
-ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { pool = openPool(); <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pool.close() })
-<span class="hljs-comment">// pool 的声明、effect 的注册、使用 pool 的业务代码，位置互相牵制；资源一多，交错成网</span>
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">pool</span>: <span class="title class_">Pool</span></span><br><span class="line">ctx.<span class="title function_">effect</span>(<span class="function">() =&gt;</span> &#123; pool = <span class="title function_">openPool</span>(); <span class="keyword">return</span> <span class="function">() =&gt;</span> pool.<span class="title function_">close</span>() &#125;)</span><br><span class="line"><span class="comment">// pool 的声明、effect 的注册、使用 pool 的业务代码，位置互相牵制；资源一多，交错成网</span></span><br></pre></td></tr></table></figure>
 <p>“没有本体”这一类有现成答案——<strong>生成器形式</strong>：</p>
-<pre><code class="typescript">ctx.effect(<span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{
-  store.set(id, provider)        <span class="hljs-comment">// 获取：写注册表</span>
-  <span class="hljs-keyword">yield</span> () =&gt; store.delete(id)   <span class="hljs-comment">// 释放：yield 给运行时，立即被收集</span>
-}, <span class="hljs-string">'web.registerProvider()'</span>)
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">effect</span>(<span class="keyword">function</span>* () &#123;</span><br><span class="line">  store.<span class="title function_">set</span>(id, provider)        <span class="comment">// 获取：写注册表</span></span><br><span class="line">  <span class="title function_">yield</span> () =&gt; store.<span class="title function_">delete</span>(id)   <span class="comment">// 释放：yield 给运行时，立即被收集</span></span><br><span class="line">&#125;, <span class="string">&#x27;web.registerProvider()&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>DSH 自己的 <code>registerSearchProvider</code> 就是这么写的。<code>fiber.ts</code> 里的 <code>Symbol.iterator</code> 分支把生成器<strong>立即驱动到底</strong>，每个 <code>yield</code> 值随即 <code>safeCollect</code>。所以“有获取无本体”不是签名缺陷，而是生成器形式的用途。</p>
 <p>剩下的是封装问题。成熟的解法是加一层，把跨存活期的状态圈进一个有 setup/dispose 的单元：</p>
-<pre><code class="typescript"><span class="hljs-keyword">const</span> db = <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; {
-  <span class="hljs-keyword">let</span> pool: Pool
-  <span class="hljs-keyword">return</span> {
-    <span class="hljs-keyword">async</span> setup(<span class="hljs-params"></span>)       { pool = openPool(<span class="hljs-params"></span>); <span class="hljs-keyword">await</span> pool.connect(<span class="hljs-params"></span>) },
-    dispose(<span class="hljs-params"></span>)           { pool.close(<span class="hljs-params"></span>) },
-    query(<span class="hljs-params">sql: <span class="hljs-built_in">string</span></span>)  { <span class="hljs-keyword">return</span> pool.query(<span class="hljs-params">sql</span>) },
-  }
-}</span>)<span class="hljs-params">()</span>
-<span class="hljs-params">ctx</span>.<span class="hljs-params">effect</span>(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; db.setup(<span class="hljs-params"></span>).then(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; (<span class="hljs-params"></span>) =&gt; db.dispose(<span class="hljs-params"></span>)</span>)</span>)
-// 业务代码只面对 <span class="hljs-params">db</span>.<span class="hljs-params">query</span><span class="hljs-params">()</span>，交错消失
-</span></code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = (<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">pool</span>: <span class="title class_">Pool</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">setup</span>(<span class="params"></span>)       &#123; pool = <span class="title function_">openPool</span>(); <span class="keyword">await</span> pool.<span class="title function_">connect</span>() &#125;,</span><br><span class="line">    <span class="title function_">dispose</span>(<span class="params"></span>)           &#123; pool.<span class="title function_">close</span>() &#125;,</span><br><span class="line">    <span class="title function_">query</span>(<span class="params"><span class="attr">sql</span>: <span class="built_in">string</span></span>)  &#123; <span class="keyword">return</span> pool.<span class="title function_">query</span>(sql) &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">ctx.<span class="title function_">effect</span>(<span class="function">() =&gt;</span> db.<span class="title function_">setup</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="function">() =&gt;</span> db.<span class="title function_">dispose</span>()))</span><br><span class="line"><span class="comment">// 业务代码只面对 db.query()，交错消失</span></span><br></pre></td></tr></table></figure>
 <p>资源种类多就提基类，各生态都收敛到这个形态（Koishi 的 <code>Service</code>、RxJS 的 <code>Disposable</code>、Effect-TS 的 <code>Scope</code>）。</p>
 <p>所以这个坑没那么严重：它不是“签名装不下”，而是“单回调签名不替你保管本体”——</p>
 <ul>
@@ -1023,36 +851,9 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 <p>工具要让别人调用，就必须描述自己。这不是 Cordis 的特殊要求——任何提供发现和校验的注册表，都要求三样东西：<strong>名字、说明、参数形状</strong>。OpenAI 的 function calling、MCP、JSON Schema 表单，最后都收敛到这三样。</p>
 <p><strong>调用方看不见的工具，无法被调用。</strong></p>
 <p>同一件事的两种写法。<code>ToolFunc</code>：</p>
-<pre><code class="typescript"><span class="hljs-keyword">new</span> ToolFunc({
-  name: <span class="hljs-string">'get_weather'</span>,
-  func: <span class="hljs-keyword">async</span> ({ city }) =&gt; {
-    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`https://api.weather.com/<span class="hljs-subst">${city}</span>`</span>)
-    <span class="hljs-keyword">return</span> res.json()
-  },
-  params: { city: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'string'</span> } },   <span class="hljs-comment">// 可选</span>
-  result: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'object'</span> },             <span class="hljs-comment">// 可选</span>
-}).register()
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">ToolFunc</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;get_weather&#x27;</span>,</span><br><span class="line">  <span class="attr">func</span>: <span class="title function_">async</span> (&#123; city &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`https://api.weather.com/<span class="subst">$&#123;city&#125;</span>`</span>)</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">json</span>()</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">params</span>: &#123; <span class="attr">city</span>: &#123; <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span> &#125; &#125;,   <span class="comment">// 可选</span></span><br><span class="line">  <span class="attr">result</span>: &#123; <span class="attr">type</span>: <span class="string">&#x27;object&#x27;</span> &#125;,             <span class="comment">// 可选</span></span><br><span class="line">&#125;).<span class="title function_">register</span>()</span><br></pre></td></tr></table></figure>
 <p>写成 DSH 插件（<strong>按官方当前形态</strong>，不是我编的写法）：</p>
-<pre><code class="typescript"><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { Context } <span class="hljs-keyword">from</span> <span class="hljs-string">'@deepseek-ai/cordis'</span>
-<span class="hljs-keyword">import</span> { defineTool } <span class="hljs-keyword">from</span> <span class="hljs-string">'@deepseek-ai/dsh-tools'</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> name = <span class="hljs-string">'weather'</span>            <span class="hljs-comment">// ① 插件身份（用于诊断）</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> inject = [<span class="hljs-string">'tools'</span>]          <span class="hljs-comment">// ② 依赖声明（框架据此决定加载顺序）</span>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">apply</span>(<span class="hljs-params">ctx: Context</span>) </span>{    <span class="hljs-comment">// ③ 唯一入口</span>
-  ctx.tools.register(defineTool({
-    name: <span class="hljs-string">'get_weather'</span>,                 <span class="hljs-comment">// ④ 工具名</span>
-    description: <span class="hljs-string">'查询城市天气'</span>,          <span class="hljs-comment">// ⑤ 说明</span>
-    parameters: {                        <span class="hljs-comment">// ⑥ 参数形状</span>
-      city: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'string'</span>, required: <span class="hljs-literal">true</span>, description: <span class="hljs-string">'城市名'</span> },
-    },
-    <span class="hljs-keyword">async</span> execute({ city }) {            <span class="hljs-comment">// ⑦ 业务</span>
-      <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`https://api.weather.com/<span class="hljs-subst">${city}</span>`</span>)
-      <span class="hljs-keyword">return</span> res.json()
-    },
-  }))
-}
-</code></pre>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">Context</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@deepseek-ai/cordis&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineTool &#125; <span class="keyword">from</span> <span class="string">&#x27;@deepseek-ai/dsh-tools&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">&#x27;weather&#x27;</span>            <span class="comment">// ① 插件身份（用于诊断）</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> inject = [<span class="string">&#x27;tools&#x27;</span>]          <span class="comment">// ② 依赖声明（框架据此决定加载顺序）</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params"><span class="attr">ctx</span>: <span class="title class_">Context</span></span>) &#123;    <span class="comment">// ③ 唯一入口</span></span><br><span class="line">  ctx.<span class="property">tools</span>.<span class="title function_">register</span>(<span class="title function_">defineTool</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;get_weather&#x27;</span>,                 <span class="comment">// ④ 工具名</span></span><br><span class="line">    <span class="attr">description</span>: <span class="string">&#x27;查询城市天气&#x27;</span>,          <span class="comment">// ⑤ 说明</span></span><br><span class="line">    <span class="attr">parameters</span>: &#123;                        <span class="comment">// ⑥ 参数形状</span></span><br><span class="line">      <span class="attr">city</span>: &#123; <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>, <span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">description</span>: <span class="string">&#x27;城市名&#x27;</span> &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">execute</span>(<span class="params">&#123; city &#125;</span>) &#123;            <span class="comment">// ⑦ 业务</span></span><br><span class="line">      <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`https://api.weather.com/<span class="subst">$&#123;city&#125;</span>`</span>)</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">json</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>十九行，业务两行。多出来的每一行，各自服务于哪个调用方：</p>
 <table>
 <thead>
@@ -1182,11 +983,11 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 <p>思路接近 Unix 哲学：组件小、职责单一，通过组合完成系统。</p>
 <p><strong>用什么：</strong></p>
 <ul>
-<li><code>tool-func</code>（<a href="https://github.com/isdk/tool-func.js" target="_blank" rel="noopener">isdk/tool-func.js</a>）：注册表与生命周期</li>
-<li><code>tool-rpc</code>（<a href="https://github.com/isdk/tool-rpc.js" target="_blank" rel="noopener">isdk/tool-rpc.js</a>）：本地/远程透明，注册表同名代理，业务代码不改</li>
-<li><code>tool-event</code>（<a href="https://github.com/isdk/tool-event.js" target="_blank" rel="noopener">isdk/tool-event.js</a>）：事件与控制面映射回 RPC，唯一新抽象是可插拔 transport</li>
-<li><code>events-ex</code>（<a href="https://github.com/snowyu/events-ex.js" target="_blank" rel="noopener">snowyu/events-ex.js</a>）：事件，控制流在监听器手里（<code>emit</code> 返回监听器结果）</li>
-<li><code>custom-ability</code>（<a href="https://github.com/snowyu/custom-ability.js" target="_blank" rel="noopener">snowyu/custom-ability.js</a>）：能力注入，可摘除</li>
+<li><code>tool-func</code>（<a href="https://github.com/isdk/tool-func.js">isdk/tool-func.js</a>）：注册表与生命周期</li>
+<li><code>tool-rpc</code>（<a href="https://github.com/isdk/tool-rpc.js">isdk/tool-rpc.js</a>）：本地/远程透明，注册表同名代理，业务代码不改</li>
+<li><code>tool-event</code>（<a href="https://github.com/isdk/tool-event.js">isdk/tool-event.js</a>）：事件与控制面映射回 RPC，唯一新抽象是可插拔 transport</li>
+<li><code>events-ex</code>（<a href="https://github.com/snowyu/events-ex.js">snowyu/events-ex.js</a>）：事件，控制流在监听器手里（<code>emit</code> 返回监听器结果）</li>
+<li><code>custom-ability</code>（<a href="https://github.com/snowyu/custom-ability.js">snowyu/custom-ability.js</a>）：能力注入，可摘除</li>
 <li>自己写约 200 行核心机制（effect 栈 + 依赖传播 + JSON Schema 配置层）；含适配层与粘合代码约 300 行</li>
 </ul>
 <p><strong>缺什么：</strong></p>
@@ -1285,48 +1086,48 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 <p><strong>源码（本文的判据来源，优先于文档与论文）</strong></p>
 <ul>
 <li>cordis 核心源码目录：<code>packages/core/src/</code>（context.ts / events.ts / fiber.ts / registry.ts / service.ts / reflect.ts / utils.ts / logger.ts / index.ts）</li>
-<li>events.ts（五个派发方法的实现）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/events.ts" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/blob/main/packages/core/src/events.ts</a></li>
-<li>fiber.ts（<code>effect()</code> 生成器分支、disposer 链、状态机六态）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/fiber.ts" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/blob/main/packages/core/src/fiber.ts</a></li>
-<li>context.ts（<code>isolate()</code>）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/context.ts" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/blob/main/packages/core/src/context.ts</a></li>
-<li><code>@cordisjs/plugin-timer</code>（<code>ctx.timeout</code> / <code>ctx.interval</code>，旧名已弃用）：<a href="https://github.com/cordiverse/cordis/tree/main/packages/timer" target="_blank" rel="noopener">https://github.com/cordiverse/cordis/tree/main/packages/timer</a></li>
+<li>events.ts（五个派发方法的实现）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/events.ts">https://github.com/cordiverse/cordis/blob/main/packages/core/src/events.ts</a></li>
+<li>fiber.ts（<code>effect()</code> 生成器分支、disposer 链、状态机六态）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/fiber.ts">https://github.com/cordiverse/cordis/blob/main/packages/core/src/fiber.ts</a></li>
+<li>context.ts（<code>isolate()</code>）：<a href="https://github.com/cordiverse/cordis/blob/main/packages/core/src/context.ts">https://github.com/cordiverse/cordis/blob/main/packages/core/src/context.ts</a></li>
+<li><code>@cordisjs/plugin-timer</code>（<code>ctx.timeout</code> / <code>ctx.interval</code>，旧名已弃用）：<a href="https://github.com/cordiverse/cordis/tree/main/packages/timer">https://github.com/cordiverse/cordis/tree/main/packages/timer</a></li>
 </ul>
 <p><strong>Cordis 与 DSH</strong></p>
 <ul>
-<li>Cordis 仓库：<a href="https://github.com/cordiverse/cordis" target="_blank" rel="noopener">https://github.com/cordiverse/cordis</a></li>
-<li>论文《A Programming Paradigm for Spatiotemporal Composability》（arXiv:2608.25512，<a href="http://cs.PL" target="_blank" rel="noopener">cs.PL</a>，v1 于 2026-08-26，预印本持续修订中）：<a href="https://arxiv.org/abs/2608.25512" target="_blank" rel="noopener">https://arxiv.org/abs/2608.25512</a></li>
-<li>论文仓库：<a href="https://github.com/cordiverse/paper" target="_blank" rel="noopener">https://github.com/cordiverse/paper</a></li>
-<li>DSH 仓库：<a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">https://github.com/deepseek-ai/deepseek-harness</a></li>
+<li>Cordis 仓库：<a href="https://github.com/cordiverse/cordis">https://github.com/cordiverse/cordis</a></li>
+<li>论文《A Programming Paradigm for Spatiotemporal Composability》（arXiv:2608.25512，<a href="http://cs.PL">cs.PL</a>，v1 于 2026-08-26，预印本持续修订中）：<a href="https://arxiv.org/abs/2608.25512">https://arxiv.org/abs/2608.25512</a></li>
+<li>论文仓库：<a href="https://github.com/cordiverse/paper">https://github.com/cordiverse/paper</a></li>
+<li>DSH 仓库：<a href="https://github.com/deepseek-ai/deepseek-harness">https://github.com/deepseek-ai/deepseek-harness</a></li>
 <li>DSH vendor 目录说明（vendored 版本与本地修改清单）：<code>vendor/README.md</code>（仓库内）</li>
-<li>Cordis Primer：<a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer</a></li>
-<li>Cordis 教程：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial</a></li>
-<li>教程第 4 章 · Events：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events</a></li>
-<li>插件与生命周期（disposer 顺序、fiber.dispose 语义）：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/</a></li>
-<li>事件系统：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/events" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/events</a></li>
-<li>服务与依赖（isolate）：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/service" target="_blank" rel="noopener">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/service</a></li>
-<li>写一个插件（官方 name / inject / apply + defineTool 形态）：<a href="https://deepseek-plugin.org/learn/write-a-plugin" target="_blank" rel="noopener">https://deepseek-plugin.org/learn/write-a-plugin</a></li>
-<li>插件对照表与 FAQ（无中心 registry、插件默认不沙箱化）：<a href="https://deepseekai.works/plugins" target="_blank" rel="noopener">https://deepseekai.works/plugins</a></li>
-<li>Koishi：<a href="https://github.com/koishijs/koishi" target="_blank" rel="noopener">https://github.com/koishijs/koishi</a></li>
-<li>Koishi 插件市场（实时计数，非静态列表）：<a href="https://koishi.chat/zh-CN/market/" target="_blank" rel="noopener">https://koishi.chat/zh-CN/market/</a></li>
+<li>Cordis Primer：<a href="https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer">https://deepseek-harness.github.io/deepseek-harness/en/reference/cordis-primer</a></li>
+<li>Cordis 教程：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial</a></li>
+<li>教程第 4 章 · Events：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events">https://deepseek-harness.github.io/deepseek-harness/en/develop/cordis-tutorial/04-events</a></li>
+<li>插件与生命周期（disposer 顺序、fiber.dispose 语义）：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/</a></li>
+<li>事件系统：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/events">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/events</a></li>
+<li>服务与依赖（isolate）：<a href="https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/service">https://deepseek-harness.github.io/deepseek-harness/en/develop/framework/service</a></li>
+<li>写一个插件（官方 name / inject / apply + defineTool 形态）：<a href="https://deepseek-plugin.org/learn/write-a-plugin">https://deepseek-plugin.org/learn/write-a-plugin</a></li>
+<li>插件对照表与 FAQ（无中心 registry、插件默认不沙箱化）：<a href="https://deepseekai.works/plugins">https://deepseekai.works/plugins</a></li>
+<li>Koishi：<a href="https://github.com/koishijs/koishi">https://github.com/koishijs/koishi</a></li>
+<li>Koishi 插件市场（实时计数，非静态列表）：<a href="https://koishi.chat/zh-CN/market/">https://koishi.chat/zh-CN/market/</a></li>
 </ul>
 <p><strong>tool-func 系列与对照物</strong></p>
 <ul>
-<li>tool-func.js：<a href="https://github.com/isdk/tool-func.js" target="_blank" rel="noopener">https://github.com/isdk/tool-func.js</a></li>
-<li>tool-rpc.js：<a href="https://github.com/isdk/tool-rpc.js" target="_blank" rel="noopener">https://github.com/isdk/tool-rpc.js</a></li>
-<li>tool-event.js：<a href="https://github.com/isdk/tool-event.js" target="_blank" rel="noopener">https://github.com/isdk/tool-event.js</a></li>
-<li>events-ex.js：<a href="https://github.com/snowyu/events-ex.js" target="_blank" rel="noopener">https://github.com/snowyu/events-ex.js</a></li>
-<li>custom-ability.js：<a href="https://github.com/snowyu/custom-ability.js" target="_blank" rel="noopener">https://github.com/snowyu/custom-ability.js</a></li>
+<li>tool-func.js：<a href="https://github.com/isdk/tool-func.js">https://github.com/isdk/tool-func.js</a></li>
+<li>tool-rpc.js：<a href="https://github.com/isdk/tool-rpc.js">https://github.com/isdk/tool-rpc.js</a></li>
+<li>tool-event.js：<a href="https://github.com/isdk/tool-event.js">https://github.com/isdk/tool-event.js</a></li>
+<li>events-ex.js：<a href="https://github.com/snowyu/events-ex.js">https://github.com/snowyu/events-ex.js</a></li>
+<li>custom-ability.js：<a href="https://github.com/snowyu/custom-ability.js">https://github.com/snowyu/custom-ability.js</a></li>
 </ul>
 <p><strong>MCP（第 3.3 节）</strong></p>
 <ul>
-<li>规范 · Tools：<a href="https://modelcontextprotocol.io/specification/draft/server/tools" target="_blank" rel="noopener">https://modelcontextprotocol.io/specification/draft/server/tools</a></li>
-<li>2026-07-28 规范修订说明：<a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/" target="_blank" rel="noopener">https://blog.modelcontextprotocol.io/posts/2026-07-28/</a></li>
-<li>2026-07-28 变更日志（Roots/Sampling/Logging 弃用）：<a href="https://modelcontextprotocol.io/specification/2026-07-28/changelog" target="_blank" rel="noopener">https://modelcontextprotocol.io/specification/2026-07-28/changelog</a></li>
+<li>规范 · Tools：<a href="https://modelcontextprotocol.io/specification/draft/server/tools">https://modelcontextprotocol.io/specification/draft/server/tools</a></li>
+<li>2026-07-28 规范修订说明：<a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/">https://blog.modelcontextprotocol.io/posts/2026-07-28/</a></li>
+<li>2026-07-28 变更日志（Roots/Sampling/Logging 弃用）：<a href="https://modelcontextprotocol.io/specification/2026-07-28/changelog">https://modelcontextprotocol.io/specification/2026-07-28/changelog</a></li>
 </ul>
 <p><strong>被引用的原则</strong></p>
 <ul>
-<li>Hyrum’s Law：<a href="https://www.hyrumslaw.com/" target="_blank" rel="noopener">https://www.hyrumslaw.com/</a></li>
-<li>The Rule of Least Power（W3C TAG）：<a href="https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html" target="_blank" rel="noopener">https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html</a></li>
-<li>《The Art of Unix Programming》第 1 章（mechanism, not policy）：<a href="https://book.huihoo.com/the-art-of-unix-programming/ch01s04.html" target="_blank" rel="noopener">https://book.huihoo.com/the-art-of-unix-programming/ch01s04.html</a></li>
+<li>Hyrum’s Law：<a href="https://www.hyrumslaw.com/">https://www.hyrumslaw.com/</a></li>
+<li>The Rule of Least Power（W3C TAG）：<a href="https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html">https://www.w3.org/2001/tag/doc/leastPower-2006-2-13.html</a></li>
+<li>《The Art of Unix Programming》第 1 章（mechanism, not policy）：<a href="https://book.huihoo.com/the-art-of-unix-programming/ch01s04.html">https://book.huihoo.com/the-art-of-unix-programming/ch01s04.html</a></li>
 </ul>
 
     </div>
@@ -1358,7 +1159,7 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/cordis-pros-cons/" title="Cordis 的坑与账">https://riceball.me/article/cordis-pros-cons/</a>
+    <a href="https://riceball.me/article/cordis-pros-cons/" title="Cordis 的坑与账">https://riceball.me/article/cordis-pros-cons/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -1378,7 +1179,10 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
     <a href="/article/wasm.wsi/" rel="prev" title="逃离STL方言，又入WIT迷宫：C++与WASM互操作的另一面">
       <i class="fa fa-chevron-left"></i> 逃离STL方言，又入WIT迷宫：C++与WASM互操作的另一面
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/article/everything-is-on-the-ledger/" rel="next" title="一切皆入账 —— 对等协作的身份、声誉与分配原理">
+      一切皆入账 —— 对等协作的身份、声誉与分配原理 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -1387,7 +1191,6 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
   
   
 
-  </div>
 
 
           </div>
@@ -1409,7 +1212,7 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -1421,7 +1224,7 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -1480,20 +1283,20 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1523,6 +1326,8 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -1536,14 +1341,16 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -1617,15 +1424,15 @@ ctx.effect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/cordis-pros-cons/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/cordis-pros-cons/",
       identifier: "article/cordis-pros-cons/",
-      title: "Cordis 的坑与账",
+      title     : "Cordis 的坑与账",
     });
   }, window.DisqusJS);
 });
@@ -1645,7 +1452,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

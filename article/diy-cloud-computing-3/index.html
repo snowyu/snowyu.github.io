@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,41 +15,15 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="ZFS 介绍 首先ZFS是&quot;Zettabyte File System&quot;的首字母缩写。ZFS 源自于Sun Microsystems为Solaris操作系统开发的文件系统。 ZFS是一个具有高存储容量、文件系统与卷管理概念整合、崭新的磁盘逻辑结构的轻量级文件系统，同时也是一个便捷的存储池管理系统。ZFS使用CDDL开源协议条款授权。后来被移植到FreeBSD和NetBSD系统上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DIY与云计算（三）之 云存储与开源 ZFS 文件系统">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;article&#x2F;diy-cloud-computing-3&#x2F;index.html">
+<meta property="og:url" content="https://riceball.me/article/diy-cloud-computing-3/index.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="ZFS 介绍 首先ZFS是&quot;Zettabyte File System&quot;的首字母缩写。ZFS 源自于Sun Microsystems为Solaris操作系统开发的文件系统。 ZFS是一个具有高存储容量、文件系统与卷管理概念整合、崭新的磁盘逻辑结构的轻量级文件系统，同时也是一个便捷的存储池管理系统。ZFS使用CDDL开源协议条款授权。后来被移植到FreeBSD和NetBSD系统上">
 <meta property="og:locale" content="zh_CN">
@@ -68,14 +42,15 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -131,28 +106,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -160,15 +122,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -179,11 +163,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -201,29 +180,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -242,14 +226,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://riceball.me/article/diy-cloud-computing-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,9 +245,9 @@
       <meta itemprop="name" content="Riceball LEE">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           DIY与云计算（三）之 云存储与开源 ZFS 文件系统
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -288,15 +271,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">Thinking</span>
-                  </a>
+                  <a href="/categories/Thinking/" itemprop="url" rel="index"><span itemprop="name">Thinking</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Thinking/Cloud-Computing/" itemprop="url" rel="index">
-                    <span itemprop="name">Cloud Computing</span>
-                  </a>
+                  <a href="/categories/Thinking/Cloud-Computing/" itemprop="url" rel="index"><span itemprop="name">Cloud Computing</span></a>
                 </span>
             </span>
 
@@ -305,7 +284,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-copyright"></i>
     </span>
-    <span class="post-meta-item-text">合著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
+    <span class="post-meta-item-text">著者：</span><a href="https://riceball.me"><span>Riceball LEE</span></a>
   </span>
   <br>
             <span class="post-meta-item" title="本文字数">
@@ -313,7 +292,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6k</span>
+              <span>6.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -374,23 +353,11 @@ ZFS是一个具有高存储容量、文件系统与卷管理概念整合、崭�
 </ul>
 <h2 id="zfs-on-linux" class="heading-control">ZFS on Linux<a class="heading-anchor" href="#zfs-on-linux" aria-hidden="true"></a></h2>
 <p>如果你是在用Linux/Gentoo 发行版本:</p>
-<pre><code class="bash"><span class="hljs-variable">$sudo</span> -s
-<span class="hljs-comment">#emerge --sync</span>
-<span class="hljs-comment">#echo "sys-fs/zfs **" &gt; /etc/portage/package.keywords/zfs</span>
-<span class="hljs-comment">#echo "sys-kernel/spl **" &gt;&gt; /etc/portage/package.keywords/zfs</span>
-<span class="hljs-comment">#emerge -v =sys-kernel/spl-9999 =sys-fs/zfs-9999</span>
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sudo</span> -s</span><br><span class="line"><span class="comment">#emerge --sync</span></span><br><span class="line"><span class="comment">#echo &quot;sys-fs/zfs **&quot; &gt; /etc/portage/package.keywords/zfs</span></span><br><span class="line"><span class="comment">#echo &quot;sys-kernel/spl **&quot; &gt;&gt; /etc/portage/package.keywords/zfs</span></span><br><span class="line"><span class="comment">#emerge -v =sys-kernel/spl-9999 =sys-fs/zfs-9999</span></span><br></pre></td></tr></table></figure>
 <p>如果你用Ubuntu那就更简单了：</p>
-<pre><code class="bash">$ sudo -s
-<span class="hljs-comment"># apt-add-repository ppa:zfs-native/daily</span>
-<span class="hljs-comment"># apt-get update</span>
-<span class="hljs-comment"># apt-get install debootstrap ubuntu-zfs</span>
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> -s</span><br><span class="line"><span class="comment"># apt-add-repository ppa:zfs-native/daily</span></span><br><span class="line"><span class="comment"># apt-get update</span></span><br><span class="line"><span class="comment"># apt-get install debootstrap ubuntu-zfs</span></span><br></pre></td></tr></table></figure>
 <p>如果不出意外的话，这样ZFS就安装好了，检查是否安装OK：</p>
-<pre><code class="bash"><span class="hljs-comment"># modprobe zfs</span>
-<span class="hljs-comment"># dmesg | grep ZFS:</span>
-ZFS: Loaded module v0.6.0-rc8, ZFS pool version 28, ZFS filesystem version 5
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modprobe zfs</span></span><br><span class="line"><span class="comment"># dmesg | grep ZFS:</span></span><br><span class="line">ZFS: Loaded module v0.6.0-rc8, ZFS pool version 28, ZFS filesystem version 5</span><br></pre></td></tr></table></figure>
 <p>如果要玩Boot From ZFS Root Filesystem，那么这个比较复杂，还是等进阶后，再去详细了解吧。</p>
 <h2 id="shi-yong-zfs" class="heading-control">使用 ZFS<a class="heading-anchor" href="#shi-yong-zfs" aria-hidden="true"></a></h2>
 <p>ZFS有四个主要的概念，理清这些概念非常重要：虚拟设备(<code>vdevs</code>)，存储池(<code>Storage Pool</code>), 卷(<code>Volume</code>)，快照(<code>Snapshot</code>)</p>
@@ -405,152 +372,20 @@ Raidz至少要3块盘。Raidz2至少4块盘。假设磁盘块数为N，大小为
 </ul>
 <p>假设你有四个同样大小的sata磁盘: /dev/sda /dev/sdb /dev/sdc /dev/sdd</p>
 <h3 id="chuang-jian-zfs-raidz-cun-chu-chi" class="heading-control">创建ZFS Raidz 存储池：<a class="heading-anchor" href="#chuang-jian-zfs-raidz-cun-chu-chi" aria-hidden="true"></a></h3>
-<pre><code class="bash">    $ sudo zpool create myzpool /dev/sda /dev/sdb /dev/sdc /dev/sdd
-    $ sudo zfs list
-    NAME      USED  AVAIL  REFER  MOUNTPOINT
-    myzpool  96.5K   146M  31.4K  /myzpool
-    $
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> zpool create myzpool /dev/sda /dev/sdb /dev/sdc /dev/sdd</span><br><span class="line">$ <span class="built_in">sudo</span> zfs list</span><br><span class="line">NAME      USED  AVAIL  REFER  MOUNTPOINT</span><br><span class="line">myzpool  96.5K   146M  31.4K  /myzpool</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 <h3 id="cha-kan-cun-chu-chi-shu-xing" class="heading-control">查看存储池属性<a class="heading-anchor" href="#cha-kan-cun-chu-chi-shu-xing" aria-hidden="true"></a></h3>
-<pre><code class="bash">    $ sudo zfs get all myzpool
-    NAME     PROPERTY              VALUE                  SOURCE
-    myzpool  <span class="hljs-built_in">type</span>                  filesystem             -
-    myzpool  creation              Sat Nov 13 22:43 2010  -
-    myzpool  used                  96.5K                  -
-    myzpool  available             146M                   -
-    myzpool  referenced            31.4K                  -
-    myzpool  compressratio         1.00x                  -
-    myzpool  mounted               yes                    -
-    myzpool  quota                 none                   default
-    myzpool  reservation           none                   default
-    myzpool  recordsize            128K                   default
-    myzpool  mountpoint            /myzpool               default
-    myzpool  sharenfs              off                    default
-    myzpool  checksum              on                     default
-    myzpool  compression           off                    default
-    myzpool  atime                 on                     default
-    myzpool  copies                1                      default
-    myzpool  version               4                      -
-    ...
-    myzpool  primarycache          all                    default
-    myzpool  secondarycache        all                    default
-    myzpool  usedbysnapshots       0                      -
-    myzpool  usedbydataset         31.4K                  -
-    myzpool  usedbychildren        65.1K                  -
-    myzpool  usedbyrefreservation  0                      -
-    $
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> zfs get all myzpool</span><br><span class="line">NAME     PROPERTY              VALUE                  SOURCE</span><br><span class="line">myzpool  <span class="built_in">type</span>                  filesystem             -</span><br><span class="line">myzpool  creation              Sat Nov 13 22:43 2010  -</span><br><span class="line">myzpool  used                  96.5K                  -</span><br><span class="line">myzpool  available             146M                   -</span><br><span class="line">myzpool  referenced            31.4K                  -</span><br><span class="line">myzpool  compressratio         1.00x                  -</span><br><span class="line">myzpool  mounted               <span class="built_in">yes</span>                    -</span><br><span class="line">myzpool  quota                 none                   default</span><br><span class="line">myzpool  reservation           none                   default</span><br><span class="line">myzpool  recordsize            128K                   default</span><br><span class="line">myzpool  mountpoint            /myzpool               default</span><br><span class="line">myzpool  sharenfs              off                    default</span><br><span class="line">myzpool  checksum              on                     default</span><br><span class="line">myzpool  compression           off                    default</span><br><span class="line">myzpool  atime                 on                     default</span><br><span class="line">myzpool  copies                1                      default</span><br><span class="line">myzpool  version               4                      -</span><br><span class="line">...</span><br><span class="line">myzpool  primarycache          all                    default</span><br><span class="line">myzpool  secondarycache        all                    default</span><br><span class="line">myzpool  usedbysnapshots       0                      -</span><br><span class="line">myzpool  usedbydataset         31.4K                  -</span><br><span class="line">myzpool  usedbychildren        65.1K                  -</span><br><span class="line">myzpool  usedbyrefreservation  0                      -</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 <h3 id="zfs-de-wen-jian-ya-suo-neng-li" class="heading-control">ZFS的文件压缩能力<a class="heading-anchor" href="#zfs-de-wen-jian-ya-suo-neng-li" aria-hidden="true"></a></h3>
-<pre><code class="bash">    $ sudo zfs create myzpool/myzdev
-    $ sudo zfs list
-    NAME             USED  AVAIL  REFER  MOUNTPOINT
-    myzpool          139K   146M  31.4K  /myzpool
-    myzpool/myzdev  31.4K   146M  31.4K  /myzpool/myzdev
-    $ sudo zfs <span class="hljs-built_in">set</span> compression=on myzpool/myzdev
-    $ ls /myzpool/myzdev/
-    $ sudo cp ../linux/Documentation/devices.txt /myzpool/myzdev/
-    $ ls -la ../linux/Documentation/devices.txt
-    -rw-r--r-- 1 mtj mtj 118144 2010-05-16 14:17 ../linux-2.6.34/Documentation/devices.txt
-    $ ls -la /myzpool/myzdev/
-    total 5
-    drwxr-xr-x 2 root root      3 2010-11-20 22:59 .
-    drwxr-xr-x 3 root root      3 2010-11-20 22:55 ..
-    -rw-r--r-- 1 root root 118144 2010-11-20 22:59 devices.txt
-    $ du -ah /myzpool/myzdev/
-    60K /myzpool/myzdev/devices.txt
-    62K /myzpool/myzdev/
-    $ sudo zfs get compressratio myzpool
-    NAME     PROPERTY       VALUE  SOURCE
-    myzpool  compressratio  1.55x  -
-    $
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> zfs create myzpool/myzdev</span><br><span class="line">$ <span class="built_in">sudo</span> zfs list</span><br><span class="line">NAME             USED  AVAIL  REFER  MOUNTPOINT</span><br><span class="line">myzpool          139K   146M  31.4K  /myzpool</span><br><span class="line">myzpool/myzdev  31.4K   146M  31.4K  /myzpool/myzdev</span><br><span class="line">$ <span class="built_in">sudo</span> zfs <span class="built_in">set</span> compression=on myzpool/myzdev</span><br><span class="line">$ <span class="built_in">ls</span> /myzpool/myzdev/</span><br><span class="line">$ <span class="built_in">sudo</span> <span class="built_in">cp</span> ../linux/Documentation/devices.txt /myzpool/myzdev/</span><br><span class="line">$ <span class="built_in">ls</span> -la ../linux/Documentation/devices.txt</span><br><span class="line">-rw-r--r-- 1 mtj mtj 118144 2010-05-16 14:17 ../linux-2.6.34/Documentation/devices.txt</span><br><span class="line">$ <span class="built_in">ls</span> -la /myzpool/myzdev/</span><br><span class="line">total 5</span><br><span class="line">drwxr-xr-x 2 root root      3 2010-11-20 22:59 .</span><br><span class="line">drwxr-xr-x 3 root root      3 2010-11-20 22:55 ..</span><br><span class="line">-rw-r--r-- 1 root root 118144 2010-11-20 22:59 devices.txt</span><br><span class="line">$ <span class="built_in">du</span> -ah /myzpool/myzdev/</span><br><span class="line">60K /myzpool/myzdev/devices.txt</span><br><span class="line">62K /myzpool/myzdev/</span><br><span class="line">$ <span class="built_in">sudo</span> zfs get compressratio myzpool</span><br><span class="line">NAME     PROPERTY       VALUE  SOURCE</span><br><span class="line">myzpool  compressratio  1.55x  -</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 <h3 id="cha-kan-pool-de-zhuang-tai" class="heading-control">查看Pool的状态<a class="heading-anchor" href="#cha-kan-pool-de-zhuang-tai" aria-hidden="true"></a></h3>
-<pre><code class="bash">$ sudo zpool status myzpool
-  pool: myzpool
- state: ONLINE
- scrub: none requested
-config:
-
-    NAME        STATE     READ WRITE CKSUM
-    myzpool     ONLINE       0     0     0
-      raidz1    ONLINE       0     0     0
-        sda     ONLINE       0     0     0
-        sdb     ONLINE       0     0     0
-        sdc     ONLINE       0     0     0
-        sdd     ONLINE       0     0     0
-
-errors: No known data errors
-$
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> zpool status myzpool</span><br><span class="line">  pool: myzpool</span><br><span class="line"> state: ONLINE</span><br><span class="line"> scrub: none requested</span><br><span class="line">config:</span><br><span class="line"></span><br><span class="line">    NAME        STATE     READ WRITE CKSUM</span><br><span class="line">    myzpool     ONLINE       0     0     0</span><br><span class="line">      raidz1    ONLINE       0     0     0</span><br><span class="line">        sda     ONLINE       0     0     0</span><br><span class="line">        sdb     ONLINE       0     0     0</span><br><span class="line">        sdc     ONLINE       0     0     0</span><br><span class="line">        sdd     ONLINE       0     0     0</span><br><span class="line"></span><br><span class="line">errors: No known data errors</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 <h3 id="pool-zhong-yi-ge-ci-pan-sun-hai-hou-de-xiu-fu" class="heading-control">Pool中一个磁盘损害后的修复<a class="heading-anchor" href="#pool-zhong-yi-ge-ci-pan-sun-hai-hou-de-xiu-fu" aria-hidden="true"></a></h3>
 <p>首先弄坏一个磁盘的数据:</p>
-<pre><code class="bash">$ dd <span class="hljs-keyword">if</span>=/dev/zero of=/dev/sdd bs=64M count=1
-1+0 records <span class="hljs-keyword">in</span>
-1+0 records out
-67108864 bytes (67 MB) copied, 1.84791 s, 36.3 MB/s
-$
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">dd</span> <span class="keyword">if</span>=/dev/zero of=/dev/sdd bs=64M count=1</span><br><span class="line">1+0 records <span class="keyword">in</span></span><br><span class="line">1+0 records out</span><br><span class="line">67108864 bytes (67 MB) copied, 1.84791 s, 36.3 MB/s</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 <p>然后检查Pool:</p>
-<pre><code class="bash">$ sudo zpool scrub myzpool
-$ sudo zpool status myzpool
-  pool: myzpool
- state: ONLINE
-status: One or more devices could not be used because the label is missing or
-    invalid.  Sufficient replicas exist <span class="hljs-keyword">for</span> the pool to <span class="hljs-built_in">continue</span>
-    functioning <span class="hljs-keyword">in</span> a degraded state.
-action: Replace the device using <span class="hljs-string">'zpool replace'</span>.
-   see: http://www.sun.com/msg/ZFS-8000-4J
- scrub: scrub completed after 0h0m with 0 errors on Sat Nov 20 23:15:03 2010
-config:
-
-    NAME        STATE     READ WRITE CKSUM
-    myzpool     ONLINE       0     0     0
-      raidz1    ONLINE       0     0     0
-        sda     ONLINE       0     0     0
-        sdb     ONLINE       0     0     0
-        sdc     ONLINE       0     0     0
-        sdd     UNAVAIL      0     0     0  corrupted data
-
-errors: No known data errors
-$ wc -l /myzpool/myzdev/devices.txt
-3340 /myzpool/myzdev/devices.txt
-$
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> zpool scrub myzpool</span><br><span class="line">$ <span class="built_in">sudo</span> zpool status myzpool</span><br><span class="line">  pool: myzpool</span><br><span class="line"> state: ONLINE</span><br><span class="line">status: One or more devices could not be used because the label is missing or</span><br><span class="line">    invalid.  Sufficient replicas exist <span class="keyword">for</span> the pool to <span class="built_in">continue</span></span><br><span class="line">    functioning <span class="keyword">in</span> a degraded state.</span><br><span class="line">action: Replace the device using <span class="string">&#x27;zpool replace&#x27;</span>.</span><br><span class="line">   see: http://www.sun.com/msg/ZFS-8000-4J</span><br><span class="line"> scrub: scrub completed after 0h0m with 0 errors on Sat Nov 20 23:15:03 2010</span><br><span class="line">config:</span><br><span class="line"></span><br><span class="line">    NAME        STATE     READ WRITE CKSUM</span><br><span class="line">    myzpool     ONLINE       0     0     0</span><br><span class="line">      raidz1    ONLINE       0     0     0</span><br><span class="line">        sda     ONLINE       0     0     0</span><br><span class="line">        sdb     ONLINE       0     0     0</span><br><span class="line">        sdc     ONLINE       0     0     0</span><br><span class="line">        sdd     UNAVAIL      0     0     0  corrupted data</span><br><span class="line"></span><br><span class="line">errors: No known data errors</span><br><span class="line">$ <span class="built_in">wc</span> -l /myzpool/myzdev/devices.txt</span><br><span class="line">3340 /myzpool/myzdev/devices.txt</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 <p>使用replace修复:</p>
-<pre><code class="bash">$ sudo zpool replace myzpool sdd sdd
-$ sudo zpool status myzpool
-  pool: myzpool
- state: ONLINE
- scrub: resilver completed after 0h0m with 0 errors on Sat Nov 20 23:23:12 2010
-config:
-
-    NAME        STATE     READ WRITE CKSUM
-    myzpool     ONLINE       0     0     0
-      raidz1    ONLINE       0     0     0
-        sda     ONLINE       0     0     0
-        sdb     ONLINE       0     0     0
-        sdc     ONLINE       0     0     0
-        sdd     ONLINE       0     0     0  59.5K resilvered
-
-errors: No known data errors
-$ sudo zpool scrub myzpool
-$ sudo zpool status myzpool
-  pool: myzpool
- state: ONLINE
- scrub: scrub completed after 0h0m with 0 errors on Sat Nov 20 23:23:23 2010
-config:
-
-    NAME        STATE     READ WRITE CKSUM
-    myzpool     ONLINE       0     0     0
-      raidz1    ONLINE       0     0     0
-        sda     ONLINE       0     0     0
-        sdb     ONLINE       0     0     0
-        sdc     ONLINE       0     0     0
-        sdd     ONLINE       0     0     0
-
-errors: No known data errors
-$
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> zpool replace myzpool sdd sdd</span><br><span class="line">$ <span class="built_in">sudo</span> zpool status myzpool</span><br><span class="line">  pool: myzpool</span><br><span class="line"> state: ONLINE</span><br><span class="line"> scrub: resilver completed after 0h0m with 0 errors on Sat Nov 20 23:23:12 2010</span><br><span class="line">config:</span><br><span class="line"></span><br><span class="line">    NAME        STATE     READ WRITE CKSUM</span><br><span class="line">    myzpool     ONLINE       0     0     0</span><br><span class="line">      raidz1    ONLINE       0     0     0</span><br><span class="line">        sda     ONLINE       0     0     0</span><br><span class="line">        sdb     ONLINE       0     0     0</span><br><span class="line">        sdc     ONLINE       0     0     0</span><br><span class="line">        sdd     ONLINE       0     0     0  59.5K resilvered</span><br><span class="line"></span><br><span class="line">errors: No known data errors</span><br><span class="line">$ <span class="built_in">sudo</span> zpool scrub myzpool</span><br><span class="line">$ <span class="built_in">sudo</span> zpool status myzpool</span><br><span class="line">  pool: myzpool</span><br><span class="line"> state: ONLINE</span><br><span class="line"> scrub: scrub completed after 0h0m with 0 errors on Sat Nov 20 23:23:23 2010</span><br><span class="line">config:</span><br><span class="line"></span><br><span class="line">    NAME        STATE     READ WRITE CKSUM</span><br><span class="line">    myzpool     ONLINE       0     0     0</span><br><span class="line">      raidz1    ONLINE       0     0     0</span><br><span class="line">        sda     ONLINE       0     0     0</span><br><span class="line">        sdb     ONLINE       0     0     0</span><br><span class="line">        sdc     ONLINE       0     0     0</span><br><span class="line">        sdd     ONLINE       0     0     0</span><br><span class="line"></span><br><span class="line">errors: No known data errors</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -581,7 +416,7 @@ $
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/https:/riceball.me/article/diy-cloud-computing-3/" title="DIY与云计算（三）之 云存储与开源 ZFS 文件系统">https://riceball.me/article/diy-cloud-computing-3/</a>
+    <a href="https://riceball.me/article/diy-cloud-computing-3/" title="DIY与云计算（三）之 云存储与开源 ZFS 文件系统">https://riceball.me/article/diy-cloud-computing-3/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -619,7 +454,6 @@ $
   
   
 
-  </div>
 
 
           </div>
@@ -641,7 +475,7 @@ $
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -653,7 +487,7 @@ $
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -712,20 +546,20 @@ $
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -755,6 +589,8 @@ $
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -768,14 +604,16 @@ $
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -849,15 +687,15 @@ $
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/article/diy-cloud-computing-3/",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/article/diy-cloud-computing-3/",
       identifier: "article/diy-cloud-computing-3/",
-      title: "DIY与云计算（三）之 云存储与开源 ZFS 文件系统",
+      title     : "DIY与云计算（三）之 云存储与开源 ZFS 文件系统",
     });
   }, window.DisqusJS);
 });
@@ -877,7 +715,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>

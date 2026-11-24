@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
+<meta name="generator" content="Hexo 8.1.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -15,52 +15,26 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://riceball.me').hostname,
-    root: '/',
-    scheme: 'Mist',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: true,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":"utteranc","storage":true,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}}},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"riceball.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utteranc","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Disqus","order":-1},"utteranc":{"order":-2}},"activeClass":"utteranc"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="扩展标记 用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式： [文本内容]{variable_name: 可选的配置} 文本内容是该元素的文本表现，例如链接文本或图像替代文本，位于方括号“[]”之间。方括号后面是花括号“{}”，花括号中包含了变量名和配置(可选)，如果存在配置，则变量名后必须带有一个冒号“:”。 配置是决定元素类型并指定其行为的因素。 例如，">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Interactive Markdown Reference Manual">
-<meta property="og:url" content="https:&#x2F;&#x2F;riceball.me&#x2F;imarkdown&#x2F;reference.html">
+<meta property="og:url" content="https://riceball.me/imarkdown/reference.html">
 <meta property="og:site_name" content="Riceball LEE">
 <meta property="og:description" content="扩展标记 用于指定元素控件的符号类似于常规的Markdown语法，对于链接和图像，通常遵循以下格式： [文本内容]{variable_name: 可选的配置} 文本内容是该元素的文本表现，例如链接文本或图像替代文本，位于方括号“[]”之间。方括号后面是花括号“{}”，花括号中包含了变量名和配置(可选)，如果存在配置，则变量名后必须带有一个冒号“:”。 配置是决定元素类型并指定其行为的因素。 例如，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-06T12:02:00.000Z">
 <meta property="article:modified_time" content="2019-12-06T12:02:00.000Z">
 <meta property="article:author" content="Riceball LEE">
-<meta property="article:tag" content="interactive">
-<meta property="article:tag" content="reactive">
 <meta property="article:tag" content="document">
+<meta property="article:tag" content="interactive">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="markdown">
+<meta property="article:tag" content="reactive">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://riceball.me/imarkdown/reference">
@@ -70,15 +44,16 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: false
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
   };
 </script>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=MML_CHTML" ></script>
 <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/highlight.js@9/styles/github.css'>
 <link rel='stylesheet' href='/assets/imarkdown/imarkdown-0.4.3-min.css'>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
 <link rel="pgpkey" type="application/pgp-keys" href="/key.pub">
 <link href="https://github.com/snowyu" rel="me">
 
@@ -86,7 +61,7 @@
 
 
   <title>Interactive Markdown Reference Manual | Riceball LEE
-  </title>
+</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75922641-1"></script>
     <script>
@@ -135,28 +110,15 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Riceball LEE" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Riceball LEE</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">Go with wind.</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -164,15 +126,37 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Riceball LEE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go with wind.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -183,11 +167,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -205,29 +184,34 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
   </div>
+</div>
+
+    </div>
+  </div>
+
 </div>
     </header>
 
@@ -248,18 +232,17 @@
   
   
 
-          <div class="content">
+          <div class="content page posts-expand">
             
 
-  <div class="posts-expand">
     
     
     
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">Interactive Markdown Reference Manual
-</h2>
+<h1 class="post-title" itemprop="name headline">Interactive Markdown Reference Manual
+</h1>
 
 <div class="post-meta">
   
@@ -305,7 +288,7 @@
 <p>范围元素是可以通过拖动调整的数字，类似滑块。该数字可以指定显示精度。该元素可以被限制为最小值和/或最大值，并且可能具有步进值。在<code>文本内容</code>中的第一个数字<code>&lt;number&gt;.&lt;decimal&gt;</code>将作为<code>默认数字值</code>，其它会原样输出，从而允许在控件中包含单位和其他描述性文本。</p>
 <p>在<code>配置</code>中必须指定范围，但在两个方向上都可以是无限的(不写值即可)。 范围的间隔是使用’…‘或’…’，其中“…”包含所有内容，而“…” 不包括结尾。 即，“1…4”覆盖区间“<math><mn>1</mn><mo>≤</mo><mi>n</mi><mo>≤</mo><mn>4</mn></math>”，而“1 … 4”覆盖区间“<math><mn>1</mn><mo>≤</mo><mi>n</mi><mo>&lt;</mo><mn>4</mn></math>”。范围必须是递增的（以保持UI的一致性 ———— 向左拖动表示负数，向右拖动表示正数）。 使用关键字“<code>by</code>”和一个数字用以指定<code>步长</code>，该关键字可以省略（默认为1），但如果指定则必须为正。</p>
 <p>可以使用<code>文本内容</code>中的<code>默认数字值</code>来指定显示精度。 “<code>200.</code>” 将格式化为 “<code>0</code>” 小数位。 而&quot;<code>200.000</code>“将格式化为”<code>3</code>&quot;小数。 如果未指定，则该值是未格式化的。</p>
-<p>数字还可以使用在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noopener"><code>Math</code></a>规范约定的常量，并可以将它们与系数组合，例如“<code>2pi</code>”或“<code>0.5pi</code>”，这将被视为“<code>n * Math.PI</code>”。 这可以写在最小、最大范围或步骤值上。常量必须是<code>e</code>，<code>pi</code>，<code>ln2</code>，<code>ln10</code>，<code>log2e</code>，<code>log10e</code>，<code>sqrt1_2</code>，<code>sqrt2</code>中的一个（大写或小写）。</p>
+<p>数字还可以使用在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math"><code>Math</code></a>规范约定的常量，并可以将它们与系数组合，例如“<code>2pi</code>”或“<code>0.5pi</code>”，这将被视为“<code>n * Math.PI</code>”。 这可以写在最小、最大范围或步骤值上。常量必须是<code>e</code>，<code>pi</code>，<code>ln2</code>，<code>ln10</code>，<code>log2e</code>，<code>log10e</code>，<code>sqrt1_2</code>，<code>sqrt2</code>中的一个（大写或小写）。</p>
 <h4 id="fan-wei-yuan-su-li-zi" class="heading-control">范围元素例子<a class="heading-anchor" href="#fan-wei-yuan-su-li-zi" aria-hidden="true"></a></h4>
 <h5 id="zhi-ding-bu-chang" class="heading-control">指定步长<a class="heading-anchor" href="#zhi-ding-bu-chang" aria-hidden="true"></a></h5>
 <p><span class="AMElement" data-embed="false" data-config="calories: 10..100 by 10">20. calories</span> - <code>[20. calories]{calories: 10..100 by 10}</code></p>
@@ -745,81 +728,19 @@
 </tbody>
 </table>
 <h2 id="jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian" class="heading-control">交互代码块(CodeBlockElement)元素控件<a class="heading-anchor" href="#jiao-hu-dai-ma-kuai-codeblockelement-yuan-su-kong-jian" aria-hidden="true"></a></h2>
-<p>交互的代码块同样遵循Markdown规范，可以是缩进4格或者三个&quot;```&quot;个符号（无语言指示）围绕的内容,例如：代码的语法是使用的<a href="https://coffeescript.org/v1/" target="_blank" rel="noopener">CoffeeScript@v1</a>的语法。</p>
-<pre><code class="markdown">
-<span class="hljs-section"># 缩进4格</span>
-
-<span class="hljs-code">    # 设置交互变量初值， ||表示当存在初始值的时候不设置。</span>
-<span class="hljs-code">    @my_var ||= 123</span>
-<span class="hljs-code">    # 设置函数</span>
-<span class="hljs-code">    # @my_func = (x) =&gt; sin(x + @my_var)</span>
-
-
-<span class="hljs-section"># 使用普通没有language的代码块</span>
-
-
-<span class="hljs-code">```
-# 设置交互变量初值， ||表示当存在初始值的时候不设置。
-@my_var ||= 123
-# 设置函数
-@my_func = (x) =&gt; sin(x + @my_var)
-```</span>
-</code></pre>
+<p>交互的代码块同样遵循Markdown规范，可以是缩进4格或者三个&quot;```&quot;个符号（无语言指示）围绕的内容,例如：代码的语法是使用的<a href="https://coffeescript.org/v1/">CoffeeScript@v1</a>的语法。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="section"># 缩进4格</span></span><br><span class="line"></span><br><span class="line"><span class="code">    # 设置交互变量初值， ||表示当存在初始值的时候不设置。</span></span><br><span class="line"><span class="code">    @my_var ||= 123</span></span><br><span class="line"><span class="code">    # 设置函数</span></span><br><span class="line"><span class="code">    # @my_func = (x) =&gt; sin(x + @my_var)</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"></span><br><span class="line"><span class="section"># 使用普通没有language的代码块</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="code">```</span></span><br><span class="line"><span class="code"># 设置交互变量初值， ||表示当存在初始值的时候不设置。</span></span><br><span class="line"><span class="code">@my_var ||= 123</span></span><br><span class="line"><span class="code"># 设置函数</span></span><br><span class="line"><span class="code">@my_func = (x) =&gt; sin(x + @my_var)</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>如果希望只是显示代码块内容而不是执行，请使用加了语言的代码块，如:</p>
-<pre><code class="markdown">
-
-<span class="hljs-code">```coffee
-# 该代码块不会执行，不是交互代码块，只会显示
-@my_var ||= 123
-# 设置函数
-@my_func = (x) =&gt; sin(x + @my_var)
-```</span>
-</code></pre>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="code">```coffee</span></span><br><span class="line"><span class="code"># 该代码块不会执行，不是交互代码块，只会显示</span></span><br><span class="line"><span class="code">@my_var ||= 123</span></span><br><span class="line"><span class="code"># 设置函数</span></span><br><span class="line"><span class="code">@my_func = (x) =&gt; sin(x + @my_var)</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>未来可能将支持指定交互语言，使用语言加后缀&quot;/playable&quot;的语法,例如如果希望使用js:</p>
-<pre><code class="md"><span class="hljs-code">```</span>js/playable
-// js交互代码块
-<span class="hljs-code">```
-</span></code></pre>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```js/playable</span></span><br><span class="line"><span class="code">// js交互代码块</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>如果该代码块带输出，则在语言上使用<code>output</code>，表示默认语言带输出的代码块，如果要指定语言则应该加在playable前面，并用“:”号分隔, 如，<code>output:playable</code>。</p>
-<pre><code class="md"><span class="hljs-code">```output
-# 默认语言带输出的代码块
-@sayln 'hi world'
-```</span>
-
-<span class="hljs-code">```</span>coffee/output:playable
-<span class="hljs-section"># 指定语言带输出的代码块，暂未实现，指定语言没有，全部都是coffee.</span>
-@sayln 'hi world'
-<span class="hljs-code">```
-</span></code></pre>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```output</span></span><br><span class="line"><span class="code"># 默认语言带输出的代码块</span></span><br><span class="line"><span class="code">@sayln &#x27;hi world&#x27;</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="code">```coffee/output:playable</span></span><br><span class="line"><span class="code"># 指定语言带输出的代码块，暂未实现，指定语言没有，全部都是coffee.</span></span><br><span class="line"><span class="code">@sayln &#x27;hi world&#x27;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>带输出的代码块有<code>@output</code>变量(为该块绑定的<code>div</code>元素)，<code>@say()</code>和<code>@sayln()</code>文本输出。</p>
 <h3 id="play-movie-for-codeblock" class="heading-control">Play Movie for CodeBlock<a class="heading-anchor" href="#play-movie-for-codeblock" aria-hidden="true"></a></h3>
 <p><strong>警告：该标记因为尚未完全确定，未来可能会有改变</strong></p>
 <p>可以象电影一样播放代码块的输入。在代码块中单行启用三个<code>~~~</code>或三个以上的波浪符号<code>~</code>分隔即可。波浪分隔符号<code>~~~</code>以上的为代码，代码上方的“|”表示演示完毕后的光标位置，下方为控制输入的电影代码.</p>
-<pre><code class="md">
-<span class="hljs-code">```</span>output:playable
-
-<span class="hljs-section"># 演示绘制矩形的过程</span>
-paper = @canvas
-
-|
-~~~
-tooltip: 设置画布大小为200X100 ::: 初始化工作
-type:paper.setSize(200,100)\n
-tooltip: 清空画布
-type:paper.clear()\n
-tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量
-type:@rx ||=10\n
-type:@ry ||=18\n
-type:@rw ||=100\n
-type:@rh ||=50\n
-tooltip: 开始绘制矩形 ::: 绘制矩形
-type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
-tooltip: 为矩形填充红色
-type:rect.attr('fill', 'red')
-moveTo: 8:13
-tooltip: 现在你可以自己试一试了
-<span class="hljs-code">```
-</span></code></pre>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="code">```output:playable</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code"># 演示绘制矩形的过程</span></span><br><span class="line"><span class="code">paper = @canvas</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">|</span></span><br><span class="line"><span class="code">~~~</span></span><br><span class="line"><span class="code">tooltip: 设置画布大小为200X100 ::: 初始化工作</span></span><br><span class="line"><span class="code">type:paper.setSize(200,100)\n</span></span><br><span class="line"><span class="code">tooltip: 清空画布</span></span><br><span class="line"><span class="code">type:paper.clear()\n</span></span><br><span class="line"><span class="code">tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量</span></span><br><span class="line"><span class="code">type:@rx ||=10\n</span></span><br><span class="line"><span class="code">type:@ry ||=18\n</span></span><br><span class="line"><span class="code">type:@rw ||=100\n</span></span><br><span class="line"><span class="code">type:@rh ||=50\n</span></span><br><span class="line"><span class="code">tooltip: 开始绘制矩形 ::: 绘制矩形</span></span><br><span class="line"><span class="code">type:rect = paper.rect(@rx, @ry, @rw, @rh)\n</span></span><br><span class="line"><span class="code">tooltip: 为矩形填充红色</span></span><br><span class="line"><span class="code">type:rect.attr(&#x27;fill&#x27;, &#x27;red&#x27;)</span></span><br><span class="line"><span class="code">moveTo: 8:13</span></span><br><span class="line"><span class="code">tooltip: 现在你可以自己试一试了</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>tooltip</code> : 显示一个冒泡提示
 <ul>
@@ -831,36 +752,11 @@ tooltip: 现在你可以自己试一试了
 </ul>
 <h3 id="codeblock-examples" class="heading-control">CodeBlock Examples<a class="heading-anchor" href="#codeblock-examples" aria-hidden="true"></a></h3>
 <h4 id="example-interactive-code-block-without-output" class="heading-control">Example: interactive code block without output<a class="heading-anchor" href="#example-interactive-code-block-without-output" aria-hidden="true"></a></h4>
-<pre><code># this is an interactive code block without output
-a = 12 + 3
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># this is an interactive code block without output</span><br><span class="line">a = 12 + 3</span><br></pre></td></tr></table></figure>
 <h4 id="example-interactive-code-block-with-output" class="heading-control">Example: interactive code block with output<a class="heading-anchor" href="#example-interactive-code-block-with-output" aria-hidden="true"></a></h4>
-<pre><code class="output"># this is an interactive code block with output
-@sayln 'hi world'
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># this is an interactive code block with output</span><br><span class="line">@sayln &#x27;hi world&#x27;</span><br></pre></td></tr></table></figure>
 <h4 id="example-play-movie-for-codeblock" class="heading-control">Example: Play Movie for CodeBlock<a class="heading-anchor" href="#example-play-movie-for-codeblock" aria-hidden="true"></a></h4>
-<pre><code class="output:playable">
-# 演示绘制矩形的过程
-paper = @canvas
-
-|
-~~~
-tooltip: 设置画布大小为200X100 ::: 初始化工作
-type:paper.setSize(200,100)\n
-tooltip: 清空画布
-type:paper.clear()\n
-tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量
-type:@rx ||=10\n
-type:@ry ||=18\n
-type:@rw ||=100\n
-type:@rh ||=50\n
-tooltip: 开始绘制矩形 ::: 绘制矩形
-type:rect = paper.rect(@rx, @ry, @rw, @rh)\n
-tooltip: 为矩形填充红色
-type:rect.attr('fill', 'red')
-moveTo: 8:13
-tooltip: 现在你可以自己试一试了
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 演示绘制矩形的过程</span><br><span class="line">paper = @canvas</span><br><span class="line"></span><br><span class="line">|</span><br><span class="line">~~~</span><br><span class="line">tooltip: 设置画布大小为200X100 ::: 初始化工作</span><br><span class="line">type:paper.setSize(200,100)\n</span><br><span class="line">tooltip: 清空画布</span><br><span class="line">type:paper.clear()\n</span><br><span class="line">tooltip: 初始化来自文档的x,y座标，宽度和高度参数变量</span><br><span class="line">type:@rx ||=10\n</span><br><span class="line">type:@ry ||=18\n</span><br><span class="line">type:@rw ||=100\n</span><br><span class="line">type:@rh ||=50\n</span><br><span class="line">tooltip: 开始绘制矩形 ::: 绘制矩形</span><br><span class="line">type:rect = paper.rect(@rx, @ry, @rw, @rh)\n</span><br><span class="line">tooltip: 为矩形填充红色</span><br><span class="line">type:rect.attr(&#x27;fill&#x27;, &#x27;red&#x27;)</span><br><span class="line">moveTo: 8:13</span><br><span class="line">tooltip: 现在你可以自己试一试了</span><br></pre></td></tr></table></figure>
 
       </div>
       
@@ -872,7 +768,6 @@ tooltip: 现在你可以自己试一试了
     
     
     
-  </div>
 
 
           </div>
@@ -894,7 +789,7 @@ tooltip: 现在你可以自己试一试了
             </div>
             <div class="tab-pane disqusjs" id="comment-disqusjs">
               
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
@@ -906,7 +801,7 @@ tooltip: 现在你可以自己试一试了
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -965,20 +860,20 @@ tooltip: 现在你可以自己试一试了
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">140</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1008,6 +903,8 @@ tooltip: 现在你可以自己试一试了
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 2014 – 
@@ -1021,14 +918,16 @@ tooltip: 现在你可以自己试一试了
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">358k</span>
+    <span title="站点总字数">431k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:51</span>
+    <span title="站点阅读时长">13:04</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
 
         
 
@@ -1105,15 +1004,15 @@ window.iMarkdown.makeActive({"collapsed_code":false,"debug":false,"filename":"In
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-NexT.utils.loadComments(() => {
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
     window.dsqjs = new DisqusJS({
-      api: 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
-      apikey: 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
-      shortname: 'riceballl',
-      url: "https://riceball.me/imarkdown/reference.html",
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'vKNCqeYtqtmJXR3JG1Hi7Wn3Evwpq57HGsdO0JNH1bJNMAVeAiRKRkHw53qGXlUl',
+      shortname : 'riceballl',
+      url       : "https://riceball.me/imarkdown/reference.html",
       identifier: "imarkdown/reference.html",
-      title: "Interactive Markdown Reference Manual",
+      title     : "Interactive Markdown Reference Manual",
     });
   }, window.DisqusJS);
 });
@@ -1133,7 +1032,7 @@ if (document.querySelectorAll('pre code.mermaid').length) {
     });
   }, window.mermaid);
 }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 </body>
