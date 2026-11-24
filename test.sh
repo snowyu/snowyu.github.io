@@ -83,4 +83,14 @@ theme_ver=$(grep -oE "version[^0-9]*[0-9]+\.[0-9]+\.[0-9]+" public/index.html | 
 [ "$theme_ver" = "$THEME_VERSION" ] || fail "theme NexT is $theme_ver, expected $THEME_VERSION"
 echo "  ok  theme NexT $theme_ver"
 
+# i18n: the site's `source/_data/languages.yml` must win over the label baked
+# into hexo-next-coauthor's own languages/zh-CN.yml (合著者 -> 著者).
+# Hexo 8 only fills the `data` local after generateBefore, so NexT's own merge
+# sees an empty `data`; scripts/theme-i18n.js redoes it in before_generate.
+stale=$(grep -rl '合著者' public | wc -l || true)
+[ "$stale" -eq 0 ] || fail "$stale generated file(s) still say 合著者 (source/_data/languages.yml not applied)"
+label=$(grep -rl '著者' public | wc -l || true)
+[ "$label" -gt 0 ] || fail "no 著者 label anywhere in public/ (coauthor post meta missing?)"
+echo "  ok  coauthor label  著者 in $label file(s), 0 x 合著者"
+
 echo "PASS: $count files, 0 empty, node $(node -v), hexo $(npx hexo version 2>/dev/null | sed -n 's/^hexo: //p')"

@@ -11,6 +11,8 @@
   5. 主题版本 = `THEME_VERSION`（默认 7.8.0）
   6. 安装的 Hexo 与 `package.json` 里 `hexo.version` 一致
   7. generate 输出里没有 `load failed`（脚本/插件加载失败）
+  8. 文章页的著者标签是 `著者`，全站不出现 `合著者`（`source/_data/languages.yml`
+     覆盖生效，见 `scripts/theme-i18n.js`）
 - 本地预览: `npm run server`
 - 部署: `./deploy.sh`（= `npm run build && npm run deploy`，hexo-deployer-git 推到 master）
 
@@ -46,9 +48,19 @@
   `post-sitemap.xml` 等子 sitemap 和 `sitemap.xsl`。
 - **Markdown 渲染由 `hexo-next-imarkdown` 提供**（它注册 renderer；Hexo 5+ 自带渲染器
   不含 Markdown），删掉它会导致全站空白。
-- **`source/_data/next.yml`（910 行）实测不生效**：NexT 在 `generateBefore` 合并主题
-  配置，那时 Hexo 还没处理 `source/_data`，所以走的是 `_config.yml` 的 `theme_config:`
-  分支。改 next.yml 不会有任何效果，见 `TODO.md` 第 5 节（含探针证据）。
+- **Hexo 8 里 `generateBefore` 时 `source/_data/` 还没进 data 模型**：
+  `hexo.locals.get('data')` 在 `generateBefore` 时是空的（`keys=[]`），到
+  `before_generate` 才有 `body-end/coauthors/head/languages/next`。NexT 在
+  `themes/next/scripts/events/lib/config.js` 里合并 `_data/next.yml` 和
+  `_data/languages.yml` 都挂在这个时机上，所以两者默认都不生效：
+  - `source/_data/next.yml`（910 行）改任何主题配置都没用，实际走的是
+    `_config.yml` 的 `theme_config:` 分支，见 `TODO.md` 第 5 节（含探针证据）
+  - `source/_data/languages.yml`（把 `coauthor` 覆盖成 `著者`）同样落空，
+    页面上一直是插件自带的 `合著者`；已由 `scripts/theme-i18n.js` 在
+    `before_generate`（Data 模型已就绪、且早于 `template_locals` 冻结 `__()`）
+    重做这次合并修好，`test.sh` 第 8 条断言防回退
+- `source/_data/*.swig`（`head.swig`、`body-end.swig`）**是生效的**：它们走
+  `theme_config.custom_file_path`，在渲染期按路径读取，不依赖 data 模型。
 - `package.json` 必须保留 `"hexo": {"version": "x.y.z"}` 对象：hexo-cli 靠它识别站点
   目录，缺了就只打印 usage 且不报错。
 

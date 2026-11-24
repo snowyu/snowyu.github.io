@@ -49,7 +49,7 @@ Node 22 / Hexo 8 迁移已完成（见 `dev.md` 与 `git log`）。以下是剩�
       与 v8 的 changelog（废弃项：`mediumzoom`、部分 `custom_file_path` 点位、
       FontAwesome → ForkAwesome 等）
 - [ ] 验收：`npm test` 通过；并人工过一遍首页/文章/归档/搜索/评论（utteranc）/
-      分享按钮（`hexo-next-share`）/ 合著者（`hexo-next-coauthor`）是否正常
+      分享按钮（`hexo-next-share`）/ 著者标签（`hexo-next-coauthor`）是否正常
 - [ ] 升 8 后可考虑删掉 `scripts/heading-anchor.js`，改用主题自带的标题锚点
 
 ## 4. 测试与 CI
@@ -91,8 +91,24 @@ PROBE __probe__= undefined | minify= true                  # 但主题配置里�
       然后删掉 `source/_data/next.yml`，避免以后改它却没用。
       注意 `source/_data/head.swig`、`body-end.swig` **是生效的**
       （走 `theme_config.custom_file_path`，`_config.yml:163`），别一起删
-- [ ] 同类风险：`source/_data/languages.yml` 也走同一个 `generateBefore` 时机
-      （NexT 的 `data.languages` 分支），同样可能不生效；用 `hexo i18n` 探针确认
+- [x] 同类风险：`source/_data/languages.yml` 也走同一个 `generateBefore` 时机
+      —— **已证实，已修**。探针：
+
+      ```
+      PROBE generateBefore  data.keys=[]
+      PROBE before_generate data.keys=["body-end","coauthors","languages","head","next"]
+      PROBE before_generate theme.i18n(zh-CN).coauthor="合著者"   # 插件自带的默认值
+      ```
+
+      即 NexT 的 `if (data.languages)` 分支拿到的是空 data，站点写的
+      `coauthor: 著者` 从未生效，页面一直渲染 `合著者`。修法：
+      `scripts/theme-i18n.js` 在 `before_generate`（priority 1）重做
+      `i18n.set(lang, Object.assign(i18n.get(lang), data.languages[lang]))`；
+      `test.sh` 断言全站 0 个 `合著者`、至少 1 个 `著者`
+- [ ] 同一个时机问题适用于 `generateBefore` 里读 `hexo.locals.get('data')` 的
+      任何主题/插件脚本（NexT 7.8.0 的 `scripts/events/lib/config.js` 是唯一一
+      处）；升 NexT 8 后先看上游是否改成 `before_generate`，再决定要不要保留
+      `scripts/theme-i18n.js`
 - [ ] `source/_data/coauthors.yml` 由 `hexo-next-coauthor` 在渲染期读取，不受此影响
 
 ## 6. 小尾巴
